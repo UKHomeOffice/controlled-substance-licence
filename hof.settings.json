@@ -1,0 +1,15 @@
+{
+  "appName": "Controlled Substance Licence",
+  "theme": "govUK",
+  "behaviours": [
+    "hof/components/clear-session"
+  ],
+  "translations": "./apps/pca/translations",
+  "routes": [
+    "./apps/pca"
+  ],
+  "session": {
+    "name": "pca.hof.sid"
+  },
+  "getAccessibility": false
+}
