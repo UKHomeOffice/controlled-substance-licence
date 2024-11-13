@@ -156,6 +156,6 @@ module.exports = {
   name: 'pca',
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
-  confirmStep: '/check-answers',
+  confirmStep: '/summary',
   steps: steps
 };
