@@ -153,7 +153,7 @@ const steps = {
 };
 
 module.exports = {
-  name: 'pca',
+  name: 'precursor-chemicals',
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',

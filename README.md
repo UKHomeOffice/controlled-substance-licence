@@ -1,6 +1,6 @@
 # Controlled Substance Licence (CSL)
 
-Controlled Substance Licence (CSL) allows the public to register and apply for a license to handle controlled substances.
+Controlled Substance Licence (CSL) allows the public to register and apply for a license to handle controlled substances. The CSL includes a suite of four forms: Registration, Low THC Cannabis, Controlled Drugs, and Precursor Chemicals.
 
 ## Description
 
@@ -78,7 +78,7 @@ By following these steps, you should be able to run your application using a dev
 
 7. Once the devcontainer is built and started, you will be inside the containerised environment. You can now work on your project as if you were working locally, but with all the necessary dependencies and tools installed within the container.
 
-8. To start the application, open a terminal within VS Code by going to `View -> Terminal` or by pressing `Ctrl+backtick` (`Cmd+backtick` on macOS). In the terminal, navigate to the project directory if you're not already there.
+8. To start the application, open a terminal within VS Code by going to `View -> Terminal` or by pressing `Ctrl+backtick`. In the terminal, navigate to the project directory if you're not already there.
 
 9. Run the necessary commands to install dependencies `yarn` and `yarn start:dev` to start your application.
 

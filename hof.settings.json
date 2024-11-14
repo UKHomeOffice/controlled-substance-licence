@@ -4,12 +4,12 @@
   "behaviours": [
     "hof/components/clear-session"
   ],
-  "translations": "./apps/pca/translations",
+  "translations": "./apps/precursor-chemicals/translations",
   "routes": [
-    "./apps/pca"
+    "./apps/precursor-chemicals"
   ],
   "session": {
-    "name": "pca.hof.sid"
+    "name": "csl.hof.sid"
   },
   "getAccessibility": false
 }
