@@ -1,0 +1,160 @@
+{
+  "licence-holder-details": {
+    "header": "Licence holder details"
+  },
+
+  "licence-holder-address": {
+    "header": "Licence holder address"
+  },
+
+  "reuse-premises-address": {
+    "header": "Is the premises address the same as the licence holder address?"
+  },
+
+  "premises-address": {
+    "header": "Premises address"
+  },
+
+  "premises-contact-details": {
+    "header": "Premises contact details"
+  },
+
+  "responsible-officer-details": {
+    "header": "Responsible officer details"
+  },
+
+  "responsible-officer-dbs-information": {
+    "header": "DBS information"
+  },
+
+  "responsible-officer-dbs": {
+    "header": "Has the responsible officer subscribed to DBS updates?"
+  },
+
+  "guarantor-details": {
+    "header": "Guarantor details"
+  },
+
+  "guarantor-dbs-information": {
+    "header": "Guarantor DBS information"
+  },
+
+  "guarantor-dbs-updates": {
+    "header": "Has the guarantor subscribed to DBS updates?"
+  },
+
+  "criminal-convictions": {
+    "header": "Has anyone employed by your company ever received criminal convictions?"
+  },
+
+  "invoicing-address": {
+    "header": "Invoicing address"
+  },
+
+  "invoicing-contact-details": {
+    "header": "Invoicing contact details"
+  },
+
+  "substance-category": {
+    "header": "Which category is the new substance?"
+  },
+
+  "which-chemical": {
+    "header": "Which chemical are you applying for?"
+  },
+
+  "which-operation": {
+    "header": "Which operation applies to this licence for X?"
+  },
+
+  "substances-in-licence": {
+    "header": "Substances in your licence"
+  },
+
+  "chemical-name": {
+    "header": "What is the name of the chemical are you applying for?"
+  },
+
+  "what-operation": {
+    "header": "What other operation applies to the licence?"
+  },
+
+  "why-chemicals-needed": {
+    "header": "Tell us why you need these chemicals and what they’ll be used for"
+  },
+
+  "upload-company-certificate": {
+    "header": "Upload company registration certificate"
+  },
+
+  "upload-conduct-certificate": {
+    "header": "Upload a certificate of good conduct"
+  },
+
+  "main-customers": {
+    "header": "Tell us about your main customers"
+  },
+
+  "main-suppliers": {
+    "header": "Tell us about your main suppliers"
+  },
+
+  "security-measures": {
+    "header": "What security measures do you have in place at the premises?"
+  },
+
+  "how-secure-premises": {
+    "header": "Describe how you secure your premises"
+  },
+
+  "storage-and-handling": {
+    "header": "Describe how you make sure chemicals are stored and handled securely"
+  },
+
+  "chemical-stock-control": {
+    "header": "Describe how you manage chemical stock control"
+  },
+
+  "legitimate-use": {
+    "header": "Describe how you work to make sure end products are used legitimately"
+  },
+
+  "operating-procedures-and-auditing": {
+    "header": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
+  },
+
+  "licence-email-address": {
+    "header": "Which email address should the licence be sent to?"
+  },
+
+  "who-completing": {
+    "header": "Who is completing the application?"
+  },
+
+  "discharging-licence-responsibilities": {
+    "header": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?"
+  },
+
+  "extra-application-information": {
+    "header": "Add any extra information you think might help your application?"
+  },
+
+  "summary": {
+    "header": "Summary"
+  },
+
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "application-submitted": {
+    "header": "Application submitted"
+  },
+  
+  "confirm": {
+    "sections": {
+    },
+    "fields": {
+    }
+  }
+}
