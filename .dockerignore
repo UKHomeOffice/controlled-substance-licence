@@ -1,0 +1,17 @@
+.dockerignore
+Dockerfile
+docker-compose.yml
+.drone.yml
+bin
+kube
+node_modules
+npm-debug.log
+yarn-error.log
+.DS_Store
+.git
+.gitignore
+.npmrc
+test
+jest.config.json
+jest.env.js
+sonar-project.properties
