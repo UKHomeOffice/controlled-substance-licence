@@ -1,4 +1,4 @@
-const translations = require('../apps/pca/translations/src/en/fields.json');
+const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
 
 const getLabel = (fieldKey, fieldValue) => {
   if ( Array.isArray(fieldValue)) {
