@@ -17,13 +17,13 @@ environment:
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
-  DEFAULT_BRANCH: main
 
+branch: &default_branch
+  - main
 
 trigger:
-  branch:
-    - feature/*
-    - $${DEFAULT_BRANCH}
+  <<: *default_branch
+  - feature/*
 
 node_image: &node_image
   pull: if-not-exists
@@ -85,7 +85,7 @@ steps:
     when:
       branch:
         include:
-        - $${DEFAULT_BRANCH}
+        - main
         - feature/*
       event: [push, pull_request]
 
@@ -122,7 +122,7 @@ steps:
     when:
       branch:
         include:
-        - $${DEFAULT_BRANCH}
+        - main
         - feature/*
       event: [push, pull_request]
 
@@ -131,7 +131,7 @@ steps:
     when:
       branch:
         include:
-          - $${DEFAULT_BRANCH}
+          - main
           - feature/*
       event: [push, pull_request]
     depends_on:
@@ -169,7 +169,7 @@ steps:
     when:
       branch:
         include:
-          - $$DEFAULT_BRANCH
+          - main
           - feature/*
       event: [push, pull_request]
     depends_on:
