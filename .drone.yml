@@ -21,10 +21,11 @@ environment:
 default_branch: &default_branch
   branch:
     - main
+    - feature/*
+
 
 trigger:
   <<: *default_branch
-    - feature/*
 
 node_image: &node_image
   pull: if-not-exists
