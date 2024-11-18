@@ -28,7 +28,8 @@ include_default_and_feature_branches: &include_default_and_feature_branches
     - feature/*
 
 trigger:
-  <<: *include_default_and_feature_branches
+  branch:
+    <<: *include_default_and_feature_branches
 
 node_image: &node_image
   pull: if-not-exists
