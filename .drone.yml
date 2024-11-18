@@ -18,9 +18,12 @@ environment:
   READY_FOR_TEST_DELAY: 20s
   NOTIFY_STUB: stub
 
-trigger:
+default_branch: &default_branch
   branch:
-    - ${DRONE_REPO_BRANCH}
+    - main
+
+trigger:
+  <<: *default_branch
     - feature/*
 
 node_image: &node_image
