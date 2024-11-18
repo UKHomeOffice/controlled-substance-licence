@@ -7,12 +7,9 @@
     "header": "Licence holder address"
   },
 
-  "reuse-premises-address": {
-    "header": "Is the premises address the same as the licence holder address?"
-  },
-
   "premises-address": {
-    "header": "Premises address"
+    "header": "Premises address",
+    "intro": "This is the address where you will operate your licence from"
   },
 
   "premises-contact-details": {
@@ -153,8 +150,20 @@
   
   "confirm": {
     "sections": {
+      "about-the-applicants": {
+        "header": "About the applicants"
+      }
     },
     "fields": {
+      "is-premises-address-same": {
+        "label": "Re-use the same contact details for the premises"
+      },
+      "premises-address-details": {
+        "label": "Premises address"
+      },
+      "premises-contact-details": {
+        "label": "Premises contact details"
+      }
     }
   }
 }
