@@ -17,4 +17,5 @@ jest.config.json
 jest.env.js
 coverage
 sonar-project.properties
+pull-request-template.md
 hof-services-config
