@@ -28,7 +28,6 @@
   },
 
   "responsible-officer-dbs": {
-    "header": "Has the responsible officer subscribed to DBS updates?"
   },
 
   "guarantor-details": {
@@ -153,8 +152,20 @@
   
   "confirm": {
     "sections": {
+      "about-the-applicants": {
+        "header": "About the applicants"
+      }
     },
     "fields": {
+      "responsible-officer-details": {
+        "label": "Responsible officer details"
+      },
+      "responsible-officer-dbs-information": {
+        "label": "DBS Information"
+      },
+      "responsible-officer-dbs-update-subscription": {
+        "label": "Responsible officer signed up for DBS updates"
+      }
     }
   }
 }

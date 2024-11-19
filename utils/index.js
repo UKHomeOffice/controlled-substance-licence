@@ -1,4 +1,5 @@
-const translations = require('../apps/pca/translations/src/en/fields.json');
+const config = require('../config');
+const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
 
 const getLabel = (fieldKey, fieldValue) => {
   if ( Array.isArray(fieldValue)) {
@@ -7,4 +8,9 @@ const getLabel = (fieldKey, fieldValue) => {
   return translations[fieldKey]?.options[fieldValue]?.label || undefined;
 };
 
-module.exports = { getLabel };
+const formatDate = date => {
+  const dateObj = new Date(date);
+  return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+};
+
+module.exports = { getLabel, formatDate };
