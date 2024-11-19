@@ -29,7 +29,9 @@ include_default_and_feature_branches: &include_default_and_feature_branches
 
 trigger:
   branch:
-    <<: *include_default_and_feature_branches
+    - main
+    - feature/*
+    - CSL-44-trigger-slack-hook
 
 node_image: &node_image
   pull: if-not-exists
