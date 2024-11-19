@@ -22,7 +22,6 @@ module.exports = {
           }
           addressDetails.push(req.sessionModel.get('premises-town-or-city'));
           addressDetails.push(req.sessionModel.get('premises-postcode'));
-          req.sessionModel.set('addressDetails', addressDetails.join(', '));
           return addressDetails.join('\n');
         }
       },
@@ -33,7 +32,6 @@ module.exports = {
           const contactDetails = [];
           contactDetails.push(req.sessionModel.get('premises-telephone'));
           contactDetails.push(req.sessionModel.get('premises-email'));
-          req.sessionModel.set('contactDetails', contactDetails.join(', '));
           return contactDetails.join('\n');
         }
       }

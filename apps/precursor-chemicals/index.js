@@ -1,4 +1,3 @@
-const customValidation = require('./behaviours/custom-validation.js');
 const hof = require('hof');
 const Summary = hof.components.summary;
 
@@ -27,7 +26,6 @@ const steps = {
   },
 
   '/premises-address': {
-    behaviours: [customValidation],
     fields: [
       'premises-address-line-1',
       'premises-address-line-2',
@@ -38,7 +36,6 @@ const steps = {
   },
 
   '/premises-contact-details': {
-    behaviours: [customValidation],
     fields: [
       'premises-telephone',
       'premises-email'
