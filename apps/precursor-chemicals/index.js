@@ -126,42 +126,42 @@ const steps = {
    */
 
   /** The organisation and how it operates
-    *
-    * The following steps are currently commented out:
-    *
-    * '/main-customers': {
-    *   next: '/main-suppliers'
-    * },
-    *
-    * '/main-suppliers': {
-    *   next: '/security-measures'
-    * },
-    *
-    * '/security-measures': {
-    *   next: '/how-secure-premises'
-    * },
-    *
-    * '/how-secure-premises': {
-    *   next: '/storage-and-handling'
-    * },
-    *
-    * '/storage-and-handling': {
-    *   next: '/chemical-stock-control'
-    * },
-    *
-    * '/chemical-stock-control': {
-    *   next: '/legitimate-use'
-    * },
-    *
-    * '/legitimate-use': {
-    *   next: '/operating-procedures-and-auditing'
-    * },
-    *
-    * '/operating-procedures-and-auditing': {
-    *   next: '/licence-email-address'
-    * },
-    *
-    */
+   *
+   * The following steps are currently commented out:
+   *
+   * '/main-customers': {
+   *   next: '/main-suppliers'
+   * },
+   *
+   * '/main-suppliers': {
+   *   next: '/security-measures'
+   * },
+   *
+   * '/security-measures': {
+   *   next: '/how-secure-premises'
+   * },
+   *
+   * '/how-secure-premises': {
+   *   next: '/storage-and-handling'
+   * },
+   *
+   * '/storage-and-handling': {
+   *   next: '/chemical-stock-control'
+   * },
+   *
+   * '/chemical-stock-control': {
+   *   next: '/legitimate-use'
+   * },
+   *
+   * '/legitimate-use': {
+   *   next: '/operating-procedures-and-auditing'
+   * },
+   *
+   * '/operating-procedures-and-auditing': {
+   *   next: '/licence-email-address'
+   * },
+   *
+   */
 
   /** Finalise application
    *
