@@ -6,7 +6,7 @@ module.exports = {
   },
   'company-number': {
     mixins: ['input-text'],
-    validate: [ 'notUrl' , { type: 'regex', arguments:/^[A-Za-z]{1,2}\d{8,12}$/}],
+    validate: [ 'notUrl', { type: 'regex', arguments: /^[A-Za-z]{1,2}\d{8,12}$/}],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   telephone: {
