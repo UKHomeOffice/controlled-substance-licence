@@ -6,12 +6,12 @@ module.exports = {
   },
   'company-number': {
     mixins: ['input-text'],
-    validate: [], // additional validation covered in custom-validation.js
+    validate: [ 'notUrl' , { type: 'regex', arguments:/^[A-Za-z]{1,2}\d{8,12}$/}],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   telephone: {
     mixins: ['input-text'],
-    validate: ['required', 'notUrl'],
+    validate: ['required'], // additional validation covered in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   email: {
@@ -20,8 +20,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'website-url': {
-    mixins: ['input-text', { type: 'maxlength', arguments: 250 }],
-    validate: ['url'],
+    mixins: ['input-text'],
+    validate: ['url', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'licence-holder-address-line-1': {

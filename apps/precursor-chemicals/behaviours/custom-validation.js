@@ -4,18 +4,6 @@ module.exports = superclass => class extends superclass {
   validateField(key, req) {
     const validationErrorFunc = (type, args) => new this.ValidationError(key, { type: type, arguments: [args] });
 
-    if (key === 'company-number') {
-      const companyNumber = req.form.values[key];
-      if (companyNumber) {
-        if (validators.url(companyNumber)) {
-          return validationErrorFunc('notUrl');
-        }
-        if (!validators.regex(companyNumber, /^[A-Za-z]{1,2}\d{8,12}$/)) {
-          return validationErrorFunc('companyNumber');
-        }
-      }
-    }
-
     if (key === 'telephone' || key === 'premises-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {

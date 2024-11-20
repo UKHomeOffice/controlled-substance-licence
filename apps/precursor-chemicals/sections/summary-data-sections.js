@@ -13,11 +13,11 @@ module.exports = {
           if (req.sessionModel.get('company-number')) {
             licenseHolderDetails.push(req.sessionModel.get('company-number').toUpperCase());
           }
-          licenseHolderDetails.push(req.sessionModel.get('telephone'));
-          licenseHolderDetails.push(req.sessionModel.get('email'));
           if (req.sessionModel.get('website-url')) {
             licenseHolderDetails.push(req.sessionModel.get('website-url'));
           }
+          licenseHolderDetails.push(req.sessionModel.get('telephone'));
+          licenseHolderDetails.push(req.sessionModel.get('email'));
           return licenseHolderDetails.join('\n');
         }
       },

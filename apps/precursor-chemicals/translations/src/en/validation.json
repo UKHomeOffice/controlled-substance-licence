@@ -7,11 +7,10 @@
     },
     "company-number": {
         "notUrl": "Your answer must not contain URLs or links",
-        "companyNumber": "Enter a real company number"
+        "regex": "Enter a real company number"
     },
     "telephone": {
         "required": "Enter a UK telephone number",
-        "notUrl": "Your answer must not contain URLs or links",
         "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
     },
     "email": {
