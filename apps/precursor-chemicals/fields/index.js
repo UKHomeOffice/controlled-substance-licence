@@ -35,7 +35,7 @@ module.exports = {
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'premises-telephone': {
-    validate: ['required', 'ukPhoneNumber'],
+    validate: ['required'], // additional validation rules added in custom-validation.js
     mixins: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
