@@ -44,7 +44,7 @@ module.exports = {
           }
           const addressDetails = [];
           addressDetails.push(req.sessionModel.get('premises-address-line-1'));
-          if(req.sessionModel.get('premises-address-line-2')) {
+          if (req.sessionModel.get('premises-address-line-2')) {
             addressDetails.push(req.sessionModel.get('premises-address-line-2'));
           }
           addressDetails.push(req.sessionModel.get('premises-town-or-city'));
