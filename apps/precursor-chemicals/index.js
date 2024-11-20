@@ -1,3 +1,7 @@
+const hof = require('hof');
+const Summary = hof.components.summary;
+const customValidation = require('./behaviours/custom-validation');
+
 const steps = {
 
   '/licence-holder-details': {
@@ -9,14 +13,35 @@ const steps = {
   },
 
   '/reuse-premises-address': {
+    fields: ['is-premises-address-same'],
+    forks: [
+      {
+        target: '/premises-address',
+        condition: {
+          field: 'is-premises-address-same',
+          value: 'no'
+        }
+      }
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-address': {
+    fields: [
+      'premises-address-line-1',
+      'premises-address-line-2',
+      'premises-town-or-city',
+      'premises-postcode'
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'premises-telephone',
+      'premises-email'
+    ],
     next: '/responsible-officer-details'
   },
 
@@ -141,6 +166,8 @@ const steps = {
   },
 
   '/summary': {
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections'),
     next: '/declaration'
   },
 
