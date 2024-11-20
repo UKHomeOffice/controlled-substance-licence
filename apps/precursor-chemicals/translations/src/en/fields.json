@@ -45,7 +45,7 @@
     "label": "DBS reference"
   },
   "responsible-officer-dbs-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "responsible-officer-dbs-update-subscription": {
     "legend": "Has the responsible officer subscribed to DBS updates?",

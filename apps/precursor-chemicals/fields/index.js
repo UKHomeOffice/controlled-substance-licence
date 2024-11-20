@@ -67,7 +67,8 @@ module.exports = {
   },
   'responsible-officer-dbs-reference': {
     mixin: 'input-text',
-    validate: [ 'required' ]
+    validate: [ 'required' ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-dbs-date-of-issue': dateComponent('responsible-officer-dbs-date-of-issue', {
     mixin: 'input-date',
