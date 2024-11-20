@@ -16,7 +16,7 @@ module.exports = superclass => class extends superclass {
       }
     }
 
-    if (key === 'telephone') {
+    if (key === 'telephone' || key === 'premises-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {
         const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();

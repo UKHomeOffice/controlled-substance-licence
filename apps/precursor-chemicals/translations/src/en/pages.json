@@ -8,12 +8,9 @@
     "intro": "This is the address your business is registered at."
   },
 
-  "reuse-premises-address": {
-    "header": "Is the premises address the same as the licence holder address?"
-  },
-
   "premises-address": {
-    "header": "Premises address"
+    "header": "Premises address",
+    "intro": "This is the address where you will operate your licence from"
   },
 
   "premises-contact-details": {
@@ -164,7 +161,16 @@
        },
        "licence-holder-address": {
          "label": "Licence holder address"
-       }
+       },
+      "is-premises-address-same": {
+        "label": "Re-use the same contact details for the premises"
+      },
+      "premises-address-details": {
+        "label": "Premises address"
+      },
+      "premises-contact-details": {
+        "label": "Premises contact details"
+      }
     }
   }
 }
