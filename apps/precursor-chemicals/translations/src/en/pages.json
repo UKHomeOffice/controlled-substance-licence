@@ -22,11 +22,10 @@
   },
 
   "responsible-officer-dbs-information": {
-    "header": "DBS information"
+    "header": "DBS information for the responsible officer"
   },
 
   "responsible-officer-dbs": {
-    "header": "Has the responsible officer subscribed to DBS updates?"
   },
 
   "guarantor-details": {
@@ -170,6 +169,15 @@
       },
       "premises-contact-details": {
         "label": "Premises contact details"
+      },
+      "responsible-officer-details": {
+        "label": "Responsible officer details"
+      },
+      "responsible-officer-dbs-information": {
+        "label": "DBS Information"
+      },
+      "responsible-officer-dbs-update-subscription": {
+        "label": "Responsible officer signed up for DBS updates"
       }
     }
   }

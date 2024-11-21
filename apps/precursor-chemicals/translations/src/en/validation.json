@@ -6,7 +6,6 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "notUrl": "Your answer must not contain URLs or links",
     "regex": "Enter a real company number"
   },
   "telephone": {
@@ -15,7 +14,6 @@
   },
   "email": {
     "required": "Enter an email address",
-    "notUrl": "Your answer must not contain URLs or links",
     "email": "Enter a real email address"
   },
   "website-url": {
@@ -68,5 +66,33 @@
   "premises-email": {
     "required": "Enter an email address",
     "email": "Enter a real email address"
+  },
+  "responsible-officer-fullname": {
+    "required": "Enter the responsible officer’s name",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "responsible-officer-email": {
+      "required": "Enter the responsible officer’s email",
+      "email": "Enter a real email address"
+  },
+  "responsible-officer-dbs-certificate": {
+      "required": "Confirm if the Responsible Officer has applied for or currently holds a DBS certificate"
+  },
+  "responsible-officer-dbs-application-fullname": {
+      "required": "Enter the name as it appears on the DBS certificate",
+      "notUrl": "Your answer must not contain URLs or links"
+  },
+  "responsible-officer-dbs-reference": {
+      "required": "Enter DBS reference",
+      "notUrl": "Your answer must not contain URLs or links"
+  },
+  "responsible-officer-dbs-date-of-issue": {
+      "required": "Enter a date of issue or application",
+      "date": "Enter a date of issue or application in the correct format",
+      "before": "Date of issue or application must be today or in the past",
+      "after": "Date of issue or application must be within the last 3 years"
+  },
+  "responsible-officer-dbs-update-subscription": {
+      "required": "Select if the responsible officer has subscribed to DBS updates"
   }
 }
