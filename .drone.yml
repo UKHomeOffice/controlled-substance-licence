@@ -386,7 +386,7 @@ steps:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
-      cron: security_scans
+      cron: fail_security_scans
       event: cron
 
   - name: cron_build_image
@@ -400,7 +400,7 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      cron: security_scans
+      cron: fail_security_scans
       event: cron
     depends_on:
       - cron_clone_repos
@@ -416,7 +416,7 @@ steps:
         IGNORE_UNFIXED: false
         ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      cron: security_scans
+      cron: fail_security_scans
       event: cron
     depends_on:
       - cron_clone_repos
@@ -432,7 +432,7 @@ steps:
         IGNORE_UNFIXED: false
         ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      cron: security_scans
+      cron: fail_security_scans
       event: cron
     depends_on:
       - cron_clone_repos
@@ -459,6 +459,8 @@ steps:
       event: cron
       status:
         - failure
+    depends_on:
+      - cron_tear_down
 
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
@@ -477,10 +479,13 @@ steps:
       webhook:
         from_secret: slack_sas_hof_security_webhook
     when:
-      cron: security_scans
+      cron: fail_security_scans
       event: cron
       status:
         - failure
+    depends_on:
+      - cron_trivy_scan_image_os
+      - cron_trivy_scan_node_packages
 
 services:
   - name: docker
