@@ -25,9 +25,6 @@
     "header": "DBS information for the responsible officer"
   },
 
-  "responsible-officer-dbs": {
-  },
-
   "guarantor-details": {
     "header": "Guarantor details"
   },
@@ -96,10 +93,6 @@
     "header": "Tell us about your main suppliers"
   },
 
-  "security-measures": {
-    "header": "What security measures do you have in place at the premises?"
-  },
-
   "how-secure-premises": {
     "header": "Describe how you secure your premises"
   },
@@ -152,6 +145,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "organisation": {
+        "header": "The organisation and how it operates"
       }
     },
     "fields": {
@@ -178,6 +174,18 @@
       },
       "responsible-officer-dbs-update-subscription": {
         "label": "Responsible officer signed up for DBS updates"
+      },
+      "main-customers": {
+        "label": "Main customers"
+      },
+      "main-suppliers": {
+        "label": "Main suppliers"
+      },
+      "security-measures": {
+        "label": "Security measures"
+      },
+      "how-secure-premises": {
+        "label": "How premises is secured"
       }
     }
   }

@@ -1,117 +1,119 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
-const customValidation = require('./behaviours/custom-validation');
+// Temporarily commented out until "The organisation and how it operates" section is active
+// const customValidation = require('./behaviours/custom-validation');
 
 const steps = {
 
-  /** About the applicants */
-
-  '/licence-holder-details': {
-    behaviours: [customValidation],
-    fields: [
-      'company-name',
-      'company-number',
-      'telephone',
-      'email',
-      'website-url'
-    ],
-    next: '/licence-holder-address'
-  },
-
-  '/licence-holder-address': {
-    fields: [
-      'licence-holder-address-line-1',
-      'licence-holder-address-line-2',
-      'licence-holder-town-or-city',
-      'licence-holder-postcode'
-    ],
-    next: '/reuse-premises-address'
-  },
-
-  '/reuse-premises-address': {
-    fields: ['is-premises-address-same'],
-    forks: [
-      {
-        target: '/premises-address',
-        condition: {
-          field: 'is-premises-address-same',
-          value: 'no'
-        }
-      }
-    ],
-    next: '/premises-contact-details'
-  },
-
-  '/premises-address': {
-    fields: [
-      'premises-address-line-1',
-      'premises-address-line-2',
-      'premises-town-or-city',
-      'premises-postcode'
-    ],
-    next: '/premises-contact-details'
-  },
-
-  '/premises-contact-details': {
-    behaviours: [customValidation],
-    fields: [
-      'premises-telephone',
-      'premises-email'
-    ],
-    next: '/responsible-officer-details'
-  },
-
-  '/responsible-officer-details': {
-    fields: [
-      'responsible-officer-fullname',
-      'responsible-officer-email',
-      'responsible-officer-dbs-certificate'
-    ],
-    next: '/responsible-officer-dbs-information'
-  },
-
-  '/responsible-officer-dbs-information': {
-    fields: [
-      'responsible-officer-dbs-application-fullname',
-      'responsible-officer-dbs-reference',
-      'responsible-officer-dbs-date-of-issue'
-    ],
-    next: '/responsible-officer-dbs'
-  },
-
-  '/responsible-officer-dbs': {
-    fields: [
-      'responsible-officer-dbs-update-subscription'
-    ],
-    next: '/guarantor-details'
-  },
-
-  '/guarantor-details': {
-    next: '/guarantor-dbs-information'
-  },
-
-  '/guarantor-dbs-information': {
-    next: '/guarantor-dbs-updates'
-  },
-
-  '/guarantor-dbs-updates': {
-    next: '/criminal-convictions'
-  },
-
-  '/criminal-convictions': {
-    next: '/invoicing-address'
-  },
-
-  '/invoicing-address': {
-    next: '/invoicing-contact-details'
-  },
-
-  '/invoicing-contact-details': {
-    // Temporarily changed to '/summary' for now,
-    // will revert to '/substance-category' once "About the licence" section is active
-    next: '/summary'
-    // next: '/substance-category'
-  },
+  /** About the applicants
+   *
+   * The following steps are currently commented out:
+   *
+   * '/licence-holder-details': {
+   *   behaviours: [customValidation],
+   *   fields: [
+   *     'company-name',
+   *     'company-number',
+   *     'telephone',
+   *     'email',
+   *     'website-url'
+   *   ],
+   *   next: '/licence-holder-address'
+   * },
+   *
+   * '/licence-holder-address': {
+   *   fields: [
+   *     'licence-holder-address-line-1',
+   *     'licence-holder-address-line-2',
+   *     'licence-holder-town-or-city',
+   *     'licence-holder-postcode'
+   *   ],
+   *   next: '/reuse-premises-address'
+   * },
+   *
+   * '/reuse-premises-address': {
+   *   fields: ['is-premises-address-same'],
+   *   forks: [
+   *     {
+   *       target: '/premises-address',
+   *       condition: {
+   *         field: 'is-premises-address-same',
+   *         value: 'no'
+   *       }
+   *     }
+   *   ],
+   *   next: '/premises-contact-details'
+   * },
+   *
+   * '/premises-address': {
+   *   fields: [
+   *     'premises-address-line-1',
+   *     'premises-address-line-2',
+   *     'premises-town-or-city',
+   *     'premises-postcode'
+   *   ],
+   *   next: '/premises-contact-details'
+   * },
+   *
+   * '/premises-contact-details': {
+   *   behaviours: [customValidation],
+   *   fields: [
+   *     'premises-telephone',
+   *     'premises-email'
+   *   ],
+   *   next: '/responsible-officer-details'
+   * },
+   *
+   * '/responsible-officer-details': {
+   *   fields: [
+   *     'responsible-officer-fullname',
+   *     'responsible-officer-email',
+   *     'responsible-officer-dbs-certificate'
+   *   ],
+   *   next: '/responsible-officer-dbs-information'
+   * },
+   *
+   * '/responsible-officer-dbs-information': {
+   *   fields: [
+   *     'responsible-officer-dbs-application-fullname',
+   *     'responsible-officer-dbs-reference',
+   *     'responsible-officer-dbs-date-of-issue'
+   *   ],
+   *   next: '/responsible-officer-dbs'
+   * },
+   *
+   * '/responsible-officer-dbs': {
+   *   fields: [
+   *     'responsible-officer-dbs-update-subscription'
+   *   ],
+   *   next: '/guarantor-details'
+   * },
+   *
+   * '/guarantor-details': {
+   *   next: '/guarantor-dbs-information'
+   * },
+   *
+   * '/guarantor-dbs-information': {
+   *   next: '/guarantor-dbs-updates'
+   * },
+   *
+   * '/guarantor-dbs-updates': {
+   *   next: '/criminal-convictions'
+   * },
+   *
+   * '/criminal-convictions': {
+   *   next: '/invoicing-address'
+   * },
+   *
+   * '/invoicing-address': {
+   *   next: '/invoicing-contact-details'
+   * },
+   *
+   * '/invoicing-contact-details': {
+   *   next: '/substance-category'
+   * },
+   *
+   */
 
   /** About the licence
    *
@@ -161,43 +163,46 @@ const steps = {
    *
    */
 
-  /** The organisation and how it operates
-   *
-   * The following steps are currently commented out:
-   *
-   * '/main-customers': {
-   *   next: '/main-suppliers'
-   * },
-   *
-   * '/main-suppliers': {
-   *   next: '/security-measures'
-   * },
-   *
-   * '/security-measures': {
-   *   next: '/how-secure-premises'
-   * },
-   *
-   * '/how-secure-premises': {
-   *   next: '/storage-and-handling'
-   * },
-   *
-   * '/storage-and-handling': {
-   *   next: '/chemical-stock-control'
-   * },
-   *
-   * '/chemical-stock-control': {
-   *   next: '/legitimate-use'
-   * },
-   *
-   * '/legitimate-use': {
-   *   next: '/operating-procedures-and-auditing'
-   * },
-   *
-   * '/operating-procedures-and-auditing': {
-   *   next: '/licence-email-address'
-   * },
-   *
-   */
+  /** The organisation and how it operates */
+
+  '/main-customers': {
+    fields: [ 'main-customers' ],
+    next: '/main-suppliers'
+  },
+
+  '/main-suppliers': {
+    fields: [ 'main-suppliers' ],
+    next: '/security-measures'
+  },
+
+  '/security-measures': {
+    fields: [ 'security-measures' ],
+    next: '/how-secure-premises'
+  },
+
+  '/how-secure-premises': {
+    fields: [ 'how-secure-premises' ],
+    next: '/storage-and-handling'
+  },
+
+  '/storage-and-handling': {
+    next: '/chemical-stock-control'
+  },
+
+  '/chemical-stock-control': {
+    next: '/legitimate-use'
+  },
+
+  '/legitimate-use': {
+    next: '/operating-procedures-and-auditing'
+  },
+
+  '/operating-procedures-and-auditing': {
+    // Temporarily changed to '/summary' for now,
+    // will revert to 'licence-email-address' once "The organisation and how it operates" section is active
+    next: '/summary'
+    // next: '/licence-email-address'
+  },
 
   /** Finalise application
    *

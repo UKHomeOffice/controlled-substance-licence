@@ -85,5 +85,34 @@
         "label": "No"
       }
     }
+  },
+  "main-customers": {
+    "label": "Tell us about your main customers"
+  },
+  "main-suppliers": {
+    "label": "Tell us about your main suppliers"
+  },
+  "security-measures": {
+    "legend": "What security measures do you have in place at the premises?",
+    "options": {
+      "cctv-system": {
+        "label": "CCTV system (centrally monitored)"
+      },
+      "electronic-stock-recording-system": {
+        "label": "Electronic stock recording system(s)"
+      },
+      "perimeter-fencing": {
+        "label": "Perimeter fencing"
+      },
+      "lockable-physical-security": {
+        "label": "Lockable physical security, such as a room safe, cabinet for the storage of the precursor chemicals"
+      },
+      "security-guards": {
+        "label": "The attendance of the security guards"
+      }
+    }
+  },
+  "how-secure-premises": {
+    "label": "Describe how you secure your premises"
   }
 }

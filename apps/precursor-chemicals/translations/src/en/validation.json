@@ -94,5 +94,20 @@
   },
   "responsible-officer-dbs-update-subscription": {
       "required": "Select if the responsible officer has subscribed to DBS updates"
+  },
+  "main-customers": {
+    "required": "Enter details of your main customers",
+    "maxlength": "You have exceeded the 2000 character limit"
+  },
+  "main-suppliers": {
+    "required": "Enter details of your main suppliers"
+  },
+  "security-measures": {
+    "required": "Select which security measures you have in place",
+    "maxlength": "You have exceeded the 2000 character limit"
+  },
+  "how-secure-premises": {
+    "required": "Enter details of how you secure your premises",
+    "maxlength": "You have exceeded the 2000 character limit"
   }
 }
