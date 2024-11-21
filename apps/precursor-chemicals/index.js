@@ -7,10 +7,24 @@ const steps = {
   /** About the applicants */
 
   '/licence-holder-details': {
+    behaviours: [customValidation],
+    fields: [
+      'company-name',
+      'company-number',
+      'telephone',
+      'email',
+      'website-url'
+    ],
     next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
+    fields: [
+      'licence-holder-address-line-1',
+      'licence-holder-address-line-2',
+      'licence-holder-town-or-city',
+      'licence-holder-postcode'
+    ],
     next: '/reuse-premises-address'
   },
 

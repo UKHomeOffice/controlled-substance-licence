@@ -4,7 +4,8 @@
   },
 
   "licence-holder-address": {
-    "header": "Licence holder address"
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
   },
 
   "premises-address": {
@@ -154,6 +155,12 @@
       }
     },
     "fields": {
+      "licence-holder-details": {
+         "label": "Licence holder details"
+       },
+       "licence-holder-address": {
+         "label": "Licence holder address"
+       },
       "is-premises-address-same": {
         "label": "Re-use the same contact details for the premises"
       },
