@@ -149,12 +149,14 @@ module.exports = {
   'main-customers': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }]
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   },
   'main-suppliers': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }]
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   },
   'security-measures': {
     mixin: 'checkbox-group',
@@ -181,6 +183,7 @@ module.exports = {
   'how-secure-premises': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }]
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   }
 };
