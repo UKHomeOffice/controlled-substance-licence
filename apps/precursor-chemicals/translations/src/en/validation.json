@@ -97,17 +97,20 @@
   },
   "main-customers": {
     "required": "Enter details of your main customers",
-    "maxlength": "You have exceeded the 2000 character limit"
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "main-suppliers": {
     "required": "Enter details of your main suppliers"
   },
   "security-measures": {
     "required": "Select which security measures you have in place",
-    "maxlength": "You have exceeded the 2000 character limit"
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "how-secure-premises": {
     "required": "Enter details of how you secure your premises",
-    "maxlength": "You have exceeded the 2000 character limit"
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }

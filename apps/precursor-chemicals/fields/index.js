@@ -148,12 +148,12 @@ module.exports = {
 
   'main-customers': {
     mixin: 'textarea',
-    validate: [ 'required', { type: 'maxlength', arguments: 2000 } ],
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'main-suppliers': {
     mixin: 'textarea',
-    validate: [ 'required', { type: 'maxlength', arguments: 2000 } ],
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'security-measures': {
@@ -180,7 +180,7 @@ module.exports = {
   },
   'how-secure-premises': {
     mixin: 'textarea',
-    validate: [ 'required', { type: 'maxlength', arguments: 2000 } ],
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   }
 };
