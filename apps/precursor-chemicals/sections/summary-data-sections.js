@@ -121,6 +121,22 @@ module.exports = {
       {
         step: '/how-secure-premises',
         field: 'how-secure-premises'
+      },
+      {
+        step: '/storage-and-handling',
+        field: 'storage-and-handling'
+      },
+      {
+        step: '/chemical-stock-control',
+        field: 'chemical-stock-control'
+      },
+      {
+        step: '/legitimate-use',
+        field: 'legitimate-use'
+      },
+      {
+        step: '/operating-procedures-and-auditing',
+        field: 'operating-procedures-and-auditing'
       }
     ]
   }
