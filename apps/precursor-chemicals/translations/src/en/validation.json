@@ -6,7 +6,6 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "notUrl": "Your answer must not contain URLs or links",
     "regex": "Enter a real company number"
   },
   "telephone": {
@@ -15,7 +14,6 @@
   },
   "email": {
     "required": "Enter an email address",
-    "notUrl": "Your answer must not contain URLs or links",
     "email": "Enter a real email address"
   },
   "website-url": {
@@ -70,7 +68,8 @@
     "email": "Enter a real email address"
   },
   "responsible-officer-fullname": {
-    "required": "Enter the responsible officer’s name"
+    "required": "Enter the responsible officer’s name",
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-officer-email": {
       "required": "Enter the responsible officer’s email",
@@ -80,10 +79,12 @@
       "required": "Confirm if the Responsible Officer has applied for or currently holds a DBS certificate"
   },
   "responsible-officer-dbs-application-fullname": {
-      "required": "Enter the name as it appears on the DBS certificate"
+      "required": "Enter the name as it appears on the DBS certificate",
+      "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-officer-dbs-reference": {
-      "required": "Enter DBS reference"
+      "required": "Enter DBS reference",
+      "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-officer-dbs-date-of-issue": {
       "required": "Enter a date of issue or application",
