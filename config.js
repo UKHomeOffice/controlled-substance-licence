@@ -5,6 +5,12 @@ const env = process.env.NODE_ENV || 'production';
 
 module.exports = {
   env: env,
+  dateLocales: 'en-GB',
+  dateFormat: {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric'
+  },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,

@@ -1,5 +1,6 @@
 {
   "header": "Precursor chemicals application",
   "serviceName": "Precursor chemicals application",
-  "error": "Error"
+  "error": "Error",
+  "warning": "Warning"
 }

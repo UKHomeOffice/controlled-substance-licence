@@ -1,4 +1,32 @@
 {
+  "company-name": {
+    "label": "Company name"
+  },
+  "company-number": {
+    "label": "Company number (optional)",
+    "hint": "Enter the  number issued by Companies House"
+  },
+  "telephone": {
+    "label": "UK telephone number"
+  },
+  "email": {
+    "label": "Email address"
+  },
+  "website-url": {
+    "label": "Website URL (optional)"
+  },
+  "licence-holder-address-line-1": {
+    "label": "Address line 1"
+  },
+  "licence-holder-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "licence-holder-town-or-city": {
+    "label": "Town or city"
+  },
+  "licence-holder-postcode": {
+    "label": "Postcode"
+  },
   "is-premises-address-same": {
     "legend": "Is the premises address the same as the licence holder address?",
     "options": {
@@ -51,6 +79,36 @@
   },
   "is-guarantor-subscribed": {
     "legend": "Has the guarantor subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "responsible-officer-fullname": {
+    "label": "Full name"
+  },
+  "responsible-officer-email": {
+    "label": "Email address"
+  },
+  "responsible-officer-dbs-certificate": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-officer-dbs-application-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "responsible-officer-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "responsible-officer-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "responsible-officer-dbs-update-subscription": {
+    "legend": "Has the responsible officer subscribed to DBS updates?",
     "options": {
       "yes": {
         "label": "Yes"
