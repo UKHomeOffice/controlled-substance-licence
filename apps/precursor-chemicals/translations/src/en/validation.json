@@ -72,7 +72,8 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "guarantor-email-address": {
-    "required": "Enter an email address"
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
   },
   "guarantor-confirmed-dbs": {
     "required": "Confirm if the Guarantor has applied for or currently holds a DBS certificate"

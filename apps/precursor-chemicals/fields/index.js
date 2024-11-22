@@ -98,7 +98,7 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-email-address': {
-    validate: ['required'],
+    validate: ['required', 'email'],
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
