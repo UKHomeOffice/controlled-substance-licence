@@ -1,0 +1,8 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#renderField}}is-guarantor-subscribed{{/renderField}}
+    {{> partials-warning-dbs-active-subscription}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
+

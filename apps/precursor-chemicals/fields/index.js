@@ -92,6 +92,42 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
+  'guarantor-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-email-address': {
+    validate: ['required', 'email'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-confirmed-dbs': {
+    mixin: 'checkbox',
+    validate: [ 'required' ]
+  },
+  'guarantor-dbs-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-reference': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['3', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
   'responsible-officer-fullname': {
     mixin: 'input-text',
     validate: [ 'required', 'notUrl' ],
@@ -128,6 +164,23 @@ module.exports = {
       className: 'govuk-!-margin-bottom-4'
     }
   }),
+  'is-guarantor-subscribed': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'responsible-officer-dbs-update-subscription': {
     isPageHeading: true,
     mixin: 'radio-group',
