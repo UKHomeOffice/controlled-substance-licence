@@ -1,5 +1,6 @@
-
 'use strict';
+
+const { formatDate } = require('../../../utils');
 
 module.exports = {
   'about-the-applicants': {
@@ -34,6 +35,31 @@ module.exports = {
           contactDetails.push(req.sessionModel.get('premises-email'));
           return contactDetails.join('\n');
         }
+      },
+      {
+        step: '/guarantor-details',
+        field: 'guarantor-details',
+        parse: (list, req) => {
+          const guarantorDetails = [];
+          guarantorDetails.push(req.sessionModel.get('guarantor-full-name'));
+          guarantorDetails.push(req.sessionModel.get('guarantor-email-address'));
+          return guarantorDetails.join('\n');
+        }
+      },
+      {
+        step: '/guarantor-dbs-information',
+        field: 'guarantor-dbs-information',
+        parse: (list, req) => {
+          const guarantorDbsInformation = [];
+          guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-full-name'));
+          guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-reference'));
+          guarantorDbsInformation.push(formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue')));
+          return guarantorDbsInformation.join('\n');
+        }
+      },
+      {
+        step: '/guarantor-dbs-updates',
+        field: 'is-guarantor-subscribed'
       }
     ]
   }

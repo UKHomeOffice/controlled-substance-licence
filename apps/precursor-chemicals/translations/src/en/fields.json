@@ -27,5 +27,37 @@
   },
   "premises-email": {
     "label": "Email address"
+  },
+  "guarantor-full-name": {
+    "label": "Full name",
+    "hint": "A guarantor makes sure everyone in the business operates within the licence conditions"
+  },
+  "guarantor-email-address": {
+    "label": "Email address"
+  },
+  "guarantor-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "guarantor-dbs-full-name": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application or current certificate"
+  },
+  "guarantor-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "guarantor-dbs-date-of-issue": {
+    "legend": "Date of issue or application",
+    "hint": "For example, 21 12 2023"
+  },
+  "is-guarantor-subscribed": {
+    "legend": "Has the guarantor subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

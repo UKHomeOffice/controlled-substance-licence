@@ -36,10 +36,6 @@
     "header": "Guarantor DBS information"
   },
 
-  "guarantor-dbs-updates": {
-    "header": "Has the guarantor subscribed to DBS updates?"
-  },
-
   "criminal-convictions": {
     "header": "Has anyone employed by your company ever received criminal convictions?"
   },
@@ -163,6 +159,15 @@
       },
       "premises-contact-details": {
         "label": "Premises contact details"
+      },
+      "guarantor-details": {
+        "label": "Guarantor details"
+      },
+      "guarantor-dbs-information": {
+        "label": "DBS Information"
+      },
+      "is-guarantor-subscribed": {
+        "label": "Guarantor signed up for DBS updates"
       }
     }
   }

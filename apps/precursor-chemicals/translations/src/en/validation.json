@@ -27,5 +27,32 @@
   "premises-email": {
     "required": "Enter an email address",
     "email": "Enter a real email address"
+  },
+  "guarantor-full-name": {
+    "required": "Enter guarantor’s name",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-email-address": {
+    "required": "Enter an email address"
+  },
+  "guarantor-confirmed-dbs": {
+    "required": "Confirm if the Guarantor has applied for or currently holds a DBS certificate"
+  },
+  "guarantor-dbs-full-name": {
+    "required": "Enter a name as it appears on the guarantor’s DBS certificate",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-reference": {
+    "required": "Enter a DBS reference",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-date-of-issue": {
+    "required": "Enter a date of issue or application",
+    "date": "Enter a date of issue or application in the correct format",
+    "before": "Date of issue or application must be today or in the past",
+    "after": "Date of issue or application must be within the last 3 years"
+  },
+  "is-guarantor-subscribed": {
+    "required": "Select if the guarantor has subscribed to DBS updates"
   }
 }
