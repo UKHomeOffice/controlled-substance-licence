@@ -96,6 +96,63 @@ module.exports = {
    *     {
    *       step: '/responsible-officer-dbs',
    *       field: 'responsible-officer-dbs-update-subscription'
+   *     },
+   *     {
+   *       step: '/guarantor-details',
+   *       field: 'guarantor-details',
+   *       parse: (list, req) => {
+   *         const guarantorDetails = [];
+   *         guarantorDetails.push(req.sessionModel.get('guarantor-full-name'));
+   *         guarantorDetails.push(req.sessionModel.get('guarantor-email-address'));
+   *         return guarantorDetails.join('\n');
+   *       }
+   *     },
+   *     {
+   *       step: '/guarantor-dbs-information',
+   *       field: 'guarantor-dbs-information',
+   *       parse: (list, req) => {
+   *         const guarantorDbsInformation = [];
+   *         guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-full-name'));
+   *         guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-reference'));
+   *         guarantorDbsInformation.push(formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue')));
+   *         return guarantorDbsInformation.join('\n');
+   *       }
+   *     },
+   *     {
+   *       step: '/guarantor-dbs-updates',
+   *       field: 'is-guarantor-subscribed'
+   *     },
+   *     {
+   *       step: '/criminal-convictions',
+   *       field: 'has-anyone-received-criminal-conviction'
+   *     },
+   *     {
+   *       step: '/invoicing-address',
+   *       field: 'invoicing-address-details',
+   *       parse: (list, req) => {
+   *         const invoicingAddress = [];
+   *         invoicingAddress.push(req.sessionModel.get('invoicing-address-line-1'));
+   *         if (req.sessionModel.get('invoicing-address-line-2')) {
+   *           invoicingAddress.push(req.sessionModel.get('invoicing-address-line-2'));
+   *         }
+   *         invoicingAddress.push(req.sessionModel.get('invoicing-town-or-city'));
+   *         invoicingAddress.push(req.sessionModel.get('invoicing-postcode'));
+   *         return invoicingAddress.join('\n');
+   *       }
+   *     },
+   *     {
+   *       step: '/invoicing-contact-details',
+   *       field: 'invoicing-contact-details',
+   *       parse: (list, req) => {
+   *         const invoicingContactDetails = [];
+   *         invoicingContactDetails.push(req.sessionModel.get('invoicing-fullname'));
+   *         invoicingContactDetails.push(req.sessionModel.get('invoicing-email'));
+   *         invoicingContactDetails.push(req.sessionModel.get('invoicing-telephone'));
+   *         if (req.sessionModel.get('invoicing-purchase-order-number')) {
+   *           invoicingContactDetails.push(req.sessionModel.get('invoicing-purchase-order-number'));
+   *         }
+   *         return invoicingContactDetails.join('\n');
+   *       }
    *     }
    *   ]
    * },

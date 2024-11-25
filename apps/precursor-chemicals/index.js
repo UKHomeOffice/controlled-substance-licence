@@ -90,26 +90,50 @@ const steps = {
    * },
    *
    * '/guarantor-details': {
+   *   fields: [
+   *     'guarantor-full-name',
+   *     'guarantor-email-address',
+   *     'guarantor-confirmed-dbs'
+   *   ],
    *   next: '/guarantor-dbs-information'
    * },
    *
    * '/guarantor-dbs-information': {
+   *   fields: [
+   *     'guarantor-dbs-full-name',
+   *     'guarantor-dbs-reference',
+   *     'guarantor-dbs-date-of-issue'
+   *   ],
    *   next: '/guarantor-dbs-updates'
    * },
    *
    * '/guarantor-dbs-updates': {
+   *   fields: ['is-guarantor-subscribed'],
    *   next: '/criminal-convictions'
    * },
    *
    * '/criminal-convictions': {
+   *   fields: ['has-anyone-received-criminal-conviction'],
    *   next: '/invoicing-address'
    * },
    *
    * '/invoicing-address': {
+   *   fields: [
+   *     'invoicing-address-line-1',
+   *     'invoicing-address-line-2',
+   *     'invoicing-town-or-city',
+   *     'invoicing-postcode'
+   *   ],
    *   next: '/invoicing-contact-details'
    * },
    *
    * '/invoicing-contact-details': {
+   *   fields: [
+   *    'invoicing-fullname',
+   *    'invoicing-email',
+   *    'invoicing-telephone',
+   *    'invoicing-purchase-order-number'
+   *   ],
    *   next: '/substance-category'
    * },
    *

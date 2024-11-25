@@ -86,6 +86,73 @@
       }
     }
   },
+  "guarantor-full-name": {
+    "label": "Full name",
+    "hint": "A guarantor makes sure everyone in the business operates within the licence conditions"
+  },
+  "guarantor-email-address": {
+    "label": "Email address"
+  },
+  "guarantor-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "guarantor-dbs-full-name": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application or current certificate"
+  },
+  "guarantor-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "guarantor-dbs-date-of-issue": {
+    "legend": "Date of issue or application",
+    "hint": "For example, 21 12 2023"
+  },
+  "is-guarantor-subscribed": {
+    "legend": "Has the guarantor subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "has-anyone-received-criminal-conviction": {
+    "legend": "Has anyone employed by your company ever received criminal convictions?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-postcode": {
+    "label": "Postcode"
+  },
+  "invoicing-fullname": {
+    "label": "Full name"
+  },
+  "invoicing-email": {
+    "label": "Email address"
+  },
+  "invoicing-telephone": {
+    "label": "UK telephone number"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)"
+  },
   "main-customers": {
     "label": "Tell us about your main customers"
   },

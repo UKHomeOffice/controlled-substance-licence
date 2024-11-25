@@ -6,7 +6,7 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "regex": "Enter a real company number"
+    "companyNumber": "Enter a real company number"
   },
   "telephone": {
     "required": "Enter a UK telephone number",
@@ -83,7 +83,7 @@
       "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-officer-dbs-reference": {
-      "required": "Enter DBS reference",
+      "required": "Enter a DBS reference",
       "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-officer-dbs-date-of-issue": {
@@ -94,6 +94,72 @@
   },
   "responsible-officer-dbs-update-subscription": {
       "required": "Select if the responsible officer has subscribed to DBS updates"
+  },
+  "guarantor-full-name": {
+    "required": "Enter guarantor’s name",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-email-address": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "guarantor-confirmed-dbs": {
+    "required": "Confirm if the Guarantor has applied for or currently holds a DBS certificate"
+  },
+  "guarantor-dbs-full-name": {
+    "required": "Enter a name as it appears on the guarantor’s DBS certificate",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-reference": {
+    "required": "Enter a DBS reference",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-date-of-issue": {
+    "required": "Enter a date of issue or application",
+    "date": "Enter a date of issue or application in the correct format",
+    "before": "Date of issue or application must be today or in the past",
+    "after": "Date of issue or application must be within the last 3 years"
+  },
+  "is-guarantor-subscribed": {
+    "required": "Select if the guarantor has subscribed to DBS updates"
+  },
+  "has-anyone-received-criminal-conviction": {
+    "required": "Select if anyone in your company has received criminal convictions"
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter an invoicing address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-fullname": {
+    "required": "Enter a full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 1 and 250 characters"
+  },
+  "invoicing-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
   },
   "main-customers": {
     "required": "Enter details of your main customers",

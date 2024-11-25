@@ -145,7 +145,117 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-
+  'guarantor-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-email-address': {
+    validate: ['required', 'email'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-confirmed-dbs': {
+    mixin: 'checkbox',
+    validate: [ 'required' ]
+  },
+  'guarantor-dbs-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-reference': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['3', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'is-guarantor-subscribed': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'has-anyone-received-criminal-conviction': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'invoicing-address-line-1': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-line-2': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-town-or-city': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-postcode': {
+    mixin: 'input-text',
+    validate: ['required', 'postcode'],
+    formatter: ['ukPostcode'],
+    className: ['govuk-input', 'govuk-input--width-10']
+  },
+  'invoicing-fullname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-purchase-order-number': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
   'main-customers': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],

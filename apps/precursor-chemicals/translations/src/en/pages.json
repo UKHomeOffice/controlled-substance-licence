@@ -32,17 +32,10 @@
   "guarantor-dbs-information": {
     "header": "Guarantor DBS information"
   },
-
-  "guarantor-dbs-updates": {
-    "header": "Has the guarantor subscribed to DBS updates?"
-  },
-
-  "criminal-convictions": {
-    "header": "Has anyone employed by your company ever received criminal convictions?"
-  },
-
+ 
   "invoicing-address": {
-    "header": "Invoicing address"
+    "header": "Invoicing address",
+    "intro": "This is the address of your headquarters, and if you are registering as a limited company it must match your Companies House registered address."
   },
 
   "invoicing-contact-details": {
@@ -146,6 +139,24 @@
       },
       "responsible-officer-dbs-update-subscription": {
         "label": "Responsible officer signed up for DBS updates"
+      },
+      "guarantor-details": {
+        "label": "Guarantor details"
+      },
+      "guarantor-dbs-information": {
+        "label": "DBS Information"
+      },
+      "is-guarantor-subscribed": {
+        "label": "Guarantor signed up for DBS updates"
+      },
+      "has-anyone-received-criminal-conviction": {
+        "label": "Any members subject to criminal convictions"
+      },
+      "invoicing-address-details": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-details": {
+        "label": "Invoicing contact details"
       },
       "main-customers": {
         "label": "Main customers"

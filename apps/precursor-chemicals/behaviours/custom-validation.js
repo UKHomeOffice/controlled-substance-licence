@@ -13,7 +13,7 @@ module.exports = superclass => class extends superclass {
       }
     }
 
-    if (key === 'telephone' || key === 'premises-telephone') {
+    if (key === 'telephone' || key === 'premises-telephone' || key === 'invoicing-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {
         const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
