@@ -118,6 +118,38 @@ module.exports = {
       {
         step: '/guarantor-dbs-updates',
         field: 'is-guarantor-subscribed'
+      },
+      {
+        step: '/criminal-convictions',
+        field: 'has-anyone-received-criminal-conviction'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address-details',
+        parse: (list, req) => {
+          const invoicingAddress = [];
+          invoicingAddress.push(req.sessionModel.get('invoicing-address-line-1'));
+          if (req.sessionModel.get('invoicing-address-line-2')) {
+            invoicingAddress.push(req.sessionModel.get('invoicing-address-line-2'));
+          }
+          invoicingAddress.push(req.sessionModel.get('invoicing-town-or-city'));
+          invoicingAddress.push(req.sessionModel.get('invoicing-postcode'));
+          return invoicingAddress.join('\n');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-details',
+        parse: (list, req) => {
+          const invoicingContactDetails = [];
+          invoicingContactDetails.push(req.sessionModel.get('invoicing-fullname'));
+          invoicingContactDetails.push(req.sessionModel.get('invoicing-email'));
+          invoicingContactDetails.push(req.sessionModel.get('invoicing-telephone'));
+          if (req.sessionModel.get('invoicing-purchase-order-number')) {
+            invoicingContactDetails.push(req.sessionModel.get('invoicing-purchase-order-number'));
+          }
+          return invoicingContactDetails.join('\n');
+        }
       }
     ]
   }
