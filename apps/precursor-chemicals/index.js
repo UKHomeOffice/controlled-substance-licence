@@ -186,18 +186,22 @@ const steps = {
   },
 
   '/storage-and-handling': {
+    fields: [ 'storage-and-handling' ],
     next: '/chemical-stock-control'
   },
 
   '/chemical-stock-control': {
+    fields: [ 'chemical-stock-control' ],
     next: '/legitimate-use'
   },
 
   '/legitimate-use': {
+    fields: [ 'legitimate-use' ],
     next: '/operating-procedures-and-auditing'
   },
 
   '/operating-procedures-and-auditing': {
+    fields: [ 'operating-procedures-and-auditing' ],
     // Temporarily changed to '/summary' for now,
     // will revert to 'licence-email-address' once "The organisation and how it operates" section is active
     next: '/summary'

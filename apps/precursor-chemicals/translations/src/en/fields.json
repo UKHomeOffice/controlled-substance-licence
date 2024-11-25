@@ -114,5 +114,17 @@
   },
   "how-secure-premises": {
     "label": "Describe how you secure your premises"
+  },
+  "storage-and-handling": {
+    "label": "Describe how you make sure chemicals are stored and handled securely"
+  },
+  "chemical-stock-control": {
+    "label": "Describe how you manage chemical stock control"
+  },
+  "legitimate-use": {
+    "label": "Describe how you work to make sure end products are used legitimately"
+  },
+  "operating-procedures-and-auditing": {
+    "label": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
   }
 }

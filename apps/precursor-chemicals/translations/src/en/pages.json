@@ -85,22 +85,6 @@
     "header": "Upload a certificate of good conduct"
   },
 
-  "storage-and-handling": {
-    "header": "Describe how you make sure chemicals are stored and handled securely"
-  },
-
-  "chemical-stock-control": {
-    "header": "Describe how you manage chemical stock control"
-  },
-
-  "legitimate-use": {
-    "header": "Describe how you work to make sure end products are used legitimately"
-  },
-
-  "operating-procedures-and-auditing": {
-    "header": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
-  },
-
   "licence-email-address": {
     "header": "Which email address should the licence be sent to?"
   },
@@ -174,6 +158,18 @@
       },
       "how-secure-premises": {
         "label": "How premises is secured"
+      },
+      "storage-and-handling": {
+        "label": "Storing and handling of chemicals"
+      },
+      "chemical-stock-control": {
+        "label": "Management of chemical stock control"
+      },
+      "legitimate-use": {
+        "label": "The legitimate use of end products"
+      },
+      "operating-procedures-and-auditing": {
+        "label": "SOPS AND auditing practices around use or disposal of chemicals"
       }
     }
   }

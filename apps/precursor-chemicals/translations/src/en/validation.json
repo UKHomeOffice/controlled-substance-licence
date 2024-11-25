@@ -114,5 +114,25 @@
     "required": "Enter details of how you secure your premises",
     "maxlength": "You have exceeded the 2000 character limit",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "storage-and-handling": {
+    "required": "Enter details of how you make sure chemicals are stored and handled correctly",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "chemical-stock-control": {
+    "required": "Enter details of how you manage chemical stock control",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "legitimate-use": {
+    "required": "Enter details of how you make sure end products are used legitimately",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "operating-procedures-and-auditing": {
+    "required": "Enter a summary of your standard operating procedures and auditing practices for the use and disposal of chemicals",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
