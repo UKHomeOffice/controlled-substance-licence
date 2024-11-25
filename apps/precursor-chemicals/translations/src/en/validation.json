@@ -158,6 +158,7 @@
     "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
   },
   "invoicing-purchase-order-number": {
-    "notUrl": "Your answer must not contain URLs or links"
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
   }
 }

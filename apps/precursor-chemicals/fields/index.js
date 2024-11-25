@@ -253,7 +253,7 @@ module.exports = {
   },
   'invoicing-purchase-order-number': {
     mixin: ['input-text'],
-    validate: ['notUrl'],
+    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };
