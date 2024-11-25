@@ -117,5 +117,40 @@
         "label": "No"
       }
     }
+  },
+  "has-anyone-received-criminal-conviction": {
+    "legend": "Has anyone employed by your company ever received criminal convictions?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-postcode": {
+    "label": "Postcode"
+  },
+  "invoicing-fullname": {
+    "label": "Full name"
+  },
+  "invoicing-email": {
+    "label": "Email address"
+  },
+  "invoicing-telephone": {
+    "label": "UK telephone number"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)"
   }
 }

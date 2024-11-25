@@ -110,14 +110,28 @@ const steps = {
   },
 
   '/criminal-convictions': {
+    fields: ['has-anyone-received-criminal-conviction'],
     next: '/invoicing-address'
   },
 
   '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-town-or-city',
+      'invoicing-postcode'
+    ],
     next: '/invoicing-contact-details'
   },
 
   '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-fullname',
+      'invoicing-email',
+      'invoicing-telephone',
+      'invoicing-purchase-order-number'
+    ],
     // Temporarily changed to '/summary' for now,
     // will revert to '/substance-category' once "About the licence" section is active
     next: '/summary'

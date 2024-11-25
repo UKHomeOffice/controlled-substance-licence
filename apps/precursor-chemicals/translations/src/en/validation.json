@@ -122,5 +122,42 @@
   },
   "responsible-officer-dbs-update-subscription": {
       "required": "Select if the responsible officer has subscribed to DBS updates"
+  },
+  "has-anyone-received-criminal-conviction": {
+    "required": "Select if anyone in your company has received criminal convictions"
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter an invoicing address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-fullname": {
+    "required": "Enter a full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 1 and 250 characters"
+  },
+  "invoicing-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
