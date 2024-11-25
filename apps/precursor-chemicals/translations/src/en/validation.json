@@ -101,7 +101,9 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "main-suppliers": {
-    "required": "Enter details of your main suppliers"
+    "required": "Enter details of your main suppliers",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "security-measures": {
     "required": "Select which security measures you have in place",
