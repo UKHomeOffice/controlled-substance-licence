@@ -418,8 +418,10 @@ steps:
     when:
       cron: security_scans
       event: cron
+      status:
+        - success
+        - failure
     depends_on:
-      - cron_clone_repos
       - cron_build_image
 
   - name: cron_trivy_scan_image_os
@@ -459,6 +461,8 @@ steps:
       event: cron
       status:
         - failure
+    depends_on:
+      - cron_tear_down
 
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
@@ -481,6 +485,9 @@ steps:
       event: cron
       status:
         - failure
+    depends_on:
+      - cron_trivy_scan_image_os
+      - cron_trivy_scan_node_packages
 
 services:
   - name: docker
