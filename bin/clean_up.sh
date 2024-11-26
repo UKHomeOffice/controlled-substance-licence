@@ -1,6 +1,8 @@
 #! /bin/bash
 set -e
 
+exit 1
+
 export KUBE_NAMESPACE=$1
 export IGNORE_NETPOL=("acp-deny-all")
 export IGNORE_CONFIGMAP=("bundle")

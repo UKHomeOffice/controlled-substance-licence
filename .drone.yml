@@ -419,7 +419,6 @@ steps:
       cron: fail_security_scans
       event: cron
     depends_on:
-      - cron_clone_repos
       - cron_build_image
 
   - name: cron_trivy_scan_image_os
