@@ -370,7 +370,7 @@ steps:
     commands:
       - bin/clean_up.sh $${BRANCH_ENV}
     when:
-      cron: fail_tear_down_pr_envs
+      cron: tear_down_pr_envs
       event: cron
 
   # CRON job steps that runs security scans using Trivy
@@ -386,7 +386,7 @@ steps:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
-      cron: fail_security_scans
+      cron: security_scans
       event: cron
 
   - name: cron_build_image
@@ -400,7 +400,7 @@ steps:
       - name: dockersock
         path: /var/run
     when:
-      cron: fail_security_scans
+      cron: security_scans
       event: cron
     depends_on:
       - cron_clone_repos
@@ -416,7 +416,7 @@ steps:
         IGNORE_UNFIXED: false
         ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      cron: fail_security_scans
+      cron: security_scans
       event: cron
       status:
         - success
@@ -434,7 +434,7 @@ steps:
         IGNORE_UNFIXED: false
         ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
     when:
-      cron: fail_security_scans
+      cron: security_scans
       event: cron
     depends_on:
       - cron_clone_repos
@@ -457,7 +457,7 @@ steps:
       webhook:
         from_secret: slack_sas_hof_build_notify_webhook
     when:
-      cron: fail_tear_down_pr_envs
+      cron: tear_down_pr_envs
       event: cron
       status:
         - failure
@@ -481,7 +481,7 @@ steps:
       webhook:
         from_secret: slack_sas_hof_security_webhook
     when:
-      cron: fail_security_scans
+      cron: security_scans
       event: cron
       status:
         - failure
