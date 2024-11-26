@@ -1,9 +1,9 @@
 'use strict';
 
-const { formatDate } = require('../../../utils');
+/* const { formatDate } = require('../../../utils'); */
 
 module.exports = {
-  'about-the-applicants': {
+  /* 'about-the-applicants': {
     steps: [
       {
         step: '/licence-holder-details',
@@ -149,6 +149,26 @@ module.exports = {
             invoicingContactDetails.push(req.sessionModel.get('invoicing-purchase-order-number'));
           }
           return invoicingContactDetails.join('\n');
+        }
+      }
+    ]
+  }, */
+  'finalise-application': {
+    steps: [
+      {
+        step: '/licence-email-address',
+        field: 'licence-email'
+      },
+      {
+        step: '/who-completing',
+        field: 'who-is-completing-application-details',
+        parse: (val, req) => {
+          const whoIsCompletingApplicationDetails = Array(
+            req.sessionModel.get('who-is-completing-application-full-name'),
+            req.sessionModel.get('who-is-completing-application-telephone'),
+            req.sessionModel.get('who-is-completing-application-email')
+          ).join('\n');
+          return whoIsCompletingApplicationDetails;
         }
       }
     ]
