@@ -136,7 +136,7 @@ const steps = {
   },
 
   /** About the licence */
-  
+
   '/substance-category': {
     next: '/which-chemical'
   },
