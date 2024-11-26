@@ -370,7 +370,7 @@ steps:
     commands:
       - bin/clean_up.sh $${BRANCH_ENV}
     when:
-      cron: tear_down_pr_envs
+      cron: fail_tear_down_pr_envs
       event: cron
 
   # CRON job steps that runs security scans using Trivy
@@ -418,6 +418,9 @@ steps:
     when:
       cron: fail_security_scans
       event: cron
+      status:
+        - success
+        - failure
     depends_on:
       - cron_build_image
 
@@ -454,7 +457,7 @@ steps:
       webhook:
         from_secret: slack_sas_hof_build_notify_webhook
     when:
-      cron: tear_down_pr_envs
+      cron: fail_tear_down_pr_envs
       event: cron
       status:
         - failure
