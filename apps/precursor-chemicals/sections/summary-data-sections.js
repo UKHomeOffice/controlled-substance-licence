@@ -152,5 +152,25 @@ module.exports = {
         }
       }
     ]
-  } */
+  }, */
+  'finalise-application': {
+    steps: [
+      {
+        step: '/licence-email-address',
+        field: 'licence-email'
+      },
+      {
+        step: '/who-completing',
+        field: 'who-is-completing-application-details',
+        parse: (val, req) => {
+          const whoIsCompletingApplicationDetails = Array(
+            req.sessionModel.get('who-is-completing-application-full-name'),
+            req.sessionModel.get('who-is-completing-application-telephone'),
+            req.sessionModel.get('who-is-completing-application-email')
+          ).join('\n');
+          return whoIsCompletingApplicationDetails;
+        }
+      }
+    ]
+  }
 };

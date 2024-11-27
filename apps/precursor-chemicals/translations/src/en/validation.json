@@ -160,5 +160,22 @@
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "licence-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter a full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 1 and 250 characters"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
   }
 }

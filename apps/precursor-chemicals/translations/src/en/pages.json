@@ -145,6 +145,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "finalise-application": {
+        "header": "Finalise application"
       }
     },
     "fields": {
@@ -189,6 +192,12 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "licence-email": {
+        "label": "Email licence will be sent to"
+      },
+      "who-is-completing-application-details": {
+        "label": "Who completed the application"
       }
     }
   }

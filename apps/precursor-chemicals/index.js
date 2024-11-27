@@ -227,11 +227,17 @@ const steps = {
   /* Finalise application */
 
   '/licence-email-address': {
+    fields: ['licence-email'],
     next: '/who-completing'
   },
 
   '/who-completing': {
     behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-telephone',
+      'who-is-completing-application-email'
+    ],
     next: '/discharging-licence-responsibilities'
   },
 
