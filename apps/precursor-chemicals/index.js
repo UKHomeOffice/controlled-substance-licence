@@ -135,8 +135,7 @@ const steps = {
     // will revert to '/substance-category' once "About the licence" section is active
     next: '/summary'
     // next: '/substance-category'
-  },
-  */
+  },*/
 
   /** About the licence
    *
@@ -231,6 +230,7 @@ const steps = {
   },
 
   '/who-completing': {
+    behaviours: [customValidation],
     next: '/discharging-licence-responsibilities'
   },
 
