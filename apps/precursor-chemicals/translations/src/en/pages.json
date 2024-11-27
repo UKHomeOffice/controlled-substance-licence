@@ -137,6 +137,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "finalise-application": {
+        "header": "Finalise application"
       }
     },
     "fields": {
@@ -181,6 +184,15 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "is-discharge-all-licence-responsibilities": {
+        "label": "Relevant officer to discharge licence responsibilities?"
+      },
+      "explain-not-discharge-responsibilities": {
+        "label": "Why they will not discharge licence responsibilities"
+      },
+      "extra-information": {
+        "label": "Extra information"
       }
     }
   }

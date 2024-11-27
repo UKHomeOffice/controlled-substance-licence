@@ -153,4 +153,21 @@ module.exports = {
       }
     ]
   } */
+
+  'finalise-application': {
+    steps: [
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'is-discharge-all-licence-responsibilities'
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'explain-not-discharge-responsibilities'
+      },
+      {
+        step: '/extra-application-information',
+        field: 'extra-information'
+      }
+    ]
+  }
 };
