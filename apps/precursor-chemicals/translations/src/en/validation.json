@@ -160,5 +160,19 @@
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "is-discharge-all-licence-responsibilities": {
+    "required": "Select if the regulatory affairs and compliance officer will discharge all licence responsibilities"
+  },
+  "explain-not-discharge-responsibilities": {
+    "required": "You must explain why the officer will not discharge all licence responsibilities",
+    "maxlength": "Reason why the officer will not discharge all licence responsibilities must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "extra-information": {
+    "maxlength": "Extra information must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
+
+

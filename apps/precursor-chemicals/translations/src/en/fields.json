@@ -152,5 +152,23 @@
   },
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
+  },
+  "is-discharge-all-licence-responsibilities": {
+    "hint": "If you answer ‘No’, your registration might take longer and may not be approved.",
+    "legend": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "explain-not-discharge-responsibilities": {
+    "label": "Explain why the officer will not discharge all licence responsibilities"
+  },
+  "extra-information": {
+    "label": "Add any extra information you think might help your application (optional)"
   }
 }

@@ -1,10 +1,9 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
-const customValidation = require('./behaviours/custom-validation');
 
 const steps = {
 
-/* About the applicants
+  /* About the applicants
 
   '/licence-holder-details': {
     behaviours: [customValidation],
@@ -136,9 +135,7 @@ const steps = {
     // will revert to '/substance-category' once "About the licence" section is active
     next: '/summary'
     // next: '/substance-category'
-  }, 
-  
-  
+  },
   */
 
   /** About the licence
@@ -227,21 +224,23 @@ const steps = {
    *
    */
 
-/* Finalise application */
+  /* Finalise application */
 
   '/licence-email-address': {
     next: '/who-completing'
   },
-  
+
   '/who-completing': {
     next: '/discharging-licence-responsibilities'
   },
-  
+
   '/discharging-licence-responsibilities': {
+    fields: ['is-discharge-all-licence-responsibilities', 'explain-not-discharge-responsibilities'],
     next: '/extra-application-information'
   },
-  
+
   '/extra-application-information': {
+    fields: ['extra-information'],
     next: '/summary'
   },
 
