@@ -132,10 +132,7 @@ const steps = {
       'invoicing-telephone',
       'invoicing-purchase-order-number'
     ],
-    // Temporarily changed to '/summary' for now,
-    // will revert to '/substance-category' once "About the licence" section is active
-    next: '/summary'
-    // next: '/substance-category'
+    next: '/substance-category'
   },*/
 
   /** About the licence
