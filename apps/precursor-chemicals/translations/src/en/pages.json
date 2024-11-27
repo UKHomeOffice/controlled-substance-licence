@@ -4,15 +4,13 @@
   },
 
   "licence-holder-address": {
-    "header": "Licence holder address"
-  },
-
-  "reuse-premises-address": {
-    "header": "Is the premises address the same as the licence holder address?"
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
   },
 
   "premises-address": {
-    "header": "Premises address"
+    "header": "Premises address",
+    "intro": "This is the address where you will operate your licence from"
   },
 
   "premises-contact-details": {
@@ -24,11 +22,10 @@
   },
 
   "responsible-officer-dbs-information": {
-    "header": "DBS information"
+    "header": "DBS information for the responsible officer"
   },
 
   "responsible-officer-dbs": {
-    "header": "Has the responsible officer subscribed to DBS updates?"
   },
 
   "guarantor-details": {
@@ -38,17 +35,10 @@
   "guarantor-dbs-information": {
     "header": "Guarantor DBS information"
   },
-
-  "guarantor-dbs-updates": {
-    "header": "Has the guarantor subscribed to DBS updates?"
-  },
-
-  "criminal-convictions": {
-    "header": "Has anyone employed by your company ever received criminal convictions?"
-  },
-
+ 
   "invoicing-address": {
-    "header": "Invoicing address"
+    "header": "Invoicing address",
+    "intro": "This is the address of your headquarters, and if you are registering as a limited company it must match your Companies House registered address."
   },
 
   "invoicing-contact-details": {
@@ -153,8 +143,53 @@
   
   "confirm": {
     "sections": {
+      "about-the-applicants": {
+        "header": "About the applicants"
+      }
     },
     "fields": {
+      "licence-holder-details": {
+         "label": "Licence holder details"
+       },
+       "licence-holder-address": {
+         "label": "Licence holder address"
+       },
+      "is-premises-address-same": {
+        "label": "Re-use the same contact details for the premises"
+      },
+      "premises-address-details": {
+        "label": "Premises address"
+      },
+      "premises-contact-details": {
+        "label": "Premises contact details"
+      },
+      "guarantor-details": {
+        "label": "Guarantor details"
+      },
+      "guarantor-dbs-information": {
+        "label": "DBS Information"
+      },
+      "is-guarantor-subscribed": {
+        "label": "Guarantor signed up for DBS updates"
+      },
+      "responsible-officer-details": {
+        "label": "Responsible officer details"
+      },
+      "responsible-officer-dbs-information": {
+        "label": "DBS Information"
+      },
+      "responsible-officer-dbs-update-subscription": {
+        "label": "Responsible officer signed up for DBS updates"
+      },
+      "has-anyone-received-criminal-conviction": {
+        "label": "Any members subject to criminal convictions"
+      },
+      "invoicing-address-details": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-details": {
+        "label": "Invoicing contact details"
+      }
     }
   }
 }
