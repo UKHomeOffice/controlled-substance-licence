@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('../../../config');
-const Model = require('../models/file-upload');
+const FileUpload = require('../../../utils/file-upload');
 
 const { sanitiseFilename } = require('../../../utils');
 
@@ -61,11 +61,11 @@ module.exports = (documentCategory, fieldName) => superclass => class extends su
         data: req.files[fieldName].data,
         mimetype: req.files[fieldName].mimetype
       };
-      const model = new Model(document);
+      const upload = new FileUpload(document);
 
       try {
-        await model.save();
-        req.sessionModel.set(documentCategory, [...documentsByCategory, model.toJSON()]);
+        await upload.save();
+        req.sessionModel.set(documentCategory, [...documentsByCategory, upload.toJSON()]);
         return res.redirect(`${req.baseUrl}${req.path}`);
       } catch (error) {
         return next(new Error(`Failed to save document: ${error}`));

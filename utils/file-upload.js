@@ -6,7 +6,7 @@ const Model = require('hof').model;
 const uuid = require('uuid').v4;
 const FormData = require('form-data');
 
-const config = require('../../../config');
+const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
 module.exports = class UploadModel extends Model {
@@ -15,7 +15,7 @@ module.exports = class UploadModel extends Model {
     this.set('id', uuid());
   }
 
-  save() {
+  async save() {
     if (!config.upload.hostname) {
       const errorMsg = 'File-vault hostname is not defined';
       logger.error(errorMsg);
@@ -39,38 +39,27 @@ module.exports = class UploadModel extends Model {
       ...formData.getHeaders()
     };
 
-    return new Promise((resolve, reject) => {
-      return this.request(reqConf, (err, data) => {
-        if (err) {
-          logger.error(`File upload failed: ${err.message},
-            error: ${JSON.stringify(err)}`);
-          return reject(new Error(`File upload failed: ${err.message}`));
-        }
+    try {
+      const data = await this.request(reqConf);
 
-        if (!data || typeof data !== 'object' || Object.keys(data).length === 0) {
-          const errorMsg = 'Received empty or invalid response from file-vault';
-          logger.error(errorMsg);
-          return reject(new Error(errorMsg));
-        }
+      if (!data.url) {
+        const errorMsg = 'Did not receive a URL from file-vault';
+        logger.error(errorMsg);
+        throw new Error(errorMsg);
+      }
 
-        logger.info(`Received response from file-vault with keys: ${Object.keys(data)}`);
-        return resolve(data);
+      logger.info(`Received response from file-vault with keys: ${Object.keys(data)}`);
+
+      this.set({
+        url: data.url.replace('/file/', '/file/generate-link/').split('?')[0]
       });
-    })
-      .then(result => {
-        try {
-          this.set({
-            url: result.url.replace('/file/', '/file/generate-link/').split('?')[0]
-          });
-        } catch (err) {
-          const errorMsg = `No url in response: ${err.message}`;
-          logger.error(errorMsg);
-          throw new Error(errorMsg);
-        }
-      })
-      .then(() => {
-        this.unset('data');
-      });
+
+      this.unset('data');
+    } catch (error) {
+      logger.error(`File upload failed: ${error.message},
+        error: ${JSON.stringify(error)}`);
+      throw new Error(`File upload failed: ${error.message}`);
+    }
   }
 
   async auth() {
@@ -88,11 +77,9 @@ module.exports = class UploadModel extends Model {
       url: config.keycloak.token,
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
-        username: config.keycloak.username,
-        password: config.keycloak.password,
-        grant_type: 'password',
-        client_id: config.keycloak.clientId,
-        client_secret: config.keycloak.secret
+        grant_type: 'client_credentials',
+        client_id: config.keycloak.fileVault.clientId,
+        client_secret: config.keycloak.fileVault.secret
       },
       method: 'POST'
     };
