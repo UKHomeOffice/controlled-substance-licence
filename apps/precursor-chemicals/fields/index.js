@@ -288,5 +288,25 @@ module.exports = {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'licence-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };

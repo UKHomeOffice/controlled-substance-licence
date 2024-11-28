@@ -193,6 +193,12 @@
       },
       "extra-information": {
         "label": "Extra information"
+      },
+      "licence-email": {
+        "label": "Email licence will be sent to"
+      },
+      "who-is-completing-application-details": {
+        "label": "Who completed the application"
       }
     }
   }

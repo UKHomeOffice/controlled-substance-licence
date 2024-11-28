@@ -132,10 +132,7 @@ const steps = {
       'invoicing-telephone',
       'invoicing-purchase-order-number'
     ],
-    // Temporarily changed to '/summary' for now,
-    // will revert to '/substance-category' once "About the licence" section is active
-    next: '/summary'
-    // next: '/substance-category'
+    next: '/substance-category'
   },*/
 
   /** About the licence
@@ -227,11 +224,17 @@ const steps = {
   /* Finalise application */
 
   '/licence-email-address': {
+    fields: ['licence-email'],
     next: '/who-completing'
   },
 
   '/who-completing': {
     behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-telephone',
+      'who-is-completing-application-email'
+    ],
     next: '/discharging-licence-responsibilities'
   },
 

@@ -170,5 +170,17 @@
   },
   "extra-information": {
     "label": "Add any extra information you think might help your application (optional)"
+  },
+  "licence-email": {
+    "label": "Email address"
+  },
+  "who-is-completing-application-full-name": {
+    "label": "Full name"
+  },
+  "who-is-completing-application-telephone": {
+    "label": "UK telephone number"
+  },
+  "who-is-completing-application-email": {
+    "label": "Email address"
   }
 }

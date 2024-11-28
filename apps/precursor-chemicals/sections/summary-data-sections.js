@@ -9,31 +9,27 @@ module.exports = {
         step: '/licence-holder-details',
         field: 'licence-holder-details',
         parse: (list, req) => {
-          const licenseHolderDetails = [];
-          licenseHolderDetails.push(req.sessionModel.get('company-name'));
-          if (req.sessionModel.get('company-number')) {
-            licenseHolderDetails.push(req.sessionModel.get('company-number').toUpperCase());
-          }
-          if (req.sessionModel.get('website-url')) {
-            licenseHolderDetails.push(req.sessionModel.get('website-url'));
-          }
-          licenseHolderDetails.push(req.sessionModel.get('telephone'));
-          licenseHolderDetails.push(req.sessionModel.get('email'));
-          return licenseHolderDetails.join('\n');
+          const licenseHolderDetails = [
+            req.sessionModel.get('company-name'),
+            req.sessionModel.get('company-number').toUpperCase(),
+            req.sessionModel.get('website-url'),
+            req.sessionModel.get('telephone'),
+            req.sessionModel.get('email')
+          ];
+          return licenseHolderDetails.filter(element => element).join('\n');
         }
       },
       {
         step: '/licence-holder-address',
         field: 'licence-holder-address',
         parse: (list, req) => {
-          const licenceHolderAddress = [];
-          licenceHolderAddress.push(req.sessionModel.get('licence-holder-address-line-1'));
-          if (req.sessionModel.get('licence-holder-address-line-2')) {
-            licenceHolderAddress.push(req.sessionModel.get('licence-holder-address-line-2'));
-          }
-          licenceHolderAddress.push(req.sessionModel.get('licence-holder-town-or-city'));
-          licenceHolderAddress.push(req.sessionModel.get('licence-holder-postcode'));
-          return licenceHolderAddress.join('\n');
+          const licenceHolderAddress = [
+            req.sessionModel.get('licence-holder-address-line-1'),
+            req.sessionModel.get('licence-holder-address-line-2'),
+            req.sessionModel.get('licence-holder-town-or-city'),
+            req.sessionModel.get('licence-holder-postcode')
+          ];
+          return licenceHolderAddress.filter(element => element).join('\n');
         }
       },
       {
@@ -43,14 +39,13 @@ module.exports = {
           if (!req.sessionModel.get('steps').includes('/premises-address')) {
             return null;
           }
-          const addressDetails = [];
-          addressDetails.push(req.sessionModel.get('premises-address-line-1'));
-          if (req.sessionModel.get('premises-address-line-2')) {
-            addressDetails.push(req.sessionModel.get('premises-address-line-2'));
-          }
-          addressDetails.push(req.sessionModel.get('premises-town-or-city'));
-          addressDetails.push(req.sessionModel.get('premises-postcode'));
-          return addressDetails.join('\n');
+          const premisesAddressDetails = [
+            req.sessionModel.get('premises-address-line-1'),
+            req.sessionModel.get('premises-address-line-2'),
+            req.sessionModel.get('premises-town-or-city'),
+            req.sessionModel.get('premises-postcode')
+          ];
+          return premisesAddressDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -61,33 +56,34 @@ module.exports = {
         step: '/premises-contact-details',
         field: 'premises-contact-details',
         parse: (list, req) => {
-          const contactDetails = [];
-          contactDetails.push(req.sessionModel.get('premises-telephone'));
-          contactDetails.push(req.sessionModel.get('premises-email'));
-          return contactDetails.join('\n');
+          const premisesContactDetails = [
+            req.sessionModel.get('premises-telephone'),
+            req.sessionModel.get('premises-email')
+          ];
+          return premisesContactDetails.join('\n');
         }
       },
       {
         step: '/responsible-officer-details',
         field: 'responsible-officer-details',
         parse: (val, req) => {
-          const formattedResponsibleOfficerDetails = Array(
+          const responsibleOfficerDetails = [
             req.sessionModel.get('responsible-officer-fullname'),
             req.sessionModel.get('responsible-officer-email')
-          ).join('\n');
-          return formattedResponsibleOfficerDetails;
+          ];
+          return responsibleOfficerDetails.join('\n');
         }
       },
       {
         step: '/responsible-officer-dbs-information',
         field: 'responsible-officer-dbs-information',
         parse: (val, req) => {
-          const formattedResponsibleOfficerDBSInfo = Array(
+          const responsibleOfficerDBSInfo = [
             req.sessionModel.get('responsible-officer-dbs-application-fullname'),
             req.sessionModel.get('responsible-officer-dbs-reference'),
             formatDate(req.sessionModel.get('responsible-officer-dbs-date-of-issue'))
-          ).join('\n');
-          return formattedResponsibleOfficerDBSInfo;
+          ];
+          return responsibleOfficerDBSInfo.join('\n');
         }
       },
       {
@@ -98,9 +94,10 @@ module.exports = {
         step: '/guarantor-details',
         field: 'guarantor-details',
         parse: (list, req) => {
-          const guarantorDetails = [];
-          guarantorDetails.push(req.sessionModel.get('guarantor-full-name'));
-          guarantorDetails.push(req.sessionModel.get('guarantor-email-address'));
+          const guarantorDetails = [
+            req.sessionModel.get('guarantor-full-name'),
+            req.sessionModel.get('guarantor-email-address')
+          ];
           return guarantorDetails.join('\n');
         }
       },
@@ -108,10 +105,11 @@ module.exports = {
         step: '/guarantor-dbs-information',
         field: 'guarantor-dbs-information',
         parse: (list, req) => {
-          const guarantorDbsInformation = [];
-          guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-full-name'));
-          guarantorDbsInformation.push(req.sessionModel.get('guarantor-dbs-reference'));
-          guarantorDbsInformation.push(formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue')));
+          const guarantorDbsInformation = [
+            req.sessionModel.get('guarantor-dbs-full-name'),
+            req.sessionModel.get('guarantor-dbs-reference'),
+            formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue'))
+          ];
           return guarantorDbsInformation.join('\n');
         }
       },
@@ -127,35 +125,49 @@ module.exports = {
         step: '/invoicing-address',
         field: 'invoicing-address-details',
         parse: (list, req) => {
-          const invoicingAddress = [];
-          invoicingAddress.push(req.sessionModel.get('invoicing-address-line-1'));
-          if (req.sessionModel.get('invoicing-address-line-2')) {
-            invoicingAddress.push(req.sessionModel.get('invoicing-address-line-2'));
-          }
-          invoicingAddress.push(req.sessionModel.get('invoicing-town-or-city'));
-          invoicingAddress.push(req.sessionModel.get('invoicing-postcode'));
-          return invoicingAddress.join('\n');
+          const invoicingAddress = [
+            req.sessionModel.get('invoicing-address-line-1'),
+            req.sessionModel.get('invoicing-address-line-2'),
+            req.sessionModel.get('invoicing-town-or-city'),
+            req.sessionModel.get('invoicing-postcode')
+          ];
+          return invoicingAddress.filter(element => element).join('\n');
         }
       },
       {
         step: '/invoicing-contact-details',
         field: 'invoicing-contact-details',
         parse: (list, req) => {
-          const invoicingContactDetails = [];
-          invoicingContactDetails.push(req.sessionModel.get('invoicing-fullname'));
-          invoicingContactDetails.push(req.sessionModel.get('invoicing-email'));
-          invoicingContactDetails.push(req.sessionModel.get('invoicing-telephone'));
-          if (req.sessionModel.get('invoicing-purchase-order-number')) {
-            invoicingContactDetails.push(req.sessionModel.get('invoicing-purchase-order-number'));
-          }
-          return invoicingContactDetails.join('\n');
+          const invoicingContactDetails = [
+            req.sessionModel.get('invoicing-fullname'),
+            req.sessionModel.get('invoicing-email'),
+            req.sessionModel.get('invoicing-telephone'),
+            req.sessionModel.get('invoicing-purchase-order-number')
+          ];
+          return invoicingContactDetails.filter(element => element).join('\n');
         }
       }
     ]
   } */
-
+ 
   'finalise-application': {
     steps: [
+      {
+        step: '/licence-email-address',
+        field: 'licence-email'
+      },
+      {
+        step: '/who-completing',
+        field: 'who-is-completing-application-details',
+        parse: (val, req) => {
+          const whoIsCompletingApplicationDetails = [
+            req.sessionModel.get('who-is-completing-application-full-name'),
+            req.sessionModel.get('who-is-completing-application-telephone'),
+            req.sessionModel.get('who-is-completing-application-email')
+          ];
+          return whoIsCompletingApplicationDetails.filter(element => element).join('\n');
+        }
+      },
       {
         step: '/discharging-licence-responsibilities',
         field: 'is-discharge-all-licence-responsibilities'
