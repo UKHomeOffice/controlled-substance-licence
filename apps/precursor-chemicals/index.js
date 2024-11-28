@@ -128,6 +128,7 @@ const steps = {
    * },
    *
    * '/invoicing-contact-details': {
+   *   behaviours: [customValidation],
    *   fields: [
    *    'invoicing-fullname',
    *    'invoicing-email',
