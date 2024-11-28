@@ -166,7 +166,11 @@ module.exports = {
       },
       {
         step: '/extra-application-information',
-        field: 'extra-information'
+        field: 'extra-information',
+        parse: (list, req) => {
+          return req.sessionModel.get('extra-information') ||
+            'Not provided';
+        }
       }
     ]
   }

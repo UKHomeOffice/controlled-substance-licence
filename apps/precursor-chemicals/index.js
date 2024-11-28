@@ -236,7 +236,6 @@ const steps = {
   },
 
   '/discharging-licence-responsibilities': {
-    continueOnEdit: true,
     fields: ['is-discharge-all-licence-responsibilities', 'explain-not-discharge-responsibilities'],
     next: '/extra-application-information'
   },
