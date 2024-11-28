@@ -121,6 +121,10 @@
     "header": "Who is completing the application?"
   },
 
+  "extra-application-information": {
+    "pageTitle": "Add any extra information you think might help your application"
+  },
+
   "summary": {
     "header": "Summary"
   },
