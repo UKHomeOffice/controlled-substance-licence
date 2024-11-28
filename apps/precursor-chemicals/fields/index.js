@@ -256,6 +256,39 @@ module.exports = {
     validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
+  'is-discharge-all-licence-responsibilities': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no',
+        toggle: 'explain-not-discharge-responsibilities',
+        child: 'textarea'
+      }
+    ]
+  },
+  'explain-not-discharge-responsibilities': {
+    dependent: {
+      field: 'is-discharge-all-licence-responsibilities',
+      value: 'no'
+    },
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'maxlength', arguments: 2000 }
+    ],
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'extra-information': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
   'licence-email': {
     mixin: 'input-text',
     validate: ['required', 'email'],

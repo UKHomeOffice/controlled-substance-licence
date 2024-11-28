@@ -239,10 +239,12 @@ const steps = {
   },
 
   '/discharging-licence-responsibilities': {
+    fields: ['is-discharge-all-licence-responsibilities', 'explain-not-discharge-responsibilities'],
     next: '/extra-application-information'
   },
 
   '/extra-application-information': {
+    fields: ['extra-information'],
     next: '/summary'
   },
 

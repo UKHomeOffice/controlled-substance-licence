@@ -148,7 +148,8 @@ module.exports = {
         }
       }
     ]
-  }, */
+  } */
+
   'finalise-application': {
     steps: [
       {
@@ -165,6 +166,22 @@ module.exports = {
             req.sessionModel.get('who-is-completing-application-email')
           ];
           return whoIsCompletingApplicationDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'is-discharge-all-licence-responsibilities'
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'explain-not-discharge-responsibilities'
+      },
+      {
+        step: '/extra-application-information',
+        field: 'extra-information',
+        parse: (list, req) => {
+          return req.sessionModel.get('extra-information') ||
+            'Not provided';
         }
       }
     ]
