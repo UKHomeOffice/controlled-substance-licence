@@ -3,7 +3,7 @@
 const { formatDate } = require('../../../utils');
 
 module.exports = {
-  
+
   'about-the-applicants': {
     steps: [
       {

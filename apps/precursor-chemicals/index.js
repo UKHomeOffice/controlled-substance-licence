@@ -17,7 +17,7 @@ const steps = {
     ],
     next: '/licence-holder-address'
   },
- 
+
   '/licence-holder-address': {
     fields: [
       'licence-holder-address-line-1',
@@ -27,7 +27,7 @@ const steps = {
     ],
     next: '/reuse-premises-address'
   },
- 
+
   '/reuse-premises-address': {
     fields: ['is-premises-address-same'],
     forks: [
@@ -41,7 +41,7 @@ const steps = {
     ],
     next: '/premises-contact-details'
   },
- 
+
   '/premises-address': {
     fields: [
       'premises-address-line-1',
@@ -51,7 +51,7 @@ const steps = {
     ],
     next: '/premises-contact-details'
   },
- 
+
   '/premises-contact-details': {
     behaviours: [customValidation],
     fields: [
@@ -60,7 +60,7 @@ const steps = {
     ],
     next: '/responsible-officer-details'
   },
- 
+
   '/responsible-officer-details': {
     fields: [
       'responsible-officer-fullname',
@@ -69,7 +69,7 @@ const steps = {
     ],
     next: '/responsible-officer-dbs-information'
   },
- 
+
   '/responsible-officer-dbs-information': {
     fields: [
       'responsible-officer-dbs-application-fullname',
@@ -78,14 +78,14 @@ const steps = {
     ],
     next: '/responsible-officer-dbs'
   },
- 
+
   '/responsible-officer-dbs': {
     fields: [
       'responsible-officer-dbs-update-subscription'
     ],
     next: '/guarantor-details'
   },
- 
+
   '/guarantor-details': {
     fields: [
       'guarantor-full-name',
@@ -94,7 +94,7 @@ const steps = {
     ],
     next: '/guarantor-dbs-information'
   },
- 
+
   '/guarantor-dbs-information': {
     fields: [
       'guarantor-dbs-full-name',
@@ -103,17 +103,17 @@ const steps = {
     ],
     next: '/guarantor-dbs-updates'
   },
- 
+
   '/guarantor-dbs-updates': {
     fields: ['is-guarantor-subscribed'],
     next: '/criminal-convictions'
   },
- 
+
   '/criminal-convictions': {
     fields: ['has-anyone-received-criminal-conviction'],
     next: '/invoicing-address'
   },
- 
+
   '/invoicing-address': {
     fields: [
       'invoicing-address-line-1',
@@ -123,14 +123,14 @@ const steps = {
     ],
     next: '/invoicing-contact-details'
   },
- 
+
   '/invoicing-contact-details': {
     behaviours: [customValidation],
     fields: [
-     'invoicing-fullname',
-     'invoicing-email',
-     'invoicing-telephone',
-     'invoicing-purchase-order-number'
+      'invoicing-fullname',
+      'invoicing-email',
+      'invoicing-telephone',
+      'invoicing-purchase-order-number'
     ],
     next: '/substance-category'
   },
@@ -140,37 +140,37 @@ const steps = {
   '/substance-category': {
     next: '/which-chemical'
   },
- 
+
   '/which-chemical': {
     next: '/which-operation'
   },
- 
+
   '/chemical-name': {
     next: '/which-operation'
   },
- 
+
   '/which-operation': {
     next: '/substances-in-licence'
   },
- 
+
   '/what-operation': {
     next: '/substances-in-licence'
   },
- 
+
   '/substances-in-licence': {
     next: '/why-chemicals-needed'
   },
- 
+
   '/why-chemicals-needed': {
     next: '/upload-company-certificate'
   },
- 
+
   /** Evidence */
 
   '/upload-company-certificate': {
     next: '/upload-conduct-certificate'
   },
- 
+
   '/upload-conduct-certificate': {
     next: '/main-customers'
   },
@@ -222,15 +222,15 @@ const steps = {
   '/licence-email-address': {
     next: '/who-completing'
   },
- 
+
   '/who-completing': {
     next: '/discharging-licence-responsibilities'
   },
- 
+
   '/discharging-licence-responsibilities': {
     next: '/extra-application-information'
   },
- 
+
   '/extra-application-information': {
     next: '/summary'
   },
