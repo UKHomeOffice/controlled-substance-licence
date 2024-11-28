@@ -37,7 +37,7 @@ spec:
       containers:
         - name: file-vault
           # v1.1.0
-          image: quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+          image: quay.io/ukhomeofficedigital/file-vault:ad405b5738f031b7270e132745e90e16e1c23e06
           imagePullPolicy: Always
           resources:
             limits:
@@ -75,46 +75,22 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: csl-s3-notprod
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: csl-s3-stg
-                  {{ else }}
-                  name: csl-s3-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: csl-s3-notprod
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: csl-s3-stg
-                  {{ else }}
-                  name: csl-s3-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: csl-s3-notprod
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: csl-s3-stg
-                  {{ else }}
-                  name: csl-s3-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: csl-s3-notprod
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: csl-s3-stg
-                  {{ else }}
-                  name: csl-s3-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: name
             - name: AWS_PASSWORD
               valueFrom:
@@ -150,12 +126,12 @@ spec:
             - name: PROXY_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: file-vault-client
                   key: secret
             - name: PROXY_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: keycloak-client
+                  name: file-vault-client
                   key: id
             - name: PROXY_LISTEN
               value: 127.0.0.1:3001

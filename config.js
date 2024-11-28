@@ -55,9 +55,11 @@ module.exports = {
   },
   keycloak: {
     token: process.env.KEYCLOAK_TOKEN_URL,
-    username: process.env.KEYCLOAK_USERNAME,
-    password: process.env.KEYCLOAK_PASSWORD,
-    clientId: process.env.KEYCLOAK_CLIENT_ID,
-    secret: process.env.KEYCLOAK_SECRET
+    fileVault: {
+      username: process.env.FILE_VAULT_USERNAME,
+      password: process.env.FILE_VAULT_PASSWORD,
+      clientId: process.env.FILE_VAULT_CLIENT_ID,
+      secret: process.env.FILE_VAULT_CLIENT_SECRET
+    }
   }
 };
