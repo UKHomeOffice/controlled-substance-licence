@@ -193,5 +193,8 @@
   },
   "operating-procedures-and-auditing": {
     "label": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
+  },
+  "declaration-check": {
+    "label": "I understand and accept this declaration"
   }
 }

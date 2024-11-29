@@ -200,5 +200,8 @@
     "required": "Enter a summary of your standard operating procedures and auditing practices for the use and disposal of chemicals",
     "maxlength": "You have exceeded the 2000 character limit",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "declaration-check": {
+    "required": "Confirm that you understand and accept this declaration"
   }
 }

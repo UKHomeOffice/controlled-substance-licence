@@ -242,10 +242,13 @@ const steps = {
   },
 
   '/declaration': {
+    fields: ['declaration-check'],
     next: '/application-submitted'
   },
 
   '/application-submitted': {
+    backLink: false,
+    clearSession: true
   }
 };
 
