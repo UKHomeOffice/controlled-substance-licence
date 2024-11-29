@@ -160,5 +160,14 @@
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "upload-company-certificate": {
+    "required": "Select a file",
+    "unsaved": "The selected file was not uploaded – try again",
+    "maxFileSize": "The selected files must be smaller than 25MB",
+    "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
+    "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
+    "company-registration-certificate-limit" : "You may not add more than 20 files",
+    "isDuplicateFileName": "A file with this name was already uploaded"
   }
 }

@@ -152,5 +152,8 @@
   },
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
+  },
+  "upload-company-certificate": {
+    "label": "Upload a file"
   }
 }
