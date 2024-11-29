@@ -179,34 +179,42 @@ const steps = {
   /** The organisation and how it operates */
 
   '/main-customers': {
+    fields: [ 'main-customers' ],
     next: '/main-suppliers'
   },
 
   '/main-suppliers': {
+    fields: [ 'main-suppliers' ],
     next: '/security-measures'
   },
 
   '/security-measures': {
+    fields: [ 'security-measures' ],
     next: '/how-secure-premises'
   },
 
   '/how-secure-premises': {
+    fields: [ 'how-secure-premises' ],
     next: '/storage-and-handling'
   },
 
   '/storage-and-handling': {
+    fields: [ 'storage-and-handling' ],
     next: '/chemical-stock-control'
   },
 
   '/chemical-stock-control': {
+    fields: [ 'chemical-stock-control' ],
     next: '/legitimate-use'
   },
 
   '/legitimate-use': {
+    fields: [ 'legitimate-use' ],
     next: '/operating-procedures-and-auditing'
   },
 
   '/operating-procedures-and-auditing': {
+    fields: [ 'operating-procedures-and-auditing' ],
     next: '/licence-email-address'
   },
 
