@@ -152,5 +152,8 @@
   },
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
+  },
+  "chemicals-used-for": {
+    "label": "Tell us why you need these chemicals and what they’ll be used for"
   }
 }

@@ -148,5 +148,13 @@ module.exports = {
         }
       }
     ]
+  },
+  'about-the-licence': {
+    steps: [
+      {
+        step: '/why-chemicals-needed',
+        field: 'chemicals-used-for'
+      }
+    ]
   }
 };

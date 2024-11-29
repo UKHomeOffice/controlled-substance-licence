@@ -69,10 +69,6 @@
     "header": "What other operation applies to the licence?"
   },
 
-  "why-chemicals-needed": {
-    "header": "Tell us why you need these chemicals and what they’ll be used for"
-  },
-
   "upload-company-certificate": {
     "header": "Upload company registration certificate"
   },
@@ -145,6 +141,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "about-the-licence": {
+        "header": "About the licence"
       }
     },
     "fields": {
@@ -189,6 +188,9 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "chemicals-used-for": {
+        "label": "Reason for chemical application "
       }
     }
   }

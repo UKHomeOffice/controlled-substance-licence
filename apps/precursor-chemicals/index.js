@@ -162,6 +162,7 @@ const steps = {
   },
 
   '/why-chemicals-needed': {
+    fields: ['chemicals-used-for'],
     next: '/upload-company-certificate'
   },
 

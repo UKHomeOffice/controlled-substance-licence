@@ -160,5 +160,10 @@
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "chemicals-used-for": {
+    "required": "Enter details of the chemicals and what they will be used for",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "You have exceeded the 2000 character limit"
   }
 }
