@@ -5,7 +5,7 @@
   </div>
 
   <div class="govuk-form-group govuk-!-margin-top-6" id="hofFileUpload">
-    <label class="govuk-label bold" for="file-upload">
+    <label class="govuk-label govuk-label--m" for="file-upload">
         {{#t}}fields.upload-company-certificate.label{{/t}}
     </label>
     <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
@@ -22,11 +22,11 @@
   </div>
 
   {{^values.company-registration-certificate}}
-  <h2 class="govuk-heading-m">No documents uploaded</h2>
+  <h2 class="govuk-heading-s">No documents uploaded</h2>
   {{/values.company-registration-certificate}}
 
   {{#values.company-registration-certificate.length}}
-  <h2 class="govuk-heading-m">You have uploaded {{values.company-registration-certificate.length}} file(s)</h2>
+  <h2 class="govuk-heading-s">You have uploaded {{values.company-registration-certificate.length}} file(s)</h2>
 
   <div id="uploaded-documents" class="govuk-width-container">
     {{#values.company-registration-certificate}}

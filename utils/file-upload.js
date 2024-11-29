@@ -56,10 +56,6 @@ module.exports = class UploadModel extends Model {
 
       logger.info(`Received response from file-vault with keys: ${Object.keys(response)}`);
 
-      // temp log for early testing: REMOVE
-      // eslint-disable-next-line no-console
-      console.log('UPLOAD URL', response.url.replace('/file/', '/file/generate-link/').split('?')[0]);
-
       this.set({
         url: response.url.replace('/file/', '/file/generate-link/').split('?')[0]
       });
