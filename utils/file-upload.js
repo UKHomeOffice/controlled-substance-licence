@@ -40,18 +40,27 @@ module.exports = class UploadModel extends Model {
     };
 
     try {
-      const data = await this.request(reqConf);
+      const response = await this.request(reqConf);
 
-      if (!data.url) {
+      if (!response || typeof response !== 'object' || Object.keys(response).length === 0) {
+        const errorMsg = 'Received empty or invalid response from file-vault';
+        logger.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+
+      if (!response.url) {
         const errorMsg = 'Did not receive a URL from file-vault';
         logger.error(errorMsg);
         throw new Error(errorMsg);
       }
 
-      logger.info(`Received response from file-vault with keys: ${Object.keys(data)}`);
+      logger.info(`Received response from file-vault with keys: ${Object.keys(response)}`);
+
+      // temp log for early testing: REMOVE
+      console.log('UPLOAD URL', response.url.replace('/file/', '/file/generate-link/').split('?')[0])
 
       this.set({
-        url: data.url.replace('/file/', '/file/generate-link/').split('?')[0]
+        url: response.url.replace('/file/', '/file/generate-link/').split('?')[0]
       });
 
       this.unset('data');
@@ -63,10 +72,16 @@ module.exports = class UploadModel extends Model {
   }
 
   async auth() {
-    const requiredProperties = ['token', 'username', 'password', 'clientId', 'secret'];
+    const requiredProperties = ['clientId', 'secret', 'username', 'password'];
+
+    if (!config.keycloak.token) {
+      const errorMsg = 'Keycloak $token is not defined';
+      logger.error(errorMsg);
+      throw new Error(errorMsg);
+    }
 
     for (const property of requiredProperties) {
-      if (!config.keycloak[property]) {
+      if (!config.keycloak.fileVault[property]) {
         const errorMsg = `Keycloak ${property} is not defined`;
         logger.error(errorMsg);
         throw new Error(errorMsg);
@@ -77,7 +92,9 @@ module.exports = class UploadModel extends Model {
       url: config.keycloak.token,
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
-        grant_type: 'client_credentials',
+        username: config.keycloak.fileVault.username,
+        password: config.keycloak.fileVault.password,
+        grant_type: 'password',
         client_id: config.keycloak.fileVault.clientId,
         client_secret: config.keycloak.fileVault.secret
       },
