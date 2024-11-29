@@ -56,6 +56,36 @@
   "premises-email": {
     "label": "Email address"
   },
+  "responsible-officer-fullname": {
+    "label": "Full name"
+  },
+  "responsible-officer-email": {
+    "label": "Email address"
+  },
+  "responsible-officer-dbs-certificate": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-officer-dbs-application-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "responsible-officer-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "responsible-officer-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "responsible-officer-dbs-update-subscription": {
+    "legend": "Has the responsible officer subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "guarantor-full-name": {
     "label": "Full name",
     "hint": "A guarantor makes sure everyone in the business operates within the licence conditions"
@@ -79,36 +109,6 @@
   },
   "is-guarantor-subscribed": {
     "legend": "Has the guarantor subscribed to DBS updates?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "responsible-officer-fullname": {
-    "label": "Full name"
-  },
-  "responsible-officer-email": {
-    "label": "Email address"
-  },
-  "responsible-officer-dbs-certificate": {
-    "label": "I confirm this person has applied for or currently holds a DBS certificate"
-  },
-  "responsible-officer-dbs-application-fullname": {
-    "label": "Full name",
-    "hint": "Enter the name as it appears on their DBS application"
-  },
-  "responsible-officer-dbs-reference": {
-    "label": "DBS reference"
-  },
-  "responsible-officer-dbs-date-of-issue": {
-    "legend": "Date of issue or application"
-  },
-  "responsible-officer-dbs-update-subscription": {
-    "legend": "Has the responsible officer subscribed to DBS updates?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -152,5 +152,46 @@
   },
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
+  },
+  "main-customers": {
+    "label": "Tell us about your main customers"
+  },
+  "main-suppliers": {
+    "label": "Tell us about your main suppliers"
+  },
+  "security-measures": {
+    "legend": "What security measures do you have in place at the premises?",
+    "options": {
+      "cctv-system": {
+        "label": "CCTV system (centrally monitored)"
+      },
+      "electronic-stock-recording-system": {
+        "label": "Electronic stock recording system(s)"
+      },
+      "perimeter-fencing": {
+        "label": "Perimeter fencing"
+      },
+      "lockable-physical-security": {
+        "label": "Lockable physical security, such as a room safe, cabinet for the storage of the precursor chemicals"
+      },
+      "security-guards": {
+        "label": "The attendance of the security guards"
+      }
+    }
+  },
+  "how-secure-premises": {
+    "label": "Describe how you secure your premises"
+  },
+  "storage-and-handling": {
+    "label": "Describe how you make sure chemicals are stored and handled securely"
+  },
+  "chemical-stock-control": {
+    "label": "Describe how you manage chemical stock control"
+  },
+  "legitimate-use": {
+    "label": "Describe how you work to make sure end products are used legitimately"
+  },
+  "operating-procedures-and-auditing": {
+    "label": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
   }
 }
