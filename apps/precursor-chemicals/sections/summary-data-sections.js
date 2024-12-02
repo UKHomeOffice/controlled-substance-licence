@@ -3,6 +3,7 @@
 /* const { formatDate } = require('../../../utils'); */
 
 module.exports = {
+
   /* 'about-the-applicants': {
     steps: [
       {
@@ -148,7 +149,46 @@ module.exports = {
         }
       }
     ]
-  } */
+  },
+  organisation: {
+    steps: [
+      {
+        step: '/main-customers',
+        field: 'main-customers'
+      },
+      {
+        step: '/main-suppliers',
+        field: 'main-suppliers'
+      },
+      {
+        step: '/security-measures',
+        field: 'security-measures',
+        parse: value => {
+          return Array.isArray(value) ? value.map(option => option).join('\n') : value;
+        }
+      },
+      {
+        step: '/how-secure-premises',
+        field: 'how-secure-premises'
+      },
+      {
+        step: '/storage-and-handling',
+        field: 'storage-and-handling'
+      },
+      {
+        step: '/chemical-stock-control',
+        field: 'chemical-stock-control'
+      },
+      {
+        step: '/legitimate-use',
+        field: 'legitimate-use'
+      },
+      {
+        step: '/operating-procedures-and-auditing',
+        field: 'operating-procedures-and-auditing'
+      }
+    ]
+  }, */
 
   'finalise-application': {
     steps: [

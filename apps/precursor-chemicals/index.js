@@ -4,9 +4,9 @@ const customValidation = require('./behaviours/custom-validation');
 
 const steps = {
 
-  /* About the applicants
+  /** About the applicants */
 
-  '/licence-holder-details': {
+  /* '/licence-holder-details': {
     behaviours: [customValidation],
     fields: [
       'company-name',
@@ -133,93 +133,89 @@ const steps = {
       'invoicing-purchase-order-number'
     ],
     next: '/substance-category'
-  },*/
+  }, */
 
-  /** About the licence
-   *
-   * The following steps are currently commented out:
-   *
-   * '/substance-category': {
-   *   next: '/which-chemical'
-   * },
-   *
-   * '/which-chemical': {
-   *   next: '/which-operation'
-   * },
-   *
-   * '/chemical-name': {
-   *   next: '/which-operation'
-   * },
-   *
-   * '/which-operation': {
-   *   next: '/substances-in-licence'
-   * },
-   *
-   * '/what-operation': {
-   *   next: '/substances-in-licence'
-   * },
-   *
-   * '/substances-in-licence': {
-   *   next: '/why-chemicals-needed'
-   * },
-   *
-   * '/why-chemicals-needed': {
-   *   next: '/upload-company-certificate'
-   * },
-   *
-   */
+  /** About the licence */
 
-  /** Evidence
-   *
-   * The following steps are currently commented out:
-   *
-   * '/upload-company-certificate': {
-   *   next: '/upload-conduct-certificate'
-   * },
-   *
-   * '/upload-conduct-certificate': {
-   *   next: '/main-customers'
-   * },
-   *
-   */
+  /* '/substance-category': {
+    next: '/which-chemical'
+  },
 
-  /** The organisation and how it operates
-   *
-   * The following steps are currently commented out:
-   *
-   * '/main-customers': {
-   *   next: '/main-suppliers'
-   * },
-   *
-   * '/main-suppliers': {
-   *   next: '/security-measures'
-   * },
-   *
-   * '/security-measures': {
-   *   next: '/how-secure-premises'
-   * },
-   *
-   * '/how-secure-premises': {
-   *   next: '/storage-and-handling'
-   * },
-   *
-   * '/storage-and-handling': {
-   *   next: '/chemical-stock-control'
-   * },
-   *
-   * '/chemical-stock-control': {
-   *   next: '/legitimate-use'
-   * },
-   *
-   * '/legitimate-use': {
-   *   next: '/operating-procedures-and-auditing'
-   * },
-   *
-   * '/operating-procedures-and-auditing': {
-   *   next: '/licence-email-address'
-   * },
-   *
-   */
+  '/which-chemical': {
+    next: '/which-operation'
+  },
+
+  '/chemical-name': {
+    next: '/which-operation'
+  },
+
+  '/which-operation': {
+    next: '/substances-in-licence'
+  },
+
+  '/what-operation': {
+    next: '/substances-in-licence'
+  },
+
+  '/substances-in-licence': {
+    next: '/why-chemicals-needed'
+  },
+
+  '/why-chemicals-needed': {
+    next: '/upload-company-certificate'
+  }, */
+
+  /** Evidence */
+
+  /* '/upload-company-certificate': {
+    next: '/upload-conduct-certificate'
+  },
+
+  '/upload-conduct-certificate': {
+    next: '/main-customers'
+  }, */
+
+  /** The organisation and how it operates */
+
+  /* '/main-customers': {
+    fields: ['main-customers'],
+    next: '/main-suppliers'
+  },
+
+  '/main-suppliers': {
+    fields: ['main-suppliers'],
+    next: '/security-measures'
+  },
+
+  '/security-measures': {
+    fields: ['security-measures'],
+    next: '/how-secure-premises'
+  },
+
+  '/how-secure-premises': {
+    fields: ['how-secure-premises'],
+    next: '/storage-and-handling'
+  },
+
+  '/storage-and-handling': {
+    fields: ['storage-and-handling'],
+    next: '/chemical-stock-control'
+  },
+
+  '/chemical-stock-control': {
+    fields: ['chemical-stock-control'],
+    next: '/legitimate-use'
+  },
+
+  '/legitimate-use': {
+    fields: ['legitimate-use'],
+    next: '/operating-procedures-and-auditing'
+  },
+
+  '/operating-procedures-and-auditing': {
+    fields: ['operating-procedures-and-auditing'],
+    next: '/licence-email-address'
+  }, */
 
   /* Finalise application */
 
