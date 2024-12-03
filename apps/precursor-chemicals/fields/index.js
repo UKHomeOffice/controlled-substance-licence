@@ -319,5 +319,58 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
+  },
+  'licence-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'is-discharge-all-licence-responsibilities': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no',
+        toggle: 'explain-not-discharge-responsibilities',
+        child: 'textarea'
+      }
+    ]
+  },
+  'explain-not-discharge-responsibilities': {
+    dependent: {
+      field: 'is-discharge-all-licence-responsibilities',
+      value: 'no'
+    },
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'maxlength', arguments: 2000 }
+    ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'extra-information': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
   }
 };

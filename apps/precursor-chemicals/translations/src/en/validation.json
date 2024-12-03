@@ -200,5 +200,36 @@
     "required": "Enter a summary of your standard operating procedures and auditing practices for the use and disposal of chemicals",
     "maxlength": "You have exceeded the 2000 character limit",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "licence-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter a full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 1 and 250 characters"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "is-discharge-all-licence-responsibilities": {
+    "required": "Select if the regulatory affairs and compliance officer will discharge all licence responsibilities"
+  },
+  "explain-not-discharge-responsibilities": {
+    "required": "You must explain why the officer will not discharge all licence responsibilities",
+    "maxlength": "Reason why the officer will not discharge all licence responsibilities must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "extra-information": {
+    "maxlength": "Extra information must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
+
+

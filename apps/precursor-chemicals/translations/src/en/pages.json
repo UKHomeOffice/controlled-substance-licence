@@ -86,12 +86,8 @@
     "header": "Who is completing the application?"
   },
 
-  "discharging-licence-responsibilities": {
-    "header": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?"
-  },
-
   "extra-application-information": {
-    "header": "Add any extra information you think might help your application?"
+    "pageTitle": "Add any extra information you think might help your application"
   },
 
   "summary": {
@@ -113,6 +109,9 @@
       },
       "organisation": {
         "header": "The organisation and how it operates"
+      },
+      "finalise-application": {
+        "header": "Finalise application"
       }
     },
     "fields": {
@@ -181,6 +180,21 @@
       },
       "operating-procedures-and-auditing": {
         "label": "SOPS AND auditing practices around use or disposal of chemicals"
+      },
+      "licence-email": {
+        "label": "Email licence will be sent to"
+      },
+      "who-is-completing-application-details": {
+        "label": "Who completed the application"
+      },
+      "is-discharge-all-licence-responsibilities": {
+        "label": "Relevant officer to discharge licence responsibilities?"
+      },
+      "explain-not-discharge-responsibilities": {
+        "label": "Why they will not discharge licence responsibilities"
+      },
+      "extra-information": {
+        "label": "Extra information"
       }
     }
   }
