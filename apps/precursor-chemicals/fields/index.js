@@ -378,5 +378,9 @@ module.exports = {
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

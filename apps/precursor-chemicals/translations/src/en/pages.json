@@ -91,11 +91,12 @@
   },
 
   "declaration": {
-    "header": "Declaration"
+    "header": "Declaration",
+    "intro": "I confirm that my company will submit statistical returns on an annual basis, if applicable."
   },
 
   "application-submitted": {
-    "header": "Application submitted"
+    "confirmed": "Precursor chemicals application submitted"
   },
   
   "confirm": {
