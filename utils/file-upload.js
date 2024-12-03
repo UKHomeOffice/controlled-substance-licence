@@ -71,8 +71,8 @@ module.exports = class UploadModel extends Model {
   async auth() {
     const requiredProperties = ['clientId', 'secret', 'username', 'password'];
 
-    if (!config.keycloak.token) {
-      const errorMsg = 'Keycloak $token is not defined';
+    if (!config.keycloak.tokenUrl) {
+      const errorMsg = 'Keycloak token URL is not defined';
       logger.error(errorMsg);
       throw new Error(errorMsg);
     }
@@ -86,7 +86,7 @@ module.exports = class UploadModel extends Model {
     }
 
     const tokenReq = {
-      url: config.keycloak.token,
+      url: config.keycloak.tokenUrl,
       headers: { 'content-type': 'application/x-www-form-urlencoded' },
       data: {
         username: config.keycloak.fileVault.username,
@@ -112,7 +112,7 @@ module.exports = class UploadModel extends Model {
         bearer: response.data.access_token
       };
     } catch(err) {
-      const errorMsg = `Error occurred: ${err.message}, 
+      const errorMsg = `Error occurred: ${err.message},
         Cause: ${err.response.status} ${err.response.statusText}, Data: ${JSON.stringify(err.response.data)}`;
       logger.error(errorMsg);
       throw new Error(errorMsg);

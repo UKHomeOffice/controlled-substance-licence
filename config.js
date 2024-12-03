@@ -54,7 +54,7 @@ module.exports = {
     region: process.env.AWS_REGION
   },
   keycloak: {
-    token: process.env.KEYCLOAK_TOKEN_URL,
+    tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
       password: process.env.FILE_VAULT_PASSWORD,
