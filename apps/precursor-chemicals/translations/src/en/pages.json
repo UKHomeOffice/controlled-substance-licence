@@ -148,6 +148,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "evidence": {
+        "header": "Evidence"
       }
     },
     "fields": {
@@ -192,6 +195,9 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "company-registration-certificate": {
+        "label": "Company registration certificate"
       }
     }
   }
