@@ -167,7 +167,7 @@
     "maxFileSize": "The selected files must be smaller than 25MB",
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
-    "companyRegistrationCertificateLimit" : "You may not add more than 20 files",
+    "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
   }
 }
