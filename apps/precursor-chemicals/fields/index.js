@@ -365,12 +365,12 @@ module.exports = {
       'notUrl',
       { type: 'maxlength', arguments: 2000 }
     ],
-    attributes: [{ attribute: 'rows', value: 5 }]
+    attributes: [{ attribute: 'rows', value: 8 }]
   },
   'extra-information': {
     isPageHeading: true,
     mixin: 'textarea',
     validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
-    attributes: [{ attribute: 'rows', value: 5 }]
+    attributes: [{ attribute: 'rows', value: 8 }]
   }
 };
