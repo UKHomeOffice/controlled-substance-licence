@@ -75,7 +75,9 @@
 
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
-    "intro": "Upload a scanned copy of your company registration certificate."
+    "intro": "Upload a scanned copy of your company registration certificate.",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   },
 
   "upload-conduct-certificate": {

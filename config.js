@@ -37,11 +37,11 @@ module.exports = {
     documentCategories: {
       'company-registration-certificate': {
         limit: 20,
-        limitValidationError: 'company-registration-certificate-limit'
+        limitValidationError: 'companyRegistrationCertificateLimit'
       },
       'certificate-of-good-conduct': {
         limit: 20,
-        limitValidationError: 'certificate-of-good-conduct-limit'
+        limitValidationError: 'certificateOfGoodConductLimit'
       }
     }
   },

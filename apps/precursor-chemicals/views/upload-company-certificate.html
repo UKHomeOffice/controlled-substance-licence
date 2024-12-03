@@ -22,11 +22,11 @@
   </div>
 
   {{^values.company-registration-certificate}}
-  <h2 class="govuk-heading-s">No documents uploaded</h2>
+  <h2 class="govuk-heading-s">{{#t}}pages.upload-company-certificate.no-files-uploaded{{/t}}</h2>
   {{/values.company-registration-certificate}}
 
   {{#values.company-registration-certificate.length}}
-  <h2 class="govuk-heading-s">You have uploaded {{values.company-registration-certificate.length}} file(s)</h2>
+  <h2 class="govuk-heading-s">{{#t}}pages.upload-company-certificate.files-uploaded{{/t}}</h2>
 
   <div id="uploaded-documents" class="govuk-width-container">
     {{#values.company-registration-certificate}}
