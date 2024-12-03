@@ -162,6 +162,7 @@ const steps = {
   },
 
   '/why-chemicals-needed': {
+    fields: ['chemicals-used-for'],
     next: '/upload-company-certificate'
   },
 
@@ -178,60 +179,69 @@ const steps = {
   /** The organisation and how it operates */
 
   '/main-customers': {
-    fields: [ 'main-customers' ],
+    fields: ['main-customers'],
     next: '/main-suppliers'
   },
 
   '/main-suppliers': {
-    fields: [ 'main-suppliers' ],
+    fields: ['main-suppliers'],
     next: '/security-measures'
   },
 
   '/security-measures': {
-    fields: [ 'security-measures' ],
+    fields: ['security-measures'],
     next: '/how-secure-premises'
   },
 
   '/how-secure-premises': {
-    fields: [ 'how-secure-premises' ],
+    fields: ['how-secure-premises'],
     next: '/storage-and-handling'
   },
 
   '/storage-and-handling': {
-    fields: [ 'storage-and-handling' ],
+    fields: ['storage-and-handling'],
     next: '/chemical-stock-control'
   },
 
   '/chemical-stock-control': {
-    fields: [ 'chemical-stock-control' ],
+    fields: ['chemical-stock-control'],
     next: '/legitimate-use'
   },
 
   '/legitimate-use': {
-    fields: [ 'legitimate-use' ],
+    fields: ['legitimate-use'],
     next: '/operating-procedures-and-auditing'
   },
 
   '/operating-procedures-and-auditing': {
-    fields: [ 'operating-procedures-and-auditing' ],
+    fields: ['operating-procedures-and-auditing'],
     next: '/licence-email-address'
   },
 
-  /** Finalise application */
+  /* Finalise application */
 
   '/licence-email-address': {
+    fields: ['licence-email'],
     next: '/who-completing'
   },
 
   '/who-completing': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-telephone',
+      'who-is-completing-application-email'
+    ],
     next: '/discharging-licence-responsibilities'
   },
 
   '/discharging-licence-responsibilities': {
+    fields: ['is-discharge-all-licence-responsibilities', 'explain-not-discharge-responsibilities'],
     next: '/extra-application-information'
   },
 
   '/extra-application-information': {
+    fields: ['extra-information'],
     next: '/summary'
   },
 

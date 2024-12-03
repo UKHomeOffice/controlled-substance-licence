@@ -153,6 +153,9 @@
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
   },
+  "chemicals-used-for": {
+    "label": "Tell us why you need these chemicals and what they’ll be used for"
+  },
   "main-customers": {
     "label": "Tell us about your main customers"
   },
@@ -193,6 +196,36 @@
   },
   "operating-procedures-and-auditing": {
     "label": "Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals"
+  },
+  "licence-email": {
+    "label": "Email address"
+  },
+  "who-is-completing-application-full-name": {
+    "label": "Full name"
+  },
+  "who-is-completing-application-telephone": {
+    "label": "UK telephone number"
+  },
+  "who-is-completing-application-email": {
+    "label": "Email address"
+  },
+  "is-discharge-all-licence-responsibilities": {
+    "hint": "If you answer ‘No’, your registration might take longer and may not be approved.",
+    "legend": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "explain-not-discharge-responsibilities": {
+    "label": "Explain why the officer will not discharge all licence responsibilities"
+  },
+  "extra-information": {
+    "label": "Add any extra information you think might help your application (optional)"
   },
   "declaration-check": {
     "label": "I understand and accept this declaration"

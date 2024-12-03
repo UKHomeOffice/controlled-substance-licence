@@ -150,6 +150,14 @@ module.exports = {
       }
     ]
   },
+  'about-the-licence': {
+    steps: [
+      {
+        step: '/why-chemicals-needed',
+        field: 'chemicals-used-for'
+      }
+    ]
+  },
   organisation: {
     steps: [
       {
@@ -186,6 +194,43 @@ module.exports = {
       {
         step: '/operating-procedures-and-auditing',
         field: 'operating-procedures-and-auditing'
+      }
+    ]
+  },
+
+  'finalise-application': {
+    steps: [
+      {
+        step: '/licence-email-address',
+        field: 'licence-email'
+      },
+      {
+        step: '/who-completing',
+        field: 'who-is-completing-application-details',
+        parse: (val, req) => {
+          const whoIsCompletingApplicationDetails = [
+            req.sessionModel.get('who-is-completing-application-full-name'),
+            req.sessionModel.get('who-is-completing-application-telephone'),
+            req.sessionModel.get('who-is-completing-application-email')
+          ];
+          return whoIsCompletingApplicationDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'is-discharge-all-licence-responsibilities'
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'explain-not-discharge-responsibilities'
+      },
+      {
+        step: '/extra-application-information',
+        field: 'extra-information',
+        parse: (list, req) => {
+          return req.sessionModel.get('extra-information') ||
+            'Not provided';
+        }
       }
     ]
   }
