@@ -6,7 +6,7 @@ const steps = {
 
   /** About the applicants */
 
-  /* '/licence-holder-details': {
+  '/licence-holder-details': {
     behaviours: [customValidation],
     fields: [
       'company-name',
@@ -133,11 +133,11 @@ const steps = {
       'invoicing-purchase-order-number'
     ],
     next: '/substance-category'
-  }, */
+  },
 
   /** About the licence */
 
-  /* '/substance-category': {
+  '/substance-category': {
     next: '/which-chemical'
   },
 
@@ -163,21 +163,21 @@ const steps = {
 
   '/why-chemicals-needed': {
     next: '/upload-company-certificate'
-  }, */
+  },
 
   /** Evidence */
 
-  /* '/upload-company-certificate': {
+  '/upload-company-certificate': {
     next: '/upload-conduct-certificate'
   },
 
   '/upload-conduct-certificate': {
     next: '/main-customers'
-  }, */
+  },
 
   /** The organisation and how it operates */
 
-  /* '/main-customers': {
+  '/main-customers': {
     fields: ['main-customers'],
     next: '/main-suppliers'
   },
@@ -215,7 +215,7 @@ const steps = {
   '/operating-procedures-and-auditing': {
     fields: ['operating-procedures-and-auditing'],
     next: '/licence-email-address'
-  }, */
+  },
 
   /* Finalise application */
 

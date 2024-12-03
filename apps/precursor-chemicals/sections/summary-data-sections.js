@@ -1,10 +1,10 @@
 'use strict';
 
-/* const { formatDate } = require('../../../utils'); */
+const { formatDate } = require('../../../utils');
 
 module.exports = {
 
-  /* 'about-the-applicants': {
+  'about-the-applicants': {
     steps: [
       {
         step: '/licence-holder-details',
@@ -188,7 +188,7 @@ module.exports = {
         field: 'operating-procedures-and-auditing'
       }
     ]
-  }, */
+  },
 
   'finalise-application': {
     steps: [
