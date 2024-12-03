@@ -256,6 +256,12 @@ module.exports = {
     validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
+  'chemicals-used-for': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
   'main-customers': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
