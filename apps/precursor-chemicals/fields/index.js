@@ -92,42 +92,6 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'guarantor-full-name': {
-    validate: ['required', 'notUrl'],
-    mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'guarantor-email-address': {
-    validate: ['required', 'email'],
-    mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'guarantor-confirmed-dbs': {
-    mixin: 'checkbox',
-    validate: [ 'required' ]
-  },
-  'guarantor-dbs-full-name': {
-    validate: ['required', 'notUrl'],
-    mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'guarantor-dbs-reference': {
-    validate: ['required', 'notUrl'],
-    mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
-    mixin: 'input-date',
-    validate: [
-      'required',
-      'date',
-      { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['3', 'years'] }
-    ],
-    legend: {
-      className: 'govuk-!-margin-bottom-4'
-    }
-  }),
   'responsible-officer-fullname': {
     mixin: 'input-text',
     validate: [ 'required', 'notUrl' ],
@@ -164,7 +128,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-4'
     }
   }),
-  'is-guarantor-subscribed': {
+  'responsible-officer-dbs-update-subscription': {
     isPageHeading: true,
     mixin: 'radio-group',
     validate: [ 'required' ],
@@ -181,7 +145,43 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'responsible-officer-dbs-update-subscription': {
+  'guarantor-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-email-address': {
+    validate: ['required', 'email'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-confirmed-dbs': {
+    mixin: 'checkbox',
+    validate: [ 'required' ]
+  },
+  'guarantor-dbs-full-name': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-reference': {
+    validate: ['required', 'notUrl'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['3', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'is-guarantor-subscribed': {
     isPageHeading: true,
     mixin: 'radio-group',
     validate: [ 'required' ],
@@ -255,5 +255,132 @@ module.exports = {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'chemicals-used-for': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'main-customers': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'main-suppliers': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'security-measures': {
+    mixin: 'checkbox-group',
+    validate: [ 'required' ],
+    isPageHeading: true,
+    options: [
+      {
+        value: 'cctv-system'
+      },
+      {
+        value: 'electronic-stock-recording-system'
+      },
+      {
+        value: 'perimeter-fencing'
+      },
+      {
+        value: 'lockable-physical-security'
+      },
+      {
+        value: 'security-guards'
+      }
+    ]
+  },
+  'how-secure-premises': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'storage-and-handling': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'chemical-stock-control': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'legitimate-use': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'operating-procedures-and-auditing': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'licence-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'is-discharge-all-licence-responsibilities': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no',
+        toggle: 'explain-not-discharge-responsibilities',
+        child: 'textarea'
+      }
+    ]
+  },
+  'explain-not-discharge-responsibilities': {
+    dependent: {
+      field: 'is-discharge-all-licence-responsibilities',
+      value: 'no'
+    },
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'maxlength', arguments: 2000 }
+    ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'extra-information': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

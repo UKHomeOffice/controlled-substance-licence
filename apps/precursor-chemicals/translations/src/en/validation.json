@@ -67,34 +67,6 @@
     "required": "Enter an email address",
     "email": "Enter a real email address"
   },
-  "guarantor-full-name": {
-    "required": "Enter guarantor’s name",
-    "notUrl": "Your answer must not contain URLs or links"
-  },
-  "guarantor-email-address": {
-    "required": "Enter an email address",
-    "email": "Enter a real email address"
-  },
-  "guarantor-confirmed-dbs": {
-    "required": "Confirm if the Guarantor has applied for or currently holds a DBS certificate"
-  },
-  "guarantor-dbs-full-name": {
-    "required": "Enter a name as it appears on the guarantor’s DBS certificate",
-    "notUrl": "Your answer must not contain URLs or links"
-  },
-  "guarantor-dbs-reference": {
-    "required": "Enter a DBS reference",
-    "notUrl": "Your answer must not contain URLs or links"
-  },
-  "guarantor-dbs-date-of-issue": {
-    "required": "Enter a date of issue or application",
-    "date": "Enter a date of issue or application in the correct format",
-    "before": "Date of issue or application must be today or in the past",
-    "after": "Date of issue or application must be within the last 3 years"
-  },
-  "is-guarantor-subscribed": {
-    "required": "Select if the guarantor has subscribed to DBS updates"
-  },
   "responsible-officer-fullname": {
     "required": "Enter the responsible officer’s name",
     "notUrl": "Your answer must not contain URLs or links"
@@ -122,6 +94,34 @@
   },
   "responsible-officer-dbs-update-subscription": {
       "required": "Select if the responsible officer has subscribed to DBS updates"
+  },
+  "guarantor-full-name": {
+    "required": "Enter guarantor’s name",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-email-address": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "guarantor-confirmed-dbs": {
+    "required": "Confirm if the Guarantor has applied for or currently holds a DBS certificate"
+  },
+  "guarantor-dbs-full-name": {
+    "required": "Enter a name as it appears on the guarantor’s DBS certificate",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-reference": {
+    "required": "Enter a DBS reference",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "guarantor-dbs-date-of-issue": {
+    "required": "Enter a date of issue or application",
+    "date": "Enter a date of issue or application in the correct format",
+    "before": "Date of issue or application must be today or in the past",
+    "after": "Date of issue or application must be within the last 3 years"
+  },
+  "is-guarantor-subscribed": {
+    "required": "Select if the guarantor has subscribed to DBS updates"
   },
   "has-anyone-received-criminal-conviction": {
     "required": "Select if anyone in your company has received criminal convictions"
@@ -161,6 +161,11 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
   },
+  "chemicals-used-for": {
+    "required": "Enter details of the chemicals and what they will be used for",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "You have exceeded the 2000 character limit"
+  },
   "upload-company-certificate": {
     "required": "Select a file",
     "unsaved": "The selected file was not uploaded – try again",
@@ -169,5 +174,77 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
+  },
+  "main-customers": {
+    "required": "Enter details of your main customers",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "main-suppliers": {
+    "required": "Enter details of your main suppliers",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "security-measures": {
+    "required": "Select which security measures you have in place",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "how-secure-premises": {
+    "required": "Enter details of how you secure your premises",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "storage-and-handling": {
+    "required": "Enter details of how you make sure chemicals are stored and handled correctly",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "chemical-stock-control": {
+    "required": "Enter details of how you manage chemical stock control",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "legitimate-use": {
+    "required": "Enter details of how you make sure end products are used legitimately",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "operating-procedures-and-auditing": {
+    "required": "Enter a summary of your standard operating procedures and auditing practices for the use and disposal of chemicals",
+    "maxlength": "You have exceeded the 2000 character limit",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "licence-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter a full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 1 and 250 characters"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "is-discharge-all-licence-responsibilities": {
+    "required": "Select if the regulatory affairs and compliance officer will discharge all licence responsibilities"
+  },
+  "explain-not-discharge-responsibilities": {
+    "required": "You must explain why the officer will not discharge all licence responsibilities",
+    "maxlength": "Reason why the officer will not discharge all licence responsibilities must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "extra-information": {
+    "maxlength": "Extra information must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "declaration-check": {
+    "required": "Confirm that you understand and accept this declaration"
   }
 }

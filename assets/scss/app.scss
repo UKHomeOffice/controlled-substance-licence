@@ -69,7 +69,7 @@ textarea {
 .alert-complete {
   background-color: #00703c;
   border-color: #00703c;
-  padding: 15px !important;
+  padding: 40px !important;
 }
 
 .ref-number-heading {
@@ -208,4 +208,33 @@ pre.looped-records {
 .panel-indent{
   margin: 20px 15px 20px 20px;
   padding: 10px 0 10px 30px;
+}
+
+.spinner-loader {
+  border: 5px solid #DEE0E2;
+  border-radius: 50%;
+  border-top-color: #005EA5;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-container {
+  display: none;
+  margin-top: 20px;
+  align-items: center;
+}
+
+.spinner-message {
+  margin-left: 10px;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
