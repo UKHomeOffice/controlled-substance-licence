@@ -74,7 +74,10 @@
   },
 
   "upload-company-certificate": {
-    "header": "Upload company registration certificate"
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate.",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   },
 
   "upload-conduct-certificate": {
@@ -145,6 +148,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "evidence": {
+        "header": "Evidence"
       }
     },
     "fields": {
@@ -189,6 +195,9 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "company-registration-certificate": {
+        "label": "Company registration certificate"
       }
     }
   }

@@ -152,5 +152,8 @@
   },
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
+  },
+  "file-upload": {
+    "label": "Upload a file"
   }
 }

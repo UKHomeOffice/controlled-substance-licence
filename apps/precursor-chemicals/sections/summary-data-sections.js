@@ -148,5 +148,16 @@ module.exports = {
         }
       }
     ]
+  },
+  evidence: {
+    steps: [
+      {
+        step: '/upload-company-certificate',
+        field: 'company-registration-certificate',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0  ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      }
+    ]
   }
 };
