@@ -2,5 +2,6 @@
   "header": "Precursor chemicals application",
   "serviceName": "Precursor chemicals application",
   "error": "Error",
-  "warning": "Warning"
+  "warning": "Warning",
+  "uploading": "Uploading your file..."
 }

@@ -229,5 +229,8 @@
   },
   "declaration-check": {
     "label": "I understand and accept this declaration"
+  },
+  "file-upload": {
+    "label": "Upload a file"
   }
 }
