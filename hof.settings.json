@@ -6,7 +6,8 @@
   ],
   "translations": "./apps/precursor-chemicals/translations",
   "routes": [
-    "./apps/precursor-chemicals"
+    "./apps/precursor-chemicals",
+    "./apps/controlled-drugs"
   ],
   "session": {
     "name": "csl.hof.sid"
