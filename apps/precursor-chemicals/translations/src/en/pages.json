@@ -172,6 +172,9 @@
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
+      "certificate-of-good-conduct": {
+        "label": "Applicant certificate of good conduct"
+      },
       "main-customers": {
         "label": "Main customers"
       },
