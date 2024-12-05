@@ -74,7 +74,10 @@
   },
 
   "upload-conduct-certificate": {
-    "header": "Upload a certificate of good conduct"
+    "header": "Upload a certificate of good conduct",
+    "intro": "Upload a scanned copy of your certificate of good conduct or other personal reference.",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   },
 
   "licence-email-address": {
