@@ -193,10 +193,6 @@ const steps = {
     next: '/schedule-5-activities'
   },
 
-  '/schedule-4-part-2-activities': {
-    next: '/schedule-5-activities'
-  },
-
   '/schedule-5-activities': {
     next: '/upload-activity-template'
   },
@@ -205,17 +201,12 @@ const steps = {
     // redirect to /schedule-1-activities
   },
 
-
   '/upload-activity-template': {
     next: '/security-features'
   },
 
   '/security-features': {
     next: '/separate-room'
-  },
-
-  '/separate-room': {
-    next: '/safe-or-cabinet'
   },
 
   '/separate-room': {
@@ -282,7 +273,7 @@ const steps = {
     next: '/invoicing-contact-details'
   },
 
-  '/invoicing-address': {
+  '/invoicing-contact-details': {
     next: '/licence-email-address'
   },
 
@@ -294,7 +285,7 @@ const steps = {
     next: '/extra-information'
   },
 
-  '/who-completing-application': {
+  '/extra-information': {
     next: '/confirm'
   },
 
@@ -307,11 +298,8 @@ const steps = {
   },
 
   '/application-submitted': {
-  },
-
-}
-
-
+  }
+};
 
 module.exports = {
   name: 'controlled-drugs',
