@@ -164,7 +164,14 @@ module.exports = {
         step: '/upload-company-certificate',
         field: 'company-registration-certificate',
         parse: documents => {
-          return Array.isArray(documents) && documents.length > 0  ? documents.map(doc => doc.name).join('\n') : null;
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/upload-conduct-certificate',
+        field: 'certificate-of-good-conduct',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       }
     ]

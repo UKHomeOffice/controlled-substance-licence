@@ -180,7 +180,12 @@ const steps = {
   },
 
   '/upload-conduct-certificate': {
-    next: '/main-customers'
+    next: '/main-customers',
+    behaviours: [
+      SaveDocument('certificate-of-good-conduct', 'file-upload'),
+      RemoveDocument('certificate-of-good-conduct')
+    ],
+    fields: ['upload-conduct-certificate']
   },
 
   /** The organisation and how it operates */
