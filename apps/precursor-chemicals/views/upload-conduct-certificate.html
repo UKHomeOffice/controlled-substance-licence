@@ -1,7 +1,7 @@
 {{<partials-page}} {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}} {{$page-content}}
 
   <div class="govuk-inset-text">
-    {{#markdown}}file-requirements{{/markdown}}
+    {{#markdown}}conduct-certificate-file-requirements{{/markdown}}
   </div>
 
   <div class="govuk-form-group govuk-!-margin-top-6" id="hofFileUpload">
@@ -14,22 +14,22 @@
     <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
       <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.upload-company-certificate.fileType{{/t}}
     </p>
-    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="company-registration-certificate">
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="certificate-of-good-conduct">
     <div id="upload-page-loading-spinner" class="spinner-container">
       <div class="spinner-loader"></div>
       <span class="spinner-message">{{#t}}journey.uploading{{/t}}</span>
     </div>
   </div>
 
-  {{^values.company-registration-certificate}}
+  {{^values.certificate-of-good-conduct}}
   <h2 class="govuk-heading-s">{{#t}}fields.file-upload.no-files-uploaded{{/t}}</h2>
-  {{/values.company-registration-certificate}}
+  {{/values.certificate-of-good-conduct}}
 
-  {{#values.company-registration-certificate.length}}
+  {{#values.certificate-of-good-conduct.length}}
   <h2 class="govuk-heading-s">{{#t}}fields.file-upload.files-uploaded{{/t}}</h2>
 
   <div id="uploaded-documents" class="govuk-width-container">
-    {{#values.company-registration-certificate}}
+    {{#values.certificate-of-good-conduct}}
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
           {{name}}
@@ -39,12 +39,12 @@
         </div>
       </div>
       <div class="file-upload-hrline"></div>
-    {{/values.company-registration-certificate}}
+    {{/values.certificate-of-good-conduct}}
   </div>
 
-  {{/values.company-registration-certificate.length}}
+  {{/values.certificate-of-good-conduct.length}}
 
-  <button class="govuk-button govuk-button" name="continueWithoutUpload" value="upload-company-certificate">
+  <button class="govuk-button govuk-button" name="continueWithoutUpload" value="upload-conduct-certificate">
     {{#t}}buttons.continue{{/t}}
   </button>
 
