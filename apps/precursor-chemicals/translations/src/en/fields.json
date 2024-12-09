@@ -229,5 +229,10 @@
   },
   "declaration-check": {
     "label": "I understand and accept this declaration"
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   }
 }

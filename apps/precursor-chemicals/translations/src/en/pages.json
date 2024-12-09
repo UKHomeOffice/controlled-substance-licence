@@ -67,11 +67,13 @@
   },
 
   "upload-company-certificate": {
-    "header": "Upload company registration certificate"
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
   },
 
   "upload-conduct-certificate": {
-    "header": "Upload a certificate of good conduct"
+    "header": "Upload a certificate of good conduct",
+    "intro": "Upload a scanned copy of your certificate of good conduct or other personal reference."
   },
 
   "licence-email-address": {
@@ -98,7 +100,7 @@
   "application-submitted": {
     "confirmed": "Precursor chemicals application submitted"
   },
-  
+
   "confirm": {
     "sections": {
       "about-the-applicants": {
@@ -106,6 +108,9 @@
       },
       "about-the-licence": {
         "header": "About the licence"
+      },
+      "evidence": {
+        "header": "Evidence"
       },
       "organisation": {
         "header": "The organisation and how it operates"
@@ -159,6 +164,12 @@
       },
       "chemicals-used-for": {
         "label": "Reason for chemical application"
+      },
+      "company-registration-certificate": {
+        "label": "Company registration certificate"
+      },
+      "certificate-of-good-conduct": {
+        "label": "Applicant certificate of good conduct"
       },
       "main-customers": {
         "label": "Main customers"

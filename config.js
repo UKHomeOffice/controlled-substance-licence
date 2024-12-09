@@ -36,12 +36,12 @@ module.exports = {
     ],
     documentCategories: {
       'company-registration-certificate': {
-        limit: 1,
-        limitValidationError: 'company-registration-certificate-limit'
+        limit: 20,
+        limitValidationError: 'companyRegistrationCertificateLimit'
       },
       'certificate-of-good-conduct': {
-        limit: 1,
-        limitValidationError: 'certificate-of-good-conduct-limit'
+        limit: 20,
+        limitValidationError: 'certificateOfGoodConductLimit'
       }
     }
   },
@@ -54,10 +54,12 @@ module.exports = {
     region: process.env.AWS_REGION
   },
   keycloak: {
-    token: process.env.KEYCLOAK_TOKEN_URL,
-    username: process.env.KEYCLOAK_USERNAME,
-    password: process.env.KEYCLOAK_PASSWORD,
-    clientId: process.env.KEYCLOAK_CLIENT_ID,
-    secret: process.env.KEYCLOAK_SECRET
+    tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    fileVault: {
+      username: process.env.FILE_VAULT_USERNAME,
+      password: process.env.FILE_VAULT_PASSWORD,
+      clientId: process.env.FILE_VAULT_CLIENT_ID,
+      secret: process.env.FILE_VAULT_CLIENT_SECRET
+    }
   }
 };
