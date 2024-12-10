@@ -31,7 +31,7 @@ elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/redis
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-network-policy.yml -f kube/file-vault/file-vault-deployment.yml
-  $kd -f -f kube/app
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
   $kd -f kube/redis
