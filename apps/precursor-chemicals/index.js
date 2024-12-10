@@ -1,6 +1,8 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('./behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
 
@@ -169,11 +171,21 @@ const steps = {
   /** Evidence */
 
   '/upload-company-certificate': {
-    next: '/upload-conduct-certificate'
+    next: '/upload-conduct-certificate',
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload']
   },
 
   '/upload-conduct-certificate': {
-    next: '/main-customers'
+    next: '/main-customers',
+    behaviours: [
+      SaveDocument('certificate-of-good-conduct', 'file-upload'),
+      RemoveDocument('certificate-of-good-conduct')
+    ],
+    fields: ['file-upload']
   },
 
   /** The organisation and how it operates */
