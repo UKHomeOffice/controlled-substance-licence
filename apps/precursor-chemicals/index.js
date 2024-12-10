@@ -176,7 +176,7 @@ const steps = {
       SaveDocument('company-registration-certificate', 'file-upload'),
       RemoveDocument('company-registration-certificate')
     ],
-    fields: ['upload-company-certificate']
+    fields: ['file-upload']
   },
 
   '/upload-conduct-certificate': {
@@ -185,7 +185,7 @@ const steps = {
       SaveDocument('certificate-of-good-conduct', 'file-upload'),
       RemoveDocument('certificate-of-good-conduct')
     ],
-    fields: ['upload-conduct-certificate']
+    fields: ['file-upload']
   },
 
   /** The organisation and how it operates */

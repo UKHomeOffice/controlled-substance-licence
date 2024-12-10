@@ -166,21 +166,13 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "You have exceeded the 2000 character limit"
   },
-  "upload-company-certificate": {
+  "file-upload": {
     "required": "Select a file",
     "unsaved": "The selected file was not uploaded – try again",
     "maxFileSize": "The selected files must be smaller than 25MB",
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
-    "isDuplicateFileName": "A file with this name was already uploaded"
-  },
-  "upload-conduct-certificate": {
-    "required": "Select a file",
-    "unsaved": "The selected file was not uploaded – try again",
-    "maxFileSize": "The selected files must be smaller than 25MB",
-    "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
-    "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "certificateOfGoodConductLimit" : "You may not add more than {{certificateOfGoodConductLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
   },
