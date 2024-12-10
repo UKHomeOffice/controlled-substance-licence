@@ -1,0 +1,233 @@
+{
+  "licence-holder-details": {
+    "header": "Licence holder details"
+  },
+  "licence-holder-address": {
+    "header": "Licence holder address"
+  },
+  "reuse-licence-holder-address": {
+    "header": "Is the premises address the same as the licence holder address?"
+  },
+  "premises-address": {
+    "header": "Premises contact details"
+  },
+  "premises-contact-details": {
+    "header": "Premises address"
+  },
+  "how-funded": {
+    "header": "How are you funded?"
+  },
+  "person-in-charge": {
+    "header": "Managing director or person in charge"
+  },
+  "person-in-charge-dbs": {
+    "header": "DBS information for the person in charge"
+  },
+  "person-in-charge-dbs-updates": {
+    "header": "Has the managing director or person in charge subscribed to DBS updates?"
+  },
+  "member-of-professional-body": {
+    "header": "Are they, or anyone named on this application, a member of a professional body?"
+  },
+  "legal-business-proceedings": {
+    "header": "Has anyone in your organisation ever been subject to legal business proceedings?"
+  },
+  "professional-body-details": {
+    "header": "Provide details of the professional bodies and relevant reference numbers"
+  },
+  "criminal-conviction": {
+    "header": "Has anyone in your organisation ever received a criminal conviction?"
+  },
+  "legal-proceedings-details": {
+    "header": "Provide details of the legal business proceedings"
+  },
+  "responsible-for-security": {
+    "header": "Who is responsible for the security of the premises?"
+  },
+  "person-responsible-for-security": {
+    "header": "Person responsible for the security of the premises"
+  },
+  "security-officer-dbs": {
+    "header": "DBS information for person responsible for security of premises"
+  },
+  "security-officer-dbs-updates": {
+    "header": "Has the person responsible for the security of the premises subscribed to DBS updates?"
+  },
+  "compliance-and-regulatory": {
+    "header": "Who is responsible for legal compliance and regulatory affairs?"
+  },
+  "person-responsible-for-compliance-and-regulatory": {
+    "header": "Person responsible for legal compliance and regulatory affairs"
+  },
+  "regulatory-and-compliance-dbs": {
+    "header": "DBS information for person responsible for compliance and regulatory affairs"
+  },
+  "regulatory-and-compliance-dbs-updates": {
+    "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
+  },
+  "employee-or-consultant": {
+    "header": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?"
+  },
+  "witness-destruction-of-drugs": {
+    "header": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?"
+  },
+  "who-witnesses-destruction-of-drugs": {
+    "header": "Who is responsible for witnessing the destruction of controlled drugs?"
+  },
+  "person-to-witness": {
+    "header": "Person responsible for witnessing the destruction of controlled drugs"
+  },
+  "witness-dbs": {
+    "header": "DBS information for the person responsible for witnessing the destruction of controlled drugs"
+  },
+  "witness-dbs-updates": {
+    "header": "Has the person responsible for witnessing the destruction of controlled drugs subscribed to DBS updates?"
+  },
+  "company-registration-certificate": {
+    "header": "Upload company registration certificate"
+  },
+  "trading-reasons": {
+    "header": "What trading reasons does this site need a licence for?"
+  },
+  "trading-reasons-summary": {
+    "header": "Summary of trading reasons"
+  },
+  "specify-trading-reasons": {
+    "header": "Specify your trading reason"
+  },
+  "why-you-need-licence": {
+    "header": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
+  },
+  "main-customer-details": {
+    "header": "Provide details of your main customers"
+  },
+  "source-drugs": {
+    "header": "Provide details of where you source the drugs from"
+  },
+  "mhra-licences": {
+    "header": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?"
+  },
+  "mhra-licence-details": {
+    "header": "Licence details"
+  },
+  "care-quality-commission-or-equivalent": {
+    "header": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?"
+  },
+  "regulatory-body-registration": {
+    "header": "Provide details of any other regulatory bodies that you are registered with (optional)"
+  },
+  "registration-details": {
+    "header": "Registration details"
+  },
+  "service-under-contract": {
+    "header": "Are you providing a service under a contract?"
+  },
+  "service-details": {
+    "header": "Provide details of the service"
+  },
+  "service-expiry-date": {
+    "header": "What date does the service expire on?"
+  },
+  "status-of-site": {
+    "header": "What is the status of the site to be licensed?"
+  },
+  "site-owner-contact-details": {
+    "header": "Site owner’s contact details"
+  },
+  "licence-details": {
+    "header": "Licence details"
+  },
+  "schedule-1-activities": {
+    "header": "Select any schedule 1 activities that will apply to your licence"
+  },
+  "schedule-2-activities": {
+    "header": "Select any schedule 2 activities that will apply to your licence"
+  },
+  "schedule-3-activities": {
+    "header": "Select any schedule 3 activities that will apply to your licence"
+  },
+  "schedule-4-part-1-activities": {
+    "header": "Select any schedule 4 (I) activities that will apply to your licence"
+  },
+  "schedule-4-part-2-activities": {
+    "header": "Select any schedule 4 (II) activities that will apply to your licencee"
+  },
+  "schedule-5-activities": {
+    "header": "Select any schedule 5 activities that will apply to your licence"
+  },
+  "no-activities-selected": {
+    "header": "You have not selected any activities"
+  },
+  "upload-activity-template": {
+    "header": "Upload controlled drug user activity template"
+  },
+  "security-features": {
+    "header": "Which of the following security features does the site have?"
+  },
+  "separate-room": {
+    "header": "Are controlled drugs kept in a separate room or zone?"
+  },
+  "safe-or-cabinet": {
+    "header": "Are controlled drugs kept in a safe or cabinet?"
+  },
+  "prefabricated-strong-room": {
+    "header": "Are controlled drugs kept in a prefabricated strong room?"
+  },
+  "drugs-kept-at-site": {
+    "header": "Are controlled drugs kept at this site?"
+  },
+  "specification-details": {
+    "header": "Give details of specifications, and any serial numbers that apply"
+  },
+  "storage-details": {
+    "header": "Provide details of where they are stored"
+  },
+  "electronic-alarm-system": {
+    "header": "Does the site have an electronic alarm system?"
+  },
+  "alarm-system-details": {
+    "header": "Electronic alarm system details"
+  },
+  "separate-zone-for-storage": {
+    "header": "Is there a separate zone for the controlled drug cabinet, safe or store?"
+  },
+  "offsite-receiving-centre": {
+    "header": "Is the alarm system monitored by an offsite alarm receiving centre?"
+  },
+  "redcare-or-dual-path": {
+    "header": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?"
+  },
+  "annual-service": {
+    "header": "Is the alarm system serviced annually?"
+  },
+  "alarm-reference-number": {
+    "header": "Does the alarm system have a police unique reference number (URN)?"
+  },
+  "alarm-system-police-response": {
+    "header": "Does the alarm system have either a Level 1 or ‘immediate’ police response?"
+  },
+  "standard-operating-procedures": {
+    "header": "Does the site have an electronic alarm system?"
+  },
+  "record-keeping-system-procedures": {
+    "header": "Provide details of your record keeping system and procedures"
+  },
+  "invoicing-address": {
+    "header": "Invoicing address"
+  },
+  "invoicing-contact-details": {
+    "header": "Invoicing contact details"
+  },
+  "licence-email-address": {
+    "header": "Which email address should we send the licence to?"
+  },
+  "who-completing-application": {
+    "header": "Who is completing the application?"
+  },
+  "extra-information": {
+    "header": "Add any extra information you think might help your application (optional)"
+  },
+  "confirm": {
+    "header": "Check your answers"
+  }
+}

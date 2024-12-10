@@ -276,7 +276,7 @@ const steps = {
 
 module.exports = {
   name: 'precursor-chemicals',
-  baseUrl: '/',
+  baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps
