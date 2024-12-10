@@ -86,6 +86,10 @@ const steps = {
   },
 
   '/witness-destruction-of-drugs': {
+    next: '/who-witnesses-destruction-of-drugs'
+  },
+
+  '/who-witnesses-destruction-of-drugs': {
     next: '/person-to-witness'
   },
 
