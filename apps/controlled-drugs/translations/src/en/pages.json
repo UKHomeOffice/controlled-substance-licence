@@ -2,7 +2,7 @@
   "information-you-have-given-us": {
     "header": "Information you have given us"
   }, 
-  
+
   "licence-holder-details": {
     "header": "Licence holder details"
   },
@@ -234,7 +234,9 @@
   "extra-information": {
     "header": "Add any extra information you think might help your application (optional)"
   },
+
   "confirm": {
+    "header": "Check your answers",
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"

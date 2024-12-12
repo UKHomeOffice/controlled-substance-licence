@@ -1,3 +1,5 @@
+const hof = require('hof');
+const Summary = hof.components.summary;
 const customValidation = require('./behaviours/custom-validation');
 
 const steps = {
@@ -55,7 +57,7 @@ const steps = {
       'premises-telephone',
       'premises-email'
     ],
-    next: '/responsible-officer-details'
+    next: '/how-funded'
   },
 
   '/how-funded': {
@@ -331,6 +333,8 @@ const steps = {
   },
 
   '/confirm': {
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections'),
     next: '/declaration'
   },
 
