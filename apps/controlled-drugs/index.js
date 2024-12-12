@@ -1,24 +1,61 @@
+const customValidation = require('./behaviours/custom-validation');
 
 const steps = {
 
   '/licence-holder-details': {
-    next: '/licence-holder-address'
+    behaviours: [customValidation],
+    fields: [
+      'company-name',
+      'company-number',
+      'telephone',
+      'email',
+      'website-url'
+    ],
+    next: '/licence-holder-address',
+    backLink: '/application-type'
   },
 
   '/licence-holder-address': {
-    next: '/reuse-licence-holder-address'
+    fields: [
+      'licence-holder-address-line-1',
+      'licence-holder-address-line-2',
+      'licence-holder-town-or-city',
+      'licence-holder-postcode'
+    ],
+    next: '/reuse-premises-address'
   },
 
-  '/reuse-licence-holder-address': {
+  '/reuse-premises-address': {
+    fields: ['is-premises-address-same'],
+    forks: [
+      {
+        target: '/premises-address',
+        condition: {
+          field: 'is-premises-address-same',
+          value: 'no'
+        }
+      }
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-address': {
+    fields: [
+      'premises-address-line-1',
+      'premises-address-line-2',
+      'premises-town-or-city',
+      'premises-postcode'
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-contact-details': {
-    next: '/how-funded'
+    behaviours: [customValidation],
+    fields: [
+      'premises-telephone',
+      'premises-email'
+    ],
+    next: '/responsible-officer-details'
   },
 
   '/how-funded': {
@@ -302,11 +339,29 @@ const steps = {
   },
 
   '/application-submitted': {
+  },
+
+  '/information-you-have-given-us': {
+    next: '/licence-holder-details',
+    backLink: '/application-type'
+  },
+
+  '/company-number-changed': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
+  },
+
+  '/why-new-licence': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
   }
 };
 
 module.exports = {
   name: 'controlled-drugs',
+  fields: 'apps/controlled-drugs/fields',
+  views: 'apps/controlled-drugs/views',
+  translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   steps: steps

@@ -15,7 +15,8 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address'
+    next: '/licence-holder-address',
+    backLink: '/licensee-type'
   },
 
   '/licence-holder-address': {
@@ -259,11 +260,29 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
+  },
+
+  '/information-you-have-given-us': {
+    next: '/licence-holder-details',
+    backLink: '/application-type'
+  },
+
+  '/companies-house-number': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
+  },
+
+  '/why-new-licence': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
   }
 };
 
 module.exports = {
   name: 'precursor-chemicals',
+  fields: 'apps/precursor-chemicals/fields',
+  views: 'apps/precursor-chemicals/views',
+  translations: 'apps/precursor-chemicals/translations',
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',

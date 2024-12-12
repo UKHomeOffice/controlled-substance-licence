@@ -1,0 +1,11 @@
+{
+  "licence-type-applyling-for": {
+    "required": "Select what type of licence are you applying for"
+  },
+  "application-form-type": {
+    "required": "Select how would you like to apply"
+  },
+  "licensee-type": {
+    "required": "Select what type of licensee are you"
+  }
+}

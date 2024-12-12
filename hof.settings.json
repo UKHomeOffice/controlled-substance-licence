@@ -6,6 +6,7 @@
   ],
   "translations": "./apps/precursor-chemicals/translations",
   "routes": [
+    "./apps/common",
     "./apps/precursor-chemicals",
     "./apps/controlled-drugs"
   ],
