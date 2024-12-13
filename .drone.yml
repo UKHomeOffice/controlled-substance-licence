@@ -9,7 +9,7 @@ environment:
   STG_ENV: sas-csl-stg
   UAT_ENV: sas-csl-uat
   BRANCH_ENV: sas-csl-branch
-  PRODUCTION_URL: TBC
+  PRODUCTION_URL: www.licensing-for-controlled-substances.homeoffice.gov.uk
   IMAGE_URL: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
   IMAGE_REPO: sas/csl
   GIT_REPO: UKHomeOffice/controlled-substance-licence
