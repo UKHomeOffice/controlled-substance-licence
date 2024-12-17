@@ -1,3 +1,5 @@
+const dateComponent = require('hof').components.date;
+
 module.exports = {
   'person-in-charge-dbs-fullname': {
     mixin: 'input-text',
@@ -37,5 +39,5 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
-  },
+  }
 };
