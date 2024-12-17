@@ -3,6 +3,7 @@
 const { formatDate } = require('../../../utils');
 
 module.exports = {
+
   'about-the-applicants': {
     steps: [
       {
@@ -145,6 +146,108 @@ module.exports = {
             req.sessionModel.get('invoicing-purchase-order-number')
           ];
           return invoicingContactDetails.filter(element => element).join('\n');
+        }
+      }
+    ]
+  },
+  'about-the-licence': {
+    steps: [
+      {
+        step: '/why-chemicals-needed',
+        field: 'chemicals-used-for'
+      }
+    ]
+  },
+  evidence: {
+    steps: [
+      {
+        step: '/upload-company-certificate',
+        field: 'company-registration-certificate',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/upload-conduct-certificate',
+        field: 'certificate-of-good-conduct',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      }
+    ]
+  },
+  organisation: {
+    steps: [
+      {
+        step: '/main-customers',
+        field: 'main-customers'
+      },
+      {
+        step: '/main-suppliers',
+        field: 'main-suppliers'
+      },
+      {
+        step: '/security-measures',
+        field: 'security-measures',
+        parse: value => {
+          return Array.isArray(value) ? value.map(option => option).join('\n') : value;
+        }
+      },
+      {
+        step: '/how-secure-premises',
+        field: 'how-secure-premises'
+      },
+      {
+        step: '/storage-and-handling',
+        field: 'storage-and-handling'
+      },
+      {
+        step: '/chemical-stock-control',
+        field: 'chemical-stock-control'
+      },
+      {
+        step: '/legitimate-use',
+        field: 'legitimate-use'
+      },
+      {
+        step: '/operating-procedures-and-auditing',
+        field: 'operating-procedures-and-auditing'
+      }
+    ]
+  },
+
+  'finalise-application': {
+    steps: [
+      {
+        step: '/licence-email-address',
+        field: 'licence-email'
+      },
+      {
+        step: '/who-completing',
+        field: 'who-is-completing-application-details',
+        parse: (val, req) => {
+          const whoIsCompletingApplicationDetails = [
+            req.sessionModel.get('who-is-completing-application-full-name'),
+            req.sessionModel.get('who-is-completing-application-telephone'),
+            req.sessionModel.get('who-is-completing-application-email')
+          ];
+          return whoIsCompletingApplicationDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'is-discharge-all-licence-responsibilities'
+      },
+      {
+        step: '/discharging-licence-responsibilities',
+        field: 'explain-not-discharge-responsibilities'
+      },
+      {
+        step: '/extra-application-information',
+        field: 'extra-information',
+        parse: (list, req) => {
+          return req.sessionModel.get('extra-information') ||
+            'Not provided';
         }
       }
     ]
