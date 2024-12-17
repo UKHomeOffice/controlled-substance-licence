@@ -153,6 +153,31 @@
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)"
   },
+  "substance-category": {
+    "legend": "Which category is the substance?",
+    "options": {
+      "1": {
+        "label": "Category 1"
+      },
+      "2": {
+        "label": "Category 2"
+      },
+      "3": {
+        "label": "Category 3"
+      },
+      "unknown": {
+        "label": "I do not know"
+      }
+    }
+  },
+  "which-chemical": {
+    "label": "Which chemical are you applying for?",
+    "options": {
+      "none_selected": {
+        "label": ""
+      }
+    }
+  },
   "chemicals-used-for": {
     "label": "Tell us why you need these chemicals and what they’ll be used for"
   },
