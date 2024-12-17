@@ -1,3 +1,23 @@
 {
-  
+  "person-in-charge-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "person-in-charge-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "person-in-charge-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "person-in-charge-dbs-updates": {
+    "legend": "Has the managing director or person in charge subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }
 }
