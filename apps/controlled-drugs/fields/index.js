@@ -3,19 +3,19 @@ const dateComponent = require('hof').components.date;
 module.exports = {
   'person-in-charge-dbs-fullname': {
     mixin: 'input-text',
-    validate: [ 
-      'required', 
-      'notUrl', 
-      { type: 'minlength', arguments: 3 }, 
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 3 },
       { type: 'maxlength', arguments: 200 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'person-in-charge-dbs-reference': {
     mixin: 'input-text',
-    validate: [ 
+    validate: [
       'required',
-      { type: 'minlength', arguments: 3 }, 
+      { type: 'minlength', arguments: 3 },
       { type: 'maxlength', arguments: 25 },
       'alphanum'
     ],
