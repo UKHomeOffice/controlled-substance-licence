@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const chemicals = require('../data/chemicals.json');
 
 module.exports = {
   'company-name': {
@@ -255,6 +256,38 @@ module.exports = {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'substance-category': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: '1'
+      },
+      {
+        value: '2'
+      },
+      {
+        value: '3'
+      },
+      {
+        value: 'unknown'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'which-chemical': {
+    isPageHeading: true,
+    mixin: 'select',
+    className: ['typeahead'],
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.which-chemical.options.none_selected'
+    }].concat(chemicals)
   },
   'chemicals-used-for': {
     isPageHeading: true,

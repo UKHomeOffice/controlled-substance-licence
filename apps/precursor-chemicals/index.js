@@ -3,6 +3,7 @@ const Summary = hof.components.summary;
 const customValidation = require('./behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const FilterChemicals = require('./behaviours/filter-chemicals');
 
 const steps = {
 
@@ -140,10 +141,13 @@ const steps = {
   /** About the licence */
 
   '/substance-category': {
+    fields: ['substance-category'],
     next: '/which-chemical'
   },
 
   '/which-chemical': {
+    fields: ['which-chemical'],
+    behaviours: [FilterChemicals],
     next: '/which-operation'
   },
 
