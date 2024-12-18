@@ -1,3 +1,5 @@
+const hof = require('hof');
+const Summary = hof.components.summary;
 
 const steps = {
 
@@ -302,7 +304,9 @@ const steps = {
   },
 
   '/confirm': {
-    next: '/declaration'
+    next: '/declaration',
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections')
   },
 
   '/declaration': {
