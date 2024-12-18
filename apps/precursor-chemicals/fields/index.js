@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const chemicals = require('../data/chemicals.json');
 
 module.exports = {
   'company-name': {
@@ -286,7 +287,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
-    }]
+    }].concat(chemicals)
   },
   'chemicals-used-for': {
     isPageHeading: true,

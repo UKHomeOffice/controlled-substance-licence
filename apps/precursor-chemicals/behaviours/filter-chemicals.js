@@ -1,16 +1,12 @@
-const chemicals = require('../data/chemicals.json');
-
 module.exports = superclass => class extends superclass {
-  locals(req, res, next) {
+  configure(req, res, next) {
+    const chosenCategory = req.sessionModel.get('substance-category');
+    let options = req.form.options.fields['which-chemical'].options;
+    if (chosenCategory !== 'unknown') {
+      options = options.filter(option => !option.category || option.category === chosenCategory);
+    }
+    req.form.options.fields['which-chemical'].options = options;
 
-  const chosenCategory = req.sessionModel.get('substance-category');
-  const categoryChemicals = chemicals
-    .filter(chemical => chemical.category === chosenCategory)
-  const baseOptions = req.form.options.fields['which-chemical'].options;
-  req.form.options.fields['which-chemical'].options = baseOptions.concat(
-    chosenCategory !== 'unknown' ? categoryChemicals : chemicals
-  );
-
-  return super.locals(req, res, next);
+    next();
   }
 };

@@ -173,9 +173,7 @@
   "which-chemical": {
     "label": "Which chemical are you applying for?",
     "options": {
-      "none_selected": {
-        "label": ""
-      }
+      "none_selected": "Select a chemical"
     }
   },
   "chemicals-used-for": {
