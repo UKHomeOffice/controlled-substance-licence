@@ -52,10 +52,6 @@ describe('filter-chemicals behaviour', () => {
       jest.restoreAllMocks();
     });
 
-    test('', () => {
-
-    });
-
     test('next is called at the end of the behaviour', () => {
       expect(next).toHaveBeenCalled;
     });
