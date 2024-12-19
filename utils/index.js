@@ -22,8 +22,8 @@ const getLabel = (fieldKey, fieldValue) => {
  * @returns {string} - The formatted date string.
  *
  * @example
- * Assuming config.dateLocales is 'en-GB' and config.dateFormat is { day: 'numeric', month: 'numeric', year: 'numeric' }
- * formatDate('2023-10-23'); // returns '23/10/2023'
+ * Assuming config.dateLocales is 'en-GB' and config.dateFormat is { day: 'numeric', month: 'long', year: 'numeric' }
+ * formatDate('2023-10-23'); // returns '23 October 2023'
  */
 const formatDate = date => {
   const dateObj = new Date(date);

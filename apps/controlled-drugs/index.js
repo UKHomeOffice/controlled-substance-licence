@@ -1,3 +1,5 @@
+const hof = require('hof');
+const Summary = hof.components.summary;
 
 const steps = {
 
@@ -30,10 +32,18 @@ const steps = {
   },
 
   '/person-in-charge-dbs': {
+    fields: [
+      'person-in-charge-dbs-fullname',
+      'person-in-charge-dbs-reference',
+      'person-in-charge-dbs-date-of-issue'
+    ],
     next: '/person-in-charge-dbs-updates'
   },
 
   '/person-in-charge-dbs-updates': {
+    fields: [
+      'person-in-charge-dbs-updates'
+    ],
     next: '/member-of-professional-body'
   },
 
@@ -294,7 +304,9 @@ const steps = {
   },
 
   '/confirm': {
-    next: '/declaration'
+    next: '/declaration',
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections')
   },
 
   '/declaration': {
