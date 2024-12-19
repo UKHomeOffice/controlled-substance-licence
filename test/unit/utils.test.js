@@ -15,11 +15,11 @@ describe('Utilities \'getLabel\'', () => {
 });
 
 describe('Utilities \'formatDate\'', () => {
-  test('reformats a string type date from YYYY-MM-DD to DD/MM/YYYY', () => {
+  test('reformats a string type date from YYYY-MM-DD to DD MMMM YYYY', () => {
     expect(formatDate('1987-08-14')).toBe('14 August 1987');
   });
 
-  test('reformats a string type date from MM/DD/YYYY to DD/MM/YYYY', () => {
+  test('reformats a string type date from MM/DD/YYYY to DD MMMM YYYY', () => {
     expect(formatDate('08/14/1987')).toBe('14 August 1987');
   });
 
