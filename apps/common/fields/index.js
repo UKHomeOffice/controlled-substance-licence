@@ -24,7 +24,7 @@ module.exports = {
         value: 'new-application'
       },
       {
-        value: 'continue-on-application'
+        value: 'continue-an-application'
       },
       {
         value: 'amend-application'

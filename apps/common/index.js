@@ -1,7 +1,7 @@
-const saveLicenceTypeSelection = require('./behaviours/save-licence-type-selection');
+const customSaveValues = require('./behaviours/custom-save-values');
 const steps = {
   '/licence-type': {
-    behaviours: [saveLicenceTypeSelection],
+    behaviours: [customSaveValues],
     fields: ['licence-type-applyling-for'],
     next: '/application-type'
   },
@@ -10,13 +10,13 @@ const steps = {
     forks: [
       {
         target: '/precursor-chemicals/information-you-have-given-us',
-        condition: req => req.sessionModel.get('isPrecursorChemicals') &&
-        req.sessionModel.get('application-form-type') === 'continue-on-application'
+        condition: req => req.sessionModel.get('currentFormType') === 'precursor-chemicals' &&
+        req.sessionModel.get('application-form-type') === 'continue-an-application'
       },
       {
         target: '/controlled-drugs/information-you-have-given-us',
-        condition: req => req.sessionModel.get('isControlledDrugs') &&
-        req.sessionModel.get('application-form-type') === 'continue-on-application'
+        condition: req => req.sessionModel.get('currentFormType') === 'controlled-drugs' &&
+        req.sessionModel.get('application-form-type') === 'continue-an-application'
       }
     ],
     next: '/licensee-type'
@@ -26,32 +26,32 @@ const steps = {
     forks: [
       {
         target: '/precursor-chemicals/licence-holder-details',
-        condition: req => req.sessionModel.get('isPrecursorChemicals') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'precursor-chemicals' &&
         req.sessionModel.get('licensee-type') === 'first-time-licensee'
       },
       {
         target: '/precursor-chemicals/companies-house-number',
-        condition: req => req.sessionModel.get('isPrecursorChemicals') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'precursor-chemicals' &&
         req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site'
       },
       {
         target: '/precursor-chemicals/why-new-licence',
-        condition: req => req.sessionModel.get('isPrecursorChemicals') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'precursor-chemicals' &&
         req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
       },
       {
         target: '/controlled-drugs/licence-holder-details',
-        condition: req => req.sessionModel.get('isControlledDrugs') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'controlled-drugs' &&
         req.sessionModel.get('licensee-type') === 'first-time-licensee'
       },
       {
         target: '/controlled-drugs/company-number-changed',
-        condition: req => req.sessionModel.get('isControlledDrugs') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'controlled-drugs' &&
         req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site'
       },
       {
         target: '/controlled-drugs/why-new-licence',
-        condition: req => req.sessionModel.get('isControlledDrugs') &&
+        condition: req => req.sessionModel.get('currentFormType') === 'controlled-drugs' &&
         req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
       }
     ]

@@ -20,7 +20,7 @@
         "label": "A new application",
         "hint": "You will need a controlled drug activity user list to upload later"
       },
-      "continue-on-application": {
+      "continue-an-application": {
         "label": "Continue an application",
         "hint": "An incomplete application stays on the system for 5 days and is then deleted"
       },

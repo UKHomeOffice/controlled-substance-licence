@@ -1,6 +1,6 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
-const customValidation = require('./behaviours/custom-validation');
+const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
 

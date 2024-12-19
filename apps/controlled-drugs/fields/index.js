@@ -60,34 +60,34 @@ module.exports = {
     ]
   },
   'premises-address-line-1': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-address-line-2': {
-    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-town-or-city': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-postcode': {
-    validate: ['required', 'postcode'],
     mixin: 'input-text',
+    validate: ['required', 'postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'premises-telephone': {
-    validate: ['required'], // additional validation rules added in custom-validation.js
     mixin: 'input-text',
+    validate: ['required'], // additional validation rules added in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-email': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };
