@@ -1,3 +1,59 @@
 {
-  
+  "company-name": {
+    "label": "Company name"
+  },
+  "company-number": {
+    "label": "Company number (optional)",
+    "hint": "Enter the  number issued by Companies House"
+  },
+  "telephone": {
+    "label": "UK telephone number"
+  },
+  "email": {
+    "label": "Email address"
+  },
+  "website-url": {
+    "label": "Website URL (optional)"
+  },
+  "licence-holder-address-line-1": {
+    "label": "Address line 1"
+  },
+  "licence-holder-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "licence-holder-town-or-city": {
+    "label": "Town or city"
+  },
+  "licence-holder-postcode": {
+    "label": "Postcode"
+  },
+  "is-premises-address-same": {
+    "legend": "Is the premises address the same as the licence holder address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "premises-address-line-1": {
+    "label": "Address line 1"
+  },
+  "premises-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "premises-town-or-city": {
+    "label": "Town or city"
+  },
+  "premises-postcode": {
+    "label": "Postcode"
+  },
+  "premises-telephone": {
+    "label": "UK telephone number"
+  },
+  "premises-email": {
+    "label": "Email address"
+  }
 }
