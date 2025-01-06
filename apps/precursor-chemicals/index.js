@@ -151,15 +151,21 @@ const steps = {
     next: '/which-operation'
   },
 
-  '/chemical-name': {
-    next: '/which-operation'
-  },
-
   '/which-operation': {
+    fields: ['which-operation'],
+    forks: [
+      {
+        target: '/what-operation',
+        condition: req => Array.isArray(req.sessionModel.get('which-operation')) ?
+          req.sessionModel.get('which-operation').includes('other') :
+          req.sessionModel.get('which-operation') === 'other'
+      }
+    ],
     next: '/substances-in-licence'
   },
 
   '/what-operation': {
+    fields: ['what-operation'],
     next: '/substances-in-licence'
   },
 

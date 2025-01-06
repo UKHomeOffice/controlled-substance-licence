@@ -176,6 +176,53 @@
       "none_selected": "Select a chemical"
     }
   },
+  "which-operation": {
+    "legend": "Which operation applies to this licence for {{values.selectedChemical}}",
+    "options": {
+      "resale-or-supply": {
+        "label": "Resale/supply within the EU"
+      },
+      "import-or-export": {
+        "label": "Import and/or export"
+      },
+      "manufacture-of-precursors": {
+        "label": "Manufacture of precursors"
+      },
+      "manufacture-of-products": {
+        "label": "Manufacture of  products containing precursors"
+      },
+      "supply-of-precursors": {
+        "label": "Supply of precursors"
+      },
+      "supply-of-products": {
+        "label": "Supply of products containing precursors"
+      },
+      "storage": {
+        "label": "Storage"
+      },
+      "research-development-teaching": {
+        "label": "Research, development, teaching"
+      },
+      "incineration": {
+        "label": "Incineration"
+      },
+      "lab-testing-and-processing": {
+        "label": "Laboratory testing and processing, including forensic analysis"
+      },
+      "packing-or-repackaging": {
+        "label": "Packing or repackaging"
+      },
+      "veterinary-pharma-drug": {
+        "label": "Veterinary pharma drug "
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "what-operation": {
+    "label": "Enter the operation not listed"
+  },
   "chemicals-used-for": {
     "label": "Tell us why you need these chemicals and what they’ll be used for"
   },
