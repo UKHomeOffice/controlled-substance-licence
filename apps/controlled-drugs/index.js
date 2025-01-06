@@ -1,4 +1,7 @@
 
+const hof = require('hof');
+const Summary = hof.components.summary;
+
 const steps = {
 
   '/licence-holder-details': {
@@ -22,10 +25,16 @@ const steps = {
   },
 
   '/how-funded': {
+    fields: ['how-are-you-funded'],
     next: '/person-in-charge'
   },
 
   '/person-in-charge': {
+    fields: [
+      'person-in-charge-full-name',
+      'person-in-charge-email-address',
+      'person-in-charge-confirmed-dbs'
+    ],
     next: '/person-in-charge-dbs'
   },
 
@@ -294,6 +303,8 @@ const steps = {
   },
 
   '/confirm': {
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections'),
     next: '/declaration'
   },
 
