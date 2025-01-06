@@ -336,8 +336,9 @@ module.exports = {
     ]
   },
   'what-operation': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    isPageHeading: true,
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'chemicals-used-for': {

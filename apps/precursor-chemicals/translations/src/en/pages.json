@@ -46,10 +46,6 @@
     "header": "Substances in your licence"
   },
 
-  "what-operation": {
-    "header": "What other operation applies to the licence?"
-  },
-
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."

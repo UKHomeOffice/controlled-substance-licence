@@ -7,10 +7,6 @@ module.exports = superclass => class extends superclass {
         option => !option.category || option.category === chosenCategory
       );
     }
-    if(req.body['which-chemical']) {
-      const selectedChemical = req.body['which-chemical'];
-      req.sessionModel.set('selectedChemical', selectedChemical);
-    }
     next();
   }
 };

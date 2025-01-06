@@ -177,7 +177,7 @@
     }
   },
   "which-operation": {
-    "legend": "Which operation applies to this licence for {{values.selectedChemical}}",
+    "legend": "Which operation applies to this licence for {{values.which-chemical}}",
     "options": {
       "resale-or-supply": {
         "label": "Resale/supply within the EU"
@@ -221,7 +221,8 @@
     }
   },
   "what-operation": {
-    "label": "Enter the operation not listed"
+    "label": "What other operation applies to the licence?",
+    "hint": "Enter the operation not listed"
   },
   "chemicals-used-for": {
     "label": "Tell us why you need these chemicals and what they’ll be used for"
