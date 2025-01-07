@@ -7,7 +7,6 @@ module.exports = superclass => class extends superclass {
         option => !option.category || option.category === chosenCategory
       );
     }
-
     next();
   }
 };

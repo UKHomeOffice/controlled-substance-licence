@@ -42,20 +42,8 @@
     "header": "Invoicing contact details"
   },
 
-  "which-operation": {
-    "header": "Which operation applies to this licence for X?"
-  },
-
   "substances-in-licence": {
     "header": "Substances in your licence"
-  },
-
-  "chemical-name": {
-    "header": "What is the name of the chemical are you applying for?"
-  },
-
-  "what-operation": {
-    "header": "What other operation applies to the licence?"
   },
 
   "upload-company-certificate": {
