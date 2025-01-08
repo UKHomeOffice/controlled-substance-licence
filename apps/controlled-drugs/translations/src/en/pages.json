@@ -232,7 +232,7 @@
       }
     },
     "fields": {
-      "person-in-charge-dbs-updates": {
+      "person-in-charge-dbs-subscription": {
         "label": "Managing director DBS updates"
       },
       "person-in-charge-dbs-information": {

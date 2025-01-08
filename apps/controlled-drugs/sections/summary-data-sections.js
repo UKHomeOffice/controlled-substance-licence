@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         step: '/person-in-charge-dbs-updates',
-        field: 'person-in-charge-dbs-updates'
+        field: 'person-in-charge-dbs-subscription'
       }
     ]
   }
