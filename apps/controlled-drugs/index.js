@@ -1,3 +1,5 @@
+const hof = require('hof');
+const Summary = hof.components.summary;
 
 const steps = {
 
@@ -46,14 +48,26 @@ const steps = {
   },
 
   '/legal-business-proceedings': {
-    next: '/criminal-conviction'
+    fields: ['legal-business-proceedings'],
+    forks: [
+      {
+        target: '/criminal-conviction',
+        condition: {
+          field: 'legal-business-proceedings',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/legal-proceedings-details'
   },
 
   '/legal-proceedings-details': {
+    fields: ['legal-proceedings-details'],
     next: '/criminal-conviction'
   },
 
   '/criminal-conviction': {
+    fields: ['has-anyone-received-criminal-conviction'],
     next: '/responsible-for-security'
   },
 
@@ -294,6 +308,8 @@ const steps = {
   },
 
   '/confirm': {
+    behaviours: [Summary],
+    sections: require('./sections/summary-data-sections'),
     next: '/declaration'
   },
 

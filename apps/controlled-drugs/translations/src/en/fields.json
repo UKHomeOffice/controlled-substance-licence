@@ -1,3 +1,29 @@
 {
-  
+  "legal-business-proceedings": {
+    "legend": "Has anyone in your organisation ever been subject to legal business proceedings?",
+    "hint": "This includes members of the board and senior management teams. Legal proceedings includes administrative, financial or bankruptcy cases",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "has-anyone-received-criminal-conviction": {
+    "legend": "Has anyone in your organisation ever received a criminal conviction?",
+    "hint": "This includes members of the board and senior management teams. Conviction means UK and overseas convictions.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-proceedings-details": {
+    "label": "Provide details of the legal business proceedings"
+  }
 }
