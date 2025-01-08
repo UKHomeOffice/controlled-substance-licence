@@ -338,7 +338,7 @@ module.exports = {
   'what-operation': {
     mixin: 'input-text',
     isPageHeading: true,
-    validate: ['required', 'notUrl'],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'chemicals-used-for': {
