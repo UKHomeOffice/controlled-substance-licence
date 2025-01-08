@@ -42,7 +42,7 @@ const steps = {
 
   '/person-in-charge-dbs-updates': {
     fields: [
-      'person-in-charge-dbs-updates'
+      'person-in-charge-dbs-subscription'
     ],
     next: '/member-of-professional-body'
   },

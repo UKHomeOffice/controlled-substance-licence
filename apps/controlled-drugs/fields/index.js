@@ -33,7 +33,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-4'
     }
   }),
-  'person-in-charge-dbs-updates': {
+  'person-in-charge-dbs-subscription': {
     isPageHeading: true,
     mixin: 'radio-group',
     validate: [ 'required' ],
