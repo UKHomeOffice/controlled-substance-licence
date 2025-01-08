@@ -173,7 +173,7 @@
   "what-operation": {
     "required": "Enter an operation",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 1 and 250 characters"
+    "maxlength": "Operation must be between 1 and 250 characters"
   },
   "chemicals-used-for": {
     "required": "Enter details of the chemicals and what they will be used for",
