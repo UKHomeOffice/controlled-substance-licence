@@ -1,19 +1,26 @@
 {
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  }, 
+
   "licence-holder-details": {
     "header": "Licence holder details"
   },
+
   "licence-holder-address": {
-    "header": "Licence holder address"
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
   },
-  "reuse-licence-holder-address": {
-    "header": "Is the premises address the same as the licence holder address?"
-  },
+
   "premises-address": {
+    "header": "Premises address",
+    "intro": "This is the address where you will operate your licence from"
+  },
+
+  "premises-contact-details": {
     "header": "Premises contact details"
   },
-  "premises-contact-details": {
-    "header": "Premises address"
-  },
+
   "how-funded": {
     "header": "How are you funded?"
   },
@@ -224,6 +231,7 @@
   "extra-information": {
     "header": "Add any extra information you think might help your application (optional)"
   },
+
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -232,6 +240,21 @@
       }
     },
     "fields": {
+      "licence-holder-details": {
+        "label": "Licence holder details"
+      },
+      "licence-holder-address": {
+        "label": "Licence holder address"
+      },
+      "is-premises-address-same": {
+        "label": "Re-use the same contact details for the premises"
+      },
+      "premises-address-details": {
+        "label": "Premises address"
+      },
+      "premises-contact-details": {
+        "label": "Premises contact details"
+      },
       "person-in-charge-dbs-subscription": {
         "label": "Managing director DBS updates"
       },
