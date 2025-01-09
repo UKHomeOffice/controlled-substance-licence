@@ -59,7 +59,6 @@ const steps = {
 module.exports = {
   name: 'common',
   fields: 'apps/common/fields',
-  views: 'apps/common/views',
   translations: 'apps/common/translations',
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
