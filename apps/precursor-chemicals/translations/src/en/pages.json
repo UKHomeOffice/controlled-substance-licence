@@ -81,6 +81,10 @@
     "confirmed": "Precursor chemicals application submitted"
   },
 
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
+  
   "confirm": {
     "sections": {
       "about-the-applicants": {
