@@ -1,5 +1,5 @@
 module.exports = {
-  'licence-type-applyling-for': {
+  'licence-type': {
     isPageHeading: 'true',
     mixin: 'radio-group',
     validate: ['required'],

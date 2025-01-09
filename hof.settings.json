@@ -5,6 +5,9 @@
     "hof/components/clear-session"
   ],
   "translations": "./apps/precursor-chemicals/translations",
+  "views": [
+    "./apps/views"
+  ],
   "routes": [
     "./apps/common",
     "./apps/precursor-chemicals",
