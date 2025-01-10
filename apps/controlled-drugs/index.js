@@ -1,41 +1,92 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
+const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
 
   '/licence-holder-details': {
-    next: '/licence-holder-address'
+    behaviours: [customValidation],
+    fields: [
+      'company-name',
+      'company-number',
+      'telephone',
+      'email',
+      'website-url'
+    ],
+    next: '/licence-holder-address',
+    backLink: '/application-type'
   },
 
   '/licence-holder-address': {
-    next: '/reuse-licence-holder-address'
+    fields: [
+      'licence-holder-address-line-1',
+      'licence-holder-address-line-2',
+      'licence-holder-town-or-city',
+      'licence-holder-postcode'
+    ],
+    next: '/reuse-premises-address'
   },
 
-  '/reuse-licence-holder-address': {
+  '/reuse-premises-address': {
+    fields: ['is-premises-address-same'],
+    forks: [
+      {
+        target: '/premises-address',
+        condition: {
+          field: 'is-premises-address-same',
+          value: 'no'
+        }
+      }
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-address': {
+    fields: [
+      'premises-address-line-1',
+      'premises-address-line-2',
+      'premises-town-or-city',
+      'premises-postcode'
+    ],
     next: '/premises-contact-details'
   },
 
   '/premises-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'premises-telephone',
+      'premises-email'
+    ],
     next: '/how-funded'
   },
 
   '/how-funded': {
+    fields: ['how-are-you-funded'],
     next: '/person-in-charge'
   },
 
   '/person-in-charge': {
+    fields: [
+      'person-in-charge-full-name',
+      'person-in-charge-email-address',
+      'person-in-charge-confirmed-dbs'
+    ],
     next: '/person-in-charge-dbs'
   },
 
   '/person-in-charge-dbs': {
+    fields: [
+      'person-in-charge-dbs-fullname',
+      'person-in-charge-dbs-reference',
+      'person-in-charge-dbs-date-of-issue'
+    ],
     next: '/person-in-charge-dbs-updates'
   },
 
   '/person-in-charge-dbs-updates': {
+    fields: [
+      'person-in-charge-dbs-subscription'
+    ],
     next: '/member-of-professional-body'
   },
 
@@ -318,11 +369,28 @@ const steps = {
   },
 
   '/application-submitted': {
+  },
+
+  '/information-you-have-given-us': {
+    next: '/licence-holder-details',
+    backLink: '/application-type'
+  },
+
+  '/company-number-changed': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
+  },
+
+  '/why-new-licence': {
+    next: '/licence-holder-details',
+    backLink: '/licensee-type'
   }
 };
 
 module.exports = {
   name: 'controlled-drugs',
+  fields: 'apps/controlled-drugs/fields',
+  translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   steps: steps
