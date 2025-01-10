@@ -66,5 +66,21 @@
   "premises-email": {
     "required": "Enter an email address",
     "email": "Enter a real email address"
+  },
+  "how-are-you-funded": {
+    "required": "Select how you are funded"
+  },
+  "person-in-charge-full-name": {
+    "required": "Enter the name of the person in charge",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "person-in-charge-email-address": {
+    "required": "Enter an email address for the person in charge",
+    "email": "Enter a real email address"
+  },
+  "person-in-charge-confirmed-dbs": {
+    "required": "You must confirm this person has applied for or currently holds a DBS certificate"
   }
 }
