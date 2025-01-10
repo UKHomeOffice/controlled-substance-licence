@@ -4,6 +4,8 @@ const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const FilterChemicals = require('./behaviours/filter-chemicals');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const LimitSubstances = require('./behaviours/limit-substances');
 
 const steps = {
 
@@ -171,8 +173,29 @@ const steps = {
   },
 
   '/substances-in-licence': {
-    next: '/why-chemicals-needed'
-  },
+      behaviours: [
+        LoopAggregator,
+        LimitSubstances,
+      ],
+      aggregateTo: 'substances-in-licence',
+      aggregateFrom: [
+        'substance-category',
+        'which-chemical',
+        'which-operation',
+        'what-operation'
+      ],
+      // titleField: 'parent-full-name',
+      addStep: 'substance-category',
+      addAnotherLinkText: 'substance',
+      locals: {
+        substanceLimit: 3
+      },
+      continueOnEdit: false,
+      template: 'loop-summary',
+      backLink: 'substance-category',
+      aggregateLimit: 3,
+      next: '/why-chemicals-needed'
+    },
 
   '/why-chemicals-needed': {
     fields: ['chemicals-used-for'],

@@ -46,6 +46,11 @@
     "header": "Substances in your licence"
   },
 
+  "substance-summary": {
+    "substance-limit-message": "You can add a maximum of {{substanceLimit}} substance(s)",
+    "substance-limit-exceeded": "You can not add any more substances"
+  },
+
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
