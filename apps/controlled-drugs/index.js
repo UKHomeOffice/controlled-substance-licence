@@ -75,10 +75,18 @@ const steps = {
   },
 
   '/person-in-charge-dbs': {
+    fields: [
+      'person-in-charge-dbs-fullname',
+      'person-in-charge-dbs-reference',
+      'person-in-charge-dbs-date-of-issue'
+    ],
     next: '/person-in-charge-dbs-updates'
   },
 
   '/person-in-charge-dbs-updates': {
+    fields: [
+      'person-in-charge-dbs-subscription'
+    ],
     next: '/member-of-professional-body'
   },
 
@@ -370,6 +378,7 @@ const steps = {
 module.exports = {
   name: 'controlled-drugs',
   fields: 'apps/controlled-drugs/fields',
+  views: 'apps/controlled-drugs/views',
   translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',

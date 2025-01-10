@@ -78,5 +78,26 @@
   },
   "person-in-charge-confirmed-dbs": {
     "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "person-in-charge-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "person-in-charge-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "person-in-charge-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "person-in-charge-dbs-subscription": {
+    "legend": "Has the managing director or person in charge subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

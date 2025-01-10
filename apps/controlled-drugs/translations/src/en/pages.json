@@ -27,9 +27,6 @@
   "person-in-charge-dbs": {
     "header": "DBS information for the person in charge"
   },
-  "person-in-charge-dbs-updates": {
-    "header": "Has the managing director or person in charge subscribed to DBS updates?"
-  },
   "member-of-professional-body": {
     "header": "Are they, or anyone named on this application, a member of a professional body?"
   },
@@ -260,6 +257,12 @@
       },
       "person-incharge-details": {
         "label": "Managing director details"
+      },
+      "person-in-charge-dbs-subscription": {
+        "label": "Managing director DBS updates"
+      },
+      "person-in-charge-dbs-information": {
+        "label": "Managing director DBS information"
       }
     }
   }
