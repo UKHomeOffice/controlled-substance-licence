@@ -47,12 +47,7 @@ module.exports = superclass => class extends superclass {
 
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
       const aggregateFromField = aggregateFromElement.field || aggregateFromElement;
-      const isTitleField = req.form.options.titleField === aggregateFromField;
       const value = req.sessionModel.get(aggregateFromField);
-
-      if (isTitleField) {
-        itemTitle = value;
-      }
 
       fields.push({
         field: aggregateFromField,

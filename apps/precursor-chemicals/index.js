@@ -1,3 +1,4 @@
+const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
@@ -5,8 +6,8 @@ const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const FilterChemicals = require('./behaviours/filter-chemicals');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
-const LimitSubstances = require('./behaviours/limit-substances');
-
+const LimitItems = require('../common/behaviours/limit-items');
+const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const steps = {
 
   /** About the applicants */
@@ -175,25 +176,22 @@ const steps = {
   '/substances-in-licence': {
       behaviours: [
         LoopAggregator,
-        LimitSubstances,
+        LimitItems,
+        ParseSubstanceSummary
       ],
       aggregateTo: 'substances-in-licence',
       aggregateFrom: [
-        'substance-category',
         'which-chemical',
+        'substance-category',
         'which-operation',
         'what-operation'
       ],
-      // titleField: 'parent-full-name',
       addStep: 'substance-category',
       addAnotherLinkText: 'substance',
-      locals: {
-        substanceLimit: 3
-      },
       continueOnEdit: false,
-      template: 'loop-summary',
+      template: 'substance-summary',
       backLink: 'substance-category',
-      aggregateLimit: 3,
+      aggregateLimit: config.aggregateLimits.precursorChemicals.substanceLimit,
       next: '/why-chemicals-needed'
     },
 
