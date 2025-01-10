@@ -1,0 +1,30 @@
+{{<partials-page}}
+  {{$page-content}}
+  <div class="loop-summary-table">
+    <table class="govuk-table govuk-!-width-full">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">{{#t}}pages.substances-in-licence.table-headers.substance{{/t}}</th>
+          <th scope="col" class="govuk-table__header">{{#t}}pages.substances-in-licence.table-headers.category{{/t}}</th>
+          <th scope="col" class="govuk-table__header">{{#t}}pages.substances-in-licence.table-headers.operations{{/t}}</th>
+          <th scope="col" class="govuk-table__header">{{#t}}pages.substances-in-licence.table-headers.action{{/t}}</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {{> partials-aggregator-summary-table}}
+      </tbody>
+    </table>
+  </div>
+  {{#noMoreItems}}
+    <p>{{#t}}pages.substances-in-licence.substance-limit-exceeded{{/t}}</p>
+  {{/noMoreItems}}
+  <br>
+  {{^noMoreItems}}
+  <a href="{{baseUrl}}/{{addStep}}" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Add another {{addAnotherLinkText}}
+  </a>
+  <br>
+  {{/noMoreItems}}
+  {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

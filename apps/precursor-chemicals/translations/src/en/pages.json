@@ -43,11 +43,13 @@
   },
 
   "substances-in-licence": {
-    "header": "Substances in your licence"
-  },
-
-  "substance-summary": {
-    "substance-limit-message": "You can add a maximum of {{substanceLimit}} substance(s)",
+    "header": "Substances in your licence",
+    "table-headers": {
+      "substance": "Scheduled substance and CN code",
+      "category": "Category",
+      "operations": "Operations",
+      "action": "Action"
+    },
     "substance-limit-exceeded": "You can not add any more substances"
   },
 
