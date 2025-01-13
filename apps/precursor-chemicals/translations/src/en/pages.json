@@ -153,6 +153,12 @@
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
       },
+      "substances-in-licence": {
+        "label": "Categories the licence will cover"
+      },
+      "which-chemical": {
+        "label": "Chemical you are applying for"
+      },
       "chemicals-used-for": {
         "label": "Reason for chemical application"
       },
