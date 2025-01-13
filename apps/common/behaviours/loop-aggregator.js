@@ -53,11 +53,11 @@ module.exports = superclass => class extends superclass {
         field: aggregateFromField,
         parsed: this.parseField(aggregateFromField, value, req),
         value,
-        showInSummary: true,
+        showFieldInSummary: req.form.options.fieldsConfig[aggregateFromField].showFieldInSummary,
         changeField: aggregateFromElement.changeField
       });
 
-      this.setAggregateArray(req, items); // should this be (req, fields) ?
+      this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
     });
 

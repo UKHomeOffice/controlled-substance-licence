@@ -21,6 +21,7 @@ module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);
     for (const item of locals.items) {
+      const customOperations = item.fields.find(field => field.field === 'what-operation')?.value;
       for (const field of item.fields) {
         switch(field.field) {
           case 'which-chemical':
@@ -32,8 +33,7 @@ module.exports = superclass => class extends superclass {
               field.value;
             break;
           case 'which-operation':
-            req.sessionModel.set('parsed-substance-operations', )
-            field.parsed = parseOperations(req, field.field, field.value, req.sessionModel.get('what-operation'));
+            field.parsed = parseOperations(req, field.field, field.value, customOperations);
             break;
           default:
             break;

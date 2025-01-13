@@ -277,7 +277,8 @@ module.exports = {
     ],
     legend: {
       className: 'govuk-!-margin-bottom-6'
-    }
+    },
+    showFieldInSummary: true
   },
   'which-chemical': {
     isPageHeading: true,
@@ -287,7 +288,8 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
-    }].concat(chemicals)
+    }].concat(chemicals),
+    showFieldInSummary: true
   },
   'which-operation': {
     mixin: 'checkbox-group',
@@ -333,13 +335,15 @@ module.exports = {
       {
         value: 'other'
       }
-    ]
+    ],
+    showFieldInSummary: true
   },
   'what-operation': {
     mixin: 'input-text',
     isPageHeading: true,
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: false
   },
   'chemicals-used-for': {
     isPageHeading: true,

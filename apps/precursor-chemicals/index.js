@@ -183,7 +183,8 @@ const steps = {
       aggregateFrom: [
         'which-chemical',
         'substance-category',
-        'which-operation'
+        'which-operation',
+        'what-operation'
       ],
       addStep: 'substance-category',
       addAnotherLinkText: 'substance',

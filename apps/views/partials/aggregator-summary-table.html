@@ -1,17 +1,17 @@
 {{#hasItems}}
   {{#items}}
-    <tr class="govuk-table__row">
-      {{#fields}}
-        {{#showInSummary}}
-            <td class="govuk-table__cell">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
-        {{/showInSummary}}
-      {{/fields}}
-      <td class="govuk-table__cell">
-        <div>
-          <a href="{{baseUrl}}/{{route}}/edit/{{index}}">{{#t}}buttons.edit{{/t}}<span class="visuallyhidden">Change {{itemTitle}} details</span></a>
-          <a href="{{baseUrl}}/{{route}}/delete/{{index}}" class="govuk-!-margin-left-3">{{#t}}buttons.remove{{/t}}<span class="visuallyhidden">Remove {{itemTitle}}</span></a>
-        </div>
-      </td>
-    </tr>
+      <tr class="govuk-table__row">
+        {{#fields}}
+          {{#showFieldInSummary}}
+              <td class="govuk-table__cell">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
+          {{/showFieldInSummary}}
+        {{/fields}}
+        <td class="govuk-table__cell">
+          <div>
+            <a href="{{baseUrl}}/{{route}}/edit/{{index}}">{{#t}}buttons.edit{{/t}}<span class="visuallyhidden">Change {{itemTitle}} details</span></a>
+            <a href="{{baseUrl}}/{{route}}/delete/{{index}}" class="govuk-!-margin-left-3">{{#t}}buttons.remove{{/t}}<span class="visuallyhidden">Remove {{itemTitle}}</span></a>
+          </div>
+        </td>
+      </tr>
   {{/items}}
 {{/hasItems}}
