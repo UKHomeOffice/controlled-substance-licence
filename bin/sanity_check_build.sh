@@ -6,8 +6,6 @@ export BRANCH=$(drone build info $GIT_REPO $DRONE_BUILD_PARENT --format {{.Targe
 export EVENT=$(drone build info $GIT_REPO $DRONE_BUILD_PARENT --format {{.Event}})
 export REFS=$(drone build info $GIT_REPO $DRONE_BUILD_PARENT --format {{.Ref}})
 
-echo "Build number: $DRONE_BUILD_PARENT, default branch: $DRONE_REPO_BRANCH, parent build target: $BRANCH, status: $STATUS"
-
 if [[ "$STATUS" != "success" ]]; then
   echo "Build number $DRONE_BUILD_PARENT failed due to unsuccessful status."
   exit 1
@@ -29,4 +27,3 @@ if [[ "$REFS" != "refs/heads/$DRONE_REPO_BRANCH" ]]; then
 fi
 
 echo "Build number $DRONE_BUILD_PARENT passed sanity check. Ready to deploy to PROD!"
-
