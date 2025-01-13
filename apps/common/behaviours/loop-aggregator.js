@@ -42,7 +42,6 @@ module.exports = superclass => class extends superclass {
   addItem(req, res) {
     const items = this.getAggregateArray(req);
     const fields = [];
-    let itemTitle = '';
     const aggregateLimit = req.form.options.aggregateLimit || undefined;
 
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
@@ -61,7 +60,7 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.unset(aggregateFromField);
     });
 
-    const newItem = { itemTitle, fields };
+    const newItem = { fields };
     const updatingIndex = req.sessionModel.get('aggregator-edit-id') || items.length;
 
     if (aggregateLimit) {

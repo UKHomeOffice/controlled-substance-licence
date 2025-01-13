@@ -174,30 +174,31 @@ const steps = {
   },
 
   '/substances-in-licence': {
-      behaviours: [
-        LoopAggregator,
-        LimitItems,
-        ParseSubstanceSummary
-      ],
-      aggregateTo: 'substances-in-licence',
-      aggregateFrom: [
-        'which-chemical',
-        'substance-category',
-        'which-operation',
-        'what-operation'
-      ],
-      addStep: 'substance-category',
-      addAnotherLinkText: 'substance',
-      continueOnEdit: false,
-      template: 'substance-summary',
-      backLink: 'substance-category',
-      aggregateLimit: config.aggregateLimits.precursorChemicals.substanceLimit,
-      next: '/why-chemicals-needed'
-    },
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      ParseSubstanceSummary
+    ],
+    aggregateTo: 'substances-in-licence',
+    aggregateFrom: [
+      'which-chemical',
+      'substance-category',
+      'which-operation',
+      'what-operation'
+    ],
+    addStep: 'substance-category',
+    addAnotherLinkText: 'substance',
+    continueOnEdit: false,
+    template: 'substance-summary',
+    backLink: 'substance-category',
+    aggregateLimit: config.aggregateLimits.precursorChemicals.substanceLimit,
+    next: '/why-chemicals-needed'
+  },
 
   '/why-chemicals-needed': {
     fields: ['chemicals-used-for'],
-    next: '/upload-company-certificate'
+    // next: '/upload-company-certificate'
+    next: '/summary'
   },
 
   /** Evidence */

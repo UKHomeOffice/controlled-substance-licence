@@ -1,10 +1,10 @@
 const chemicals = require('../data/chemicals.json');
 
-findChemical = (chemicals, valueToFind) => {
-  return chemicals.find(chemical => chemical.value === valueToFind)
-}
+const findChemical = (chemicals, valueToFind) => {
+  return chemicals.find(chemical => chemical.value === valueToFind);
+};
 
-parseOperations = (req, opsField, selectedOps, customOp) => {
+const parseOperations = (req, opsField, selectedOps, customOp) => {
   // A single checked box will be stored as a string not an array of length 1 so...
   if (typeof selectedOps === 'string') {
     selectedOps = Array.of(selectedOps);
@@ -12,10 +12,11 @@ parseOperations = (req, opsField, selectedOps, customOp) => {
 
   return selectedOps.map(operation => {
     if (operation === 'other' && customOp) {
-      return `${req.translate(`fields.${opsField}.options.${operation}.label`)}: ${customOp}`
-    } else return req.translate(`fields.${opsField}.options.${operation}.label`)
-  }).join(', ')
-}
+      return `${req.translate(`fields.${opsField}.options.${operation}.label`)}: ${customOp}`;
+    }
+    return req.translate(`fields.${opsField}.options.${operation}.label`);
+  }).join(', ');
+};
 
 module.exports = superclass => class extends superclass {
   locals(req, res) {
