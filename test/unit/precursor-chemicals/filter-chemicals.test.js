@@ -1,6 +1,6 @@
-const Behaviour = require('../../apps/precursor-chemicals/behaviours/filter-chemicals');
+const Behaviour = require('../../../apps/precursor-chemicals/behaviours/filter-chemicals');
 const reqres = require('hof').utils.reqres;
-const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
+const chemicals = require('../../../apps/precursor-chemicals/data/chemicals.json');
 
 describe('filter-chemicals behaviour', () => {
   test('Behaviour exports a function', () => {
