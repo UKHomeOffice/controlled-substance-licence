@@ -285,9 +285,47 @@ const steps = {
   },
 
   '/why-new-licence': {
-    next: '/licence-holder-details',
+    fields: ['why-requesting-new-licence'],
+    forks: [
+      {
+        target: '/contractual-agreement',
+        condition: {
+          field: 'why-requesting-new-licence',
+          value: 'for-another-site'
+        }
+      }
+    ],
+    next: '/when-moving-site',
     backLink: '/licensee-type'
-  }
+  },
+
+  '/when-moving-site': {
+    fields: ['moving-date'],
+    next: '/licence-holder-details',
+  },
+
+  '/contractual-agreement': {
+    fields: ['contractual-agreement'],
+    forks: [
+      {
+        target: '/licence-holder-details',
+        condition: {
+          field: 'contractual-agreement',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/when-start',
+    backLink: '/licensee-type'
+  },
+
+  '/when-start': {
+    next: '/contract-details',
+  },
+
+  '/contract-details': {
+    next: '/licence-holder-details',
+  },
 };
 
 module.exports = {

@@ -247,5 +247,16 @@
   },
   "declaration-check": {
     "required": "Confirm that you understand and accept this declaration"
+  },
+  "why-requesting-new-licence": {
+    "required": "Select why you are requesting a new licence"
+  },
+  "moving-date": {
+      "required": "Enter a moving date",
+      "date": "Enter a moving date in the correct format",
+      "after": "Moving date must be in the future"
+  },
+  "contractual-agreement": {
+    "required": "Select if it is part of a contractual agreement"
   }
 }

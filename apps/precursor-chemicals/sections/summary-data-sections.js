@@ -3,7 +3,23 @@
 const { formatDate } = require('../../../utils');
 
 module.exports = {
-
+  'background-information': {
+    steps: [
+      {
+        step: '/why-new-licence',
+        field: 'why-new-licence'
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-date',
+        parse: value => formatDate(value)
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'contractual-agreement'
+      }
+    ]
+  },
   'about-the-applicants': {
     steps: [
       {

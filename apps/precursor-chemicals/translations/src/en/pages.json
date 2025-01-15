@@ -107,6 +107,9 @@
   
   "confirm": {
     "sections": {
+      "background-information": {
+        "header": "Background information"
+      },
       "about-the-applicants": {
         "header": "About the applicants"
       },
@@ -213,6 +216,12 @@
       },
       "extra-information": {
         "label": "Extra information"
+      },
+      "why-new-licence": {
+        "label": "Reason for collecting new license"
+      },
+      "moving-date": {
+        "label": "Date when moving site"
       }
     }
   }
