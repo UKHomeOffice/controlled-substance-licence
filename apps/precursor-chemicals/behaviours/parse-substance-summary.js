@@ -1,23 +1,4 @@
-const chemicals = require('../data/chemicals.json');
-
-const findChemical = (chemicals, valueToFind) => {
-  return chemicals.find(chemical => chemical.value === valueToFind);
-};
-
-const parseOperations = (req, opsField, selectedOps, customOp) => {
-  // A single checked box will be stored as a string not an array of length 1 so...
-  if (typeof selectedOps === 'string') {
-    selectedOps = Array.of(selectedOps);
-  }
-
-  return selectedOps.map(operation => {
-    if (operation === 'other' && customOp) {
-      return `${req.translate(`fields.${opsField}.options.${operation}.label`)}: ${customOp}`;
-    }
-    return req.translate(`fields.${opsField}.options.${operation}.label`);
-  }).join(', ');
-};
-
+const { findChemical, parseOperations, translateOption } = require('../../../utils/index');
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);
@@ -26,11 +7,12 @@ module.exports = superclass => class extends superclass {
       for (const field of item.fields) {
         switch(field.field) {
           case 'which-chemical':
-            field.parsed = findChemical(chemicals, field.value)?.label ?? field.value;
+            field.parsed = findChemical(field.value)?.label ?? field.value;
             break;
           case 'substance-category':
             field.parsed = field.value === 'unknown' ?
-              req.translate(`fields.${field.field}.options.${field.value}.label`) :
+              translateOption(req, field.field, field.value) :
+              // req.translate(`fields.${field.field}.options.${field.value}.label`) :
               field.value;
             break;
           case 'which-operation':

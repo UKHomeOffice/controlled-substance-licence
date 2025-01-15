@@ -1,5 +1,6 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
+const chemicals = require('../apps/precursor-chemicals/data/chemicals.json');
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -13,6 +14,18 @@ const getLabel = (fieldKey, fieldValue) => {
     return fieldValue.map(option => translations[fieldKey]?.options[option]?.label).join(', ') || undefined;
   }
   return translations[fieldKey]?.options[fieldValue]?.label || undefined;
+};
+
+/**
+ * Retrieves a translated label for a given field and value where the field had multiple options (radio or checkbox).
+ *
+ * @param {object} req - the request object - required to use its translate method
+ * @param {string} field - The field with options (e.g. from fields.json)
+ * @param {string} value - The option value for which the label(s) need to be retrieved.
+ * @returns {string} - The label(s) corresponding to the field option value(s).
+ */
+const translateOption = (req, field, value) => {
+  return req.translate(`fields.${field}.options.${value}.label`);
 };
 
 /**
@@ -47,4 +60,51 @@ const formatDate = date => {
  */
 const sanitiseFilename = filename => filename?.replace(/^(.{2}).*(.{2}\.[^.]+)$/, '$1**REDACTED**$2');
 
-module.exports = { getLabel, formatDate, sanitiseFilename };
+/**
+ * Translates and merges a group of options in an aggregator loop
+ * Where standard options are provided as checkboxes and additional items can be added as a separate text field
+ *
+ * @param {object} req - The request object required to use pass through req.translate().
+ * @param {string} opsField - The value or values for which the label(s) need to be retrieved.
+ * @param {string|array} standardOps - A string (single item checked) or array of options from a select
+ * @param {string} customOps - A string from a text input to attach if the 'other' option is selected
+ * @returns {string} - A the joined concatenated array of operations, all translated from value to label.
+ */
+const parseOperations = (req, opsField, standardOps, customOps) => {
+  let checkedOps = standardOps;
+  // A single checked box will be stored as a string not an array of length 1 so...
+  if (typeof checkedOps === 'string') {
+    checkedOps = Array.of(checkedOps);
+  }
+
+  return checkedOps.map(operation => {
+    if (operation === 'other' && customOps) {
+      return `${translateOption(req, opsField, operation)}: ${customOps}`;
+    }
+    return translateOption(req, opsField, operation);
+  }).join(', ');
+};
+
+/**
+ * Using the form select value in the list of precursor chemicals
+ * Finds and returns the first matching chemical object from the entire list.
+ * This can be used to determine that chemical's label or category values.
+ *
+ * @param {string} valueToFind - The form value of the selected chemical.
+ * @returns {object} - Containing all the details of the found chemical.
+ *
+ * @example
+ * findChemical('Ephedrine');
+ * // returns {
+ *   "label": "Ephedrine (2939 4100)",
+ *   "value": "Ephedrine",
+ *   "category": "1",
+ *   "cnCode": "2939 4100"
+ * }
+ *
+ */
+const findChemical = valueToFind => {
+  return chemicals.find(chemical => chemical.value === valueToFind);
+};
+
+module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findChemical };

@@ -1,0 +1,21 @@
+{{$content-outer}}
+{{$preloader}}{{/preloader}}
+  {{#fullWidthPage}}
+    <div class="govuk-grid-column-full">
+      {{$validationSummary}}{{/validationSummary}}
+      {{#captionHeading}}<span class="govuk-caption-l">{{captionHeading}}</span>{{/captionHeading}}
+      {{#header}}<h1 class="govuk-heading-l">{{header}}</h1>{{/header}}
+      {{#subHeading}}<div id="page-header"><h2 class="govuk-heading-m">{{subHeading}}</h2></div>{{/subHeading}}
+      {{$content}}{{/content}}
+    </div>
+  {{/fullWidthPage}}
+  {{^fullWidthPage}}
+    <div class="govuk-grid-column-two-thirds">
+      {{$validationSummary}}{{/validationSummary}}
+      {{#captionHeading}}<span class="govuk-caption-l">{{captionHeading}}</span>{{/captionHeading}}
+      {{#header}}<h1 class="govuk-heading-l">{{header}}</h1>{{/header}}
+      {{#subHeading}}<div id="page-header"><h2 class="govuk-heading-m">{{subHeading}}</h2></div>{{/subHeading}}
+      {{$content}}{{/content}}
+    </div>
+  {{/fullWidthPage}}
+{{/content-outer}}

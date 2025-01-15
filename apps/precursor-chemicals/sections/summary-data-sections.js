@@ -1,30 +1,6 @@
 'use strict';
 
-const { formatDate } = require('../../../utils');
-
-const getLabel = (req, field, value) => {
-  return req.translate(`fields.${field}.options.${value}.label`);
-};
-
-const parseOperations = (req, opsField, standardOps, customOp) => {
-  // A single checked box will be stored as a string not an array of length 1 so...
-  if (typeof standardOps === 'string') {
-    standardOps = Array.of(standardOps);
-  }
-
-  return standardOps.map(operation => {
-    if (operation === 'other' && customOp) {
-      return `${getLabel(req, opsField, operation)}: ${customOp}`;
-    }
-    return getLabel(req, opsField, operation);
-  }).join('; ');
-};
-
-const chemicals = require('../data/chemicals.json');
-
-const findChemical = (chemicals, valueToFind) => {
-  return chemicals.find(chemical => chemical.value === valueToFind);
-};
+const { formatDate, parseOperations, findChemical, translateOption } = require('../../../utils');
 
 module.exports = {
 
@@ -179,32 +155,55 @@ module.exports = {
       {
         step: '/substances-in-licence',
         field: 'substances-in-licence',
+        changeLink: 'substances-in-licence/edit',
         parse: (obj, req) => {
-          if (!obj?.aggregatedValues) { return null; }
-          const categories = obj.aggregatedValues.map(item => {
-            const categoryField = item.fields.find(field => field.field === 'substance-category');
-            return getLabel(req, categoryField.field, categoryField.value);
-          }).sort();
-          return categories.join('\n');
-        }
-      },
-      {
-        step: '/substances-in-licence',
-        field: 'substances-in-licence',
-        parse: (obj, req) => {
-          if (!obj?.aggregatedValues) { return null; }
           return obj.aggregatedValues.map(item => {
             const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
+            const category = item.fields.find(field => field.field === 'substance-category');
             const standardOps = item.fields.find(field => field.field === 'which-operation');
             const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
 
-            const parsedSubstance = findChemical(chemicals, substance)?.label ?? substance;
+            const parsedSubstance = findChemical(substance)?.label ?? substance;
+            const parsedCategory = translateOption(req, category.field, category.value);
             const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
 
-            return `${parsedSubstance}\n\n${parsedOps}`;
-          }).join('\n\n');
+            return `${parsedSubstance}\n${parsedCategory}\n\n${parsedOps}`;
+          }).join('\n\n\n') || 'none';
         }
       },
+      // {
+      //   step: '/substances-in-licence',
+      //   field: 'substances-in-licence',
+      //   changeLink: 'substances-in-licence',
+      //   label: 'Categories the licence will cover',
+      //   parse: (obj, req) => {
+      //     if (!obj?.aggregatedValues) { return null; }
+      //     const categories = obj.aggregatedValues.map(item => {
+      //       const categoryField = item.fields.find(field => field.field === 'substance-category');
+      //       return translateOption(req, categoryField.field, categoryField.value);
+      //     }).sort();
+      //     const uniqueCategories = [...new Set(categories)]
+      //     return uniqueCategories.join('\n');
+      //   }
+      // },
+      // {
+      //   step: '/substances-in-licence',
+      //   field: 'substances-in-licence',
+      //   changeLink: 'substances-in-licence',
+      //   parse: (obj, req) => {
+      //     if (!obj?.aggregatedValues) { return null; }
+      //     return obj.aggregatedValues.map(item => {
+      //       const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
+      //       const standardOps = item.fields.find(field => field.field === 'which-operation');
+      //       const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
+
+      //       const parsedSubstance = findChemical(chemicals, substance)?.label ?? substance;
+      //       const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
+
+      //       return `${parsedSubstance}\n\n${parsedOps}`;
+      //     }).join('\n\n');
+      //   }
+      // },
       {
         step: '/why-chemicals-needed',
         field: 'chemicals-used-for'
