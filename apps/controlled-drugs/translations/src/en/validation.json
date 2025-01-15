@@ -6,7 +6,7 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "companyNumber": "Enter a real company number"
+    "companyNumber": "Enter a real company number, like 16850062"
   },
   "telephone": {
     "required": "Enter a UK telephone number",
