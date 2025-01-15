@@ -301,7 +301,7 @@ const steps = {
 
   '/when-moving-site': {
     fields: ['moving-date'],
-    next: '/licence-holder-details',
+    next: '/licence-holder-details'
   },
 
   '/contractual-agreement': {
@@ -320,12 +320,12 @@ const steps = {
   },
 
   '/when-start': {
-    next: '/contract-details',
+    next: '/contract-details'
   },
 
   '/contract-details': {
-    next: '/licence-holder-details',
-  },
+    next: '/licence-holder-details'
+  }
 };
 
 module.exports = {
