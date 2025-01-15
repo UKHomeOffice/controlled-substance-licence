@@ -20,11 +20,11 @@ environment:
 
 include_default_branch: &include_default_branch
   include:
-    - main
+    - master
 
 include_default_and_feature_branches: &include_default_and_feature_branches
   include:
-    - main
+    - master
     - feature/*
 
 trigger:
@@ -268,7 +268,8 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch: main
+      branch:
+        <<: *include_default_branch
       event: push
 
   # Tear down pull request UAT environment
@@ -286,7 +287,8 @@ steps:
     commands:
       - bin/deploy.sh tear_down
     when:
-      branch: main
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - get_pr_branch
@@ -303,13 +305,14 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: main
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - clone_repos
       - image_to_ecr
 
-  ## Checks a build being promoted has passed, is on main which effectively means a healthy build on Staging
+  ## Checks that a build being promoted has passed and is on the default branch, indicating a healthy build
   - name: sanity_check_build_prod
     pull: if-not-exists
     image: drone/cli:alpine@sha256:14409f7f7247befb9dd2effdb2f61ac40d1f5fbfb1a80566cf6f2f8d21f3be11
