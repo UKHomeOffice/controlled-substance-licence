@@ -35,7 +35,6 @@ module.exports = superclass => class extends superclass {
       items.splice(id, 1);
       this.setAggregateArray(req, items);
     }
-
     return this.redirectToAddStep(req, res);
   }
 
@@ -124,7 +123,7 @@ module.exports = superclass => class extends superclass {
       case 'delete':
         this.deleteItem(req, res);
         break;
-      case 'edit':
+      case 'update':
         this.updateItem(req, res);
         break;
       case 'addItem':

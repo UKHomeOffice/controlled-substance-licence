@@ -153,11 +153,11 @@
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
       },
-      "substances-in-licence": {
+      "substance-category": {
         "label": "Categories the licence will cover"
       },
-      "which-chemical": {
-        "label": "Chemical you are applying for"
+      "substances-in-licence": {
+        "label": "Substances in your licence"
       },
       "chemicals-used-for": {
         "label": "Reason for chemical application"
