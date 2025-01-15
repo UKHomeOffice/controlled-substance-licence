@@ -91,7 +91,7 @@
   "information-you-have-given-us": {
     "header": "Information you have given us"
   },
-  
+
   "confirm": {
     "sections": {
       "about-the-applicants": {
@@ -153,7 +153,7 @@
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
       },
-      "substance-category": {
+      "parsed-substance-categories": {
         "label": "Categories the licence will cover"
       },
       "substances-in-licence": {

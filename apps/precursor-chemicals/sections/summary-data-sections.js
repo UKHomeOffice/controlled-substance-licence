@@ -154,56 +154,27 @@ module.exports = {
     steps: [
       {
         step: '/substances-in-licence',
+        field: 'parsed-substance-categories',
+        changeLink: 'substances-in-licence/edit'
+      },
+      {
+        step: '/substances-in-licence',
         field: 'substances-in-licence',
         changeLink: 'substances-in-licence/edit',
         parse: (obj, req) => {
+          if (!obj?.aggregatedValues) { return null; }
           return obj.aggregatedValues.map(item => {
             const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
-            const category = item.fields.find(field => field.field === 'substance-category');
             const standardOps = item.fields.find(field => field.field === 'which-operation');
             const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
 
             const parsedSubstance = findChemical(substance)?.label ?? substance;
-            const parsedCategory = translateOption(req, category.field, category.value);
             const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
 
-            return `${parsedSubstance}\n${parsedCategory}\n\n${parsedOps}`;
-          }).join('\n\n\n') || 'none';
+            return `${parsedSubstance}\n\n${parsedOps}`;
+          }).join('\n\n');
         }
       },
-      // {
-      //   step: '/substances-in-licence',
-      //   field: 'substances-in-licence',
-      //   changeLink: 'substances-in-licence',
-      //   label: 'Categories the licence will cover',
-      //   parse: (obj, req) => {
-      //     if (!obj?.aggregatedValues) { return null; }
-      //     const categories = obj.aggregatedValues.map(item => {
-      //       const categoryField = item.fields.find(field => field.field === 'substance-category');
-      //       return translateOption(req, categoryField.field, categoryField.value);
-      //     }).sort();
-      //     const uniqueCategories = [...new Set(categories)]
-      //     return uniqueCategories.join('\n');
-      //   }
-      // },
-      // {
-      //   step: '/substances-in-licence',
-      //   field: 'substances-in-licence',
-      //   changeLink: 'substances-in-licence',
-      //   parse: (obj, req) => {
-      //     if (!obj?.aggregatedValues) { return null; }
-      //     return obj.aggregatedValues.map(item => {
-      //       const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
-      //       const standardOps = item.fields.find(field => field.field === 'which-operation');
-      //       const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
-
-      //       const parsedSubstance = findChemical(chemicals, substance)?.label ?? substance;
-      //       const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
-
-      //       return `${parsedSubstance}\n\n${parsedOps}`;
-      //     }).join('\n\n');
-      //   }
-      // },
       {
         step: '/why-chemicals-needed',
         field: 'chemicals-used-for'

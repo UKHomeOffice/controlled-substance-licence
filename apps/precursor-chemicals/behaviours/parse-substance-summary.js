@@ -12,7 +12,6 @@ module.exports = superclass => class extends superclass {
           case 'substance-category':
             field.parsed = field.value === 'unknown' ?
               translateOption(req, field.field, field.value) :
-              // req.translate(`fields.${field.field}.options.${field.value}.label`) :
               field.value;
             break;
           case 'which-operation':
@@ -24,5 +23,16 @@ module.exports = superclass => class extends superclass {
       }
     }
     return locals;
+  }
+
+  saveValues(req, res, next) {
+    const aggregatedValues = req.sessionModel.get('substances-in-licence')?.aggregatedValues;
+    const categories = aggregatedValues.map(item => {
+      const categoryField = item.fields.find(field => field.field === 'substance-category');
+      return translateOption(req, categoryField.field, categoryField.value);
+    }).sort();
+    const uniqueCategories = [...new Set(categories)]
+    req.sessionModel.set('parsed-substance-categories', uniqueCategories.join('\n'));
+    return super.saveValues(req, res, next);
   }
 };
