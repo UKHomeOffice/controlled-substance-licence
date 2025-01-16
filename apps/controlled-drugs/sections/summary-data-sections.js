@@ -1,5 +1,7 @@
 'use strict';
 
+const { formatDate } = require('../../../utils');
+
 module.exports = {
 
   'about-the-applicants': {
@@ -61,6 +63,49 @@ module.exports = {
           ];
           return premisesContactDetails.join('\n');
         }
+      },
+      {
+        step: '/how-funded',
+        field: 'how-are-you-funded'
+      },
+      {
+        step: '/person-in-charge',
+        field: 'person-incharge-details',
+        parse: (list, req) => {
+          const personInchargeDetails = [
+            req.sessionModel.get('person-in-charge-full-name'),
+            req.sessionModel.get('person-in-charge-email-address')
+          ];
+          return personInchargeDetails.join('\n');
+        }
+      },
+      {
+        step: '/person-in-charge-dbs',
+        field: 'person-in-charge-dbs-information',
+        parse: (val, req) => {
+          const personInChargeDbsInfo = [
+            req.sessionModel.get('person-in-charge-dbs-fullname'),
+            req.sessionModel.get('person-in-charge-dbs-reference'),
+            formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue'))
+          ];
+          return personInChargeDbsInfo.join('\n');
+        }
+      },
+      {
+        step: '/person-in-charge-dbs-updates',
+        field: 'person-in-charge-dbs-subscription'
+      },
+      {
+        step: '/legal-business-proceedings',
+        field: 'legal-business-proceedings'
+      },
+      {
+        step: '/legal-proceedings-details',
+        field: 'legal-proceedings-details'
+      },
+      {
+        step: '/criminal-conviction',
+        field: 'has-anyone-received-criminal-conviction'
       }
     ]
   }

@@ -6,7 +6,7 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "companyNumber": "Enter a real company number"
+    "companyNumber": "Enter a real company number, like 16850062"
   },
   "telephone": {
     "required": "Enter a UK telephone number",
@@ -66,5 +66,53 @@
   "premises-email": {
     "required": "Enter an email address",
     "email": "Enter a real email address"
+  },
+  "how-are-you-funded": {
+    "required": "Select how you are funded"
+  },
+  "person-in-charge-full-name": {
+    "required": "Enter the name of the person in charge",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "person-in-charge-email-address": {
+    "required": "Enter an email address for the person in charge",
+    "email": "Enter a real email address"
+  },
+  "person-in-charge-confirmed-dbs": {
+    "required": "You must confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "person-in-charge-dbs-fullname": {
+    "required": "Enter the name on the person in charge's DBS application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
+  },
+  "person-in-charge-dbs-reference": {
+    "required": "Enter the person in charge's DBS reference",
+    "maxlength": "DBS reference must be between 3 and 25 characters",
+    "minlength": "DBS reference must be between 3 and 25 characters",
+    "alphanum": "Enter a real DBS certificate number or application reference number"
+  },
+  "person-in-charge-dbs-date-of-issue": {
+    "required": "Enter the DBS date of issue or application for the person in charge",
+    "date": "Enter a real date of issue or application",
+    "before": "DBS date of issue or application must not be in the future",
+    "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
+  },
+  "person-in-charge-dbs-subscription": {
+    "required": "Select if the person in charge has subscribed to DBS updates"
+  },
+  "legal-business-proceedings": {
+    "required": "Select if anyone has ever been subject to legal business proceedings"
+  },
+  "has-anyone-received-criminal-conviction": {
+    "required": "Select if anyone in your organisation has ever received a criminal conviction"
+  },
+  "legal-proceedings-details": {
+    "required": "Provide details of the legal business proceedings",
+    "maxlength": "Details of legal business proceedings must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }

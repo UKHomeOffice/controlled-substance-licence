@@ -55,5 +55,76 @@
   },
   "premises-email": {
     "label": "Email address"
+  },
+  "how-are-you-funded": {
+    "legend": "How are you funded?",
+    "options": {
+      "for-profit-enterprise": {
+        "label": "‘For profit’ enterprise"
+      },
+      "atleast-50-percent-from-public-fund": {
+        "label": "At least 50% from public funds, charitable or voluntary subscriptions"
+      },
+      "100-percent-venture-capital": {
+        "label": "100% venture captial"
+      }
+    }
+  },
+  "person-in-charge-full-name": {
+    "label": "Full name"
+  },
+  "person-in-charge-email-address": {
+    "label": "Email address"
+  },
+  "person-in-charge-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "person-in-charge-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "person-in-charge-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "person-in-charge-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "person-in-charge-dbs-subscription": {
+    "legend": "Has the managing director or person in charge subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-business-proceedings": {
+    "legend": "Has anyone in your organisation ever been subject to legal business proceedings?",
+    "hint": "This includes members of the board and senior management teams. Legal proceedings includes administrative, financial or bankruptcy cases",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "has-anyone-received-criminal-conviction": {
+    "legend": "Has anyone in your organisation ever received a criminal conviction?",
+    "hint": "This includes members of the board and senior management teams. Conviction means UK and overseas convictions.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-proceedings-details": {
+    "label": "Provide details of the legal business proceedings"
   }
 }

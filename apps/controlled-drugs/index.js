@@ -61,18 +61,32 @@ const steps = {
   },
 
   '/how-funded': {
+    fields: ['how-are-you-funded'],
     next: '/person-in-charge'
   },
 
   '/person-in-charge': {
+    fields: [
+      'person-in-charge-full-name',
+      'person-in-charge-email-address',
+      'person-in-charge-confirmed-dbs'
+    ],
     next: '/person-in-charge-dbs'
   },
 
   '/person-in-charge-dbs': {
+    fields: [
+      'person-in-charge-dbs-fullname',
+      'person-in-charge-dbs-reference',
+      'person-in-charge-dbs-date-of-issue'
+    ],
     next: '/person-in-charge-dbs-updates'
   },
 
   '/person-in-charge-dbs-updates': {
+    fields: [
+      'person-in-charge-dbs-subscription'
+    ],
     next: '/member-of-professional-body'
   },
 
@@ -85,14 +99,26 @@ const steps = {
   },
 
   '/legal-business-proceedings': {
-    next: '/criminal-conviction'
+    fields: ['legal-business-proceedings'],
+    forks: [
+      {
+        target: '/criminal-conviction',
+        condition: {
+          field: 'legal-business-proceedings',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/legal-proceedings-details'
   },
 
   '/legal-proceedings-details': {
+    fields: ['legal-proceedings-details'],
     next: '/criminal-conviction'
   },
 
   '/criminal-conviction': {
+    fields: ['has-anyone-received-criminal-conviction'],
     next: '/responsible-for-security'
   },
 
@@ -364,6 +390,7 @@ const steps = {
 module.exports = {
   name: 'controlled-drugs',
   fields: 'apps/controlled-drugs/fields',
+  views: 'apps/controlled-drugs/views',
   translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',

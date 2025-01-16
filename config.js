@@ -8,7 +8,7 @@ module.exports = {
   dateLocales: 'en-GB',
   dateFormat: {
     day: 'numeric',
-    month: 'numeric',
+    month: 'long',
     year: 'numeric'
   },
   govukNotify: {

@@ -1,5 +1,6 @@
 {
   "header": "Controlled drugs application",
   "serviceName": "Controlled drugs application",
-  "error": "Error"
+  "error": "Error",
+  "warning": "Warning"
 }
