@@ -94,6 +94,18 @@ module.exports = {
       {
         step: '/person-in-charge-dbs-updates',
         field: 'person-in-charge-dbs-subscription'
+      },
+      {
+        step: '/legal-business-proceedings',
+        field: 'legal-business-proceedings'
+      },
+      {
+        step: '/legal-proceedings-details',
+        field: 'legal-proceedings-details'
+      },
+      {
+        step: '/criminal-conviction',
+        field: 'has-anyone-received-criminal-conviction'
       }
     ]
   }

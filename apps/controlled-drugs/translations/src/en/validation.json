@@ -6,7 +6,7 @@
     "minlength": "Company name must be between 2 and 200 characters"
   },
   "company-number": {
-    "companyNumber": "Enter a real company number"
+    "companyNumber": "Enter a real company number, like 16850062"
   },
   "telephone": {
     "required": "Enter a UK telephone number",
@@ -103,5 +103,16 @@
   },
   "person-in-charge-dbs-subscription": {
     "required": "Select if the person in charge has subscribed to DBS updates"
+  },
+  "legal-business-proceedings": {
+    "required": "Select if anyone has ever been subject to legal business proceedings"
+  },
+  "has-anyone-received-criminal-conviction": {
+    "required": "Select if anyone in your organisation has ever received a criminal conviction"
+  },
+  "legal-proceedings-details": {
+    "required": "Provide details of the legal business proceedings",
+    "maxlength": "Details of legal business proceedings must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
