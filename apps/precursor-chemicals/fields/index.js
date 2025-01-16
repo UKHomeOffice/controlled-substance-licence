@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const chemicals = require('../data/chemicals.json');
 
 module.exports = {
   'company-name': {
@@ -254,6 +255,90 @@ module.exports = {
   'invoicing-purchase-order-number': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'substance-category': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: '1'
+      },
+      {
+        value: '2'
+      },
+      {
+        value: '3'
+      },
+      {
+        value: 'unknown'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'which-chemical': {
+    isPageHeading: true,
+    mixin: 'select',
+    className: ['typeahead'],
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.which-chemical.options.none_selected'
+    }].concat(chemicals)
+  },
+  'which-operation': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    isPageHeading: true,
+    options: [
+      {
+        value: 'resale-or-supply'
+      },
+      {
+        value: 'import-or-export'
+      },
+      {
+        value: 'manufacture-of-precursors'
+      },
+      {
+        value: 'manufacture-of-products'
+      },
+      {
+        value: 'supply-of-precursors'
+      },
+      {
+        value: 'supply-of-products'
+      },
+      {
+        value: 'storage'
+      },
+      {
+        value: 'research-development-teaching'
+      },
+      {
+        value: 'incineration'
+      },
+      {
+        value: 'lab-testing-and-processing'
+      },
+      {
+        value: 'packing-or-repackaging'
+      },
+      {
+        value: 'veterinary-pharma-drug'
+      },
+      {
+        value: 'other'
+      }
+    ]
+  },
+  'what-operation': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'chemicals-used-for': {

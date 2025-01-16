@@ -32,7 +32,7 @@
   "guarantor-dbs-information": {
     "header": "Guarantor DBS information"
   },
- 
+
   "invoicing-address": {
     "header": "Invoicing address",
     "intro": "This is the address of your headquarters, and if you are registering as a limited company it must match your Companies House registered address."
@@ -42,28 +42,8 @@
     "header": "Invoicing contact details"
   },
 
-  "substance-category": {
-    "header": "Which category is the new substance?"
-  },
-
-  "which-chemical": {
-    "header": "Which chemical are you applying for?"
-  },
-
-  "which-operation": {
-    "header": "Which operation applies to this licence for X?"
-  },
-
   "substances-in-licence": {
     "header": "Substances in your licence"
-  },
-
-  "chemical-name": {
-    "header": "What is the name of the chemical are you applying for?"
-  },
-
-  "what-operation": {
-    "header": "What other operation applies to the licence?"
   },
 
   "upload-company-certificate": {

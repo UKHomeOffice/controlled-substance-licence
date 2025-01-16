@@ -161,6 +161,20 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
   },
+  "substance-category": {
+    "required": "Select a category for the new substance"
+  },
+  "which-chemical": {
+    "required": "Enter which chemical you are applying for"
+  },
+  "which-operation": {
+    "required": "Select the operation this licence is for"
+  },
+  "what-operation": {
+    "required": "Enter an operation",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Operation must be between 1 and 250 characters"
+  },
   "chemicals-used-for": {
     "required": "Enter details of the chemicals and what they will be used for",
     "notUrl": "Your answer must not contain URLs or links",

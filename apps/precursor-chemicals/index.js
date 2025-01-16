@@ -3,6 +3,7 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const FilterChemicals = require('./behaviours/filter-chemicals');
 
 const steps = {
 
@@ -141,22 +142,31 @@ const steps = {
   /** About the licence */
 
   '/substance-category': {
+    fields: ['substance-category'],
     next: '/which-chemical'
   },
 
   '/which-chemical': {
-    next: '/which-operation'
-  },
-
-  '/chemical-name': {
+    fields: ['which-chemical'],
+    behaviours: [FilterChemicals],
     next: '/which-operation'
   },
 
   '/which-operation': {
+    fields: ['which-operation'],
+    forks: [
+      {
+        target: '/what-operation',
+        condition: req => Array.isArray(req.sessionModel.get('which-operation')) ?
+          req.sessionModel.get('which-operation').includes('other') :
+          req.sessionModel.get('which-operation') === 'other'
+      }
+    ],
     next: '/substances-in-licence'
   },
 
   '/what-operation': {
+    fields: ['what-operation'],
     next: '/substances-in-licence'
   },
 
