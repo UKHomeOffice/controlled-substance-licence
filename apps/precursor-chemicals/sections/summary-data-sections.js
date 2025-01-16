@@ -1,6 +1,6 @@
 'use strict';
 
-const { formatDate, parseOperations, findChemical, translateOption } = require('../../../utils');
+const { formatDate, parseOperations, findChemical } = require('../../../utils');
 
 module.exports = {
 

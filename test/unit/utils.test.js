@@ -38,6 +38,6 @@ describe('Utilities \'findChemical\'', () => {
   });
 
   test('returns undefined when the chemical cannot be found in list', () => {
-    expect(findChemical('mayonnaise')).toBe(undefined)
+    expect(findChemical('mayonnaise')).toBe(undefined);
   });
 });

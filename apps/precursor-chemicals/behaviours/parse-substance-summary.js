@@ -31,7 +31,7 @@ module.exports = superclass => class extends superclass {
       const categoryField = item.fields.find(field => field.field === 'substance-category');
       return translateOption(req, categoryField.field, categoryField.value);
     }).sort();
-    const uniqueCategories = [...new Set(categories)]
+    const uniqueCategories = [...new Set(categories)];
     req.sessionModel.set('parsed-substance-categories', uniqueCategories.join('\n'));
     return super.saveValues(req, res, next);
   }
