@@ -64,7 +64,7 @@ describe('parse-substance-summary', () => {
       jest.restoreAllMocks();
     });
 
-    test('locals.noMoreItems is set when the aggregateLimit is met', () => {
+    test('Parsed values are correctly added to locals.items', () => {
       const locals = instance.locals(req, res);
       expect(locals).toHaveProperty('items', [
         {
@@ -116,11 +116,11 @@ describe('parse-substance-summary', () => {
     });
 
     test('saveValues was called', () => {
-      instance.saveValues(req, res);
+      instance.saveValues(req, res, next);
       expect(Base.prototype.saveValues).toHaveBeenCalled();
     });
 
-    test('Saves a single added category into the correct joined string', () => {
+    test('Saves a single added category as a correctly parsed string', () => {
       instance.saveValues(req, res, next);
       expect(req.sessionModel.get('parsed-substance-categories')).toBe('Category 3');
     });
