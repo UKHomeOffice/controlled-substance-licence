@@ -278,5 +278,15 @@
   },
   "declaration-check": {
     "required": "Confirm that you understand and accept this declaration"
+  },
+  "contract-start-date": {
+    "required": "Enter a date",
+    "date": "Enter a date in the correct format",
+    "after": "Contract start date must be in the future"
+  },
+  "contract-details": {
+    "required": "Enter more detail about the contract and how it affects your application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "You have exceeded the 2000 character limit"
   }
 }

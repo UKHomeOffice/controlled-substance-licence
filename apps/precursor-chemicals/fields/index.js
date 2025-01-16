@@ -538,5 +538,62 @@ module.exports = {
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
+  },
+  'why-requesting-new-licence': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'we-are-moving-site'
+      },
+      {
+        value: 'for-another-site'
+      }
+    ]
+  },
+  'moving-date': dateComponent('moving-date', {
+    mixin: 'input-date',
+    isPageHeading: 'true',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contractual-agreement': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'contract-start-date': dateComponent('contract-start-date', {
+    mixin: 'input-date',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contract-details': {
+    isPageHeading: true,
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
   }
 };

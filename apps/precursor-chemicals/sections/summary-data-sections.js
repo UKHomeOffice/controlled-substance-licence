@@ -19,6 +19,15 @@ module.exports = {
       {
         step: '/contractual-agreement',
         field: 'contractual-agreement'
+      },
+      {
+        step: '/when-start',
+        field: 'contract-start-date',
+        parse: value => formatDate(value)
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details'
       }
     ]
   },

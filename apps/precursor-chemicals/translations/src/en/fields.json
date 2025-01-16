@@ -361,6 +361,12 @@
     "label": "Upload a file",
     "no-files-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded"
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
   }
-  
 }
