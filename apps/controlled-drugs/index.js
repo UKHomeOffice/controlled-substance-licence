@@ -390,6 +390,7 @@ const steps = {
 module.exports = {
   name: 'controlled-drugs',
   fields: 'apps/controlled-drugs/fields',
+  views: 'apps/controlled-drugs/views',
   translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',

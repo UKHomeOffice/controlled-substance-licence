@@ -7,7 +7,7 @@ module.exports = superclass => class extends superclass {
     if (key === 'company-number') {
       const companyNumber = req.form.values[key];
       if (companyNumber) {
-        if (!validators.regex(companyNumber, /^[A-Za-z]{1,2}\d{8,12}$/)) {
+        if (!validators.regex(companyNumber, /^[A-Za-z\d]{2}\d{6}$/)) {
           return validationErrorFunc('companyNumber');
         }
       }
