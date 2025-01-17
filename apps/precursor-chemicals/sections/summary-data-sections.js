@@ -4,6 +4,23 @@ const { formatDate } = require('../../../utils');
 
 module.exports = {
 
+  'background-information': {
+    steps: [
+      {
+        step: 'change-responsible-officer-or-guarantor',
+        field: 'change-responsible-officer-or-guarantor'
+      },
+      {
+        step: 'additional-category',
+        field: 'additional-category'
+      },
+      {
+        step: 'change-substance-or-operation',
+        field: 'change-substance-or-operation'
+      }
+    ]
+  },
+
   'about-the-applicants': {
     steps: [
       {

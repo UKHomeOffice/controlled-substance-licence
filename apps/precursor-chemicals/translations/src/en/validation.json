@@ -1,4 +1,14 @@
 {
+  "change-responsible-officer-or-guarantor": {
+    "required": "Select if you are requesting to change the responsible person or guarantor for this site only"
+  },
+  "additional-category": {
+    "required": "Select if you are requesting an additional category"
+  },
+  "change-substance-or-operation": {
+    "required": "Select if you are requesting a change of substance or operation"
+  },
+
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",

@@ -87,6 +87,9 @@
   
   "confirm": {
     "sections": {
+      "background-information": {
+        "header": "Background information"
+      },
       "about-the-applicants": {
         "header": "About the applicants"
       },
@@ -104,6 +107,16 @@
       }
     },
     "fields": {
+      "change-responsible-officer-or-guarantor": {
+        "label": "Change in authorised witness for this site only"
+      },
+      "additional-category": {
+        "label": "Requesting an additional category"
+      },
+      "change-substance-or-operation": {
+        "label": "Change of substance or operation"
+      },
+
       "licence-holder-details": {
          "label": "Licence holder details"
        },

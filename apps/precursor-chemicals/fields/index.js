@@ -2,6 +2,57 @@ const dateComponent = require('hof').components.date;
 const chemicals = require('../data/chemicals.json');
 
 module.exports = {
+  'change-responsible-officer-or-guarantor': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'additional-category': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'change-substance-or-operation': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -60,7 +111,10 @@ module.exports = {
       {
         value: 'no'
       }
-    ]
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   },
   'premises-address-line-1': {
     validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
