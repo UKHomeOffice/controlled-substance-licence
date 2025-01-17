@@ -28,8 +28,7 @@ const steps = {
         req.sessionModel.get('licensee-type') === 'first-time-licensee'
       },
       {
-        // target: '/precursor-chemicals/companies-house-number',
-        target: '/precursor-chemicals/change-responsible-officer-or-guarantor',
+        target: '/precursor-chemicals/companies-house-number',
         condition: req => req.sessionModel.get('licence-type') === 'precursor-chemicals' &&
         req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site'
       },
