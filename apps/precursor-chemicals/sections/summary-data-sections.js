@@ -3,7 +3,18 @@
 const { formatDate } = require('../../../utils');
 
 module.exports = {
-
+  'background-information': {
+    steps: [
+      {
+        step: '/companies-house-name',
+        field: 'companies-house-name'
+      },
+      {
+        step: '/companies-house-number',
+        field: 'companies-house-number'
+      }
+    ]
+  },
   'about-the-applicants': {
     steps: [
       {

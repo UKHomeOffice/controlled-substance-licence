@@ -467,5 +467,33 @@ module.exports = {
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
+  },
+  'companies-house-number': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'companies-house-name': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
   }
 };

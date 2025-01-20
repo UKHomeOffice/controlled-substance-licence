@@ -261,5 +261,11 @@
   },
   "declaration-check": {
     "required": "Confirm that you understand and accept this declaration"
+  },
+  "companies-house-number": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "companies-house-name": {
+    "required": "Select if your registered name at Companies House has changed since your last application"
   }
 }
