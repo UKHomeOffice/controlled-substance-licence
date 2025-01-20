@@ -56,6 +56,7 @@ module.exports = class UploadModel extends Model {
 
       logger.info(`Received response from file-vault with keys: ${Object.keys(response)}`);
 
+      console.log('URL: ', response.url.replace('/file/', '/file/generate-link/').split('?')[0]);
       this.set({
         url: response.url.replace('/file/', '/file/generate-link/').split('?')[0]
       });
@@ -108,6 +109,8 @@ module.exports = class UploadModel extends Model {
       }
 
       logger.info('Successfully retrieved access token');
+
+      console.log('TOKEN: ', response.data.access_token);
       return {
         bearer: response.data.access_token
       };

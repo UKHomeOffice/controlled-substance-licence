@@ -149,7 +149,7 @@ spec:
             {{ end }}
           args:
             # URls that you wish to protect.
-            - --resources=uri=/*
+            - --resources="uri=/*|roles=application-approved"
             - --enable-default-deny=false
             - --enable-security-filter=true
             - --enable-request-id=true
