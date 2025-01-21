@@ -3,7 +3,7 @@ module.exports = superclass => class extends superclass {
     if (URL.canParse(req.get('Referrer'))) {
       const referrer = new URL(req.get('Referrer'));
       const referrerPath = referrer.pathname;
-      if (referrerPath.includes('summary')) {
+      if (referrerPath.includes(req.form.options.confirmStep)) {
         req.sessionModel.set('referred-by-summary', true);
       }
     }

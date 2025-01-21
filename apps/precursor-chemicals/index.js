@@ -189,8 +189,8 @@ const steps = {
       'which-operation',
       'what-operation'
     ],
+    titleField: 'which-chemical',
     addStep: 'substance-category',
-    addAnotherLinkText: 'substance',
     continueOnEdit: false,
     template: 'substance-summary',
     backLink: 'substance-category',

@@ -50,6 +50,7 @@
       "operations": "Operations",
       "action": "Action"
     },
+    "add-another": "Add another substance",
     "substance-limit-exceeded": "You can not add any more substances"
   },
 

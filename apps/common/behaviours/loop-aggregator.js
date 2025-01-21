@@ -41,11 +41,13 @@ module.exports = superclass => class extends superclass {
   addItem(req, res) {
     const items = this.getAggregateArray(req);
     const fields = [];
-    const aggregateLimit = req.form.options.aggregateLimit || undefined;
+    let itemTitle = '';
+    const aggregateLimit = req.form.options.aggregateLimit;
 
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
       const aggregateFromField = aggregateFromElement.field || aggregateFromElement;
       const value = req.sessionModel.get(aggregateFromField);
+      itemTitle = req.form.options.titleField === aggregateFromField ? value : itemTitle;
 
       fields.push({
         field: aggregateFromField,
@@ -59,7 +61,7 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.unset(aggregateFromField);
     });
 
-    const newItem = { fields };
+    const newItem = { itemTitle, fields };
     const updatingIndex = req.sessionModel.get('aggregator-edit-id') || items.length;
 
     if (aggregateLimit) {
@@ -110,7 +112,7 @@ module.exports = superclass => class extends superclass {
       action = 'redirectToAddStep';
     }
 
-    return action || 'showItems';
+    return action;
   }
 
   getValues(req, res, next) {
@@ -132,7 +134,6 @@ module.exports = superclass => class extends superclass {
       case 'redirectToAddStep':
         this.redirectToAddStep(req, res);
         break;
-      case 'showItems':
       default:
         return Object.assign({}, super.getValues(req, res, next), { redirected: false });
     }
@@ -156,8 +157,7 @@ module.exports = superclass => class extends superclass {
       items,
       hasItems: items.length > 0,
       addStep: req.form.options.addStep,
-      field: req.form.options.aggregateTo,
-      addAnotherLinkText: req.form.options.addAnotherLinkText
+      field: req.form.options.aggregateTo
     });
   }
 };

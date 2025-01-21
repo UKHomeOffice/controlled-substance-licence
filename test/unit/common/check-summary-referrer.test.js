@@ -35,6 +35,7 @@ describe('check-summary-referrer', () => {
         }
         return null;
       });
+      req.form.options.confirmStep = '/summary';
     });
 
     afterEach(() => {
