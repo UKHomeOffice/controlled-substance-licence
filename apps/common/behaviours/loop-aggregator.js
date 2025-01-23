@@ -155,7 +155,6 @@ module.exports = superclass => class extends superclass {
 
     return Object.assign({}, super.locals(req, res), {
       items,
-      hasItems: items.length > 0,
       addStep: req.form.options.addStep,
       field: req.form.options.aggregateTo
     });
