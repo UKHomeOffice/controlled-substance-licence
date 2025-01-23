@@ -3,13 +3,14 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const setBackLink = require('../common/behaviours/set-back-link');
 
 const steps = {
 
-  /** About the applicants */
+  /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
-    behaviours: [customValidation],
+    behaviours: [customValidation, setBackLink],
     fields: [
       'company-name',
       'company-number',
@@ -17,8 +18,7 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address',
-    backLink: '/licensee-type'
+    next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
@@ -274,15 +274,21 @@ const steps = {
     clearSession: true
   },
 
+  /** Continue an application */
+
   '/information-you-have-given-us': {
     next: '/licence-holder-details',
     backLink: '/application-type'
   },
 
+  /** Renew existing licence - Background Information */
+
   '/companies-house-number': {
     next: '/licence-holder-details',
     backLink: '/licensee-type'
   },
+
+  /** Excisting licence apply for new site - Background Information */
 
   '/why-new-licence': {
     fields: ['why-requesting-new-licence'],
@@ -315,8 +321,7 @@ const steps = {
         }
       }
     ],
-    next: '/when-start',
-    backLink: '/licensee-type'
+    next: '/when-start'
   },
 
   '/when-start': {

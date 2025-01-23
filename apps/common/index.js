@@ -1,3 +1,5 @@
+const saveLicenseeType = require('./behaviours/save-licensee-type');
+
 const steps = {
   '/licence-type': {
     fields: ['licence-type'],
@@ -20,6 +22,7 @@ const steps = {
     next: '/licensee-type'
   },
   '/licensee-type': {
+    behaviours: [saveLicenseeType],
     fields: ['licensee-type'],
     forks: [
       {
