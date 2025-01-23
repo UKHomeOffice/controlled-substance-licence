@@ -30,17 +30,8 @@
   "member-of-professional-body": {
     "header": "Are they, or anyone named on this application, a member of a professional body?"
   },
-  "legal-business-proceedings": {
-    "header": "Has anyone in your organisation ever been subject to legal business proceedings?"
-  },
   "professional-body-details": {
     "header": "Provide details of the professional bodies and relevant reference numbers"
-  },
-  "criminal-conviction": {
-    "header": "Has anyone in your organisation ever received a criminal conviction?"
-  },
-  "legal-proceedings-details": {
-    "header": "Provide details of the legal business proceedings"
   },
   "responsible-for-security": {
     "header": "Who is responsible for the security of the premises?"
@@ -263,6 +254,15 @@
       },
       "person-in-charge-dbs-information": {
         "label": "Managing director DBS information"
+      },
+      "legal-business-proceedings": {
+        "label": "Anyone in your organisation been subject to legal proceedings?"
+      },
+      "legal-proceedings-details": {
+        "label": "Details of legal proceedings"
+      },
+      "has-anyone-received-criminal-conviction": {
+        "label": "Anyone in your organisation ever received a criminal conviction?"
       }
     }
   }
