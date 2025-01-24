@@ -12,35 +12,5 @@
         "label": "Low THC cannabis (industrial hemp)"
       }
     }
-  },
-  "application-form-type": {
-    "legend": "How would you like to apply?",
-    "options": {
-      "new-application": {
-        "label": "A new application",
-        "hint": "You will need a controlled drug activity user list to upload later"
-      },
-      "continue-an-application": {
-        "label": "Continue an application",
-        "hint": "An incomplete application stays on the system for 5 days and is then deleted"
-      },
-      "amend-application": {
-        "label": "Amend pending application"
-      }
-    }
-  },
-  "licensee-type": {
-    "legend": "What type of licensee are you?",
-    "options": {
-      "first-time-licensee": {
-        "label": "A first time licensee"
-      },
-      "existing-licensee-renew-or-change-site": {
-        "label": "Existing licensee renewing or changing a currently licensed site"
-      },
-      "existing-licensee-applying-for-new-site": {
-        "label": "Existing licensee applying for a new site"
-      }
-    }
   }
 }

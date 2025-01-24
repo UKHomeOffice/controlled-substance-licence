@@ -2,6 +2,77 @@ const dateComponent = require('hof').components.date;
 const chemicals = require('../data/chemicals.json');
 
 module.exports = {
+  'application-form-type': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'new-application'
+      },
+      {
+        value: 'continue-an-application'
+      },
+      {
+        value: 'amend-application'
+      }
+    ]
+  },
+  'licensee-type': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'first-time-licensee'
+      },
+      {
+        value: 'existing-licensee-renew-or-change-site'
+      },
+      {
+        value: 'existing-licensee-applying-for-new-site'
+      }
+    ]
+  },
+  'why-requesting-new-licence': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'we-are-moving-site'
+      },
+      {
+        value: 'for-another-site'
+      }
+    ]
+  },
+  'moving-date': dateComponent('moving-date', {
+    mixin: 'input-date',
+    isPageHeading: 'true',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contractual-agreement': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -467,44 +538,5 @@ module.exports = {
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
-  },
-  'why-requesting-new-licence': {
-    mixin: 'radio-group',
-    isPageHeading: 'true',
-    validate: ['required'],
-    options: [
-      {
-        value: 'we-are-moving-site'
-      },
-      {
-        value: 'for-another-site'
-      }
-    ]
-  },
-  'moving-date': dateComponent('moving-date', {
-    mixin: 'input-date',
-    isPageHeading: 'true',
-    validate: [
-      'required',
-      'date',
-      { type: 'after', arguments: ['0', 'days'] }
-    ],
-    legend: {
-      className: 'govuk-!-margin-bottom-4'
-    }
-  }),
-  'contractual-agreement': {
-    isPageHeading: 'true',
-    mixin: 'radio-group',
-    validate: ['required'],
-    className: ['govuk-radios govuk-radios--inline'],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ]
   }
 };
