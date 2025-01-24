@@ -61,5 +61,10 @@ module.exports = {
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
     }
+  },
+  aggregateLimits: {
+    precursorChemicals: {
+      substanceLimit: 100
+    }
   }
 };

@@ -43,7 +43,15 @@
   },
 
   "substances-in-licence": {
-    "header": "Substances in your licence"
+    "header": "Substances in your licence",
+    "table-headers": {
+      "substance": "Scheduled substance and CN code",
+      "category": "Category",
+      "operations": "Operations",
+      "action": "Action"
+    },
+    "add-another": "Add another substance",
+    "substance-limit-exceeded": "You can not add any more substances"
   },
 
   "upload-company-certificate": {
@@ -84,7 +92,7 @@
   "information-you-have-given-us": {
     "header": "Information you have given us"
   },
-  
+
   "confirm": {
     "sections": {
       "about-the-applicants": {
@@ -145,6 +153,12 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "parsed-substance-categories": {
+        "label": "Categories the licence will cover"
+      },
+      "substances-in-licence": {
+        "label": "Substances in your licence"
       },
       "chemicals-used-for": {
         "label": "Reason for chemical application"

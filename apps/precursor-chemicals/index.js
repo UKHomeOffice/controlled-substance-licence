@@ -1,10 +1,15 @@
+const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
+const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const FilterChemicals = require('./behaviours/filter-chemicals');
-
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const LimitItems = require('../common/behaviours/limit-items');
+const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
+const CheckSummaryReferrer = require('../common/behaviours/check-summary-referrer');
 const steps = {
 
   /** About the applicants */
@@ -171,7 +176,29 @@ const steps = {
   },
 
   '/substances-in-licence': {
-    next: '/why-chemicals-needed'
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      ParseSubstanceSummary,
+      CheckSummaryReferrer
+    ],
+    aggregateTo: 'substances-in-licence',
+    aggregateFrom: [
+      'which-chemical',
+      'substance-category',
+      'which-operation',
+      'what-operation'
+    ],
+    titleField: 'which-chemical',
+    addStep: 'substance-category',
+    continueOnEdit: false,
+    template: 'substance-summary',
+    backLink: 'substance-category',
+    aggregateLimit: config.aggregateLimits.precursorChemicals.substanceLimit,
+    next: '/why-chemicals-needed',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/why-chemicals-needed': {
@@ -269,7 +296,7 @@ const steps = {
   },
 
   '/summary': {
-    behaviours: [Summary],
+    behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
     next: '/declaration'
   },
