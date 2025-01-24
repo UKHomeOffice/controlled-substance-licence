@@ -3,7 +3,7 @@ const steps = {
     fields: ['licence-type'],
     forks: [
       {
-        target: '/precursor-chemicals//application-type',
+        target: '/precursor-chemicals/application-type',
         condition: {
           field: 'licence-type',
           value: 'precursor-chemicals'
