@@ -7,12 +7,14 @@ module.exports = {
     steps: [
       {
         step: '/why-new-licence',
-        field: 'why-new-licence'
+        field: 'why-requesting-new-licence'
       },
       {
         step: '/when-moving-site',
         field: 'moving-date',
-        parse: value => formatDate(value)
+        parse: value => {
+          return value ? formatDate(value) : null;
+        }
       },
       {
         step: '/contractual-agreement',
