@@ -4,6 +4,62 @@ const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
 
+  '/application-type': {
+    fields: ['application-form-type'],
+    forks: [
+      {
+        target: '/information-you-have-given-us',
+        condition: {
+          field: 'application-form-type',
+          value: 'continue-an-application'
+        }
+      }
+    ],
+    next: '/licensee-type',
+    backLink: '/licence-type'
+  },
+
+  '/licensee-type': {
+    fields: ['licensee-type'],
+    forks: [
+      {
+        target: '/company-number-changed',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+
+  /** Continue an application */
+
+  '/information-you-have-given-us': {
+    next: '/licence-holder-details'
+  },
+
+  /** Renew existing licence - Background Information */
+
+  '/company-number-changed': {
+    next: '/licence-holder-details'
+  },
+
+  /** Excisting licence apply for new site - Background Information */
+
+  '/why-new-licence': {
+    next: '/licence-holder-details'
+  },
+
+  /** First time licensee - About the applicants */
+
   '/licence-holder-details': {
     behaviours: [customValidation],
     fields: [
@@ -13,8 +69,7 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address',
-    backLink: '/application-type'
+    next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
@@ -369,21 +424,6 @@ const steps = {
   },
 
   '/application-submitted': {
-  },
-
-  '/information-you-have-given-us': {
-    next: '/licence-holder-details',
-    backLink: '/application-type'
-  },
-
-  '/company-number-changed': {
-    next: '/licence-holder-details',
-    backLink: '/licensee-type'
-  },
-
-  '/why-new-licence': {
-    next: '/licence-holder-details',
-    backLink: '/licensee-type'
   }
 };
 

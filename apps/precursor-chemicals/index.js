@@ -12,7 +12,100 @@ const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const CheckSummaryReferrer = require('../common/behaviours/check-summary-referrer');
 const steps = {
 
-  /** About the applicants */
+  /** Start of journey */
+
+  '/application-type': {
+    fields: ['application-form-type'],
+    forks: [
+      {
+        target: '/information-you-have-given-us',
+        condition: {
+          field: 'application-form-type',
+          value: 'continue-an-application'
+        }
+      }
+    ],
+    next: '/licensee-type',
+    backLink: '/licence-type'
+  },
+
+  '/licensee-type': {
+    fields: ['licensee-type'],
+    forks: [
+      {
+        target: '/companies-house-number',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+
+  /** Continue an application */
+
+  '/information-you-have-given-us': {
+    next: '/licence-holder-details'
+  },
+
+  /** Renew existing licence - Background Information */
+
+  '/companies-house-number': {
+    next: '/licence-holder-details'
+  },
+
+  /** Excisting licence apply for new site - Background Information */
+
+  '/why-new-licence': {
+    fields: ['why-requesting-new-licence'],
+    forks: [
+      {
+        target: '/contractual-agreement',
+        condition: {
+          field: 'why-requesting-new-licence',
+          value: 'for-another-site'
+        }
+      }
+    ],
+    next: '/when-moving-site'
+  },
+
+  '/when-moving-site': {
+    fields: ['moving-date'],
+    next: '/licence-holder-details'
+  },
+
+  '/contractual-agreement': {
+    fields: ['contractual-agreement'],
+    forks: [
+      {
+        target: '/licence-holder-details',
+        condition: {
+          field: 'contractual-agreement',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/when-start'
+  },
+
+  '/when-start': {
+    next: '/contract-details'
+  },
+
+  '/contract-details': {
+    next: '/licence-holder-details'
+  },
+
+  /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
     behaviours: [customValidation],
@@ -23,8 +116,7 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address',
-    backLink: '/licensee-type'
+    next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
@@ -309,21 +401,6 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
-  },
-
-  '/information-you-have-given-us': {
-    next: '/licence-holder-details',
-    backLink: '/application-type'
-  },
-
-  '/companies-house-number': {
-    next: '/licence-holder-details',
-    backLink: '/licensee-type'
-  },
-
-  '/why-new-licence': {
-    next: '/licence-holder-details',
-    backLink: '/licensee-type'
   }
 };
 
