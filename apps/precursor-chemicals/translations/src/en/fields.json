@@ -269,7 +269,7 @@
         "label": "Packing or repackaging"
       },
       "veterinary-pharma-drug": {
-        "label": "Veterinary pharma drug "
+        "label": "Veterinary pharma drug"
       },
       "other": {
         "label": "Other"
@@ -369,4 +369,5 @@
   "contract-details": {
     "label": "Tell us more about the contract and how it affects your licence application"
   }
+  
 }

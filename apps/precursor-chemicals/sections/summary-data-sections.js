@@ -1,6 +1,6 @@
 'use strict';
 
-const { formatDate } = require('../../../utils');
+const { formatDate, parseOperations, findChemical } = require('../../../utils');
 
 module.exports = {
   'background-information': {
@@ -179,6 +179,29 @@ module.exports = {
   },
   'about-the-licence': {
     steps: [
+      {
+        step: '/substances-in-licence',
+        field: 'parsed-substance-categories',
+        changeLink: 'substances-in-licence/edit'
+      },
+      {
+        step: '/substances-in-licence',
+        field: 'substances-in-licence',
+        changeLink: 'substances-in-licence/edit',
+        parse: (obj, req) => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
+            const standardOps = item.fields.find(field => field.field === 'which-operation');
+            const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
+
+            const parsedSubstance = findChemical(substance)?.label ?? substance;
+            const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
+
+            return `${parsedSubstance}\n\n${parsedOps}`;
+          }).join('\n\n');
+        }
+      },
       {
         step: '/why-chemicals-needed',
         field: 'chemicals-used-for'
