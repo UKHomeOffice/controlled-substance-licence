@@ -93,10 +93,12 @@ const steps = {
   },
 
   '/when-start': {
+    fields: ['contract-start-date'],
     next: '/contract-details'
   },
 
   '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
 
@@ -374,61 +376,6 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
-  },
-
-  '/information-you-have-given-us': {
-    next: '/licence-holder-details',
-    backLink: '/application-type'
-  },
-
-  '/companies-house-number': {
-    next: '/licence-holder-details',
-    backLink: '/licensee-type'
-  },
-
-  '/why-new-licence': {
-    fields: ['why-requesting-new-licence'],
-    forks: [
-      {
-        target: '/contractual-agreement',
-        condition: {
-          field: 'why-requesting-new-licence',
-          value: 'for-another-site'
-        }
-      }
-    ],
-    next: '/when-moving-site',
-    backLink: '/licensee-type'
-  },
-
-  '/when-moving-site': {
-    fields: ['moving-date'],
-    next: '/licence-holder-details'
-  },
-
-  '/contractual-agreement': {
-    fields: ['contractual-agreement'],
-    forks: [
-      {
-        target: '/licence-holder-details',
-        condition: {
-          field: 'contractual-agreement',
-          value: 'no'
-        }
-      }
-    ],
-    next: '/when-start',
-    backLink: '/licensee-type'
-  },
-
-  '/when-start': {
-    fields: ['contract-start-date'],
-    next: '/contract-details'
-  },
-
-  '/contract-details': {
-    fields: ['contract-details'],
-    next: '/licence-holder-details'
   }
 };
 
