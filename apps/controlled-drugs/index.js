@@ -178,6 +178,25 @@ const steps = {
   },
 
   '/responsible-for-security': {
+    fields: ['responsible-for-security'],
+    forks: [
+      {
+        target: '/person-responsible-for-security',
+        condition: {
+          field: 'responsible-for-security',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/compliance-and-regulatory'
+  },
+
+  '/person-responsible-for-security': {
+    fields: [
+      'person-responsible-for-security-full-name',
+      'person-responsible-for-security-email-address',
+      'person-responsible-for-security-confirmed-dbs'
+    ],
     next: '/security-officer-dbs'
   },
 

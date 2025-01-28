@@ -244,5 +244,40 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
+  },
+  'responsible-for-security': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'same-as-managing-director'
+      },
+      {
+        value: 'someone-else'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'person-responsible-for-security-full-name': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'person-responsible-for-security-email-address': {
+    validate: ['required', 'email'],
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'person-responsible-for-security-confirmed-dbs': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };
