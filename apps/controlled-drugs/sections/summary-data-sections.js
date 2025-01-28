@@ -106,6 +106,25 @@ module.exports = {
       {
         step: '/criminal-conviction',
         field: 'has-anyone-received-criminal-conviction'
+      },
+      {
+        step: '/person-responsible-for-security',
+        field: 'person-responsible-for-security-details',
+        parse: (list, req) => {
+          const personResponsibleForSecurityName = req.sessionModel.get('person-responsible-for-security-full-name');
+          const personResponsibleForSecurityEmail = req.sessionModel.get('person-responsible-for-security-email-address')
+          const personResponsibleForSecurityDetails = [];
+
+          if (personResponsibleForSecurityName && personResponsibleForSecurityEmail) {
+            personResponsibleForSecurityDetails.push(personResponsibleForSecurityName);
+            personResponsibleForSecurityDetails.push(personResponsibleForSecurityEmail);
+          } else {
+            personResponsibleForSecurityDetails.push(req.sessionModel.get('person-in-charge-full-name'));
+            personResponsibleForSecurityDetails.push(req.sessionModel.get('person-in-charge-email-address'));
+          }
+
+          return personResponsibleForSecurityDetails.join('\n');
+        }
       }
     ]
   }
