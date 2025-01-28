@@ -111,8 +111,12 @@ module.exports = {
         step: '/person-responsible-for-security',
         field: 'person-responsible-for-security-details',
         parse: (list, req) => {
-          const personResponsibleForSecurityName = req.sessionModel.get('person-responsible-for-security-full-name');
-          const personResponsibleForSecurityEmail = req.sessionModel.get('person-responsible-for-security-email-address')
+          const personResponsibleForSecurityName = req.sessionModel.get(
+            'person-responsible-for-security-full-name'
+          );
+          const personResponsibleForSecurityEmail = req.sessionModel.get(
+            'person-responsible-for-security-email-address'
+          );
           const personResponsibleForSecurityDetails = [];
 
           if (personResponsibleForSecurityName && personResponsibleForSecurityEmail) {
