@@ -109,7 +109,7 @@ module.exports = {
       },
       {
         step: '/responsible-for-security',
-        field: 'responsible-for-security',
+        field: 'responsible-for-security-details',
         parse: (list, req) => {
           const securityResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
