@@ -69,8 +69,7 @@ const steps = {
         }
       }
     ],
-    next: '/cannot-continue',
-    backLink: '/licensee-type'
+    next: '/cannot-continue'
   },
 
   '/companies-house-name': {
@@ -95,6 +94,11 @@ const steps = {
   },
 
   '/upload-companies-house-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
     next: '/change-responsible-officer-or-guarantor'
   },
 
@@ -343,7 +347,13 @@ const steps = {
 
   '/why-chemicals-needed': {
     fields: ['chemicals-used-for'],
-    next: '/upload-company-certificate'
+    forks: [
+      {
+        target: '/upload-company-certificate',
+        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee'
+      }
+    ],
+    next: '/upload-conduct-certificate'
   },
 
   /** Evidence */

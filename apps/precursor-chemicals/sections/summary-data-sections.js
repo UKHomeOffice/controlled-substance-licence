@@ -7,26 +7,63 @@ module.exports = {
     steps: [
       {
         step: '/why-new-licence',
-        field: 'why-requesting-new-licence'
+        field: 'why-requesting-new-licence',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
       },
       {
         step: '/when-moving-site',
         field: 'moving-date',
-        parse: value => {
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
           return value ? formatDate(value) : null;
         }
       },
       {
         step: '/contractual-agreement',
-        field: 'contractual-agreement'
+        field: 'contractual-agreement',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
       },
       {
         step: '/companies-house-name',
-        field: 'companies-house-name'
+        field: 'companies-house-name',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
       },
       {
         step: '/companies-house-number',
-        field: 'companies-house-number'
+        field: 'companies-house-number',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/upload-companies-house-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   },
@@ -212,7 +249,10 @@ module.exports = {
       {
         step: '/upload-company-certificate',
         field: 'company-registration-certificate',
-        parse: documents => {
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'first-time-licensee') {
+            return null;
+          }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       },
