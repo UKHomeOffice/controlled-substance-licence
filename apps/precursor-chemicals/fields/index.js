@@ -3,8 +3,8 @@ const chemicals = require('../data/chemicals.json');
 
 module.exports = {
   'application-form-type': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -19,8 +19,8 @@ module.exports = {
     ]
   },
   'licensee-type': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -88,8 +88,8 @@ module.exports = {
     }
   }),
   'contractual-agreement': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -148,8 +148,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'is-premises-address-same': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -162,34 +162,34 @@ module.exports = {
     ]
   },
   'premises-address-line-1': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-address-line-2': {
-    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-town-or-city': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-postcode': {
-    validate: ['required', 'postcode'],
     mixin: 'input-text',
+    validate: ['required', 'postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'premises-telephone': {
-    validate: ['required'], // additional validation rules added in custom-validation.js
     mixin: 'input-text',
+    validate: ['required'], // additional validation rules added in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-email': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-fullname': {
@@ -229,8 +229,8 @@ module.exports = {
     }
   }),
   'responsible-officer-dbs-update-subscription': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -246,13 +246,13 @@ module.exports = {
     }
   },
   'guarantor-full-name': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-email-address': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-confirmed-dbs': {
@@ -260,13 +260,13 @@ module.exports = {
     validate: [ 'required' ]
   },
   'guarantor-dbs-full-name': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-reference': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
@@ -282,8 +282,8 @@ module.exports = {
     }
   }),
   'is-guarantor-subscribed': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -299,8 +299,8 @@ module.exports = {
     }
   },
   'has-anyone-received-criminal-conviction': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -357,8 +357,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'substance-category': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -380,8 +380,8 @@ module.exports = {
     showFieldInSummary: true
   },
   'which-chemical': {
-    isPageHeading: true,
     mixin: 'select',
+    isPageHeading: true,
     className: ['typeahead'],
     validate: ['required'],
     options: [{
@@ -445,8 +445,8 @@ module.exports = {
     showFieldInSummary: false
   },
   'chemicals-used-for': {
-    isPageHeading: true,
     mixin: 'textarea',
+    isPageHeading: true,
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
@@ -562,13 +562,31 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'extra-information': {
-    isPageHeading: true,
     mixin: 'textarea',
+    isPageHeading: true,
     validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
+  },
+  'contract-start-date': dateComponent('contract-start-date', {
+    mixin: 'input-date',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contract-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
   }
 };

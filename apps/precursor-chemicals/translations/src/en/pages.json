@@ -120,6 +120,24 @@
       }
     },
     "fields": {
+      "companies-house-number": {
+        "label": "Change of registration details"
+      },
+      "companies-house-name": {
+        "label": "Change of name"
+      },
+      "why-requesting-new-licence": {
+        "label": "Reason for collecting new license"
+      },
+      "moving-date": {
+        "label": "Date when moving site"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract "
+      },
       "licence-holder-details": {
          "label": "Licence holder details"
        },
@@ -215,18 +233,6 @@
       },
       "extra-information": {
         "label": "Extra information"
-      },
-      "why-requesting-new-licence": {
-        "label": "Reason for collecting new license"
-      },
-      "moving-date": {
-        "label": "Date when moving site"
-      },
-      "companies-house-number": {
-        "label": "Change of registration details"
-      },
-      "companies-house-name": {
-        "label": "Change of name"
       }
     }
   }

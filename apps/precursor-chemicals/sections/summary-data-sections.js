@@ -21,6 +21,17 @@ module.exports = {
         field: 'contractual-agreement'
       },
       {
+        step: '/when-start',
+        field: 'contract-start-date',
+        parse: value => {
+          return value ? formatDate(value) : null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details'
+      },
+      {
         step: '/companies-house-name',
         field: 'companies-house-name'
       },

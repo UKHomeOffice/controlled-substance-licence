@@ -77,6 +77,13 @@
       }
     }
   },
+  "contract-start-date": {
+    "legend": "When does the contract start?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
+  },
   "company-name": {
     "label": "Company name"
   },

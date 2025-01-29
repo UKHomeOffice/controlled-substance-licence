@@ -69,8 +69,7 @@ const steps = {
         }
       }
     ],
-    next: '/cannot-continue',
-    backLink: '/licensee-type'
+    next: '/cannot-continue'
   },
 
   '/companies-house-name': {
@@ -146,10 +145,12 @@ const steps = {
   },
 
   '/when-start': {
+    fields: ['contract-start-date'],
     next: '/contract-details'
   },
 
   '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
 
