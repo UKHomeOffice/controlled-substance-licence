@@ -188,7 +188,8 @@ const steps = {
         }
       }
     ],
-    next: '/compliance-and-regulatory'
+    next: '/compliance-and-regulatory',
+    continueOnEdit: true
   },
 
   '/person-responsible-for-security': {
@@ -197,11 +198,13 @@ const steps = {
       'person-responsible-for-security-email-address',
       'person-responsible-for-security-confirmed-dbs'
     ],
-    next: '/security-officer-dbs'
+    next: '/security-officer-dbs',
+    continueOnEdit: true
   },
 
   '/security-officer-dbs': {
-    next: '/security-officer-dbs-updates'
+    next: '/security-officer-dbs-updates',
+    continueOnEdit: true
   },
 
   '/security-officer-dbs-updates': {

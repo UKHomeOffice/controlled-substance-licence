@@ -108,8 +108,8 @@ module.exports = {
         field: 'has-anyone-received-criminal-conviction'
       },
       {
-        step: '/person-responsible-for-security',
-        field: 'person-responsible-for-security-details',
+        step: '/responsible-for-security',
+        field: 'responsible-for-security-details',
         parse: (list, req) => {
           const personResponsibleForSecurityName = req.sessionModel.get(
             'person-responsible-for-security-full-name'

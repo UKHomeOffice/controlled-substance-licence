@@ -261,7 +261,7 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Anyone in your organisation ever received a criminal conviction?"
       },
-      "person-responsible-for-security-details": {
+      "responsible-for-security-details": {
         "label": "Person responsible for security of premises"
       }
     }
