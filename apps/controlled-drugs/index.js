@@ -1,6 +1,7 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const CustomRedirect = require('../common/behaviours/custom-redirect');
 
 const steps = {
 
@@ -179,6 +180,7 @@ const steps = {
 
   '/responsible-for-security': {
     fields: ['responsible-for-security'],
+    behaviours: [CustomRedirect],
     forks: [
       {
         target: '/person-responsible-for-security',
@@ -456,5 +458,6 @@ module.exports = {
   translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
+  confirmStep: '/confirm',
   steps: steps
 };

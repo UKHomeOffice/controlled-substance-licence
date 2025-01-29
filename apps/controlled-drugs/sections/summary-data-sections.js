@@ -109,25 +109,21 @@ module.exports = {
       },
       {
         step: '/responsible-for-security',
-        field: 'responsible-for-security-details',
+        field: 'responsible-for-security',
         parse: (list, req) => {
-          const personResponsibleForSecurityName = req.sessionModel.get(
-            'person-responsible-for-security-full-name'
-          );
-          const personResponsibleForSecurityEmail = req.sessionModel.get(
-            'person-responsible-for-security-email-address'
-          );
-          const personResponsibleForSecurityDetails = [];
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+          const responsibleForSecDetails = [];
 
-          if (personResponsibleForSecurityName && personResponsibleForSecurityEmail) {
-            personResponsibleForSecurityDetails.push(personResponsibleForSecurityName);
-            personResponsibleForSecurityDetails.push(personResponsibleForSecurityEmail);
+          if (!securityResponsibleIsSameAsMd) {
+            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-full-name'));
+            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-email-address'));
           } else {
-            personResponsibleForSecurityDetails.push(req.sessionModel.get('person-in-charge-full-name'));
-            personResponsibleForSecurityDetails.push(req.sessionModel.get('person-in-charge-email-address'));
+            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-full-name'));
+            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-email-address'));
           }
 
-          return personResponsibleForSecurityDetails.join('\n');
+          return responsibleForSecDetails.join('\n');
         }
       }
     ]
