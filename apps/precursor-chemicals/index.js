@@ -150,10 +150,12 @@ const steps = {
   },
 
   '/when-start': {
+    fields: ['contract-start-date'],
     next: '/contract-details'
   },
 
   '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
 
@@ -350,7 +352,8 @@ const steps = {
     forks: [
       {
         target: '/upload-company-certificate',
-        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee'
+        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
+          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
       }
     ],
     next: '/upload-conduct-certificate'

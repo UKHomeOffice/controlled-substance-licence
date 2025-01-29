@@ -125,6 +125,12 @@
       }
     },
     "fields": {
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
+      },
       "licence-holder-details": {
          "label": "Licence holder details"
        },

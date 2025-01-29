@@ -36,6 +36,26 @@ module.exports = {
         }
       },
       {
+        step: '/when-start',
+        field: 'contract-start-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value ? formatDate(value) : null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
         step: '/companies-house-name',
         field: 'companies-house-name',
         parse: (value, req) => {
@@ -250,7 +270,7 @@ module.exports = {
         step: '/upload-company-certificate',
         field: 'company-registration-certificate',
         parse: (documents, req) => {
-          if (req.sessionModel.get('licensee-type') !== 'first-time-licensee') {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
