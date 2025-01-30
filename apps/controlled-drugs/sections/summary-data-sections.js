@@ -152,7 +152,7 @@ module.exports = {
       },
       {
         step: '/security-officer-dbs-updates',
-        field: 'person--responsible-for-security-dbs-information',
+        field: 'person-responsible-for-security-dbs-information',
         changeLink: 'responsible-for-security/edit',
         parse: (val, req) => {
           const securityResponsibleIsSameAsMd =

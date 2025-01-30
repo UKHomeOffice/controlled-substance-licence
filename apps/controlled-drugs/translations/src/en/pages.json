@@ -264,7 +264,7 @@
       "person-responsible-for-security-dbs-subscription": {
         "label": "Person responsible for security of premises DBS information"
       },
-      "person--responsible-for-security-dbs-information": {
+      "person-responsible-for-security-dbs-information": {
         "label": "Person responsible for security of premises DBS updates"
       }
     }
