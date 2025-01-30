@@ -155,15 +155,19 @@ module.exports = {
         parse: (val, req) => {
           const securityResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
-          return securityResponsibleIsSameAsMd ?
-            req.sessionModel.get('person-in-charge-dbs-subscription') :
-            req.sessionModel.get('person-in-charge-dbs-subscription');
+          let fieldToTranslate;
+          let valueToTranslate;
+          if (securityResponsibleIsSameAsMd) {
+            fieldToTranslate = 'person-in-charge-dbs-subscription';
+            valueToTranslate = req.sessionModel.get('person-in-charge-dbs-subscription');
+          } else {
+            fieldToTranslate = 'person-responsible-for-security-dbs-subscription';
+            valueToTranslate = req.sessionModel.get('person-responsible-for-security-dbs-subscription');
+          }
+
+          return translateOption(req, fieldToTranslate, valueToTranslate);
         }
       },
     ]
   }
-};
-
-const translateOption = (req, field, value) => {
-  return req.translate(`fields.${field}.options.${value}.label`);
 };

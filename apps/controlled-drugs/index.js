@@ -216,7 +216,8 @@ const steps = {
 
   '/security-officer-dbs-updates': {
     fields: ['person-responsible-for-security-dbs-subscription'],
-    next: '/compliance-and-regulatory'
+    next: '/compliance-and-regulatory',
+    template: 'person-in-charge-dbs-updates'
   },
 
   '/compliance-and-regulatory': {
