@@ -12,6 +12,16 @@ module.exports = {
       {
         step: '/companies-house-number',
         field: 'companies-house-number'
+      },
+      {
+        step: '/upload-companies-house-evidence',
+        field: 'company-house-evidence',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   },

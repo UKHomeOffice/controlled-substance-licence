@@ -89,6 +89,12 @@
     "header": "You cannot continue this application",
     "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
   },
+
+  "upload-companies-house-evidence": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate.",
+    "pageTitle": "Upload Companies House details as evidence of a change to your name details"
+  },
   
   "confirm": {
     "sections": {
@@ -112,6 +118,9 @@
       }
     },
     "fields": {
+      "company-house-evidence": {
+        "label": "Upload company registration certificate"
+      },
       "licence-holder-details": {
          "label": "Licence holder details"
        },

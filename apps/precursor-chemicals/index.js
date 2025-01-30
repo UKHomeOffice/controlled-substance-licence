@@ -322,7 +322,12 @@ const steps = {
   },
 
   '/upload-companies-house-evidence': {
-    next: '/change-responsible-officer-or-guarantor'
+    next: '/change-responsible-officer-or-guarantor',
+    behaviours: [
+      SaveDocument('company-house-evidence', 'file-upload'),
+      RemoveDocument('company-house-evidence')
+    ],
+    fields: ['file-upload']
   },
 
   '/upload-companies-house-certificate': {

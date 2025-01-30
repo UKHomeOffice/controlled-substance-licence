@@ -42,6 +42,10 @@ module.exports = {
       'certificate-of-good-conduct': {
         limit: 20,
         limitValidationError: 'certificateOfGoodConductLimit'
+      },
+      'company-house-evidence': {
+        limit: 20,
+        limitValidationError: 'companyHouseEvidence'
       }
     }
   },
