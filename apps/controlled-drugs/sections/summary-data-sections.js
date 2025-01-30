@@ -157,12 +157,12 @@ module.exports = {
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
           let fieldToTranslate;
           let valueToTranslate;
-          if (securityResponsibleIsSameAsMd) {
-            fieldToTranslate = 'person-in-charge-dbs-subscription';
-            valueToTranslate = req.sessionModel.get('person-in-charge-dbs-subscription');
-          } else {
+          if (!securityResponsibleIsSameAsMd) {
             fieldToTranslate = 'person-responsible-for-security-dbs-subscription';
             valueToTranslate = req.sessionModel.get('person-responsible-for-security-dbs-subscription');
+          } else {
+            fieldToTranslate = 'person-in-charge-dbs-subscription';
+            valueToTranslate = req.sessionModel.get('person-in-charge-dbs-subscription');
           }
 
           return translateOption(req, fieldToTranslate, valueToTranslate);
