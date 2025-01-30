@@ -138,7 +138,9 @@ module.exports = {
           if(!securityResponsibleIsSameAsMd) {
             responsibleForSecDbsInfo.push(req.sessionModel.get('person-responsible-for-security-dbs-fullname'));
             responsibleForSecDbsInfo.push(req.sessionModel.get('person-responsible-for-security-dbs-reference'));
-            responsibleForSecDbsInfo.push(formatDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue')));
+            responsibleForSecDbsInfo.push(
+              formatDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue'))
+            );
           } else {
             responsibleForSecDbsInfo.push(req.sessionModel.get('person-in-charge-dbs-fullname'));
             responsibleForSecDbsInfo.push(req.sessionModel.get('person-in-charge-dbs-reference'));

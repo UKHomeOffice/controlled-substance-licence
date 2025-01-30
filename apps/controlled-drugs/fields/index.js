@@ -300,18 +300,21 @@ module.exports = {
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'person-responsible-for-security-dbs-date-of-issue': dateComponent('person-responsible-for-security-dbs-date-of-issue', {
-    mixin: 'input-date',
-    validate: [
-      'required',
-      'date',
-      { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['3', 'years'] }
-    ],
-    legend: {
-      className: 'govuk-!-margin-bottom-4'
+  'person-responsible-for-security-dbs-date-of-issue': dateComponent(
+    'person-responsible-for-security-dbs-date-of-issue',
+    {
+      mixin: 'input-date',
+      validate: [
+        'required',
+        'date',
+        { type: 'before', arguments: ['0', 'days'] },
+        { type: 'after', arguments: ['3', 'years'] }
+      ],
+      legend: {
+        className: 'govuk-!-margin-bottom-4'
+      }
     }
-  }),
+  ),
   'person-responsible-for-security-dbs-subscription': {
     mixin: 'radio-group',
     isPageHeading: true,
