@@ -126,8 +126,8 @@
   },
   "person-responsible-for-security-full-name": {
     "required": "Enter the name of the person who is responsible for premises security",
-    "maxlength": "DBS reference must be between 3 and 25 characters",
-    "minlength": "DBS reference must be between 3 and 25 characters"
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
   },
   "person-responsible-for-security-email-address": {
     "required": "Enter an email address for the person responsible for premises security",
