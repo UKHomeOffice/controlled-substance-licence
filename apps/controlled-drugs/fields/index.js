@@ -328,5 +328,5 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
-  },
+  }
 };

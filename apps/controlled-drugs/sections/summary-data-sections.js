@@ -167,7 +167,7 @@ module.exports = {
 
           return translateOption(req, fieldToTranslate, valueToTranslate);
         }
-      },
+      }
     ]
   }
 };
