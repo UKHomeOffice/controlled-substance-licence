@@ -146,10 +146,21 @@ const steps = {
   },
 
   '/member-of-professional-body': {
-    next: '/legal-business-proceedings'
+    fields: ['member-of-professional-body'],
+    forks: [
+      {
+        target: '/legal-business-proceedings',
+        condition: {
+          field: 'member-of-professional-body',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/professional-body-details'
   },
 
   '/professional-body-details': {
+    fields: ['professional-body-details'],
     next: '/legal-business-proceedings'
   },
 

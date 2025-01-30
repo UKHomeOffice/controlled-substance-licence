@@ -2,8 +2,8 @@ const dateComponent = require('hof').components.date;
 
 module.exports = {
   'application-form-type': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -18,8 +18,8 @@ module.exports = {
     ]
   },
   'licensee-type': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -80,8 +80,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'is-premises-address-same': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -125,8 +125,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'how-are-you-funded': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -141,18 +141,18 @@ module.exports = {
     ]
   },
   'person-in-charge-full-name': {
+    mixin: 'input-text',
     validate: [
       'required',
       'notUrl',
       { type: 'minlength', arguments: [3] },
       { type: 'maxlength', arguments: [200] }
     ],
-    mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'person-in-charge-email-address': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'person-in-charge-confirmed-dbs': {
@@ -192,8 +192,8 @@ module.exports = {
     }
   }),
   'person-in-charge-dbs-subscription': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -208,9 +208,32 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'legal-business-proceedings': {
-    isPageHeading: 'true',
+  'member-of-professional-body': {
     mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'professional-body-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'legal-business-proceedings': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -223,8 +246,8 @@ module.exports = {
     ]
   },
   'has-anyone-received-criminal-conviction': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
