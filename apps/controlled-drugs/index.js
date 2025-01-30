@@ -206,10 +206,16 @@ const steps = {
 
   '/security-officer-dbs': {
     next: '/security-officer-dbs-updates',
+    fields: [
+      'person-responsible-for-security-dbs-fullname',
+      'person-responsible-for-security-dbs-reference',
+      'person-responsible-for-security-dbs-date-of-issue'
+    ],
     continueOnEdit: true
   },
 
   '/security-officer-dbs-updates': {
+    fields: ['person-responsible-for-security-dbs-subscription'],
     next: '/compliance-and-regulatory'
   },
 

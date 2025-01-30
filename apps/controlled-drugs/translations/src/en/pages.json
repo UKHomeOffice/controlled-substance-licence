@@ -39,9 +39,6 @@
   "security-officer-dbs": {
     "header": "DBS information for person responsible for security of premises"
   },
-  "security-officer-dbs-updates": {
-    "header": "Has the person responsible for the security of the premises subscribed to DBS updates?"
-  },
   "compliance-and-regulatory": {
     "header": "Who is responsible for legal compliance and regulatory affairs?"
   },
@@ -263,6 +260,12 @@
       },
       "responsible-for-security-details": {
         "label": "Person responsible for security of premises"
+      },
+      "person-responsible-for-security-dbs-subscription": {
+        "label": "Person responsible for security of premises DBS information"
+      },
+      "person--responsible-for-security-dbs-information": {
+        "label": "Person responsible for security of premises DBS updates"
       }
     }
   }

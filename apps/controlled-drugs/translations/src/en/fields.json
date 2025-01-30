@@ -177,5 +177,26 @@
   },
   "person-responsible-for-security-confirmed-dbs": {
     "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "person-responsible-for-security-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "person-responsible-for-security-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "person-responsible-for-security-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "person-responsible-for-security-dbs-subscription": {
+    "legend": "Has the person responsible for the security of the premises subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
