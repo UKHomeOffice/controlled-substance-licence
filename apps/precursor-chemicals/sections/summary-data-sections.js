@@ -3,9 +3,20 @@
 const { formatDate, parseOperations, findChemical } = require('../../../utils');
 
 module.exports = {
-
   'background-information': {
     steps: [
+      {
+        step: 'change-responsible-officer-or-guarantor',
+        field: 'change-responsible-officer-or-guarantor'
+      },
+      {
+        step: 'additional-category',
+        field: 'additional-category'
+      },
+      {
+        step: 'change-substance-or-operation',
+        field: 'change-substance-or-operation'
+      },
       {
         step: '/why-new-licence',
         field: 'why-requesting-new-licence'
@@ -39,18 +50,6 @@ module.exports = {
       {
         step: '/companies-house-number',
         field: 'companies-house-number'
-      },
-      {
-        step: 'change-responsible-officer-or-guarantor',
-        field: 'change-responsible-officer-or-guarantor'
-      },
-      {
-        step: 'additional-category',
-        field: 'additional-category'
-      },
-      {
-        step: 'change-substance-or-operation',
-        field: 'change-substance-or-operation'
       }
     ]
   },
