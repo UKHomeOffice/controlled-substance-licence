@@ -1,6 +1,7 @@
 const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
+const CustomRedirect = require('../common/behaviours/custom-redirect');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
@@ -9,7 +10,7 @@ const FilterChemicals = require('./behaviours/filter-chemicals');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
-const CheckSummaryReferrer = require('../common/behaviours/check-summary-referrer');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const steps = {
 
   /** Start of journey */
@@ -331,7 +332,8 @@ const steps = {
       LoopAggregator,
       LimitItems,
       ParseSubstanceSummary,
-      CheckSummaryReferrer
+      SetSummaryReferrer,
+      CustomRedirect
     ],
     aggregateTo: 'substances-in-licence',
     aggregateFrom: [
