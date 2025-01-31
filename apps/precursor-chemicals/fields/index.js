@@ -2,6 +2,123 @@ const dateComponent = require('hof').components.date;
 const chemicals = require('../data/chemicals.json');
 
 module.exports = {
+  'application-form-type': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'new-application'
+      },
+      {
+        value: 'continue-an-application'
+      },
+      {
+        value: 'amend-application'
+      }
+    ]
+  },
+  'licensee-type': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'first-time-licensee'
+      },
+      {
+        value: 'existing-licensee-renew-or-change-site'
+      },
+      {
+        value: 'existing-licensee-applying-for-new-site'
+      }
+    ]
+  },
+  'companies-house-number': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'companies-house-name': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'why-requesting-new-licence': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'we-are-moving-site'
+      },
+      {
+        value: 'for-another-site'
+      }
+    ]
+  },
+  'moving-date': dateComponent('moving-date', {
+    mixin: 'input-date',
+    isPageHeading: 'true',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contractual-agreement': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'contract-start-date': dateComponent('contract-start-date', {
+    mixin: 'input-date',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contract-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -49,8 +166,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'is-premises-address-same': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -63,34 +180,34 @@ module.exports = {
     ]
   },
   'premises-address-line-1': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-address-line-2': {
-    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: [{ type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-town-or-city': {
-    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', { type: 'maxlength', arguments: [250]}, 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-postcode': {
-    validate: ['required', 'postcode'],
     mixin: 'input-text',
+    validate: ['required', 'postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'premises-telephone': {
-    validate: ['required'], // additional validation rules added in custom-validation.js
     mixin: 'input-text',
+    validate: ['required'], // additional validation rules added in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'premises-email': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-fullname': {
@@ -130,8 +247,8 @@ module.exports = {
     }
   }),
   'responsible-officer-dbs-update-subscription': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -147,13 +264,13 @@ module.exports = {
     }
   },
   'guarantor-full-name': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-email-address': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-confirmed-dbs': {
@@ -161,13 +278,13 @@ module.exports = {
     validate: [ 'required' ]
   },
   'guarantor-dbs-full-name': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-reference': {
-    validate: ['required', 'notUrl'],
     mixin: 'input-text',
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
@@ -183,8 +300,8 @@ module.exports = {
     }
   }),
   'is-guarantor-subscribed': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -200,8 +317,8 @@ module.exports = {
     }
   },
   'has-anyone-received-criminal-conviction': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -258,8 +375,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'substance-category': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -277,17 +394,19 @@ module.exports = {
     ],
     legend: {
       className: 'govuk-!-margin-bottom-6'
-    }
+    },
+    showFieldInSummary: true
   },
   'which-chemical': {
-    isPageHeading: true,
     mixin: 'select',
+    isPageHeading: true,
     className: ['typeahead'],
     validate: ['required'],
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
-    }].concat(chemicals)
+    }].concat(chemicals),
+    showFieldInSummary: true
   },
   'which-operation': {
     mixin: 'checkbox-group',
@@ -333,17 +452,19 @@ module.exports = {
       {
         value: 'other'
       }
-    ]
+    ],
+    showFieldInSummary: true
   },
   'what-operation': {
     mixin: 'input-text',
     isPageHeading: true,
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: false
   },
   'chemicals-used-for': {
-    isPageHeading: true,
     mixin: 'textarea',
+    isPageHeading: true,
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
@@ -459,41 +580,13 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'extra-information': {
-    isPageHeading: true,
     mixin: 'textarea',
+    isPageHeading: true,
     validate: ['notUrl', { type: 'maxlength', arguments: 2000 }],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
-  },
-  'companies-house-number': {
-    isPageHeading: 'true',
-    mixin: 'radio-group',
-    validate: ['required'],
-    className: ['govuk-radios govuk-radios--inline'],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ]
-  },
-  'companies-house-name': {
-    isPageHeading: 'true',
-    mixin: 'radio-group',
-    validate: ['required'],
-    className: ['govuk-radios govuk-radios--inline'],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ]
   }
 };

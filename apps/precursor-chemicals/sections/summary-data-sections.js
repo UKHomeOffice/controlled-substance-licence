@@ -1,25 +1,99 @@
 'use strict';
 
-const { formatDate } = require('../../../utils');
+const { formatDate, parseOperations, findChemical } = require('../../../utils');
 
 module.exports = {
   'background-information': {
     steps: [
       {
+        step: '/why-new-licence',
+        field: 'why-requesting-new-licence',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value ? formatDate(value) : null;
+        }
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'contractual-agreement',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/when-start',
+        field: 'contract-start-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value ? formatDate(value) : null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
         step: '/companies-house-name',
-        field: 'companies-house-name'
+        field: 'companies-house-name',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
       },
       {
         step: '/companies-house-number',
-        field: 'companies-house-number'
+        field: 'companies-house-number',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
       },
       {
         step: '/upload-companies-house-evidence',
-        field: 'company-house-evidence',
+        field: 'company-registration-certificate',
         parse: (documents, req) => {
           if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
             return null;
           }
+          console.log("house evidence", Array.isArray(documents))
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/upload-companies-house-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          console.log("house cert", Array.isArray(documents))
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       }
@@ -174,6 +248,29 @@ module.exports = {
   'about-the-licence': {
     steps: [
       {
+        step: '/substances-in-licence',
+        field: 'parsed-substance-categories',
+        changeLink: 'substances-in-licence/edit'
+      },
+      {
+        step: '/substances-in-licence',
+        field: 'substances-in-licence',
+        changeLink: 'substances-in-licence/edit',
+        parse: (obj, req) => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
+            const standardOps = item.fields.find(field => field.field === 'which-operation');
+            const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
+
+            const parsedSubstance = findChemical(substance)?.label ?? substance;
+            const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
+
+            return `${parsedSubstance}\n\n${parsedOps}`;
+          }).join('\n\n');
+        }
+      },
+      {
         step: '/why-chemicals-needed',
         field: 'chemicals-used-for'
       }
@@ -184,7 +281,10 @@ module.exports = {
       {
         step: '/upload-company-certificate',
         field: 'company-registration-certificate',
-        parse: documents => {
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       },

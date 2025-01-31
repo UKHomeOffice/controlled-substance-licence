@@ -42,10 +42,6 @@ module.exports = {
       'certificate-of-good-conduct': {
         limit: 20,
         limitValidationError: 'certificateOfGoodConductLimit'
-      },
-      'company-house-evidence': {
-        limit: 20,
-        limitValidationError: 'companyHouseEvidence'
       }
     }
   },
@@ -64,6 +60,11 @@ module.exports = {
       password: process.env.FILE_VAULT_PASSWORD,
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
+    }
+  },
+  aggregateLimits: {
+    precursorChemicals: {
+      substanceLimit: 100
     }
   }
 };

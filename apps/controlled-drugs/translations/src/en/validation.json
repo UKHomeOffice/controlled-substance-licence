@@ -1,4 +1,10 @@
 {
+  "application-form-type": {
+    "required": "Select how would you like to apply"
+  },
+  "licensee-type": {
+    "required": "Select what type of licensee are you"
+  },
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",

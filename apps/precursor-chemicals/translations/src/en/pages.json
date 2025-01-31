@@ -1,4 +1,18 @@
 {
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
+
+  "cannot-continue": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+
+  "upload-companies-house-certificate": {
+    "header": "Upload your Companies House details",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
+  
   "licence-holder-details": {
     "header": "Licence holder details"
   },
@@ -43,7 +57,15 @@
   },
 
   "substances-in-licence": {
-    "header": "Substances in your licence"
+    "header": "Substances in your licence",
+    "table-headers": {
+      "substance": "Scheduled substance and CN code",
+      "category": "Category",
+      "operations": "Operations",
+      "action": "Action"
+    },
+    "add-another": "Add another substance",
+    "substance-limit-exceeded": "You can not add any more substances"
   },
 
   "upload-company-certificate": {
@@ -81,14 +103,6 @@
     "confirmed": "Precursor chemicals application submitted"
   },
 
-  "information-you-have-given-us": {
-    "header": "Information you have given us"
-  },
-
-  "cannot-continue": {
-    "header": "You cannot continue this application",
-    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
-  },
 
   "upload-companies-house-evidence": {
     "header": "Upload company registration certificate as evidence of name change",
@@ -120,6 +134,12 @@
     "fields": {
       "company-house-evidence": {
         "label": "Upload company registration certificate"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
       },
       "licence-holder-details": {
          "label": "Licence holder details"
@@ -162,6 +182,12 @@
       },
       "invoicing-contact-details": {
         "label": "Invoicing contact details"
+      },
+      "parsed-substance-categories": {
+        "label": "Categories the licence will cover"
+      },
+      "substances-in-licence": {
+        "label": "Substances in your licence"
       },
       "chemicals-used-for": {
         "label": "Reason for chemical application"
@@ -210,6 +236,12 @@
       },
       "extra-information": {
         "label": "Extra information"
+      },
+      "why-requesting-new-licence": {
+        "label": "Reason for collecting new license"
+      },
+      "moving-date": {
+        "label": "Date when moving site"
       },
       "companies-house-number": {
         "label": "Change of registration details "

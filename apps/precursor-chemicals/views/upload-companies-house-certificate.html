@@ -1,10 +1,4 @@
-{{<partials-page}} {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}} 
-
-  {{$pageTitle}}
-  {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}} {{#t}}pages.upload-companies-house-evidence.pageTitle{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
-  {{/pageTitle}}
-
-  {{$page-content}}
+{{<partials-page}} {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}} {{$page-content}}
 
   <div class="govuk-inset-text">
     {{#markdown}}company-certificate-file-requirements{{/markdown}}
