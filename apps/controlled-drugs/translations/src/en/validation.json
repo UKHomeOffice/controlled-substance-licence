@@ -110,6 +110,14 @@
   "person-in-charge-dbs-subscription": {
     "required": "Select if the person in charge has subscribed to DBS updates"
   },
+  "member-of-professional-body": {
+    "required": "Select if anyone on this application is a member of a professional body"
+  },
+  "professional-body-details": {
+    "required": "Enter details of the professional bodies and any relevant reference numbers",
+    "maxlength": "Details of professional bodies must be less than 2,000 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
   "legal-business-proceedings": {
     "required": "Select if anyone has ever been subject to legal business proceedings"
   },

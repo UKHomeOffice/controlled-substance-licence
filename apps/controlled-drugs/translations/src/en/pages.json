@@ -27,12 +27,6 @@
   "person-in-charge-dbs": {
     "header": "DBS information for the person in charge"
   },
-  "member-of-professional-body": {
-    "header": "Are they, or anyone named on this application, a member of a professional body?"
-  },
-  "professional-body-details": {
-    "header": "Provide details of the professional bodies and relevant reference numbers"
-  },
   "person-responsible-for-security": {
     "header": "Person responsible for the security of the premises"
   },
@@ -251,6 +245,12 @@
       },
       "person-in-charge-dbs-information": {
         "label": "Managing director DBS information"
+      },
+      "member-of-professional-body": {
+        "label": "Member of a professional body?"
+      },
+      "professional-body-details": {
+        "label": "Details of professional body and reference number"
       },
       "legal-business-proceedings": {
         "label": "Anyone in your organisation been subject to legal proceedings?"
