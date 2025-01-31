@@ -82,7 +82,6 @@ module.exports = {
           if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
             return null;
           }
-          console.log("house evidence", Array.isArray(documents))
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       },
@@ -94,7 +93,6 @@ module.exports = {
           req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
             return null;
           }
-          console.log("house cert", Array.isArray(documents))
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       }
