@@ -33,9 +33,6 @@
   "professional-body-details": {
     "header": "Provide details of the professional bodies and relevant reference numbers"
   },
-  "responsible-for-security": {
-    "header": "Who is responsible for the security of the premises?"
-  },
   "person-responsible-for-security": {
     "header": "Person responsible for the security of the premises"
   },
@@ -263,6 +260,9 @@
       },
       "has-anyone-received-criminal-conviction": {
         "label": "Anyone in your organisation ever received a criminal conviction?"
+      },
+      "responsible-for-security-details": {
+        "label": "Person responsible for security of premises"
       }
     }
   }
