@@ -35,8 +35,8 @@ module.exports = {
     ]
   },
   'companies-house-number-change': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -49,8 +49,8 @@ module.exports = {
     ]
   },
   'companies-house-name-change': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
