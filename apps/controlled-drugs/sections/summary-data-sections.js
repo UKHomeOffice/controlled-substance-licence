@@ -106,6 +106,25 @@ module.exports = {
       {
         step: '/criminal-conviction',
         field: 'has-anyone-received-criminal-conviction'
+      },
+      {
+        step: '/responsible-for-security',
+        field: 'responsible-for-security-details',
+        parse: (list, req) => {
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+          const responsibleForSecDetails = [];
+
+          if (!securityResponsibleIsSameAsMd) {
+            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-full-name'));
+            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-email-address'));
+          } else {
+            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-full-name'));
+            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-email-address'));
+          }
+
+          return responsibleForSecDetails.join('\n');
+        }
       }
     ]
   }

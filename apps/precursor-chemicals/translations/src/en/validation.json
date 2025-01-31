@@ -1,4 +1,16 @@
 {
+  "application-form-type": {
+    "required": "Select how would you like to apply"
+  },
+  "licensee-type": {
+    "required": "Select what type of licensee are you"
+  },
+  "companies-house-number": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "companies-house-name": {
+    "required": "Select if your registered name at Companies House has changed since your last application"
+  },
   "change-responsible-officer-or-guarantor": {
     "required": "Select if you are requesting to change the responsible person or guarantor for this site only"
   },
@@ -8,7 +20,27 @@
   "change-substance-or-operation": {
     "required": "Select if you are requesting a change of substance or operation"
   },
-
+  "why-requesting-new-licence": {
+    "required": "Select why you are requesting a new licence"
+  },
+  "moving-date": {
+      "required": "Enter a moving date",
+      "date": "Enter a moving date in the correct format",
+      "after": "Moving date must be in the future"
+  },
+  "contractual-agreement": {
+    "required": "Select if it is part of a contractual agreement"
+  },
+  "contract-start-date": {
+    "required": "Enter a date",
+    "date": "Enter a date in the correct format",
+    "after": "Contract start date must be in the future"
+  },
+  "contract-details": {
+    "required": "Enter more detail about the contract and how it affects your application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "You have exceeded the 2000 character limit"
+  },
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",

@@ -1,6 +1,38 @@
 const dateComponent = require('hof').components.date;
 
 module.exports = {
+  'application-form-type': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'new-application'
+      },
+      {
+        value: 'continue-an-application'
+      },
+      {
+        value: 'amend-application'
+      }
+    ]
+  },
+  'licensee-type': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'first-time-licensee'
+      },
+      {
+        value: 'existing-licensee-renew-or-change-site'
+      },
+      {
+        value: 'existing-licensee-applying-for-new-site'
+      }
+    ]
+  },
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -48,8 +80,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-input--width-10']
   },
   'is-premises-address-same': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -93,8 +125,8 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'how-are-you-funded': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     options: [
       {
@@ -109,18 +141,18 @@ module.exports = {
     ]
   },
   'person-in-charge-full-name': {
+    mixin: 'input-text',
     validate: [
       'required',
       'notUrl',
       { type: 'minlength', arguments: [3] },
       { type: 'maxlength', arguments: [200] }
     ],
-    mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'person-in-charge-email-address': {
-    validate: ['required', 'email'],
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'person-in-charge-confirmed-dbs': {
@@ -160,8 +192,8 @@ module.exports = {
     }
   }),
   'person-in-charge-dbs-subscription': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -177,8 +209,8 @@ module.exports = {
     }
   },
   'legal-business-proceedings': {
-    isPageHeading: 'true',
     mixin: 'radio-group',
+    isPageHeading: 'true',
     validate: ['required'],
     className: ['govuk-radios govuk-radios--inline'],
     options: [
@@ -191,8 +223,8 @@ module.exports = {
     ]
   },
   'has-anyone-received-criminal-conviction': {
-    isPageHeading: true,
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -212,5 +244,40 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
+  },
+  'responsible-for-security': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'same-as-managing-director'
+      },
+      {
+        value: 'someone-else'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'person-responsible-for-security-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'person-responsible-for-security-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'person-responsible-for-security-confirmed-dbs': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

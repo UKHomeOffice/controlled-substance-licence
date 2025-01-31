@@ -1,4 +1,34 @@
 {
+  "application-form-type": {
+    "legend": "How would you like to apply?",
+    "options": {
+      "new-application": {
+        "label": "A new application",
+        "hint": "You will need a controlled drug activity user list to upload later"
+      },
+      "continue-an-application": {
+        "label": "Continue an application",
+        "hint": "An incomplete application stays on the system for 5 days and is then deleted"
+      },
+      "amend-application": {
+        "label": "Amend pending application"
+      }
+    }
+  },
+  "licensee-type": {
+    "legend": "What type of licensee are you?",
+    "options": {
+      "first-time-licensee": {
+        "label": "A first time licensee"
+      },
+      "existing-licensee-renew-or-change-site": {
+        "label": "Existing licensee renewing or changing a currently licensed site"
+      },
+      "existing-licensee-applying-for-new-site": {
+        "label": "Existing licensee applying for a new site"
+      }
+    }
+  },
   "company-name": {
     "label": "Company name"
   },
@@ -126,5 +156,26 @@
   },
   "legal-proceedings-details": {
     "label": "Provide details of the legal business proceedings"
+  },
+  "responsible-for-security": {
+    "legend": "Who is responsible for the security of the premises?",
+    "options": {
+      "same-as-managing-director": {
+        "label": "The same person as the managing director",
+        "hint": "Re-use their contact and DBS information"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      }
+    }
+  },
+  "person-responsible-for-security-full-name": {
+    "label": "Full name"
+  },
+  "person-responsible-for-security-email-address": {
+    "label": "Email address "
+  },
+  "person-responsible-for-security-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
   }
 }

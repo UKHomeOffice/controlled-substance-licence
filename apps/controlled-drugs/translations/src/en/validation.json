@@ -1,4 +1,10 @@
 {
+  "application-form-type": {
+    "required": "Select how would you like to apply"
+  },
+  "licensee-type": {
+    "required": "Select what type of licensee are you"
+  },
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",
@@ -114,5 +120,20 @@
     "required": "Provide details of the legal business proceedings",
     "maxlength": "Details of legal business proceedings must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "responsible-for-security": {
+    "required": "Selet who is responsible for the security of the premises"
+  },
+  "person-responsible-for-security-full-name": {
+    "required": "Enter the name of the person who is responsible for premises security",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "person-responsible-for-security-email-address": {
+    "required": "Enter an email address for the person responsible for premises security",
+    "email": "Enter a real email address"
+  },
+  "person-responsible-for-security-confirmed-dbs": {
+    "required": "You must confirm this person has applied for or currently holds a DBS certificate"
   }
 }
