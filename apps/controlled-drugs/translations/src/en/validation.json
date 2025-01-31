@@ -115,7 +115,7 @@
   },
   "professional-body-details": {
     "required": "Enter details of the professional bodies and any relevant reference numbers",
-    "maxlength": "You have exceeded the 2000 character limit",
+    "maxlength": "Details of professional bodies must be less than 2,000 characters",
     "notUrl": "Your answer must not contain URLs or links"
   },
   "legal-business-proceedings": {
