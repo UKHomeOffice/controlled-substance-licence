@@ -135,18 +135,30 @@
       "company-house-evidence": {
         "label": "Upload company registration certificate"
       },
+      "why-requesting-new-licence": {
+        "label": "Reason for collecting new license"
+      },
+      "moving-date": {
+        "label": "Date when moving site"
+      },
       "contract-start-date": {
         "label": "When does it start"
       },
       "contract-details": {
         "label": "Tell us more about the contract"
       },
+      "companies-house-number-change": {
+        "label": "Change of registration details "
+      },
+      "companies-house-name-change": {
+        "label": "Change of name"
+      },
       "licence-holder-details": {
          "label": "Licence holder details"
-       },
+      },
        "licence-holder-address": {
          "label": "Licence holder address"
-       },
+      },
       "is-premises-address-same": {
         "label": "Re-use the same contact details for the premises"
       },
@@ -236,18 +248,6 @@
       },
       "extra-information": {
         "label": "Extra information"
-      },
-      "why-requesting-new-licence": {
-        "label": "Reason for collecting new license"
-      },
-      "moving-date": {
-        "label": "Date when moving site"
-      },
-      "companies-house-number": {
-        "label": "Change of registration details "
-      },
-      "companies-house-name": {
-        "label": "Change of name"
       }
     }
   }
