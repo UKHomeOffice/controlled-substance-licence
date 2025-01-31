@@ -34,7 +34,7 @@ module.exports = {
       }
     ]
   },
-  'companies-house-number': {
+  'companies-house-number-change': {
     isPageHeading: 'true',
     mixin: 'radio-group',
     validate: ['required'],
@@ -48,7 +48,7 @@ module.exports = {
       }
     ]
   },
-  'companies-house-name': {
+  'companies-house-name-change': {
     isPageHeading: 'true',
     mixin: 'radio-group',
     validate: ['required'],

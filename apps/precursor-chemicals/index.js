@@ -59,12 +59,12 @@ const steps = {
   /** Renew existing licence - Background Information */
 
   '/companies-house-number': {
-    fields: ['companies-house-number'],
+    fields: ['companies-house-number-change'],
     forks: [
       {
         target: '/companies-house-name',
         condition: {
-          field: 'companies-house-number',
+          field: 'companies-house-number-change',
           value: 'no'
         }
       }
@@ -73,12 +73,12 @@ const steps = {
   },
 
   '/companies-house-name': {
-    fields: ['companies-house-name'],
+    fields: ['companies-house-name-change'],
     forks: [
       {
         target: '/upload-companies-house-certificate',
         condition: {
-          field: 'companies-house-name',
+          field: 'companies-house-name-change',
           value: 'no'
         }
       }
@@ -467,9 +467,7 @@ const steps = {
 
 module.exports = {
   name: 'precursor-chemicals',
-  fields: 'apps/precursor-chemicals/fields',
   views: 'apps/precursor-chemicals/views',
-  translations: 'apps/precursor-chemicals/translations',
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
