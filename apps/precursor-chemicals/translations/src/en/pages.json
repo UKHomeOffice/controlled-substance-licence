@@ -1,4 +1,13 @@
 {
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
+
+  "cannot-continue": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+  
   "licence-holder-details": {
     "header": "Licence holder details"
   },
@@ -89,10 +98,6 @@
     "confirmed": "Precursor chemicals application submitted"
   },
 
-  "information-you-have-given-us": {
-    "header": "Information you have given us"
-  },
-
   "confirm": {
     "sections": {
       "background-information": {
@@ -115,6 +120,18 @@
       }
     },
     "fields": {
+      "companies-house-number": {
+        "label": "Change of registration details"
+      },
+      "companies-house-name": {
+        "label": "Change of name"
+      },
+      "why-requesting-new-licence": {
+        "label": "Reason for collecting new license"
+      },
+      "moving-date": {
+        "label": "Date when moving site"
+      },
       "contract-start-date": {
         "label": "When does it start"
       },
@@ -216,12 +233,6 @@
       },
       "extra-information": {
         "label": "Extra information"
-      },
-      "why-requesting-new-licence": {
-        "label": "Reason for collecting new license"
-      },
-      "moving-date": {
-        "label": "Date when moving site"
       }
     }
   }

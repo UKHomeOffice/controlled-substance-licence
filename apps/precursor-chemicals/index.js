@@ -60,6 +60,53 @@ const steps = {
   /** Renew existing licence - Background Information */
 
   '/companies-house-number': {
+    fields: ['companies-house-number'],
+    forks: [
+      {
+        target: '/companies-house-name',
+        condition: {
+          field: 'companies-house-number',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/cannot-continue'
+  },
+
+  '/companies-house-name': {
+    fields: ['companies-house-name'],
+    forks: [
+      {
+        target: '/upload-companies-house-certificate',
+        condition: {
+          field: 'companies-house-name',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/upload-companies-house-evidence'
+  },
+
+  '/cannot-continue': {
+  },
+
+  '/upload-companies-house-evidence': {
+    next: '/change-responsible-officer-or-guarantor'
+  },
+
+  '/upload-companies-house-certificate': {
+    next: '/change-responsible-officer-or-guarantor'
+  },
+
+  '/change-responsible-officer-or-guarantor': {
+    next: '/additional-category'
+  },
+
+  '/additional-category': {
+    next: '/change-substance-or-operation'
+  },
+
+  '/change-substance-or-operation': {
     next: '/licence-holder-details'
   },
 
