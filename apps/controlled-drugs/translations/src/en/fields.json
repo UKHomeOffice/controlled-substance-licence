@@ -171,5 +171,26 @@
   },
   "legal-proceedings-details": {
     "label": "Provide details of the legal business proceedings"
+  },
+  "responsible-for-security": {
+    "legend": "Who is responsible for the security of the premises?",
+    "options": {
+      "same-as-managing-director": {
+        "label": "The same person as the managing director",
+        "hint": "Re-use their contact and DBS information"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      }
+    }
+  },
+  "person-responsible-for-security-full-name": {
+    "label": "Full name"
+  },
+  "person-responsible-for-security-email-address": {
+    "label": "Email address "
+  },
+  "person-responsible-for-security-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
   }
 }

@@ -1,4 +1,10 @@
 {
+  "companies-house-number": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "companies-house-name": {
+    "required": "Select if your registered name at Companies House has changed since your last application"
+  },
   "application-form-type": {
     "required": "Select how would you like to apply"
   },

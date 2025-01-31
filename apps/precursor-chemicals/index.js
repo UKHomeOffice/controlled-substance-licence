@@ -1,6 +1,7 @@
 const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
+const CustomRedirect = require('../common/behaviours/custom-redirect');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
@@ -9,7 +10,7 @@ const FilterChemicals = require('./behaviours/filter-chemicals');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
-const CheckSummaryReferrer = require('../common/behaviours/check-summary-referrer');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const steps = {
 
   /** Start of journey */
@@ -59,6 +60,53 @@ const steps = {
   /** Renew existing licence - Background Information */
 
   '/companies-house-number': {
+    fields: ['companies-house-number'],
+    forks: [
+      {
+        target: '/companies-house-name',
+        condition: {
+          field: 'companies-house-number',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/cannot-continue'
+  },
+
+  '/companies-house-name': {
+    fields: ['companies-house-name'],
+    forks: [
+      {
+        target: '/upload-companies-house-certificate',
+        condition: {
+          field: 'companies-house-name',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/upload-companies-house-evidence'
+  },
+
+  '/cannot-continue': {
+  },
+
+  '/upload-companies-house-evidence': {
+    next: '/change-responsible-officer-or-guarantor'
+  },
+
+  '/upload-companies-house-certificate': {
+    next: '/change-responsible-officer-or-guarantor'
+  },
+
+  '/change-responsible-officer-or-guarantor': {
+    next: '/additional-category'
+  },
+
+  '/additional-category': {
+    next: '/change-substance-or-operation'
+  },
+
+  '/change-substance-or-operation': {
     next: '/licence-holder-details'
   },
 
@@ -274,7 +322,8 @@ const steps = {
       LoopAggregator,
       LimitItems,
       ParseSubstanceSummary,
-      CheckSummaryReferrer
+      SetSummaryReferrer,
+      CustomRedirect
     ],
     aggregateTo: 'substances-in-licence',
     aggregateFrom: [

@@ -1,3 +1,8 @@
+/**
+ * Use this behaviour as an accompanyment to 'custom-redirect'
+ * if you will lose the edit action before you need to redirect to summary
+ * e.g. with aggreagte loop update conditions.
+ */
 module.exports = superclass => class extends superclass {
   getValues(req, res, next) {
     if (URL.canParse(req.get('Referrer'))) {
@@ -8,12 +13,5 @@ module.exports = superclass => class extends superclass {
       }
     }
     return super.getValues(req, res, next);
-  }
-
-  successHandler(req, res, next) {
-    if (req.sessionModel.get('referred-by-summary')) {
-      return res.redirect(`${req.baseUrl}${req.form.options.confirmStep}`);
-    }
-    return super.successHandler(req, res, next);
   }
 };

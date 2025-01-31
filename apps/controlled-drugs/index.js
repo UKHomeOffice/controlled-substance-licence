@@ -1,6 +1,7 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const CustomRedirect = require('../common/behaviours/custom-redirect');
 
 const steps = {
 
@@ -189,11 +190,34 @@ const steps = {
   },
 
   '/responsible-for-security': {
-    next: '/security-officer-dbs'
+    fields: ['responsible-for-security'],
+    behaviours: [CustomRedirect],
+    forks: [
+      {
+        target: '/person-responsible-for-security',
+        condition: {
+          field: 'responsible-for-security',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/compliance-and-regulatory',
+    continueOnEdit: true
+  },
+
+  '/person-responsible-for-security': {
+    fields: [
+      'person-responsible-for-security-full-name',
+      'person-responsible-for-security-email-address',
+      'person-responsible-for-security-confirmed-dbs'
+    ],
+    next: '/security-officer-dbs',
+    continueOnEdit: true
   },
 
   '/security-officer-dbs': {
-    next: '/security-officer-dbs-updates'
+    next: '/security-officer-dbs-updates',
+    continueOnEdit: true
   },
 
   '/security-officer-dbs-updates': {
@@ -445,5 +469,6 @@ module.exports = {
   translations: 'apps/controlled-drugs/translations',
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
+  confirmStep: '/confirm',
   steps: steps
 };
