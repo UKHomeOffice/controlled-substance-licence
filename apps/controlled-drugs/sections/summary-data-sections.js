@@ -96,6 +96,14 @@ module.exports = {
         field: 'person-in-charge-dbs-subscription'
       },
       {
+        step: '/member-of-professional-body',
+        field: 'member-of-professional-body'
+      },
+      {
+        step: '/professional-body-details',
+        field: 'professional-body-details'
+      },
+      {
         step: '/legal-business-proceedings',
         field: 'legal-business-proceedings'
       },
