@@ -16,6 +16,15 @@ module.exports = superclass => class extends superclass {
       return res.redirect(`${formApp}${confirmStep}`);
     }
 
+    if (
+      currentRoute === '/compliance-and-regulatory' &&
+      action === 'edit' &&
+      formApp === '/controlled-drugs' &&
+      req.form.values['responsible-for-compliance-regulatory'] === 'same-as-managing-director'
+    ) {
+      return res.redirect(`${formApp}${confirmStep}`);
+    }
+
     if (req.sessionModel.get('referred-by-summary')) {
       return res.redirect(`${formApp}${confirmStep}`);
     }
