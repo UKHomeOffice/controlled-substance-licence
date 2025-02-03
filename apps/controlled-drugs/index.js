@@ -237,10 +237,12 @@ const steps = {
   },
 
   '/employee-or-consultant': {
+    fields: ['is-employee-or-consultant'],
     next: '/witness-destruction-of-drugs'
   },
 
   '/witness-destruction-of-drugs': {
+    fields: ['has-witness-destruction-of-drugs'],
     next: '/who-witnesses-destruction-of-drugs'
   },
 
