@@ -29,6 +29,28 @@
       }
     }
   },
+  "companies-house-number": {
+    "legend": "Has your Companies House reference number changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "companies-house-name": {
+    "legend": "Has your registered name at Companies House changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "why-requesting-new-licence": {
     "legend": "Why are you requesting a new license?",
     "options": {

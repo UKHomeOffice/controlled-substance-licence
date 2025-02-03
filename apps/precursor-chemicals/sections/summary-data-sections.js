@@ -30,6 +30,14 @@ module.exports = {
       {
         step: '/contract-details',
         field: 'contract-details'
+      },
+      {
+        step: '/companies-house-name',
+        field: 'companies-house-name'
+      },
+      {
+        step: '/companies-house-number',
+        field: 'companies-house-number'
       }
     ]
   },
