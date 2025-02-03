@@ -140,7 +140,7 @@ module.exports = {
       },
       {
         step: '/witness-destruction-of-drugs',
-        field: 'has-witness-destruction-of-drugs'
+        field: 'require-witness-destruction-of-drugs'
       }
     ]
   }

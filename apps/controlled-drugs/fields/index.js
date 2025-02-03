@@ -320,7 +320,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'has-witness-destruction-of-drugs': {
+  'require-witness-destruction-of-drugs': {
     mixin: 'radio-group',
     isPageHeading: true,
     validate: [ 'required' ],

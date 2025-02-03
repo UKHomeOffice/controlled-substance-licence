@@ -261,7 +261,7 @@
       "is-employee-or-consultant": {
         "label": "Is the legal and compliance person an employee or consultant?"
       },
-      "has-witness-destruction-of-drugs": {
+      "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
       }
     }

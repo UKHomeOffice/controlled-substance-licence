@@ -242,7 +242,7 @@ const steps = {
   },
 
   '/witness-destruction-of-drugs': {
-    fields: ['has-witness-destruction-of-drugs'],
+    fields: ['require-witness-destruction-of-drugs'],
     next: '/who-witnesses-destruction-of-drugs'
   },
 

@@ -147,7 +147,7 @@
   "is-employee-or-consultant": {
     "required": "Select if the person responsible for compliance and regulatory affairs is an employee or a consultant"
   },
-  "has-witness-destruction-of-drugs": {
+  "require-witness-destruction-of-drugs": {
     "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
   }
 }
