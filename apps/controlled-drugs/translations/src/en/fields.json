@@ -181,6 +181,12 @@
       },
       "someone-else": {
         "label": "Someone else"
+      },
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
       }
     }
   },
@@ -247,6 +253,28 @@
   },
   "responsible-for-compliance-regulatory-dbs-subscription": {
     "legend": "Has the person responsible for the security of the premises subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-employee-or-consultant": {
+    "legend": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?",
+    "options": {
+      "employee": {
+        "label": "Employee"
+      },
+      "consultant": {
+        "label": "Consultant"
+      }
+    }
+  },
+  "require-witness-destruction-of-drugs": {
+    "legend": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?",
     "options": {
       "yes": {
         "label": "Yes"

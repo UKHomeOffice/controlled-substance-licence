@@ -7,6 +7,11 @@
     "header": "You cannot continue this application",
     "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
   },
+
+  "upload-companies-house-certificate": {
+    "header": "Upload your Companies House details",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
   
   "licence-holder-details": {
     "header": "Licence holder details"
@@ -120,12 +125,6 @@
       }
     },
     "fields": {
-      "companies-house-number": {
-        "label": "Change of registration details"
-      },
-      "companies-house-name": {
-        "label": "Change of name"
-      },
       "why-requesting-new-licence": {
         "label": "Reason for collecting new license"
       },
@@ -136,14 +135,20 @@
         "label": "When does it start"
       },
       "contract-details": {
-        "label": "Tell us more about the contract "
+        "label": "Tell us more about the contract"
+      },
+      "companies-house-number-change": {
+        "label": "Change of registration details "
+      },
+      "companies-house-name-change": {
+        "label": "Change of name"
       },
       "licence-holder-details": {
          "label": "Licence holder details"
-       },
+      },
        "licence-holder-address": {
          "label": "Licence holder address"
-       },
+      },
       "is-premises-address-same": {
         "label": "Re-use the same contact details for the premises"
       },

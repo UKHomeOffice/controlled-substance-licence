@@ -200,5 +200,11 @@
   },
   "responsible-for-compliance-regulatory-dbs-subscription": {
     "required": "Select if the person responsible for compliance and regulatory affairs has subscribed to DBS updates"
+  },
+  "is-employee-or-consultant": {
+    "required": "Select if the person responsible for compliance and regulatory affairs is an employee or a consultant"
+  },
+  "require-witness-destruction-of-drugs": {
+    "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
   }
 }

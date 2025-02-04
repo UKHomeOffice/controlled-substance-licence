@@ -1,7 +1,7 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
-const CustomRedirect = require('../common/behaviours/custom-redirect');
+const CustomRedirect = require('./behaviours/custom-redirect');
 
 const steps = {
 
@@ -211,6 +211,7 @@ const steps = {
       'person-responsible-for-security-email-address',
       'person-responsible-for-security-confirmed-dbs'
     ],
+    behaviours: [CustomRedirect],
     next: '/security-officer-dbs',
     continueOnEdit: true
   },
@@ -222,6 +223,7 @@ const steps = {
       'person-responsible-for-security-dbs-reference',
       'person-responsible-for-security-dbs-date-of-issue'
     ],
+    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
@@ -272,10 +274,12 @@ const steps = {
   },
 
   '/employee-or-consultant': {
+    fields: ['is-employee-or-consultant'],
     next: '/witness-destruction-of-drugs'
   },
 
   '/witness-destruction-of-drugs': {
+    fields: ['require-witness-destruction-of-drugs'],
     next: '/who-witnesses-destruction-of-drugs'
   },
 

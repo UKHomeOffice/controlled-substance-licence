@@ -1,5 +1,5 @@
 
-const Behaviour = require('../../../apps/common/behaviours/custom-redirect');
+const Behaviour = require('../../../apps/controlled-drugs/behaviours/custom-redirect');
 const reqres = require('hof').utils.reqres;
 
 describe('custom-redirect', () => {
