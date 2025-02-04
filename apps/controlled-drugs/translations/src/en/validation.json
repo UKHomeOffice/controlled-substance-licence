@@ -143,5 +143,11 @@
   },
   "person-responsible-for-security-confirmed-dbs": {
     "required": "You must confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "is-employee-or-consultant": {
+    "required": "Select if the person responsible for compliance and regulatory affairs is an employee or a consultant"
+  },
+  "require-witness-destruction-of-drugs": {
+    "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
   }
 }
