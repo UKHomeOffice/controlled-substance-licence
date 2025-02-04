@@ -26,21 +26,23 @@ const checkResponsibleForSecurityDbs = (req, currentRoute, action) => (
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
-    const currentRoute = req.form.options.route;
-    const action = req.params.action;
+    const { route: currentRoute, confirmStep } = req.form.options;
+    const { action } = req.params;
     const formApp = req.baseUrl;
-    const confirmStep = req.form.options.confirmStep;
 
     this.emit('complete', req, res);
 
-    switch(true) {
-      case req.sessionModel.get('referred-by-summary'):
-      case checkResponsibleForSecurity(req, currentRoute, action):
-      case checkResponsibleForSecurityDetails(req, currentRoute, action):
-      case checkResponsibleForSecurityDbs(req, currentRoute, action):
-        return res.redirect(`${formApp}${confirmStep}`);
-      default:
-        return super.successHandler(req, res, next);
+    const shouldRedirectToConfirmStep = [
+      req.sessionModel.get('referred-by-summary'),
+      checkResponsibleForSecurity(req, currentRoute, action),
+      checkResponsibleForSecurityDetails(req, currentRoute, action),
+      checkResponsibleForSecurityDbs(req, currentRoute, action)
+    ].some(Boolean);
+
+    if (shouldRedirectToConfirmStep) {
+      return res.redirect(`${formApp}${confirmStep}`);
     }
+
+    return super.successHandler(req, res, next);
   }
 };
