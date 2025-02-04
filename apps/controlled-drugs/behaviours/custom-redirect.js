@@ -1,31 +1,24 @@
-const checkResponsibleForSecurity = (req, formApp, currentRoute, action) => {
+const checkResponsibleForSecurity = (req, currentRoute, action) => {
   if (
-    formApp === '/controlled-drugs' &&
     currentRoute === '/responsible-for-security' &&
     action === 'edit' &&
-    req.form.values['responsible-for-security'] === 'same-as-managing-director'
-  ) {
-    return true;
-  } else if (
-    formApp === '/controlled-drugs' &&
-    currentRoute === '/responsible-for-security' &&
-    action === 'edit' &&
-    !!req.sessionModel.get('person-responsible-for-security-full-name')
+    (
+      req.form.values['responsible-for-security'] === 'same-as-managing-director' ||
+      !!req.sessionModel.get('person-responsible-for-security-full-name')
+    )
   ) {
     return true;
   }
   return false;
 };
 
-const checkResponsibleForSecurityDetails = (req, formApp, currentRoute, action) => (
-  formApp === '/controlled-drugs' &&
+const checkResponsibleForSecurityDetails = (req, currentRoute, action) => (
   currentRoute === '/person-responsible-for-security' &&
   action === 'edit' &&
   !!req.sessionModel.get('person-responsible-for-security-dbs-fullname')
 );
 
-const checkResponsibleForSecurityDbs = (req, formApp, currentRoute, action) => (
-  formApp === '/controlled-drugs' &&
+const checkResponsibleForSecurityDbs = (req, currentRoute, action) => (
   currentRoute === '/security-officer-dbs' &&
   action === 'edit' &&
   !!req.sessionModel.get('person-responsible-for-security-dbs-subscription')
@@ -42,9 +35,9 @@ module.exports = superclass => class extends superclass {
 
     switch(true) {
       case req.sessionModel.get('referred-by-summary'):
-      case checkResponsibleForSecurity(req, formApp, currentRoute, action):
-      case checkResponsibleForSecurityDetails(req, formApp, currentRoute, action):
-      case checkResponsibleForSecurityDbs(req, formApp, currentRoute, action):
+      case checkResponsibleForSecurity(req, currentRoute, action):
+      case checkResponsibleForSecurityDetails(req, currentRoute, action):
+      case checkResponsibleForSecurityDbs(req, currentRoute, action):
         return res.redirect(`${formApp}${confirmStep}`);
       default:
         return super.successHandler(req, res, next);

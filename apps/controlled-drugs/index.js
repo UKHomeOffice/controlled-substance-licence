@@ -1,7 +1,7 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
-const CustomRedirect = require('../common/behaviours/custom-redirect');
+const CustomRedirect = require('./behaviours/custom-redirect');
 
 const steps = {
 
