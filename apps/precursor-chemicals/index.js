@@ -60,12 +60,12 @@ const steps = {
   /** Renew existing licence - Background Information */
 
   '/companies-house-number': {
-    fields: ['companies-house-number'],
+    fields: ['companies-house-number-change'],
     forks: [
       {
         target: '/companies-house-name',
         condition: {
-          field: 'companies-house-number',
+          field: 'companies-house-number-change',
           value: 'no'
         }
       }
@@ -74,12 +74,12 @@ const steps = {
   },
 
   '/companies-house-name': {
-    fields: ['companies-house-name'],
+    fields: ['companies-house-name-change'],
     forks: [
       {
         target: '/upload-companies-house-certificate',
         condition: {
-          field: 'companies-house-name',
+          field: 'companies-house-name-change',
           value: 'no'
         }
       }
@@ -95,6 +95,11 @@ const steps = {
   },
 
   '/upload-companies-house-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
     next: '/change-responsible-officer-or-guarantor'
   },
 
@@ -349,7 +354,14 @@ const steps = {
 
   '/why-chemicals-needed': {
     fields: ['chemicals-used-for'],
-    next: '/upload-company-certificate'
+    forks: [
+      {
+        target: '/upload-company-certificate',
+        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
+          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+      }
+    ],
+    next: '/upload-conduct-certificate'
   },
 
   /** Evidence */
@@ -463,9 +475,7 @@ const steps = {
 
 module.exports = {
   name: 'precursor-chemicals',
-  fields: 'apps/precursor-chemicals/fields',
   views: 'apps/precursor-chemicals/views',
-  translations: 'apps/precursor-chemicals/translations',
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',

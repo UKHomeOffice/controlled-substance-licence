@@ -27,12 +27,6 @@
   "person-in-charge-dbs": {
     "header": "DBS information for the person in charge"
   },
-  "member-of-professional-body": {
-    "header": "Are they, or anyone named on this application, a member of a professional body?"
-  },
-  "professional-body-details": {
-    "header": "Provide details of the professional bodies and relevant reference numbers"
-  },
   "person-responsible-for-security": {
     "header": "Person responsible for the security of the premises"
   },
@@ -53,12 +47,6 @@
   },
   "regulatory-and-compliance-dbs-updates": {
     "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
-  },
-  "employee-or-consultant": {
-    "header": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?"
-  },
-  "witness-destruction-of-drugs": {
-    "header": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?"
   },
   "who-witnesses-destruction-of-drugs": {
     "header": "Who is responsible for witnessing the destruction of controlled drugs?"
@@ -252,6 +240,12 @@
       "person-in-charge-dbs-information": {
         "label": "Managing director DBS information"
       },
+      "member-of-professional-body": {
+        "label": "Member of a professional body?"
+      },
+      "professional-body-details": {
+        "label": "Details of professional body and reference number"
+      },
       "legal-business-proceedings": {
         "label": "Anyone in your organisation been subject to legal proceedings?"
       },
@@ -263,6 +257,12 @@
       },
       "responsible-for-security-details": {
         "label": "Person responsible for security of premises"
+      },
+      "is-employee-or-consultant": {
+        "label": "Is the legal and compliance person an employee or consultant?"
+      },
+      "require-witness-destruction-of-drugs": {
+        "label": "Do you need someone to witness the destruction of controlled drugs?"
       }
     }
   }

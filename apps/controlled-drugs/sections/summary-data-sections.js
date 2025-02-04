@@ -96,6 +96,14 @@ module.exports = {
         field: 'person-in-charge-dbs-subscription'
       },
       {
+        step: '/member-of-professional-body',
+        field: 'member-of-professional-body'
+      },
+      {
+        step: '/professional-body-details',
+        field: 'professional-body-details'
+      },
+      {
         step: '/legal-business-proceedings',
         field: 'legal-business-proceedings'
       },
@@ -125,6 +133,14 @@ module.exports = {
 
           return responsibleForSecDetails.join('\n');
         }
+      },
+      {
+        step: '/employee-or-consultant',
+        field: 'is-employee-or-consultant'
+      },
+      {
+        step: '/witness-destruction-of-drugs',
+        field: 'require-witness-destruction-of-drugs'
       }
     ]
   }
