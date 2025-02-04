@@ -117,7 +117,17 @@ module.exports = {
       },
       {
         step: '/responsible-for-security',
-        field: 'responsible-for-security'
+        field: 'responsible-for-security',
+        parse: (val, req) => {
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+
+          if (!securityResponsibleIsSameAsMd) {
+            return translateOption(req, 'responsible-for-security', 'no');
+          }
+
+          return translateOption(req, 'responsible-for-security', 'yes');
+        }
       },
       {
         step: '/person-responsible-for-security',

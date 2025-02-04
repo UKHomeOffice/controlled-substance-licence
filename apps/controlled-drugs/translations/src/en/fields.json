@@ -181,6 +181,12 @@
       },
       "someone-else": {
         "label": "Someone else"
+      },
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
       }
     }
   },

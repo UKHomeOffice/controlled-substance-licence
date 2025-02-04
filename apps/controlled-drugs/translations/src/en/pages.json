@@ -252,6 +252,9 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Anyone in your organisation ever received a criminal conviction?"
       },
+      "responsible-for-security": {
+        "label": "Is your company's person responsible for the security of the premises the same as the managing director?"
+      },
       "responsible-for-security-details": {
         "label": "Person responsible for security of premises"
       },
