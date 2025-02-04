@@ -171,6 +171,14 @@ module.exports = {
 
           return null;
         }
+      },
+      {
+        step: '/employee-or-consultant',
+        field: 'is-employee-or-consultant'
+      },
+      {
+        step: '/witness-destruction-of-drugs',
+        field: 'require-witness-destruction-of-drugs'
       }
     ]
   }
