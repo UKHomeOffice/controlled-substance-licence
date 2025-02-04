@@ -130,6 +130,21 @@
       }
     }
   },
+  "member-of-professional-body": {
+    "legend": "Are they, or anyone named on this application, a member of a professional body?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "professional-body-details": {
+    "label": "Provide details of the professional bodies and relevant reference numbers",
+    "hint": "For example, General Medical Council and GMC reference number"
+  },
   "legal-business-proceedings": {
     "legend": "Has anyone in your organisation ever been subject to legal business proceedings?",
     "hint": "This includes members of the board and senior management teams. Legal proceedings includes administrative, financial or bankruptcy cases",
