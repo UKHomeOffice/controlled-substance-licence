@@ -33,17 +33,11 @@
   "security-officer-dbs": {
     "header": "DBS information for person responsible for security of premises"
   },
-  "compliance-and-regulatory": {
-    "header": "Who is responsible for legal compliance and regulatory affairs?"
-  },
   "person-responsible-for-compliance-and-regulatory": {
     "header": "Person responsible for legal compliance and regulatory affairs"
   },
   "regulatory-and-compliance-dbs": {
     "header": "DBS information for person responsible for compliance and regulatory affairs"
-  },
-  "regulatory-and-compliance-dbs-updates": {
-    "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
   },
   "employee-or-consultant": {
     "header": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?"
@@ -266,6 +260,15 @@
       },
       "person-responsible-for-security-dbs-information": {
         "label": "Person responsible for security of premises DBS updates"
+      },
+      "responsible-for-compliance-regulatory-details": {
+        "label": "Person responsible for legal and compliance"
+      },
+      "responsible-for-compliance-regulatory-dbs-subscription": {
+        "label": "Person responsible for legal and compliance DBS information"
+      },
+      "responsible-for-compliance-regulatory-dbs-information": {
+        "label": "Person responsible for legal and compliance DBS updates"
       }
     }
   }
