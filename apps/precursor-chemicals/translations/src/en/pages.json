@@ -131,9 +131,6 @@
       }
     },
     "fields": {
-      "company-house-evidence": {
-        "label": "Upload company registration certificate"
-      },
       "why-requesting-new-licence": {
         "label": "Reason for collecting new license"
       },
