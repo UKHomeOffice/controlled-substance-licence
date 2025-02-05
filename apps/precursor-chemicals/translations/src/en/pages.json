@@ -12,7 +12,7 @@
     "header": "Upload your Companies House details",
     "intro": "Upload a scanned copy of your company registration certificate."
   },
-  
+
   "licence-holder-details": {
     "header": "Licence holder details"
   },
@@ -136,6 +136,15 @@
       },
       "contract-details": {
         "label": "Tell us more about the contract"
+      },
+      "change-responsible-officer-or-guarantor": {
+        "label": "Change in responsible person or guarantor for this site only"
+      },
+      "additional-category": {
+        "label": "Requesting an additional category"
+      },
+      "change-substance-or-operation": {
+        "label": "Change of substance or operation"
       },
       "companies-house-number-change": {
         "label": "Change of registration details "

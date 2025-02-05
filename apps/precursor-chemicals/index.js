@@ -104,14 +104,17 @@ const steps = {
   },
 
   '/change-responsible-officer-or-guarantor': {
+    fields: ['change-responsible-officer-or-guarantor'],
     next: '/additional-category'
   },
 
   '/additional-category': {
+    fields: ['additional-category'],
     next: '/change-substance-or-operation'
   },
 
   '/change-substance-or-operation': {
+    fields: ['change-substance-or-operation'],
     next: '/licence-holder-details'
   },
 
@@ -453,7 +456,10 @@ const steps = {
   '/summary': {
     behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
-    next: '/declaration'
+    next: '/declaration',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/declaration': {
