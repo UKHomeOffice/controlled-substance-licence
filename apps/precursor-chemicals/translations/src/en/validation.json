@@ -5,10 +5,10 @@
   "licensee-type": {
     "required": "Select what type of licensee are you"
   },
-  "companies-house-number": {
+  "companies-house-number-change": {
     "required": "Select if your Companies House reference number has changed since your last application"
   },
-  "companies-house-name": {
+  "companies-house-name-change": {
     "required": "Select if your registered name at Companies House has changed since your last application"
   },
   "change-responsible-officer-or-guarantor": {

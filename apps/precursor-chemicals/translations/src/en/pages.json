@@ -12,7 +12,13 @@
     "header": "Upload your Companies House details",
     "intro": "Upload a scanned copy of your company registration certificate."
   },
-
+  
+  "upload-companies-house-evidence": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate.",
+    "pageTitle": "Upload Companies House details as evidence of a change to your name details"
+  },
+  
   "licence-holder-details": {
     "header": "Licence holder details"
   },
@@ -102,7 +108,7 @@
   "application-submitted": {
     "confirmed": "Precursor chemicals application submitted"
   },
-
+  
   "confirm": {
     "sections": {
       "background-information": {

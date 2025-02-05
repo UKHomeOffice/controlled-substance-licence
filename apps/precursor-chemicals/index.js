@@ -91,6 +91,11 @@ const steps = {
   },
 
   '/upload-companies-house-evidence': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
     next: '/change-responsible-officer-or-guarantor'
   },
 
