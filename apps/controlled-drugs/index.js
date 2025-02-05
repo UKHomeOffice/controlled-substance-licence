@@ -255,7 +255,9 @@ const steps = {
       'responsible-for-compliance-regulatory-email-address',
       'responsible-for-compliance-regulatory-confirmed-dbs'
     ],
-    next: '/regulatory-and-compliance-dbs'
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs',
+    continueOnEdit: true
   },
 
   '/regulatory-and-compliance-dbs': {
@@ -264,7 +266,9 @@ const steps = {
       'responsible-for-compliance-regulatory-dbs-reference',
       'responsible-for-compliance-regulatory-dbs-date-of-issue'
     ],
-    next: '/regulatory-and-compliance-dbs-updates'
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs-updates',
+    continueOnEdit: true
   },
 
   '/regulatory-and-compliance-dbs-updates': {
