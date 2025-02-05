@@ -130,7 +130,7 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-for-security": {
-    "required": "Selet who is responsible for the security of the premises"
+    "required": "Select who is responsible for the security of the premises"
   },
   "person-responsible-for-security-full-name": {
     "required": "Enter the name of the person who is responsible for premises security",
