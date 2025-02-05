@@ -62,6 +62,57 @@ module.exports = {
       }
     ]
   },
+  'change-responsible-officer-or-guarantor': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'additional-category': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'change-substance-or-operation': {
+    isPageHeading: 'true',
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'why-requesting-new-licence': {
     mixin: 'radio-group',
     isPageHeading: 'true',
@@ -177,7 +228,10 @@ module.exports = {
       {
         value: 'no'
       }
-    ]
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   },
   'premises-address-line-1': {
     mixin: 'input-text',

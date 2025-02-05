@@ -1,7 +1,7 @@
 const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
-const CustomRedirect = require('../common/behaviours/custom-redirect');
+const CustomRedirect = require('./behaviours/custom-redirect');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
@@ -109,14 +109,17 @@ const steps = {
   },
 
   '/change-responsible-officer-or-guarantor': {
+    fields: ['change-responsible-officer-or-guarantor'],
     next: '/additional-category'
   },
 
   '/additional-category': {
+    fields: ['additional-category'],
     next: '/change-substance-or-operation'
   },
 
   '/change-substance-or-operation': {
+    fields: ['change-substance-or-operation'],
     next: '/licence-holder-details'
   },
 
@@ -458,7 +461,10 @@ const steps = {
   '/summary': {
     behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
-    next: '/declaration'
+    next: '/declaration',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/declaration': {

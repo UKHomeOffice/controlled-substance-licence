@@ -33,9 +33,6 @@
   "security-officer-dbs": {
     "header": "DBS information for person responsible for security of premises"
   },
-  "security-officer-dbs-updates": {
-    "header": "Has the person responsible for the security of the premises subscribed to DBS updates?"
-  },
   "compliance-and-regulatory": {
     "header": "Who is responsible for legal compliance and regulatory affairs?"
   },
@@ -47,12 +44,6 @@
   },
   "regulatory-and-compliance-dbs-updates": {
     "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
-  },
-  "employee-or-consultant": {
-    "header": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?"
-  },
-  "witness-destruction-of-drugs": {
-    "header": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?"
   },
   "who-witnesses-destruction-of-drugs": {
     "header": "Who is responsible for witnessing the destruction of controlled drugs?"
@@ -261,8 +252,23 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Anyone in your organisation ever received a criminal conviction?"
       },
+      "responsible-for-security": {
+        "label": "Is your company's person responsible for the security of the premises the same as the managing director?"
+      },
       "responsible-for-security-details": {
         "label": "Person responsible for security of premises"
+      },
+      "person-responsible-for-security-dbs-subscription": {
+        "label": "Person responsible for security of premises DBS information"
+      },
+      "person-responsible-for-security-dbs-information": {
+        "label": "Person responsible for security of premises DBS updates"
+      },
+      "is-employee-or-consultant": {
+        "label": "Is the legal and compliance person an employee or consultant?"
+      },
+      "require-witness-destruction-of-drugs": {
+        "label": "Do you need someone to witness the destruction of controlled drugs?"
       }
     }
   }

@@ -1,6 +1,6 @@
 'use strict';
 
-const { formatDate } = require('../../../utils');
+const { formatDate, translateOption } = require('../../../utils');
 
 module.exports = {
 
@@ -117,22 +117,78 @@ module.exports = {
       },
       {
         step: '/responsible-for-security',
+        field: 'responsible-for-security',
+        parse: (val, req) => {
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+
+          if (!securityResponsibleIsSameAsMd) {
+            return translateOption(req, 'responsible-for-security', 'no');
+          }
+
+          return translateOption(req, 'responsible-for-security', 'yes');
+        }
+      },
+      {
+        step: '/person-responsible-for-security',
         field: 'responsible-for-security-details',
         parse: (list, req) => {
           const securityResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
-          const responsibleForSecDetails = [];
 
           if (!securityResponsibleIsSameAsMd) {
-            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-full-name'));
-            responsibleForSecDetails.push(req.sessionModel.get('person-responsible-for-security-email-address'));
-          } else {
-            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-full-name'));
-            responsibleForSecDetails.push(req.sessionModel.get('person-in-charge-email-address'));
+            const responsibleForSecDetails = [
+              req.sessionModel.get('person-responsible-for-security-full-name'),
+              req.sessionModel.get('person-responsible-for-security-email-address')
+            ];
+            return responsibleForSecDetails.join('\n');
           }
 
-          return responsibleForSecDetails.join('\n');
+          return null;
         }
+      },
+      {
+        step: '/security-officer-dbs',
+        field: 'person-responsible-for-security-dbs-information',
+        parse: (val, req) => {
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+
+          if(!securityResponsibleIsSameAsMd) {
+            const responsibleForSecDbsInfo = [
+              req.sessionModel.get('person-responsible-for-security-dbs-fullname'),
+              req.sessionModel.get('person-responsible-for-security-dbs-reference'),
+              formatDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue'))
+            ];
+            return responsibleForSecDbsInfo.join('\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/security-officer-dbs-updates',
+        field: 'person-responsible-for-security-dbs-subscription',
+        parse: (val, req) => {
+          const securityResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
+
+          if (!securityResponsibleIsSameAsMd) {
+            const fieldToTranslate = 'person-responsible-for-security-dbs-subscription';
+            const valueToTranslate = req.sessionModel.get('person-responsible-for-security-dbs-subscription');
+            return translateOption(req, fieldToTranslate, valueToTranslate);
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/employee-or-consultant',
+        field: 'is-employee-or-consultant'
+      },
+      {
+        step: '/witness-destruction-of-drugs',
+        field: 'require-witness-destruction-of-drugs'
       }
     ]
   }
