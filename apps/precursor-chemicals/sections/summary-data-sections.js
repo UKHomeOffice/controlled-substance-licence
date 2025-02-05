@@ -6,6 +6,18 @@ module.exports = {
   'background-information': {
     steps: [
       {
+        step: 'change-responsible-officer-or-guarantor',
+        field: 'change-responsible-officer-or-guarantor'
+      },
+      {
+        step: 'additional-category',
+        field: 'additional-category'
+      },
+      {
+        step: 'change-substance-or-operation',
+        field: 'change-substance-or-operation'
+      },
+      {
         step: '/why-new-licence',
         field: 'why-requesting-new-licence',
         parse: (value, req) => {
@@ -73,6 +85,17 @@ module.exports = {
             return null;
           }
           return value;
+        }
+      },
+      {
+        step: '/upload-companies-house-evidence',
+        field: 'company-registration-certificate',
+        dependsOn: 'companies-house-name-change',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       },
       {

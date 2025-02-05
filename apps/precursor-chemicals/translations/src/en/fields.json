@@ -51,6 +51,39 @@
       }
     }
   },
+  "change-responsible-officer-or-guarantor": {
+    "legend": "Are you requesting to change the responsible person or guarantor for this site only?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "additional-category": {
+    "legend": "Are you requesting an additional category?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "change-substance-or-operation": {
+    "legend": "Are you requesting a change of substance or operation?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "why-requesting-new-licence": {
     "legend": "Why are you requesting a new license?",
     "options": {

@@ -1,15 +1,24 @@
 {
-  "companies-house-number": {
-    "required": "Select if your Companies House reference number has changed since your last application"
-  },
-  "companies-house-name": {
-    "required": "Select if your registered name at Companies House has changed since your last application"
-  },
   "application-form-type": {
     "required": "Select how would you like to apply"
   },
   "licensee-type": {
     "required": "Select what type of licensee are you"
+  },
+  "companies-house-number-change": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "companies-house-name-change": {
+    "required": "Select if your registered name at Companies House has changed since your last application"
+  },
+  "change-responsible-officer-or-guarantor": {
+    "required": "Select if you are requesting to change the responsible person or guarantor for this site only"
+  },
+  "additional-category": {
+    "required": "Select if you are requesting an additional category"
+  },
+  "change-substance-or-operation": {
+    "required": "Select if you are requesting a change of substance or operation"
   },
   "why-requesting-new-licence": {
     "required": "Select why you are requesting a new licence"
