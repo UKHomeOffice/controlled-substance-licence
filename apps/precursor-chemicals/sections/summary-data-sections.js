@@ -78,9 +78,9 @@ module.exports = {
       {
         step: '/upload-companies-house-evidence',
         field: 'company-registration-certificate',
+        dependsOn: 'companies-house-name-change',
         parse: (documents, req) => {
-          if (req.sessionModel.get('companies-house-name-change') === 'no' ||
-          req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
