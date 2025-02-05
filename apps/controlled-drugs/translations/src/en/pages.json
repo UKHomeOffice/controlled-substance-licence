@@ -39,15 +39,6 @@
   "regulatory-and-compliance-dbs": {
     "header": "DBS information for person responsible for compliance and regulatory affairs"
   },
-  "regulatory-and-compliance-dbs-updates": {
-    "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
-  },
-  "employee-or-consultant": {
-    "header": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?"
-  },
-  "witness-destruction-of-drugs": {
-    "header": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?"
-  },
   "who-witnesses-destruction-of-drugs": {
     "header": "Who is responsible for witnessing the destruction of controlled drugs?"
   },
@@ -266,6 +257,9 @@
       },
       "person-responsible-for-security-dbs-information": {
         "label": "Person responsible for security of premises DBS updates"
+      },
+      "responsible-for-compliance-regulatory": {
+        "label": "Is your company's person responsible for legal compliance and regulatory affairs the same as the managing director?"
       },
       "responsible-for-compliance-regulatory-details": {
         "label": "Person responsible for legal and compliance"

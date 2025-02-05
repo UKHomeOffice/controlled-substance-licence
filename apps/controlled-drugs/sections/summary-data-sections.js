@@ -183,6 +183,73 @@ module.exports = {
         }
       },
       {
+        step: '/compliance-and-regulatory',
+        field: 'responsible-for-compliance-regulatory',
+        parse: (val, req) => {
+          const compRegResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
+
+          if (!compRegResponsibleIsSameAsMd) {
+            return translateOption(req, 'responsible-for-compliance-regulatory', 'no');
+          }
+
+          return translateOption(req, 'responsible-for-compliance-regulatory', 'yes');
+        }
+      },
+      {
+        step: '/person-responsible-for-compliance-and-regulatory',
+        field: 'responsible-for-compliance-regulatory-details',
+        parse: (list, req) => {
+          const compRegResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
+
+          if (!compRegResponsibleIsSameAsMd) {
+            const responsibleForCompRegDetails = [
+              req.sessionModel.get('responsible-for-compliance-regulatory-full-name'),
+              req.sessionModel.get('responsible-for-compliance-regulatory-email-address')
+            ];
+            return responsibleForCompRegDetails.join('\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/regulatory-and-compliance-dbs',
+        field: 'responsible-for-compliance-regulatory-dbs-information',
+        parse: (val, req) => {
+          const compRegResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
+
+          if(!compRegResponsibleIsSameAsMd) {
+            const responsibleForCompRegDbsInfo = [
+              req.sessionModel.get('responsible-for-compliance-regulatory-dbs-fullname'),
+              req.sessionModel.get('responsible-for-compliance-regulatory-dbs-reference'),
+              formatDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue'))
+            ];
+            return responsibleForCompRegDbsInfo.join('\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/regulatory-and-compliance-dbs-updates',
+        field: 'responsible-for-compliance-regulatory-dbs-subscription',
+        parse: (val, req) => {
+          const compRegResponsibleIsSameAsMd =
+            req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
+
+          if (!compRegResponsibleIsSameAsMd) {
+            const fieldToTranslate = 'responsible-for-compliance-regulatory-dbs-subscription';
+            const valueToTranslate = req.sessionModel.get('responsible-for-compliance-regulatory-dbs-subscription');
+            return translateOption(req, fieldToTranslate, valueToTranslate);
+          }
+
+          return null;
+        }
+      },
+      {
         step: '/employee-or-consultant',
         field: 'is-employee-or-consultant'
       },
