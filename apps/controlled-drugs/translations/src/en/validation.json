@@ -170,5 +170,13 @@
   },
   "require-witness-destruction-of-drugs": {
     "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
+  },
+  "trading-reasons": {
+    "required": "Select a trading reason"
+  },
+  "specify-trading-reasons": {
+    "required": "Specify your trading reason",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "You have exceeded the 500 character limit"
   }
 }

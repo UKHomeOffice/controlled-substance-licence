@@ -65,6 +65,9 @@ module.exports = {
   aggregateLimits: {
     precursorChemicals: {
       substanceLimit: 100
+    },
+    controlledDrugs: {
+      tradingReasonsLimit: 100
     }
   }
 };

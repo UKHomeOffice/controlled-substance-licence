@@ -241,5 +241,15 @@
         "label": "No"
       }
     }
+  },
+  "trading-reasons": {
+    "label": "What trading reasons does this site need a licence for?",
+    "hint": "Select one reason to begin with. You can add more reasons in the next step",
+    "options": {
+      "none_selected": "Select trading reasons"
+    }
+  },
+  "specify-trading-reasons": {
+    "label": "Specify your trading reason"
   }
 }

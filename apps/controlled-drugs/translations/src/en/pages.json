@@ -60,14 +60,11 @@
   "company-registration-certificate": {
     "header": "Upload company registration certificate"
   },
-  "trading-reasons": {
-    "header": "What trading reasons does this site need a licence for?"
-  },
   "trading-reasons-summary": {
-    "header": "Summary of trading reasons"
-  },
-  "specify-trading-reasons": {
-    "header": "Specify your trading reason"
+    "header": "Summary of trading reasons",
+    "add-another": "Add another",
+    "limit-exceeded": "You can not add any more trading reasons",
+    "key": "Trading reason"
   },
   "why-you-need-licence": {
     "header": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
@@ -269,6 +266,9 @@
       },
       "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
+      },
+      "aggregated-trading-reasons": {
+        "label": "Trading reasons"
       }
     }
   }
