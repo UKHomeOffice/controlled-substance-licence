@@ -198,11 +198,11 @@ module.exports = {
         parse: obj => {
           if (!obj?.aggregatedValues) { return null; }
           return obj.aggregatedValues.map(item => {
-            const tradingReasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
-            const tradingReasonLabel = findArrayItemByValue(tradingReasons, tradingReasonValue)?.label;
+            const reasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
+            const reasonLabel = findArrayItemByValue(tradingReasons, reasonValue)?.label ?? reasonValue;
             const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
 
-            return customReason ? `${tradingReasonLabel}: ${customReason}` : tradingReasonLabel;
+            return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
           }).join('\n');
         }
       }
