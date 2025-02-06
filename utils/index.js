@@ -1,6 +1,5 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
-const chemicals = require('../apps/precursor-chemicals/data/chemicals.json');
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -90,11 +89,12 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
  * Finds and returns the first matching chemical object from the entire list.
  * This can be used to determine that chemical's label or category values.
  *
+ * @param {array} data - A json or js formatted array of objects each containing a label and value property.
  * @param {string} valueToFind - The form value of the selected chemical.
  * @returns {object} - Containing all the details of the found chemical.
  *
  * @example
- * findChemical('Ephedrine');
+ * findDataLabelByValue(chemicals 'Ephedrine');
  * // returns {
  *   "label": "Ephedrine (2939 4100)",
  *   "value": "Ephedrine",
@@ -102,9 +102,16 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
  *   "cnCode": "2939 4100"
  * }
  *
+ * @example
+ * findDataLabelByValue(tradingReasons 'broker');
+ * // returns {
+ *   "label": "Broker",
+ *   "value": "broker",
+ * }
+ *
  */
-const findChemical = valueToFind => {
-  return chemicals.find(chemical => chemical.value === valueToFind);
+const findDataLabelByValue = (data, valueToFind) => {
+  return data.find(item => item.value === valueToFind);
 };
 
-module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findChemical };
+module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findDataLabelByValue };
