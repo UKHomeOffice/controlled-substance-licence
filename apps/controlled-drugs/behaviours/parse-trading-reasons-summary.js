@@ -1,4 +1,4 @@
-const { findDataLabelByValue } = require('../../../utils/index');
+const { findArrayItemByValue } = require('../../../utils/index');
 const tradingReasons = require('../data/trading-reasons.json');
 module.exports = superclass => class extends superclass {
   locals(req, res) {
@@ -8,8 +8,8 @@ module.exports = superclass => class extends superclass {
       for (const field of item.fields) {
         if (field.field === 'trading-reasons') {
           field.parsed = field.value === 'other' ?
-            `${findDataLabelByValue(tradingReasons, field.value)?.label ?? field.value}: ${customReasons}` :
-            field.parsed = findDataLabelByValue(tradingReasons, field.value)?.label ?? field.value;
+            `${findArrayItemByValue(tradingReasons, field.value)?.label ?? field.value}: ${customReasons}` :
+            field.parsed = findArrayItemByValue(tradingReasons, field.value)?.label ?? field.value;
         }
       }
     }

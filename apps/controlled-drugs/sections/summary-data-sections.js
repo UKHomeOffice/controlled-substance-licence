@@ -1,6 +1,6 @@
 'use strict';
 
-const { formatDate, translateOption, findDataLabelByValue } = require('../../../utils');
+const { formatDate, translateOption, findArrayItemByValue } = require('../../../utils');
 const tradingReasons = require('../data/trading-reasons.json');
 
 module.exports = {
@@ -199,7 +199,7 @@ module.exports = {
           if (!obj?.aggregatedValues) { return null; }
           return obj.aggregatedValues.map(item => {
             const tradingReasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
-            const tradingReasonLabel = findDataLabelByValue(tradingReasons, tradingReasonValue)?.label;
+            const tradingReasonLabel = findArrayItemByValue(tradingReasons, tradingReasonValue)?.label;
             const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
 
             return customReason ? `${tradingReasonLabel}: ${customReason}` : tradingReasonLabel;

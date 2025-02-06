@@ -94,7 +94,7 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
  * @returns {object} - Containing all the details of the found chemical.
  *
  * @example
- * findDataLabelByValue(chemicals 'Ephedrine');
+ * findArrayItemByValue(chemicals 'Ephedrine');
  * // returns {
  *   "label": "Ephedrine (2939 4100)",
  *   "value": "Ephedrine",
@@ -103,15 +103,15 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
  * }
  *
  * @example
- * findDataLabelByValue(tradingReasons 'broker');
+ * findArrayItemByValue(tradingReasons 'broker');
  * // returns {
  *   "label": "Broker",
  *   "value": "broker",
  * }
  *
  */
-const findDataLabelByValue = (data, valueToFind) => {
+const findArrayItemByValue = (data, valueToFind) => {
   return data.find(item => item.value === valueToFind);
 };
 
-module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findDataLabelByValue };
+module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findArrayItemByValue };
