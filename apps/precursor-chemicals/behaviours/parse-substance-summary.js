@@ -1,4 +1,5 @@
-const { findChemical, parseOperations, translateOption } = require('../../../utils/index');
+const { findDataLabelByValue, parseOperations, translateOption } = require('../../../utils/index');
+const chemicals = require('../data/chemicals.json');
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);
@@ -7,7 +8,7 @@ module.exports = superclass => class extends superclass {
       for (const field of item.fields) {
         switch(field.field) {
           case 'which-chemical':
-            field.parsed = findChemical(field.value)?.label ?? field.value;
+            field.parsed = findDataLabelByValue(chemicals, field.value)?.label ?? field.value;
             break;
           case 'substance-category':
             field.parsed = field.value === 'unknown' ?
