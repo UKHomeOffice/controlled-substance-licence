@@ -67,7 +67,7 @@ module.exports = {
       substanceLimit: 100
     },
     controlledDrugs: {
-      tradingReasonsLimit: 100
+      tradingReasonsLimit: 5
     }
   }
 };
