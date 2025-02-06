@@ -1,6 +1,7 @@
 'use strict';
 
-const { formatDate, translateOption } = require('../../../utils');
+const { formatDate, translateOption, findDataLabelByValue } = require('../../../utils');
+const tradingReasons = require('../data/trading-reasons.json');
 
 module.exports = {
 
@@ -189,6 +190,21 @@ module.exports = {
       {
         step: '/witness-destruction-of-drugs',
         field: 'require-witness-destruction-of-drugs'
+      },
+      {
+        step: '/trading-reasons-summary',
+        field: 'aggregated-trading-reasons',
+        changeLink: 'trading-reasons-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const tradingReasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
+            const tradingReasonLabel = findDataLabelByValue(tradingReasons, tradingReasonValue)?.label;
+            const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
+
+            return customReason ? `${tradingReasonLabel}: ${customReason}` : tradingReasonLabel;
+          }).join('\n');
+        }
       }
     ]
   }
