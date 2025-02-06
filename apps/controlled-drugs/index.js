@@ -1,4 +1,3 @@
-
 const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
@@ -9,7 +8,6 @@ const LimitItems = require('../common/behaviours/limit-items');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const ParseTradingReasonsSummary = require('./behaviours/parse-trading-reasons-summary');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
-
 
 const steps = {
 

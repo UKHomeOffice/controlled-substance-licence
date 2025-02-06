@@ -1,5 +1,6 @@
 const { findArrayItemByValue, parseOperations, translateOption } = require('../../../utils/index');
 const chemicals = require('../data/chemicals.json');
+
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);

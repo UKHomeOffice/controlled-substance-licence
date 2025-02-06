@@ -1,4 +1,3 @@
-
 const Behaviour = require('../../../apps/controlled-drugs/behaviours/parse-trading-reasons-summary');
 const reqres = require('hof').utils.reqres;
 

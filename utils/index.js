@@ -85,13 +85,13 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
 };
 
 /**
- * Using the form select value in the list of precursor chemicals
- * Finds and returns the first matching chemical object from the entire list.
- * This can be used to determine that chemical's label or category values.
+ * Using the form select value in a data array of items containing a value property
+ * Finds and returns the first matching array item from the array.
+ * From the found item other properties such as 'label' can be extracted.
  *
  * @param {array} data - A json or js formatted array of objects each containing a label and value property.
- * @param {string} valueToFind - The form value of the selected chemical.
- * @returns {object} - Containing all the details of the found chemical.
+ * @param {string} valueToFind - The form value of the selected item to find in the array 'data'.
+ * @returns {object|undefined} - Containing all the details of the found item. Undefined if no item was found.
  *
  * @example
  * findArrayItemByValue(chemicals 'Ephedrine');
