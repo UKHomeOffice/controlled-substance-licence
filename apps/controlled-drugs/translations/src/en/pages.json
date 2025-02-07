@@ -265,16 +265,16 @@
         "label": "Do you need someone to witness the destruction of controlled drugs?"
       },
       "responsible-for-witnessing-the-destruction": {
-        "label": "Is the person responsible for witnessing the destruction of controlled drugs in your company the same as the managing director?"
+        "label": "Is your company's person responsible for witnessing the destruction of controlled drugs premises the same as the managing director?"
       },
       "responsible-for-witnessing-details": {
-        "label": "Authorised witness for the destruction of drugs"
+        "label": "Person responsible for witnessing the destruction of drugs"
       },
       "responsible-for-witnessing-dbs-information": {
-        "label": "Authorised witness DBS information"
+        "label": "Person responsible for witnessing destruction of drugs DBS information"
       },
       "responsible-for-witnessing-dbs-subscription": {
-        "label": "Authorised witness DBS updates"
+        "label": "Person responsible for destruction of drugs DBS updates"
       }
     }
   }
