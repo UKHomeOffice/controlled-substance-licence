@@ -194,10 +194,10 @@ module.exports = {
         step: '/who-witnesses-destruction-of-drugs',
         field: 'responsible-for-witnessing-the-destruction',
         parse: (val, req) => {
-          const compRegResponsibleIsSameAsMd =
+          const responsibleForWitnessDrugsIsSameAsMd =
             req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
 
-          if (!compRegResponsibleIsSameAsMd) {
+          if (!responsibleForWitnessDrugsIsSameAsMd) {
             return translateOption(req, 'responsible-for-witnessing-the-destruction', 'no');
           }
 
@@ -208,15 +208,15 @@ module.exports = {
         step: '/person-to-witness',
         field: 'responsible-for-witnessing-details',
         parse: (list, req) => {
-          const compRegResponsibleIsSameAsMd =
+          const responsibleForWitnessDrugsIsSameAsMd =
             req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
 
-          if (!compRegResponsibleIsSameAsMd) {
-            const responsibleForCompRegDetails = [
+          if (!responsibleForWitnessDrugsIsSameAsMd) {
+            const responsibleForWitnessDrugsDetails = [
               req.sessionModel.get('responsible-for-witnessing-full-name'),
               req.sessionModel.get('responsible-for-witnessing-email-address')
             ];
-            return responsibleForCompRegDetails.join('\n');
+            return responsibleForWitnessDrugsDetails.join('\n');
           }
 
           return null;
@@ -226,16 +226,16 @@ module.exports = {
         step: '/witness-dbs',
         field: 'responsible-for-witnessing-dbs-information',
         parse: (val, req) => {
-          const compRegResponsibleIsSameAsMd =
+          const responsibleForWitnessDrugsIsSameAsMd =
             req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
 
-          if(!compRegResponsibleIsSameAsMd) {
-            const responsibleForCompRegDbsInfo = [
+          if(!responsibleForWitnessDrugsIsSameAsMd) {
+            const responsibleForWitnessDrugsDbsInfo = [
               req.sessionModel.get('responsible-for-witnessing-dbs-fullname'),
               req.sessionModel.get('responsible-for-witnessing-dbs-reference'),
               formatDate(req.sessionModel.get('responsible-for-witnessing-dbs-date-of-issue'))
             ];
-            return responsibleForCompRegDbsInfo.join('\n');
+            return responsibleForWitnessDrugsDbsInfo.join('\n');
           }
 
           return null;
@@ -245,10 +245,10 @@ module.exports = {
         step: '/witness-dbs-updates',
         field: 'responsible-for-witnessing-dbs-subscription',
         parse: (val, req) => {
-          const compRegResponsibleIsSameAsMd =
+          const responsibleForWitnessDrugsIsSameAsMd =
             req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
 
-          if (!compRegResponsibleIsSameAsMd) {
+          if (!responsibleForWitnessDrugsIsSameAsMd) {
             const fieldToTranslate = 'responsible-for-witnessing-dbs-subscription';
             const valueToTranslate = req.sessionModel.get('responsible-for-witnessing-dbs-subscription');
             return translateOption(req, fieldToTranslate, valueToTranslate);

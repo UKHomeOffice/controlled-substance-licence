@@ -246,7 +246,7 @@
     "legend": "Who is responsible for witnessing the destruction of controlled drugs",
     "options": {
       "same-as-managing-director": {
-        "label": "The same person as the managing director or person in charge",
+        "label": "The same person as the managing director",
         "hint": "Re-use their contact and DBS information"
       },
       "someone-else": {
