@@ -252,23 +252,60 @@ const steps = {
 
   '/witness-destruction-of-drugs': {
     fields: ['require-witness-destruction-of-drugs'],
+    forks: [
+      {
+        target: '/trading-reasons',
+        condition: {
+          field: 'require-witness-destruction-of-drugs',
+          value: 'no'
+        }
+      }
+    ],
     next: '/who-witnesses-destruction-of-drugs'
   },
 
   '/who-witnesses-destruction-of-drugs': {
-    next: '/person-to-witness'
+    behaviours: [CustomRedirect],
+    fields: ['responsible-for-witnessing-the-destruction'],
+    forks: [
+      {
+        target: '/person-to-witness',
+        condition: {
+          field: 'responsible-for-witnessing-the-destruction',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/trading-reasons',
+    continueOnEdit: true
   },
 
   '/person-to-witness': {
-    next: '/witness-dbs'
+    behaviours: [CustomRedirect],
+    fields: [
+      'responsible-for-witnessing-full-name',
+      'responsible-for-witnessing-email-address',
+      'responsible-for-witnessing-confirmed-dbs'
+    ],
+    next: '/witness-dbs',
+    continueOnEdit: true
   },
 
   '/witness-dbs': {
-    next: '/witness-dbs-updates'
+    behaviours: [CustomRedirect],
+    fields: [
+      'responsible-for-witnessing-dbs-fullname',
+      'responsible-for-witnessing-dbs-reference',
+      'responsible-for-witnessing-dbs-date-of-issue'
+    ],
+    next: '/witness-dbs-updates',
+    continueOnEdit: true
   },
 
   '/witness-dbs-updates': {
-    next: '/company-registration-certificate'
+    fields: ['responsible-for-witnessing-dbs-subscription'],
+    next: '/company-registration-certificate',
+    template: 'person-in-charge-dbs-updates'
   },
 
   '/company-registration-certificate': {
