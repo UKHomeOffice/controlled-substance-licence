@@ -2,6 +2,8 @@ const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
 
@@ -268,10 +270,23 @@ const steps = {
   },
 
   '/witness-dbs-updates': {
-    next: '/company-registration-certificate'
+    next: '/trading-reasons',
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
+          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+      }
+    ],
   },
 
   '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
     next: '/trading-reasons'
   },
 

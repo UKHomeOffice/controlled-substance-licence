@@ -170,5 +170,14 @@
   },
   "require-witness-destruction-of-drugs": {
     "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
+  },
+  "file-upload": {
+    "required": "Select a file",
+    "unsaved": "The selected file was not uploaded – try again",
+    "maxFileSize": "The selected files must be smaller than 25MB",
+    "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
+    "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
+    "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
+    "isDuplicateFileName": "A file with this name was already uploaded"
   }
 }

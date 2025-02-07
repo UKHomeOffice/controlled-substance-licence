@@ -269,6 +269,9 @@
       },
       "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
+      },
+      "company-registration-certificate": {
+        "label": "Company registration certificate"
       }
     }
   }
