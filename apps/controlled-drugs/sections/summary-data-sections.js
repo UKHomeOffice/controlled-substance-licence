@@ -189,6 +189,36 @@ module.exports = {
       {
         step: '/witness-destruction-of-drugs',
         field: 'require-witness-destruction-of-drugs'
+      },
+      {
+        step: '/schedule-1-activities',
+        field: 'schedule-1-activities',
+        parse: (list, req) => {
+          if (list) {
+            return Array.isArray(list) ? list.join('\n') : list;
+          }
+          return req.translate('pages.confirm.fields.schedule-1-activities.not-provided');
+        }
+      },
+      {
+        step: '/schedule-2-activities',
+        field: 'schedule-2-activities',
+        parse: (list, req) => {
+          if (list) {
+            return Array.isArray(list) ? list.join('\n') : list;
+          }
+          return req.translate('pages.confirm.fields.schedule-2-activities.not-provided');
+        }
+      },
+      {
+        step: '/schedule-3-activities',
+        field: 'schedule-3-activities',
+        parse: (list, req) => {
+          if (list) {
+            return Array.isArray(list) ? list.join('\n') : list;
+          }
+          return req.translate('pages.confirm.fields.schedule-3-activities.not-provided');
+        }
       }
     ]
   }
