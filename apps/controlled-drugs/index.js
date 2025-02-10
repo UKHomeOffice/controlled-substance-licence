@@ -234,15 +234,47 @@ const steps = {
   },
 
   '/compliance-and-regulatory': {
-    next: '/person-responsible-for-compliance-and-regulatory'
+    fields: ['responsible-for-compliance-regulatory'],
+    behaviours: [CustomRedirect],
+    forks: [
+      {
+        target: '/person-responsible-for-compliance-and-regulatory',
+        condition: {
+          field: 'responsible-for-compliance-regulatory',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/employee-or-consultant',
+    continueOnEdit: true
   },
 
   '/person-responsible-for-compliance-and-regulatory': {
-    next: '/regulatory-and-compliance-dbs-updates'
+    fields: [
+      'responsible-for-compliance-regulatory-full-name',
+      'responsible-for-compliance-regulatory-email-address',
+      'responsible-for-compliance-regulatory-confirmed-dbs'
+    ],
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs',
+    continueOnEdit: true
+  },
+
+  '/regulatory-and-compliance-dbs': {
+    fields: [
+      'responsible-for-compliance-regulatory-dbs-fullname',
+      'responsible-for-compliance-regulatory-dbs-reference',
+      'responsible-for-compliance-regulatory-dbs-date-of-issue'
+    ],
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs-updates',
+    continueOnEdit: true
   },
 
   '/regulatory-and-compliance-dbs-updates': {
-    next: '/employee-or-consultant'
+    fields: ['responsible-for-compliance-regulatory-dbs-subscription'],
+    next: '/employee-or-consultant',
+    template: 'person-in-charge-dbs-updates'
   },
 
   '/employee-or-consultant': {

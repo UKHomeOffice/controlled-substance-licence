@@ -220,6 +220,54 @@
       }
     }
   },
+  "responsible-for-compliance-regulatory": {
+    "legend": "Who is responsible for legal compliance and regulatory affairs?",
+    "options": {
+      "same-as-managing-director": {
+        "label": "The same person as the managing director",
+        "hint": "Re-use their contact and DBS information"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      },
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "responsible-for-compliance-regulatory-full-name": {
+    "label": "Full name"
+  },
+  "responsible-for-compliance-regulatory-email-address": {
+    "label": "Email address "
+  },
+  "responsible-for-compliance-regulatory-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-for-compliance-regulatory-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "responsible-for-compliance-regulatory-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "responsible-for-compliance-regulatory-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "responsible-for-compliance-regulatory-dbs-subscription": {
+    "legend": "Has the person responsible for the security of the premises subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "is-employee-or-consultant": {
     "legend": "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?",
     "options": {
