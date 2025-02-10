@@ -236,15 +236,47 @@ const steps = {
   },
 
   '/compliance-and-regulatory': {
-    next: '/person-responsible-for-compliance-and-regulatory'
+    fields: ['responsible-for-compliance-regulatory'],
+    behaviours: [CustomRedirect],
+    forks: [
+      {
+        target: '/person-responsible-for-compliance-and-regulatory',
+        condition: {
+          field: 'responsible-for-compliance-regulatory',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/employee-or-consultant',
+    continueOnEdit: true
   },
 
   '/person-responsible-for-compliance-and-regulatory': {
-    next: '/regulatory-and-compliance-dbs-updates'
+    fields: [
+      'responsible-for-compliance-regulatory-full-name',
+      'responsible-for-compliance-regulatory-email-address',
+      'responsible-for-compliance-regulatory-confirmed-dbs'
+    ],
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs',
+    continueOnEdit: true
+  },
+
+  '/regulatory-and-compliance-dbs': {
+    fields: [
+      'responsible-for-compliance-regulatory-dbs-fullname',
+      'responsible-for-compliance-regulatory-dbs-reference',
+      'responsible-for-compliance-regulatory-dbs-date-of-issue'
+    ],
+    behaviours: [CustomRedirect],
+    next: '/regulatory-and-compliance-dbs-updates',
+    continueOnEdit: true
   },
 
   '/regulatory-and-compliance-dbs-updates': {
-    next: '/employee-or-consultant'
+    fields: ['responsible-for-compliance-regulatory-dbs-subscription'],
+    next: '/employee-or-consultant',
+    template: 'person-in-charge-dbs-updates'
   },
 
   '/employee-or-consultant': {
@@ -254,22 +286,58 @@ const steps = {
 
   '/witness-destruction-of-drugs': {
     fields: ['require-witness-destruction-of-drugs'],
+    forks: [
+      {
+        target: '/trading-reasons',
+        condition: {
+          field: 'require-witness-destruction-of-drugs',
+          value: 'no'
+        }
+      }
+    ],
     next: '/who-witnesses-destruction-of-drugs'
   },
 
   '/who-witnesses-destruction-of-drugs': {
-    next: '/person-to-witness'
+    behaviours: [CustomRedirect],
+    fields: ['responsible-for-witnessing-the-destruction'],
+    forks: [
+      {
+        target: '/person-to-witness',
+        condition: {
+          field: 'responsible-for-witnessing-the-destruction',
+          value: 'someone-else'
+        }
+      }
+    ],
+    next: '/trading-reasons',
+    continueOnEdit: true
   },
 
   '/person-to-witness': {
-    next: '/witness-dbs'
+    behaviours: [CustomRedirect],
+    fields: [
+      'responsible-for-witnessing-full-name',
+      'responsible-for-witnessing-email-address',
+      'responsible-for-witnessing-confirmed-dbs'
+    ],
+    next: '/witness-dbs',
+    continueOnEdit: true
   },
 
   '/witness-dbs': {
-    next: '/witness-dbs-updates'
+    behaviours: [CustomRedirect],
+    fields: [
+      'responsible-for-witnessing-dbs-fullname',
+      'responsible-for-witnessing-dbs-reference',
+      'responsible-for-witnessing-dbs-date-of-issue'
+    ],
+    next: '/witness-dbs-updates',
+    continueOnEdit: true
   },
 
   '/witness-dbs-updates': {
+    fields: ['responsible-for-witnessing-dbs-subscription'],
     next: '/trading-reasons',
     forks: [
       {
@@ -277,7 +345,8 @@ const steps = {
         condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
           req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
       }
-    ]
+    ],
+    template: 'person-in-charge-dbs-updates'
   },
 
   '/company-registration-certificate': {
