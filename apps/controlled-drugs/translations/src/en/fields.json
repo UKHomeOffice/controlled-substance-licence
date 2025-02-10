@@ -289,5 +289,53 @@
         "label": "No"
       }
     }
+  },
+  "responsible-for-witnessing-the-destruction": {
+    "legend": "Who is responsible for witnessing the destruction of controlled drugs",
+    "options": {
+      "same-as-managing-director": {
+        "label": "The same person as the managing director",
+        "hint": "Re-use their contact and DBS information"
+      },
+      "someone-else": {
+        "label": "Someone else"
+      },
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "responsible-for-witnessing-full-name": {
+    "label": "Full name"
+  },
+  "responsible-for-witnessing-email-address": {
+    "label": "Email address"
+  },
+  "responsible-for-witnessing-confirmed-dbs": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-for-witnessing-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on your DBS application"
+  },
+  "responsible-for-witnessing-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "responsible-for-witnessing-dbs-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "responsible-for-witnessing-dbs-subscription": {
+    "legend": "Has the person responsible for witnessing the destruction of controlled drugs subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
