@@ -344,15 +344,30 @@ const steps = {
   },
 
   '/schedule-1-activities': {
-    next: '/schedule-2-activities'
+    fields: ['schedule-1-activities'],
+    next: '/schedule-2-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-2'
+    }
   },
 
   '/schedule-2-activities': {
-    next: '/schedule-3-activities'
+    fields: ['schedule-2-activities'],
+    next: '/schedule-3-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-3'
+    }
   },
 
   '/schedule-3-activities': {
-    next: '/schedule-4-part-1-activities'
+    fields: ['schedule-3-activities'],
+    next: '/schedule-4-part-1-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-4-part-1'
+    }
   },
 
   '/schedule-4-part-1-activities': {

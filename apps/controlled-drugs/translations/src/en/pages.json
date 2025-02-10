@@ -269,6 +269,18 @@
       },
       "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
+      },
+      "schedule-1-activities": {
+        "label": "Schedule 1 activities",
+        "not-provided": "Not provided"
+      },
+      "schedule-2-activities": {
+        "label": "Schedule 2 activities",
+        "not-provided": "Not provided"
+      },
+      "schedule-3-activities": {
+        "label": "Schedule 3 activities",
+        "not-provided": "Not provided"
       }
     }
   }

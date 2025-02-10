@@ -388,5 +388,43 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'schedule-1-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'possess',
+      'supply',
+      'produce',
+      'manufacture',
+      'administration-clinical-trials-on-humans',
+      'cultivation-high-thc-cannabis'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-2-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'possess',
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-3-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'possess',
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
   }
 };
