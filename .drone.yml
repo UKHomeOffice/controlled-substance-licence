@@ -53,29 +53,6 @@ sonar_scanner: &sonar_scanner
   commands:
     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
-ui_integration_tests: &ui_integration_tests
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-    - yarn run test:ui-integration
-
-accessibility_tests: &accessibility_tests
-  pull: if-not-exists
-  image: buildkite/puppeteer:8.0.0@sha256:b6cebc17bfa8e7a7abfc3ab14d6f2ddbdf42b9e81b8ad786c6693385665998d5
-  environment:
-    NOTIFY_STUB: true
-    ENVIRONMENT: DRONE
-  volumes:
-    - name: dockersock
-      path: /root/.dockersock
-  commands:
-    - yarn run test:accessibility
-
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
-
 steps:
   - name: clone_repos
     pull: if-not-exists
@@ -292,6 +269,7 @@ steps:
       event: push
     depends_on:
       - get_pr_branch
+      - deploy_to_uat
 
    # Deploy to Staging environment
   - name: deploy_to_stg

@@ -14,11 +14,6 @@ metadata:
   name: {{ .APP_NAME }}
   {{ end }}
 spec:
-  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-  replicas: 2
-  {{ else }}
-  replicas: 1
-  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -49,6 +44,7 @@ spec:
             - containerPort: 8080
           envFrom:
             - configMapRef:
+            - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
                 name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
                 {{ else }}
@@ -68,6 +64,11 @@ spec:
               {{ else }}
               value: redis
               {{ end }}
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: session-secret
+                  key: session-secret
             # - name: NOTIFY_KEY
             #   valueFrom:
             #     secretKeyRef:
@@ -75,6 +76,22 @@ spec:
             #       key: notify-key
             - name: USE_MOCKS
               value: "false"
+            - name: PDF_CONVERTER_URL
+              {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}:10443/convert
+              {{ else }}
+              value: https://html-pdf-converter:10443/convert
+              {{ end }}
+            - name: FILE_VAULT_URL
+              {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
+              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk/file
+              {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
+              {{ end }}
             - name: FILE_VAULT_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -95,21 +112,62 @@ spec:
                 secretKeyRef:
                   name: file-vault-user
                   key: password
-            - name: SESSION_SECRET
+            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
+            - name: ALLOW_SKIP
+              value: "true"
+            - name: SKIP_EMAIL
+              value: "sas-hof-test@digital.homeoffice.gov.uk"
+            {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DATASERVICE_SERVICE_HOST
+              value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
+            - name: DATASERVICE_SERVICE_PORT_HTTPS
+              value: "10443"
+            {{ end }}
+            - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  name: session-secret
-                  key: session-secret
-            - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk/file
-            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
-            {{ end }}
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: {{ .APP_NAME }}-s3-bucket
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: {{ .APP_NAME }}-s3-bucket-stg
+                  {{ else }}
+                  name: {{ .APP_NAME }}-s3-bucket-prod
+                  {{ end }}
+                  key: access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: {{ .APP_NAME }}-s3-bucket
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: {{ .APP_NAME }}-s3-bucket-stg
+                  {{ else }}
+                  name: {{ .APP_NAME }}-s3-bucket-prod
+                  {{ end }}
+                  key: secret_access_key
+            - name: AWS_KMS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: {{ .APP_NAME }}-s3-bucket
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: {{ .APP_NAME }}-s3-bucket-stg
+                  {{ else }}
+                  name: {{ .APP_NAME }}-s3-bucket-prod
+                  {{ end }}
+                  key: kms_key_id
+            - name: AWS_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: {{ .APP_NAME }}-s3-bucket
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: {{ .APP_NAME }}-s3-bucket-stg
+                  {{ else }}
+                  name: {{ .APP_NAME }}-s3-bucket-prod
+                  {{ end }}
+                  key: name
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
             httpGet:
@@ -126,11 +184,11 @@ spec:
           {{ end }}
           resources:
             requests:
-              memory: 30Mi
-              cpu: 30m
+              memory: 256Mi
+              cpu: 100m
             limits:
+              cpu: 250m
               memory: 512Mi
-              cpu: 600m
           volumeMounts:
             - mountPath: /public
               name: public
@@ -140,20 +198,22 @@ spec:
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             requests:
-              memory: 10Mi
-              cpu: 10m
+              memory: 20Mi
+              cpu: 20m
             limits:
               memory: 256Mi
               cpu: 300m
           env:
 {{ file .NGINX_SETTINGS | indent 12 }}
           ports:
+            - containerPort: 10080
             - containerPort: 10443
           volumeMounts:
             - mountPath: /public
               name: public
           securityContext:
             runAsNonRoot: true
+
       volumes:
         - name: public
           emptyDir: {}
