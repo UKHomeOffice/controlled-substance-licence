@@ -277,7 +277,7 @@ const steps = {
         condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
           req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
       }
-    ],
+    ]
   },
 
   '/company-registration-certificate': {
