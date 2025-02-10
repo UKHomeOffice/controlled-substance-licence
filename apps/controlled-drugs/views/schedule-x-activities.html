@@ -1,0 +1,13 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#continueBtn}}
+      <input type="submit" value="{{#t}}buttons.{{continueBtn}}{{/t}}" class="govuk-button">
+    {{/continueBtn}}
+    {{^continueBtn}}
+      {{#input-submit}}continue{{/input-submit}}
+    {{/continueBtn}}
+  {{/page-content}}
+{{/partials-page}}
