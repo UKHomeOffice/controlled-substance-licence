@@ -42,9 +42,6 @@
   "regulatory-and-compliance-dbs-updates": {
     "header": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?"
   },
-  "who-witnesses-destruction-of-drugs": {
-    "header": "Who is responsible for witnessing the destruction of controlled drugs?"
-  },
   "person-to-witness": {
     "header": "Person responsible for witnessing the destruction of controlled drugs"
   },

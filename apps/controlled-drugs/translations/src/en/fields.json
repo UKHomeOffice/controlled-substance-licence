@@ -291,7 +291,7 @@
     }
   },
   "responsible-for-witnessing-the-destruction": {
-    "legend": "Who is responsible for witnessing the destruction of controlled drugs",
+    "legend": "Who is responsible for witnessing the destruction of controlled drugs?",
     "options": {
       "same-as-managing-director": {
         "label": "The same person as the managing director",
