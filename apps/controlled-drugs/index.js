@@ -2,6 +2,8 @@ const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const ActivitiesContinueButton = require('./behaviours/activities-continue-button');
 
 const steps = {
 
@@ -413,6 +415,7 @@ const steps = {
   },
 
   '/schedule-1-activities': {
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
     fields: ['schedule-1-activities'],
     next: '/schedule-2-activities',
     template: 'schedule-x-activities',
@@ -422,6 +425,7 @@ const steps = {
   },
 
   '/schedule-2-activities': {
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
     fields: ['schedule-2-activities'],
     next: '/schedule-3-activities',
     template: 'schedule-x-activities',
@@ -431,6 +435,7 @@ const steps = {
   },
 
   '/schedule-3-activities': {
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
     fields: ['schedule-3-activities'],
     next: '/schedule-4-part-1-activities',
     template: 'schedule-x-activities',
