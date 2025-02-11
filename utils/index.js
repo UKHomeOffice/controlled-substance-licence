@@ -85,13 +85,11 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
 };
 
 /**
- * Using the form select value in a data array of items containing a value property
- * Finds and returns the first matching array item from the array.
- * From the found item other properties such as 'label' can be extracted.
- *
- * @param {array} data - A json or js formatted array of objects each containing a label and value property.
- * @param {string} valueToFind - The form value of the selected item to find in the array 'data'.
- * @returns {object|undefined} - Containing all the details of the found item. Undefined if no item was found.
+ * Finds and returns the first matching item from an array of objects based on a given value.
+ * The objects in the array should contain a 'value' property, and optionally other properties such as 'label'.
+ * @param {array} data - An array of objects, each containing at least a 'value' property.
+ * @param {string} valueToFind - The value to search for in the array.
+ * @returns {object|undefined} - The first object that matches the given value, or undefined if no match is found.
  *
  * @example
  * findArrayItemByValue(chemicals 'Ephedrine');

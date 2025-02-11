@@ -314,7 +314,6 @@ const steps = {
     ],
     titleField: 'trading-reasons',
     addStep: 'trading-reasons',
-    continueOnEdit: false,
     template: 'trading-reasons-summary',
     backLink: 'trading-reasons',
     aggregateLimit: config.aggregateLimits.controlledDrugs.tradingReasonsLimit,
