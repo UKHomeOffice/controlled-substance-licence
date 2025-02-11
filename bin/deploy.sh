@@ -5,7 +5,6 @@ export INGRESS_INTERNAL_ANNOTATIONS=$HOF_CONFIG/ingress-internal-annotations.yam
 export INGRESS_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/ingress-external-annotations.yaml
 export CONFIGMAP_VALUES=$HOF_CONFIG/configmap-values.yaml
 export NGINX_SETTINGS=$HOF_CONFIG/nginx-settings.yaml
-export DATA_SERVICE_INTERNAL_ANNOTATIONS=$HOF_CONFIG/data-service-internal-annotations.yaml
 export FILEVAULT_NGINX_SETTINGS=$HOF_CONFIG/filevault-nginx-settings.yaml
 export FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/filevault-ingress-external-annotations.yaml
 
@@ -16,7 +15,7 @@ if [[ $1 == 'tear_down' ]]; then
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
 
   $kd --delete -f kube/configmaps/configmap.yml -f kube/hof-rds-api
-  $kd --delete -f kube/redis -f kube/html-pdf -f kube/app -f kube/file-vault -f kube/file-vault
+  $kd --delete -f kube/redis -f kube/html-pdf -f kube/app -f kube/file-vault
   echo "Torn Down Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.branch.sas-notprod.homeoffice.gov.uk"
   exit 0
 fi

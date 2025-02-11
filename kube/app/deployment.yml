@@ -14,6 +14,11 @@ metadata:
   name: {{ .APP_NAME }}
   {{ end }}
 spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 2
+  {{ else }}
+  replicas: 1
+  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -43,7 +48,6 @@ spec:
           ports:
             - containerPort: 8080
           envFrom:
-            - configMapRef:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
                 name: {{ .APP_NAME }}-configmap-{{ .DRONE_SOURCE_BRANCH }}
@@ -112,62 +116,12 @@ spec:
                 secretKeyRef:
                   name: file-vault-user
                   key: password
-            {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) (eq .KUBE_NAMESPACE .STG_ENV)}}
-            - name: ALLOW_SKIP
-              value: "true"
-            - name: SKIP_EMAIL
-              value: "sas-hof-test@digital.homeoffice.gov.uk"
-            {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
             - name: DATASERVICE_SERVICE_PORT_HTTPS
               value: "10443"
             {{ end }}
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
-                  key: access_key_id
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
-                  key: secret_access_key
-            - name: AWS_KMS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
-                  key: kms_key_id
-            - name: AWS_BUCKET
-              valueFrom:
-                secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
-                  key: name
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
             httpGet:

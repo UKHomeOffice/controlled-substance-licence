@@ -66,7 +66,7 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
             - name: DEBUG
-              value: "true"
+              value: "*"
             {{ end }}
             - name: PORT
               value: "3000"
@@ -75,46 +75,22 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: kms_key_id
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
-                  name: {{ .APP_NAME }}-s3-bucket
-                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: {{ .APP_NAME }}-s3-bucket-stg
-                  {{ else }}
-                  name: {{ .APP_NAME }}-s3-bucket-prod
-                  {{ end }}
+                  name: s3-bucket
                   key: name
             - name: AWS_PASSWORD
               valueFrom:
