@@ -323,6 +323,26 @@ module.exports = {
 
           return null;
         }
+      },
+      {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-details-information',
+        parse: (val, req) => {
+          const mhraLicenceDetailsInfo = [
+            req.sessionModel.get('mhra-licence-number'),
+            req.sessionModel.get('mhra-licence-type'),
+            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
+          ];
+          return mhraLicenceDetailsInfo.join('\n');
+        }
+      },
+      {
+        step: '/care-quality-commission-or-equivalent',
+        field: 'is-business-registered-with-cqc'
       }
     ]
   }

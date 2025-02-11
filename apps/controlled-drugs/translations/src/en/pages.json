@@ -72,14 +72,8 @@
   "source-drugs": {
     "header": "Provide details of where you source the drugs from"
   },
-  "mhra-licences": {
-    "header": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?"
-  },
   "mhra-licence-details": {
     "header": "Licence details"
-  },
-  "care-quality-commission-or-equivalent": {
-    "header": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?"
   },
   "regulatory-body-registration": {
     "header": "Provide details of any other regulatory bodies that you are registered with (optional)"
@@ -287,6 +281,15 @@
       },
       "responsible-for-witnessing-dbs-subscription": {
         "label": "Person responsible for destruction of drugs DBS updates"
+      },
+      "has-any-licence-issued-by-mhra": {
+        "label": "Any licences issued by MHRA?"
+      },
+      "mhra-licence-details-information": {
+        "label": "Licence holder details"
+      },
+      "is-business-registered-with-cqc": {
+        "label": "Registered with care quality commission or equivalent?"
       }
     }
   }
