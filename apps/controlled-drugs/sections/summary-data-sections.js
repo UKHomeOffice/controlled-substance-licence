@@ -189,6 +189,18 @@ module.exports = {
       {
         step: '/witness-destruction-of-drugs',
         field: 'require-witness-destruction-of-drugs'
+      },
+      {
+        step: '/why-you-need-licence',
+        field: 'why-applying-licence'
+      },
+      {
+        step: '/main-customer-details',
+        field: 'main-customer-details'
+      },
+      {
+        step: '/source-drugs',
+        field: 'source-drugs-details'
       }
     ]
   }

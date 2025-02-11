@@ -288,14 +288,17 @@ const steps = {
   },
 
   '/why-you-need-licence': {
+    fields: ['why-applying-licence'],
     next: '/main-customer-details'
   },
 
   '/main-customer-details': {
+    fields: ['main-customer-details'],
     next: '/source-drugs'
   },
 
   '/source-drugs': {
+    fields: ['source-drugs-details'],
     next: '/mhra-licences'
   },
 

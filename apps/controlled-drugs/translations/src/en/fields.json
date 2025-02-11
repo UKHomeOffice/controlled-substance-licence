@@ -241,5 +241,17 @@
         "label": "No"
       }
     }
+  },
+  "why-applying-licence": {
+    "label": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
+  },
+  "main-customer-details": {
+    "label": "Provide details of your main customers"
+  },
+  "source-drugs-details": {
+    "hint": "This includes details of your suppliers, or the raw materials and where you get them",
+    "label": "Provide details of where you source the drugs from"
   }
 }
+
+
