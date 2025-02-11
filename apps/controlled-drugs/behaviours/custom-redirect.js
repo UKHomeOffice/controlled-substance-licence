@@ -98,7 +98,7 @@ module.exports = superclass => class extends superclass {
       checkResponsibleForWitnessDrugs(req, currentRoute, action),
       checkResponsibleForWitnessDrugsDetails(req, currentRoute, action),
       checkResponsibleForWitnessDrugsDbs(req, currentRoute, action)
-    ].some(Boolean);
+    ].every(Boolean);
 
     if (shouldRedirectToConfirmStep) {
       return res.redirect(`${formApp}${confirmStep}`);

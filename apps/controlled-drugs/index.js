@@ -295,11 +295,13 @@ const steps = {
         }
       }
     ],
-    next: '/who-witnesses-destruction-of-drugs'
+    next: '/who-witnesses-destruction-of-drugs',
+    continueOnEdit: true
   },
 
   '/who-witnesses-destruction-of-drugs': {
     behaviours: [CustomRedirect],
+    continueOnEdit: true,
     fields: ['responsible-for-witnessing-the-destruction'],
     forks: [
       {
@@ -310,8 +312,7 @@ const steps = {
         }
       }
     ],
-    next: '/trading-reasons',
-    continueOnEdit: true
+    next: '/trading-reasons'
   },
 
   '/person-to-witness': {
