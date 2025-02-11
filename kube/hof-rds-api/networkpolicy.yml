@@ -19,7 +19,7 @@ spec:
     ports:
     - port: 3443
       protocol: TCP
-  - podSelector:
+  podSelector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
       name: data-service-{{ .DRONE_SOURCE_BRANCH }}
