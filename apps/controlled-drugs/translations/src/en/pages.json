@@ -56,7 +56,6 @@
   },
   "trading-reasons-summary": {
     "header": "Summary of trading reasons",
-    "add-another": "Add another",
     "limit-exceeded": "You can not add any more trading reasons",
     "key": "Trading reason"
   },
