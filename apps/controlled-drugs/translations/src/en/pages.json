@@ -81,18 +81,6 @@
   "registration-details": {
     "header": "Registration details"
   },
-  "service-under-contract": {
-    "header": "Are you providing a service under a contract?"
-  },
-  "service-details": {
-    "header": "Provide details of the service"
-  },
-  "service-expiry-date": {
-    "header": "What date does the service expire on?"
-  },
-  "status-of-site": {
-    "header": "What is the status of the site to be licensed?"
-  },
   "site-owner-contact-details": {
     "header": "Site owner’s contact details"
   },
@@ -284,6 +272,18 @@
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
+      },
+      "service-under-contract": {
+        "header": "Providing a service under a contract?"
+      },
+      "service-details": {
+        "header": "Details of service"
+      },
+      "service-expiry-date": {
+        "header": "Service expiry date"
+      },
+      "status-of-site": {
+        "header": "Status of site needing a licence"
       }
     }
   }
