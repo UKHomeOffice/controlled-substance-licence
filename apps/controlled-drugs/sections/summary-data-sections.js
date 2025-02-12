@@ -337,6 +337,9 @@ module.exports = {
         step: '/mhra-licence-details',
         field: 'mhra-licence-details',
         parse: (val, req) => {
+          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
+            return null;
+          }
           const mhraLicenceDetails = [
             req.sessionModel.get('mhra-licence-number'),
             req.sessionModel.get('mhra-licence-type'),

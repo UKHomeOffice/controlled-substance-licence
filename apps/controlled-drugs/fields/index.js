@@ -584,8 +584,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 50 },
-      'alphanum'
+      { type: 'maxlength', arguments: 50 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
@@ -595,8 +594,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 50 },
-      'alphanum'
+      { type: 'maxlength', arguments: 50 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
@@ -635,8 +633,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 50 },
-      'alphanum'
+      { type: 'maxlength', arguments: 50 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },

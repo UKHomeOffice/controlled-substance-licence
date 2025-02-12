@@ -259,13 +259,13 @@
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence number",
     "maxlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
     "minlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
-    "alphanum": "Enter a real Medicines and Healthcare products Regulatory Agency licence number"
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "mhra-licence-type": {
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence type",
     "maxlength": "Licence type must be between 3 and 50 characters",
     "minlength": "Licence type must be between 3 and 50 characters",
-    "alphanum": "Enter a real Medicines and Healthcare products Regulatory Agency licence type"
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "mhra-licence-date-of-issue": {
     "required": "Enter the MHR licence date of issue",
@@ -280,7 +280,7 @@
     "required": "Enter a registration number",
     "maxlength": "Registration number must be between 3 and 50 characters",
     "minlength": "Registration number must be between 3 and 50 characters",
-    "alphanum": "Enter a real registration number"
+    "notUrl": "Your answer must not contain URLs or links"
   },
   "date-of-registration": {
     "required": "Enter a date of registration",
