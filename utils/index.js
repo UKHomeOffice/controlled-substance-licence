@@ -1,6 +1,5 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
-const chemicals = require('../apps/precursor-chemicals/data/chemicals.json');
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -86,15 +85,14 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
 };
 
 /**
- * Using the form select value in the list of precursor chemicals
- * Finds and returns the first matching chemical object from the entire list.
- * This can be used to determine that chemical's label or category values.
- *
- * @param {string} valueToFind - The form value of the selected chemical.
- * @returns {object} - Containing all the details of the found chemical.
+ * Finds and returns the first matching item from an array of objects based on a given value.
+ * The objects in the array should contain a 'value' property, and optionally other properties such as 'label'.
+ * @param {array} data - An array of objects, each containing at least a 'value' property.
+ * @param {string} valueToFind - The value to search for in the array.
+ * @returns {object|undefined} - The first object that matches the given value, or undefined if no match is found.
  *
  * @example
- * findChemical('Ephedrine');
+ * findArrayItemByValue(chemicals 'Ephedrine');
  * // returns {
  *   "label": "Ephedrine (2939 4100)",
  *   "value": "Ephedrine",
@@ -102,9 +100,16 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
  *   "cnCode": "2939 4100"
  * }
  *
+ * @example
+ * findArrayItemByValue(tradingReasons 'broker');
+ * // returns {
+ *   "label": "Broker",
+ *   "value": "broker",
+ * }
+ *
  */
-const findChemical = valueToFind => {
-  return chemicals.find(chemical => chemical.value === valueToFind);
+const findArrayItemByValue = (data, valueToFind) => {
+  return data.find(item => item.value === valueToFind);
 };
 
-module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findChemical };
+module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findArrayItemByValue };

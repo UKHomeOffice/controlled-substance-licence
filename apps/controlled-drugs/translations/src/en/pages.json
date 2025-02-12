@@ -48,14 +48,10 @@
   "company-registration-certificate": {
     "header": "Upload company registration certificate"
   },
-  "trading-reasons": {
-    "header": "What trading reasons does this site need a licence for?"
-  },
   "trading-reasons-summary": {
-    "header": "Summary of trading reasons"
-  },
-  "specify-trading-reasons": {
-    "header": "Specify your trading reason"
+    "header": "Summary of trading reasons",
+    "limit-exceeded": "You can not add any more trading reasons",
+    "key": "Trading reason"
   },
   "why-you-need-licence": {
     "header": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
@@ -284,6 +280,9 @@
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
+      },
+      "aggregated-trading-reasons": {
+        "label": "Trading reasons"
       }
     }
   }

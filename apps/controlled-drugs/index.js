@@ -1,7 +1,13 @@
+const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const LimitItems = require('../common/behaviours/limit-items');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const ParseTradingReasonsSummary = require('./behaviours/parse-trading-reasons-summary');
+const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 
@@ -361,15 +367,45 @@ const steps = {
   },
 
   '/trading-reasons': {
+    fields: ['trading-reasons'],
+    forks: [
+      {
+        target: '/specify-trading-reasons',
+        condition: req => Array.isArray(req.sessionModel.get('trading-reasons')) ?
+          req.sessionModel.get('trading-reasons').includes('other') :
+          req.sessionModel.get('trading-reasons') === 'other'
+      }
+    ],
     next: '/trading-reasons-summary'
   },
 
   '/specify-trading-reasons': {
+    fields: ['specify-trading-reasons'],
     next: '/trading-reasons-summary'
   },
 
   '/trading-reasons-summary': {
-    next: '/why-you-need-licence'
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      SetSummaryReferrer,
+      ParseTradingReasonsSummary,
+      CustomRedirect
+    ],
+    aggregateTo: 'aggregated-trading-reasons',
+    aggregateFrom: [
+      'trading-reasons',
+      'specify-trading-reasons'
+    ],
+    titleField: 'trading-reasons',
+    addStep: 'trading-reasons',
+    template: 'trading-reasons-summary',
+    backLink: 'trading-reasons',
+    aggregateLimit: config.aggregateLimits.controlledDrugs.tradingReasonsLimit,
+    next: '/why-you-need-licence',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/why-you-need-licence': {
@@ -545,9 +581,12 @@ const steps = {
   },
 
   '/confirm': {
-    behaviours: [Summary],
+    behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
-    next: '/declaration'
+    next: '/declaration',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/declaration': {
