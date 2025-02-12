@@ -258,6 +258,6 @@
   "specify-trading-reasons": {
     "required": "Specify your trading reason",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "You have exceeded the 500 character limit"
+    "maxlength": "Your specific trading reason must be 500 characters or less"
   }
 }
