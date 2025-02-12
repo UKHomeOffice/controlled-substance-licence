@@ -33,9 +33,6 @@
   "security-officer-dbs": {
     "header": "DBS information for person responsible for security of premises"
   },
-  "compliance-and-regulatory": {
-    "header": "Who is responsible for legal compliance and regulatory affairs?"
-  },
   "person-responsible-for-compliance-and-regulatory": {
     "header": "Person responsible for legal compliance and regulatory affairs"
   },
@@ -53,9 +50,6 @@
   },
   "witness-dbs": {
     "header": "DBS information for the person responsible for witnessing the destruction of controlled drugs"
-  },
-  "witness-dbs-updates": {
-    "header": "Has the person responsible for witnessing the destruction of controlled drugs subscribed to DBS updates?"
   },
   "company-registration-certificate": {
     "header": "Upload company registration certificate"
@@ -258,6 +252,18 @@
       "person-responsible-for-security-dbs-information": {
         "label": "Person responsible for security of premises DBS updates"
       },
+      "responsible-for-compliance-regulatory": {
+        "label": "Is your company's person responsible for legal compliance and regulatory affairs the same as the managing director?"
+      },
+      "responsible-for-compliance-regulatory-details": {
+        "label": "Person responsible for legal and compliance"
+      },
+      "responsible-for-compliance-regulatory-dbs-subscription": {
+        "label": "Person responsible for legal and compliance DBS information"
+      },
+      "responsible-for-compliance-regulatory-dbs-information": {
+        "label": "Person responsible for legal and compliance DBS updates"
+      },
       "is-employee-or-consultant": {
         "label": "Is the legal and compliance person an employee or consultant?"
       },
@@ -272,6 +278,18 @@
       },
       "source-drugs-details": {
         "label": "Details of where you source the drugs from"
+      },
+      "responsible-for-witnessing-the-destruction": {
+        "label": "Is your company's person responsible for witnessing the destruction of controlled drugs premises the same as the managing director?"
+      },
+      "responsible-for-witnessing-details": {
+        "label": "Person responsible for witnessing the destruction of drugs"
+      },
+      "responsible-for-witnessing-dbs-information": {
+        "label": "Person responsible for witnessing destruction of drugs DBS information"
+      },
+      "responsible-for-witnessing-dbs-subscription": {
+        "label": "Person responsible for destruction of drugs DBS updates"
       }
     }
   }

@@ -130,7 +130,7 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "responsible-for-security": {
-    "required": "Selet who is responsible for the security of the premises"
+    "required": "Select who is responsible for the security of the premises"
   },
   "person-responsible-for-security-full-name": {
     "required": "Enter the name of the person who is responsible for premises security",
@@ -165,6 +165,42 @@
   "person-responsible-for-security-dbs-subscription": {
     "required": "Select if the person responsible for premises security has subscribed to DBS updates"
   },
+  "responsible-for-compliance-regulatory": {
+    "required": "Select who is responsible for legal compliance and regulatory affairs"
+  },
+  "responsible-for-compliance-regulatory-full-name": {
+    "required": "Enter the name of the legal and regulatory officer",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "responsible-for-compliance-regulatory-email-address": {
+    "required": "Enter an email address for the person responsible for legal compliance and regulatory affairs",
+    "email": "Enter a real email address"
+  },
+  "responsible-for-compliance-regulatory-confirmed-dbs": {
+    "required": "You must confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-for-compliance-regulatory-dbs-fullname": {
+    "required": "Enter the name of the legal and regulatory officer",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
+  },
+  "responsible-for-compliance-regulatory-dbs-reference": {
+    "required": "Enter a DBS reference, for example a certificate number or an application reference number",
+    "maxlength": "DBS reference must be between 3 and 25 characters",
+    "minlength": "DBS reference must be between 3 and 25 characters",
+    "alphanum": "Enter a real DBS certificate number or application reference number"
+  },
+  "responsible-for-compliance-regulatory-dbs-date-of-issue": {
+    "required": "Enter the DBS date of issue or application for the legal and regulatory officer",
+    "date": "Enter a real date of issue or application",
+    "before": "DBS date of issue or application must not be in the future",
+    "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
+  },
+  "responsible-for-compliance-regulatory-dbs-subscription": {
+    "required": "Select if the person responsible for compliance and regulatory affairs has subscribed to DBS updates"
+  },
   "is-employee-or-consultant": {
     "required": "Select if the person responsible for compliance and regulatory affairs is an employee or a consultant"
   },
@@ -185,5 +221,41 @@
     "required": "Provide details of where you source the drugs from",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Details of where you source the drugs from must be 2,000 characters or less"
+  },
+  "responsible-for-witnessing-the-destruction": {
+    "required": "Select who is responsible for witnessing the destruction of controlled drugs"
+  },
+  "responsible-for-witnessing-full-name": {
+    "required": "Enter the name of the authorised witness",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "responsible-for-witnessing-email-address": {
+    "required": "Enter an email address for the authorised witness",
+    "email": "Enter a real email address"
+  },
+  "responsible-for-witnessing-confirmed-dbs": {
+    "required": "You must confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-for-witnessing-dbs-fullname": {
+    "required": "Enter the name of the person authorised to witness the destruction of controlled drugs",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
+  },
+  "responsible-for-witnessing-dbs-reference": {
+    "required": "Enter a DBS reference, for example a certificate number or an application reference number",
+    "maxlength": "DBS reference must be between 3 and 25 characters",
+    "minlength": "DBS reference must be between 3 and 25 characters",
+    "alphanum": "Enter a real DBS certificate number or application reference number"
+  },
+  "responsible-for-witnessing-dbs-date-of-issue": {
+    "required": "Enter the DBS date of issue or application for the authorised witness",
+    "date": "Enter a real date of issue or application",
+    "before": "DBS date of issue or application must not be in the future",
+    "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
+  },
+  "responsible-for-witnessing-dbs-subscription": {
+    "required": "Select if the authorised witness has subscribed to DBS updates"
   }
 }
