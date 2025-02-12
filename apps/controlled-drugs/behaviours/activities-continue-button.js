@@ -3,7 +3,7 @@ module.exports = superclass => class extends superclass {
     const locals = super.locals(req, res);
 
     if (req.sessionModel.get('referred-by-summary')) {
-      locals.continueBtn = req.translate('continue');
+      locals.continueBtn = 'continue';
     }
 
     return locals;
