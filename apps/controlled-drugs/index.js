@@ -406,10 +406,15 @@ const steps = {
   },
 
   '/registration-details': {
+    fields: [
+      'registration-number',
+      'date-of-registration'
+    ],
     next: '/regulatory-body-registration'
   },
 
   '/regulatory-body-registration': {
+    fields: ['regulatory-body-registration-details'],
     next: '/service-under-contract'
   },
 

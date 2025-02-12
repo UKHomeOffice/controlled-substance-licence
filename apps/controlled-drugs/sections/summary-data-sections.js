@@ -330,19 +330,32 @@ module.exports = {
       },
       {
         step: '/mhra-licence-details',
-        field: 'mhra-licence-details-information',
+        field: 'mhra-licence-details',
         parse: (val, req) => {
-          const mhraLicenceDetailsInfo = [
+          const mhraLicenceDetails = [
             req.sessionModel.get('mhra-licence-number'),
             req.sessionModel.get('mhra-licence-type'),
             formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
           ];
-          return mhraLicenceDetailsInfo.join('\n');
+          return mhraLicenceDetails.join('\n');
         }
       },
       {
         step: '/care-quality-commission-or-equivalent',
         field: 'is-business-registered-with-cqc'
+      },
+      {
+        step: '/registration-details',
+        field: 'registration-number'
+      },
+      {
+        step: '/registration-details',
+        field: 'date-of-registration',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/regulatory-body-registration',
+        field: 'regulatory-body-registration-details'
       }
     ]
   }

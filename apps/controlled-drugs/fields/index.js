@@ -606,7 +606,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['2009-01-01'] }
+      { type: 'after', arguments: ['2008-12-31'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
@@ -628,5 +628,34 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'registration-number': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 50 },
+      'alphanum'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'date-of-registration': dateComponent('date-of-registration', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['2002-12-31'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'regulatory-body-registration-details': {
+    mixin: 'textarea',
+    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   }
 };
