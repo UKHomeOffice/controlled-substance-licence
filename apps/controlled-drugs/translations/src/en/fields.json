@@ -258,7 +258,7 @@
     "legend": "Date of issue or application"
   },
   "responsible-for-compliance-regulatory-dbs-subscription": {
-    "legend": "Has the person responsible for the security of the premises subscribed to DBS updates?",
+    "legend": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -301,7 +301,7 @@
     "label": "Provide details of where you source the drugs from"
   },
   "responsible-for-witnessing-the-destruction": {
-    "legend": "Who is responsible for witnessing the destruction of controlled drugs",
+    "legend": "Who is responsible for witnessing the destruction of controlled drugs?",
     "options": {
       "same-as-managing-director": {
         "label": "The same person as the managing director",
@@ -347,6 +347,11 @@
         "label": "No"
       }
     }
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   }
 }
 
