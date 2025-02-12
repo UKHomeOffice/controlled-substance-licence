@@ -15,8 +15,7 @@
   
   "upload-companies-house-evidence": {
     "header": "Upload company registration certificate as evidence of name change",
-    "intro": "Upload a scanned copy of your company registration certificate.",
-    "pageTitle": "Upload Companies House details as evidence of a change to your name details"
+    "intro": "Upload a scanned copy of your company registration certificate."
   },
   
   "licence-holder-details": {

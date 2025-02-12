@@ -262,67 +262,72 @@ module.exports = {
         step: '/who-witnesses-destruction-of-drugs',
         field: 'responsible-for-witnessing-the-destruction',
         parse: (val, req) => {
-          const responsibleForWitnessDrugsIsSameAsMd =
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
-
-          if (!responsibleForWitnessDrugsIsSameAsMd) {
-            return translateOption(req, 'responsible-for-witnessing-the-destruction', 'no');
+          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ) {
+            return null;
           }
+          const responsibleForWitnessDrugsIsSameAsMd =
+          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
 
-          return translateOption(req, 'responsible-for-witnessing-the-destruction', 'yes');
+          return translateOption(req, 'responsible-for-witnessing-the-destruction',
+            responsibleForWitnessDrugsIsSameAsMd ? 'yes' : 'no');
         }
       },
       {
         step: '/person-to-witness',
         field: 'responsible-for-witnessing-details',
         parse: (list, req) => {
-          const responsibleForWitnessDrugsIsSameAsMd =
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
-
-          if (!responsibleForWitnessDrugsIsSameAsMd) {
-            const responsibleForWitnessDrugsDetails = [
-              req.sessionModel.get('responsible-for-witnessing-full-name'),
-              req.sessionModel.get('responsible-for-witnessing-email-address')
-            ];
-            return responsibleForWitnessDrugsDetails.join('\n');
+          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
+            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
+            return null;
           }
 
-          return null;
+          const responsibleForWitnessDrugsDetails = [
+            req.sessionModel.get('responsible-for-witnessing-full-name'),
+            req.sessionModel.get('responsible-for-witnessing-email-address')
+          ];
+          return responsibleForWitnessDrugsDetails.join('\n');
         }
       },
       {
         step: '/witness-dbs',
         field: 'responsible-for-witnessing-dbs-information',
         parse: (val, req) => {
-          const responsibleForWitnessDrugsIsSameAsMd =
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
-
-          if(!responsibleForWitnessDrugsIsSameAsMd) {
-            const responsibleForWitnessDrugsDbsInfo = [
-              req.sessionModel.get('responsible-for-witnessing-dbs-fullname'),
-              req.sessionModel.get('responsible-for-witnessing-dbs-reference'),
-              formatDate(req.sessionModel.get('responsible-for-witnessing-dbs-date-of-issue'))
-            ];
-            return responsibleForWitnessDrugsDbsInfo.join('\n');
+          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
+            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
+            return null;
           }
 
-          return null;
+          const responsibleForWitnessDrugsDbsInfo = [
+            req.sessionModel.get('responsible-for-witnessing-dbs-fullname'),
+            req.sessionModel.get('responsible-for-witnessing-dbs-reference'),
+            formatDate(req.sessionModel.get('responsible-for-witnessing-dbs-date-of-issue'))
+          ];
+          return responsibleForWitnessDrugsDbsInfo.join('\n');
         }
       },
       {
         step: '/witness-dbs-updates',
         field: 'responsible-for-witnessing-dbs-subscription',
         parse: (val, req) => {
-          const responsibleForWitnessDrugsIsSameAsMd =
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
-
-          if (!responsibleForWitnessDrugsIsSameAsMd) {
-            const fieldToTranslate = 'responsible-for-witnessing-dbs-subscription';
-            const valueToTranslate = req.sessionModel.get('responsible-for-witnessing-dbs-subscription');
-            return translateOption(req, fieldToTranslate, valueToTranslate);
+          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
+            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
+            return null;
           }
-
-          return null;
+          const fieldToTranslate = 'responsible-for-witnessing-dbs-subscription';
+          const valueToTranslate = req.sessionModel.get('responsible-for-witnessing-dbs-subscription');
+          return translateOption(req, fieldToTranslate, valueToTranslate);
+        }
+      },
+      {
+        step: '/company-registration-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
+            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director' ||
+            req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       },
       {
