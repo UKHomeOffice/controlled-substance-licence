@@ -560,5 +560,58 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'service-under-contract': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'service-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'service-expiry-date': dateComponent('service-expiry-date', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['1', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'status-of-site': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'rented'
+      },
+      {
+        value: 'leased'
+      },
+      {
+        value: 'owned-or-owner-occupied'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };
