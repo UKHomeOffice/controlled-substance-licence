@@ -258,7 +258,7 @@
     "legend": "Date of issue or application"
   },
   "responsible-for-compliance-regulatory-dbs-subscription": {
-    "legend": "Has the person responsible for the security of the premises subscribed to DBS updates?",
+    "legend": "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?",
     "options": {
       "yes": {
         "label": "Yes"
