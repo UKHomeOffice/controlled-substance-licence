@@ -96,6 +96,8 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
+    template: 'upload-company-certificate',
     next: '/change-responsible-officer-or-guarantor'
   },
 
@@ -105,6 +107,8 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
+    template: 'upload-company-certificate',
     next: '/change-responsible-officer-or-guarantor'
   },
 
@@ -372,21 +376,23 @@ const steps = {
   /** Evidence */
 
   '/upload-company-certificate': {
-    next: '/upload-conduct-certificate',
     behaviours: [
       SaveDocument('company-registration-certificate', 'file-upload'),
       RemoveDocument('company-registration-certificate')
     ],
-    fields: ['file-upload']
+    fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
+    next: '/upload-conduct-certificate'
   },
 
   '/upload-conduct-certificate': {
-    next: '/main-customers',
     behaviours: [
       SaveDocument('certificate-of-good-conduct', 'file-upload'),
       RemoveDocument('certificate-of-good-conduct')
     ],
-    fields: ['file-upload']
+    fields: ['file-upload'],
+    documentCategory: 'certificate-of-good-conduct',
+    next: '/main-customers'
   },
 
   /** The organisation and how it operates */

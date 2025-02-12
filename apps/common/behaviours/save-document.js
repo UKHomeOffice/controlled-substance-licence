@@ -14,6 +14,13 @@ module.exports = (documentCategory, fieldName) => superclass => class extends su
     super.process.apply(this, arguments);
   }
 
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    locals.documents = req.sessionModel.get(documentCategory) || [];
+
+    return locals;
+  }
+
   validateField(key, req) {
     const fileToBeValidated = req.files[fieldName];
     const documentsByCategory = req.sessionModel.get(documentCategory) || [];
