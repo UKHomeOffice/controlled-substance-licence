@@ -2,6 +2,8 @@ const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
 
@@ -293,11 +295,13 @@ const steps = {
         }
       }
     ],
-    next: '/who-witnesses-destruction-of-drugs'
+    next: '/who-witnesses-destruction-of-drugs',
+    continueOnEdit: true
   },
 
   '/who-witnesses-destruction-of-drugs': {
     behaviours: [CustomRedirect],
+    continueOnEdit: true,
     fields: ['responsible-for-witnessing-the-destruction'],
     forks: [
       {
@@ -308,8 +312,7 @@ const steps = {
         }
       }
     ],
-    next: '/trading-reasons',
-    continueOnEdit: true
+    next: '/trading-reasons'
   },
 
   '/person-to-witness': {
@@ -336,11 +339,24 @@ const steps = {
 
   '/witness-dbs-updates': {
     fields: ['responsible-for-witnessing-dbs-subscription'],
-    next: '/company-registration-certificate',
+    next: '/trading-reasons',
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
+          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+      }
+    ],
     template: 'person-in-charge-dbs-updates'
   },
 
   '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
     next: '/trading-reasons'
   },
 
