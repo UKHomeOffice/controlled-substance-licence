@@ -259,6 +259,18 @@ module.exports = {
         field: 'require-witness-destruction-of-drugs'
       },
       {
+        step: '/why-you-need-licence',
+        field: 'why-applying-licence'
+      },
+      {
+        step: '/main-customer-details',
+        field: 'main-customer-details'
+      },
+      {
+        step: '/source-drugs',
+        field: 'source-drugs-details'
+      },
+      {
         step: '/who-witnesses-destruction-of-drugs',
         field: 'responsible-for-witnessing-the-destruction',
         parse: (val, req) => {
