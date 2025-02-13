@@ -393,7 +393,7 @@ module.exports = {
         step: '/regulatory-body-registration',
         field: 'regulatory-body-registration-details',
         parse: (value, req) => {
-          return value ? value : req.translate('journey.not-provided')
+          return value ? value : req.translate('journey.not-provided');
         }
       }
     ]
