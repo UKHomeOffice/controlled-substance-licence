@@ -3,9 +3,10 @@ const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const ActivitiesContinueButton = require('./behaviours/activities-continue-button');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
-const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const ParseTradingReasonsSummary = require('./behaviours/parse-trading-reasons-summary');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const SaveDocument = require('../common/behaviours/save-document');
@@ -498,15 +499,33 @@ const steps = {
   },
 
   '/schedule-1-activities': {
-    next: '/schedule-2-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-1-activities'],
+    next: '/schedule-2-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-2'
+    }
   },
 
   '/schedule-2-activities': {
-    next: '/schedule-3-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-2-activities'],
+    next: '/schedule-3-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-3'
+    }
   },
 
   '/schedule-3-activities': {
-    next: '/schedule-4-part-1-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-3-activities'],
+    next: '/schedule-4-part-1-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-4-part-1'
+    }
   },
 
   '/schedule-4-part-1-activities': {

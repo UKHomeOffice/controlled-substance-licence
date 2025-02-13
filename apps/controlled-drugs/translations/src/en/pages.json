@@ -295,6 +295,15 @@
       },
       "regulatory-body-registration-details": {
         "label": "Details of other regulatory bodies you are registered with"
+      },
+      "schedule-1-activities": {
+        "label": "Schedule 1 activities"
+      },
+      "schedule-2-activities": {
+        "label": "Schedule 2 activities"
+      },
+      "schedule-3-activities": {
+        "label": "Schedule 3 activities"
       }
     }
   }
