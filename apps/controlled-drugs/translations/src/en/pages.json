@@ -56,17 +56,8 @@
   "why-you-need-licence": {
     "pageTitle": "Explain why you are applying for a licence"
   },
-  "mhra-licences": {
-    "header": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?"
-  },
   "mhra-licence-details": {
     "header": "Licence details"
-  },
-  "care-quality-commission-or-equivalent": {
-    "header": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?"
-  },
-  "regulatory-body-registration": {
-    "header": "Provide details of any other regulatory bodies that you are registered with (optional)"
   },
   "registration-details": {
     "header": "Registration details"
@@ -286,6 +277,24 @@
       },
       "aggregated-trading-reasons": {
         "label": "Trading reasons"
+      },
+      "has-any-licence-issued-by-mhra": {
+        "label": "Any licences issued by MHRA?"
+      },
+      "mhra-licence-details": {
+        "label": "Licence holder details"
+      },
+      "is-business-registered-with-cqc": {
+        "label": "Registered with care quality commission or equivalent?"
+      },
+      "registration-number": {
+        "label": "Care Quality Commission registration number"
+      },
+      "date-of-registration": {
+        "label": "Care Quality Commission registration date"
+      },
+      "regulatory-body-registration-details": {
+        "label": "Details of other regulatory bodies you are registered with"
       },
       "schedule-1-activities": {
         "label": "Schedule 1 activities"

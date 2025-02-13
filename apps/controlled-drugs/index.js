@@ -425,22 +425,52 @@ const steps = {
   },
 
   '/mhra-licences': {
-    next: '/care-quality-commission-or-equivalent'
+    fields: ['has-any-licence-issued-by-mhra'],
+    forks: [
+      {
+        target: '/care-quality-commission-or-equivalent',
+        condition: {
+          field: 'has-any-licence-issued-by-mhra',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/mhra-licence-details'
   },
 
   '/mhra-licence-details': {
+    fields: [
+      'mhra-licence-number',
+      'mhra-licence-type',
+      'mhra-licence-date-of-issue'
+    ],
     next: '/care-quality-commission-or-equivalent'
   },
 
   '/care-quality-commission-or-equivalent': {
-    next: '/regulatory-body-registration'
+    fields: ['is-business-registered-with-cqc'],
+    forks: [
+      {
+        target: '/regulatory-body-registration',
+        condition: {
+          field: 'is-business-registered-with-cqc',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/registration-details'
   },
 
   '/registration-details': {
+    fields: [
+      'registration-number',
+      'date-of-registration'
+    ],
     next: '/regulatory-body-registration'
   },
 
   '/regulatory-body-registration': {
+    fields: ['regulatory-body-registration-details'],
     next: '/service-under-contract'
   },
 

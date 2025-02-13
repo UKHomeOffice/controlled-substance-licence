@@ -372,6 +372,45 @@ module.exports = {
         }
       },
       {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-details',
+        parse: (val, req) => {
+          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
+            return null;
+          }
+          const mhraLicenceDetails = [
+            req.sessionModel.get('mhra-licence-number'),
+            req.sessionModel.get('mhra-licence-type'),
+            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
+          ];
+          return mhraLicenceDetails.join('\n');
+        }
+      },
+      {
+        step: '/care-quality-commission-or-equivalent',
+        field: 'is-business-registered-with-cqc'
+      },
+      {
+        step: '/registration-details',
+        field: 'registration-number'
+      },
+      {
+        step: '/registration-details',
+        field: 'date-of-registration',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/regulatory-body-registration',
+        field: 'regulatory-body-registration-details',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
         step: '/schedule-1-activities',
         field: 'schedule-1-activities',
         parse: (list, req) => parseCheckboxes(list, req)
