@@ -379,7 +379,8 @@ module.exports = {
       },
       {
         step: '/regulatory-body-registration',
-        field: 'regulatory-body-registration-details'
+        field: 'regulatory-body-registration-details',
+        parse: value => value || 'Not provided'
       }
     ]
   }
