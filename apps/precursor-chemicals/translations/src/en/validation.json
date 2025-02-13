@@ -130,7 +130,8 @@
       "required": "Enter a DBS reference",
       "notUrl": "Your answer must not contain URLs or links",
       "maxlength": "DBS reference must be between 3 and 25 characters",
-      "minlength": "DBS reference must be between 3 and 25 characters"
+      "minlength": "DBS reference must be between 3 and 25 characters",
+      "alphanum": "Enter a real DBS certificate number or application reference number"
   },
   "responsible-officer-dbs-date-of-issue": {
       "required": "Enter a date of issue or application",
@@ -164,7 +165,8 @@
     "required": "Enter a DBS reference",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "DBS reference must be between 3 and 25 characters",
-    "minlength": "DBS reference must be between 3 and 25 characters"
+    "minlength": "DBS reference must be between 3 and 25 characters",
+    "alphanum": "Enter a real DBS certificate number or application reference number"
   },
   "guarantor-dbs-date-of-issue": {
     "required": "Enter a date of issue or application",

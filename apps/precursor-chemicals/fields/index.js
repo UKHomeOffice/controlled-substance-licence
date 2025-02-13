@@ -285,7 +285,13 @@ module.exports = {
   },
   'responsible-officer-dbs-reference': {
     mixin: 'input-text',
-    validate: [ 'required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 25 }],
+    validate: [
+      'required',
+      'notUrl',
+      'alphanum',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 25 }
+    ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-dbs-date-of-issue': dateComponent('responsible-officer-dbs-date-of-issue', {
@@ -338,7 +344,13 @@ module.exports = {
   },
   'guarantor-dbs-reference': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 25 }],
+    validate: [
+      'required',
+      'notUrl',
+      'alphanum',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 25 }
+    ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
