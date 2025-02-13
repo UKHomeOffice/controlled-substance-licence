@@ -251,5 +251,13 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
+  },
+  "trading-reasons": {
+    "required": "Select a trading reason"
+  },
+  "specify-trading-reasons": {
+    "required": "Specify your trading reason",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Your specific trading reason must be 500 characters or less"
   }
 }

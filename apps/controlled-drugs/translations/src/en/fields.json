@@ -343,6 +343,16 @@
     "no-files-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded"
   },
+  "trading-reasons": {
+    "label": "What trading reasons does this site need a licence for?",
+    "hint": "Select one reason to begin with. You can add more reasons in the next step",
+    "options": {
+      "none_selected": "Select trading reasons"
+    }
+  },
+  "specify-trading-reasons": {
+    "label": "Specify your trading reason"
+  },
   "schedule-1-activities": {
     "legend": "Schedule 1",
     "hint": "Covers drugs that have no therapeutic value. Examples include MDMA ('ecstasy') and lysergamide",

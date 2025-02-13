@@ -1,6 +1,7 @@
 'use strict';
 
-const { formatDate, translateOption } = require('../../../utils');
+const { formatDate, translateOption, findArrayItemByValue } = require('../../../utils');
+const tradingReasons = require('../data/trading-reasons.json');
 
 /**
  * Parses a list of 0 or more checkbox options from a 'checkbox-group' field.
@@ -341,6 +342,21 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/trading-reasons-summary',
+        field: 'aggregated-trading-reasons',
+        changeLink: 'trading-reasons-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const reasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
+            const reasonLabel = findArrayItemByValue(tradingReasons, reasonValue)?.label ?? reasonValue;
+            const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
+
+            return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
+          }).join('\n');
         }
       },
       {
