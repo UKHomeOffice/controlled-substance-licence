@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const tradingReasons = require('../data/trading-reasons.json');
 
 module.exports = {
   'application-form-type': {
@@ -560,6 +561,23 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'trading-reasons': {
+    mixin: 'select',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.trading-reasons.options.none_selected'
+    }].concat(tradingReasons),
+    showFieldInSummary: true,
+    className: ['govuk-!-width-one-half']
+  },
+  'specify-trading-reasons': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   },
   'has-any-licence-issued-by-mhra': {
     mixin: 'radio-group',

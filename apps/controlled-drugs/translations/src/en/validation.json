@@ -252,6 +252,14 @@
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
   },
+  "trading-reasons": {
+    "required": "Select a trading reason"
+  },
+  "specify-trading-reasons": {
+    "required": "Specify your trading reason",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Your specific trading reason must be 500 characters or less"
+  },
   "has-any-licence-issued-by-mhra": {
     "required": "Select if you have any licences issued by the Medicines and Healthcare Products Regulatory Agency"
   },

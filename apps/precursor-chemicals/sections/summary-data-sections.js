@@ -1,6 +1,7 @@
 'use strict';
 
-const { formatDate, parseOperations, findChemical } = require('../../../utils');
+const { formatDate, parseOperations, findArrayItemByValue } = require('../../../utils');
+const chemicals = require('../data/chemicals.json');
 
 module.exports = {
   'background-information': {
@@ -275,7 +276,7 @@ module.exports = {
             const standardOps = item.fields.find(field => field.field === 'which-operation');
             const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
 
-            const parsedSubstance = findChemical(substance)?.label ?? substance;
+            const parsedSubstance = findArrayItemByValue(chemicals, substance)?.label ?? substance;
             const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
 
             return `${parsedSubstance}\n\n${parsedOps}`;
