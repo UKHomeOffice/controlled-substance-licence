@@ -3,6 +3,20 @@
 const { formatDate, translateOption, findArrayItemByValue } = require('../../../utils');
 const tradingReasons = require('../data/trading-reasons.json');
 
+/**
+ * Parses a list of 0 or more checkbox options from a 'checkbox-group' field.
+ *
+ * @param {array|string} list - The checked box option(s). This is string for one checked and array for more than one
+ * @param {object} req - The request object
+ * @returns {string} - A string of the list items separated by a newline or the value of journey.not-provided.
+ */
+const parseCheckboxes = (list, req) => {
+  if (list) {
+    return Array.isArray(list) ? list.join('\n') : list;
+  }
+  return req.translate('journey.not-provided');
+};
+
 module.exports = {
 
   'about-the-applicants': {
@@ -356,6 +370,21 @@ module.exports = {
             return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
           }).join('\n');
         }
+      },
+      {
+        step: '/schedule-1-activities',
+        field: 'schedule-1-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-2-activities',
+        field: 'schedule-2-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-3-activities',
+        field: 'schedule-3-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
       }
     ]
   }

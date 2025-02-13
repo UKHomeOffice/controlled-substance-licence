@@ -362,6 +362,66 @@
   },
   "specify-trading-reasons": {
     "label": "Specify your trading reason"
+  },
+  "schedule-1-activities": {
+    "legend": "Schedule 1",
+    "hint": "Covers drugs that have no therapeutic value. Examples include MDMA ('ecstasy') and lysergamide",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      },
+      "administration-clinical-trials-on-humans": {
+        "label": "Administration - clinical trials on humans"
+      },
+      "cultivation-high-thc-cannabis": {
+        "label": "Cultivation high THC cannabis"
+      }
+    }
+  },
+  "schedule-2-activities": {
+    "legend": "Schedule 2",
+    "hint": "Covers drugs that have therapeutic value, but are highly addictive. Examples include potent opioids, such as diamorphine and morphine",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
+  },
+  "schedule-3-activities": {
+    "legend": "Schedule 3",
+    "hint": "Covers drugs that have therapeutic value, but have slightly lighter control requirements. Examples include temazepam, midazolam and buprenorphine",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
   }
 }
 
