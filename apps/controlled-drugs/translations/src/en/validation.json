@@ -207,6 +207,21 @@
   "require-witness-destruction-of-drugs": {
     "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
   },
+  "why-applying-licence": {
+    "required": "Explain why you are applying for a licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Reasons why you are applying for a licence must be 2,000 characters or less"
+  },
+  "main-customer-details": {
+    "required": "Provide details of your main customers",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of your main customers must be 2,000 characters or less"
+  },
+  "source-drugs-details": {
+    "required": "Provide details of where you source the drugs from",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of where you source the drugs from must be 2,000 characters or less"
+  },
   "responsible-for-witnessing-the-destruction": {
     "required": "Select who is responsible for witnessing the destruction of controlled drugs"
   },

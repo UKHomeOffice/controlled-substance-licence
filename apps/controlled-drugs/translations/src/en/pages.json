@@ -54,13 +54,7 @@
     "key": "Trading reason"
   },
   "why-you-need-licence": {
-    "header": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
-  },
-  "main-customer-details": {
-    "header": "Provide details of your main customers"
-  },
-  "source-drugs": {
-    "header": "Provide details of where you source the drugs from"
+    "pageTitle": "Explain why you are applying for a licence"
   },
   "mhra-licences": {
     "header": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?"
@@ -265,6 +259,15 @@
       },
       "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
+      },
+      "why-applying-licence": {
+        "label": "Why are you applying for a licence"
+      },
+      "main-customer-details": {
+        "label": "Details of main customers"
+      },
+      "source-drugs-details": {
+        "label": "Details of where you source the drugs from"
       },
       "responsible-for-witnessing-the-destruction": {
         "label": "Is your company's person responsible for witnessing the destruction of controlled drugs premises the same as the managing director?"
