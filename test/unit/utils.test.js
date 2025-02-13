@@ -1,4 +1,6 @@
-const { getLabel, formatDate, findChemical } = require('../../utils');
+const { getLabel, formatDate, findArrayItemByValue } = require('../../utils');
+const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
+const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 
 describe('Utilities \'getLabel\'', () => {
   test('returns undefined when an unexpected fieldKey parameter is passed', () => {
@@ -28,16 +30,19 @@ describe('Utilities \'formatDate\'', () => {
   });
 });
 
-describe('Utilities \'findChemical\'', () => {
+describe('Utilities \'findArrayItemByValue\'', () => {
   test('finds the correct chemical object from the list for a correct input', () => {
-    expect(findChemical('Ephedrine')).toHaveProperty('label', 'Ephedrine (2939 4100)');
-    expect(findChemical('Ephedrine')).toHaveProperty('value', 'Ephedrine');
-    expect(findChemical('Ephedrine')).toHaveProperty('category', '1');
-    expect(findChemical('Ephedrine')).toHaveProperty('cnCode', '2939 4100');
-    expect(findChemical('Ephedrine')).not.toHaveProperty('category', '2');
+    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('label', 'Ephedrine (2939 4100)');
+    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('value', 'Ephedrine');
+    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('category', '1');
+    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('cnCode', '2939 4100');
+    expect(findArrayItemByValue(chemicals, 'Ephedrine')).not.toHaveProperty('category', '2');
+    expect(findArrayItemByValue(tradingReasons, 'broker')).toHaveProperty('label', 'Broker');
+    expect(findArrayItemByValue(tradingReasons, 'broker')).toHaveProperty('value', 'broker');
   });
 
   test('returns undefined when the chemical cannot be found in list', () => {
-    expect(findChemical('mayonnaise')).toBe(undefined);
+    expect(findArrayItemByValue(chemicals, 'mayonnaise')).toBe(undefined);
+    expect(findArrayItemByValue(tradingReasons, 'Organised crime')).toBe(undefined);
   });
 });

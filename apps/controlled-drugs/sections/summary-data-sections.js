@@ -1,6 +1,21 @@
 'use strict';
 
-const { formatDate, translateOption } = require('../../../utils');
+const { formatDate, translateOption, findArrayItemByValue } = require('../../../utils');
+const tradingReasons = require('../data/trading-reasons.json');
+
+/**
+ * Parses a list of 0 or more checkbox options from a 'checkbox-group' field.
+ *
+ * @param {array|string} list - The checked box option(s). This is string for one checked and array for more than one
+ * @param {object} req - The request object
+ * @returns {string} - A string of the list items separated by a newline or the value of journey.not-provided.
+ */
+const parseCheckboxes = (list, req) => {
+  if (list) {
+    return Array.isArray(list) ? list.join('\n') : list;
+  }
+  return req.translate('journey.not-provided');
+};
 
 module.exports = {
 
@@ -258,6 +273,18 @@ module.exports = {
         field: 'require-witness-destruction-of-drugs'
       },
       {
+        step: '/why-you-need-licence',
+        field: 'why-applying-licence'
+      },
+      {
+        step: '/main-customer-details',
+        field: 'main-customer-details'
+      },
+      {
+        step: '/source-drugs',
+        field: 'source-drugs-details'
+      },
+      {
         step: '/who-witnesses-destruction-of-drugs',
         field: 'responsible-for-witnessing-the-destruction',
         parse: (val, req) => {
@@ -328,6 +355,75 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/trading-reasons-summary',
+        field: 'aggregated-trading-reasons',
+        changeLink: 'trading-reasons-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const reasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
+            const reasonLabel = findArrayItemByValue(tradingReasons, reasonValue)?.label ?? reasonValue;
+            const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
+
+            return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
+          }).join('\n');
+        }
+      },
+      {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-details',
+        parse: (val, req) => {
+          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
+            return null;
+          }
+          const mhraLicenceDetails = [
+            req.sessionModel.get('mhra-licence-number'),
+            req.sessionModel.get('mhra-licence-type'),
+            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
+          ];
+          return mhraLicenceDetails.join('\n');
+        }
+      },
+      {
+        step: '/care-quality-commission-or-equivalent',
+        field: 'is-business-registered-with-cqc'
+      },
+      {
+        step: '/registration-details',
+        field: 'registration-number'
+      },
+      {
+        step: '/registration-details',
+        field: 'date-of-registration',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/regulatory-body-registration',
+        field: 'regulatory-body-registration-details',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
+        step: '/schedule-1-activities',
+        field: 'schedule-1-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-2-activities',
+        field: 'schedule-2-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-3-activities',
+        field: 'schedule-3-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
       }
     ]
   }

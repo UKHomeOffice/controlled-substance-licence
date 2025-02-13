@@ -48,35 +48,16 @@
   "company-registration-certificate": {
     "header": "Upload company registration certificate"
   },
-  "trading-reasons": {
-    "header": "What trading reasons does this site need a licence for?"
-  },
   "trading-reasons-summary": {
-    "header": "Summary of trading reasons"
-  },
-  "specify-trading-reasons": {
-    "header": "Specify your trading reason"
+    "header": "Summary of trading reasons",
+    "limit-exceeded": "You can not add any more trading reasons",
+    "key": "Trading reason"
   },
   "why-you-need-licence": {
-    "header": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
-  },
-  "main-customer-details": {
-    "header": "Provide details of your main customers"
-  },
-  "source-drugs": {
-    "header": "Provide details of where you source the drugs from"
-  },
-  "mhra-licences": {
-    "header": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?"
+    "pageTitle": "Explain why you are applying for a licence"
   },
   "mhra-licence-details": {
     "header": "Licence details"
-  },
-  "care-quality-commission-or-equivalent": {
-    "header": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?"
-  },
-  "regulatory-body-registration": {
-    "header": "Provide details of any other regulatory bodies that you are registered with (optional)"
   },
   "registration-details": {
     "header": "Registration details"
@@ -258,6 +239,15 @@
       "require-witness-destruction-of-drugs": {
         "label": "Do you need someone to witness the destruction of controlled drugs?"
       },
+      "why-applying-licence": {
+        "label": "Why are you applying for a licence"
+      },
+      "main-customer-details": {
+        "label": "Details of main customers"
+      },
+      "source-drugs-details": {
+        "label": "Details of where you source the drugs from"
+      },
       "responsible-for-witnessing-the-destruction": {
         "label": "Is your company's person responsible for witnessing the destruction of controlled drugs premises the same as the managing director?"
       },
@@ -273,6 +263,27 @@
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
+      "aggregated-trading-reasons": {
+        "label": "Trading reasons"
+      },
+      "has-any-licence-issued-by-mhra": {
+        "label": "Any licences issued by MHRA?"
+      },
+      "mhra-licence-details": {
+        "label": "Licence holder details"
+      },
+      "is-business-registered-with-cqc": {
+        "label": "Registered with care quality commission or equivalent?"
+      },
+      "registration-number": {
+        "label": "Care Quality Commission registration number"
+      },
+      "date-of-registration": {
+        "label": "Care Quality Commission registration date"
+      },
+      "regulatory-body-registration-details": {
+        "label": "Details of other regulatory bodies you are registered with"
+      },
       "service-under-contract": {
         "header": "Providing a service under a contract?"
       },
@@ -284,6 +295,15 @@
       },
       "status-of-site": {
         "header": "Status of site needing a licence"
+      },
+      "schedule-1-activities": {
+        "label": "Schedule 1 activities"
+      },
+      "schedule-2-activities": {
+        "label": "Schedule 2 activities"
+      },
+      "schedule-3-activities": {
+        "label": "Schedule 3 activities"
       }
     }
   }

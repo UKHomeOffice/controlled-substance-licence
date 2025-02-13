@@ -14,8 +14,8 @@ if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
 
-  $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/app -f kube/file-vault
+  $kd --delete -f kube/configmaps/configmap.yml -f kube/hof-rds-api
+  $kd --delete -f kube/redis -f kube/html-pdf -f kube/app -f kube/file-vault
   echo "Torn Down Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.branch.sas-notprod.homeoffice.gov.uk"
   exit 0
 fi
@@ -25,22 +25,23 @@ export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/redis -f kube/file-vault -f kube/app
+  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf -f kube/file-vault
+  $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis
+  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis
+  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis
+  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app/service.yml -f kube/app/ingress-external.yml
