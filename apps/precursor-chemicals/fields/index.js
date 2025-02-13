@@ -280,12 +280,12 @@ module.exports = {
   },
   'responsible-officer-dbs-application-fullname': {
     mixin: 'input-text',
-    validate: [ 'required', 'notUrl' ],
+    validate: [ 'required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-dbs-reference': {
     mixin: 'input-text',
-    validate: [ 'required', 'notUrl' ],
+    validate: [ 'required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 25 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'responsible-officer-dbs-date-of-issue': dateComponent('responsible-officer-dbs-date-of-issue', {
@@ -319,7 +319,7 @@ module.exports = {
   },
   'guarantor-full-name': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-email-address': {
@@ -333,12 +333,12 @@ module.exports = {
   },
   'guarantor-dbs-full-name': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-reference': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 25 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'guarantor-dbs-date-of-issue': dateComponent('guarantor-dbs-date-of-issue', {
@@ -593,7 +593,7 @@ module.exports = {
   },
   'who-is-completing-application-full-name': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'who-is-completing-application-telephone': {

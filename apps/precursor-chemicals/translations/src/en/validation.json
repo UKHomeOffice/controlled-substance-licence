@@ -122,11 +122,15 @@
   },
   "responsible-officer-dbs-application-fullname": {
       "required": "Enter the name as it appears on the DBS certificate",
-      "notUrl": "Your answer must not contain URLs or links"
+      "notUrl": "Your answer must not contain URLs or links",
+      "maxlength": "Full name must be between 3 and 200 characters",
+      "minlength": "Full name must be between 3 and 200 characters"
   },
   "responsible-officer-dbs-reference": {
       "required": "Enter a DBS reference",
-      "notUrl": "Your answer must not contain URLs or links"
+      "notUrl": "Your answer must not contain URLs or links",
+      "maxlength": "DBS reference must be between 3 and 25 characters",
+      "minlength": "DBS reference must be between 3 and 25 characters"
   },
   "responsible-officer-dbs-date-of-issue": {
       "required": "Enter a date of issue or application",
@@ -139,7 +143,9 @@
   },
   "guarantor-full-name": {
     "required": "Enter guarantor’s name",
-    "notUrl": "Your answer must not contain URLs or links"
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
   },
   "guarantor-email-address": {
     "required": "Enter an email address",
@@ -150,11 +156,15 @@
   },
   "guarantor-dbs-full-name": {
     "required": "Enter a name as it appears on the guarantor’s DBS certificate",
-    "notUrl": "Your answer must not contain URLs or links"
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
   },
   "guarantor-dbs-reference": {
     "required": "Enter a DBS reference",
-    "notUrl": "Your answer must not contain URLs or links"
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "DBS reference must be between 3 and 25 characters",
+    "minlength": "DBS reference must be between 3 and 25 characters"
   },
   "guarantor-dbs-date-of-issue": {
     "required": "Enter a date of issue or application",
@@ -279,7 +289,8 @@
   "who-is-completing-application-full-name": {
     "required": "Enter a full name",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 1 and 250 characters"
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
   },
   "who-is-completing-application-telephone": {
     "required": "Enter a UK telephone number",
