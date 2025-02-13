@@ -593,7 +593,8 @@ module.exports = {
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
-    }
+    },
+    isPageHeading: true
   }),
   'status-of-site': {
     mixin: 'radio-group',

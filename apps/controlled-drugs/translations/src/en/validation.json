@@ -251,5 +251,21 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
+  },
+  "service-under-contract": {
+    "required": "Select if you are providing a service under a contract"
+  },
+  "service-details": {
+    "required": "Enter details of the contracted service",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of the service must be 2,000 characters or less"
+  },
+  "service-expiry-date": {
+    "required": "Enter the date the service expires on",
+    "date": "Enter a real date the service expires on",
+    "before": "Date of expiry must be in the future"
+  },
+  "status-of-site": {
+    "required": "Select if you are providing a service under a contract"
   }
 }
