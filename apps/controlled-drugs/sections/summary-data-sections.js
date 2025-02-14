@@ -343,7 +343,7 @@ module.exports = {
       },
       {
         step: '/site-owner-contact-details',
-        field: 'site-owner-address',
+        field: 'site-owner-address'
       }
     ]
   }
