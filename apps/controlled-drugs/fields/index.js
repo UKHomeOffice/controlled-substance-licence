@@ -719,11 +719,14 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'before', arguments: ['2', 'days'] }
+      // 'before' '-100' 'years' allows dates less than 100 years into the future.
+      { type: 'before', arguments: ['-100', 'years'] },
+      'after'
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
-    }
+    },
+    isPageHeading: true
   }),
   'status-of-site': {
     mixin: 'radio-group',

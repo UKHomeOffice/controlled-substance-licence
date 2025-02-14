@@ -326,7 +326,8 @@
   "service-expiry-date": {
     "required": "Enter the date the service expires on",
     "date": "Enter a real date the service expires on",
-    "before": "Date of expiry must be in the future"
+    "before": "Service expiry date must be less than 100 years in the future",
+    "after": "Date of expiry must be in the future"
   },
   "status-of-site": {
     "required": "Select if you are providing a service under a contract"
