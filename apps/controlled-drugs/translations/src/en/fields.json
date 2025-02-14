@@ -290,6 +290,16 @@
       }
     }
   },
+  "why-applying-licence": {
+    "label": "Explain why you are applying for a licence, your business purposes and what you plan to use it for"
+  },
+  "main-customer-details": {
+    "label": "Provide details of your main customers"
+  },
+  "source-drugs-details": {
+    "hint": "This includes details of your suppliers, or the raw materials and where you get them",
+    "label": "Provide details of where you source the drugs from"
+  },
   "responsible-for-witnessing-the-destruction": {
     "legend": "Who is responsible for witnessing the destruction of controlled drugs?",
     "options": {
@@ -338,6 +348,47 @@
       }
     }
   },
+  "has-any-licence-issued-by-mhra": {
+    "legend": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "mhra-licence-number": {
+    "label": "Licence number"
+  },
+  "mhra-licence-type": {
+    "label": "Licence type"
+  },
+  "mhra-licence-date-of-issue": {
+    "legend": "Date of issue"
+  },
+  "is-business-registered-with-cqc": {
+    "legend": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "registration-number": {
+    "label": "Registration number"
+  },
+  "date-of-registration": {
+    "legend": "Date of registration"
+  },
+  "regulatory-body-registration-details": {
+    "label": "Provide details of any other regulatory bodies that you are registered with (optional)",
+    "hint": "For example the Veterinary Medicines Directorate, the United Kingdom Accreditation Service or the Food Standards Agency"
+  },
   "file-upload": {
     "label": "Upload a file",
     "no-files-uploaded": "No files uploaded",
@@ -355,5 +406,77 @@
   },
   "site-owner-address": {
     "label": "Address"
+  },
+  "trading-reasons": {
+    "label": "What trading reasons does this site need a licence for?",
+    "hint": "Select one reason to begin with. You can add more reasons in the next step",
+    "options": {
+      "none_selected": "Select trading reasons"
+    }
+  },
+  "specify-trading-reasons": {
+    "label": "Specify your trading reason"
+  },
+  "schedule-1-activities": {
+    "legend": "Schedule 1",
+    "hint": "Covers drugs that have no therapeutic value. Examples include MDMA ('ecstasy') and lysergamide",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      },
+      "administration-clinical-trials-on-humans": {
+        "label": "Administration - clinical trials on humans"
+      },
+      "cultivation-high-thc-cannabis": {
+        "label": "Cultivation high THC cannabis"
+      }
+    }
+  },
+  "schedule-2-activities": {
+    "legend": "Schedule 2",
+    "hint": "Covers drugs that have therapeutic value, but are highly addictive. Examples include potent opioids, such as diamorphine and morphine",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
+  },
+  "schedule-3-activities": {
+    "legend": "Schedule 3",
+    "hint": "Covers drugs that have therapeutic value, but have slightly lighter control requirements. Examples include temazepam, midazolam and buprenorphine",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
   }
 }
+
+

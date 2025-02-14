@@ -14,6 +14,11 @@ metadata:
   name: file-vault
   {{ end }}
 spec:
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  replicas: 2
+  {{ else }}
+  replicas: 1
+  {{ end }}
   selector:
     matchLabels:
       {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
@@ -115,6 +120,8 @@ spec:
             limits:
               memory: 1024Mi
               cpu: 200m
+            requests:
+              memory: 512Mi
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}

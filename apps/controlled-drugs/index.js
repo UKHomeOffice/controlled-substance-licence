@@ -1,7 +1,14 @@
+const config = require('../../config');
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const ActivitiesContinueButton = require('./behaviours/activities-continue-button');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const LimitItems = require('../common/behaviours/limit-items');
+const ParseTradingReasonsSummary = require('./behaviours/parse-trading-reasons-summary');
+const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 
@@ -361,46 +368,109 @@ const steps = {
   },
 
   '/trading-reasons': {
+    fields: ['trading-reasons'],
+    forks: [
+      {
+        target: '/specify-trading-reasons',
+        condition: req => Array.isArray(req.sessionModel.get('trading-reasons')) ?
+          req.sessionModel.get('trading-reasons').includes('other') :
+          req.sessionModel.get('trading-reasons') === 'other'
+      }
+    ],
     next: '/trading-reasons-summary'
   },
 
   '/specify-trading-reasons': {
+    fields: ['specify-trading-reasons'],
     next: '/trading-reasons-summary'
   },
 
   '/trading-reasons-summary': {
-    next: '/why-you-need-licence'
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      SetSummaryReferrer,
+      ParseTradingReasonsSummary,
+      CustomRedirect
+    ],
+    aggregateTo: 'aggregated-trading-reasons',
+    aggregateFrom: [
+      'trading-reasons',
+      'specify-trading-reasons'
+    ],
+    titleField: 'trading-reasons',
+    addStep: 'trading-reasons',
+    template: 'trading-reasons-summary',
+    backLink: 'trading-reasons',
+    aggregateLimit: config.aggregateLimits.controlledDrugs.tradingReasonsLimit,
+    next: '/why-you-need-licence',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/why-you-need-licence': {
+    fields: ['why-applying-licence'],
     next: '/main-customer-details'
   },
 
   '/main-customer-details': {
+    fields: ['main-customer-details'],
     next: '/source-drugs'
   },
 
   '/source-drugs': {
+    fields: ['source-drugs-details'],
     next: '/mhra-licences'
   },
 
   '/mhra-licences': {
-    next: '/care-quality-commission-or-equivalent'
+    fields: ['has-any-licence-issued-by-mhra'],
+    forks: [
+      {
+        target: '/care-quality-commission-or-equivalent',
+        condition: {
+          field: 'has-any-licence-issued-by-mhra',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/mhra-licence-details'
   },
 
   '/mhra-licence-details': {
+    fields: [
+      'mhra-licence-number',
+      'mhra-licence-type',
+      'mhra-licence-date-of-issue'
+    ],
     next: '/care-quality-commission-or-equivalent'
   },
 
   '/care-quality-commission-or-equivalent': {
-    next: '/regulatory-body-registration'
+    fields: ['is-business-registered-with-cqc'],
+    forks: [
+      {
+        target: '/regulatory-body-registration',
+        condition: {
+          field: 'is-business-registered-with-cqc',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/registration-details'
   },
 
   '/registration-details': {
+    fields: [
+      'registration-number',
+      'date-of-registration'
+    ],
     next: '/regulatory-body-registration'
   },
 
   '/regulatory-body-registration': {
+    fields: ['regulatory-body-registration-details'],
     next: '/service-under-contract'
   },
 
@@ -431,15 +501,33 @@ const steps = {
   },
 
   '/schedule-1-activities': {
-    next: '/schedule-2-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-1-activities'],
+    next: '/schedule-2-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-2'
+    }
   },
 
   '/schedule-2-activities': {
-    next: '/schedule-3-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-2-activities'],
+    next: '/schedule-3-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-3'
+    }
   },
 
   '/schedule-3-activities': {
-    next: '/schedule-4-part-1-activities'
+    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    fields: ['schedule-3-activities'],
+    next: '/schedule-4-part-1-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-4-part-1'
+    }
   },
 
   '/schedule-4-part-1-activities': {
@@ -547,9 +635,12 @@ const steps = {
   },
 
   '/confirm': {
-    behaviours: [Summary],
+    behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
-    next: '/declaration'
+    next: '/declaration',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/declaration': {

@@ -207,6 +207,21 @@
   "require-witness-destruction-of-drugs": {
     "required": "Select if you need someone to be authorised to witness the destruction of controlled drugs"
   },
+  "why-applying-licence": {
+    "required": "Explain why you are applying for a licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Reasons why you are applying for a licence must be 2,000 characters or less"
+  },
+  "main-customer-details": {
+    "required": "Provide details of your main customers",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of your main customers must be 2,000 characters or less"
+  },
+  "source-drugs-details": {
+    "required": "Provide details of where you source the drugs from",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of where you source the drugs from must be 2,000 characters or less"
+  },
   "responsible-for-witnessing-the-destruction": {
     "required": "Select who is responsible for witnessing the destruction of controlled drugs"
   },
@@ -271,5 +286,53 @@
     "required": "Enter an address for the site owner",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Site owner's address must be 2,000 characters or less"
+  },
+  "trading-reasons": {
+    "required": "Select a trading reason"
+  },
+  "specify-trading-reasons": {
+    "required": "Specify your trading reason",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Your specific trading reason must be 500 characters or less"
+  },
+  "has-any-licence-issued-by-mhra": {
+    "required": "Select if you have any licences issued by the Medicines and Healthcare Products Regulatory Agency"
+  },
+  "mhra-licence-number": {
+    "required": "Enter a Medicines and Healthcare products Regulatory Agency licence number",
+    "maxlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
+    "minlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "mhra-licence-type": {
+    "required": "Enter a Medicines and Healthcare products Regulatory Agency licence type",
+    "maxlength": "Licence type must be between 3 and 50 characters",
+    "minlength": "Licence type must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "mhra-licence-date-of-issue": {
+    "required": "Enter the MHR licence date of issue",
+    "date": "Enter a real date of issue",
+    "before": "MHRA licence date of issue must be in the past",
+    "after": "MHRA licence date of issue must be on or after 01 January 2009"
+  },
+  "is-business-registered-with-cqc": {
+    "required": "Select if you are registered with the Care Quality Commission or its Scottish and Welsh equivalents"
+  },
+  "registration-number": {
+    "required": "Enter a registration number",
+    "maxlength": "Registration number must be between 3 and 50 characters",
+    "minlength": "Registration number must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "date-of-registration": {
+    "required": "Enter a date of registration",
+    "date": "Enter a real date of registration",
+    "before": "Date of registration must be in the past",
+    "after": "Date of registration must be on or after 1 January 2003"
+  },
+  "regulatory-body-registration-details": {
+    "maxlength": "Details of other regulatory bodies must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
