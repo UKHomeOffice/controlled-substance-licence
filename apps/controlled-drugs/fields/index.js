@@ -560,5 +560,31 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'site-owner-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-address': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    className: ['govuk-!-width-two-thirds']
   }
 };

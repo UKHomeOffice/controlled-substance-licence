@@ -342,5 +342,18 @@
     "label": "Upload a file",
     "no-files-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded"
+  },
+  "site-owner-full-name": {
+    "label": "Full name"
+  },
+  "site-owner-email-address": {
+    "label": "Email address"
+  },
+  "site-owner-telephone": {
+    "label": "Contact telephone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "site-owner-address": {
+    "label": "Address"
   }
 }

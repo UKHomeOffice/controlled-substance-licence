@@ -328,6 +328,22 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-full-name'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-email-address'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-telephone'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-address',
       }
     ]
   }

@@ -421,6 +421,8 @@ const steps = {
   },
 
   '/site-owner-contact-details': {
+    behaviours: [customValidation],
+    fields: ['site-owner-full-name', 'site-owner-email-address', 'site-owner-telephone', 'site-owner-address'],
     next: '/licence-details'
   },
 

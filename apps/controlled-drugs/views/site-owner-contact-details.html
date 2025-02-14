@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$pageTitle}}
+  {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}} {{#t}}pages.site-owner-contact-details.pageTitle{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+    {{#renderField}}site-owner-full-name{{/renderField}}
+    {{#renderField}}site-owner-email-address{{/renderField}}
+    {{#renderField}}site-owner-telephone{{/renderField}}
+    {{#renderField}}site-owner-address{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

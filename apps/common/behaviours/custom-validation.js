@@ -3,6 +3,11 @@ const validators = require('hof/controller/validation/validators');
 module.exports = superclass => class extends superclass {
   validateField(key, req) {
     const validationErrorFunc = (type, args) => new this.ValidationError(key, { type: type, arguments: [args] });
+    function isValidphoneNumber(phoneNumber) {
+      const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
+      const isValid = validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
+      return isValid;
+    }
 
     if (key === 'company-number') {
       const companyNumber = req.form.values[key];
@@ -17,10 +22,17 @@ module.exports = superclass => class extends superclass {
        key === 'invoicing-telephone' || key === 'who-is-completing-application-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {
-        const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
-        const isValidphoneNumber = validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
-        if (!isValidphoneNumber || !validators.ukPhoneNumber(phoneNumber)) {
+        if (!isValidphoneNumber(phoneNumber) || !validators.ukPhoneNumber(phoneNumber)) {
           return validationErrorFunc('ukPhoneNumber');
+        }
+      }
+    }
+
+    if(key === 'site-owner-telephone') {
+      const phoneNumber = req.form.values[key];
+      if(phoneNumber) {
+        if(!isValidphoneNumber(phoneNumber)  || !validators.internationalPhoneNumber(phoneNumber)) {
+          return validationErrorFunc('internationalPhoneNumber');
         }
       }
     }
