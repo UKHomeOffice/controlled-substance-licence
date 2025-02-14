@@ -285,16 +285,16 @@
         "label": "Details of other regulatory bodies you are registered with"
       },
       "service-under-contract": {
-        "header": "Providing a service under a contract?"
+        "label": "Providing a service under a contract?"
       },
       "service-details": {
-        "header": "Details of service"
+        "label": "Details of service"
       },
       "service-expiry-date": {
-        "header": "Service expiry date"
+        "label": "Service expiry date"
       },
       "status-of-site": {
-        "header": "Status of site needing a licence"
+        "label": "Status of site needing a licence"
       },
       "schedule-1-activities": {
         "label": "Schedule 1 activities"

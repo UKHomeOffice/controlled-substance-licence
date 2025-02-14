@@ -79,6 +79,22 @@ const checkResponsibleForWitnessDrugsDbs = (req, currentRoute, action) => (
   !!req.sessionModel.get('responsible-for-witnessing-dbs-subscription')
 );
 
+// Providing a service under contract section
+const checkProvidingContractService = (req, currentRoute, action) => (
+  currentRoute === '/service-under-contract' &&
+  action === 'edit' &&
+  (
+    req.form.values['service-under-contract'] === 'no' ||
+    !!req.sessionModel.get('service-details')
+  )
+);
+
+checkServiceDetails = (req, currentRoute, action) => (
+  currentRoute === '/service-details' &&
+  action === 'edit' &&
+  !!req.sessionModel.get('service-expiry-date')
+)
+
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
     const { route: currentRoute, confirmStep } = req.form.options;
@@ -97,7 +113,9 @@ module.exports = superclass => class extends superclass {
       checkResponsibleForCompRegDbs(req, currentRoute, action),
       checkResponsibleForWitnessDrugs(req, currentRoute, action),
       checkResponsibleForWitnessDrugsDetails(req, currentRoute, action),
-      checkResponsibleForWitnessDrugsDbs(req, currentRoute, action)
+      checkResponsibleForWitnessDrugsDbs(req, currentRoute, action),
+      checkProvidingContractService(req, currentRoute, action),
+      checkServiceDetails(req, currentRoute, action)
     ].some(Boolean);
 
     if (shouldRedirectToConfirmStep) {

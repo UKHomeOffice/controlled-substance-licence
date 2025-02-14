@@ -486,12 +486,14 @@ const steps = {
       }
     ],
     next: '/status-of-site',
+    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
   '/service-details': {
     fields: ['service-details'],
     next: '/service-expiry-date',
+    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
