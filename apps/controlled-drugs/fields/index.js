@@ -583,6 +583,7 @@ module.exports = {
   },
   'site-owner-address': {
     mixin: 'textarea',
+    'ignore-defaults': true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }],
     className: ['govuk-!-width-two-thirds']
