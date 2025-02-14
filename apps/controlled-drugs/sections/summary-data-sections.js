@@ -423,7 +423,7 @@ module.exports = {
         dependsOn: 'service-under-contract',
         step: '/service-expiry-date',
         field: 'service-expiry-date',
-        parse: (value) => value ? formatDate(value) : null
+        parse: value => value ? formatDate(value) : null
       },
       {
         step: '/status-of-site',

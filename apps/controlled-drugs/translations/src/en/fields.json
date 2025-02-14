@@ -421,7 +421,6 @@
   },
   "service-expiry-date": {
     "legend": "What date does the service expire on?"
-
   },
   "status-of-site": {
     "legend": "What is the status of the site to be licensed?",

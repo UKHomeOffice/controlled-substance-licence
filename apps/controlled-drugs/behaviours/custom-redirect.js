@@ -89,11 +89,11 @@ const checkProvidingContractService = (req, currentRoute, action) => (
   )
 );
 
-checkServiceDetails = (req, currentRoute, action) => (
+const checkServiceDetails = (req, currentRoute, action) => (
   currentRoute === '/service-details' &&
   action === 'edit' &&
   !!req.sessionModel.get('service-expiry-date')
-)
+);
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
