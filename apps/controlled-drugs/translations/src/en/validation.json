@@ -279,7 +279,6 @@
   },
   "site-owner-telephone": {
     "required": "Enter a contact telephone number for the site owner",
-    "ukPhoneNumber": "UKEnter a real telephone number, like 07700 900000 or +39 1 33 45 70 90",
     "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000 or +39 1 33 45 70 90"
   },
   "site-owner-address": {

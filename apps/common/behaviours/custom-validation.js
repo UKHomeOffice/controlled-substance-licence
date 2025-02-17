@@ -5,8 +5,7 @@ module.exports = superclass => class extends superclass {
     const validationErrorFunc = (type, args) => new this.ValidationError(key, { type: type, arguments: [args] });
     function isValidphoneNumber(phoneNumber) {
       const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
-      const isValid = validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
-      return isValid;
+      return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
     }
 
     if (key === 'company-number') {
