@@ -75,7 +75,7 @@ describe('scheduled-activities-redirect', () => {
       expect(Base.prototype.successHandler).toHaveBeenCalled();
     });
 
-    test('redirects to /summary when conditions are correct', () => {
+    test('redirects to /confirm when conditions are correct', () => {
       req.sessionModel.set('referred-by-summary', true);
       req.sessionModel.set('schedule-1-activities', 'produce');
       req.form.options.route = '/schedule-2-activities';
