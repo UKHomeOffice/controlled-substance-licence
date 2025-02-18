@@ -579,7 +579,6 @@ const steps = {
 
   '/no-activities-selected': {
     backLink: '/controlled-drugs/schedule-5-activities'
-    // redirect to /schedule-1-activities
   },
 
   '/upload-activity-template': {
