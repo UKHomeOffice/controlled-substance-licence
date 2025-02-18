@@ -411,6 +411,25 @@ module.exports = {
         }
       },
       {
+        step: '/service-under-contract',
+        field: 'service-under-contract'
+      },
+      {
+        dependsOn: 'service-under-contract',
+        step: '/service-details',
+        field: 'service-details'
+      },
+      {
+        dependsOn: 'service-under-contract',
+        step: '/service-expiry-date',
+        field: 'service-expiry-date',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/status-of-site',
+        field: 'status-of-site'
+      },
+      {
         step: '/schedule-1-activities',
         field: 'schedule-1-activities',
         parse: (list, req) => parseCheckboxes(list, req)

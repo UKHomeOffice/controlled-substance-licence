@@ -475,18 +475,35 @@ const steps = {
   },
 
   '/service-under-contract': {
-    next: '/status-of-site'
+    fields: ['service-under-contract'],
+    forks: [
+      {
+        target: '/service-details',
+        condition: {
+          field: 'service-under-contract',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/status-of-site',
+    behaviours: [CustomRedirect],
+    continueOnEdit: true
   },
 
   '/service-details': {
-    next: '/service-expiry-date'
+    fields: ['service-details'],
+    next: '/service-expiry-date',
+    behaviours: [CustomRedirect],
+    continueOnEdit: true
   },
 
   '/service-expiry-date': {
+    fields: ['service-expiry-date'],
     next: '/status-of-site'
   },
 
   '/status-of-site': {
+    fields: ['status-of-site'],
     next: '/site-owner-contact-details'
   },
 
