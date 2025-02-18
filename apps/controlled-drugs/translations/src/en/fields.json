@@ -404,6 +404,38 @@
   "specify-trading-reasons": {
     "label": "Specify your trading reason"
   },
+  "service-under-contract": {
+    "legend": "Are you providing a service under a contract?",
+    "hint": "For example, healthcare or clinical services",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "service-details": {
+    "label": "Provide details of the service"
+  },
+  "service-expiry-date": {
+    "legend": "What date does the service expire on?"
+  },
+  "status-of-site": {
+    "legend": "What is the status of the site to be licensed?",
+    "options": {
+      "rented": {
+        "label": "Rented"
+      },
+      "leased": {
+        "label": "Leased"
+      },
+      "owned-or-owner-occupied": {
+        "label": "Owned or owner-occupied"
+      }
+    }
+  },
   "schedule-1-activities": {
     "legend": "Schedule 1",
     "hint": "Covers drugs that have no therapeutic value. Examples include MDMA ('ecstasy') and lysergamide",
