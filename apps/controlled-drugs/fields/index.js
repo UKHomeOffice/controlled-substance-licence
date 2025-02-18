@@ -728,5 +728,53 @@ module.exports = {
     legend: {
       className: 'govuk-fieldset__legend--m'
     }
+  },
+  'security-features': {
+    mixin: 'checkbox-group',
+    validate: [ 'required' ],
+    options: [
+      'cctv-system',
+      'electronic-stock-recording-system',
+      'perimeter-fencing',
+      'lockable-physical-security',
+      'attendance-of-security-guards'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'cd-kept-in-separate-room': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'cd-kept-in-safe-or-cabinet': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

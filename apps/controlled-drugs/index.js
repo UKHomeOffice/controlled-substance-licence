@@ -549,14 +549,17 @@ const steps = {
   },
 
   '/security-features': {
+    fields: ['security-features'],
     next: '/separate-room'
   },
 
   '/separate-room': {
+    fields: ['cd-kept-in-separate-room'],
     next: '/safe-or-cabinet'
   },
 
   '/safe-or-cabinet': {
+    fields: ['cd-kept-in-safe-or-cabinet'],
     next: '/prefabricated-strong-room'
   },
 

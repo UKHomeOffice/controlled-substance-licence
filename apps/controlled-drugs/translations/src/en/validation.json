@@ -314,5 +314,14 @@
   "regulatory-body-registration-details": {
     "maxlength": "Details of other regulatory bodies must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "security-features": {
+    "required": "Select at least one security feature"
+  },
+  "cd-kept-in-separate-room": {
+    "required": "Select if the controlled drugs are kept in a separate room or zone"
+  },
+  "cd-kept-in-safe-or-cabinet": {
+    "required": "Select if the controlled drugs are kept in a safe or cabinet"
   }
 }

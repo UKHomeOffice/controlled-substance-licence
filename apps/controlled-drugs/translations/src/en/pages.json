@@ -104,15 +104,6 @@
   "upload-activity-template": {
     "header": "Upload controlled drug user activity template"
   },
-  "security-features": {
-    "header": "Which of the following security features does the site have?"
-  },
-  "separate-room": {
-    "header": "Are controlled drugs kept in a separate room or zone?"
-  },
-  "safe-or-cabinet": {
-    "header": "Are controlled drugs kept in a safe or cabinet?"
-  },
   "prefabricated-strong-room": {
     "header": "Are controlled drugs kept in a prefabricated strong room?"
   },
@@ -304,6 +295,9 @@
       },
       "schedule-3-activities": {
         "label": "Schedule 3 activities"
+      },
+      "security-features": {
+        "label": "Site security features"
       }
     }
   }
