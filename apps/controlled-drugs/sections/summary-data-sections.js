@@ -424,6 +424,21 @@ module.exports = {
         step: '/schedule-3-activities',
         field: 'schedule-3-activities',
         parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-4-part-1-activities',
+        field: 'schedule-4-part-1-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-4-part-2-activities',
+        field: 'schedule-4-part-2-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-5-activities',
+        field: 'schedule-5-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
       }
     ]
   }

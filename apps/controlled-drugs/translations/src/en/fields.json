@@ -463,6 +463,51 @@
         "label": "Manufacture"
       }
     }
+  },
+  "schedule-4-part-1-activities": {
+    "legend": "Schedule 4 (I)",
+    "hint": "Covers benzodiazepines. For example, bromazepam, diazepam and triazolam",
+    "options": {
+      "possess": {
+        "label": "Possess"
+      },
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
+  },
+  "schedule-4-part-2-activities": {
+    "legend": "Schedule 4 (II)",
+    "hint": "Covers anabolic and androgenic steroids. Examples include prasterone, testosterone, nandrolone and bolandiol",
+    "options": {
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      },
+      "manufacture": {
+        "label": "Manufacture"
+      }
+    }
+  },
+  "schedule-5-activities": {
+    "legend": "Schedule 5",
+    "hint": "Covers weaker preparations of schedule 2 drugs. Examples include codeine, medicinal opium or morphine (less than 0.2% concentration)",
+    "options": {
+      "supply": {
+        "label": "Supply"
+      },
+      "produce": {
+        "label": "Produce"
+      }
+    }
   }
 }
 

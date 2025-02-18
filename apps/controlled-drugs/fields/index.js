@@ -728,5 +728,38 @@ module.exports = {
     legend: {
       className: 'govuk-fieldset__legend--m'
     }
+  },
+  'schedule-4-part-1-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'possess',
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-4-part-2-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-5-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'supply',
+      'produce'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
   }
 };
