@@ -314,5 +314,22 @@
   "regulatory-body-registration-details": {
     "maxlength": "Details of other regulatory bodies must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "service-under-contract": {
+    "required": "Select if you are providing a service under a contract"
+  },
+  "service-details": {
+    "required": "Enter details of the contracted service",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of the service must be 2,000 characters or less"
+  },
+  "service-expiry-date": {
+    "required": "Enter the date the service expires on",
+    "date": "Enter a real date the service expires on",
+    "before": "Service expiry date must be less than 100 years in the future",
+    "after": "Date of expiry must be in the future"
+  },
+  "status-of-site": {
+    "required": "Select if you are providing a service under a contract"
   }
 }
