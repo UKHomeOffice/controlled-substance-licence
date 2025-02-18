@@ -731,6 +731,7 @@ module.exports = {
   },
   'security-features': {
     mixin: 'checkbox-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       'cctv-system',
