@@ -504,7 +504,15 @@ const steps = {
 
   '/status-of-site': {
     fields: ['status-of-site'],
-    next: '/site-owner-contact-details'
+    forks: [
+      {
+        target: '/site-owner-contact-details',
+        condition: req => (
+          req.form.values['status-of-site'] === 'rented' || req.form.values['status-of-site'] === 'leased'
+        )
+      }
+    ],
+    next: '/licence-details'
   },
 
   '/site-owner-contact-details': {
