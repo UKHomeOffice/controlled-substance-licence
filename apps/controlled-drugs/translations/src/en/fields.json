@@ -394,6 +394,19 @@
     "no-files-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded"
   },
+  "site-owner-full-name": {
+    "label": "Full name"
+  },
+  "site-owner-email-address": {
+    "label": "Email address"
+  },
+  "site-owner-telephone": {
+    "label": "Contact telephone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "site-owner-address": {
+    "label": "Address"
+  },
   "trading-reasons": {
     "label": "What trading reasons does this site need a licence for?",
     "hint": "Select one reason to begin with. You can add more reasons in the next step",
@@ -540,7 +553,47 @@
         "label": "Produce"
       }
     }
+  },
+  "security-features": {
+    "legend": "Which of the following security features does the site have?",
+    "options": {
+      "cctv-system": {
+        "label": "CCTV system (centrally monitored)"
+      },
+      "electronic-stock-recording-system": {
+        "label": "Electronic stock recording systems"
+      },
+      "perimeter-fencing": {
+        "label": "Perimeter fencing"
+      },
+      "lockable-physical-security": {
+        "label": "Lockable physical security, such as a room, safe or cabinet for the storage of the controlled drugs"
+      },
+      "attendance-of-security-guards": {
+        "label": "Attendance of security guards"
+      }
+    }
+  },
+  "cd-kept-in-separate-room": {
+    "legend": "Are controlled drugs kept in a separate room or zone?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "cd-kept-in-safe-or-cabinet": {
+    "legend": "Are controlled drugs kept in a safe or cabinet?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
-
-

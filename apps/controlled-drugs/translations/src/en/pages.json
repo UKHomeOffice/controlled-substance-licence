@@ -63,7 +63,8 @@
     "header": "Registration details"
   },
   "site-owner-contact-details": {
-    "header": "Site owner’s contact details"
+    "header": "Site owner’s contact details",
+    "pageTitle": "Site owner contact details"
   },
   "licence-details": {
     "header": "Licence details"
@@ -92,15 +93,6 @@
   },
   "upload-activity-template": {
     "header": "Upload controlled drug user activity template"
-  },
-  "security-features": {
-    "header": "Which of the following security features does the site have?"
-  },
-  "separate-room": {
-    "header": "Are controlled drugs kept in a separate room or zone?"
-  },
-  "safe-or-cabinet": {
-    "header": "Are controlled drugs kept in a safe or cabinet?"
   },
   "prefabricated-strong-room": {
     "header": "Are controlled drugs kept in a prefabricated strong room?"
@@ -264,6 +256,18 @@
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
+      "site-owner-full-name": {
+        "label": "Site owner name"
+      },
+      "site-owner-email-address": {
+        "label": "Site owner email address"
+      },
+      "site-owner-telephone": {
+        "label": "Site owner telephone number"
+      },
+      "site-owner-address": {
+        "label": "Site owner address"
+      },
       "aggregated-trading-reasons": {
         "label": "Trading reasons"
       },
@@ -314,6 +318,9 @@
       },
       "schedule-5-activities": {
         "label": "Schedule 5 activities"
+      },
+      "security-features": {
+        "label": "Site security features"
       }
     }
   }

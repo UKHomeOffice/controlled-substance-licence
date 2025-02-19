@@ -267,6 +267,25 @@
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
   },
+  "site-owner-full-name": {
+    "required": "Enter the site owner's full name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Site owner's full name must be between 3 and 200 characters",
+    "maxlength": "Site owner's full name must be between 3 and 200 characters"
+  },
+  "site-owner-email-address": {
+    "required": "Enter an email address for the site owner",
+    "email": "Enter a real email address"
+  },
+  "site-owner-telephone": {
+    "required": "Enter a contact telephone number for the site owner",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000 or +39 1 33 45 70 90"
+  },
+  "site-owner-address": {
+    "required": "Enter an address for the site owner",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Site owner's address must be 2,000 characters or less"
+  },
   "trading-reasons": {
     "required": "Select a trading reason"
   },
@@ -331,5 +350,14 @@
   },
   "status-of-site": {
     "required": "Select if you are providing a service under a contract"
+  },
+  "security-features": {
+    "required": "Select at least one security feature"
+  },
+  "cd-kept-in-separate-room": {
+    "required": "Select if the controlled drugs are kept in a separate room or zone"
+  },
+  "cd-kept-in-safe-or-cabinet": {
+    "required": "Select if the controlled drugs are kept in a safe or cabinet"
   }
 }

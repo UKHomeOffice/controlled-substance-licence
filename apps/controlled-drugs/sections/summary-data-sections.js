@@ -357,6 +357,22 @@ module.exports = {
         }
       },
       {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-full-name'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-email-address'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-telephone'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-address'
+      },
+      {
         step: '/trading-reasons-summary',
         field: 'aggregated-trading-reasons',
         changeLink: 'trading-reasons-summary/edit',
@@ -458,6 +474,19 @@ module.exports = {
         step: '/schedule-5-activities',
         field: 'schedule-5-activities',
         parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/security-features',
+        field: 'security-features',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/separate-room',
+        field: 'cd-kept-in-separate-room'
+      },
+      {
+        step: '/safe-or-cabinet',
+        field: 'cd-kept-in-safe-or-cabinet'
       }
     ]
   }

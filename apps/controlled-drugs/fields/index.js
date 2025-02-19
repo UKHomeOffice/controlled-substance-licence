@@ -691,6 +691,34 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
   },
+  'site-owner-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'site-owner-address': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    className: ['govuk-!-width-two-thirds']
+  },
   'service-under-contract': {
     mixin: 'radio-group',
     isPageHeading: true,
@@ -816,6 +844,52 @@ module.exports = {
     ],
     legend: {
       className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'security-features': {
+    mixin: 'checkbox-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      'cctv-system',
+      'electronic-stock-recording-system',
+      'perimeter-fencing',
+      'lockable-physical-security',
+      'attendance-of-security-guards'
+    ]
+  },
+  'cd-kept-in-separate-room': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'cd-kept-in-safe-or-cabinet': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
     }
   }
 };

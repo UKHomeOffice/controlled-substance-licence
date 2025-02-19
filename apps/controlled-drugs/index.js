@@ -504,10 +504,21 @@ const steps = {
 
   '/status-of-site': {
     fields: ['status-of-site'],
+    forks: [
+      {
+        target: '/licence-details',
+        condition: {
+          field: 'status-of-site',
+          value: 'owned-or-owner-occupied'
+        }
+      }
+    ],
     next: '/site-owner-contact-details'
   },
 
   '/site-owner-contact-details': {
+    behaviours: [customValidation],
+    fields: ['site-owner-full-name', 'site-owner-email-address', 'site-owner-telephone', 'site-owner-address'],
     next: '/licence-details'
   },
 
@@ -586,14 +597,17 @@ const steps = {
   },
 
   '/security-features': {
+    fields: ['security-features'],
     next: '/separate-room'
   },
 
   '/separate-room': {
+    fields: ['cd-kept-in-separate-room'],
     next: '/safe-or-cabinet'
   },
 
   '/safe-or-cabinet': {
+    fields: ['cd-kept-in-safe-or-cabinet'],
     next: '/prefabricated-strong-room'
   },
 
