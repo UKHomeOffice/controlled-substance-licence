@@ -443,6 +443,24 @@ module.exports = {
         step: '/schedule-3-activities',
         field: 'schedule-3-activities',
         parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/prefabricated-strong-room',
+        field: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/specification-details',
+        field: 'specification-details',
+        parse: (val, req) => {
+          if (req.sessionModel.get('kept-in-prefabricated-room') === 'no') {
+          return null;
+        }
+        return req.sessionModel.get('specification-details')
+      }
+      },
+      {
+        step: '/drugs-kept-at-site',
+        field: 'drugs-kept-at-site'
       }
     ]
   }

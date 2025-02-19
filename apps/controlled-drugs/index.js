@@ -578,14 +578,26 @@ const steps = {
   },
 
   '/specification-details': {
+    fields: ['specification-details'],
     next: '/drugs-kept-at-site'
   },
 
   '/prefabricated-strong-room': {
-    next: '/drugs-kept-at-site'
+    fields: ['kept-in-prefabricated-room'],
+    forks: [
+      {
+        target: '/drugs-kept-at-site',
+        condition: {
+          field: 'kept-in-prefabricated-room',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/drugs-kept-at-site': {
+    fields: ['drugs-kept-at-site'],
     next: '/electronic-alarm-system'
   },
 

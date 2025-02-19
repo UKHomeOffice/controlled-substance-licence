@@ -101,15 +101,6 @@
   "safe-or-cabinet": {
     "header": "Are controlled drugs kept in a safe or cabinet?"
   },
-  "prefabricated-strong-room": {
-    "header": "Are controlled drugs kept in a prefabricated strong room?"
-  },
-  "drugs-kept-at-site": {
-    "header": "Are controlled drugs kept at this site?"
-  },
-  "specification-details": {
-    "header": "Give details of specifications, and any serial numbers that apply"
-  },
   "storage-details": {
     "header": "Provide details of where they are stored"
   },
@@ -304,6 +295,15 @@
       },
       "schedule-3-activities": {
         "label": "Schedule 3 activities"
+      },
+      "kept-in-prefabricated-room": {
+        "label": "Are the controlled drugs kept in a prefabricated strong room?"
+      },
+      "specification-details": {
+        "label": "Details of where they are stored?"
+      },
+      "drugs-kept-at-site": {
+        "label": "Are controlled drugs kept at this site?"
       }
     }
   }

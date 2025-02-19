@@ -331,5 +331,16 @@
   },
   "status-of-site": {
     "required": "Select if you are providing a service under a contract"
+  },
+  "kept-in-prefabricated-room": {
+    "required": "Select if the controlled drugs are kept in a prefabricated strong room"
+  },
+  "drugs-kept-at-site": {
+    "required": "Select if controlled drugs are kept at this site"
+  },
+  "specification-details": {
+    "required": "Enter details of the prefabricated strong room's specifications",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of specifications must be 2,000 characters or less"
   }
 }
