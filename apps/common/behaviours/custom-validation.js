@@ -1,4 +1,5 @@
 const validators = require('hof/controller/validation/validators');
+const { isValidPhoneNumber } = require('../../../utils/index');
 
 module.exports = superclass => class extends superclass {
   validateField(key, req) {
@@ -17,10 +18,17 @@ module.exports = superclass => class extends superclass {
        key === 'invoicing-telephone' || key === 'who-is-completing-application-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {
-        const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
-        const isValidphoneNumber = validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
-        if (!isValidphoneNumber || !validators.ukPhoneNumber(phoneNumber)) {
+        if (!isValidPhoneNumber(phoneNumber) || !validators.ukPhoneNumber(phoneNumber)) {
           return validationErrorFunc('ukPhoneNumber');
+        }
+      }
+    }
+
+    if(key === 'site-owner-telephone') {
+      const phoneNumber = req.form.values[key];
+      if(phoneNumber) {
+        if(!isValidPhoneNumber(phoneNumber)  || !validators.internationalPhoneNumber(phoneNumber)) {
+          return validationErrorFunc('internationalPhoneNumber');
         }
       }
     }
