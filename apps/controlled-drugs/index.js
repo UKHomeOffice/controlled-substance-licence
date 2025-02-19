@@ -635,7 +635,7 @@ const steps = {
   },
 
   '/electronic-alarm-system': {
-    next: '/annual-service'
+    next: '/standard-operating-procedures'
   },
 
   '/standard-operating-procedures': {
