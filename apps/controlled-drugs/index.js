@@ -620,19 +620,22 @@ const steps = {
   },
 
   '/annual-service': {
+    fields: ['is-alarm-serviced-annually'],
     next: '/alarm-reference-number'
   },
 
   '/alarm-reference-number': {
+    fields: ['alarm-system-reference-number'],
     next: '/alarm-system-police-response'
   },
 
   '/alarm-system-police-response': {
+    fields: ['alarm-system-police-response'],
     next: '/standard-operating-procedures'
   },
 
   '/electronic-alarm-system': {
-    next: '/standard-operating-procedures'
+    next: '/annual-service'
   },
 
   '/standard-operating-procedures': {

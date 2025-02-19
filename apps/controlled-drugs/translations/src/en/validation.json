@@ -359,5 +359,14 @@
   },
   "cd-kept-in-safe-or-cabinet": {
     "required": "Select if the controlled drugs are kept in a safe or cabinet"
+  },
+  "is-alarm-serviced-annually": {
+    "required": "Select if the alarm system is serviced annually"
+  },
+  "alarm-system-reference-number": {
+    "required": "Select if the alarm system has a police unique reference number"
+  },
+  "alarm-system-police-response": {
+    "required": "Select if the alarm system has a Level 1 or 'immediate' police response"
   }
 }

@@ -120,17 +120,8 @@
   "redcare-or-dual-path": {
     "header": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?"
   },
-  "annual-service": {
-    "header": "Is the alarm system serviced annually?"
-  },
-  "alarm-reference-number": {
-    "header": "Does the alarm system have a police unique reference number (URN)?"
-  },
-  "alarm-system-police-response": {
-    "header": "Does the alarm system have either a Level 1 or ‘immediate’ police response?"
-  },
   "standard-operating-procedures": {
-    "header": "Does the site have an electronic alarm system?"
+    "header": "Standard operating procedures"
   },
   "record-keeping-system-procedures": {
     "header": "Provide details of your record keeping system and procedures"
@@ -311,6 +302,9 @@
       },
       "security-features": {
         "label": "Site security features"
+      },
+      "alarm-system-reference-number": {
+        "label": "Does the alarm system have a police unique number?"
       }
     }
   }

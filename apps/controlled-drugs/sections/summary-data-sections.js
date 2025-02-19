@@ -472,6 +472,18 @@ module.exports = {
       {
         step: '/safe-or-cabinet',
         field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
+        step: '/annual-service',
+        field: 'is-alarm-serviced-annually'
+      },
+      {
+        step: '/alarm-reference-number',
+        field: 'alarm-system-reference-number'
+      },
+      {
+        step: '/alarm-system-police-response',
+        field: 'alarm-system-police-response'
       }
     ]
   }
