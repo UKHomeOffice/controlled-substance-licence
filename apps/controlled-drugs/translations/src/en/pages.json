@@ -63,7 +63,8 @@
     "header": "Registration details"
   },
   "site-owner-contact-details": {
-    "header": "Site owner’s contact details"
+    "header": "Site owner’s contact details",
+    "pageTitle": "Site owner contact details"
   },
   "licence-details": {
     "header": "Licence details"
@@ -253,6 +254,18 @@
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
+      },
+      "site-owner-full-name": {
+        "label": "Site owner name"
+      },
+      "site-owner-email-address": {
+        "label": "Site owner email address"
+      },
+      "site-owner-telephone": {
+        "label": "Site owner telephone number"
+      },
+      "site-owner-address": {
+        "label": "Site owner address"
       },
       "aggregated-trading-reasons": {
         "label": "Trading reasons"

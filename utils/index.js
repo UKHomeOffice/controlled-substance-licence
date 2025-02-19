@@ -1,5 +1,6 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
+const validators = require('hof/controller/validation/validators');
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -112,4 +113,23 @@ const findArrayItemByValue = (data, valueToFind) => {
   return data.find(item => item.value === valueToFind);
 };
 
-module.exports = { getLabel, translateOption, formatDate, sanitiseFilename, parseOperations, findArrayItemByValue };
+/**
+ * Returns true for a valid phone number; returns false for an invalid phone number.
+ *
+ * @param {string} phoneNumber - The phone number to be validated.
+ * @returns {boolean} - true if the phone number is valid or false if the phone number is invalid or undefined.
+ */
+const isValidPhoneNumber = phoneNumber => {
+  const phoneNumberWithoutSpace = phoneNumber.replace(/\s+/g, '').trim();
+  return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
+};
+
+module.exports = {
+  getLabel,
+  translateOption,
+  formatDate,
+  sanitiseFilename,
+  parseOperations,
+  findArrayItemByValue,
+  isValidPhoneNumber
+};

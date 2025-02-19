@@ -357,6 +357,22 @@ module.exports = {
         }
       },
       {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-full-name'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-email-address'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-telephone'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-address'
+      },
+      {
         step: '/trading-reasons-summary',
         field: 'aggregated-trading-reasons',
         changeLink: 'trading-reasons-summary/edit',

@@ -504,10 +504,21 @@ const steps = {
 
   '/status-of-site': {
     fields: ['status-of-site'],
+    forks: [
+      {
+        target: '/licence-details',
+        condition: {
+          field: 'status-of-site',
+          value: 'owned-or-owner-occupied'
+        }
+      }
+    ],
     next: '/site-owner-contact-details'
   },
 
   '/site-owner-contact-details': {
+    behaviours: [customValidation],
+    fields: ['site-owner-full-name', 'site-owner-email-address', 'site-owner-telephone', 'site-owner-address'],
     next: '/licence-details'
   },
 
