@@ -506,13 +506,14 @@ const steps = {
     fields: ['status-of-site'],
     forks: [
       {
-        target: '/site-owner-contact-details',
-        condition: req => (
-          req.form.values['status-of-site'] === 'rented' || req.form.values['status-of-site'] === 'leased'
-        )
+        target: '/licence-details',
+        condition: {
+          field: 'status-of-site',
+          value: 'owned-or-owner-occupied'
+        }
       }
     ],
-    next: '/licence-details'
+    next: '/site-owner-contact-details'
   },
 
   '/site-owner-contact-details': {
