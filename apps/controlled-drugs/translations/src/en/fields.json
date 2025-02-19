@@ -508,7 +508,47 @@
         "label": "Manufacture"
       }
     }
+  },
+  "security-features": {
+    "legend": "Which of the following security features does the site have?",
+    "options": {
+      "cctv-system": {
+        "label": "CCTV system (centrally monitored)"
+      },
+      "electronic-stock-recording-system": {
+        "label": "Electronic stock recording systems"
+      },
+      "perimeter-fencing": {
+        "label": "Perimeter fencing"
+      },
+      "lockable-physical-security": {
+        "label": "Lockable physical security, such as a room, safe or cabinet for the storage of the controlled drugs"
+      },
+      "attendance-of-security-guards": {
+        "label": "Attendance of security guards"
+      }
+    }
+  },
+  "cd-kept-in-separate-room": {
+    "legend": "Are controlled drugs kept in a separate room or zone?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "cd-kept-in-safe-or-cabinet": {
+    "legend": "Are controlled drugs kept in a safe or cabinet?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
-
-

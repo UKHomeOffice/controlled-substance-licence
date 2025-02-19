@@ -350,5 +350,14 @@
   },
   "status-of-site": {
     "required": "Select if you are providing a service under a contract"
+  },
+  "security-features": {
+    "required": "Select at least one security feature"
+  },
+  "cd-kept-in-separate-room": {
+    "required": "Select if the controlled drugs are kept in a separate room or zone"
+  },
+  "cd-kept-in-safe-or-cabinet": {
+    "required": "Select if the controlled drugs are kept in a safe or cabinet"
   }
 }

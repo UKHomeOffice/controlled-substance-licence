@@ -459,6 +459,19 @@ module.exports = {
         step: '/schedule-3-activities',
         field: 'schedule-3-activities',
         parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/security-features',
+        field: 'security-features',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/separate-room',
+        field: 'cd-kept-in-separate-room'
+      },
+      {
+        step: '/safe-or-cabinet',
+        field: 'cd-kept-in-safe-or-cabinet'
       }
     ]
   }
