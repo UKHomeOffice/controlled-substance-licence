@@ -856,7 +856,10 @@ module.exports = {
       'perimeter-fencing',
       'lockable-physical-security',
       'attendance-of-security-guards'
-    ]
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
   },
   'cd-kept-in-separate-room': {
     mixin: 'radio-group',
