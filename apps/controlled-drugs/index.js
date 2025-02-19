@@ -504,6 +504,15 @@ const steps = {
 
   '/status-of-site': {
     fields: ['status-of-site'],
+    forks: [
+      {
+        target: '/licence-details',
+        condition: {
+          field: 'status-of-site',
+          value: 'owned-or-owner-occupied'
+        }
+      }
+    ],
     next: '/site-owner-contact-details'
   },
 
