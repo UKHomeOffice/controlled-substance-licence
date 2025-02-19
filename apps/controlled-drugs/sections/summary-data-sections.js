@@ -453,10 +453,10 @@ module.exports = {
         field: 'specification-details',
         parse: (val, req) => {
           if (req.sessionModel.get('kept-in-prefabricated-room') === 'no') {
-          return null;
+            return null;
+          }
+          return req.sessionModel.get('specification-details');
         }
-        return req.sessionModel.get('specification-details')
-      }
       },
       {
         step: '/drugs-kept-at-site',
