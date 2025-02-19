@@ -1,4 +1,4 @@
-const { getLabel, formatDate, findArrayItemByValue } = require('../../utils');
+const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 
@@ -44,5 +44,22 @@ describe('Utilities \'findArrayItemByValue\'', () => {
   test('returns undefined when the chemical cannot be found in list', () => {
     expect(findArrayItemByValue(chemicals, 'mayonnaise')).toBe(undefined);
     expect(findArrayItemByValue(tradingReasons, 'Organised crime')).toBe(undefined);
+  });
+});
+
+describe('Utilities \'isValidPhoneNumber\'', () => {
+  test('returns true when a valid phone number is input', () => {
+    expect(isValidPhoneNumber('01632 960000')).toBe(true);
+    expect(isValidPhoneNumber('07700 900000')).toBe(true);
+    expect(isValidPhoneNumber('+49 89       12345678')).toBe(true);
+    expect(isValidPhoneNumber('(555) 555-1234')).toBe(true);
+  });
+
+  test('returns false when an invalid phone number is input', () => {
+    expect(isValidPhoneNumber('')).toBe(false);
+    expect(isValidPhoneNumber('my number is +49 89 12345678')).toBe(false);
+    expect(isValidPhoneNumber('12345')).toBe(false);
+    expect(isValidPhoneNumber('?01632 960000')).toBe(false);
+    expect(isValidPhoneNumber('01632 960000143288')).toBe(false);
   });
 });
