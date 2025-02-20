@@ -467,12 +467,7 @@ module.exports = {
       {
         step: '/specification-details',
         field: 'specification-details',
-        parse: (val, req) => {
-          if (req.sessionModel.get('kept-in-prefabricated-room') === 'no') {
-            return null;
-          }
-          return req.sessionModel.get('specification-details');
-        }
+        dependsOn: 'kept-in-prefabricated-room'
       },
       {
         step: '/drugs-kept-at-site',
