@@ -813,6 +813,88 @@ module.exports = {
       className: 'govuk-fieldset__legend--m'
     }
   },
+  'schedule-4-part-1-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'possess',
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-4-part-2-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'supply',
+      'produce',
+      'manufacture'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'schedule-5-activities': {
+    mixin: 'checkbox-group',
+    options: [
+      'supply',
+      'produce'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'security-features': {
+    mixin: 'checkbox-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      'cctv-system',
+      'electronic-stock-recording-system',
+      'perimeter-fencing',
+      'lockable-physical-security',
+      'attendance-of-security-guards'
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    }
+  },
+  'cd-kept-in-separate-room': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'cd-kept-in-safe-or-cabinet': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'kept-in-prefabricated-room': {
     mixin: 'radio-group',
     isPageHeading: true,

@@ -88,19 +88,11 @@
     "header": "Select any schedule 5 activities that will apply to your licence"
   },
   "no-activities-selected": {
-    "header": "You have not selected any activities"
+    "header": "You have not selected any activities",
+    "intro": "Your licence must have at least one activity from any of the schedules."
   },
   "upload-activity-template": {
     "header": "Upload controlled drug user activity template"
-  },
-  "security-features": {
-    "header": "Which of the following security features does the site have?"
-  },
-  "separate-room": {
-    "header": "Are controlled drugs kept in a separate room or zone?"
-  },
-  "safe-or-cabinet": {
-    "header": "Are controlled drugs kept in a safe or cabinet?"
   },
   "storage-details": {
     "header": "Provide details of where they are stored"
@@ -309,6 +301,18 @@
       "schedule-3-activities": {
         "label": "Schedule 3 activities"
       },
+      "schedule-4-part-1-activities": {
+        "label": "Schedule 4 (I) activities"
+      },
+      "schedule-4-part-2-activities": {
+        "label": "Schedule 4 (II) activities"
+      },
+      "schedule-5-activities": {
+        "label": "Schedule 5 activities"
+      },
+      "security-features": {
+        "label": "Site security features"
+      },
       "kept-in-prefabricated-room": {
         "label": "Are the controlled drugs kept in a prefabricated strong room?"
       },
@@ -317,7 +321,6 @@
       },
       "drugs-kept-at-site": {
         "label": "Are controlled drugs kept at this site?"
-      }
     }
   }
 }

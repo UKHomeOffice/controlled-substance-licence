@@ -461,6 +461,34 @@ module.exports = {
         parse: (list, req) => parseCheckboxes(list, req)
       },
       {
+        step: '/schedule-4-part-1-activities',
+        field: 'schedule-4-part-1-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-4-part-2-activities',
+        field: 'schedule-4-part-2-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/schedule-5-activities',
+        field: 'schedule-5-activities',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/security-features',
+        field: 'security-features',
+        parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/separate-room',
+        field: 'cd-kept-in-separate-room'
+      },
+      {
+        step: '/safe-or-cabinet',
+        field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
         step: '/prefabricated-strong-room',
         field: 'kept-in-prefabricated-room'
       },
