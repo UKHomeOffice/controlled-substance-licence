@@ -156,6 +156,9 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "background-information": {
+        "header": "Background information"
       }
     },
     "fields": {
@@ -311,6 +314,15 @@
       },
       "security-features": {
         "label": "Site security features"
+      },
+      "change-authorised-witness": {
+        "label": "Change in authorised witness for this site only"
+      },
+      "requesting-additional-schedules": {
+        "label": "Requesting additional schedules"
+      },
+      "change-of-activity": {
+        "label": "Requesting a change of activity"
       }
     }
   }
