@@ -487,6 +487,19 @@ module.exports = {
       {
         step: '/safe-or-cabinet',
         field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
+        step: '/prefabricated-strong-room',
+        field: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/specification-details',
+        field: 'specification-details',
+        dependsOn: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/drugs-kept-at-site',
+        field: 'drugs-kept-at-site'
       }
     ]
   }
