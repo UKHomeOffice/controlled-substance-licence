@@ -14,6 +14,7 @@ describe('custom-redirect', () => {
 
   let req;
   let res;
+  let next;
   let CustomRedirect;
   let instance;
 
@@ -30,9 +31,9 @@ describe('custom-redirect', () => {
     beforeEach(() => {
       Base.prototype.successHandler = jest.fn().mockReturnValue(req, res, next);
       Base.prototype.emit = jest.fn();
-      res.redirect = jest.fn(() => '/precursor-chemicals/summary');
-      req.baseUrl = '/precursor-chemicals';
-      req.form.options.confirmStep = '/summary';
+      res.redirect = jest.fn(() => '/controlled-drugs/confirm');
+      req.baseUrl = '/controlled-drugs';
+      req.form.options.confirmStep = '/confirm';
     });
 
     afterEach(() => {
@@ -48,7 +49,7 @@ describe('custom-redirect', () => {
     test('calls res.redirect if the referred-by-summary session value was set', () => {
       req.sessionModel.set('referred-by-summary', true);
       instance.successHandler(req, res, next);
-      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/summary');
+      expect(res.redirect).toHaveBeenCalledWith('/controlled-drugs/confirm');
     });
 
     test('calls res.redirect if conditions for responsible-for-security page are met', () => {
