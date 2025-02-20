@@ -321,6 +321,7 @@
       },
       "drugs-kept-at-site": {
         "label": "Are controlled drugs kept at this site?"
+      }
     }
   }
 }
