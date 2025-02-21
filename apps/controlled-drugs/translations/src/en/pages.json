@@ -97,17 +97,8 @@
   "prefabricated-strong-room": {
     "header": "Are controlled drugs kept in a prefabricated strong room?"
   },
-  "drugs-kept-at-site": {
-    "header": "Are controlled drugs kept at this site?"
-  },
   "specification-details": {
     "header": "Give details of specifications, and any serial numbers that apply"
-  },
-  "storage-details": {
-    "header": "Provide details of where they are stored"
-  },
-  "electronic-alarm-system": {
-    "header": "Does the site have an electronic alarm system?"
   },
   "alarm-system-details": {
     "header": "Electronic alarm system details"
@@ -321,6 +312,21 @@
       },
       "security-features": {
         "label": "Site security features"
+      },
+      "have-electronic-alarm-system": {
+        "label": "Electronic alarm system?"
+      },
+      "storage-details": {
+        "label": "Details of where they are stored"
+      },
+      "installing-company-name": {
+        "label": "Alarm installing company name"
+      },
+      "installing-company-address": {
+        "label": "Alarm installing company address"
+      },
+      "installing-company-registered-with": {
+        "label": "Who is the installing company registered with?"
       }
     }
   }
