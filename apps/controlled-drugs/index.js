@@ -4,13 +4,13 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const CustomRedirect = require('./behaviours/custom-redirect');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
-const ActivitiesContinueButton = require('./behaviours/activities-continue-button');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseTradingReasonsSummary = require('./behaviours/parse-trading-reasons-summary');
 const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-referrer');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
 
 const steps = {
 
@@ -553,49 +553,69 @@ const steps = {
   },
 
   '/schedule-1-activities': {
-    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
     fields: ['schedule-1-activities'],
     next: '/schedule-2-activities',
     template: 'schedule-x-activities',
     locals: {
       continueBtn: 'save-and-continue-to-schedule-2'
-    }
+    },
+    continueOnEdit: true
   },
 
   '/schedule-2-activities': {
-    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
     fields: ['schedule-2-activities'],
     next: '/schedule-3-activities',
     template: 'schedule-x-activities',
     locals: {
       continueBtn: 'save-and-continue-to-schedule-3'
-    }
+    },
+    continueOnEdit: true
   },
 
   '/schedule-3-activities': {
-    behaviours: [SetSummaryReferrer, ActivitiesContinueButton],
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
     fields: ['schedule-3-activities'],
     next: '/schedule-4-part-1-activities',
     template: 'schedule-x-activities',
     locals: {
       continueBtn: 'save-and-continue-to-schedule-4-part-1'
-    }
+    },
+    continueOnEdit: true
   },
 
   '/schedule-4-part-1-activities': {
-    next: '/schedule-4-part-2-activities'
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
+    fields: ['schedule-4-part-1-activities'],
+    next: '/schedule-4-part-2-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-4-part-2'
+    },
+    continueOnEdit: true
   },
 
   '/schedule-4-part-2-activities': {
-    next: '/schedule-5-activities'
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
+    fields: ['schedule-4-part-2-activities'],
+    next: '/schedule-5-activities',
+    template: 'schedule-x-activities',
+    locals: {
+      continueBtn: 'save-and-continue-to-schedule-5'
+    },
+    continueOnEdit: true
   },
 
   '/schedule-5-activities': {
+    behaviours: [SetSummaryReferrer, ScheduledActivitiesRedirect],
+    fields: ['schedule-5-activities'],
+    template: 'schedule-x-activities',
     next: '/upload-activity-template'
   },
 
   '/no-activities-selected': {
-    // redirect to /schedule-1-activities
+    backLink: '/controlled-drugs/schedule-5-activities'
   },
 
   '/upload-activity-template': {
