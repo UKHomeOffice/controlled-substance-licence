@@ -359,5 +359,14 @@
   },
   "cd-kept-in-safe-or-cabinet": {
     "required": "Select if the controlled drugs are kept in a safe or cabinet"
+  },
+  "change-authorised-witness": {
+    "required": "Select if you are requesting a change in authorised witness for this site only"
+  },
+  "requesting-additional-schedules": {
+    "required": "Select if you are requesting additional schedules"
+  },
+  "change-of-activity": {
+    "required": "Select if you are requesting a change of activity"
   }
 }

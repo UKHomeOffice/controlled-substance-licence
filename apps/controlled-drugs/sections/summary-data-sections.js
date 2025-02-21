@@ -18,7 +18,40 @@ const parseCheckboxes = (list, req) => {
 };
 
 module.exports = {
-
+  'background-information': {
+    steps: [
+      {
+        step: '/change-witness-only',
+        field: 'change-authorised-witness',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/additional-schedules',
+        field: 'requesting-additional-schedules',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/change-of-activity',
+        field: 'change-of-activity',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      }
+    ]
+  },
   'about-the-applicants': {
     steps: [
       {

@@ -56,9 +56,35 @@ const steps = {
     next: '/licence-holder-details'
   },
 
-  /** Renew existing licence - Background Information */
+  /** Existing licensee renewing or changing a currently licensed site - Background Information */
 
   '/company-number-changed': {
+    next: '/company-name-changed'
+  },
+
+  '/company-name-changed': {
+    // change next to /company-registration-certificate upload page when clash below is fixed
+    next: '/change-witness-only'
+  },
+
+  // skipping /company-registration-certificate for now as it clashes with
+  // /company-registration-certificate on other flow
+  // '/company-registration-certificate': {
+  //   next: '/change-witness-only'
+  // },
+
+  '/change-witness-only': {
+    fields: ['change-authorised-witness'],
+    next: '/additional-schedules'
+  },
+
+  '/additional-schedules': {
+    fields: ['requesting-additional-schedules'],
+    next: '/change-of-activity'
+  },
+
+  '/change-of-activity': {
+    fields: ['change-of-activity'],
     next: '/licence-holder-details'
   },
 
