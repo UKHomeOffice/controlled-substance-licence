@@ -359,5 +359,14 @@
   },
   "cd-kept-in-safe-or-cabinet": {
     "required": "Select if the controlled drugs are kept in a safe or cabinet"
+  },
+  "separate-zone": {
+    "required": "Select if there is a separate zone for the controlled drug cabinet, safe or store"
+  },
+  "alarm-system-monitored": {
+    "required": "Select if the alarm system is monitored by an offsite alarm receiving centre"
+  },
+  "is-alarm-system-connected": {
+    "required": "Select if the alarm system is connected to the alarm receiving centre by Redcare or a dual-path communicator"
   }
 }
