@@ -487,6 +487,21 @@ module.exports = {
       {
         step: '/safe-or-cabinet',
         field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
+        // dependsOn: 'electronic-alarm-system',
+        step: '/separate-zone-for-storage',
+        field: 'separate-zone'
+      },
+      {
+        // dependsOn: 'electronic-alarm-system',
+        step: '/offsite-receiving-centre',
+        field: 'alarm-system-monitored'
+      },
+      {
+        // dependsOn: 'electronic-alarm-system',
+        step: '/redcare-or-dual-path',
+        field: 'is-alarm-system-connected'
       }
     ]
   }

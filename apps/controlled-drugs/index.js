@@ -628,14 +628,17 @@ const steps = {
   },
 
   '/separate-zone-for-storage': {
+    fields: ['separate-zone'],
     next: '/offsite-receiving-centre'
   },
 
   '/offsite-receiving-centre': {
+    fields: ['alarm-system-monitored'],
     next: '/redcare-or-dual-path'
   },
 
   '/redcare-or-dual-path': {
+    fields: ['is-alarm-system-connected'],
     next: '/annual-service'
   },
 
