@@ -595,5 +595,50 @@
         "label": "No"
       }
     }
+  },
+  "drugs-kept-at-site": {
+    "legend": "Are controlled drugs kept at this site?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "have-electronic-alarm-system": {
+    "legend": "Does the site have an electronic alarm system?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "storage-details": {
+    "label": "Provide details of where they are stored"
+  },
+  "installing-company-name": {
+    "label": "Installing company name"
+  },
+  "installing-company-address": {
+    "label": "Installing company address"
+  },
+  "installing-company-registered-with": {
+    "legend": "Who is the installing company registered with?",
+    "options": {
+      "british-security-industry": {
+        "label": "British Security Industry Association"
+      },
+      "national-security": {
+        "label": "National Security Inspectorate"
+      },
+      "security-systems-inspection-board": {
+        "label": "Security Systems and Alarms Inspection Board"
+      }
+    }
   }
 }

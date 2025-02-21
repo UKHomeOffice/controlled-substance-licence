@@ -487,6 +487,33 @@ module.exports = {
       {
         step: '/safe-or-cabinet',
         field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
+        step: '/drugs-kept-at-site',
+        field: 'drugs-kept-at-site'
+      },
+      {
+        step: '/storage-details',
+        field: 'storage-details'
+      },
+      {
+        step: '/electronic-alarm-system',
+        field: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-name',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-address',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-registered-with',
+        dependsOn: 'have-electronic-alarm-system'
       }
     ]
   }
