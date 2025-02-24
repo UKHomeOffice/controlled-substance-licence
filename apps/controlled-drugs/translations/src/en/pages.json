@@ -318,9 +318,6 @@
       },
       "specification-details": {
         "label": "Details of where they are stored?"
-      },
-      "drugs-kept-at-site": {
-        "label": "Are controlled drugs kept at this site?"
       }
     }
   }
