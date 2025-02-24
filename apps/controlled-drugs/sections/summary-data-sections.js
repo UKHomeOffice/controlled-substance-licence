@@ -523,7 +523,10 @@ module.exports = {
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-purchase-order-number'
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }
