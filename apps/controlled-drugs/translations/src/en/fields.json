@@ -595,5 +595,47 @@
         "label": "No"
       }
     }
+  },
+  "standard-operating-procedures": {
+    "legend": "Do you have a set of SOPs that cover these processes?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "record-keeping-system-procedures": {
+    "label": "Provide details of your record keeping system and procedures",
+    "hint": "For example, an electronic stock recording system or hard-copy record book"
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-address-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-address-postcode": {
+    "label": "Postcode"
+  },
+  "invoicing-contact-name": {
+    "label": "Contact name",
+    "hint": "Enter your contact's full name"
+  },
+  "invoicing-contact-email": {
+    "label": "Email address",
+    "hint": "Enter a shared email address to avoid delays in receiving invoices"
+  },
+  "invoicing-contact-telephone": {
+    "label": "Contact number"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)",
+    "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when the invoice is raised"
   }
 }
