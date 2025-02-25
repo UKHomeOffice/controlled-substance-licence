@@ -666,17 +666,6 @@
       }
     }
   },
-  "standard-operating-procedures": {
-    "legend": "Do you have a set of SOPs that cover these processes?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
   "alarm-system-monitored": {
     "legend": "Is the alarm system monitored by an offsite alarm receiving centre?",
     "options": {
@@ -690,6 +679,17 @@
   },
   "is-alarm-system-connected": {
     "legend": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "standard-operating-procedures": {
+    "legend": "Do you have a set of SOPs that cover these processes?",
     "options": {
       "yes": {
         "label": "Yes"
