@@ -327,7 +327,7 @@ const steps = {
       {
         target: '/company-registration-certificate',
         condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
-          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'  
+          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'
       }
     ],
     next: '/trading-reasons'
