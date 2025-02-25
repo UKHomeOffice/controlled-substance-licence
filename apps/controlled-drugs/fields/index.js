@@ -1060,5 +1060,37 @@ module.exports = {
       { type: 'maxlength', arguments: [250] }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'licence-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    isPageHeading: true,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'extra-information': {
+    mixin: 'textarea',
+    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   }
 };

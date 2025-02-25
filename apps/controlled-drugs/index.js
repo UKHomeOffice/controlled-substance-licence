@@ -724,14 +724,22 @@ const steps = {
   },
 
   '/licence-email-address': {
+    fields: ['licence-email-address'],
     next: '/who-completing-application'
   },
 
   '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
     next: '/extra-information'
   },
 
   '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
 
