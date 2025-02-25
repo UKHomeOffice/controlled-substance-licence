@@ -293,6 +293,7 @@ const steps = {
 
   '/witness-destruction-of-drugs': {
     fields: ['require-witness-destruction-of-drugs'],
+    // The conditional check should be performed in reverse order, as the last fork takes over.
     forks: [
       {
         target: '/trading-reasons',
@@ -300,6 +301,11 @@ const steps = {
           field: 'require-witness-destruction-of-drugs',
           value: 'no'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('require-witness-destruction-of-drugs') === 'no'
       }
     ],
     next: '/who-witnesses-destruction-of-drugs',
@@ -317,6 +323,11 @@ const steps = {
           field: 'responsible-for-witnessing-the-destruction',
           value: 'someone-else'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'  
       }
     ],
     next: '/trading-reasons'
@@ -350,8 +361,7 @@ const steps = {
     forks: [
       {
         target: '/company-registration-certificate',
-        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
-          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
       }
     ],
     template: 'person-in-charge-dbs-updates'
