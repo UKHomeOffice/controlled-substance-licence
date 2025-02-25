@@ -596,6 +596,17 @@
       }
     }
   },
+  "kept-in-prefabricated-room": {
+    "legend": "Are controlled drugs kept in a prefabricated strong room?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "drugs-kept-at-site": {
     "legend": "Are controlled drugs kept at this site?",
     "options": {
@@ -606,6 +617,9 @@
         "label": "No"
       }
     }
+  },
+  "specification-details": {
+    "label": "Give details of specifications, and any serial numbers that apply"
   },
   "have-electronic-alarm-system": {
     "legend": "Does the site have an electronic alarm system?",

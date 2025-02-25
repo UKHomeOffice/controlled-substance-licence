@@ -94,12 +94,6 @@
   "upload-activity-template": {
     "header": "Upload controlled drug user activity template"
   },
-  "prefabricated-strong-room": {
-    "header": "Are controlled drugs kept in a prefabricated strong room?"
-  },
-  "specification-details": {
-    "header": "Give details of specifications, and any serial numbers that apply"
-  },
   "alarm-system-details": {
     "header": "Electronic alarm system details"
   },
@@ -312,6 +306,12 @@
       },
       "security-features": {
         "label": "Site security features"
+      },
+      "kept-in-prefabricated-room": {
+        "label": "Are the controlled drugs kept in a prefabricated strong room?"
+      },
+      "specification-details": {
+        "label": "Details of specifications"
       },
       "have-electronic-alarm-system": {
         "label": "Electronic alarm system?"
