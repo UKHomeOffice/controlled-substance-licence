@@ -563,6 +563,29 @@ module.exports = {
         parse: (value, req) => {
           return value ? value : req.translate('journey.not-provided');
         }
+      },
+      {
+        step: '/licence-email-address',
+        field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

@@ -124,14 +124,8 @@
   "invoicing-contact-details": {
     "header": "Invoicing contact details"
   },
-  "licence-email-address": {
-    "header": "Which email address should we send the licence to?"
-  },
   "who-completing-application": {
     "header": "Who is completing the application?"
-  },
-  "extra-information": {
-    "header": "Add any extra information you think might help your application (optional)"
   },
 
   "confirm": {
@@ -345,6 +339,21 @@
       },
       "invoicing-purchase-order-number": {
         "label": "Purchase order number"
+      },
+      "licence-email-address": {
+        "label": "Email address for the licence"
+      },
+      "who-is-completing-application-full-name": {
+        "label": "Name of person completing application"
+      },
+      "who-is-completing-application-email": {
+        "label": "Email address of person completing application"
+      },
+      "who-is-completing-application-telephone": {
+        "label": "Contact number of person completing application"
+      },
+      "extra-information": {
+        "label": "Extra information"
       }
     }
   }
