@@ -989,5 +989,76 @@ module.exports = {
       }
     ],
     className: ['govuk-radios', 'govuk-radios--inline']
+  },
+  'standard-operating-procedures': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m govuk-!-padding-top-3 govuk-!-margin-bottom-6'
+    }
+  },
+  'record-keeping-system-procedures': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'invoicing-address-line-1': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-line-2': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-town-or-city': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-postcode': {
+    mixin: 'input-text',
+    validate: ['required', 'postcode'],
+    formatter: ['ukPostcode'],
+    className: ['govuk-input', 'govuk-input--width-10']
+  },
+  'invoicing-contact-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-contact-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-contact-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-purchase-order-number': {
+    mixin: 'input-text',
+    validate: [
+      'notUrl',
+      { type: 'maxlength', arguments: [250] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };
