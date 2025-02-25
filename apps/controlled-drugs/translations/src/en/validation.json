@@ -370,5 +370,27 @@
     "required": "Enter details of the prefabricated strong room's specifications",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Details of specifications must be 2,000 characters or less"
+  },
+  "have-electronic-alarm-system": {
+    "required": "Select if the site has an electronic alarm system"
+  },
+  "storage-details": {
+    "required": "Provide details of where the controlled drugs are stored",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Storage details must be 2,000 characters or less"
+  },
+  "installing-company-name": {
+    "required": "Enter the alarm system's installing company name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Installing company name must be between 3 and 200 characters",
+    "maxlength": "Installing company name must be between 3 and 200 characters"
+  },
+  "installing-company-address": {
+    "required": "Enter the alarm system's installing company address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Installing company address must be 500 characters or less"
+  },
+  "installing-company-registered-with": {
+    "required": "Select who the installing company is registered with"
   }
 }

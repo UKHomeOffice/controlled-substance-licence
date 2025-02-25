@@ -632,10 +632,39 @@ const steps = {
 
   '/drugs-kept-at-site': {
     fields: ['drugs-kept-at-site'],
+    forks: [
+      {
+        target: '/electronic-alarm-system',
+        condition: {
+          field: 'drugs-kept-at-site',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/storage-details'
+  },
+
+  '/storage-details': {
+    fields: ['storage-details'],
     next: '/electronic-alarm-system'
   },
 
+  '/electronic-alarm-system': {
+    fields: ['have-electronic-alarm-system'],
+    forks: [
+      {
+        target: '/alarm-system-details',
+        condition: {
+          field: 'have-electronic-alarm-system',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/standard-operating-procedures'
+  },
+
   '/alarm-system-details': {
+    fields: ['installing-company-name', 'installing-company-address', 'installing-company-registered-with'],
     next: '/separate-zone-for-storage'
   },
 
@@ -660,10 +689,6 @@ const steps = {
   },
 
   '/alarm-system-police-response': {
-    next: '/standard-operating-procedures'
-  },
-
-  '/electronic-alarm-system': {
     next: '/standard-operating-procedures'
   },
 
