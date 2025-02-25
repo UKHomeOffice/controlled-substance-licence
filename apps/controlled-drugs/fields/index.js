@@ -895,6 +895,101 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
+  'kept-in-prefabricated-room': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'specification-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'drugs-kept-at-site': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'have-electronic-alarm-system': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'storage-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'installing-company-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ]
+  },
+  'installing-company-address': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'installing-company-registered-with': {
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'british-security-industry'
+      },
+      {
+        value: 'national-security'
+      },
+      {
+        value: 'security-systems-inspection-board'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline']
+  },
   'separate-zone': {
     mixin: 'radio-group',
     isPageHeading: true,

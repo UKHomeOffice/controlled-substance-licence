@@ -489,19 +489,56 @@ module.exports = {
         field: 'cd-kept-in-safe-or-cabinet'
       },
       {
-        // dependsOn: 'electronic-alarm-system',
+        step: '/prefabricated-strong-room',
+        field: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/specification-details',
+        field: 'specification-details',
+        dependsOn: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/drugs-kept-at-site',
+        field: 'drugs-kept-at-site'
+      },
+      {
+        step: '/storage-details',
+        field: 'storage-details'
+      },
+      {
+        step: '/electronic-alarm-system',
+        field: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-name',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-address',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-registered-with',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
         step: '/separate-zone-for-storage',
-        field: 'separate-zone'
+        field: 'separate-zone',
+        dependsOn: 'have-electronic-alarm-system'
       },
       {
-        // dependsOn: 'electronic-alarm-system',
+
         step: '/offsite-receiving-centre',
-        field: 'alarm-system-monitored'
+        field: 'alarm-system-monitored',
+        dependsOn: 'have-electronic-alarm-system'
       },
       {
-        // dependsOn: 'electronic-alarm-system',
         step: '/redcare-or-dual-path',
-        field: 'is-alarm-system-connected'
+        field: 'is-alarm-system-connected',
+        dependsOn: 'have-electronic-alarm-system'
       }
     ]
   }
