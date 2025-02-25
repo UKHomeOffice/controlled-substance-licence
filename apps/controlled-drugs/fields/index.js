@@ -989,5 +989,9 @@ module.exports = {
       }
     ],
     className: ['govuk-radios', 'govuk-radios--inline']
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

@@ -137,6 +137,14 @@
     "header": "Add any extra information you think might help your application (optional)"
   },
 
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "application-submitted": {
+    "confirmed": "Application submitted"
+  },
+
   "confirm": {
     "header": "Check your answers",
     "sections": {

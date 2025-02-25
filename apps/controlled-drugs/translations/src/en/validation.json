@@ -392,5 +392,8 @@
   },
   "installing-company-registered-with": {
     "required": "Select who the installing company is registered with"
+  },
+  "declaration-check": {
+    "required": "You must confirm you agree with this declaration to submit the application"
   }
 }

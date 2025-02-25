@@ -654,5 +654,8 @@
         "label": "Security Systems and Alarms Inspection Board"
       }
     }
+  },
+  "declaration-check": {
+    "label": "I understand and agree with these statements"
   }
 }
