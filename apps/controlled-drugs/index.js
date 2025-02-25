@@ -696,18 +696,33 @@ const steps = {
   },
 
   '/standard-operating-procedures': {
+    fields: ['standard-operating-procedures'],
     next: '/record-keeping-system-procedures'
   },
 
   '/record-keeping-system-procedures': {
+    fields: ['record-keeping-system-procedures'],
     next: '/invoicing-address'
   },
 
   '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-address-town-or-city',
+      'invoicing-address-postcode'
+    ],
     next: '/invoicing-contact-details'
   },
 
   '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-contact-name',
+      'invoicing-contact-email',
+      'invoicing-contact-telephone',
+      'invoicing-purchase-order-number'
+    ],
     next: '/licence-email-address'
   },
 

@@ -401,5 +401,49 @@
   },
   "is-alarm-system-connected": {
     "required": "Select if the alarm system is connected to the alarm receiving centre by Redcare or a dual-path communicator"
+  },
+  "standard-operating-procedures": {
+    "required": "Select if you have a set of standard operating procedures to cover business processes"
+  },
+  "record-keeping-system-procedures": {
+    "required": "Enter details of your record keeping system and procedures",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of record keeping system and procedures must be 2,000 characters or less "
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing contact email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing contact number",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
   }
 }
