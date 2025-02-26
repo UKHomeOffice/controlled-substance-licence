@@ -97,15 +97,6 @@
   "alarm-system-details": {
     "header": "Electronic alarm system details"
   },
-  "separate-zone-for-storage": {
-    "header": "Is there a separate zone for the controlled drug cabinet, safe or store?"
-  },
-  "offsite-receiving-centre": {
-    "header": "Is the alarm system monitored by an offsite alarm receiving centre?"
-  },
-  "redcare-or-dual-path": {
-    "header": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?"
-  },
   "annual-service": {
     "header": "Is the alarm system serviced annually?"
   },
@@ -324,6 +315,12 @@
       },
       "installing-company-registered-with": {
         "label": "Who is the installing company registered with?"
+      },
+      "separate-zone": {
+        "label": "Separate zone for the controlled drug cabinet, safe or store?"
+      },
+      "is-alarm-system-connected": {
+        "label": "Is the alarm system connected to the receiving centre by Redcare or dual-path communicator?"
       },
       "standard-operating-procedures": {
         "label": "Do you have a set of operating procedures?"

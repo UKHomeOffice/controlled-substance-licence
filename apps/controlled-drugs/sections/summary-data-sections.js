@@ -489,6 +489,11 @@ module.exports = {
         field: 'cd-kept-in-safe-or-cabinet'
       },
       {
+        step: '/specification-details',
+        field: 'specification-details',
+        dependsOn: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
         step: '/prefabricated-strong-room',
         field: 'kept-in-prefabricated-room'
       },
@@ -522,6 +527,21 @@ module.exports = {
       {
         step: '/alarm-system-details',
         field: 'installing-company-registered-with',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/separate-zone-for-storage',
+        field: 'separate-zone',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/offsite-receiving-centre',
+        field: 'alarm-system-monitored',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/redcare-or-dual-path',
+        field: 'is-alarm-system-connected',
         dependsOn: 'have-electronic-alarm-system'
       },
       {
