@@ -402,6 +402,15 @@
   "is-alarm-system-connected": {
     "required": "Select if the alarm system is connected to the alarm receiving centre by Redcare or a dual-path communicator"
   },
+  "is-alarm-serviced-annually": {
+    "required": "Select if the alarm system is serviced annually"
+  },
+  "alarm-system-reference-number": {
+    "required": "Select if the alarm system has a police unique reference number"
+  },
+  "alarm-system-police-response": {
+    "required": "Select if the alarm system has a Level 1 or 'immediate' police response"
+  },
   "standard-operating-procedures": {
     "required": "Select if you have a set of standard operating procedures to cover business processes"
   },

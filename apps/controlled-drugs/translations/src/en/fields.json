@@ -688,6 +688,39 @@
       }
     }
   },
+  "is-alarm-serviced-annually": {
+    "legend": "Is the alarm system serviced annually?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "alarm-system-reference-number": {
+    "legend": "Does the alarm system have a police unique reference number (URN)?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "alarm-system-police-response": {
+    "legend": "Does the alarm system have either a Level 1 or ‘immediate’ police response?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "standard-operating-procedures": {
     "legend": "Do you have a set of SOPs that cover these processes?",
     "options": {
