@@ -618,7 +618,16 @@ const steps = {
 
   '/safe-or-cabinet': {
     fields: ['cd-kept-in-safe-or-cabinet'],
-    next: '/prefabricated-strong-room'
+    forks: [
+      {
+        target: '/prefabricated-strong-room',
+        condition: {
+          field: 'cd-kept-in-safe-or-cabinet',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/specification-details': {
@@ -679,14 +688,17 @@ const steps = {
   },
 
   '/separate-zone-for-storage': {
+    fields: ['separate-zone'],
     next: '/offsite-receiving-centre'
   },
 
   '/offsite-receiving-centre': {
+    fields: ['alarm-system-monitored'],
     next: '/redcare-or-dual-path'
   },
 
   '/redcare-or-dual-path': {
+    fields: ['is-alarm-system-connected'],
     next: '/annual-service'
   },
 

@@ -655,6 +655,39 @@
       }
     }
   },
+  "separate-zone": {
+    "legend": "Is there a separate zone for the controlled drug cabinet, safe or store?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "alarm-system-monitored": {
+    "legend": "Is the alarm system monitored by an offsite alarm receiving centre?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-alarm-system-connected": {
+    "legend": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "is-alarm-serviced-annually": {
     "legend": "Is the alarm system serviced annually?",
     "options": {
