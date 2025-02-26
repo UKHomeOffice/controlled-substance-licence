@@ -360,6 +360,39 @@
   "cd-kept-in-safe-or-cabinet": {
     "required": "Select if the controlled drugs are kept in a safe or cabinet"
   },
+  "kept-in-prefabricated-room": {
+    "required": "Select if the controlled drugs are kept in a prefabricated strong room"
+  },
+  "drugs-kept-at-site": {
+    "required": "Select if controlled drugs are kept at this site"
+  },
+  "specification-details": {
+    "required": "Enter details of the prefabricated strong room's specifications",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of specifications must be 2,000 characters or less"
+  },
+  "have-electronic-alarm-system": {
+    "required": "Select if the site has an electronic alarm system"
+  },
+  "storage-details": {
+    "required": "Provide details of where the controlled drugs are stored",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Storage details must be 2,000 characters or less"
+  },
+  "installing-company-name": {
+    "required": "Enter the alarm system's installing company name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Installing company name must be between 3 and 200 characters",
+    "maxlength": "Installing company name must be between 3 and 200 characters"
+  },
+  "installing-company-address": {
+    "required": "Enter the alarm system's installing company address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Installing company address must be 500 characters or less"
+  },
+  "installing-company-registered-with": {
+    "required": "Select who the installing company is registered with"
+  },
   "is-alarm-serviced-annually": {
     "required": "Select if the alarm system is serviced annually"
   },
@@ -368,5 +401,49 @@
   },
   "alarm-system-police-response": {
     "required": "Select if the alarm system has a Level 1 or 'immediate' police response"
+  },
+  "standard-operating-procedures": {
+    "required": "Select if you have a set of standard operating procedures to cover business processes"
+  },
+  "record-keeping-system-procedures": {
+    "required": "Enter details of your record keeping system and procedures",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of record keeping system and procedures must be 2,000 characters or less "
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing contact email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing contact number",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
   }
 }

@@ -612,18 +612,59 @@ const steps = {
   },
 
   '/specification-details': {
+    fields: ['specification-details'],
     next: '/drugs-kept-at-site'
   },
 
   '/prefabricated-strong-room': {
-    next: '/drugs-kept-at-site'
+    fields: ['kept-in-prefabricated-room'],
+    forks: [
+      {
+        target: '/drugs-kept-at-site',
+        condition: {
+          field: 'kept-in-prefabricated-room',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/drugs-kept-at-site': {
+    fields: ['drugs-kept-at-site'],
+    forks: [
+      {
+        target: '/electronic-alarm-system',
+        condition: {
+          field: 'drugs-kept-at-site',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/storage-details'
+  },
+
+  '/storage-details': {
+    fields: ['storage-details'],
     next: '/electronic-alarm-system'
   },
 
+  '/electronic-alarm-system': {
+    fields: ['have-electronic-alarm-system'],
+    forks: [
+      {
+        target: '/alarm-system-details',
+        condition: {
+          field: 'have-electronic-alarm-system',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/standard-operating-procedures'
+  },
+
   '/alarm-system-details': {
+    fields: ['installing-company-name', 'installing-company-address', 'installing-company-registered-with'],
     next: '/separate-zone-for-storage'
   },
 
@@ -654,23 +695,34 @@ const steps = {
     next: '/standard-operating-procedures'
   },
 
-  '/electronic-alarm-system': {
-    next: '/standard-operating-procedures'
-  },
-
   '/standard-operating-procedures': {
+    fields: ['standard-operating-procedures'],
     next: '/record-keeping-system-procedures'
   },
 
   '/record-keeping-system-procedures': {
+    fields: ['record-keeping-system-procedures'],
     next: '/invoicing-address'
   },
 
   '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-address-town-or-city',
+      'invoicing-address-postcode'
+    ],
     next: '/invoicing-contact-details'
   },
 
   '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-contact-name',
+      'invoicing-contact-email',
+      'invoicing-contact-telephone',
+      'invoicing-purchase-order-number'
+    ],
     next: '/licence-email-address'
   },
 
