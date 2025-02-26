@@ -489,11 +489,6 @@ module.exports = {
         field: 'cd-kept-in-safe-or-cabinet'
       },
       {
-        step: '/specification-details',
-        field: 'specification-details',
-        dependsOn: 'cd-kept-in-safe-or-cabinet'
-      },
-      {
         step: '/prefabricated-strong-room',
         field: 'kept-in-prefabricated-room'
       },
@@ -601,6 +596,29 @@ module.exports = {
       {
         step: '/invoicing-contact-details',
         field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
+        step: '/licence-email-address',
+        field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
         parse: (value, req) => {
           return value ? value : req.translate('journey.not-provided');
         }

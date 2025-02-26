@@ -762,5 +762,20 @@
   "invoicing-purchase-order-number": {
     "label": "Purchase order number (optional)",
     "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when the invoice is raised"
+  },
+  "licence-email-address": {
+    "label": "Which email address should we send the licence to?"
+  },
+  "who-is-completing-application-full-name": {
+    "label": "Full name"
+  },
+  "who-is-completing-application-email": {
+    "label": "Email address"
+  },
+  "who-is-completing-application-telephone": {
+    "label": "UK contact number"
+  },
+  "extra-information": {
+    "label": "Add any extra information you think might help your application (optional)"
   }
 }
