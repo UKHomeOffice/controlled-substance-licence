@@ -500,7 +500,13 @@ module.exports = {
       {
         step: '/specification-details',
         field: 'specification-details',
-        dependsOn: 'kept-in-prefabricated-room'
+        parse: (val, req) => {
+          if(req.sessionModel.get('cd-kept-in-safe-or-cabinet') === 'yes' ||
+            req.sessionModel.get('kept-in-prefabricated-room') === 'yes') {
+            return val;
+          }
+          return null;
+        }
       },
       {
         step: '/drugs-kept-at-site',
