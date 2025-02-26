@@ -314,7 +314,7 @@
         "label": "Is the alarm system connected to the receiving centre by Redcare or dual-path communicator?"
       },
       "alarm-system-reference-number": {
-        "label": "Does the alarm system have a police unique number?"
+        "label": "Does the alarm system have a police unique reference number?"
       },
       "standard-operating-procedures": {
         "label": "Do you have a set of operating procedures?"
