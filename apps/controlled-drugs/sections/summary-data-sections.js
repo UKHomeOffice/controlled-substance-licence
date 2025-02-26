@@ -489,13 +489,24 @@ module.exports = {
         field: 'cd-kept-in-safe-or-cabinet'
       },
       {
+        step: '/specification-details',
+        field: 'specification-details',
+        dependsOn: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
         step: '/prefabricated-strong-room',
         field: 'kept-in-prefabricated-room'
       },
       {
         step: '/specification-details',
         field: 'specification-details',
-        dependsOn: 'kept-in-prefabricated-room'
+        parse: (val, req) => {
+          if(req.sessionModel.get('cd-kept-in-safe-or-cabinet') === 'yes' ||
+            req.sessionModel.get('kept-in-prefabricated-room') === 'yes') {
+            return val;
+          }
+          return null;
+        }
       },
       {
         step: '/drugs-kept-at-site',
@@ -522,6 +533,36 @@ module.exports = {
       {
         step: '/alarm-system-details',
         field: 'installing-company-registered-with',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/separate-zone-for-storage',
+        field: 'separate-zone',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/offsite-receiving-centre',
+        field: 'alarm-system-monitored',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/redcare-or-dual-path',
+        field: 'is-alarm-system-connected',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/annual-service',
+        field: 'is-alarm-serviced-annually',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-reference-number',
+        field: 'alarm-system-reference-number',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-police-response',
+        field: 'alarm-system-police-response',
         dependsOn: 'have-electronic-alarm-system'
       },
       {
