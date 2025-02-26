@@ -116,10 +116,7 @@
     "header": "Does the alarm system have either a Level 1 or ‘immediate’ police response?"
   },
   "standard-operating-procedures": {
-    "header": "Does the site have an electronic alarm system?"
-  },
-  "record-keeping-system-procedures": {
-    "header": "Provide details of your record keeping system and procedures"
+    "header": "Standard operating procedures"
   },
   "invoicing-address": {
     "header": "Invoicing address"
@@ -335,6 +332,27 @@
       },
       "installing-company-registered-with": {
         "label": "Who is the installing company registered with?"
+      },
+      "standard-operating-procedures": {
+        "label": "Do you have a set of operating procedures?"
+      },
+      "record-keeping-system-procedures": {
+        "label": "Details of your record keeping system and procedures"
+      },
+      "invoicing-address": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-name": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-contact-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-contact-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
       }
     }
   }

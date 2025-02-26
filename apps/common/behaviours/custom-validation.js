@@ -24,7 +24,7 @@ module.exports = superclass => class extends superclass {
       }
     }
 
-    if(key === 'site-owner-telephone') {
+    if(key === 'site-owner-telephone' || key === 'invoicing-contact-telephone') {
       const phoneNumber = req.form.values[key];
       if(phoneNumber) {
         if(!isValidPhoneNumber(phoneNumber)  || !validators.internationalPhoneNumber(phoneNumber)) {

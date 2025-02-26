@@ -523,6 +523,46 @@ module.exports = {
         step: '/alarm-system-details',
         field: 'installing-company-registered-with',
         dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/standard-operating-procedures',
+        field: 'standard-operating-procedures'
+      },
+      {
+        step: '/record-keeping-system-procedures',
+        field: 'record-keeping-system-procedures'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address',
+        parse: (list, req) => {
+          const invoicingAddress = [
+            req.sessionModel.get('invoicing-address-line-1'),
+            req.sessionModel.get('invoicing-address-line-2'),
+            req.sessionModel.get('invoicing-address-town-or-city'),
+            req.sessionModel.get('invoicing-address-postcode')
+          ];
+          return invoicingAddress.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }
