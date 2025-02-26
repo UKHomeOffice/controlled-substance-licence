@@ -489,11 +489,6 @@ module.exports = {
         field: 'cd-kept-in-safe-or-cabinet'
       },
       {
-        step: '/specification-details',
-        field: 'specification-details',
-        dependsOn: 'cd-kept-in-safe-or-cabinet'
-      },
-      {
         step: '/prefabricated-strong-room',
         field: 'kept-in-prefabricated-room'
       },
