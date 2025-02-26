@@ -1,4 +1,4 @@
-An email confirming your application and a PDF of your details has been sent to {{values.licence-email}}.
+An email confirming your application and a PDF of your details has been sent to {{values.licence-email-address}}.
 
 ## What happens next
 
