@@ -67,8 +67,7 @@ const steps = {
     next: '/change-witness-only'
   },
 
-  // skipping /company-registration-certificate for now as it clashes with
-  // /company-registration-certificate on other flow
+  // @todo: reinstate step once clash is resolved 
   // '/company-registration-certificate': {
   //   next: '/change-witness-only'
   // },
