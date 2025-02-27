@@ -393,6 +393,24 @@
   "installing-company-registered-with": {
     "required": "Select who the installing company is registered with"
   },
+  "separate-zone": {
+    "required": "Select if there is a separate zone for the controlled drug cabinet, safe or store"
+  },
+  "alarm-system-monitored": {
+    "required": "Select if the alarm system is monitored by an offsite alarm receiving centre"
+  },
+  "is-alarm-system-connected": {
+    "required": "Select if the alarm system is connected to the alarm receiving centre by Redcare or a dual-path communicator"
+  },
+  "is-alarm-serviced-annually": {
+    "required": "Select if the alarm system is serviced annually"
+  },
+  "alarm-system-reference-number": {
+    "required": "Select if the alarm system has a police unique reference number"
+  },
+  "alarm-system-police-response": {
+    "required": "Select if the alarm system has a Level 1 or 'immediate' police response"
+  },
   "standard-operating-procedures": {
     "required": "Select if you have a set of standard operating procedures to cover business processes"
   },
@@ -436,6 +454,28 @@
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "licence-email-address": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter the full name of the person completing the application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address for the person completing the application",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number for the person completing the form",
+    "ukPhoneNumber": "Enter a real UK telephone number, like 01632 960 001 or 07700 900 982"
+  },
+  "extra-information": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Extra information about your application must be 2,000 characters or less"
   },
   "declaration-check": {
     "required": "You must confirm you agree with this declaration to submit the application"

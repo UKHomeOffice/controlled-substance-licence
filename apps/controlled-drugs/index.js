@@ -293,6 +293,7 @@ const steps = {
 
   '/witness-destruction-of-drugs': {
     fields: ['require-witness-destruction-of-drugs'],
+    // The conditional check should be performed in reverse order, as the last fork takes over.
     forks: [
       {
         target: '/trading-reasons',
@@ -300,6 +301,11 @@ const steps = {
           field: 'require-witness-destruction-of-drugs',
           value: 'no'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('require-witness-destruction-of-drugs') === 'no'
       }
     ],
     next: '/who-witnesses-destruction-of-drugs',
@@ -317,6 +323,11 @@ const steps = {
           field: 'responsible-for-witnessing-the-destruction',
           value: 'someone-else'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'
       }
     ],
     next: '/trading-reasons'
@@ -350,8 +361,7 @@ const steps = {
     forks: [
       {
         target: '/company-registration-certificate',
-        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
-          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
       }
     ],
     template: 'person-in-charge-dbs-updates'
@@ -608,7 +618,16 @@ const steps = {
 
   '/safe-or-cabinet': {
     fields: ['cd-kept-in-safe-or-cabinet'],
-    next: '/prefabricated-strong-room'
+    forks: [
+      {
+        target: '/prefabricated-strong-room',
+        condition: {
+          field: 'cd-kept-in-safe-or-cabinet',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/specification-details': {
@@ -669,26 +688,32 @@ const steps = {
   },
 
   '/separate-zone-for-storage': {
+    fields: ['separate-zone'],
     next: '/offsite-receiving-centre'
   },
 
   '/offsite-receiving-centre': {
+    fields: ['alarm-system-monitored'],
     next: '/redcare-or-dual-path'
   },
 
   '/redcare-or-dual-path': {
+    fields: ['is-alarm-system-connected'],
     next: '/annual-service'
   },
 
   '/annual-service': {
+    fields: ['is-alarm-serviced-annually'],
     next: '/alarm-reference-number'
   },
 
   '/alarm-reference-number': {
+    fields: ['alarm-system-reference-number'],
     next: '/alarm-system-police-response'
   },
 
   '/alarm-system-police-response': {
+    fields: ['alarm-system-police-response'],
     next: '/standard-operating-procedures'
   },
 
@@ -724,14 +749,22 @@ const steps = {
   },
 
   '/licence-email-address': {
+    fields: ['licence-email-address'],
     next: '/who-completing-application'
   },
 
   '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
     next: '/extra-information'
   },
 
   '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
 

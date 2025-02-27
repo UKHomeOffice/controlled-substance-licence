@@ -990,6 +990,99 @@ module.exports = {
     ],
     className: ['govuk-radios', 'govuk-radios--inline']
   },
+  'separate-zone': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'alarm-system-monitored': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-alarm-system-connected': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-alarm-serviced-annually': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'alarm-system-reference-number': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'alarm-system-police-response': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
   'standard-operating-procedures': {
     mixin: 'radio-group',
     validate: ['required'],
@@ -1060,6 +1153,38 @@ module.exports = {
       { type: 'maxlength', arguments: [250] }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'licence-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    isPageHeading: true,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'extra-information': {
+    mixin: 'textarea',
+    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   },
   'declaration-check': {
     mixin: 'checkbox',
