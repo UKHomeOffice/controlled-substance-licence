@@ -780,5 +780,38 @@
   },
   "declaration-check": {
     "label": "I understand and agree with these statements"
+  },
+  "change-authorised-witness": {
+    "legend": "Are you requesting a change in authorised witness for this site only?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "requesting-additional-schedules": {
+    "legend": "Are you requesting additional schedules?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "change-of-activity": {
+    "legend": "Are you requesting a change of activity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

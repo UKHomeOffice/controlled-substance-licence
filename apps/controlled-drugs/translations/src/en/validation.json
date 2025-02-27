@@ -479,5 +479,14 @@
   },
   "declaration-check": {
     "required": "You must confirm you agree with this declaration to submit the application"
+  },
+  "change-authorised-witness": {
+    "required": "Select if you are requesting a change in authorised witness for this site only"
+  },
+  "requesting-additional-schedules": {
+    "required": "Select if you are requesting additional schedules"
+  },
+  "change-of-activity": {
+    "required": "Select if you are requesting a change of activity"
   }
 }
