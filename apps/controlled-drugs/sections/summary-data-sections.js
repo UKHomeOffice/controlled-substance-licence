@@ -520,6 +520,141 @@ module.exports = {
       {
         step: '/safe-or-cabinet',
         field: 'cd-kept-in-safe-or-cabinet'
+      },
+      {
+        step: '/prefabricated-strong-room',
+        field: 'kept-in-prefabricated-room'
+      },
+      {
+        step: '/specification-details',
+        field: 'specification-details',
+        parse: (val, req) => {
+          if(req.sessionModel.get('cd-kept-in-safe-or-cabinet') === 'yes' ||
+            req.sessionModel.get('kept-in-prefabricated-room') === 'yes') {
+            return val;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/drugs-kept-at-site',
+        field: 'drugs-kept-at-site'
+      },
+      {
+        step: '/storage-details',
+        field: 'storage-details'
+      },
+      {
+        step: '/electronic-alarm-system',
+        field: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-name',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-address',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-details',
+        field: 'installing-company-registered-with',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/separate-zone-for-storage',
+        field: 'separate-zone',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/offsite-receiving-centre',
+        field: 'alarm-system-monitored',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/redcare-or-dual-path',
+        field: 'is-alarm-system-connected',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/annual-service',
+        field: 'is-alarm-serviced-annually',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-reference-number',
+        field: 'alarm-system-reference-number',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/alarm-system-police-response',
+        field: 'alarm-system-police-response',
+        dependsOn: 'have-electronic-alarm-system'
+      },
+      {
+        step: '/standard-operating-procedures',
+        field: 'standard-operating-procedures'
+      },
+      {
+        step: '/record-keeping-system-procedures',
+        field: 'record-keeping-system-procedures'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address',
+        parse: (list, req) => {
+          const invoicingAddress = [
+            req.sessionModel.get('invoicing-address-line-1'),
+            req.sessionModel.get('invoicing-address-line-2'),
+            req.sessionModel.get('invoicing-address-town-or-city'),
+            req.sessionModel.get('invoicing-address-postcode')
+          ];
+          return invoicingAddress.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
+        step: '/licence-email-address',
+        field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

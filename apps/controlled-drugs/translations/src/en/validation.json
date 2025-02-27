@@ -360,6 +360,126 @@
   "cd-kept-in-safe-or-cabinet": {
     "required": "Select if the controlled drugs are kept in a safe or cabinet"
   },
+  "kept-in-prefabricated-room": {
+    "required": "Select if the controlled drugs are kept in a prefabricated strong room"
+  },
+  "drugs-kept-at-site": {
+    "required": "Select if controlled drugs are kept at this site"
+  },
+  "specification-details": {
+    "required": "Enter details of the prefabricated strong room's specifications",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of specifications must be 2,000 characters or less"
+  },
+  "have-electronic-alarm-system": {
+    "required": "Select if the site has an electronic alarm system"
+  },
+  "storage-details": {
+    "required": "Provide details of where the controlled drugs are stored",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Storage details must be 2,000 characters or less"
+  },
+  "installing-company-name": {
+    "required": "Enter the alarm system's installing company name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Installing company name must be between 3 and 200 characters",
+    "maxlength": "Installing company name must be between 3 and 200 characters"
+  },
+  "installing-company-address": {
+    "required": "Enter the alarm system's installing company address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Installing company address must be 500 characters or less"
+  },
+  "installing-company-registered-with": {
+    "required": "Select who the installing company is registered with"
+  },
+  "separate-zone": {
+    "required": "Select if there is a separate zone for the controlled drug cabinet, safe or store"
+  },
+  "alarm-system-monitored": {
+    "required": "Select if the alarm system is monitored by an offsite alarm receiving centre"
+  },
+  "is-alarm-system-connected": {
+    "required": "Select if the alarm system is connected to the alarm receiving centre by Redcare or a dual-path communicator"
+  },
+  "is-alarm-serviced-annually": {
+    "required": "Select if the alarm system is serviced annually"
+  },
+  "alarm-system-reference-number": {
+    "required": "Select if the alarm system has a police unique reference number"
+  },
+  "alarm-system-police-response": {
+    "required": "Select if the alarm system has a Level 1 or 'immediate' police response"
+  },
+  "standard-operating-procedures": {
+    "required": "Select if you have a set of standard operating procedures to cover business processes"
+  },
+  "record-keeping-system-procedures": {
+    "required": "Enter details of your record keeping system and procedures",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of record keeping system and procedures must be 2,000 characters or less "
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing contact email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing contact number",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "licence-email-address": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter the full name of the person completing the application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address for the person completing the application",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number for the person completing the form",
+    "ukPhoneNumber": "Enter a real UK telephone number, like 01632 960 001 or 07700 900 982"
+  },
+  "extra-information": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Extra information about your application must be 2,000 characters or less"
+  },
+  "declaration-check": {
+    "required": "You must confirm you agree with this declaration to submit the application"
+  },
   "change-authorised-witness": {
     "required": "Select if you are requesting a change in authorised witness for this site only"
   },

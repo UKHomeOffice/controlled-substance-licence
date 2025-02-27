@@ -895,6 +895,301 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
+  'kept-in-prefabricated-room': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'specification-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'drugs-kept-at-site': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'have-electronic-alarm-system': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'storage-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'installing-company-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ]
+  },
+  'installing-company-address': {
+    mixin: 'textarea',
+    'ignore-defaults': true,
+    formatter: ['trim', 'hyphens'],
+    validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'installing-company-registered-with': {
+    mixin: 'radio-group',
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'british-security-industry'
+      },
+      {
+        value: 'national-security'
+      },
+      {
+        value: 'security-systems-inspection-board'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline']
+  },
+  'separate-zone': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'alarm-system-monitored': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-alarm-system-connected': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-alarm-serviced-annually': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'alarm-system-reference-number': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'alarm-system-police-response': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ]
+  },
+  'standard-operating-procedures': {
+    mixin: 'radio-group',
+    validate: ['required'],
+    className: ['govuk-radios govuk-radios--inline'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    legend: {
+      className: 'govuk-fieldset__legend--m govuk-!-padding-top-3 govuk-!-margin-bottom-6'
+    }
+  },
+  'record-keeping-system-procedures': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'invoicing-address-line-1': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-line-2': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-town-or-city': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-address-postcode': {
+    mixin: 'input-text',
+    validate: ['required', 'postcode'],
+    formatter: ['ukPostcode'],
+    className: ['govuk-input', 'govuk-input--width-10']
+  },
+  'invoicing-contact-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-contact-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-contact-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'invoicing-purchase-order-number': {
+    mixin: 'input-text',
+    validate: [
+      'notUrl',
+      { type: 'maxlength', arguments: [250] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'licence-email-address': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    isPageHeading: true,
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'extra-information': {
+    mixin: 'textarea',
+    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
+  },
   'change-authorised-witness': {
     mixin: 'radio-group',
     isPageHeading: true,

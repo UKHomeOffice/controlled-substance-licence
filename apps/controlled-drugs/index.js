@@ -319,6 +319,7 @@ const steps = {
 
   '/witness-destruction-of-drugs': {
     fields: ['require-witness-destruction-of-drugs'],
+    // The conditional check should be performed in reverse order, as the last fork takes over.
     forks: [
       {
         target: '/trading-reasons',
@@ -326,6 +327,11 @@ const steps = {
           field: 'require-witness-destruction-of-drugs',
           value: 'no'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('require-witness-destruction-of-drugs') === 'no'
       }
     ],
     next: '/who-witnesses-destruction-of-drugs',
@@ -343,6 +349,11 @@ const steps = {
           field: 'responsible-for-witnessing-the-destruction',
           value: 'someone-else'
         }
+      },
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
+          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'
       }
     ],
     next: '/trading-reasons'
@@ -376,8 +387,7 @@ const steps = {
     forks: [
       {
         target: '/company-registration-certificate',
-        condition: req => req.sessionModel.get('licensee-type') === 'first-time-licensee' ||
-          req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site'
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
       }
     ],
     template: 'person-in-charge-dbs-updates'
@@ -634,78 +644,153 @@ const steps = {
 
   '/safe-or-cabinet': {
     fields: ['cd-kept-in-safe-or-cabinet'],
-    next: '/prefabricated-strong-room'
+    forks: [
+      {
+        target: '/prefabricated-strong-room',
+        condition: {
+          field: 'cd-kept-in-safe-or-cabinet',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/specification-details': {
+    fields: ['specification-details'],
     next: '/drugs-kept-at-site'
   },
 
   '/prefabricated-strong-room': {
-    next: '/drugs-kept-at-site'
+    fields: ['kept-in-prefabricated-room'],
+    forks: [
+      {
+        target: '/drugs-kept-at-site',
+        condition: {
+          field: 'kept-in-prefabricated-room',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/specification-details'
   },
 
   '/drugs-kept-at-site': {
+    fields: ['drugs-kept-at-site'],
+    forks: [
+      {
+        target: '/electronic-alarm-system',
+        condition: {
+          field: 'drugs-kept-at-site',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/storage-details'
+  },
+
+  '/storage-details': {
+    fields: ['storage-details'],
     next: '/electronic-alarm-system'
   },
 
+  '/electronic-alarm-system': {
+    fields: ['have-electronic-alarm-system'],
+    forks: [
+      {
+        target: '/alarm-system-details',
+        condition: {
+          field: 'have-electronic-alarm-system',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/standard-operating-procedures'
+  },
+
   '/alarm-system-details': {
+    fields: ['installing-company-name', 'installing-company-address', 'installing-company-registered-with'],
     next: '/separate-zone-for-storage'
   },
 
   '/separate-zone-for-storage': {
+    fields: ['separate-zone'],
     next: '/offsite-receiving-centre'
   },
 
   '/offsite-receiving-centre': {
+    fields: ['alarm-system-monitored'],
     next: '/redcare-or-dual-path'
   },
 
   '/redcare-or-dual-path': {
+    fields: ['is-alarm-system-connected'],
     next: '/annual-service'
   },
 
   '/annual-service': {
+    fields: ['is-alarm-serviced-annually'],
     next: '/alarm-reference-number'
   },
 
   '/alarm-reference-number': {
+    fields: ['alarm-system-reference-number'],
     next: '/alarm-system-police-response'
   },
 
   '/alarm-system-police-response': {
-    next: '/standard-operating-procedures'
-  },
-
-  '/electronic-alarm-system': {
+    fields: ['alarm-system-police-response'],
     next: '/standard-operating-procedures'
   },
 
   '/standard-operating-procedures': {
+    fields: ['standard-operating-procedures'],
     next: '/record-keeping-system-procedures'
   },
 
   '/record-keeping-system-procedures': {
+    fields: ['record-keeping-system-procedures'],
     next: '/invoicing-address'
   },
 
   '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-address-town-or-city',
+      'invoicing-address-postcode'
+    ],
     next: '/invoicing-contact-details'
   },
 
   '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-contact-name',
+      'invoicing-contact-email',
+      'invoicing-contact-telephone',
+      'invoicing-purchase-order-number'
+    ],
     next: '/licence-email-address'
   },
 
   '/licence-email-address': {
+    fields: ['licence-email-address'],
     next: '/who-completing-application'
   },
 
   '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
     next: '/extra-information'
   },
 
   '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
 
@@ -719,10 +804,13 @@ const steps = {
   },
 
   '/declaration': {
+    fields: ['declaration-check'],
     next: '/application-submitted'
   },
 
   '/application-submitted': {
+    backLink: false,
+    clearSession: true
   }
 };
 

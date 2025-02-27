@@ -94,47 +94,11 @@
   "upload-activity-template": {
     "header": "Upload controlled drug user activity template"
   },
-  "prefabricated-strong-room": {
-    "header": "Are controlled drugs kept in a prefabricated strong room?"
-  },
-  "drugs-kept-at-site": {
-    "header": "Are controlled drugs kept at this site?"
-  },
-  "specification-details": {
-    "header": "Give details of specifications, and any serial numbers that apply"
-  },
-  "storage-details": {
-    "header": "Provide details of where they are stored"
-  },
-  "electronic-alarm-system": {
-    "header": "Does the site have an electronic alarm system?"
-  },
   "alarm-system-details": {
     "header": "Electronic alarm system details"
   },
-  "separate-zone-for-storage": {
-    "header": "Is there a separate zone for the controlled drug cabinet, safe or store?"
-  },
-  "offsite-receiving-centre": {
-    "header": "Is the alarm system monitored by an offsite alarm receiving centre?"
-  },
-  "redcare-or-dual-path": {
-    "header": "Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator?"
-  },
-  "annual-service": {
-    "header": "Is the alarm system serviced annually?"
-  },
-  "alarm-reference-number": {
-    "header": "Does the alarm system have a police unique reference number (URN)?"
-  },
-  "alarm-system-police-response": {
-    "header": "Does the alarm system have either a Level 1 or ‘immediate’ police response?"
-  },
   "standard-operating-procedures": {
-    "header": "Does the site have an electronic alarm system?"
-  },
-  "record-keeping-system-procedures": {
-    "header": "Provide details of your record keeping system and procedures"
+    "header": "Standard operating procedures"
   },
   "invoicing-address": {
     "header": "Invoicing address"
@@ -142,14 +106,16 @@
   "invoicing-contact-details": {
     "header": "Invoicing contact details"
   },
-  "licence-email-address": {
-    "header": "Which email address should we send the licence to?"
-  },
   "who-completing-application": {
     "header": "Who is completing the application?"
   },
-  "extra-information": {
-    "header": "Add any extra information you think might help your application (optional)"
+
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "application-submitted": {
+    "confirmed": "Application submitted"
   },
 
   "confirm": {
@@ -324,6 +290,72 @@
       },
       "security-features": {
         "label": "Site security features"
+      },
+      "kept-in-prefabricated-room": {
+        "label": "Are the controlled drugs kept in a prefabricated strong room?"
+      },
+      "specification-details": {
+        "label": "Details of specifications"
+      },
+      "have-electronic-alarm-system": {
+        "label": "Electronic alarm system?"
+      },
+      "storage-details": {
+        "label": "Details of where they are stored"
+      },
+      "installing-company-name": {
+        "label": "Alarm installing company name"
+      },
+      "installing-company-address": {
+        "label": "Alarm installing company address"
+      },
+      "installing-company-registered-with": {
+        "label": "Who is the installing company registered with?"
+      },
+      "separate-zone": {
+        "label": "Separate zone for the controlled drug cabinet, safe or store?"
+      },
+      "is-alarm-system-connected": {
+        "label": "Is the alarm system connected to the receiving centre by Redcare or dual-path communicator?"
+      },
+      "alarm-system-reference-number": {
+        "label": "Does the alarm system have a police unique reference number?"
+      },
+      "standard-operating-procedures": {
+        "label": "Do you have a set of operating procedures?"
+      },
+      "record-keeping-system-procedures": {
+        "label": "Details of your record keeping system and procedures"
+      },
+      "invoicing-address": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-name": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-contact-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-contact-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
+      },
+      "licence-email-address": {
+        "label": "Email address for the licence"
+      },
+      "who-is-completing-application-full-name": {
+        "label": "Name of person completing application"
+      },
+      "who-is-completing-application-email": {
+        "label": "Email address of person completing application"
+      },
+      "who-is-completing-application-telephone": {
+        "label": "Contact number of person completing application"
+      },
+      "extra-information": {
+        "label": "Extra information"
       },
       "change-authorised-witness": {
         "label": "Change in authorised witness for this site only"

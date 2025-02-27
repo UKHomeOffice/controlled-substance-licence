@@ -14,7 +14,7 @@ h3 {
 }
 
 ul {
-  @extend .govuk-list--bullet;
+  @extend .govuk-list, .govuk-list--bullet;
 }
 
 p {
@@ -228,6 +228,10 @@ pre.looped-records {
 
 .spinner-message {
   margin-left: 10px;
+}
+
+#declaration-check-group {
+  margin-top: 40px;
 }
 
 @-webkit-keyframes spin {
