@@ -67,7 +67,7 @@ const steps = {
     next: '/change-witness-only'
   },
 
-  // @todo: reinstate step once clash is resolved 
+  // @todo: reinstate step once clash is resolved
   // '/company-registration-certificate': {
   //   next: '/change-witness-only'
   // },
