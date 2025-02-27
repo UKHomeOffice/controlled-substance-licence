@@ -1185,5 +1185,9 @@ module.exports = {
     validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

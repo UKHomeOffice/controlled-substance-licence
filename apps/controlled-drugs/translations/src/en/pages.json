@@ -110,6 +110,14 @@
     "header": "Who is completing the application?"
   },
 
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "application-submitted": {
+    "confirmed": "Application submitted"
+  },
+
   "confirm": {
     "header": "Check your answers",
     "sections": {
