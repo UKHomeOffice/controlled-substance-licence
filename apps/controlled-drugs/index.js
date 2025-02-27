@@ -63,7 +63,7 @@ const steps = {
   },
 
   '/company-name-changed': {
-    // change next to /company-registration-certificate upload page when clash below is fixed
+    // @todo: change next to /company-registration-certificate upload page when clash below is fixed
     next: '/change-witness-only'
   },
 
