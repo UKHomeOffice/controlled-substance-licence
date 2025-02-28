@@ -46,7 +46,7 @@ module.exports = {
         value: 'no'
       }
     ],
-    className: ['govuk-radios govuk-radios--inline'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
@@ -63,7 +63,7 @@ module.exports = {
         value: 'no'
       }
     ],
-    className: ['govuk-radios govuk-radios--inline'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
