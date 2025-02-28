@@ -29,6 +29,28 @@
       }
     }
   },
+  "companies-house-number-change": {
+    "legend": "Has your Companies House reference number changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "companies-house-name-change": {
+    "legend": "Has your registered name at Companies House changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "company-name": {
     "label": "Company name"
   },
