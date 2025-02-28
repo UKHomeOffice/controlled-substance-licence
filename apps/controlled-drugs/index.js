@@ -59,18 +59,45 @@ const steps = {
   /** Existing licensee renewing or changing a currently licensed site - Background Information */
 
   '/company-number-changed': {
-    next: '/company-name-changed'
+    fields: ['companies-house-number-change'],
+    forks: [
+      {
+        target: '/company-name-changed',
+        condition: {
+          field: 'companies-house-number-change',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/register-again'
+  },
+
+  '/register-again': {
   },
 
   '/company-name-changed': {
-    // @todo: change next to /company-registration-certificate upload page when clash below is fixed
-    next: '/change-witness-only'
+    fields: ['companies-house-name-change'],
+    forks: [
+      {
+        target: '/change-witness-only',
+        condition: {
+          field: 'companies-house-name-change',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/company-registration-certificate-name-change'
   },
 
-  // @todo: reinstate step once clash is resolved
-  // '/company-registration-certificate': {
-  //   next: '/change-witness-only'
-  // },
+  '/company-registration-certificate-name-change': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    documentCategory: 'company-registration-certificate',
+    next: '/change-witness-only'
+  },
 
   '/change-witness-only': {
     fields: ['change-authorised-witness'],
