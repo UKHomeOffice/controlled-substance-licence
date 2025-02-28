@@ -6,6 +6,7 @@ const busboy = require('busboy');
 const bl = require('bl');
 const logger = require('hof/lib/logger')({ env: config.env });
 const { sanitiseFilename } = require('./utils');
+const download = require('./utils/file-download.js');
 
 let settings = require('./hof.settings');
 
@@ -19,6 +20,10 @@ const app = hof(settings);
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
   next();
+});
+
+app.use('/user-activity-template-download', (req, res) => {
+  download.responseFile('/assets/documents', config.download.filename, res);
 });
 
 app.use((req, res, next) => {
