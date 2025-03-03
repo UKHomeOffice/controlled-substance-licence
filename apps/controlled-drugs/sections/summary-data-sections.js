@@ -21,6 +21,37 @@ module.exports = {
   'background-information': {
     steps: [
       {
+        step: '/company-number-changed',
+        field: 'companies-house-number-change',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/company-name-changed',
+        field: 'companies-house-name-change',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/company-registration-certificate-name-change',
+        field: 'company-registration-certificate',
+        dependsOn: 'companies-house-name-change',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
         step: '/change-witness-only',
         field: 'change-authorised-witness',
         parse: (value, req) => {

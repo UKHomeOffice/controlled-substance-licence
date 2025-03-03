@@ -1,7 +1,17 @@
 {
   "information-you-have-given-us": {
     "header": "Information you have given us"
-  }, 
+  },
+
+  "register-again": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+
+  "company-registration-certificate-name-change": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
 
   "licence-holder-details": {
     "header": "Licence holder details"
@@ -131,6 +141,15 @@
       }
     },
     "fields": {
+      "change-authorised-witness": {
+        "label": "Change in authorised witness for this site only"
+      },
+      "requesting-additional-schedules": {
+        "label": "Requesting additional schedules"
+      },
+      "change-of-activity": {
+        "label": "Requesting a change of activity"
+      },
       "licence-holder-details": {
         "label": "Licence holder details"
       },
@@ -361,15 +380,6 @@
       },
       "extra-information": {
         "label": "Extra information"
-      },
-      "change-authorised-witness": {
-        "label": "Change in authorised witness for this site only"
-      },
-      "requesting-additional-schedules": {
-        "label": "Requesting additional schedules"
-      },
-      "change-of-activity": {
-        "label": "Requesting a change of activity"
       }
     }
   }
