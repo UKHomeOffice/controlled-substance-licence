@@ -21,6 +21,11 @@ module.exports = {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
+  saveService: {
+    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '3000',
+    host: process.env.DATASERVICE_SERVICE_HOST &&
+      `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+  },
   upload: {
     maxFileSizeInBytes: 25 * 1024 * 1024, // 25MiB in bytes
     hostname: process.env.FILE_VAULT_URL,

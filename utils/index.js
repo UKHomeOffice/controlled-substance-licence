@@ -124,6 +124,19 @@ const isValidPhoneNumber = phoneNumber => {
   return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
 };
 
+/**
+ * Generates a useful error message from a typical Axios error reponse object
+ * It will return at a minimum error.message from the Error object passed in.
+ *
+ * @param {object} error - An Error object.
+ * @returns {string} - An error message for failed Axios requests containing key causal information.
+ */
+const genAxiosErrorMsg = error => {
+  const errorDetails = error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
+  const errorCode = error.status ? `${error.status} -` : '';
+  return `${errorCode} ${error.message}; ${errorDetails}`;
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -131,5 +144,6 @@ module.exports = {
   sanitiseFilename,
   parseOperations,
   findArrayItemByValue,
-  isValidPhoneNumber
+  isValidPhoneNumber,
+  genAxiosErrorMsg
 };
