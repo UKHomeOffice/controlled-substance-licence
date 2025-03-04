@@ -5,6 +5,12 @@
   "licensee-type": {
     "required": "Select what type of licensee are you"
   },
+  "companies-house-number-change": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "companies-house-name-change": {
+    "required": "Select if your registered name at Companies House has changed since your last application"
+  },
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",

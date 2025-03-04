@@ -34,6 +34,92 @@ module.exports = {
       }
     ]
   },
+  'companies-house-number-change': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'companies-house-name-change': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+
+  'change-authorised-witness': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'requesting-additional-schedules': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'change-of-activity': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -1189,56 +1275,5 @@ module.exports = {
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
-  },
-  'change-authorised-witness': {
-    mixin: 'radio-group',
-    isPageHeading: true,
-    validate: [ 'required' ],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-!-margin-bottom-6'
-    }
-  },
-  'requesting-additional-schedules': {
-    mixin: 'radio-group',
-    isPageHeading: true,
-    validate: [ 'required' ],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-!-margin-bottom-6'
-    }
-  },
-  'change-of-activity': {
-    mixin: 'radio-group',
-    isPageHeading: true,
-    validate: [ 'required' ],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no'
-      }
-    ],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-!-margin-bottom-6'
-    }
   }
 };
