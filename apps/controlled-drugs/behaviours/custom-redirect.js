@@ -95,6 +95,12 @@ const checkServiceDetails = (req, currentRoute, action) => (
   !!req.sessionModel.get('service-expiry-date')
 );
 
+// Handle routing around /company-number-changed and /register-again
+const checkCompaniesHouseRef = (req, currentRoute) => (
+  currentRoute === '/company-number-changed' &&
+  req.form.values['companies-house-number-change'] === 'yes'
+);
+
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
     const { route: currentRoute, confirmStep } = req.form.options;
@@ -102,6 +108,10 @@ module.exports = superclass => class extends superclass {
     const formApp = req.baseUrl;
 
     this.emit('complete', req, res);
+
+    if (checkCompaniesHouseRef(req, currentRoute)) {
+      return res.redirect(`${formApp}/register-again`);
+    }
 
     const shouldRedirectToConfirmStep = [
       req.sessionModel.get('referred-by-summary'),
