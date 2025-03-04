@@ -99,7 +99,7 @@ const checkServiceDetails = (req, currentRoute, action) => (
 const checkCompaniesHouseRef = (req, currentRoute) => (
   currentRoute === '/company-number-changed' &&
   req.form.values['companies-house-number-change'] === 'yes'
-)
+);
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
