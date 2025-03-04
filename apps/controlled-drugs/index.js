@@ -60,19 +60,12 @@ const steps = {
 
   '/company-number-changed': {
     fields: ['companies-house-number-change'],
-    forks: [
-      {
-        target: '/company-name-changed',
-        condition: {
-          field: 'companies-house-number-change',
-          value: 'no'
-        }
-      }
-    ],
-    next: '/register-again'
+    next: '/company-name-changed',
+    behaviours: [SetSummaryReferrer, CustomRedirect]
   },
 
   '/register-again': {
+    backLink: '/controlled-drugs/company-number-changed'
   },
 
   '/company-name-changed': {
