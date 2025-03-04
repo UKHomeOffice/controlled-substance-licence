@@ -494,5 +494,17 @@
   },
   "change-of-activity": {
     "required": "Select if you are requesting a change of activity"
+  },
+  "why-requesting-new-licence": {
+    "required": "Select why you are requesting a new licence"
+  },
+  "site-part-of-contractual-agreement": {
+    "required": "Select if the new site is part of a contractual agreement"
+  },
+  "date-moving-site": {
+    "required": "Enter the date you plan to move site",
+    "date": "Enter a real date you plan to move sites",
+    "before": "Date you plan to move site must be within the next year. Come back and re-apply later if you are moving sites more than 1 year in the future",
+    "after": "Date you plan to move site must be within the past year"
   }
 }
