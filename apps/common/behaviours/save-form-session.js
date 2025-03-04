@@ -18,20 +18,23 @@ module.exports = superclass => class extends superclass {
     }
 
     // ensure no /edit steps are add to the steps property when we save to the store
-    session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
+    session.steps = session.steps.filter(step => !step.match(/\/change|edit$/))
 
-    const applicantId = req.sessionModel.get('applicant-id');
+    const applicant_id = req.sessionModel.get('applicant-id');
     const applicationId = req.sessionModel.get('application-id');
-    const applicationType = req.sessionModel.get('licence-type');
+    const licence_type_id = req.sessionModel.get('application-type');
+    const status_id = 1;
 
     req.log('info', `Saving Form Session: ${applicationId}`);
 
     try {
-      const response = await axios({
+      const reqParams = {
         url: applicationId ? `${applicationsUrl}/${applicationId}` : applicationsUrl,
         method: applicationId ? 'PATCH' : 'POST',
-        data: applicationId ? { session } : { session, applicantId, applicationType }
-      });
+        data: applicationId ? { session } : { session, applicant_id, licence_type_id, status_id }
+      }
+
+      const response = await axios(reqParams);
 
       const resBody = response.data;
 

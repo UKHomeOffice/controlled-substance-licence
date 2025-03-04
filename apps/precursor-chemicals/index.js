@@ -11,6 +11,9 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const SaveFormSession = require('../common/behaviours/save-form-session');
+const ResumeFormSession = require('../common/behaviours/resume-form-session');
+
 const steps = {
 
   /** Start of journey */
@@ -27,7 +30,8 @@ const steps = {
       }
     ],
     next: '/licensee-type',
-    backLink: '/licence-type'
+    backLink: '/licence-type',
+    behaviours: [ResumeFormSession]
   },
 
   '/licensee-type': {
@@ -183,7 +187,8 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address'
+    next: '/licence-holder-address',
+    behaviours: [SaveFormSession]
   },
 
   '/licence-holder-address': {
@@ -193,7 +198,8 @@ const steps = {
       'licence-holder-town-or-city',
       'licence-holder-postcode'
     ],
-    next: '/reuse-premises-address'
+    next: '/reuse-premises-address',
+    behaviours: [SaveFormSession]
   },
 
   '/reuse-premises-address': {
@@ -207,7 +213,8 @@ const steps = {
         }
       }
     ],
-    next: '/premises-contact-details'
+    next: '/premises-contact-details',
+    behaviours: [SaveFormSession]
   },
 
   '/premises-address': {
@@ -217,7 +224,8 @@ const steps = {
       'premises-town-or-city',
       'premises-postcode'
     ],
-    next: '/premises-contact-details'
+    next: '/premises-contact-details',
+    behaviours: [SaveFormSession]
   },
 
   '/premises-contact-details': {
@@ -226,7 +234,8 @@ const steps = {
       'premises-telephone',
       'premises-email'
     ],
-    next: '/responsible-officer-details'
+    next: '/responsible-officer-details',
+    behaviours: [SaveFormSession]
   },
 
   '/responsible-officer-details': {
@@ -235,7 +244,8 @@ const steps = {
       'responsible-officer-email',
       'responsible-officer-dbs-certificate'
     ],
-    next: '/responsible-officer-dbs-information'
+    next: '/responsible-officer-dbs-information',
+    behaviours: [SaveFormSession]
   },
 
   '/responsible-officer-dbs-information': {

@@ -5,9 +5,9 @@ const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/a
 
 module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
-    const applicantId = ''; // get applicantId from common session
-    const applicationType = ''; // get applicationType from common session or req.baseUrl
-    const licenseeType = req.form.values['licensee-type'];
+    const applicantId = 1; // get applicantId from common session
+    const licenceType = 1; // get applicationType from common session or req.baseUrl
+    const licenseeType = req.form.values['application-form-type'];
 
     const hofModel = new Model();
 
@@ -20,7 +20,7 @@ module.exports = superclass => class extends superclass {
 
         const openApplications = userApplications.data
           .filter(application => {
-            return application.application_type === applicationType && !application.submitted_at;
+            return application.licence_type_id === licenceType && !application.submitted_at;
           })
           .sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
 
@@ -32,7 +32,7 @@ module.exports = superclass => class extends superclass {
       }
     }
     req.sessionModel.set('applicant-id', applicantId);
-    req.sessionModel.set('application-type', applicationType);
+    req.sessionModel.set('application-type', licenceType);
 
     return super.saveValues(req, res, next);
   }
