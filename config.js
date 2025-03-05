@@ -21,6 +21,10 @@ module.exports = {
     port: process.env.REDIS_PORT || '6379',
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
+  sessionDefaults: {
+    steps: ['/application-type'],
+    fields: ['csrf-secret', 'errorValues', 'errors']
+  },
   saveService: {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '5000',
     host: process.env.DATASERVICE_SERVICE_HOST &&

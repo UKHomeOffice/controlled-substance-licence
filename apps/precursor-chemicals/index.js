@@ -172,7 +172,7 @@ const steps = {
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
-    behaviours: [customValidation],
+    behaviours: [SaveFormSession, customValidation],
     fields: [
       'company-name',
       'company-number',
@@ -180,8 +180,7 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address',
-    behaviours: [SaveFormSession]
+    next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
@@ -222,13 +221,12 @@ const steps = {
   },
 
   '/premises-contact-details': {
-    behaviours: [customValidation],
+    behaviours: [SaveFormSession, customValidation],
     fields: [
       'premises-telephone',
       'premises-email'
     ],
-    next: '/responsible-officer-details',
-    behaviours: [SaveFormSession]
+    next: '/responsible-officer-details'
   },
 
   '/responsible-officer-details': {
