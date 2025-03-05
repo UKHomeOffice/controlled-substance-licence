@@ -65,16 +65,8 @@ const steps = {
 
   '/companies-house-number': {
     fields: ['companies-house-number-change'],
-    forks: [
-      {
-        target: '/companies-house-name',
-        condition: {
-          field: 'companies-house-number-change',
-          value: 'no'
-        }
-      }
-    ],
-    next: '/cannot-continue'
+    next: '/companies-house-name',
+    behaviours: [SetSummaryReferrer, CustomRedirect]
   },
 
   '/companies-house-name': {
@@ -92,6 +84,7 @@ const steps = {
   },
 
   '/cannot-continue': {
+    backLink: '/precursor-chemicals/companies-house-number'
   },
 
   '/upload-companies-house-evidence': {
