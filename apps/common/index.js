@@ -16,7 +16,8 @@ const steps = {
           value: 'controlled-drugs'
         }
       }
-    ]
+    ],
+    next:'/industrial-hemp/application-type'
   }
 };
 
