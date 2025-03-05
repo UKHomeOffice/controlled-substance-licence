@@ -13,7 +13,7 @@ const steps = {
   '/licensee-type': {
     next: '/confirm'
   },
-  
+
   /** Continue an application */
 
 
@@ -22,13 +22,13 @@ const steps = {
 
   /** Existing licence apply for new site - Background Information */
 
-  
+
   /** First time licensee - About the applicants */
 
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
-  },
+  }
 
 };
 

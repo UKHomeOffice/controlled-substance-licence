@@ -17,7 +17,7 @@ const steps = {
         }
       }
     ],
-    next:'/industrial-hemp/application-type'
+    next: '/industrial-hemp/application-type'
   }
 };
 
