@@ -7,11 +7,11 @@ module.exports = superclass => class extends superclass {
   async saveValues(req, res, next) {
     const applicantId = 1; // get applicantId from common session
     const licenceType = 1; // get applicationType from common session or req.baseUrl
-    const licenseeType = req.form.values['application-form-type'];
+    const applicationFormType = req.form.values['application-form-type'];
 
     const hofModel = new Model();
 
-    if (licenseeType === 'continue-an-application') {
+    if (applicationFormType === 'continue-an-application') {
       try {
         const userApplications = await hofModel._request({
           url: `${applicationsUrl}/applicant_id/${applicantId}`,
