@@ -4,7 +4,7 @@ const config = require('../../../config');
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/applications`;
 
 module.exports = superclass => class extends superclass {
-  async configure(req, res, next) {
+  async getValues(req, res, next) {
     this.cleanSession(req);
 
     const applicantId = 1; // get applicantId from common session
@@ -26,7 +26,7 @@ module.exports = superclass => class extends superclass {
       )[openApplications.length - 1];
 
       if (savedApplication) {
-        this.resumeSession(req, savedApplication);
+        req.sessionModel.set('application-to-resume', savedApplication)
       } else {
         // If there are no saved applications for user remove radio option to continue an application
         const applicationTypeOptions = req.form.options.fields['application-form-type'].options;
@@ -42,7 +42,7 @@ module.exports = superclass => class extends superclass {
     req.sessionModel.set('applicant-id', applicantId);
     req.sessionModel.set('licence-type', licenceType);
 
-    return super.configure(req, res, next);
+    return super.getValues(req, res, next);
   }
 
   cleanSession(req) {
@@ -50,6 +50,15 @@ module.exports = superclass => class extends superclass {
     const sessionAttributes = Object.keys(req.sessionModel.attributes);
     const cleanList = sessionAttributes.filter(item => !sessionDefaults.fields.includes(item));
     req.sessionModel.unset(cleanList);
+  }
+
+  saveValues(req, res, next) {
+    const resumeApplication = req.form.values['application-form-type'] === 'continue-an-application';
+    const applicationToResume = req.sessionModel.get('application-to-resume')
+    if (resumeApplication && applicationToResume) {
+      this.resumeSession(req, applicationToResume);
+    }
+    return super.saveValues(req, res, next);
   }
 
   resumeSession(req, application) {
