@@ -11,7 +11,8 @@
   "routes": [
     "./apps/common",
     "./apps/precursor-chemicals",
-    "./apps/controlled-drugs"
+    "./apps/controlled-drugs",
+    "./apps/industrial-hemp"
   ],
   "session": {
     "name": "csl.hof.sid"
