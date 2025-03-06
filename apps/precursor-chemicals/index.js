@@ -19,6 +19,7 @@ const steps = {
   /** Start of journey */
 
   '/application-type': {
+    behaviours: [ResumeFormSession],
     fields: ['application-form-type'],
     forks: [
       {
@@ -30,8 +31,7 @@ const steps = {
       }
     ],
     next: '/licensee-type',
-    backLink: '/licence-type',
-    behaviours: [ResumeFormSession]
+    backLink: '/licence-type'
   },
 
   '/licensee-type': {
@@ -172,7 +172,7 @@ const steps = {
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
-    behaviours: [SaveFormSession, customValidation],
+    behaviours: [customValidation],
     fields: [
       'company-name',
       'company-number',
@@ -190,8 +190,7 @@ const steps = {
       'licence-holder-town-or-city',
       'licence-holder-postcode'
     ],
-    next: '/reuse-premises-address',
-    behaviours: [SaveFormSession]
+    next: '/reuse-premises-address'
   },
 
   '/reuse-premises-address': {
@@ -205,8 +204,7 @@ const steps = {
         }
       }
     ],
-    next: '/premises-contact-details',
-    behaviours: [SaveFormSession]
+    next: '/premises-contact-details'
   },
 
   '/premises-address': {
@@ -216,12 +214,11 @@ const steps = {
       'premises-town-or-city',
       'premises-postcode'
     ],
-    next: '/premises-contact-details',
-    behaviours: [SaveFormSession]
+    next: '/premises-contact-details'
   },
 
   '/premises-contact-details': {
-    behaviours: [SaveFormSession, customValidation],
+    behaviours: [customValidation],
     fields: [
       'premises-telephone',
       'premises-email'
@@ -235,8 +232,7 @@ const steps = {
       'responsible-officer-email',
       'responsible-officer-dbs-certificate'
     ],
-    next: '/responsible-officer-dbs-information',
-    behaviours: [SaveFormSession]
+    next: '/responsible-officer-dbs-information'
   },
 
   '/responsible-officer-dbs-information': {
@@ -491,5 +487,6 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
-  steps: steps
+  steps: steps,
+  behaviours: [SaveFormSession]
 };

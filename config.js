@@ -22,8 +22,8 @@ module.exports = {
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
   sessionDefaults: {
-    steps: ['/application-type'],
-    fields: ['csrf-secret', 'errorValues', 'errors']
+    fields: ['csrf-secret'],
+    saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
   },
   saveService: {
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '5000',

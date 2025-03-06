@@ -6,15 +6,23 @@ const { genAxiosErrorMsg } = require('../../../utils/index');
 const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/applications`;
 
 module.exports = superclass => class extends superclass {
-  async saveValues(req, res, next) {
+  async successHandler(req, res, next) {
+    // SaveFormSession is set at app level so ignore it for few steps that don't need save.
+    const { route: currentRoute } = req.form.options;
+    const saveExemptList = config.sessionDefaults.saveExemptions;
+    if (saveExemptList.includes(currentRoute)) {
+      return super.successHandler(req, res, next);
+    }
+
     // remove csrf secret and errors from session data to prevent CSRF Secret issues in the session
     const session = req.sessionModel.toJSON();
     delete session['csrf-secret'];
     delete session.errors;
+    delete session.errorValues;
     delete session['valid-token'];
 
-    if (session.steps.indexOf(req.path) === -1) {
-      session.steps.push(req.path);
+    if (!session.steps.includes(currentRoute)) {
+      session.steps.push(currentRoute);
     }
 
     // ensure no /edit steps are add to the steps property when we save to the store
@@ -22,25 +30,21 @@ module.exports = superclass => class extends superclass {
 
     const applicant_id = req.sessionModel.get('applicant-id');
     const applicationId = req.sessionModel.get('application-id');
-    const licence_type_id = req.sessionModel.get('licence-type');
+    const licence_type = req.sessionModel.get('licence-type');
     const status_id = 1;
 
-    req.log('info', `Saving Form Session: ${applicationId}`);
+    req.log('info', `Saving Form Session: ${applicationId ?? 'New application'}`);
 
     try {
       const reqParams = {
         url: applicationId ? `${applicationsUrl}/${applicationId}` : applicationsUrl,
         method: applicationId ? 'PATCH' : 'POST',
-        data: applicationId ? { session } : { session, applicant_id, licence_type_id, status_id }
+        data: applicationId ? { session } : { session, applicant_id, licence_type, status_id }
       };
 
       const response = await axios(reqParams);
 
-      const resBody = response.data;
-
-      if (resBody && resBody.length && resBody[0].id) {
-        req.sessionModel.set('application-id', resBody[0].id);
-      } else {
+      if (!response.data[0]?.id) {
         req.sessionModel.unset('application-id');
       }
 
@@ -52,6 +56,6 @@ module.exports = superclass => class extends superclass {
       req.log('error', `Failed to save application: ${genAxiosErrorMsg(error)}`);
       return next(error);
     }
-    return super.saveValues(req, res, next);
+    return super.successHandler(req, res, next);
   }
 };
