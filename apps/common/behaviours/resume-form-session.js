@@ -1,7 +1,8 @@
 const { model: Model } = require('hof');
 const { genAxiosErrorMsg } = require('../../../utils/index');
 const config = require('../../../config');
-const applicationsUrl = `${config.saveService.host}:${config.saveService.port}/applications`;
+const { protocol, host, port } = config.saveService;
+const applicationsUrl = `${protocol}//${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
   async getValues(req, res, next) {
@@ -26,7 +27,7 @@ module.exports = superclass => class extends superclass {
       )[openApplications.length - 1];
 
       if (savedApplication) {
-        req.sessionModel.set('application-to-resume', savedApplication)
+        req.sessionModel.set('application-to-resume', savedApplication);
       } else {
         // If there are no saved applications for user remove radio option to continue an application
         const applicationTypeOptions = req.form.options.fields['application-form-type'].options;
@@ -54,7 +55,7 @@ module.exports = superclass => class extends superclass {
 
   saveValues(req, res, next) {
     const resumeApplication = req.form.values['application-form-type'] === 'continue-an-application';
-    const applicationToResume = req.sessionModel.get('application-to-resume')
+    const applicationToResume = req.sessionModel.get('application-to-resume');
     if (resumeApplication && applicationToResume) {
       this.resumeSession(req, applicationToResume);
     }

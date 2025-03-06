@@ -26,9 +26,9 @@ module.exports = {
     saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
   },
   saveService: {
-    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '5000',
-    host: process.env.DATASERVICE_SERVICE_HOST &&
-      `https://${process.env.DATASERVICE_SERVICE_HOST}` || 'http://127.0.0.1'
+    protocol: process.env.DATASERVICE_PROTOCOL || 'https:',
+    port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '10443',
+    host: process.env.DATASERVICE_SERVICE_HOST
   },
   upload: {
     maxFileSizeInBytes: 25 * 1024 * 1024, // 25MiB in bytes
