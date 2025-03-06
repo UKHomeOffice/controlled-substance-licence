@@ -96,7 +96,7 @@ module.exports = {
         field: 'date-moving-site',
         parse: (value, req) => {
           if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
-              (req.sessionModel.get('why-requesting-new-licence')) === 'moving-site') {
+                value) {
             return formatDate(value);
           }
           return null;
