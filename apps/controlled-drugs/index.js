@@ -648,6 +648,12 @@ const steps = {
   },
 
   '/upload-activity-template': {
+    behaviours: [
+      SaveDocument('user-activity-template', 'file-upload'),
+      RemoveDocument('user-activity-template')
+    ],
+    fields: ['file-upload'],
+    documentCategory: 'user-activity-template',
     next: '/security-features'
   },
 

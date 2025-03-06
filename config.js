@@ -42,8 +42,15 @@ module.exports = {
       'certificate-of-good-conduct': {
         limit: 20,
         limitValidationError: 'certificateOfGoodConductLimit'
+      },
+      'user-activity-template': {
+        limit: 1,
+        limitValidationError: 'userActivityTemplateLimit'
       }
     }
+  },
+  download: {
+    filename: 'controlled-drugs-activity-user-list.xlsx'
   },
   aws: {
     bucket: process.env.AWS_BUCKET,
