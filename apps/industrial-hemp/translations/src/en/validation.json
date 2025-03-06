@@ -1,5 +1,16 @@
 {
-
+  "application-form-type": {
+    "required": "Select how would you like to apply"
+  },
+  "amend-application-details": {
+    "required": "Reference number provided must be between 2 and 8 numeral digits",
+    "numeric": "Reference number provided must be between 2 and 8 numeral digits",
+    "minlength": "Reference number provided must be between 2 and 8 numeral digits",
+    "maxlength": "Reference number provided must be between 2 and 8 numeral digits"
+  },
+  "licensee-type": {
+    "required": "Select what type of licensee are you"
+  },
   "company-name": {
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",
