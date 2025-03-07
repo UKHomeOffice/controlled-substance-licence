@@ -1,4 +1,6 @@
 const hof = require('hof');
+const licenseTypeRedirect = require('./behaviours/licensee-type-redirect');
+
 const Summary = hof.components.summary;
 
 const steps = {
@@ -6,12 +8,15 @@ const steps = {
   /** Start of journey */
 
   '/application-type': {
+    fields: ['application-form-type', 'amend-application-details'],
     next: '/licensee-type',
     backLink: '/licence-type'
   },
 
   '/licensee-type': {
-    next: '/confirm'
+    fields: ['licensee-type'],
+    next: '/confirm',
+    behaviours: [licenseTypeRedirect]
   },
 
   /** Continue an application */
