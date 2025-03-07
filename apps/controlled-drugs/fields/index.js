@@ -1275,5 +1275,52 @@ module.exports = {
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']
+  },
+  'why-requesting-new-licence': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'moving-site'
+      },
+      {
+        value: 'another-site'
+      }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'date-moving-site': dateComponent('date-moving-site', {
+    mixin: 'input-date',
+    isPageHeading: 'true',
+    validate: [
+      'required',
+      'date',
+      // 'before' '-1' 'years' allows dates less than 1 year into the future.
+      { type: 'before', arguments: ['-1', 'years'] },
+      { type: 'after', arguments: ['1', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'site-part-of-contractual-agreement': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };
