@@ -1,5 +1,5 @@
 const hof = require('hof');
-const licenseTypeRedirect = require('./behaviours/licensee-type-redirect');
+const licenseTypeRedirect = require('../common/behaviours/licensee-type-redirect');
 
 const Summary = hof.components.summary;
 

@@ -1,7 +1,7 @@
 'use strict';
 
 const sinon = require('sinon');
-const Behaviour = require('../../../apps/industrial-hemp/behaviours/licensee-type-redirect');
+const Behaviour = require('../../../apps/common/behaviours/licensee-type-redirect');
 
 describe('Behaviour: successHandler', () => {
   let req;
