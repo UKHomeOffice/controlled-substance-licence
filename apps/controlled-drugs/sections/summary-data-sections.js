@@ -133,7 +133,7 @@ module.exports = {
           }
           return null;
         }
-      },
+      }
     ]
   },
   'about-the-applicants': {
