@@ -1,5 +1,6 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
+const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
 
@@ -14,6 +15,28 @@ const steps = {
     next: '/confirm'
   },
 
+  '/licence-holder-details': {
+    behaviours: [customValidation],
+    fields: [
+      'company-name',
+      'company-number',
+      'telephone',
+      'email',
+      'website-url'
+    ],
+    next: '/licence-holder-address',
+    backLink: '/application-type'
+  },
+
+  '/licence-holder-address': {
+    fields: [
+      'licence-holder-address-line-1',
+      'licence-holder-address-line-2',
+      'licence-holder-town-or-city',
+      'licence-holder-postcode'
+    ],
+    next: '/reuse-premises-address'
+  },
   /** Continue an application */
 
 
