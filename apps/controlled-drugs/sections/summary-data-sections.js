@@ -111,7 +111,29 @@ module.exports = {
           }
           return null;
         }
-      }
+      },
+      {
+        step: '/when-contract-start',
+        field: 'when-contract-start',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+                value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+              value) {
+            return value;
+          }
+          return null;
+        }
+      },
     ]
   },
   'about-the-applicants': {

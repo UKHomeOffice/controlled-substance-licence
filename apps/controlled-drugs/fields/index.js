@@ -1322,5 +1322,25 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
-  }
+  },
+  'when-contract-start': dateComponent('when-contract-start', {
+    mixin: 'input-date',
+    isPageHeading: 'true',
+    validate: [
+      'required',
+      'date',
+      // 'before' '-1' 'years' allows dates less than 1 year into the future.
+      { type: 'before', arguments: ['-1', 'years'] },
+      { type: 'after', arguments: ['1', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'contract-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  },
 };
