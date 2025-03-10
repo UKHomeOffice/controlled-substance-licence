@@ -1,0 +1,10 @@
+<details class="govuk-details focused" role="group">
+  <summary class="govuk-details__summary" role="button" aria-controls="details-content-0" aria-expanded="false">
+    <span class="govuk-details__summary-text">
+      How can I amend my company registration details
+    </span>
+  </summary>
+  <div class="govuk-details__text" id="details-content-0" aria-hidden="false">
+    <p class="govuk-body">Email <a href="mailto:DFLU.dom@homeoffice.gov.uk">DFLU.dom@homeoffice.gov.uk</a> to amend company registration details.</p>
+  </div>
+</details>

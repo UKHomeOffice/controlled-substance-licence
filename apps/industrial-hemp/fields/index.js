@@ -12,8 +12,8 @@ module.exports = {
       },
       {
         value: 'amend-application',
-        toggle: 'amend-application-details-fieldset',
-        child: 'partials/amend-application-details'
+        toggle: 'amend-application-details',
+        child: 'input-text'
       }
     ]
   },
@@ -28,10 +28,6 @@ module.exports = {
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
     dependent: {
-      value: 'amend-application',
-      field: 'application-form-type'
-    },
-    validationLink: {
       value: 'amend-application',
       field: 'application-form-type'
     }
