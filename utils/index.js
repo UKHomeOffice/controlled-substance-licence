@@ -133,7 +133,7 @@ const isValidPhoneNumber = phoneNumber => {
  */
 const genAxiosErrorMsg = error => {
   const errorDetails = error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
-  const errorCode = error.status ? `${error.status} -` : '';
+  const errorCode = error.response?.status ? `${error.response.status} -` : '';
   return `${errorCode} ${error.message}; ${errorDetails}`;
 };
 

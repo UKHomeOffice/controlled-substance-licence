@@ -29,7 +29,7 @@ module.exports = superclass => class extends superclass {
       if (savedApplication) {
         req.sessionModel.set('application-to-resume', savedApplication);
       } else {
-        // If there are no saved applications for user remove radio option to continue an application
+        // If there are no saved applications for user remove radio option for continue an application
         const applicationTypeOptions = req.form.options.fields['application-form-type'].options;
         req.form.options.fields['application-form-type'].options = applicationTypeOptions.filter(
           radio => radio.value !== 'continue-an-application'
