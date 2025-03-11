@@ -114,7 +114,7 @@ module.exports = {
       },
       {
         step: '/when-contract-start',
-        field: 'when-contract-start',
+        field: 'contract-start-date',
         parse: (value, req) => {
           if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
                 value) {

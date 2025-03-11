@@ -385,7 +385,7 @@
       "site-part-of-contractual-agreement": {
         "label": "Is new site part of contractual agreement"
       },
-      "when-contract-start": {
+      "contract-start-date": {
         "label": "When does it start"
       },
       "contract-details": {

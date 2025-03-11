@@ -862,7 +862,7 @@
       }
     }
   },
-  "when-contract-start": {
+  "contract-start-date": {
     "legend": "When does the contract start?"
   },
   "contract-details": {

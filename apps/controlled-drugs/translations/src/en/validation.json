@@ -502,15 +502,19 @@
     "required": "Select if the new site is part of a contractual agreement"
   },
   "date-moving-site": {
-    "required": "Enter the date you plan to move site",
-    "date": "Enter a real date you plan to move sites",
-    "before": "Date you plan to move site must be within the next year. Come back and re-apply later if you are moving sites more than 1 year in the future",
-    "after": "Date you plan to move site must be within the past year"
+    "required": "Enter a moving date",
+    "date": "Enter a moving date in the correct format",
+    "after": "Moving date must be in the future"
   },
-  "when-contract-start": {
+  "contract-start-date": {
     "required": "Enter the contract start date",
     "date": "Enter a real contract start date",
     "before": "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future",
     "after": "Contract start date must be within the past year"
+  },
+  "contract-details": {
+    "required": "Enter details about the contract and how it affects your licence application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details about the contract must be 2,000 characters or less"
   }
 }

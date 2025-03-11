@@ -1298,9 +1298,7 @@ module.exports = {
     validate: [
       'required',
       'date',
-      // 'before' '-1' 'years' allows dates less than 1 year into the future.
-      { type: 'before', arguments: ['-1', 'years'] },
-      { type: 'after', arguments: ['1', 'years'] }
+      { type: 'after', arguments: ['0', 'days'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
@@ -1323,7 +1321,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'when-contract-start': dateComponent('when-contract-start', {
+  'contract-start-date': dateComponent('contract-start-date', {
     mixin: 'input-date',
     isPageHeading: 'true',
     validate: [
