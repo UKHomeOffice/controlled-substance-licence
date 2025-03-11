@@ -1,13 +1,5 @@
 'use strict';
 
-/**
- * Parses a list of 0 or more checkbox options from a 'checkbox-group' field.
- *
- * @param {array|string} list - The checked box option(s). This is string for one checked and array for more than one
- * @param {object} req - The request object
- * @returns {string} - A string of the list items separated by a newline or the value of journey.not-provided.
- */
-
 module.exports = {
   'about-the-applicants': {
     steps: [
