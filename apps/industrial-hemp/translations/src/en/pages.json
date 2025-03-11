@@ -5,5 +5,15 @@
   "licence-holder-address": {
     "header": "Licence holder address",
     "intro": "This is the address your business is registered at."
+  },
+  "confirm": {
+    "fields": {
+      "licence-holder-details": {
+        "label": "Licence holder details"
+      },
+      "licence-holder-address": {
+        "label": "Licence holder address"
+      }
+    }
   }
 }

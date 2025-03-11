@@ -37,6 +37,11 @@ const steps = {
     ],
     next: '/reuse-premises-address'
   },
+
+  '/reuse-premises-address': {
+    next: '/confirm'
+  },
+
   /** Continue an application */
 
 
