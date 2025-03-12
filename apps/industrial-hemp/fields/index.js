@@ -70,7 +70,7 @@ module.exports = {
   },
   'growing-location-email': {
     mixin: 'input-text',
-    validate: ['email', { type: 'maxlength', arguments: [15000] }],
+    validate: ['email'],
     type: 'email',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },

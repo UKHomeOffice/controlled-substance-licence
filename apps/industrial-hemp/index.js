@@ -49,6 +49,7 @@ const steps = {
   },
 
   '/growing-location-contact': {
+    behaviours: [customValidation],
     fields: [
       'growing-location-email',
       'growing-location-uk-telephone'
