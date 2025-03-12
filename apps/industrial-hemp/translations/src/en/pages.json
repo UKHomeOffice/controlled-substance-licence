@@ -1,3 +1,25 @@
 {
-
+  "licence-holder-details": {
+    "header": "Licence holder details"
+  },
+  "licence-holder-address": {
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "sections": {
+      "about-the-applicants": {
+        "header": "About the applicants"
+      }
+    },
+    "fields": {
+      "licence-holder-details": {
+        "label": "Licence holder details"
+      },
+      "licence-holder-address": {
+        "label": "Licence holder address"
+      }
+    }
+  }
 }
