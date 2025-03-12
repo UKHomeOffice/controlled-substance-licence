@@ -861,5 +861,11 @@
         "label": "No"
       }
     }
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
   }
 }

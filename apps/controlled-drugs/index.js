@@ -143,10 +143,12 @@ const steps = {
   },
 
   '/when-contract-start': {
+    fields: ['contract-start-date'],
     next: '/contract-details'
   },
 
   '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
 
