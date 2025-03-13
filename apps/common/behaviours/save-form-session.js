@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-
-const axios = require('axios');
+const { model: Model } = require('hof');
 const config = require('../../../config');
 const { genAxiosErrorMsg } = require('../../../utils/index');
 const { protocol, host, port } = config.saveService;
@@ -42,8 +41,9 @@ module.exports = superclass => class extends superclass {
         data: applicationId ? { session } : { session, applicant_id, licence_type, status_id }
       };
 
-      const response = await axios(reqParams);
+      const hofModel = new Model();
 
+      const response = await hofModel._request(reqParams);
       if (!response.data[0]?.id) {
         req.sessionModel.unset('application-id');
       }
