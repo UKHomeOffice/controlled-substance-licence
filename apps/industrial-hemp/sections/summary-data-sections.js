@@ -1,6 +1,14 @@
 'use strict';
 
 module.exports = {
+  'background-information': {
+    steps: [
+      {
+        step: '/application-type',
+        field: 'amend-application-details'
+      }
+    ]
+  },
   'about-the-applicants': {
     steps: [
       {

@@ -17,9 +17,15 @@
     "sections": {
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "background-information": {
+        "header": "Background information"
       }
     },
     "fields": {
+      "amend-application-details": {
+        "label": "Application reference number"
+      },
       "licence-holder-details": {
         "label": "Licence holder details"
       },

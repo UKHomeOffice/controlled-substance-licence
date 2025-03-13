@@ -1,4 +1,5 @@
 const hof = require('hof');
+
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
@@ -7,12 +8,39 @@ const steps = {
   /** Start of journey */
 
   '/application-type': {
+    fields: ['application-form-type', 'amend-application-details'],
+    forks: [
+      {
+        target: '/information-you-have-given-us',
+        condition: {
+          field: 'application-form-type',
+          value: 'continue-an-application'
+        }
+      }
+    ],
     next: '/licensee-type',
     backLink: '/licence-type'
   },
 
   '/licensee-type': {
-    next: '/confirm'
+    fields: ['licensee-type'],
+    next: '/licence-holder-details',
+    forks: [
+      {
+        target: '/company-number-changed',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ]
   },
 
   '/licence-holder-details': {
