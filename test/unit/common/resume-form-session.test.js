@@ -172,7 +172,8 @@ describe('resume-form-session', () => {
 
       req.sessionModel = {
         get: jest.fn().mockReturnValue(mockApplication),
-        set: jest.fn()
+        set: jest.fn(),
+        unset: jest.fn()
       };
 
       req.form.values = {

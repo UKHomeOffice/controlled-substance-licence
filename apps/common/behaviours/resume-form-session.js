@@ -8,7 +8,7 @@ module.exports = superclass => class extends superclass {
   async getValues(req, res, next) {
     this.cleanSession(req);
 
-    const applicantId = 1; // get applicantId from common session
+    const applicantId = 1; // get applicantId from common session logged in user
     const licenceType = req.session['hof-wizard-common']['licence-type'];
 
     const hofModel = new Model();
@@ -59,6 +59,7 @@ module.exports = superclass => class extends superclass {
     if (resumeApplication && applicationToResume) {
       this.resumeSession(req, applicationToResume);
     }
+    req.sessionModel.unset('application-to-resume');
     return super.saveValues(req, res, next);
   }
 
