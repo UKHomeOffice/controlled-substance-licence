@@ -38,6 +38,30 @@
   "licence-holder-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a real UK postcode"
+  },
+  "growing-location-address-line-1": {
+    "required": "Enter an address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "growing-location-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "growing-location-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "growing-location-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "growing-location-email": {
+    "email": "Enter a real email address"
+  },
+  "growing-location-uk-telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
   }
-  
 }

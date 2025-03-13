@@ -35,10 +35,28 @@ const steps = {
       'licence-holder-town-or-city',
       'licence-holder-postcode'
     ],
-    next: '/reuse-premises-address'
+    next: '/growing-location-address'
   },
 
-  '/reuse-premises-address': {
+  '/growing-location-address': {
+    fields: [
+      'growing-location-address-line-1',
+      'growing-location-address-line-2',
+      'growing-location-town-or-city',
+      'growing-location-postcode'
+    ],
+    next: '/growing-location-contact'
+  },
+
+  '/growing-location-contact': {
+    behaviours: [customValidation],
+    fields: [
+      'growing-location-email',
+      'growing-location-uk-telephone'
+    ],
+    next: '/site-responsible-officer'
+  },
+  '/site-responsible-officer': {
     next: '/confirm'
   },
 

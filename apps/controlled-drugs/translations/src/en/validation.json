@@ -507,10 +507,9 @@
     "after": "Moving date must be in the future"
   },
   "contract-start-date": {
-    "required": "Enter the contract start date",
-    "date": "Enter a real contract start date",
-    "before": "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future",
-    "after": "Contract start date must be within the past year"
+    "required": "Enter a date",
+    "date": "Enter a date in the correct format",
+    "after": "Contract start date must be in the future"
   },
   "contract-details": {
     "required": "Enter details about the contract and how it affects your licence application",

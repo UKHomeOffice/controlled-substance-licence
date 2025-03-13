@@ -26,5 +26,26 @@
   },
   "licence-holder-postcode": {
     "label": "Postcode"
-  }
+  },
+    "growing-location-address-line-1": {
+        "label": "Address line 1"
+    },
+    "growing-location-address-line-2": {
+        "label": "Address line 2 (optional)"
+    },
+    "growing-location-town-or-city": {
+        "label": "Town or city"
+    },
+    "growing-location-postcode": {
+        "label": "Postcode"
+    },
+    "growing-location-email": {
+        "label": "Email address (optional)"
+    },
+    "growing-location-uk-telephone": {
+        "label": "UK telephone number"
+    },
+    "premises-email": {
+        "label": "Email address (optional)"
+    }
 }
