@@ -77,7 +77,7 @@ module.exports = {
 
   'growing-location-uk-telephone': {
     mixin: 'input-text',
-    validate: ['required', 'ukPhoneNumber'],
+    validate: ['required'], // additional validation covered in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 
