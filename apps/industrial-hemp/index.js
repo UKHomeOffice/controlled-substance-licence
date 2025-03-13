@@ -84,7 +84,19 @@ const steps = {
     ],
     next: '/site-responsible-officer'
   },
+
   '/site-responsible-officer': {
+    behaviours: [customValidation],
+    fields: [
+      'site-responsible-person-full-name',
+      'site-responsible-person-uk-telephone',
+      'site-responsible-person-email',
+      'site-responsible-DBS-check'
+    ],
+    next: '/site-responsible-officer-dbs'
+  },
+
+  '/site-responsible-officer-dbs': {
     next: '/confirm'
   },
 

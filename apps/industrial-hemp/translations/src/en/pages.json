@@ -12,6 +12,9 @@
   "growing-location-contact": {
     "header": "Growing location contact details"
   },
+  "site-responsible-officer": {
+    "header": "Details of the responsible person for the site"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -37,6 +40,9 @@
       },
       "growing-location-contact": {
         "label": "Growing location contact details"
+      },
+      "site-responsible-officer": {
+        "label": "Responsible person details"
       }
     }
   }
