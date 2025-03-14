@@ -30,6 +30,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
@@ -52,6 +53,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licence-holder-details'
   },
 
