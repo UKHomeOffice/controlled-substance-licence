@@ -66,6 +66,7 @@ module.exports = {
   email: {
     mixin: 'input-text',
     validate: ['required', 'email'],
+    type: 'email',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'website-url': {
@@ -118,6 +119,7 @@ module.exports = {
   'growing-location-email': {
     mixin: 'input-text',
     validate: ['email'],
+    type: 'email',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
 
@@ -147,6 +149,7 @@ module.exports = {
   'site-responsible-person-email': {
     mixin: 'input-text',
     validate: ['required', 'email'],
+    type: 'email',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
 
