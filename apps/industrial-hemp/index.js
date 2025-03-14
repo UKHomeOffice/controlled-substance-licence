@@ -53,7 +53,6 @@ const steps = {
       'website-url'
     ],
     next: '/licence-holder-address',
-    backLink: '/application-type'
   },
 
   '/licence-holder-address': {
