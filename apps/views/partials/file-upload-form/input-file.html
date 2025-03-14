@@ -8,7 +8,7 @@
   <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
     <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
   </p>
-  <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file">
+  <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" document-category="{{options.documentCategory}}">
   <div id="upload-page-loading-spinner" class="spinner-container">
     <div class="spinner-loader"></div>
     <span class="spinner-message">{{#t}}journey.uploading{{/t}}</span>
