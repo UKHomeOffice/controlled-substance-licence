@@ -48,6 +48,18 @@ services:
     ports:
       - "3000:3000"
 
+  hof-rds-api:
+    env_file: devcontainer.env
+    image: quay.io/ukhomeofficedigital/hof-rds-api:16bc712744851373e533d94ecf04724836be8247
+    networks:
+      - csl-shared-network
+    hostname: hof-rds-api
+    environment:
+      - SERVICE_NAME=csl
+      - NODE_ENV=local
+    ports:
+      - "5000:5000"
+
 networks:
   csl-shared-network:
     driver: bridge
