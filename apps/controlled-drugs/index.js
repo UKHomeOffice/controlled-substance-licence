@@ -11,6 +11,7 @@ const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-refer
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
+const FileDownload = require('../common/behaviours/file-download');
 
 const steps = {
 
@@ -875,6 +876,11 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
+  },
+  '/user-activity-template-download': {
+    behaviours: [
+      FileDownload('/assets/documents', 'controlled-drugs-activity-user-list.xlsx')
+    ]
   }
 };
 

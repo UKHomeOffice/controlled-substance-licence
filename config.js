@@ -45,12 +45,16 @@ module.exports = {
       },
       'user-activity-template': {
         limit: 1,
-        limitValidationError: 'userActivityTemplateLimit'
+        limitValidationError: 'userActivityTemplateLimit',
+        allowedMimeTypes: [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'application/vnd.ms-excel',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ]
       }
     }
-  },
-  download: {
-    filename: 'controlled-drugs-activity-user-list.xlsx'
   },
   aws: {
     bucket: process.env.AWS_BUCKET,

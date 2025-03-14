@@ -69,12 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
       fileUploadStatusHandler('ready');
       const fileInfo = fileUpload.files && fileUpload.files.length > 0 ? fileUpload.files[0] : null;
 
+      // Retrieve the document-category attribute from the file input field
+      const documentCategory = fileUpload.getAttribute('document-category');
+
       if (fileInfo) {
         if (fileInfo.size > config.upload.maxFileSizeInBytes) {
           fileUploadStatusHandler('error', 'maxFileSize');
           return;
         }
-        if (!config.upload.allowedMimeTypes.includes(fileInfo.type) ) {
+
+        // Get allowedMimeTypes for the documentCategory or fallback to global allowedMimeTypes
+        const documentCategoryConfig = config.upload.documentCategories[documentCategory];
+        const allowedMimeTypes =
+          (documentCategoryConfig && documentCategoryConfig.allowedMimeTypes) || config.upload.allowedMimeTypes;
+
+        if (!allowedMimeTypes.includes(fileInfo.type)) {
           fileUploadStatusHandler('error', 'fileType');
           return;
         }
