@@ -41,7 +41,6 @@ describe('save-form-session', () => {
   let instance;
   let mockRequest;
   let mockSessionAttributes;
-  // let mockApplication;
 
   beforeEach(() => {
     req = reqres.req();
@@ -50,34 +49,6 @@ describe('save-form-session', () => {
 
     SaveFormSession = Behaviour(Base);
     instance = new SaveFormSession();
-
-    // mockApplication = {
-    //   id: 1,
-    //   applicant_id: 1,
-    //   licence_type: 'precursor-chemicals',
-    //   session: {
-    //     'applicant-id': 1,
-    //     'licence-type': 'precursor-chemicals',
-    //     'application-form-type': 'new-application',
-    //     steps: [
-    //       '/application-type',
-    //       '/licensee-type',
-    //       '/licence-holder-details'
-    //     ],
-    //     'licensee-type': 'first-time-licensee',
-    //     'company-name': 'Home Office',
-    //     'company-number': '16850062',
-    //     telephone: '07777777777',
-    //     email: 'sas-hof-test@digital.homeoffice.gov.uk',
-    //     'website-url': 'https://www.homeoffice.gov.uk'
-    //   },
-    //   status_id: 1,
-    //   created_at: '2025-03-07T16:00:46.058Z',
-    //   updated_at: '2025-03-07T16:00:46.058Z',
-    //   submitted_at: null,
-    //   icasework_case_id: null,
-    //   expires_at: '2025-03-14'
-    // };
   });
 
   describe('The \'successHandler\' method', () => {

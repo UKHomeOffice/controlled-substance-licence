@@ -4,6 +4,7 @@ const config = require('../../../config');
 const { genAxiosErrorMsg } = require('../../../utils/index');
 const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}//${host}:${port}/applications`;
+
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // SaveFormSession is set at app level so ignore it for few steps that don't need save.
