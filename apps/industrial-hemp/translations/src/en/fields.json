@@ -60,25 +60,37 @@
   "licence-holder-postcode": {
     "label": "Postcode"
   },
-    "growing-location-address-line-1": {
-        "label": "Address line 1"
-    },
-    "growing-location-address-line-2": {
-        "label": "Address line 2 (optional)"
-    },
-    "growing-location-town-or-city": {
-        "label": "Town or city"
-    },
-    "growing-location-postcode": {
-        "label": "Postcode"
-    },
-    "growing-location-email": {
-        "label": "Email address (optional)"
-    },
-    "growing-location-uk-telephone": {
-        "label": "UK telephone number"
-    },
-    "premises-email": {
-        "label": "Email address (optional)"
-    }
+  "growing-location-address-line-1": {
+    "label": "Address line 1"
+  },
+  "growing-location-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "growing-location-town-or-city": {
+    "label": "Town or city"
+  },
+  "growing-location-postcode": {
+    "label": "Postcode"
+  },
+  "growing-location-email": {
+    "label": "Email address (optional)"
+  },
+  "growing-location-uk-telephone": {
+    "label": "UK telephone number"
+  },
+  "premises-email": {
+    "label": "Email address (optional)"
+  },
+  "site-responsible-person-full-name": {
+    "label": "Full name"
+  },
+  "site-responsible-person-uk-telephone": {
+    "label": "UK telephone number"
+  },
+  "site-responsible-person-email": {
+    "label": "Email address"
+  },
+  "site-responsible-DBS-check": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  }
 }
