@@ -80,6 +80,59 @@ module.exports = {
           }
           return null;
         }
+      },
+      {
+        step: '/why-new-licence',
+        field: 'why-requesting-new-licence',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/when-moving-site',
+        field: 'date-moving-site',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+                value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'site-part-of-contractual-agreement',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/when-contract-start',
+        field: 'contract-start-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+                value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+              value) {
+            return value;
+          }
+          return null;
+        }
       }
     ]
   },

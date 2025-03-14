@@ -1,3 +1,84 @@
 {
-  
+  "application-form-type": {
+    "legend": "How are you applying for your low THC cannabis license?",
+    "options": {
+      "new-application": {
+        "label": "A new application"
+      },
+      "continue-an-application": {
+        "label": "Continue an application",
+        "hint": "An incomplete application stays on the system for 5 days and is then deleted"
+      },
+      "amend-application": {
+        "label": "Amend pending application"
+      }
+    }
+  },
+  "amend-application-details": {
+    "label": "Application reference number",
+    "hint": "For example, 12345678"
+  },
+  "licensee-type": {
+    "legend": "What type of low THC cannabis licensee are you?",
+    "options": {
+      "first-time-licensee": {
+        "label": "A first time licensee"
+      },
+      "existing-licensee-renew-or-change-site": {
+        "label": "Existing licensee renewing or changing a currently licensed site"
+      },
+      "existing-licensee-applying-for-new-site": {
+        "label": "Existing licensee applying for a new site"
+      }
+    }
+  },
+  "company-name": {
+    "label": "Company name"
+  },
+  "company-number": {
+    "label": "Company number (optional)",
+    "hint": "Enter the  number issued by Companies House"
+  },
+  "telephone": {
+    "label": "UK telephone number"
+  },
+  "email": {
+    "label": "Email address"
+  },
+  "website-url": {
+    "label": "Website URL (optional)"
+  },
+  "licence-holder-address-line-1": {
+    "label": "Address line 1"
+  },
+  "licence-holder-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "licence-holder-town-or-city": {
+    "label": "Town or city"
+  },
+  "licence-holder-postcode": {
+    "label": "Postcode"
+  },
+    "growing-location-address-line-1": {
+        "label": "Address line 1"
+    },
+    "growing-location-address-line-2": {
+        "label": "Address line 2 (optional)"
+    },
+    "growing-location-town-or-city": {
+        "label": "Town or city"
+    },
+    "growing-location-postcode": {
+        "label": "Postcode"
+    },
+    "growing-location-email": {
+        "label": "Email address (optional)"
+    },
+    "growing-location-uk-telephone": {
+        "label": "UK telephone number"
+    },
+    "premises-email": {
+        "label": "Email address (optional)"
+    }
 }

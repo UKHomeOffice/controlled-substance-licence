@@ -835,5 +835,37 @@
         "label": "No"
       }
     }
+  },
+  "why-requesting-new-licence": {
+    "legend": "Why are you requesting a new licence?",
+    "options": {
+      "moving-site": {
+        "label": "We are moving site"
+      },
+      "another-site": {
+        "label": "For another site"
+      }
+    }
+  },
+  "date-moving-site": {
+    "legend": "When are you moving site?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "site-part-of-contractual-agreement": {
+    "legend": "Is the new site part of a contractual agreement?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
   }
 }

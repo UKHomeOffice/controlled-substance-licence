@@ -107,9 +107,48 @@ const steps = {
     next: '/licence-holder-details'
   },
 
-  /** Excisting licence apply for new site - Background Information */
+  /** Existing licence apply for new site - Background Information */
 
   '/why-new-licence': {
+    fields: ['why-requesting-new-licence'],
+    forks: [
+      {
+        target: '/when-moving-site',
+        condition: {
+          field: 'why-requesting-new-licence',
+          value: 'moving-site'
+        }
+      }
+    ],
+    next: '/contractual-agreement'
+  },
+
+  '/when-moving-site': {
+    fields: ['date-moving-site'],
+    next: '/licence-holder-details'
+  },
+
+  '/contractual-agreement': {
+    fields: ['site-part-of-contractual-agreement'],
+    forks: [
+      {
+        target: '/when-contract-start',
+        condition: {
+          field: 'site-part-of-contractual-agreement',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+
+  '/when-contract-start': {
+    fields: ['contract-start-date'],
+    next: '/contract-details'
+  },
+
+  '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
 

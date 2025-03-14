@@ -495,5 +495,26 @@
   },
   "change-of-activity": {
     "required": "Select if you are requesting a change of activity"
+  },
+  "why-requesting-new-licence": {
+    "required": "Select why you are requesting a new licence"
+  },
+  "site-part-of-contractual-agreement": {
+    "required": "Select if the new site is part of a contractual agreement"
+  },
+  "date-moving-site": {
+    "required": "Enter a moving date",
+    "date": "Enter a moving date in the correct format",
+    "after": "Moving date must be in the future"
+  },
+  "contract-start-date": {
+    "required": "Enter a date",
+    "date": "Enter a date in the correct format",
+    "after": "Contract start date must be in the future"
+  },
+  "contract-details": {
+    "required": "Enter details about the contract and how it affects your licence application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details about the contract must be 2,000 characters or less"
   }
 }
