@@ -375,6 +375,21 @@
       },
       "extra-information": {
         "label": "Extra information"
+      },
+      "why-requesting-new-licence": {
+        "label": "Reason for collecting new licence"
+      },
+      "date-moving-site": {
+        "label": "Date when moving site"
+      },
+      "site-part-of-contractual-agreement": {
+        "label": "Is new site part of contractual agreement"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
       }
     }
   }

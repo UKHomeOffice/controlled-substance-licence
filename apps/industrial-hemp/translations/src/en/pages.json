@@ -1,0 +1,49 @@
+{
+  "licence-holder-details": {
+    "header": "Licence holder details"
+  },
+  "licence-holder-address": {
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
+  },
+  "growing-location-address": {
+    "header": "Address of the growing location where the low THC cannabis will be cultivated"
+  },
+  "growing-location-contact": {
+    "header": "Growing location contact details"
+  },
+  "site-responsible-officer": {
+    "header": "Details of the responsible person for the site"
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "sections": {
+      "about-the-applicants": {
+        "header": "About the applicants"
+      },
+      "background-information": {
+        "header": "Background information"
+      }
+    },
+    "fields": {
+      "amend-application-details": {
+        "label": "Application reference number"
+      },
+      "licence-holder-details": {
+        "label": "Licence holder details"
+      },
+      "licence-holder-address": {
+        "label": "Licence holder address"
+      },
+      "growing-location-address": {
+        "label": "Growing location address"
+      },
+      "growing-location-contact": {
+        "label": "Growing location contact details"
+      },
+      "site-responsible-officer": {
+        "label": "Responsible person details"
+      }
+    }
+  }
+}
