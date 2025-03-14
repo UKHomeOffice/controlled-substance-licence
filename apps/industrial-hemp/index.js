@@ -52,7 +52,7 @@ const steps = {
       'email',
       'website-url'
     ],
-    next: '/licence-holder-address',
+    next: '/licence-holder-address'
   },
 
   '/licence-holder-address': {
