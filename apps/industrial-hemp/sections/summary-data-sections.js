@@ -61,6 +61,18 @@ module.exports = {
           ];
           return growingLocationContact.filter(element => element).join('\n');
         }
+      },
+      {
+        step: '/site-responsible-officer',
+        field: 'site-responsible-officer',
+        parse: (list, req) => {
+          const siteResponsibleOfficerDetails = [
+            req.sessionModel.get('site-responsible-person-full-name'),
+            req.sessionModel.get('site-responsible-person-uk-telephone'),
+            req.sessionModel.get('site-responsible-person-email')
+          ];
+          return siteResponsibleOfficerDetails.filter(element => element).join('\n');
+        }
       }
     ]
   }
