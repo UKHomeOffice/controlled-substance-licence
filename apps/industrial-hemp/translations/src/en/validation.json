@@ -111,6 +111,6 @@
     "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
   },
   "responsible-officer-dbs-updates": {
-    "required": "Select if the person in charge has subscribed to DBS updates"
+    "required": "Select if the responsible person has subscribed to DBS updates"
   }
 }
