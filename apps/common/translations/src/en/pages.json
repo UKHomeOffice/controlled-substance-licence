@@ -1,3 +1,12 @@
 {
-  
+  "start": {
+    "header": "Apply for a domestic licence for controlled substances"
+  },
+  "sign-in": {
+    "header": "Sign in to apply for a domestic licence to produce, supply or possess controlled drugs",
+    "details-not-registered": "Not registered yet?",
+    "details-text": "You need to register before you can apply for a controlled substance licence.",
+    "details-link-text": "Register for your licence.",
+    "register-link": "https://www.licensing-for-controlled-substances.homeoffice.gov.uk/registration"
+  }
 }
