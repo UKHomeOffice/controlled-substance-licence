@@ -66,6 +66,7 @@ module.exports = {
   email: {
     mixin: 'input-text',
     validate: ['required', 'email'],
+    type: 'email',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'website-url': {
@@ -126,6 +127,35 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required'], // additional validation covered in custom-validation.js
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+
+  'site-responsible-person-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+
+  'site-responsible-person-uk-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+
+  'site-responsible-person-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    type: 'email',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+
+  'site-responsible-DBS-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 
 };
