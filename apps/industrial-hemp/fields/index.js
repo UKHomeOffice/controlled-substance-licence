@@ -186,7 +186,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-4'
     }
   }),
-  'responsible-officer-dbs-updates': {
+  'responsible-officer-dbs-subscription': {
     mixin: 'radio-group',
     isPageHeading: true,
     validate: [ 'required' ],
