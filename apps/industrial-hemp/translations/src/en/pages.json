@@ -50,7 +50,7 @@
       "site-responsible-officer-dbs-information": {
         "label": "Responsible person DBS information"
       },
-      "responsible-officer-dbs-updates": {
+      "responsible-officer-dbs-subscription": {
         "label": "Authorised witness subscribed to DBS updates?"
       }
     }
