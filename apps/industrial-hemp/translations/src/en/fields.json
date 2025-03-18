@@ -103,7 +103,7 @@
   "responsible-person-dbs-date-of-issue": {
     "label": "Date of issue or application"
   },
-  "responsible-officer-dbs-updates": {
+  "responsible-officer-dbs-subscription": {
     "legend": "Has the responsible person subscribed to DBS updates?",
     "options": {
       "yes": {

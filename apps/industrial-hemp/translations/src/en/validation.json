@@ -110,7 +110,7 @@
     "before": "DBS date of issue or application must not be in the future",
     "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
   },
-  "responsible-officer-dbs-updates": {
+  "responsible-officer-dbs-subscription": {
     "required": "Select if the responsible person has subscribed to DBS updates"
   }
 }

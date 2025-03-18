@@ -89,7 +89,7 @@ module.exports = {
       },
       {
         step: '/site-responsible-officer-dbs-updates',
-        field: 'responsible-officer-dbs-updates'
+        field: 'responsible-officer-dbs-subscription'
       }
 
     ]

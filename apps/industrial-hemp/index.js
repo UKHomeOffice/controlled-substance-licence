@@ -105,7 +105,7 @@ const steps = {
   },
 
   '/site-responsible-officer-dbs-updates': {
-    fields: ['responsible-officer-dbs-updates'],
+    fields: ['responsible-officer-dbs-subscription'],
     next: '/witness-destruction-plant'
   },
 
