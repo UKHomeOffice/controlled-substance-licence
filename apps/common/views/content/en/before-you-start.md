@@ -2,7 +2,7 @@
 
 You must be registered to use this service.
 
-<a href="{{#t}}pages.sign-in.register-link{{/t}}" class="govuk-link">Register for this service</a>
+<a href="/registration" class="govuk-link">Register for this service</a>
 
 You must provide all the required information for your application.
 
