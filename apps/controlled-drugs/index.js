@@ -872,7 +872,7 @@ const steps = {
   },
 
   '/session-timeout': {}
-}
+};
 
 module.exports = {
   name: 'controlled-drugs',
