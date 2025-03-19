@@ -92,5 +92,26 @@
   },
   "site-responsible-DBS-check": {
     "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "responsible-person-dbs-fullname": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "responsible-person-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "responsible-person-dbs-date-of-issue": {
+    "label": "Date of issue or application"
+  },
+  "responsible-officer-dbs-subscription": {
+    "legend": "Has the responsible person subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

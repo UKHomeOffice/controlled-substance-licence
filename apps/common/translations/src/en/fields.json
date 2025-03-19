@@ -12,5 +12,11 @@
         "label": "Low THC cannabis (industrial hemp)"
       }
     }
+  },
+  "username": {
+    "label": "Username"
+  },
+  "password": {
+    "label": "Password"
   }
 }
