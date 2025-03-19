@@ -1,4 +1,12 @@
 const steps = {
+  '/': {
+    next: '/sign-in',
+    template: 'start'
+  },
+  '/sign-in': {
+    fields: ['username', 'password'],
+    next: '/licence-type'
+  },
   '/licence-type': {
     fields: ['licence-type'],
     forks: [
