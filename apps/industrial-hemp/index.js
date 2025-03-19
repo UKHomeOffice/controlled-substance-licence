@@ -96,6 +96,20 @@ const steps = {
   },
 
   '/site-responsible-officer-dbs': {
+    fields: [
+      'responsible-person-dbs-fullname',
+      'responsible-person-dbs-reference',
+      'responsible-person-dbs-date-of-issue'
+    ],
+    next: '/site-responsible-officer-dbs-updates'
+  },
+
+  '/site-responsible-officer-dbs-updates': {
+    fields: ['responsible-officer-dbs-subscription'],
+    next: '/witness-destruction-plant'
+  },
+
+  '/witness-destruction-plant': {
     next: '/confirm'
   },
 
@@ -113,8 +127,9 @@ const steps = {
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
-  }
+  },
 
+  '/session-timeout': {}
 };
 
 module.exports = {

@@ -881,7 +881,9 @@ const steps = {
     behaviours: [
       FileDownload('/assets/documents', 'controlled-drugs-activity-user-list.xlsx')
     ]
-  }
+  },
+
+  '/session-timeout': {}
 };
 
 module.exports = {

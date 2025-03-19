@@ -1,3 +1,8 @@
 {
-  
+  "start": {
+    "header": "Apply for a domestic licence for controlled substances"
+  },
+  "sign-in": {
+    "header": "Sign in to apply for a domestic licence to produce, supply or possess controlled drugs"
+  }
 }
