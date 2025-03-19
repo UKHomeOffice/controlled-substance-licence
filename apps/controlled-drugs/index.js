@@ -869,8 +869,10 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
-  }
-};
+  },
+
+  '/session-timeout': {}
+}
 
 module.exports = {
   name: 'controlled-drugs',
