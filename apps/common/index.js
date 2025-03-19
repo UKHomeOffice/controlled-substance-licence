@@ -26,7 +26,9 @@ const steps = {
       }
     ],
     next: '/industrial-hemp/application-type'
-  }
+  },
+
+  '/session-timeout': {}
 };
 
 module.exports = {

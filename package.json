@@ -4,7 +4,7 @@
   "description": "Controlled Substance Licence",
   "main": "index.js",
   "engines": {
-    "node": ">=20.18.0 <21.0.0"
+    "node": ">=20.19.0 <21.0.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -26,10 +26,10 @@
   "homepage": "https://github.com/UKHomeOffice/controlled-substance-licence#readme",
   "dependencies": {
     "accessible-autocomplete": "^3.0.1",
-    "bl": "^6.0.16",
+    "bl": "^6.1.0",
     "busboy": "^1.6.0",
-    "form-data": "^4.0.1",
-    "hof": "^21.1.1"
+    "form-data": "^4.0.2",
+    "hof": "~22.3.3"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

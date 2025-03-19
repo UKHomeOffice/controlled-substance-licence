@@ -127,8 +127,9 @@ const steps = {
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
-  }
+  },
 
+  '/session-timeout': {}
 };
 
 module.exports = {
