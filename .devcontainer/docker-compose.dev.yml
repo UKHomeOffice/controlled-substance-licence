@@ -48,18 +48,41 @@ services:
     ports:
       - "3000:3000"
 
-  hof-rds-api:
-    env_file: devcontainer.env
-    image: quay.io/ukhomeofficedigital/hof-rds-api:16bc712744851373e533d94ecf04724836be8247
+  rds-api:
+    image: quay.io/ukhomeofficedigital/hof-rds-api:1335d7a18a80c24280093142d599a74becbbee7c
     networks:
       - csl-shared-network
     hostname: hof-rds-api
     environment:
       - SERVICE_NAME=csl
-      - NODE_ENV=local
+      - PORT='5000'
+      - NODE_ENV=development
+      - DB_HOST=hof-postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=csl
     ports:
       - "5000:5000"
+    healthcheck:
+      disable: true
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:14@sha256:8396ed98bfbeb08ff9c83a4de368957af98085f55d2c93e7e83828595d6f6663
+    networks:
+      - csl-shared-network
+    hostname: hof-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: csl
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
 networks:
   csl-shared-network:
     driver: bridge
+
+volumes:
+  pgdata:
