@@ -21,6 +21,10 @@ module.exports = {
   'background-information': {
     steps: [
       {
+        step: '/application-type',
+        field: 'amend-application-details'
+      },
+      {
         step: '/company-number-changed',
         field: 'companies-house-number-change',
         parse: (value, req) => {
