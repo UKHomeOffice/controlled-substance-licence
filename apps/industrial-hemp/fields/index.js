@@ -23,7 +23,6 @@ module.exports = {
     mixin: 'input-text',
     validate: [
       'required',
-      'notUrl',
       'numeric',
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 8 }

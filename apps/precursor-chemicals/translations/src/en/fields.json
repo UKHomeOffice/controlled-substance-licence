@@ -15,6 +15,10 @@
       }
     }
   },
+  "amend-application-details": {
+    "label": "Application reference number",
+    "hint": "For example, 12345678"
+  },
   "licensee-type": {
     "legend": "What type of licensee are you?",
     "options": {
