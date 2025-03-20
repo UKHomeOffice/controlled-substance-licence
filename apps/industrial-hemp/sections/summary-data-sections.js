@@ -90,6 +90,14 @@ module.exports = {
       {
         step: '/site-responsible-officer-dbs-updates',
         field: 'responsible-officer-dbs-subscription'
+      },
+      {
+        step: '/witness-destruction-plant',
+        field: 'witness-destruction-plant'
+      },
+      {
+        step: '/how-leaves-flowers-destroyed',
+        field: 'how-leaves-flowers-destroyed'
       }
 
     ]
