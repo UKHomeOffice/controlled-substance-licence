@@ -1,6 +1,6 @@
 {
   "application-form-type": {
-    "legend": "How would you like to apply?",
+    "legend": "How are you applying for your controlled drugs licence?",
     "options": {
       "new-application": {
         "label": "A new application",
