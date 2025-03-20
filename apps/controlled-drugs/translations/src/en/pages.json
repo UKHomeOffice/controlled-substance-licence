@@ -139,6 +139,9 @@
       }
     },
     "fields": {
+      "amend-application-details": {
+        "label": "Application reference number"
+      },
       "change-authorised-witness": {
         "label": "Change in authorised witness for this site only"
       },

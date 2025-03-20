@@ -7,6 +7,10 @@ module.exports = {
   'background-information': {
     steps: [
       {
+        step: '/application-type',
+        field: 'amend-application-details'
+      },
+      {
         step: 'change-responsible-officer-or-guarantor',
         field: 'change-responsible-officer-or-guarantor'
       },
