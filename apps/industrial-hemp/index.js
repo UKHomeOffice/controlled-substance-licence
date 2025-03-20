@@ -116,19 +116,13 @@ const steps = {
 
   '/how-leaves-flowers-destroyed': {
     fields: ['how-leaves-flowers-destroyed'],
+    next: '/legal-business-proceedings',
     forks: [
       {
         target: '/authorised-witness-details',
         condition: {
           field: 'witness-destruction-plant',
           value: 'yes'
-        }
-      },
-      {
-        target: '/legal-business-proceedings',
-        condition: {
-          field: 'witness-destruction-plant',
-          value: 'no'
         }
       }
     ]
