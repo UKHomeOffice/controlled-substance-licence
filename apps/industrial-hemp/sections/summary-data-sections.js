@@ -98,7 +98,7 @@ module.exports = {
       {
         step: '/how-leaves-flowers-destroyed',
         field: 'how-leaves-flowers-destroyed'
-      },
+      }
 
     ]
   }
