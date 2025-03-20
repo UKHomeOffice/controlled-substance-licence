@@ -272,7 +272,10 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "userActivityTemplateLimit": "You may not add more than {{userActivityTemplateLimit}} file(s)",
-    "isDuplicateFileName": "A file with this name was already uploaded"
+    "isDuplicateFileName": "A file with this name was already uploaded",
+    "user-activity-template": {
+      "fileType": "The selected file must be a PDF or Microsoft Word or Excel file"
+    }
   },
   "site-owner-full-name": {
     "required": "Enter the site owner's full name",

@@ -89,8 +89,12 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
-    next: '/change-witness-only'
+    next: '/change-witness-only',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/change-witness-only': {
@@ -458,8 +462,12 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
-    next: '/trading-reasons'
+    next: '/trading-reasons',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/trading-reasons': {
@@ -693,8 +701,13 @@ const steps = {
       RemoveDocument('user-activity-template')
     ],
     fields: ['file-upload'],
-    documentCategory: 'user-activity-template',
-    next: '/security-features'
+    next: '/security-features',
+    locals: {
+      documentCategory: {
+        name: 'user-activity-template',
+        customFileType: true
+      }
+    }
   },
 
   '/security-features': {
