@@ -113,5 +113,21 @@
         "label": "No"
       }
     }
+  },
+  "witness-destruction-plant": {
+    "legend": "Do you require somebody within your company to be authorised to witness the destruction of the plant?",
+    "hint": "This includes the controlled parts of the plant (leaves and flowers)",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "how-leaves-flowers-destroyed": {
+    "label": "How will the leaves and flowers be destroyed?",
+    "hint": "Providing a detailed description will help us process your application faster"
   }
 }
