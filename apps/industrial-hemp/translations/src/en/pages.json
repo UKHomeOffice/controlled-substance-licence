@@ -18,6 +18,13 @@
   "site-responsible-officer-dbs": {
     "header": "DBS information for the responsible person"
   },
+  "authorised-witness-details": {
+    "header": "Authorised witness details",
+    "intro": "Enter the details of the person who is responsible for witnessing the destruction of the controlled parts of the plant."
+  },
+  "authorised-witness-dbs": {
+    "header": "DBS information for authorised witness"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -58,6 +65,15 @@
       },
       "how-leaves-flowers-destroyed": {
         "label": "How will the leaves and flowers be destroyed?"
+      },
+      "authorised-witness-details": {
+        "label": "Authorised witness details"
+      },
+      "authorised-witness-dbs-information": {
+        "label": "Authorised witness DBS information"
+      },
+      "authorised-witness-dbs-subscription": {
+        "label": "Authorised witness subscribed to DBS updates?"
       }
     }
   }

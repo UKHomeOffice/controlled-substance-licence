@@ -98,6 +98,34 @@ module.exports = {
       {
         step: '/how-leaves-flowers-destroyed',
         field: 'how-leaves-flowers-destroyed'
+      },
+      {
+        step: '/authorised-witness-details',
+        field: 'authorised-witness-details',
+        parse: (list, req) => {
+          const authorisedWitnessDetails = [
+            req.sessionModel.get('authorised-witness-full-name'),
+            req.sessionModel.get('authorised-witness-uk-telephone'),
+            req.sessionModel.get('authorised-witness-email')
+          ];
+          return authorisedWitnessDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/authorised-witness-dbs',
+        field: 'authorised-witness-dbs-information',
+        parse: (list, req) => {
+          const authorisedWitnessDbsInfo = [
+            req.sessionModel.get('authorised-witness-dbs-full-name'),
+            req.sessionModel.get('authorised-witness-dbs-reference'),
+            formatDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue'))
+          ];
+          return authorisedWitnessDbsInfo.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/authorised-witness-dbs-updates',
+        field: 'authorised-witness-dbs-subscription'
       }
 
     ]
