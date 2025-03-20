@@ -112,5 +112,13 @@
   },
   "responsible-officer-dbs-subscription": {
     "required": "Select if the responsible person has subscribed to DBS updates"
+  },
+  "witness-destruction-plant": {
+    "required": "Select if you need someone to be authorised to witness the destruction of the plant"
+  },
+  "how-leaves-flowers-destroyed": {
+    "required": "Enter how the leaves and flowers will be destroyed",
+    "maxlength": "Details of how the leaves and flowers will be destroyed must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }

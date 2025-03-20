@@ -110,6 +110,29 @@ const steps = {
   },
 
   '/witness-destruction-plant': {
+    fields: ['witness-destruction-plant'],
+    next: '/how-leaves-flowers-destroyed'
+  },
+
+  '/how-leaves-flowers-destroyed': {
+    fields: ['how-leaves-flowers-destroyed'],
+    next: '/legal-business-proceedings',
+    forks: [
+      {
+        target: '/authorised-witness-details',
+        condition: {
+          field: 'witness-destruction-plant',
+          value: 'yes'
+        }
+      }
+    ]
+  },
+
+  '/authorised-witness-details': {
+    next: '/confirm'
+  },
+
+  '/legal-business-proceedings': {
     next: '/confirm'
   },
 
