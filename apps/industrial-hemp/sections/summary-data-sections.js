@@ -115,6 +115,7 @@ module.exports = {
         step: '/authorised-witness-dbs',
         field: 'authorised-witness-dbs-information',
         parse: (list, req) => {
+          if (req.sessionModel.get('witness-destruction-plant') === 'no') return null;
           const authorisedWitnessDbsInfo = [
             req.sessionModel.get('authorised-witness-dbs-full-name'),
             req.sessionModel.get('authorised-witness-dbs-reference'),
