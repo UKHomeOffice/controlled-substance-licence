@@ -122,27 +122,27 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "authorised-witness-full-name": {
-    "required": "Enter the name of the responsible person as it appears on the DBS certificate",
+    "required": "Enter the name of the authorised witness",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 3 and 200 characters",
-    "minlength": "Full name must be between 3 and 200 characters"
+    "maxlength": "Full name must be between 2 and 250 characters",
+    "minlength": "Full name must be between 2 and 250 characters"
   }, 
   "authorised-witness-uk-telephone": {
-    "required": "Enter a UK telephone number",
+    "required": "Enter a UK telephone number for the authorised witness",
     "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
   },
   "authorised-witness-email": {
-    "required": "Enter an email address",
+    "required": "Enter an email address for the authorised witness",
     "email": "Enter a real email address"
   },
   "authorise-witness-DBS-check": {
     "required": "You must confirm this person has applied for or currently holds a DBS certificate"
   },
   "authorised-witness-dbs-full-name": {
-    "required": "Enter the name of the responsible person as it appears on the DBS certificate",
+    "required": "Enter the name of the authorised witness as it appears on the DBS certificate",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 3 and 200 characters",
-    "minlength": "Full name must be between 3 and 200 characters"
+    "maxlength": "Full name must be between 2 and 250 characters",
+    "minlength": "Full name must be between 2 and 250 characters"
   },
   "authorised-witness-dbs-reference": {
     "required": "Enter a DBS reference, for example a certificate number or an application reference number",
@@ -151,9 +151,12 @@
     "alphanum": "Enter a real DBS certificate number or application reference number"
   },
   "authorised-witness-dbs-date-of-issue": {
-    "required": "Enter the DBS date of issue or application for the responsible person",
+    "required": "Enter the DBS date of issue or application for the authorised witness",
     "date": "Enter a real date of issue or application",
     "before": "DBS date of issue or application must not be in the future",
     "after": "DBS certificates cannot be more than 3 years old. This person must apply for a new DBS certificate"
+  },
+  "authorised-witness-dbs-subscription": {
+    "required": "Select if the authorised witness has subscribed to DBS updates"
   }
 }
