@@ -1,6 +1,10 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
 const validators = require('hof/controller/validation/validators');
+const logger = require('hof/lib/logger')({ env: config.env });
+const { model: Model } = require('hof');
+const { protocol, host, port } = config.saveService;
+const rdsApiBaseUrl = `${protocol}//${host}:${port}`;
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -137,6 +141,30 @@ const genAxiosErrorMsg = error => {
   return `${errorCode} ${error.message}; ${errorDetails}`;
 };
 
+/**
+ * Makes a request to hof-rds-api service endpoint to clear table rows according to passed arguments
+ * calls genAxiosErrorMsg if an error occurs with the hof _request method
+ *
+ * @param {string} table - The database table to clear rows from
+ * @param {string} submitStatus - The submission status of rows to be removed e.g. submitted/unsubmitted/all
+ * @param {string} dateType - The table datetime column to calculate retention period/expiry from
+ * @param {string} days - The number of days the retention period is calculated back to from today's date
+ * @param {string} periodType - Calculate retention period using either 'calendar' or 'business'
+ */
+const clearExpiredApplictions = async (table, submitStatus, dateType, days, periodType) => {
+  const hofModel = new Model();
+  try {
+    await hofModel._request({
+      url: `${rdsApiBaseUrl}/${table}/clear/${submitStatus}/${dateType}/older/${days}/${periodType}`,
+      method: 'DELETE'
+    });
+    // eslint-disable-next-line max-len
+    logger.info(`Cleared ${submitStatus} ${table} where ${dateType} is older than ${days} ${periodType} days.`);
+  } catch (error) {
+    logger.error(genAxiosErrorMsg(error));
+  }
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -145,5 +173,6 @@ module.exports = {
   parseOperations,
   findArrayItemByValue,
   isValidPhoneNumber,
-  genAxiosErrorMsg
+  genAxiosErrorMsg,
+  clearExpiredApplictions
 };

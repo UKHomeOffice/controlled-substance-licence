@@ -5,7 +5,8 @@ const config = require('./config.js');
 const busboy = require('busboy');
 const bl = require('bl');
 const logger = require('hof/lib/logger')({ env: config.env });
-const { sanitiseFilename } = require('./utils');
+const cron = require('node-cron');
+const { sanitiseFilename, clearExpiredApplictions } = require('./utils');
 
 let settings = require('./hof.settings');
 
@@ -93,6 +94,11 @@ app.use((req, res, next) => {
   });
 
   req.pipe(bb);
+});
+
+// run once a day at 10pm
+cron.schedule('0 22 * * *', () => {
+  return clearExpiredApplictions('applications', 'unsubmitted', 'created_at', '5', 'business');
 });
 
 module.exports = app;
