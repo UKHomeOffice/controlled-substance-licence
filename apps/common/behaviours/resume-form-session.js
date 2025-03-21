@@ -6,14 +6,14 @@ const applicationsUrl = `${protocol}//${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
   async getValues(req, res, next) {
-    this.cleanSession(req);
-
-    const applicantId = 1; // get applicantId from common session logged in user
-    const licenceType = req.session['hof-wizard-common']['licence-type'];
-
-    const hofModel = new Model();
-
     try {
+      this.cleanSession(req);
+
+      const applicantId = 1; // get applicantId from common session logged in user
+      const licenceType = req.session['hof-wizard-common']['licence-type'];
+
+      const hofModel = new Model();
+
       const userApplications = await hofModel._request({
         url: `${applicationsUrl}/applicant_id/${applicantId}`,
         method: 'GET'
@@ -35,14 +35,12 @@ module.exports = superclass => class extends superclass {
           radio => radio.value !== 'continue-an-application'
         );
       }
+      req.sessionModel.set('applicant-id', applicantId);
+      req.sessionModel.set('licence-type', licenceType);
     } catch (error) {
       req.log('error', `Failed to get saved application: ${genAxiosErrorMsg(error)}`);
       return next(error);
     }
-
-    req.sessionModel.set('applicant-id', applicantId);
-    req.sessionModel.set('licence-type', licenceType);
-
     return super.getValues(req, res, next);
   }
 
