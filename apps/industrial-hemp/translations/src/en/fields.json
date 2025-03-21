@@ -129,5 +129,38 @@
   "how-leaves-flowers-destroyed": {
     "label": "How will the leaves and flowers be destroyed?",
     "hint": "Providing a detailed description will help us process your application faster"
+  },
+  "authorised-witness-full-name": {
+    "label": "Full name"
+  },
+  "authorised-witness-uk-telephone": {
+    "label": "UK telephone number"
+  },
+  "authorised-witness-email": {
+    "label": "Email address"
+  },
+  "authorise-witness-DBS-check": {
+    "label": "I confirm this person has applied for or currently holds a DBS certificate"
+  },
+  "authorised-witness-dbs-full-name": {
+    "label": "Full name",
+    "hint": "Enter the name as it appears on their DBS application"
+  },
+  "authorised-witness-dbs-reference": {
+    "label": "DBS reference"
+  },
+  "authorised-witness-dbs-date-of-issue": {
+    "label": "Date of issue or application"
+  },
+  "authorised-witness-dbs-subscription": {
+    "legend": "Has the authorised witness subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

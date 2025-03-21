@@ -129,6 +129,27 @@ const steps = {
   },
 
   '/authorised-witness-details': {
+    behaviours: [customValidation],
+    fields: [
+      'authorised-witness-full-name',
+      'authorised-witness-uk-telephone',
+      'authorised-witness-email',
+      'authorise-witness-DBS-check'
+    ],
+    next: '/authorised-witness-dbs'
+  },
+
+  '/authorised-witness-dbs': {
+    fields: [
+      'authorised-witness-dbs-full-name',
+      'authorised-witness-dbs-reference',
+      'authorised-witness-dbs-date-of-issue'
+    ],
+    next: '/authorised-witness-dbs-updates'
+  },
+
+  '/authorised-witness-dbs-updates': {
+    fields: ['authorised-witness-dbs-subscription'],
     next: '/confirm'
   },
 

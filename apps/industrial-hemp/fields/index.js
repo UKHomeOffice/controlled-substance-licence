@@ -224,5 +224,79 @@ module.exports = {
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'authorised-witness-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'authorised-witness-uk-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'authorised-witness-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    type: 'email',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'authorise-witness-DBS-check': {
+    mixin: 'checkbox',
+    validate: ['required']
+  },
+  'authorised-witness-dbs-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'authorised-witness-dbs-reference': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 25 },
+      'alphanum'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'authorised-witness-dbs-date-of-issue': dateComponent('authorised-witness-dbs-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['3', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'authorised-witness-dbs-subscription': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };
