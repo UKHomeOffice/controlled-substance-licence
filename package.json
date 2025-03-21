@@ -29,8 +29,7 @@
     "bl": "^6.0.16",
     "busboy": "^1.6.0",
     "form-data": "^4.0.1",
-    "hof": "^21.1.1",
-    "node-cron": "^3.0.3"
+    "hof": "^21.1.1"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
