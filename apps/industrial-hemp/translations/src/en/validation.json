@@ -124,8 +124,8 @@
   "authorised-witness-full-name": {
     "required": "Enter the name of the authorised witness",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 2 and 250 characters",
-    "minlength": "Full name must be between 2 and 250 characters"
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
   }, 
   "authorised-witness-uk-telephone": {
     "required": "Enter a UK telephone number for the authorised witness",
@@ -141,8 +141,8 @@
   "authorised-witness-dbs-full-name": {
     "required": "Enter the name of the authorised witness as it appears on the DBS certificate",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Full name must be between 2 and 250 characters",
-    "minlength": "Full name must be between 2 and 250 characters"
+    "maxlength": "Full name must be between 3 and 200 characters",
+    "minlength": "Full name must be between 3 and 200 characters"
   },
   "authorised-witness-dbs-reference": {
     "required": "Enter a DBS reference, for example a certificate number or an application reference number",
