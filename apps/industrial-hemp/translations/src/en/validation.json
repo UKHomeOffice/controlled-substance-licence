@@ -3,8 +3,8 @@
     "required": "Select how would you like to apply"
   },
   "amend-application-details": {
-    "required": "Reference number provided must be between 2 and 8 numeral digits",
-    "numeric": "Reference number provided must be between 2 and 8 numeral digits",
+    "required": "Enter an application reference number",
+    "numeric": "Application reference number must not include letters a to z or special characters",
     "minlength": "Reference number provided must be between 2 and 8 numeral digits",
     "maxlength": "Reference number provided must be between 2 and 8 numeral digits"
   },

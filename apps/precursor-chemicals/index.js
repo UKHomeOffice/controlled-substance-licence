@@ -16,7 +16,7 @@ const steps = {
   /** Start of journey */
 
   '/application-type': {
-    fields: ['application-form-type'],
+    fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
         target: '/information-you-have-given-us',

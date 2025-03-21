@@ -14,9 +14,25 @@ module.exports = {
         value: 'continue-an-application'
       },
       {
-        value: 'amend-application'
+        value: 'amend-application',
+        toggle: 'amend-application-details',
+        child: 'input-text'
       }
     ]
+  },
+  'amend-application-details': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'numeric',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 8 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    dependent: {
+      value: 'amend-application',
+      field: 'application-form-type'
+    }
   },
   'licensee-type': {
     mixin: 'radio-group',

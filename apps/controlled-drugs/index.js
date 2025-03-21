@@ -16,7 +16,7 @@ const FileDownload = require('../common/behaviours/file-download');
 const steps = {
 
   '/application-type': {
-    fields: ['application-form-type'],
+    fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
         target: '/information-you-have-given-us',
