@@ -597,6 +597,13 @@ module.exports = {
         parse: (list, req) => parseCheckboxes(list, req)
       },
       {
+        step: '/upload-activity-template',
+        field: 'user-activity-template',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
         step: '/security-features',
         field: 'security-features',
         parse: (list, req) => parseCheckboxes(list, req)
