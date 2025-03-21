@@ -1,0 +1,16 @@
+{{<partials-page}}
+  {{$pageTitle}}
+    {{#t}}pages.sign-in.header{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+
+  {{$page-content}}
+
+  {{#renderField}}username{{/renderField}}
+  {{#renderField}}password{{/renderField}}
+
+  {{#markdown}}not-registered-yet{{/markdown}}
+
+  {{#input-submit}}sign-in{{/input-submit}}
+
+  {{/page-content}}
+{{/partials-page}}

@@ -32,14 +32,17 @@ module.exports = (documentCategory, fieldName) => superclass => class extends su
     } else if (fileToBeValidated) {
       const uploadSize = fileToBeValidated.size;
       const mimetype = fileToBeValidated.mimetype;
+
+      const documentCategoryConfig = config.upload.documentCategories[documentCategory];
+      const allowedMimeTypes = documentCategoryConfig.allowedMimeTypes || config.upload.allowedMimeTypes;
+
       const uploadSizeTooBig = uploadSize > config.upload.maxFileSizeInBytes;
       const uploadSizeBeyondServerLimits = fileToBeValidated.truncated;
 
       const invalidSize = uploadSizeTooBig || uploadSizeBeyondServerLimits;
-      const invalidMimetype = !config.upload.allowedMimeTypes.includes(mimetype);
+      const invalidMimetype = !allowedMimeTypes.includes(mimetype);
 
       const numberOfDocsUploaded = documentsByCategory.length;
-      const documentCategoryConfig = config.upload.documentCategories[documentCategory];
 
       const isDuplicateFile = documentsByCategory.some(file => file.name === req.files[fieldName].name);
 

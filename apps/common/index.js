@@ -1,4 +1,12 @@
 const steps = {
+  '/': {
+    next: '/sign-in',
+    template: 'start'
+  },
+  '/sign-in': {
+    fields: ['username', 'password'],
+    next: '/licence-type'
+  },
   '/licence-type': {
     fields: ['licence-type'],
     forks: [
@@ -18,7 +26,9 @@ const steps = {
       }
     ],
     next: '/industrial-hemp/application-type'
-  }
+  },
+
+  '/session-timeout': {}
 };
 
 module.exports = {

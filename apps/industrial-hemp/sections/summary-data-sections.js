@@ -1,4 +1,5 @@
 'use strict';
+const { formatDate } = require('../../../utils');
 
 module.exports = {
   'background-information': {
@@ -73,7 +74,32 @@ module.exports = {
           ];
           return siteResponsibleOfficerDetails.filter(element => element).join('\n');
         }
+      },
+      {
+        step: '/site-responsible-officer-dbs',
+        field: 'site-responsible-officer-dbs-information',
+        parse: (list, req) => {
+          const responsiblePersonDbsInfo = [
+            req.sessionModel.get('responsible-person-dbs-fullname'),
+            req.sessionModel.get('responsible-person-dbs-reference'),
+            formatDate(req.sessionModel.get('responsible-person-dbs-date-of-issue'))
+          ];
+          return responsiblePersonDbsInfo.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/site-responsible-officer-dbs-updates',
+        field: 'responsible-officer-dbs-subscription'
+      },
+      {
+        step: '/witness-destruction-plant',
+        field: 'witness-destruction-plant'
+      },
+      {
+        step: '/how-leaves-flowers-destroyed',
+        field: 'how-leaves-flowers-destroyed'
       }
+
     ]
   }
 };

@@ -15,6 +15,9 @@
   "site-responsible-officer": {
     "header": "Details of the responsible person for the site"
   },
+  "site-responsible-officer-dbs": {
+    "header": "DBS information for the responsible person"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -43,6 +46,18 @@
       },
       "site-responsible-officer": {
         "label": "Responsible person details"
+      },
+      "site-responsible-officer-dbs-information": {
+        "label": "Responsible person DBS information"
+      },
+      "responsible-officer-dbs-subscription": {
+        "label": "Responsible person subscribed to DBS updates?"
+      },
+      "witness-destruction-plant": {
+        "label": "Require somebody to be authorised to witness the destruction of the plant?"
+      },
+      "how-leaves-flowers-destroyed": {
+        "label": "How will the leaves and flowers be destroyed?"
       }
     }
   }
