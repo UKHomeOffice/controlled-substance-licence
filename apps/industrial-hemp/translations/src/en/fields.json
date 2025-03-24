@@ -152,7 +152,7 @@
       "no": {
         "label": "No"
       }
-     }
+    }
   },
   "authorised-witness-full-name": {
     "label": "Full name"
@@ -177,6 +177,6 @@
     "label": "Date of issue or application"
   },
   "authorised-witness-dbs-subscription": {
-    "legend": "Has the authorised witness subscribed to DBS updates?",
+    "legend": "Has the authorised witness subscribed to DBS updates?"
   }
 }
