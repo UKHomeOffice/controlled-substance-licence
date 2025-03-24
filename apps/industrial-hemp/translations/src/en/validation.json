@@ -180,5 +180,11 @@
   },
   "has-anyone-received-criminal-conviction": {
     "required": "Select if anyone in your organisation has ever received a criminal conviction"
+  },
+  "is-company-ref-changed": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "is-company-name-changed":{
+    "required": "Select if your registered name at Companies House has changed since your last application"
   }
 }
