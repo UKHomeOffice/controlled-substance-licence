@@ -21,6 +21,10 @@ module.exports = {
   'background-information': {
     steps: [
       {
+        step: '/application-type',
+        field: 'amend-application-details'
+      },
+      {
         step: '/company-number-changed',
         field: 'companies-house-number-change',
         parse: (value, req) => {
@@ -591,6 +595,13 @@ module.exports = {
         step: '/schedule-5-activities',
         field: 'schedule-5-activities',
         parse: (list, req) => parseCheckboxes(list, req)
+      },
+      {
+        step: '/upload-activity-template',
+        field: 'user-activity-template',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       },
       {
         step: '/security-features',

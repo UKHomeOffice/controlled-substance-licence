@@ -11,11 +11,12 @@ const CancelSummaryReferrer = require('../common/behaviours/cancel-summary-refer
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
+const FileDownload = require('../common/behaviours/file-download');
 
 const steps = {
 
   '/application-type': {
-    fields: ['application-form-type'],
+    fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
         target: '/information-you-have-given-us',
@@ -88,8 +89,12 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
-    next: '/change-witness-only'
+    next: '/change-witness-only',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/change-witness-only': {
@@ -457,8 +462,12 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
-    next: '/trading-reasons'
+    next: '/trading-reasons',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/trading-reasons': {
@@ -687,7 +696,18 @@ const steps = {
   },
 
   '/upload-activity-template': {
-    next: '/security-features'
+    behaviours: [
+      SaveDocument('user-activity-template', 'file-upload'),
+      RemoveDocument('user-activity-template')
+    ],
+    fields: ['file-upload'],
+    next: '/security-features',
+    locals: {
+      documentCategory: {
+        name: 'user-activity-template',
+        customFileType: true
+      }
+    }
   },
 
   '/security-features': {
@@ -869,6 +889,11 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
+  },
+  '/user-activity-template-download': {
+    behaviours: [
+      FileDownload('/assets/documents', 'controlled-drugs-activity-user-list.xlsx')
+    ]
   },
 
   '/session-timeout': {}

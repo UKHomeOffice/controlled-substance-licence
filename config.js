@@ -42,6 +42,17 @@ module.exports = {
       'certificate-of-good-conduct': {
         limit: 20,
         limitValidationError: 'certificateOfGoodConductLimit'
+      },
+      'user-activity-template': {
+        limit: 1,
+        limitValidationError: 'userActivityTemplateLimit',
+        allowedMimeTypes: [
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+          'application/vnd.ms-excel',
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ]
       }
     }
   },

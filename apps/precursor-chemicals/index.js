@@ -16,7 +16,7 @@ const steps = {
   /** Start of journey */
 
   '/application-type': {
-    fields: ['application-form-type'],
+    fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
         target: '/information-you-have-given-us',
@@ -89,9 +89,13 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
     template: 'upload-company-certificate',
-    next: '/change-responsible-officer-or-guarantor'
+    next: '/change-responsible-officer-or-guarantor',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/upload-companies-house-certificate': {
@@ -100,9 +104,13 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
     template: 'upload-company-certificate',
-    next: '/change-responsible-officer-or-guarantor'
+    next: '/change-responsible-officer-or-guarantor',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/change-responsible-officer-or-guarantor': {
@@ -374,8 +382,12 @@ const steps = {
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    documentCategory: 'company-registration-certificate',
-    next: '/upload-conduct-certificate'
+    next: '/upload-conduct-certificate',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/upload-conduct-certificate': {
@@ -384,8 +396,12 @@ const steps = {
       RemoveDocument('certificate-of-good-conduct')
     ],
     fields: ['file-upload'],
-    documentCategory: 'certificate-of-good-conduct',
-    next: '/main-customers'
+    next: '/main-customers',
+    locals: {
+      documentCategory: {
+        name: 'certificate-of-good-conduct'
+      }
+    }
   },
 
   /** The organisation and how it operates */

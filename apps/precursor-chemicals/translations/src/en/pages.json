@@ -130,6 +130,9 @@
       }
     },
     "fields": {
+      "amend-application-details": {
+        "label": "Application reference number"
+      },
       "why-requesting-new-licence": {
         "label": "Reason for collecting new license"
       },

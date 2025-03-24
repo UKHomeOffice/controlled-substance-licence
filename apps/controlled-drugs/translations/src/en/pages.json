@@ -102,7 +102,9 @@
     "intro": "Your licence must have at least one activity from any of the schedules."
   },
   "upload-activity-template": {
-    "header": "Upload controlled drug user activity template"
+    "header": "Upload controlled drug user activity template",
+    "intro": "You must complete and upload the controlled drug user activity template.",
+    "template-download-link": "Download the template (XLSX, 15.4KB)"
   },
   "alarm-system-details": {
     "header": "Electronic alarm system details"
@@ -139,6 +141,9 @@
       }
     },
     "fields": {
+      "amend-application-details": {
+        "label": "Application reference number"
+      },
       "change-authorised-witness": {
         "label": "Change in authorised witness for this site only"
       },
@@ -306,6 +311,9 @@
       },
       "schedule-5-activities": {
         "label": "Schedule 5 activities"
+      },
+      "user-activity-template": {
+        "label": "Controlled Drug user activity"
       },
       "security-features": {
         "label": "Site security features"

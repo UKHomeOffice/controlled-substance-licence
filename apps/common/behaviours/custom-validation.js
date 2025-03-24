@@ -17,7 +17,8 @@ module.exports = superclass => class extends superclass {
     if (key === 'telephone' || key === 'premises-telephone' ||
       key === 'invoicing-telephone' || key === 'who-is-completing-application-telephone' ||
       key === 'growing-location-uk-telephone' ||
-      key === 'site-responsible-person-uk-telephone') {
+      key === 'site-responsible-person-uk-telephone' ||
+      key === 'authorised-witness-uk-telephone') {
       const phoneNumber = req.form.values[key];
       if (phoneNumber) {
         if (!isValidPhoneNumber(phoneNumber) || !validators.ukPhoneNumber(phoneNumber)) {
