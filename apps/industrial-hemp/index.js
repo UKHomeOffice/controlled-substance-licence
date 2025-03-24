@@ -1,10 +1,10 @@
 const hof = require('hof');
-
+const CustomRedirect = require('./behaviours/custom-redirect');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
-
+  
   /** Start of journey */
 
   '/application-type': {
@@ -21,7 +21,7 @@ const steps = {
     next: '/licensee-type',
     backLink: '/licence-type'
   },
-
+  
   '/licensee-type': {
     fields: ['licensee-type'],
     next: '/licence-holder-details',
@@ -156,16 +156,39 @@ const steps = {
   '/legal-business-proceedings': {
     next: '/confirm'
   },
-
+  
   /** Continue an application */
 
 
   /** Renew existing licence - Background Information */
-
-
+  
+  // Existing licensee renewing or changing a currently licensed site
+  '/company-number-changed': {
+    fields: ['is-company-ref-changed'],
+    next: '/company-name-changed',
+    behaviours: [CustomRedirect]
+  },
+  '/register-again': {
+    backLink: '/industrial-hemp/company-number-changed'
+  },
+  '/company-name-changed': {
+    fields: ['is-company-name-changed'],
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: {
+          field: 'is-company-name-changed',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/change-witness-only'
+  },
+  '/company-registration-certificate': {},
+  '/change-witness-only': {},
   /** Existing licence apply for new site - Background Information */
-
-
+  
+  
   /** First time licensee - About the applicants */
   '/why-new-licence': {
     fields: ['why-new-licence'],
@@ -203,7 +226,7 @@ const steps = {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
   },
-
+  
   '/session-timeout': {}
 };
 

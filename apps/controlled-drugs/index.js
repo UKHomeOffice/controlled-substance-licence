@@ -64,11 +64,11 @@ const steps = {
     next: '/company-name-changed',
     behaviours: [SetSummaryReferrer, CustomRedirect]
   },
-
+  
   '/register-again': {
     backLink: '/controlled-drugs/company-number-changed'
   },
-
+  
   '/company-name-changed': {
     fields: ['companies-house-name-change'],
     forks: [

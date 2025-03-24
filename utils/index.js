@@ -76,7 +76,7 @@ const parseOperations = (req, opsField, standardOps, customOps) => {
   if (typeof checkedOps === 'string') {
     checkedOps = Array.of(checkedOps);
   }
-
+  
   return checkedOps.map(operation => {
     if (operation === 'other' && customOps) {
       return `${translateOption(req, opsField, operation)}: ${customOps}`;

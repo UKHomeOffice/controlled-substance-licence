@@ -1,7 +1,7 @@
 // Handle routing around /companies-house-number and /cannot-continue
 const checkCompaniesHouseRef = (req, currentRoute) => (
-  currentRoute === '/companies-house-number' &&
-  req.form.values['companies-house-number-change'] === 'yes'
+  currentRoute === '/company-number-changed' &&
+   req.form.values['is-company-ref-changed'] === 'yes'
 );
 
 module.exports = superclass => class extends superclass {
@@ -12,7 +12,7 @@ module.exports = superclass => class extends superclass {
     this.emit('complete', req, res);
     
     if (checkCompaniesHouseRef(req, currentRoute)) {
-      return res.redirect(`${formApp}/cannot-continue`);
+      return res.redirect(`${formApp}/register-again`);
     }
     
     if(req.sessionModel.get('referred-by-summary')) {

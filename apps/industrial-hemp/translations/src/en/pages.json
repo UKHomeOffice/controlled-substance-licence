@@ -34,6 +34,10 @@
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
   },
+  "register-again": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
