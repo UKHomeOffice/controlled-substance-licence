@@ -1,5 +1,8 @@
 const dateComponent = require('hof').components.date;
+const validator = require('../../../utils/validator');
 
+
+const afterToday = { type: 'after', arguments: [validator.currentDate()] };
 module.exports = {
   'application-form-type': {
     mixin: 'radio-group',
@@ -225,5 +228,28 @@ module.exports = {
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
-  }
+  },
+  'why-new-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
+    validate: ['required'],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-contractual-agreement': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'moving-site-date': dateComponent('moving-site-date', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', afterToday]
+  })
 };

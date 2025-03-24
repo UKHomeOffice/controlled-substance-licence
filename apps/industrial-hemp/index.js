@@ -146,7 +146,51 @@ const steps = {
 
 
   /** First time licensee - About the applicants */
-
+  '/why-new-licence': {
+    fields: ['why-new-licence'],
+    forks: [
+      {
+        target: '/when-moving-site',
+        condition: {
+          field: 'why-new-licence',
+          value: 'moving-site'
+        }
+      },
+      {
+        target: '/contractual-agreement',
+        condition: {
+          field: 'why-new-licence',
+          value: 'contractual-agreement'
+        }
+      }
+    ],
+    next: '/contractual-agreement'
+  },
+  '/when-moving-site': {
+    fields: ['moving-site-date'],
+    next: '/',
+    locals: { showSaveAndExit: true }
+  },
+  '/contractual-agreement': {
+    fields: ['is-contractual-agreement'],
+    forks: [
+      {
+        target: '/when-contract-start',
+        condition: {
+          field: 'is-contractual-agreement',
+          value: 'yes'
+        }
+      },
+      {
+        target: '/licence-holder-details',
+        condition: {
+          field: 'is-contractual-agreement',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')

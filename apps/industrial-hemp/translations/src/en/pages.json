@@ -18,6 +18,15 @@
   "site-responsible-officer-dbs": {
     "header": "DBS information for the responsible person"
   },
+  "why-new-licence": {
+    "header": "Why are you requesting a new licence?"
+  },
+  "when-moving-site": {
+    "header": "When are you moving site?"
+  },
+  "contractual-agreement": {
+    "header": "Is the new site part of a contractual agreement?"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
