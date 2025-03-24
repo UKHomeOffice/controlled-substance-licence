@@ -176,13 +176,6 @@ const steps = {
           field: 'why-new-licence',
           value: 'moving-site'
         }
-      },
-      {
-        target: '/contractual-agreement',
-        condition: {
-          field: 'why-new-licence',
-          value: 'contractual-agreement'
-        }
       }
     ],
     next: '/contractual-agreement'
@@ -201,17 +194,11 @@ const steps = {
           field: 'is-contractual-agreement',
           value: 'yes'
         }
-      },
-      {
-        target: '/licence-holder-details',
-        condition: {
-          field: 'is-contractual-agreement',
-          value: 'no'
-        }
       }
     ],
     next: '/licence-holder-details'
   },
+  '/when-contract-start': {},
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')

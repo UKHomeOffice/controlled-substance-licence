@@ -1,8 +1,6 @@
 const dateComponent = require('hof').components.date;
-const validator = require('../../../utils/validator');
 
-
-const afterToday = { type: 'after', arguments: [validator.currentDate()] };
+const afterToday = { type: 'after', arguments: ['0', 'days'] };
 module.exports = {
   'application-form-type': {
     mixin: 'radio-group',
@@ -248,7 +246,6 @@ module.exports = {
   },
   'moving-site-date': dateComponent('moving-site-date', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
     validate: ['required', 'date', afterToday]
   }),
   'authorised-witness-full-name': {
