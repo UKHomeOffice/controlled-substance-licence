@@ -131,7 +131,6 @@
     "hint": "Providing a detailed description will help us process your application faster"
   },
   "why-new-licence": {
-    "legend": "Why are you requesting a new licence?",
     "options": {
       "moving-site": {
         "label": "We are moving site"
@@ -177,6 +176,14 @@
     "label": "Date of issue or application"
   },
   "authorised-witness-dbs-subscription": {
-    "legend": "Has the authorised witness subscribed to DBS updates?"
+    "legend": "Has the authorised witness subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
