@@ -47,6 +47,10 @@
     "header": "Upload company registration certificate as evidence of name change",
     "intro": "Upload a scanned copy of your company registration certificate."
   },
+  "register-again": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -117,6 +121,21 @@
       },
       "company-registration-certificate": {
         "label": "Upload of Company House evidence"
+      },
+      "why-new-licence": {
+        "label": "Reason for collecting new licence"
+      },
+      "moving-site-date": {
+        "label": "Date when moving site"
+      },
+      "is-contractual-agreement": {
+        "label": "Is new site part of contractual agreement"
+      },
+      "is-company-ref-changed": {
+        "label": "Change in number"
+      },
+      "is-company-name-changed": {
+        "label": "Change in name"
       }
     }
   }

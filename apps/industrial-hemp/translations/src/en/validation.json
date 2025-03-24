@@ -198,5 +198,11 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
+  },
+  "is-company-ref-changed": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "is-company-name-changed":{
+    "required": "Select if your registered name at Companies House has changed since your last application"
   }
 }

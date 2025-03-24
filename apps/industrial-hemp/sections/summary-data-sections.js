@@ -152,6 +152,14 @@ module.exports = {
         field: 'authorised-witness-dbs-subscription'
       },
       {
+        step: '/why-new-licence',
+        field: 'why-new-licence'
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'is-contractual-agreement'
+      },
+      {
         step: '/legal-business-proceedings',
         field: 'legal-business-proceedings'
       },

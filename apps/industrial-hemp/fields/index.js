@@ -365,8 +365,9 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'is-change-witness-only': {
+  'is-company-ref-changed': {
     mixin: 'radio-group',
+    isPageHeading: true,
     options: [
       {
         value: 'yes'
@@ -378,11 +379,46 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'visuallyhidden'
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-company-name-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-change-witness-only': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
     }
   },
   'is-additional-schedules': {
     mixin: 'radio-group',
+    isPageHeading: true,
     options: [
       {
         value: 'yes'
@@ -394,11 +430,12 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'visuallyhidden'
+      className: 'govuk-!-margin-bottom-6'
     }
   },
   'is-change-of-activity': {
     mixin: 'radio-group',
+    isPageHeading: true,
     options: [
       {
         value: 'yes'
@@ -410,7 +447,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'visuallyhidden'
+      className: 'govuk-!-margin-bottom-6'
     }
   }
 };
