@@ -4,8 +4,8 @@ const steps = {
   '/': {
     next: '/licence-holder-details',
     template: 'start'
-  },
-}
+  }
+};
 
 module.exports = {
   name: 'registration',
