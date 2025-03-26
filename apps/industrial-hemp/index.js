@@ -4,7 +4,6 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
- 
   /** Start of journey */
 
   '/application-type': {
