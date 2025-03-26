@@ -4,7 +4,7 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
-
+ 
   /** Start of journey */
 
   '/application-type': {
@@ -42,6 +42,50 @@ const steps = {
       }
     ]
   },
+
+  /** Continue an application */
+
+
+  /** Renew existing licence - Background Information */
+
+
+  /** Existing licence apply for new site - Background Information */
+
+  '/why-new-licence': {
+    fields: ['why-new-licence'],
+    forks: [
+      {
+        target: '/when-moving-site',
+        condition: {
+          field: 'why-new-licence',
+          value: 'moving-site'
+        }
+      }
+    ],
+    next: '/contractual-agreement'
+  },
+
+  '/when-moving-site': {
+    fields: ['moving-site-date'],
+    next: '/licence-holder-details',
+    locals: { showSaveAndExit: true }
+  },
+
+  '/contractual-agreement': {
+    fields: ['is-contractual-agreement'],
+    forks: [
+      {
+        target: '/when-contract-start',
+        condition: {
+          field: 'is-contractual-agreement',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+
+  '/when-contract-start': {},
 
   /** First time licensee - About the applicants */
 
@@ -183,14 +227,6 @@ const steps = {
   '/other-regulatory-licences': {
     next: '/confirm'
   },
-
-  /** Continue an application */
-
-
-  /** Renew existing licence - Background Information */
-
-
-  /** Existing licence apply for new site - Background Information */
 
   '/confirm': {
     behaviours: [Summary],

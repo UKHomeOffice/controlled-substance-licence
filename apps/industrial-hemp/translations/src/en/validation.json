@@ -121,6 +121,17 @@
     "maxlength": "Details of how the leaves and flowers will be destroyed must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
   },
+  "why-new-licence": {
+    "required": "Select why you are requesting a new licence"
+  },
+  "moving-site-date": {
+    "required": "Enter a moving date",
+    "date": "Enter a moving date in the correct format",
+    "after": "Moving date must be in the future"
+  },
+  "is-contractual-agreement": {
+    "required": "Select if the new site is part of a contractual agreement"
+  },
   "authorised-witness-full-name": {
     "required": "Enter the name of the authorised witness",
     "notUrl": "Your answer must not contain URLs or links",

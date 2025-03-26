@@ -130,6 +130,29 @@
     "label": "How will the leaves and flowers be destroyed?",
     "hint": "Providing a detailed description will help us process your application faster"
   },
+  "why-new-licence": {
+    "options": {
+      "moving-site": {
+        "label": "We are moving site"
+      },
+      "why-new-licence": {
+        "label": "For another site"
+      }
+    }
+  },
+  "moving-site-date": {
+    "hint": "Enter the date you plan to move sites"
+  },
+  "is-contractual-agreement": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "authorised-witness-full-name": {
     "label": "Full name"
   },

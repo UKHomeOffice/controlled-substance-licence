@@ -225,6 +225,32 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
+  'why-new-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
+    validate: ['required'],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-contractual-agreement': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'moving-site-date': dateComponent('moving-site-date', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ]
+  }),
   'authorised-witness-full-name': {
     mixin: 'input-text',
     validate: [
