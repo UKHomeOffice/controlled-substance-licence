@@ -20,7 +20,7 @@
     "hint": "For example, 12345678"
   },
   "licensee-type": {
-    "legend": "What type of licensee are you?",
+    "legend": "What type of controlled drugs licensee are you?",
     "options": {
       "first-time-licensee": {
         "label": "A first time licensee"

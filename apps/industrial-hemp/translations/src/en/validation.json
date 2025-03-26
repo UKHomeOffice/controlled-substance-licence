@@ -1,15 +1,15 @@
 {
   "application-form-type": {
-    "required": "Select how would you like to apply"
+    "required": "Select how you are applying for your low THC cannabis licence"
   },
   "amend-application-details": {
     "required": "Enter an application reference number",
     "numeric": "Application reference number must not include letters a to z or special characters",
-    "minlength": "Reference number provided must be between 2 and 8 numeral digits",
-    "maxlength": "Reference number provided must be between 2 and 8 numeral digits"
+    "minlength": "Application reference number must be between 2 and 8 numeral characters",
+    "maxlength": "Application reference number must be between 2 and 8 numeral characters"
   },
   "licensee-type": {
-    "required": "Select what type of licensee are you"
+    "required": "Select what type of low THC cannabis licensee you are"
   },
   "company-name": {
     "required": "Enter a company name",
