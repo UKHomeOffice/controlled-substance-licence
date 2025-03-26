@@ -182,7 +182,7 @@ const steps = {
   },
   '/when-moving-site': {
     fields: ['moving-site-date'],
-    next: '/',
+    next: '/licence-holder-details',
     locals: { showSaveAndExit: true }
   },
   '/contractual-agreement': {
