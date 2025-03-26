@@ -169,5 +169,11 @@
   },
   "authorised-witness-dbs-subscription": {
     "required": "Select if the authorised witness has subscribed to DBS updates"
+  },
+  "is-company-ref-changed": {
+    "required": "Select if your Companies House reference number has changed since your last application"
+  },
+  "is-company-name-changed":{
+    "required": "Select if your registered name at Companies House has changed since your last application"
   }
 }
