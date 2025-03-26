@@ -298,5 +298,45 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'legal-business-proceedings': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'legal-business-proceedings-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'has-anyone-received-criminal-conviction': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

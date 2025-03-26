@@ -74,6 +74,15 @@
       },
       "authorised-witness-dbs-subscription": {
         "label": "Authorised witness subscribed to DBS updates?"
+      },
+      "legal-business-proceedings": {
+        "label": "Has anyone been subject to legal proceedings?"
+      },
+      "legal-business-proceedings-details": {
+        "label": "Details of legal business proceedings"
+      },
+      "has-anyone-received-criminal-conviction": {
+        "label": "Has anyone ever received a criminal conviction?"
       }
     }
   }

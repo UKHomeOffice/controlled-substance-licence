@@ -43,6 +43,8 @@ const steps = {
     ]
   },
 
+  /** First time licensee - About the applicants */
+
   '/licence-holder-details': {
     behaviours: [customValidation],
     fields: [
@@ -150,10 +152,35 @@ const steps = {
 
   '/authorised-witness-dbs-updates': {
     fields: ['authorised-witness-dbs-subscription'],
-    next: '/confirm'
+    next: '/legal-business-proceedings',
+    template: 'site-responsible-officer-dbs-updates'
   },
 
   '/legal-business-proceedings': {
+    fields: ['legal-business-proceedings'],
+    forks: [
+      {
+        target: '/legal-business-proceedings-details',
+        condition: {
+          field: 'legal-business-proceedings',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/criminal-conviction'
+  },
+
+  '/legal-business-proceedings-details': {
+    fields: ['legal-business-proceedings-details'],
+    next: '/criminal-conviction'
+  },
+
+  '/criminal-conviction': {
+    fields: ['has-anyone-received-criminal-conviction'],
+    next: '/other-regulatory-licences'
+  },
+
+  '/other-regulatory-licences': {
     next: '/confirm'
   },
 
@@ -164,9 +191,6 @@ const steps = {
 
 
   /** Existing licence apply for new site - Background Information */
-
-
-  /** First time licensee - About the applicants */
 
   '/confirm': {
     behaviours: [Summary],
