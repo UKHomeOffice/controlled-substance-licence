@@ -127,8 +127,20 @@ module.exports = {
       {
         step: '/authorised-witness-dbs-updates',
         field: 'authorised-witness-dbs-subscription'
+      },
+      {
+        step: '/why-new-licence',
+        field: 'why-new-licence'
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-site-date',
+        parse: date => date && formatDate(new Date(date))
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'is-contractual-agreement'
       }
-
     ]
   }
 };
