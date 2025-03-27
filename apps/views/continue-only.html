@@ -1,12 +1,8 @@
 {{<partials-page}}
   {{$page-content}}
-
-    <div class="table-details">
-      {{#rows}}
-        {{> partials-summary-table}}
-      {{/rows}}
-    </div>
-
+    {{#fields}}
+      {{#renderField}}{{/renderField}}
+    {{/fields}}
     {{#input-submit}}continue-only{{/input-submit}}
   {{/page-content}}
 {{/partials-page}}
