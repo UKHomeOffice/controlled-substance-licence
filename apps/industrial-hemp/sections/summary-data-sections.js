@@ -7,6 +7,14 @@ module.exports = {
       {
         step: '/application-type',
         field: 'amend-application-details'
+      },
+      {
+        step: '/company-number-changed',
+        field: 'is-company-ref-changed'
+      },
+      {
+        step: '/company-name-changed',
+        field: 'is-company-name-changed'
       }
     ]
   },
@@ -127,8 +135,20 @@ module.exports = {
       {
         step: '/authorised-witness-dbs-updates',
         field: 'authorised-witness-dbs-subscription'
+      },
+      {
+        step: '/why-new-licence',
+        field: 'why-new-licence'
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-site-date',
+        parse: date => date && formatDate(new Date(date))
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'is-contractual-agreement'
       }
-
     ]
   }
 };
