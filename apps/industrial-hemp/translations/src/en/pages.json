@@ -83,6 +83,15 @@
       },
       "authorised-witness-dbs-subscription": {
         "label": "Authorised witness subscribed to DBS updates?"
+      },
+      "why-new-licence": {
+        "label": "Reason for collecting new licence"
+      },
+      "moving-site-date": {
+        "label": "Date when moving site"
+      },
+      "is-contractual-agreement": {
+        "label": "Is new site part of contractual agreement"
       }
     }
   }
