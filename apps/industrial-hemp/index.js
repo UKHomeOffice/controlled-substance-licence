@@ -1,5 +1,6 @@
 const hof = require('hof');
-
+const CustomRedirect = require('./behaviours/custom-redirect');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
@@ -162,7 +163,40 @@ const steps = {
 
   /** Renew existing licence - Background Information */
 
-
+  // Existing licensee renewing or changing a currently licensed site
+  '/company-number-changed': {
+    fields: ['is-company-ref-changed'],
+    next: '/company-name-changed',
+    behaviours: [SetSummaryReferrer, CustomRedirect]
+  },
+  '/register-again': {
+    backLink: '/industrial-hemp/company-number-changed'
+  },
+  '/company-name-changed': {
+    fields: ['is-company-name-changed'],
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: {
+          field: 'is-company-name-changed',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/change-witness-only'
+  },
+  '/company-registration-certificate': {
+    next: '/change-witness-only'
+  },
+  '/change-witness-only': {
+    next: '/additional-schedules'
+  },
+  '/additional-schedules': {
+      next: '/change-of-activity'
+  },
+  '/change-of-activity': {
+      next: '/licence-holder-details'
+  },
   /** Existing licence apply for new site - Background Information */
 
 
