@@ -49,6 +49,33 @@ module.exports = {
       }
     ]
   },
+
+  'why-new-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
+    validate: ['required'],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-contractual-agreement': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'moving-site-date': dateComponent('moving-site-date', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ]
+  }),
   'company-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
@@ -225,32 +252,6 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
-  'why-new-licence': {
-    mixin: 'radio-group',
-    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
-    validate: ['required'],
-    className: ['govuk-radios'],
-    legend: {
-      className: 'visuallyhidden'
-    }
-  },
-  'is-contractual-agreement': {
-    mixin: 'radio-group',
-    options: [{ value: 'yes' }, { value: 'no' }],
-    validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'visuallyhidden'
-    }
-  },
-  'moving-site-date': dateComponent('moving-site-date', {
-    mixin: 'input-date',
-    validate: [
-      'required',
-      'date',
-      { type: 'after', arguments: ['0', 'days'] }
-    ]
-  }),
   'authorised-witness-full-name': {
     mixin: 'input-text',
     validate: [
@@ -324,5 +325,77 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'hold-other-regulatory-licences': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'other-licence-type': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 200 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'other-licence-number': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 25 },
+      'alphanum'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'other-licence-date-of-issue': dateComponent('other-licence-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['10', 'years'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  }),
+  'is-licence-refused': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'refusal-reason': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
   }
 };

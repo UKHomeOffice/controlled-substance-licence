@@ -127,8 +127,34 @@ module.exports = {
       {
         step: '/authorised-witness-dbs-updates',
         field: 'authorised-witness-dbs-subscription'
+      },
+      {
+        step: '/other-regulatory-licences',
+        field: 'hold-other-regulatory-licences'
+      },
+      {
+        step: '/other-licence-details',
+        field: 'other-licence-details',
+        parse: (list, req) => {
+          if(req.sessionModel.get('hold-other-regulatory-licences') === 'no') {
+            return null;
+          }
+          const otherLicenceDetails = [
+            req.sessionModel.get('other-licence-type'),
+            req.sessionModel.get('other-licence-number'),
+            formatDate(req.sessionModel.get('other-licence-date-of-issue'))
+          ];
+          return otherLicenceDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/licence-refused',
+        field: 'is-licence-refused'
+      },
+      {
+        step: '/refusal-reason',
+        field: 'refusal-reason'
       }
-
     ]
   }
 };

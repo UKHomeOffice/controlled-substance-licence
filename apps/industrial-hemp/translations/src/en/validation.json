@@ -169,5 +169,34 @@
   },
   "authorised-witness-dbs-subscription": {
     "required": "Select if the authorised witness has subscribed to DBS updates"
+  },
+  "hold-other-regulatory-licences": {
+    "required": "Select if you hold any Home Office or other regulatory licenses"
+  },
+  "other-licence-type": {
+    "required": "Enter the licence type",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Licence type must be between 3 and 200 characters",
+    "minlength": "Licence type must be between 3 and 200 characters"
+  },
+  "other-licence-number": {
+    "required": "Enter a licence number",
+    "maxlength": "Licence number must be between 3 and 25 characters",
+    "minlength": "Licence number must be between 3 and 25 characters",
+    "alphanum": "Enter a real licence number or application reference number"
+  },
+  "other-licence-date-of-issue": {
+    "required": "Enter the date of issue or application",
+    "date": "Enter a real date of issue or application",
+    "before": "Other licence date of issue or application must not be in the future",
+    "after": "Other licence cannot be more than 10 years old."
+  },
+  "is-licence-refused": {
+    "required": "Select if your organisation ever been refused a licence"
+  },
+  "refusal-reason": {
+    "required": "Enter details of why you were refused a licence",
+    "maxlength": "Details of why you were refused a licence must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
