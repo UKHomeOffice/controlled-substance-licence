@@ -227,8 +227,7 @@
       }
     }
   },
-  "is-company-name-changed": {
-    "legend": "Has your registered name at Companies House changed since your last application?",
+  "is-change-witness-only": {
     "options": {
       "yes": {
         "label": "Yes"
@@ -238,7 +237,8 @@
       }
     }
   },
-  "is-change-witness-only": {
+  "is-company-name-changed": {
+    "legend": "Has your registered name at Companies House changed since your last application?",
     "options": {
       "yes": {
         "label": "Yes"

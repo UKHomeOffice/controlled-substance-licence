@@ -233,5 +233,14 @@
     "required": "Enter details of why you were refused a licence",
     "maxlength": "Details of why you were refused a licence must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "is-change-witness-only": {
+    "required": "Select if you are requesting a change in authorised witness for this site only"
+  },
+  "is-additional-schedules": {
+    "required": "Select if you are requesting additional schedules"
+  },
+  "is-change-of-activity": {
+    "required": "Select if you are requesting a change of activity"
   }
 }

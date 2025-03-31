@@ -51,6 +51,7 @@ const steps = {
   /** Renew existing licence - Background Information */
 
   // Existing licensee renewing or changing a currently licensed site
+
   '/company-number-changed': {
     fields: ['is-company-ref-changed'],
     next: '/company-name-changed',
@@ -86,9 +87,11 @@ const steps = {
     next: '/change-witness-only'
   },
   '/change-witness-only': {
+    fields: ['is-change-witness-only'],
     next: '/additional-schedules'
   },
   '/additional-schedules': {
+    fields: ['is-additional-schedules'],
     next: '/change-of-activity'
   },
   '/change-of-activity': {

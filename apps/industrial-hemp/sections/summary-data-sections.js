@@ -48,8 +48,25 @@ module.exports = {
       },
       {
         step: '/company-name-changed',
-        field: 'is-company-name-changed'
-
+        field: 'is-company-name-changed',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/change-witness-only',
+        field: 'is-change-witness-only'
+      },
+      {
+        step: '/additional-schedules',
+        field: 'is-additional-schedules'
+      },
+      {
+        step: '/change-of-activity',
+        field: 'is-change-of-activity'
       }
     ]
   },
