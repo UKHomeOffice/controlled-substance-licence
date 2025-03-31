@@ -4,7 +4,6 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 
 const steps = {
-
   /** Start of journey */
 
   '/application-type': {
@@ -42,6 +41,52 @@ const steps = {
       }
     ]
   },
+
+  /** Continue an application */
+
+
+  /** Renew existing licence - Background Information */
+
+
+  /** Existing licence apply for new site - Background Information */
+
+  '/why-new-licence': {
+    fields: ['why-new-licence'],
+    forks: [
+      {
+        target: '/when-moving-site',
+        condition: {
+          field: 'why-new-licence',
+          value: 'moving-site'
+        }
+      }
+    ],
+    next: '/contractual-agreement'
+  },
+
+  '/when-moving-site': {
+    fields: ['moving-site-date'],
+    next: '/licence-holder-details',
+    locals: { showSaveAndExit: true }
+  },
+
+  '/contractual-agreement': {
+    fields: ['is-contractual-agreement'],
+    forks: [
+      {
+        target: '/when-contract-start',
+        condition: {
+          field: 'is-contractual-agreement',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+
+  '/when-contract-start': {},
+
+  /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
     behaviours: [customValidation],
@@ -150,55 +195,38 @@ const steps = {
 
   '/authorised-witness-dbs-updates': {
     fields: ['authorised-witness-dbs-subscription'],
-    next: '/confirm'
+    next: '/legal-business-proceedings',
+    template: 'site-responsible-officer-dbs-updates'
   },
 
   '/legal-business-proceedings': {
-    next: '/confirm'
-  },
-
-  /** Continue an application */
-
-
-  /** Renew existing licence - Background Information */
-
-
-  /** Existing licence apply for new site - Background Information */
-
-
-  /** First time licensee - About the applicants */
-  '/why-new-licence': {
-    fields: ['why-new-licence'],
+    fields: ['legal-business-proceedings'],
     forks: [
       {
-        target: '/when-moving-site',
+        target: '/legal-business-proceedings-details',
         condition: {
-          field: 'why-new-licence',
-          value: 'moving-site'
-        }
-      }
-    ],
-    next: '/contractual-agreement'
-  },
-  '/when-moving-site': {
-    fields: ['moving-site-date'],
-    next: '/licence-holder-details',
-    locals: { showSaveAndExit: true }
-  },
-  '/contractual-agreement': {
-    fields: ['is-contractual-agreement'],
-    forks: [
-      {
-        target: '/when-contract-start',
-        condition: {
-          field: 'is-contractual-agreement',
+          field: 'legal-business-proceedings',
           value: 'yes'
         }
       }
     ],
-    next: '/licence-holder-details'
+    next: '/criminal-conviction'
   },
-  '/when-contract-start': {},
+
+  '/legal-business-proceedings-details': {
+    fields: ['legal-business-proceedings-details'],
+    next: '/criminal-conviction'
+  },
+
+  '/criminal-conviction': {
+    fields: ['has-anyone-received-criminal-conviction'],
+    next: '/other-regulatory-licences'
+  },
+
+  '/other-regulatory-licences': {
+    next: '/confirm'
+  },
+
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')

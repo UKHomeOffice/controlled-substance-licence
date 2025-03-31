@@ -127,8 +127,19 @@ module.exports = {
       {
         step: '/authorised-witness-dbs-updates',
         field: 'authorised-witness-dbs-subscription'
+      },
+      {
+        step: '/legal-business-proceedings',
+        field: 'legal-business-proceedings'
+      },
+      {
+        step: '/legal-business-proceedings-details',
+        field: 'legal-business-proceedings-details'
+      },
+      {
+        step: '/criminal-conviction',
+        field: 'has-anyone-received-criminal-conviction'
       }
-
     ]
   }
 };
