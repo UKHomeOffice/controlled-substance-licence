@@ -1,10 +1,28 @@
 const { model: Model } = require('hof');
-const { constants } = require('node:buffer');
 const config = require('../../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 const crypto = require('node:crypto');
 
 const hofModel = new Model();
+
+/**
+ * Custom error class for handling authentication-related errors.
+ * This class extends the built-in Error class and adds additional properties
+ * such as status, type, and details to provide more context about the error.
+ *
+ * @param {number} status - The HTTP status code associated with the error.
+ * @param {string} type - The type of the error.
+ * @param {string} message - A descriptive error message.
+ * @param {object} [details] - Additional details about the error (optional).
+ */
+class AuthError extends Error {
+  constructor({ status, type, message, details }) {
+    super(message);
+    this.status = status;
+    this.type = type;
+    this.details = details || null;
+  }
+}
 
 /**
  * Decodes and verifies a JWT token using the public key.
@@ -26,8 +44,7 @@ const decodeAndVerifyJwt = token => {
       return false;
     }
 
-    // Decode the header and payload (Base64URL decoding)
-    const decodedHeader = JSON.parse(Buffer.from(header, 'base64url').toString('utf8'));
+    // Decode the payload (Base64URL decoding)
     const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
 
     // Verify the signature (RS256)
@@ -59,6 +76,20 @@ const decodeAndVerifyJwt = token => {
     logger.error('JWT validation failed', { error });
     return false;
   }
+};
+
+/**
+ * Determines the error type based on the HTTP status code.
+ * @param {number} status - The HTTP status code.
+ * @returns {string} - The error type (e.g., 'authentication_error', 'server_error').
+ */
+const determineErrorType = status => {
+  if (status >= 400 && status < 500) {
+    return 'authenticationError';
+  } else if (status >= 500) {
+    return 'serverError';
+  }
+  return 'unknownError';
 };
 
 /**
@@ -113,27 +144,13 @@ const getTokens = async (username, password) => {
 
     logger.error('Failed to fetch tokens from Keycloak', { error: errorMessage });
 
-    throw {
+    throw new AuthError({
       status,
       type: errorType,
       message: errorMessage,
-      details: error.response?.data || null
-    };
+      details: error.response?.data
+    });
   }
-};
-
-/**
- * Determines the error type based on the HTTP status code.
- * @param {number} status - The HTTP status code.
- * @returns {string} - The error type (e.g., 'authentication_error', 'server_error').
- */
-const determineErrorType = status => {
-  if (status >= 400 && status < 500) {
-    return 'authenticationError';
-  } else if (status >= 500) {
-    return 'serverError';
-  }
-  return 'unknownError';
 };
 
 const refreshToken = async () => {

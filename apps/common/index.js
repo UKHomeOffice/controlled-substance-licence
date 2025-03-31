@@ -1,4 +1,3 @@
-const { behaviours } = require('../precursor-chemicals');
 const Auth = require('./behaviours/auth/auth-check');
 const SignIn = require('./behaviours/auth/sign-in');
 const SignOut = require('./behaviours/auth/sign-out');
