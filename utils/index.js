@@ -32,15 +32,19 @@ const translateOption = (req, field, value) => {
  * Formats a given date string into a specified format.
  *
  * @param {string} date - The date string to be formatted.
- * @returns {string} - The formatted date string.
+ * @returns {string|undefined} - The formatted date string.
  *
  * @example
  * Assuming config.dateLocales is 'en-GB' and config.dateFormat is { day: 'numeric', month: 'long', year: 'numeric' }
  * formatDate('2023-10-23'); // returns '23 October 2023'
  */
 const formatDate = date => {
-  const dateObj = new Date(date);
-  return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+  try {
+    const dateObj = new Date(date);
+    return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+  } catch (error) {
+    return undefined;
+  }
 };
 
 /**
@@ -124,6 +128,20 @@ const isValidPhoneNumber = phoneNumber => {
   return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
 };
 
+/**
+ * From the request object, determines if any of the current step's fork conditions are satisfied by a field value.
+ *
+ * @param {object} req - The request object.
+ * @returns {boolean} - The current form step has a fork condition that is satisfied by a field value.
+ */
+const currentStepSatisfiesForkCondition = req => {
+  const forksInStep = req.form.options.forks;
+  return Array.isArray(forksInStep) && forksInStep?.find(fork => {
+    const { field, value } = fork.condition;
+    return req.form.values[field] === value;
+  });
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -131,5 +149,6 @@ module.exports = {
   sanitiseFilename,
   parseOperations,
   findArrayItemByValue,
-  isValidPhoneNumber
+  isValidPhoneNumber,
+  currentStepSatisfiesForkCondition
 };
