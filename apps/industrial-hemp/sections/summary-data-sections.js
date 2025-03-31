@@ -7,6 +7,17 @@ module.exports = {
       {
         step: '/application-type',
         field: 'amend-application-details'
+      },
+      {
+        step: '/company-registration-certificate',
+        field: 'company-registration-certificate',
+        dependsOn: 'companies-house-name-change',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   },

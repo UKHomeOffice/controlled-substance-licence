@@ -2,6 +2,8 @@ const hof = require('hof');
 
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
   /** Start of journey */
@@ -46,6 +48,36 @@ const steps = {
 
 
   /** Renew existing licence - Background Information */
+
+  // Existing licensee renewing or changing a currently licensed site
+  '/company-number-changed': {
+    next: '/company-name-changed'
+  },
+  '/company-name-changed': {
+    next: '/company-registration-certificate'
+  },
+  '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    next: '/change-witness-only'
+  },
+  '/change-witness-only': {
+    next: '/additional-schedules'
+  },
+  '/additional-schedules': {
+    next: '/change-of-activity'
+  },
+  '/change-of-activity': {
+    next: '/licence-holder-details'
+  },
 
 
   /** Existing licence apply for new site - Background Information */
