@@ -11,6 +11,9 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
+const customRedirect = require('./behaviours/custom-redirect');
+
 const steps = {
 
   /** Start of journey */
@@ -54,7 +57,13 @@ const steps = {
   /** Continue an application */
 
   '/information-you-have-given-us': {
-    next: '/licence-holder-details'
+    behaviours: [Summary, InformationYouHaveGivenUs],
+    template: 'summary',
+    sections: require('./sections/summary-data-sections'),
+    next: '/licence-holder-details',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   /** Renew existing licence - Background Information */
@@ -308,12 +317,14 @@ const steps = {
 
   '/substance-category': {
     fields: ['substance-category'],
+    ignoreCustomRedirect: true,
     next: '/which-chemical'
   },
 
   '/which-chemical': {
     fields: ['which-chemical'],
     behaviours: [FilterChemicals],
+    ignoreCustomRedirect: true,
     next: '/which-operation'
   },
 
@@ -327,11 +338,13 @@ const steps = {
           req.sessionModel.get('which-operation') === 'other'
       }
     ],
+    ignoreCustomRedirect: true,
     next: '/substances-in-licence'
   },
 
   '/what-operation': {
     fields: ['what-operation'],
+    ignoreCustomRedirect: true,
     next: '/substances-in-licence'
   },
 
@@ -501,5 +514,6 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
-  steps: steps
+  steps: steps,
+  behaviours: [customRedirect]
 };
