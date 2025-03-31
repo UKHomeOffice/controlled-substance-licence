@@ -81,7 +81,7 @@ const decodeAndVerifyJwt = token => {
 /**
  * Determines the error type based on the HTTP status code.
  * @param {number} status - The HTTP status code.
- * @returns {string} - The error type (e.g., 'authentication_error', 'server_error').
+ * @returns {string} - The error type.
  */
 const determineErrorType = status => {
   if (status >= 400 && status < 500) {
@@ -110,7 +110,8 @@ const validateToken = tokens => {
  * Fetches tokens from Keycloak using the Resource Owner Password Credentials (ROPC) flow.
  * @param {string} username - The username of the user.
  * @param {string} password - The password of the user.
- * @returns {object|null} - Returns the token object if successful, otherwise null.
+ * @returns {object} - Returns the token object if successful.
+ * @throws {AuthError} - Throws an AuthError if the token fetch fails.
  */
 const getTokens = async (username, password) => {
   try {

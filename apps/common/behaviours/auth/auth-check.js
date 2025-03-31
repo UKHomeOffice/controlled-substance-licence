@@ -20,11 +20,11 @@ module.exports = superclass => class extends superclass {
     }
 
     if (auth.authorisedUserRole(req.sessionModel.get('tokens'))) {
-      req.log('info', 'User is not authorized to apply for a license.');
+      req.log('info', 'User is not authorised to apply for a license.');
       return res.redirect('/signed-in-successfully');
     }
 
-    // Continue with the rest of the process if the token is valid
+    // Continue to the next middleware if the token is valid
     return next();
   }
 };

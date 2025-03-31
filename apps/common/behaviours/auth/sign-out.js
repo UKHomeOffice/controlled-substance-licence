@@ -8,7 +8,7 @@ module.exports = superclass => class extends superclass {
 
     // @todo: clear session
 
-    // Continue with the rest of the process if the token is valid
+    // Continue with the rest of the process
     return super.configure(req, res, next);
   }
 };

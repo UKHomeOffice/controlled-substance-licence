@@ -15,7 +15,7 @@ module.exports = superclass => class extends superclass {
           refresh_token: tokens.refresh_token
         });
 
-        // Continue the rest of the process if the token is valid
+        // Continue to the next middleware
         next();
       })
       .catch(error => {
