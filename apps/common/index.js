@@ -1,13 +1,15 @@
+const { behaviours } = require('../precursor-chemicals');
+const Auth = require('./behaviours/auth/auth-check');
+const SignIn = require('./behaviours/auth/sign-in');
+const SignOut = require('./behaviours/auth/sign-out');
+
 const steps = {
   '/': {
-    next: '/sign-in',
+    next: '/licence-type',
     template: 'start'
   },
-  '/sign-in': {
-    fields: ['username', 'password'],
-    next: '/licence-type'
-  },
   '/licence-type': {
+    behaviours: [ Auth ],
     fields: ['licence-type'],
     forks: [
       {
@@ -28,7 +30,18 @@ const steps = {
     next: '/industrial-hemp/application-type'
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {},
+  '/sign-in': {
+    behaviours: [ SignIn ],
+    fields: ['username', 'password'],
+    next: '/licence-type'
+  },
+  '/signed-in-successfully': {
+    next: '/sign-out'
+  },
+  '/sign-out': {
+    behaviours: [ SignOut ]
+  }
 };
 
 module.exports = {

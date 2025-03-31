@@ -66,11 +66,17 @@ module.exports = {
   },
   keycloak: {
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
       password: process.env.FILE_VAULT_PASSWORD,
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
+    },
+    cslApp: {
+      clientId: process.env.CSL_APP_CLIENT_ID,
+      secret: process.env.CSL_APP_CLIENT_SECRET,
+      allowedUserRole: process.env.CSL_ALLOWED_USER_ROLE
     }
   },
   aggregateLimits: {
