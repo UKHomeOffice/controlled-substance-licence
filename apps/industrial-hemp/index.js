@@ -2,6 +2,7 @@ const hof = require('hof');
 
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
 
@@ -213,5 +214,6 @@ module.exports = {
   fields: 'apps/industrial-hemp/fields',
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  behaviours: [ Auth ]
 };
