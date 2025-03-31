@@ -2,6 +2,8 @@ const hof = require('hof');
 
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
   /** Start of journey */
@@ -52,24 +54,32 @@ const steps = {
     next: '/company-name-changed'
   },
   '/company-name-changed': {
-    next: '/change-witness-only'
+    next: '/company-registration-certificate'
   },
   '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
     next: '/change-witness-only'
   },
   '/change-witness-only': {
-    fields: ['is-change-witness-only'],
     next: '/additional-schedules'
   },
   '/additional-schedules': {
-    fields: ['is-additional-schedules'],
     next: '/change-of-activity'
   },
   '/change-of-activity': {
-    fields: ['is-change-of-activity'],
     next: '/licence-holder-details'
   },
 
+  
   /** Existing licence apply for new site - Background Information */
 
   '/why-new-licence': {

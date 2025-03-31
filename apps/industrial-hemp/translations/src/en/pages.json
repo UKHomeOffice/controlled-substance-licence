@@ -43,6 +43,10 @@
   "change-of-activity": {
     "header": "Are you requesting a change of activity?"
   },
+  "company-registration-certificate": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -110,6 +114,9 @@
       },
       "is-change-of-activity": {
         "label": "Change of activity"
+      },
+      "company-registration-certificate": {
+        "label": "Upload of Company House evidence"
       }
     }
   }
