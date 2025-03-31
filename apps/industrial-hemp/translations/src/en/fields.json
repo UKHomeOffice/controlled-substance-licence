@@ -175,9 +175,8 @@
   "authorised-witness-dbs-date-of-issue": {
     "label": "Date of issue or application"
   },
-  "hold-other-regulatory-licences": {
-    "legend": "Do you hold any Home Office or other regulatory licenses?",
-    "hint": "This includes animal scientific procedures and firearms",
+  "authorised-witness-dbs-subscription": {
+    "legend": "Has the authorised witness subscribed to DBS updates?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -187,8 +186,9 @@
       }
     }
   },
-  "authorised-witness-dbs-subscription": {
-    "legend": "Has the authorised witness subscribed to DBS updates?",
+  "hold-other-regulatory-licences": {
+    "legend": "Do you hold any Home Office or other regulatory licenses?",
+    "hint": "This includes animal scientific procedures and firearms",
     "options": {
       "yes": {
         "label": "Yes"
