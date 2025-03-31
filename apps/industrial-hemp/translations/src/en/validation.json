@@ -189,7 +189,7 @@
     "required": "Enter the date of issue or application",
     "date": "Enter a real date of issue or application",
     "before": "Date of issue or application must be today's date or in the past",
-    "after": "Other licence cannot be more than 10 years old."
+    "after": "Date of issue or application must be in the past 50 years"
   },
   "is-licence-refused": {
     "required": "Select if your organisation has ever been refused a licence"
