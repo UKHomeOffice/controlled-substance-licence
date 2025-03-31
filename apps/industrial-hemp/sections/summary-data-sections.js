@@ -7,6 +7,18 @@ module.exports = {
       {
         step: '/application-type',
         field: 'amend-application-details'
+      },
+      {
+        step: '/change-witness-only',
+        field: 'is-change-witness-only'
+      },
+      {
+        step: '/additional-schedules',
+        field: 'is-additional-schedules'
+      },
+      {
+        step: '/change-of-activity',
+        field: 'is-change-of-activity'
       }
     ]
   },

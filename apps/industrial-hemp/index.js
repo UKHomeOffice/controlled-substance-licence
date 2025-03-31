@@ -47,6 +47,28 @@ const steps = {
 
   /** Renew existing licence - Background Information */
 
+  // Existing licensee renewing or changing a currently licensed site
+  '/company-number-changed': {
+    next: '/company-name-changed'
+  },
+  '/company-name-changed': {
+    next: '/change-witness-only'
+  },
+  '/company-registration-certificate': {
+    next: '/change-witness-only'
+  },
+  '/change-witness-only': {
+    fields: ['is-change-witness-only'],
+    next: '/additional-schedules'
+  },
+  '/additional-schedules': {
+    fields: ['is-additional-schedules'],
+    next: '/change-of-activity'
+  },
+  '/change-of-activity': {
+    fields: ['is-change-of-activity'],
+    next: '/licence-holder-details'
+  },
 
   /** Existing licence apply for new site - Background Information */
 

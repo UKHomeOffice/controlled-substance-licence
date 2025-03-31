@@ -364,5 +364,53 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'is-change-witness-only': {
+    mixin: 'radio-group',
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-additional-schedules': {
+    mixin: 'radio-group',
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-change-of-activity': {
+    mixin: 'radio-group',
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
   }
 };
