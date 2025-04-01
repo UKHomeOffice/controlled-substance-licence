@@ -14,7 +14,7 @@ module.exports = {
       {
         step: '/licence-holder-details',
         field: 'company-number',
-        parse: value => value.toUpperCase() || 'Not Provided'
+        parse: (value, req) => value.toUpperCase() || req.translate('journey.not-provided')
       },
       {
         step: '/licence-holder-details',
@@ -27,7 +27,7 @@ module.exports = {
       {
         step: '/licence-holder-details',
         field: 'website-url',
-        parse: value => value || 'Not Provided'
+        parse: (value, req) => value || req.translate('journey.not-provided')
       }
     ]
   },
@@ -40,7 +40,7 @@ module.exports = {
       {
         step: '/licence-holder-address',
         field: 'licence-holder-address-line-2',
-        parse: value => value || 'Not Provided'
+        parse: (value, req) => value || req.translate('journey.not-provided')
       },
       {
         step: '/licence-holder-address',
