@@ -1,4 +1,10 @@
-const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber } = require('../../utils');
+const {
+  getLabel,
+  formatDate,
+  findArrayItemByValue,
+  isValidPhoneNumber,
+  currentStepSatisfiesForkCondition
+} = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 
@@ -25,8 +31,8 @@ describe('Utilities \'formatDate\'', () => {
     expect(formatDate('08/14/1987')).toBe('14 August 1987');
   });
 
-  test('throws an error when the parameter cannot be parsed as a date', () => {
-    expect(() => formatDate('hello')).toThrow();
+  test('return undefined when the parameter cannot be parsed as a date', () => {
+    expect(formatDate('hello')).toBe(undefined);
   });
 });
 
@@ -61,5 +67,58 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
     expect(isValidPhoneNumber('12345')).toBe(false);
     expect(isValidPhoneNumber('?01632 960000')).toBe(false);
     expect(isValidPhoneNumber('01632 960000143288')).toBe(false);
+  });
+});
+
+describe('Utilities \'currentStepSatisfiesForkCondition\'', () => {
+  test('returns true when a fork condition is satisfied', () => {
+    const req = {
+      form: {
+        options: {
+          forks: [
+            {
+              target: '/test',
+              condition: {
+                field: 'test-field',
+                value: 'yes'
+              }
+            }
+          ]
+        },
+        values: {
+          'test-field': 'yes'
+        }
+      }
+    }
+    expect(currentStepSatisfiesForkCondition(req)).toBe(true);
+  });
+
+  test('returns false when no fork condition is satisfied', () => {
+    let req = {
+      form: {
+        options: {
+          forks: [
+            {
+              target: '/test',
+              condition: {
+                field: 'test-field',
+                value: 'yes'
+              }
+            }
+          ]
+        },
+        values: {
+          'test-field': 'no'
+        }
+      }
+    }
+    expect(currentStepSatisfiesForkCondition(req)).toBe(false);
+    req = {
+      form: {
+        options: {},
+        values: { 'test-field': 'no' }
+      }
+    }
+    expect(currentStepSatisfiesForkCondition(req)).toBe(false);
   });
 });

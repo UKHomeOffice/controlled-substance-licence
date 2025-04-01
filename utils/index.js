@@ -136,10 +136,11 @@ const isValidPhoneNumber = phoneNumber => {
  */
 const currentStepSatisfiesForkCondition = req => {
   const forksInStep = req.form.options.forks;
-  return Array.isArray(forksInStep) && forksInStep?.find(fork => {
-    const { field, value } = fork.condition;
-    return req.form.values[field] === value;
-  });
+  return forksInStep && Array.isArray(forksInStep) ?
+    !!forksInStep.find(fork => {
+      const { field, value } = fork.condition;
+      return req.form.values[field] === value;
+    }) : false
 };
 
 module.exports = {
