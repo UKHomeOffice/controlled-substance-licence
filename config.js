@@ -73,10 +73,14 @@ module.exports = {
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
     },
-    cslApp: {
-      clientId: process.env.CSL_APP_CLIENT_ID,
-      secret: process.env.CSL_APP_CLIENT_SECRET,
-      allowedUserRole: process.env.CSL_ALLOWED_USER_ROLE
+    userAuthClient: {
+      clientId: process.env.USER_AUTH_CLIENT_ID,
+      secret: process.env.USER_AUTH_CLIENT_SECRET,
+      allowedUserRole: process.env.USER_AUTH_ALLOWED_ROLE
+    },
+    adminClient: {
+      clientId: process.env.ADMIN_CLIENT_ID,
+      secret: process.env.ADMIN_CLIENT_SECRET
     }
   },
   aggregateLimits: {

@@ -122,8 +122,8 @@ const getTokens = async (username, password) => {
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       data: {
-        client_id: config.keycloak.cslApp.clientId,
-        client_secret: config.keycloak.cslApp.secret,
+        client_id: config.keycloak.userAuthClient.clientId,
+        client_secret: config.keycloak.userAuthClient.secret,
         username,
         password,
         grant_type: 'password'
@@ -195,7 +195,7 @@ const authorisedUserRole = tokens => {
   const decodedPayload = JSON.parse(Buffer.from(tokens.access_token.split('.')[1], 'base64url').toString('utf8'));
 
   const userRoles = decodedPayload?.realm_access?.roles || [];
-  if (userRoles.includes(config.keycloak.cslApp.allowedUserRole)) {
+  if (userRoles.includes(config.keycloak.userAuthClient.allowedUserRole)) {
     logger.info('User is authorised');
     return true;
   }
