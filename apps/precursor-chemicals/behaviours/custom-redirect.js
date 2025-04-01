@@ -1,4 +1,4 @@
-const { currentStepSatisfiesForkCondition } = require('../../../utils');
+const { findSatisfiedForkCondition } = require('../../../utils');
 
 // Handle routing around /companies-house-number and /cannot-continue
 const checkCompaniesHouseRef = (req, currentRoute) => (
@@ -26,7 +26,7 @@ module.exports = superclass => class extends superclass {
       if (
         req.sessionModel.get('referred-by-information-given-summary') &&
         !isContinueOnEdit &&
-        !currentStepSatisfiesForkCondition(req)
+        !findSatisfiedForkCondition(req, req.form.options.forks)
       ) {
         return res.redirect(`${formApp}/information-you-have-given-us`);
       }

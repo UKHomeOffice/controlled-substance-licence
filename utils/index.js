@@ -132,15 +132,20 @@ const isValidPhoneNumber = phoneNumber => {
  * From the request object, determines if any of the current step's fork conditions are satisfied by a field value.
  *
  * @param {object} req - The request object.
- * @returns {boolean} - The current form step has a fork condition that is satisfied by a field value.
+ * @param {array} forks - Optionally pass the forks array for a specific step.
+ * @returns {object|undefined} - Returns a form step fork object if one was satisfied or undefined if not.
  */
-const currentStepSatisfiesForkCondition = req => {
-  const forksInStep = req.form.options.forks;
-  return forksInStep && Array.isArray(forksInStep) ?
-    !!forksInStep.find(fork => {
+const findSatisfiedForkCondition = (req, forks) => {
+  if (forks && Array.isArray(forks)) {
+    return forks.find(fork => {
+      if (typeof fork.condition === 'function') {
+        return fork.condition(req);
+      }
       const { field, value } = fork.condition;
-      return req.form.values[field] === value;
-    }) : false;
+      return req.sessionModel.get(field) === value;
+    });
+  }
+  return undefined;
 };
 
 module.exports = {
@@ -151,5 +156,5 @@ module.exports = {
   parseOperations,
   findArrayItemByValue,
   isValidPhoneNumber,
-  currentStepSatisfiesForkCondition
+  findSatisfiedForkCondition
 };

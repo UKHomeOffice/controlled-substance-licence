@@ -1,3 +1,5 @@
+const { findSatisfiedForkCondition } = require('../../../utils');
+
 const buildStepJourneyFromSessionValues = req => {
   const formSteps = Object.keys(req.form.options.steps);
   const stepJourney = [formSteps[0]];
@@ -5,10 +7,7 @@ const buildStepJourneyFromSessionValues = req => {
   const addNextStep = steps => {
     const currentStep = steps[steps.length - 1];
     const forksInStep = req.form.options.steps[currentStep].forks;
-    const satisfiedForkCondition = forksInStep?.find(fork => {
-      const { field, value } = fork.condition;
-      return req.sessionModel.get(field) === value;
-    });
+    const satisfiedForkCondition = findSatisfiedForkCondition(req, forksInStep);
     const nextStep = satisfiedForkCondition ? satisfiedForkCondition.target : req.form.options.steps[currentStep].next;
     if (nextStep) {
       stepJourney.push(nextStep);

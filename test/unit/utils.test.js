@@ -3,10 +3,11 @@ const {
   formatDate,
   findArrayItemByValue,
   isValidPhoneNumber,
-  currentStepSatisfiesForkCondition
+  findSatisfiedForkCondition
 } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
+const reqres = require('hof').utils.reqres;
 
 describe('Utilities \'getLabel\'', () => {
   test('returns undefined when an unexpected fieldKey parameter is passed', () => {
@@ -70,55 +71,50 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
   });
 });
 
-describe('Utilities \'currentStepSatisfiesForkCondition\'', () => {
-  test('returns true when a fork condition is satisfied', () => {
-    const req = {
-      form: {
-        options: {
-          forks: [
-            {
-              target: '/test',
-              condition: {
-                field: 'test-field',
-                value: 'yes'
-              }
-            }
-          ]
-        },
-        values: {
-          'test-field': 'yes'
-        }
-      }
-    };
-    expect(currentStepSatisfiesForkCondition(req)).toBe(true);
+describe('Utilities \'findSatisfiedForkCondition\'', () => {
+  let req;
+  let forks;
+
+  beforeEach(() => {
+    req = reqres.req();
   });
 
-  test('returns false when no fork condition is satisfied', () => {
-    let req = {
-      form: {
-        options: {
-          forks: [
-            {
-              target: '/test',
-              condition: {
-                field: 'test-field',
-                value: 'yes'
-              }
-            }
-          ]
-        },
-        values: {
-          'test-field': 'no'
+  test('returns the fork object when a fork condition is satisfied', () => {
+    req.sessionModel.set('test-field', 'yes');
+    forks = [
+      {
+        target: '/test',
+        condition: {
+          field: 'test-field',
+          value: 'yes'
         }
       }
-    };
-    expect(currentStepSatisfiesForkCondition(req)).toBe(false);
-    req = {
-      form: {
-        options: {},
-        values: { 'test-field': 'no' }
+    ];
+
+    expect(findSatisfiedForkCondition(req, forks)).toStrictEqual({
+      target: '/test',
+      condition: {
+        field: 'test-field',
+        value: 'yes'
       }
-    };
-    expect(currentStepSatisfiesForkCondition(req)).toBe(false);
+    });
+  });
+
+  test('returns undefined when no fork condition is satisfied', () => {
+    req.sessionModel.set('test-field', 'no');
+    forks = [
+      {
+        target: '/test',
+        condition: {
+          field: 'test-field',
+          value: 'yes'
+        }
+      }
+    ];
+
+    expect(findSatisfiedForkCondition(req, forks)).toBe(undefined);
+    req.sessionModel.set('test-field', 'no');
+    forks = [];
+    expect(findSatisfiedForkCondition(req, forks)).toBe(undefined);
   });
 });
