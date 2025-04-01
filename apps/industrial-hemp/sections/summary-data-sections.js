@@ -30,6 +30,20 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-site-date',
+        parse: date => date && formatDate(date)
+      },
+      {
+        step: '/company-number-changed',
+        field: 'is-company-ref-changed'
+      },
+      {
+        step: '/company-name-changed',
+        field: 'is-company-name-changed'
+
       }
     ]
   },
