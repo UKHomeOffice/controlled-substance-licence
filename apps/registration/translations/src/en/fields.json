@@ -30,5 +30,27 @@
   },
   "licence-holder-postcode": {
     "label": "Postcode"
+  },
+  "registered-charity": {
+    "legend": "Is the business a registered charity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-identity-changed": {
+    "legend": "Has your legal identity changed at Companies House in the last 3 years?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

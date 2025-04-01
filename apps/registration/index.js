@@ -29,10 +29,33 @@ const steps = {
       'licence-holder-town-or-city',
       'licence-holder-postcode'
     ],
-    next: '/reuse-premises-address'
+    next: '/registered-charity'
   },
 
-  '/reuse-premises-address': {
+  '/registered-charity': {
+    fields: ['registered-charity'],
+    next: '/legal-identity-changed'
+  },
+
+  '/legal-identity-changed': {
+    fields: ['legal-identity-changed'],
+    forks: [
+      {
+        target: '/previously-held-licence',
+        condition: {
+          field: 'legal-identity-changed',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/business-type'
+  },
+
+  '/previously-held-licence': {
+    next: '/business-type'
+  },
+
+  '/business-type': {
     next: '/confirm'
   },
 

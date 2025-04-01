@@ -51,5 +51,18 @@ module.exports = {
         field: 'licence-holder-postcode'
       }
     ]
+  },
+  'business-details': {
+    steps: [
+      {
+        step: '/registered-charity',
+        field: 'registered-charity'
+      },
+
+      {
+        step: '/legal-identity-changed',
+        field: 'legal-identity-changed'
+      }
+    ]
   }
 };
