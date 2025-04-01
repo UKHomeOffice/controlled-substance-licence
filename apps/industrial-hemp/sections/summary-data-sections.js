@@ -210,8 +210,10 @@ module.exports = {
       {
         step: '/other-licence-details',
         field: 'other-licence-details',
-        dependsOn: 'hold-other-regulatory-licences',
         parse: (list, req) => {
+          if (req.sessionModel.get('hold-other-regulatory-licences') === 'no') {
+            return null;
+          }
           const otherLicenceDetails = [
             req.sessionModel.get('other-licence-type'),
             req.sessionModel.get('other-licence-number'),
