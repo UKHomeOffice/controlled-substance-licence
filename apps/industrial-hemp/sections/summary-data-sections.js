@@ -23,7 +23,7 @@ module.exports = {
       {
         step: '/company-registration-certificate',
         field: 'company-registration-certificate',
-        dependsOn: 'companies-house-name-change',
+        dependsOn: 'is-company-name-changed',
         parse: (documents, req) => {
           if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
             return null;
