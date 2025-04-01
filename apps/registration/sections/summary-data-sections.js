@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    'licence-holder-details': {
+  'licence-holder-details': {
     steps: [
       {
         step: '/licence-holder-details',
