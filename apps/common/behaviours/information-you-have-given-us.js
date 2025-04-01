@@ -46,6 +46,7 @@ module.exports = superclass => class extends superclass {
     if (nextUnsavedStep) {
       return res.redirect(`${formApp}${nextUnsavedStep}`);
     }
+
     return super.saveValues(req, res, next);
   }
 };
