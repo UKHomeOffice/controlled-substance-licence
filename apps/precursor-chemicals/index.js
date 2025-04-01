@@ -12,7 +12,6 @@ const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
-const customRedirect = require('./behaviours/custom-redirect');
 
 const steps = {
 
@@ -71,7 +70,7 @@ const steps = {
   '/companies-house-number': {
     fields: ['companies-house-number-change'],
     next: '/companies-house-name',
-    behaviours: [SetSummaryReferrer, CustomRedirect]
+    behaviours: [SetSummaryReferrer]
   },
 
   '/companies-house-name': {
@@ -353,8 +352,7 @@ const steps = {
       LoopAggregator,
       LimitItems,
       ParseSubstanceSummary,
-      SetSummaryReferrer,
-      CustomRedirect
+      SetSummaryReferrer
     ],
     aggregateTo: 'substances-in-licence',
     aggregateFrom: [
@@ -515,5 +513,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [customRedirect]
+  behaviours: [CustomRedirect]
 };
