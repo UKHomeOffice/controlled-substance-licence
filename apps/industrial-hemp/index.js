@@ -131,7 +131,6 @@ const steps = {
     ],
     next: '/licence-holder-details'
   },
-
   '/when-contract-start': {
     next: '/licence-holder-details'
   },
