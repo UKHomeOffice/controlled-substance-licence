@@ -140,7 +140,7 @@ const currentStepSatisfiesForkCondition = req => {
     !!forksInStep.find(fork => {
       const { field, value } = fork.condition;
       return req.form.values[field] === value;
-    }) : false
+    }) : false;
 };
 
 module.exports = {

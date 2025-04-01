@@ -89,7 +89,7 @@ describe('Utilities \'currentStepSatisfiesForkCondition\'', () => {
           'test-field': 'yes'
         }
       }
-    }
+    };
     expect(currentStepSatisfiesForkCondition(req)).toBe(true);
   });
 
@@ -111,14 +111,14 @@ describe('Utilities \'currentStepSatisfiesForkCondition\'', () => {
           'test-field': 'no'
         }
       }
-    }
+    };
     expect(currentStepSatisfiesForkCondition(req)).toBe(false);
     req = {
       form: {
         options: {},
         values: { 'test-field': 'no' }
       }
-    }
+    };
     expect(currentStepSatisfiesForkCondition(req)).toBe(false);
   });
 });

@@ -46,21 +46,21 @@ describe('information-you-have-given-us', () => {
               }
             }
           ],
-          next: '/step-two',
+          next: '/step-two'
         },
         '/step-one-point-five': {
           next: '/step-two',
-          fields: ['step-one-point-five'],
+          fields: ['step-one-point-five']
         },
         '/step-two': {
           fields: ['step-two'],
           next: '/step-three'
         },
         '/step-three': {
-          fields: ['step-three'],
+          fields: ['step-three']
         }
-      }
-      req.sessionModel.set('step-one', 'yes')
+      };
+      req.sessionModel.set('step-one', 'yes');
     });
 
     afterEach(() => {
