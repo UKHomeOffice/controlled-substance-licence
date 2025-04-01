@@ -204,5 +204,34 @@
   },
   "is-company-name-changed":{
     "required": "Select if your registered name at Companies House has changed since your last application"
+  },
+  "hold-other-regulatory-licences": {
+    "required": "Select if you hold any Home Office or other regulatory licences"
+  },
+  "other-licence-type": {
+    "required": "Enter the licence type, for example the name of the licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Licence type must be between 2 and 200 characters",
+    "minlength": "Licence type must be between 2 and 200 characters"
+  },
+  "other-licence-number": {
+    "required": "Enter the licence number or a reference number",
+    "maxlength": "Licence number must be between 2 and 50 characters",
+    "minlength": "Licence number must be between 2 and 50 characters",
+    "alphanum": "Enter a real licence number or application reference number"
+  },
+  "other-licence-date-of-issue": {
+    "required": "Enter the date of issue or application",
+    "date": "Enter a real date of issue or application",
+    "before": "Date of issue or application must be today's date or in the past",
+    "after": "Date of issue or application must be in the past 50 years"
+  },
+  "is-licence-refused": {
+    "required": "Select if your organisation has ever been refused a licence"
+  },
+  "refusal-reason": {
+    "required": "Enter details of why you were refused a licence",
+    "maxlength": "Details of why you were refused a licence must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
