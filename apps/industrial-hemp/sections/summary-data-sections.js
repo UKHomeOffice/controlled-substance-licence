@@ -11,7 +11,13 @@ module.exports = {
       {
         step: '/when-moving-site',
         field: 'moving-site-date',
-        parse: date => date && formatDate(new Date(date))
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+            value) {
+            return formatDate(value);
+          }
+          return null;
+        }
       },
       {
         step: '/company-number-changed',
@@ -143,11 +149,23 @@ module.exports = {
       },
       {
         step: '/why-new-licence',
-        field: 'why-new-licence'
+        field: 'why-new-licence',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
       },
       {
         step: '/contractual-agreement',
-        field: 'is-contractual-agreement'
+        field: 'is-contractual-agreement',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
       },
       {
         step: '/legal-business-proceedings',
