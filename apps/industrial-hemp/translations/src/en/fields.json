@@ -101,7 +101,7 @@
     "label": "DBS reference"
   },
   "responsible-person-dbs-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "responsible-officer-dbs-subscription": {
     "legend": "Has the responsible person subscribed to DBS updates?",
@@ -131,19 +131,22 @@
     "hint": "Providing a detailed description will help us process your application faster"
   },
   "why-new-licence": {
+    "legend": "Why are you requesting a new licence?",
     "options": {
       "moving-site": {
         "label": "We are moving site"
       },
-      "why-new-licence": {
+      "another-site": {
         "label": "For another site"
       }
     }
   },
   "moving-site-date": {
+    "legend": "When are you moving site?",
     "hint": "Enter the date you plan to move sites"
   },
   "is-contractual-agreement": {
+    "legend": "Is the new site part of a contractual agreement?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -173,7 +176,7 @@
     "label": "DBS reference"
   },
   "authorised-witness-dbs-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "authorised-witness-dbs-subscription": {
     "legend": "Has the authorised witness subscribed to DBS updates?",
@@ -254,7 +257,7 @@
     "label": "Licence number"
   },
   "other-licence-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "is-licence-refused": {
     "legend": "Has your organisation ever been refused a licence?",

@@ -85,7 +85,9 @@ const steps = {
     next: '/licence-holder-details'
   },
 
-  '/when-contract-start': {},
+  '/when-contract-start': {
+    next: '/licence-holder-details'
+  },
 
   /** First time licensee - About the applicants */
 

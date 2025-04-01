@@ -52,24 +52,27 @@ module.exports = {
 
   'why-new-licence': {
     mixin: 'radio-group',
-    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
+    isPageHeading: 'true',
+    options: [{ value: 'moving-site' }, { value: 'another-site' }],
     validate: ['required'],
     className: ['govuk-radios'],
     legend: {
-      className: 'visuallyhidden'
+      className: 'govuk-!-margin-bottom-6'
     }
   },
   'is-contractual-agreement': {
     mixin: 'radio-group',
+    isPageHeading: 'true',
     options: [{ value: 'yes' }, { value: 'no' }],
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'visuallyhidden'
+      className: 'govuk-!-margin-bottom-6'
     }
   },
   'moving-site-date': dateComponent('moving-site-date', {
     mixin: 'input-date',
+    isPageHeading: 'true',
     validate: [
       'required',
       'date',
