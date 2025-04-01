@@ -48,12 +48,6 @@
   "change-wistness-only": {
     "header": "Are you requesting a change in authorised witness for this site only?"
   },
-  "additional-schedules": {
-    "header": "Are you requesting additional schedules?"
-  },
-  "change-of-activity": {
-    "header": "Are you requesting a change of activity?"
-  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -142,15 +136,6 @@
       },
       "other-licence-details": {
         "label": "Licence Details"
-      },
-      "is-change-witness-only": {
-        "label": "Change in authorised witness"
-      },
-      "is-additional-schedules": {
-        "label": "Requesting additional schedules"
-      },
-      "is-change-of-activity": {
-        "label": "Change of activity"
       }
     }
   }
