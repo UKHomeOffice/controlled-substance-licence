@@ -1,3 +1,52 @@
 {
-  
+  "company-name": {
+    "required": "Enter a company name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Company name must be between 2 and 200 characters",
+    "minlength": "Company name must be between 2 and 200 characters"
+  },
+  "name-of-responsible-person": {
+    "required": "Enter the name of the person who will be responsible for the licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Name of the responsible person must between 1 and 250 characters"
+  },
+  "company-number": {
+    "companyNumber": "Enter a real company number, like 16850062"
+  },
+  "telephone": {
+    "required": "Enter a UK telephone number",
+    "ukPhoneNumber": "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192"
+  },
+  "email": {
+    "required": "Enter an email address",
+    "email": "Enter a real email address"
+  },
+  "website-url": {
+    "url": "Enter a real website URL",
+    "maxlength": "Website URL must be between 1 and 250 characters"
+  },
+  "licence-holder-address-line-1": {
+    "required": "Enter a licence holder address",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "licence-holder-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "licence-holder-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "licence-holder-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "registered-charity": {
+    "required": "Select if the business is a registered charity"
+  },
+  "legal-identity-changed": {
+    "required": "Select if your legal identity has changed in the last 3 years"
+  }
 }

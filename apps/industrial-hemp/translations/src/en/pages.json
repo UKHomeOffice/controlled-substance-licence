@@ -18,21 +18,23 @@
   "site-responsible-officer-dbs": {
     "header": "DBS information for the responsible person"
   },
-  "why-new-licence": {
-    "header": "Why are you requesting a new licence?"
-  },
-  "when-moving-site": {
-    "header": "When are you moving site?"
-  },
-  "contractual-agreement": {
-    "header": "Is the new site part of a contractual agreement?"
-  },
   "authorised-witness-details": {
     "header": "Authorised witness details",
     "intro": "Enter the details of the person who is responsible for witnessing the destruction of the controlled parts of the plant."
   },
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
+  },
+  "company-registration-certificate": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
+  "register-again": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+  "other-licence-details": {
+    "header": "Licence details"
   },
   "confirm": {
     "header": "Check your answers",
@@ -92,6 +94,27 @@
       },
       "has-anyone-received-criminal-conviction": {
         "label": "Has anyone ever received a criminal conviction?"
+      },
+      "company-registration-certificate": {
+        "label": "Upload of Company House evidence"
+      },
+      "why-new-licence": {
+        "label": "Reason for collecting new licence"
+      },
+      "moving-site-date": {
+        "label": "Date when moving site"
+      },
+      "is-contractual-agreement": {
+        "label": "Is new site part of contractual agreement"
+      },
+      "is-company-ref-changed": {
+        "label": "Change in number"
+      },
+      "is-company-name-changed": {
+        "label": "Change in name"
+      },
+      "other-licence-details": {
+        "label": "Licence Details"
       }
     }
   }

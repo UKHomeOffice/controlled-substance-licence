@@ -7,6 +7,37 @@ module.exports = {
       {
         step: '/application-type',
         field: 'amend-application-details'
+      },
+      {
+        step: '/company-registration-certificate',
+        field: 'company-registration-certificate',
+        dependsOn: 'is-company-name-changed',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-site-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+            value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/company-number-changed',
+        field: 'is-company-ref-changed'
+      },
+      {
+        step: '/company-name-changed',
+        field: 'is-company-name-changed'
+
       }
     ]
   },
@@ -129,6 +160,26 @@ module.exports = {
         field: 'authorised-witness-dbs-subscription'
       },
       {
+        step: '/why-new-licence',
+        field: 'why-new-licence',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'is-contractual-agreement',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
         step: '/legal-business-proceedings',
         field: 'legal-business-proceedings'
       },
@@ -139,6 +190,33 @@ module.exports = {
       {
         step: '/criminal-conviction',
         field: 'has-anyone-received-criminal-conviction'
+      },
+      {
+        step: '/other-regulatory-licences',
+        field: 'hold-other-regulatory-licences'
+      },
+      {
+        step: '/other-licence-details',
+        field: 'other-licence-details',
+        parse: (list, req) => {
+          if (req.sessionModel.get('hold-other-regulatory-licences') === 'no') {
+            return null;
+          }
+          const otherLicenceDetails = [
+            req.sessionModel.get('other-licence-type'),
+            req.sessionModel.get('other-licence-number'),
+            formatDate(req.sessionModel.get('other-licence-date-of-issue'))
+          ];
+          return otherLicenceDetails.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/licence-refused',
+        field: 'is-licence-refused'
+      },
+      {
+        step: '/refusal-reason',
+        field: 'refusal-reason'
       }
     ]
   }
