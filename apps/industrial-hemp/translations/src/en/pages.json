@@ -25,6 +25,10 @@
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
   },
+  "company-registration-certificate": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
   "register-again": {
     "header": "You cannot continue this application",
     "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
@@ -90,6 +94,9 @@
       },
       "has-anyone-received-criminal-conviction": {
         "label": "Has anyone ever received a criminal conviction?"
+      },
+      "company-registration-certificate": {
+        "label": "Upload of Company House evidence"
       },
       "why-new-licence": {
         "label": "Reason for collecting new licence"

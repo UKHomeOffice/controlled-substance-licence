@@ -216,6 +216,11 @@
       }
     }
   },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
+  },
   "is-company-ref-changed": {
     "legend": "Has your Companies House reference number changed since your last application?",
     "options": {
