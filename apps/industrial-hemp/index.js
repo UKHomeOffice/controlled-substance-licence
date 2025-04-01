@@ -85,7 +85,9 @@ const steps = {
     next: '/licence-holder-details'
   },
 
-  '/when-contract-start': {},
+  '/when-contract-start': {
+    next: '/licence-holder-details'
+  },
 
   /** First time licensee - About the applicants */
 
@@ -225,6 +227,48 @@ const steps = {
   },
 
   '/other-regulatory-licences': {
+    fields: ['hold-other-regulatory-licences'],
+    forks: [
+      {
+        target: '/other-licence-details',
+        condition: {
+          field: 'hold-other-regulatory-licences',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-refused'
+  },
+
+  '/other-licence-details': {
+    fields: [
+      'other-licence-type',
+      'other-licence-number',
+      'other-licence-date-of-issue'
+    ],
+    next: '/licence-refused'
+  },
+
+  '/licence-refused': {
+    fields: ['is-licence-refused'],
+    forks: [
+      {
+        target: '/refusal-reason',
+        condition: {
+          field: 'is-licence-refused',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/company-type'
+  },
+
+  '/refusal-reason': {
+    fields: ['refusal-reason'],
+    next: '/company-type'
+  },
+
+  '/company-type': {
     next: '/confirm'
   },
 
