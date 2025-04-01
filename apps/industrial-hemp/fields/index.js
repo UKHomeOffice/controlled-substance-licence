@@ -422,7 +422,7 @@ module.exports = {
     validate: [
       'required',
       'notUrl',
-      { type: 'minlength', arguments: 3 },
+      { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 200 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
@@ -431,8 +431,8 @@ module.exports = {
     mixin: 'input-text',
     validate: [
       'required',
-      { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 25 },
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 50 },
       'alphanum'
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
