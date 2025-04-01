@@ -18,15 +18,6 @@
   "site-responsible-officer-dbs": {
     "header": "DBS information for the responsible person"
   },
-  "why-new-licence": {
-    "header": "Why are you requesting a new licence?"
-  },
-  "when-moving-site": {
-    "header": "When are you moving site?"
-  },
-  "contractual-agreement": {
-    "header": "Is the new site part of a contractual agreement?"
-  },
   "authorised-witness-details": {
     "header": "Authorised witness details",
     "intro": "Enter the details of the person who is responsible for witnessing the destruction of the controlled parts of the plant."
@@ -41,6 +32,9 @@
   "register-again": {
     "header": "You cannot continue this application",
     "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+  "other-licence-details": {
+    "header": "Licence details"
   },
   "confirm": {
     "header": "Check your answers",
@@ -118,6 +112,9 @@
       },
       "is-company-name-changed": {
         "label": "Change in name"
+      },
+      "other-licence-details": {
+        "label": "Licence Details"
       }
     }
   }
