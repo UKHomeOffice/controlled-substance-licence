@@ -22,7 +22,7 @@ module.exports = {
       {
         step: '/when-moving-site',
         field: 'moving-site-date',
-        parse: date => date && formatDate(new Date(date))
+        parse: date => date && formatDate(date)
       },
       {
         step: '/company-number-changed',
