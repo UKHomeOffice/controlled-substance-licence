@@ -18,6 +18,20 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/when-moving-site',
+        field: 'moving-site-date',
+        parse: date => date && formatDate(new Date(date))
+      },
+      {
+        step: '/company-number-changed',
+        field: 'is-company-ref-changed'
+      },
+      {
+        step: '/company-name-changed',
+        field: 'is-company-name-changed'
+
       }
     ]
   },
@@ -138,6 +152,14 @@ module.exports = {
       {
         step: '/authorised-witness-dbs-updates',
         field: 'authorised-witness-dbs-subscription'
+      },
+      {
+        step: '/why-new-licence',
+        field: 'why-new-licence'
+      },
+      {
+        step: '/contractual-agreement',
+        field: 'is-contractual-agreement'
       },
       {
         step: '/legal-business-proceedings',
