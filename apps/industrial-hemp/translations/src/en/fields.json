@@ -228,6 +228,7 @@
     }
   },
   "is-change-witness-only": {
+    "legend": "Are you requesting a change in authorised witness for this site only?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -249,6 +250,7 @@
     }
   },
   "is-additional-schedules": {
+    "legend": "Are you requesting additional schedules?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -259,6 +261,7 @@
     }
   },
   "is-change-of-activity": {
+    "legend": "Are you requesting a change of activity?",
     "options": {
       "yes": {
         "label": "Yes"

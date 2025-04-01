@@ -95,6 +95,7 @@ const steps = {
     next: '/change-of-activity'
   },
   '/change-of-activity': {
+    fields: ['is-change-of-activity'],
     next: '/licence-holder-details'
   },
   /** Existing licence apply for new site - Background Information */

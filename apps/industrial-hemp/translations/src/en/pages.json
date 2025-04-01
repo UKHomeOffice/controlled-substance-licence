@@ -25,15 +25,6 @@
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
   },
-  "change-witness-only": {
-    "header": "Are you requesting a change in authorised witness for this site only?"
-  },
-  "additional-schedules": {
-    "header": "Are you requesting additional schedules?"
-  },
-  "change-of-activity": {
-    "header": "Are you requesting a change of activity?"
-  },
   "company-registration-certificate": {
     "header": "Upload company registration certificate as evidence of name change",
     "intro": "Upload a scanned copy of your company registration certificate."
@@ -44,9 +35,6 @@
   },
   "other-licence-details": {
     "header": "Licence details"
-  },
-  "change-wistness-only": {
-    "header": "Are you requesting a change in authorised witness for this site only?"
   },
   "confirm": {
     "header": "Check your answers",

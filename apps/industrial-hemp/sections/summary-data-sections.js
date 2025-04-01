@@ -10,15 +10,33 @@ module.exports = {
       },
       {
         step: '/change-witness-only',
-        field: 'is-change-witness-only'
+        field: 'is-change-witness-only',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
       },
       {
         step: '/additional-schedules',
-        field: 'is-additional-schedules'
+        field: 'is-additional-schedules',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
       },
       {
         step: '/change-of-activity',
-        field: 'is-change-of-activity'
+        field: 'is-change-of-activity',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
       },
       {
         step: '/company-registration-certificate',
@@ -55,18 +73,6 @@ module.exports = {
           }
           return value;
         }
-      },
-      {
-        step: '/change-witness-only',
-        field: 'is-change-witness-only'
-      },
-      {
-        step: '/additional-schedules',
-        field: 'is-additional-schedules'
-      },
-      {
-        step: '/change-of-activity',
-        field: 'is-change-of-activity'
       }
     ]
   },
