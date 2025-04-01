@@ -225,6 +225,32 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
+  'why-new-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'moving-site' }, { value: 'why-new-licence' }],
+    validate: ['required'],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'is-contractual-agreement': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'moving-site-date': dateComponent('moving-site-date', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'after', arguments: ['0', 'days'] }
+    ]
+  }),
   'authorised-witness-full-name': {
     mixin: 'input-text',
     validate: [
@@ -294,6 +320,80 @@ module.exports = {
         value: 'no'
       }
     ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'legal-business-proceedings': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'legal-business-proceedings-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'has-anyone-received-criminal-conviction': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-company-ref-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-company-name-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
       className: 'govuk-!-margin-bottom-6'

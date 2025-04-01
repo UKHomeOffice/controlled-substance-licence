@@ -130,6 +130,29 @@
     "label": "How will the leaves and flowers be destroyed?",
     "hint": "Providing a detailed description will help us process your application faster"
   },
+  "why-new-licence": {
+    "options": {
+      "moving-site": {
+        "label": "We are moving site"
+      },
+      "why-new-licence": {
+        "label": "For another site"
+      }
+    }
+  },
+  "moving-site-date": {
+    "hint": "Enter the date you plan to move sites"
+  },
+  "is-contractual-agreement": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "authorised-witness-full-name": {
     "label": "Full name"
   },
@@ -154,6 +177,55 @@
   },
   "authorised-witness-dbs-subscription": {
     "legend": "Has the authorised witness subscribed to DBS updates?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-business-proceedings": {
+    "legend": "Has anyone in your organisation ever been subject to legal business proceedings?",
+    "hint": "This includes members of the board and senior management teams. Legal proceedings includes administrative, financial or bankruptcy cases",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-business-proceedings-details": {
+    "label": "Provide details of the legal business proceedings"
+  },
+  "has-anyone-received-criminal-conviction": {
+    "legend": "Has anyone in your organisation ever received a criminal conviction?",
+    "hint": "This includes members of the board and senior management teams. Conviction means UK and overseas convictions.",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-company-ref-changed": {
+    "legend": "Has your Companies House reference number changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-company-name-changed": {
+    "legend": "Has your registered name at Companies House changed since your last application?",
     "options": {
       "yes": {
         "label": "Yes"
