@@ -1,4 +1,3 @@
-
 module.exports = {
   'company-name': {
     mixin: 'input-text',
@@ -50,5 +49,39 @@ module.exports = {
     validate: ['required', 'postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
+  },
+  'registered-charity': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'legal-identity-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

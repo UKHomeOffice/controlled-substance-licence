@@ -21,6 +21,9 @@
       },
       "licence-holder-address": {
         "header": "Licence holder address"
+      },
+      "business-details": {
+        "header": "Business details"
       }
     },
     "fields": {

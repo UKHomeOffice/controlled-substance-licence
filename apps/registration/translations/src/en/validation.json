@@ -42,5 +42,11 @@
   "licence-holder-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a real UK postcode"
+  },
+  "registered-charity": {
+    "required": "Select if the business is a registered charity"
+  },
+  "legal-identity-changed": {
+    "required": "Select if your legal identity has changed in the last 3 years"
   }
 }
