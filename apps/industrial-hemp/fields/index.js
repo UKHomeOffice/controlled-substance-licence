@@ -326,6 +326,80 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
+  'legal-business-proceedings': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'legal-business-proceedings-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'has-anyone-received-criminal-conviction': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-company-ref-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-company-name-changed': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
   'hold-other-regulatory-licences': {
     mixin: 'radio-group',
     isPageHeading: true,
@@ -369,7 +443,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['10', 'years'] }
+      { type: 'after', arguments: ['50', 'years'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'

@@ -34,6 +34,10 @@
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
   },
+  "register-again": {
+    "header": "You cannot continue this application",
+    "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
   "other-licence-details": {
     "header": "Licence details"
   },
@@ -86,6 +90,30 @@
       },
       "authorised-witness-dbs-subscription": {
         "label": "Authorised witness subscribed to DBS updates?"
+      },
+      "legal-business-proceedings": {
+        "label": "Has anyone been subject to legal proceedings?"
+      },
+      "legal-business-proceedings-details": {
+        "label": "Details of legal business proceedings"
+      },
+      "has-anyone-received-criminal-conviction": {
+        "label": "Has anyone ever received a criminal conviction?"
+      },
+      "why-new-licence": {
+        "label": "Reason for collecting new licence"
+      },
+      "moving-site-date": {
+        "label": "Date when moving site"
+      },
+      "is-contractual-agreement": {
+        "label": "Is new site part of contractual agreement"
+      },
+      "is-company-ref-changed": {
+        "label": "Change in number"
+      },
+      "is-company-name-changed": {
+        "label": "Change in name"
       },
       "other-licence-details": {
         "label": "Licence Details"
