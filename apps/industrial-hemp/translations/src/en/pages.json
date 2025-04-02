@@ -95,6 +95,15 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Has anyone ever received a criminal conviction?"
       },
+      "is-change-witness-only": {
+        "label": "Change in authorised witness"
+      },
+      "is-additional-schedules": {
+        "label": "Requesting additional schedules"
+      },
+      "is-change-of-activity": {
+        "label": "Change of activity"
+      },
       "company-registration-certificate": {
         "label": "Upload of Company House evidence"
       },

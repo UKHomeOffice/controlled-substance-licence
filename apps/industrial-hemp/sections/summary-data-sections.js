@@ -9,6 +9,36 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/change-witness-only',
+        field: 'is-change-witness-only',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/additional-schedules',
+        field: 'is-additional-schedules',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/change-of-activity',
+        field: 'is-change-of-activity',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
         step: '/company-registration-certificate',
         field: 'company-registration-certificate',
         dependsOn: 'is-company-name-changed',
@@ -36,8 +66,13 @@ module.exports = {
       },
       {
         step: '/company-name-changed',
-        field: 'is-company-name-changed'
-
+        field: 'is-company-name-changed',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
       }
     ]
   },

@@ -216,13 +216,19 @@
       }
     }
   },
-  "file-upload": {
-    "label": "Upload a file",
-    "no-files-uploaded": "No files uploaded",
-    "files-uploaded": "Files uploaded"
-  },
   "is-company-ref-changed": {
     "legend": "Has your Companies House reference number changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-change-witness-only": {
+    "legend": "Are you requesting a change in authorised witness for this site only?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -242,6 +248,33 @@
         "label": "No"
       }
     }
+  },
+  "is-additional-schedules": {
+    "legend": "Are you requesting additional schedules?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-change-of-activity": {
+    "legend": "Are you requesting a change of activity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   },
   "hold-other-regulatory-licences": {
     "legend": "Do you hold any Home Office or other regulatory licenses?",
