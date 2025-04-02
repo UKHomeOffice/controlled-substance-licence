@@ -11,6 +11,7 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const Auth = require('../common/behaviours/auth/auth-check');
 const steps = {
 
   /** Start of journey */
@@ -501,5 +502,6 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
-  steps: steps
+  steps: steps,
+  behaviours: [ Auth ]
 };

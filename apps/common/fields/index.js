@@ -14,5 +14,14 @@ module.exports = {
         value: 'low-thc-cannabis'
       }
     ]
+  },
+  username: {
+    mixin: 'input-text',
+    validate: ['required']
+  },
+  password: {
+    mixin: 'input-text',
+    type: 'password',
+    validate: ['required']
   }
 };
