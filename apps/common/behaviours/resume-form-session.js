@@ -9,7 +9,7 @@ module.exports = superclass => class extends superclass {
     try {
       this.cleanSession(req);
 
-      const applicantId = 1; //todo: get applicantId from common session logged in user
+      const applicantId = 1; // todo: get applicantId from common session logged in user
       const licenceType = req.session['hof-wizard-common']?.['licence-type'];
 
       const hofModel = new Model();
