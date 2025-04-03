@@ -20,7 +20,7 @@ jest.mock('../../../utils', () => {
   const originalModule = jest.requireActual('../../../utils');
   return {
     ...originalModule,
-    genAxiosErrorMsg: jest.fn().mockReturnValue('error')
+    generateErrorMsg: jest.fn().mockReturnValue('error')
   };
 });
 

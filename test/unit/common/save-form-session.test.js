@@ -1,7 +1,7 @@
 const Behaviour = require('../../../apps/common/behaviours/save-form-session');
 const reqres = require('hof').utils.reqres;
 const Model = require('hof/model');
-const { genAxiosErrorMsg } = require('../../../utils');
+const { generateErrorMsg } = require('../../../utils');
 
 jest.mock('hof/model');
 
@@ -21,7 +21,7 @@ jest.mock('../../../utils', () => {
   const originalModule = jest.requireActual('../../../utils');
   return {
     ...originalModule,
-    genAxiosErrorMsg: jest.fn().mockReturnValue('error')
+    generateErrorMsg: jest.fn().mockReturnValue('error')
   };
 });
 
@@ -145,7 +145,7 @@ describe('save-form-session', () => {
       });
       await instance.successHandler(req, res, next);
       expect(mockRequest).toHaveBeenCalled();
-      expect(genAxiosErrorMsg).toHaveBeenCalled();
+      expect(generateErrorMsg).toHaveBeenCalled();
       expect(req.log).toHaveBeenCalledWith('error', 'Failed to save application: error');
       expect(next).toHaveBeenCalledWith(error);
     });

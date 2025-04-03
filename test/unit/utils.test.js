@@ -1,4 +1,4 @@
-const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber, genAxiosErrorMsg } = require('../../utils');
+const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber, generateErrorMsg } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 
@@ -64,7 +64,7 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
   });
 });
 
-describe('Utilities \'genAxiosErrorMsg\'', () => {
+describe('Utilities \'generateErrorMsg\'', () => {
   test('Returns a full message when the error object has all properties', () => {
     const axiosError = {
       message: 'Some error',
@@ -77,7 +77,7 @@ describe('Utilities \'genAxiosErrorMsg\'', () => {
       }
     };
 
-    expect(genAxiosErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(axiosError)).toBe(
       '401 - Some error; Cause: {"item1":"one","item2":"two"}'
     );
   });
@@ -90,7 +90,7 @@ describe('Utilities \'genAxiosErrorMsg\'', () => {
       }
     };
 
-    expect(genAxiosErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(axiosError)).toBe(
       '401 - Some error; '
     );
   });
@@ -100,7 +100,7 @@ describe('Utilities \'genAxiosErrorMsg\'', () => {
       message: 'Some error'
     };
 
-    expect(genAxiosErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(axiosError)).toBe(
       ' Some error; '
     );
   });

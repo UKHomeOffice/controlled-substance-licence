@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 const { model: Model } = require('hof');
 const config = require('../../../config');
-const { genAxiosErrorMsg } = require('../../../utils/index');
+const { generateErrorMsg } = require('../../../utils/index');
 const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}//${host}:${port}/applications`;
 
@@ -19,14 +19,13 @@ module.exports = superclass => class extends superclass {
     delete session['csrf-secret'];
     delete session.errors;
     delete session.errorValues;
-    delete session['valid-token'];
 
     if (!session.steps.includes(currentRoute)) {
       session.steps.push(currentRoute);
     }
 
     // ensure no /edit steps are add to the steps property when we save to the store
-    session.steps = session.steps.filter(step => !step.match(/\/change|edit$/));
+    session.steps = session.steps.filter(step => !step.match(/\/change|edit|delete$/));
 
     const applicant_id = req.sessionModel.get('applicant-id');
     const applicationId = req.sessionModel.get('application-id');
@@ -54,7 +53,7 @@ module.exports = superclass => class extends superclass {
       //  ...
       // }
     } catch (error) {
-      req.log('error', `Failed to save application: ${genAxiosErrorMsg(error)}`);
+      req.log('error', `Failed to save application: ${generateErrorMsg(error)}`);
       return next(error);
     }
     return super.successHandler(req, res, next);

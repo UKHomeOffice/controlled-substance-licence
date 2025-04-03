@@ -1,5 +1,5 @@
 const { model: Model } = require('hof');
-const { genAxiosErrorMsg } = require('../../../utils/index');
+const { generateErrorMsg } = require('../../../utils/index');
 const config = require('../../../config');
 const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}//${host}:${port}/applications`;
@@ -9,8 +9,8 @@ module.exports = superclass => class extends superclass {
     try {
       this.cleanSession(req);
 
-      const applicantId = 1; // get applicantId from common session logged in user
-      const licenceType = req.session['hof-wizard-common']['licence-type'];
+      const applicantId = 1; //todo: get applicantId from common session logged in user
+      const licenceType = req.session['hof-wizard-common']?.['licence-type'];
 
       const hofModel = new Model();
 
@@ -22,9 +22,9 @@ module.exports = superclass => class extends superclass {
       const openApplications = userApplications.data
         .filter(application => application.licence_type === licenceType && !application.submitted_at);
 
-      const savedApplication = openApplications.sort(
-        (a, b) => new Date(a.created_at) - new Date(b.created_at)
-      )[openApplications.length - 1];
+      const savedApplication = openApplications.reduce((latest, current) => {
+        return !latest || current.created_at > latest.created_at ? current : latest;
+      }, null);
 
       if (savedApplication) {
         req.sessionModel.set('application-to-resume', savedApplication);
@@ -38,7 +38,7 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.set('applicant-id', applicantId);
       req.sessionModel.set('licence-type', licenceType);
     } catch (error) {
-      req.log('error', `Failed to get saved application: ${genAxiosErrorMsg(error)}`);
+      req.log('error', `Failed to get saved application: ${generateErrorMsg(error)}`);
       return next(error);
     }
     return super.getValues(req, res, next);

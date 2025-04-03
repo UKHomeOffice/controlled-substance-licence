@@ -135,7 +135,7 @@ const isValidPhoneNumber = phoneNumber => {
  * @param {object} error - An Error object.
  * @returns {string} - An error message for failed Axios requests containing key causal information.
  */
-const genAxiosErrorMsg = error => {
+const generateErrorMsg = error => {
   const errorDetails = error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
   const errorCode = error.response?.status ? `${error.response.status} -` : '';
   return `${errorCode} ${error.message}; ${errorDetails}`;
@@ -143,13 +143,14 @@ const genAxiosErrorMsg = error => {
 
 /**
  * Makes a request to hof-rds-api service endpoint to clear table rows according to passed arguments
- * calls genAxiosErrorMsg if an error occurs with the hof _request method
+ * calls generateErrorMsg if an error occurs with the hof _request method
  *
  * @param {string} table - The database table to clear rows from
  * @param {string} submitStatus - The submission status of rows to be removed e.g. submitted/unsubmitted/all
  * @param {string} dateType - The table datetime column to calculate retention period/expiry from
  * @param {string} days - The number of days the retention period is calculated back to from today's date
  * @param {string} periodType - Calculate retention period using either 'calendar' or 'business'
+ * @returns {Promise<void>} - A Promise that resolves when the operation is complete
  */
 const clearExpiredApplictions = async (table, submitStatus, dateType, days, periodType) => {
   const hofModel = new Model();
@@ -161,7 +162,7 @@ const clearExpiredApplictions = async (table, submitStatus, dateType, days, peri
     // eslint-disable-next-line max-len
     logger.info(`Cleared ${submitStatus} ${table} where ${dateType} is older than ${days} ${periodType} days.`);
   } catch (error) {
-    logger.error(genAxiosErrorMsg(error));
+    logger.error(generateErrorMsg(error));
   }
 };
 
@@ -173,6 +174,6 @@ module.exports = {
   parseOperations,
   findArrayItemByValue,
   isValidPhoneNumber,
-  genAxiosErrorMsg,
+  generateErrorMsg,
   clearExpiredApplictions
 };

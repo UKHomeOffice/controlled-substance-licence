@@ -28,7 +28,7 @@ module.exports = {
   saveService: {
     protocol: process.env.DATASERVICE_PROTOCOL || 'https:',
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '10443',
-    host: process.env.DATASERVICE_SERVICE_HOST
+    host: process.env.DATASERVICE_SERVICE_HOST || '127.0.0.1'
   },
   upload: {
     maxFileSizeInBytes: 25 * 1024 * 1024, // 25MiB in bytes
