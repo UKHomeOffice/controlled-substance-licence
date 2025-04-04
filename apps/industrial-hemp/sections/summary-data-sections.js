@@ -252,6 +252,28 @@ module.exports = {
       {
         step: '/refusal-reason',
         field: 'refusal-reason'
+      },
+      {
+        step: '/company-type',
+        field: 'company-type'
+      },
+      {
+        step: '/business-model',
+        field: 'describe-business-model'
+      },
+      {
+        step: '/company-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/cultivate-industrial-hemp',
+        field: 'cultivate-industrial-hemp'
       }
     ]
   }

@@ -8,7 +8,8 @@
   "name-of-responsible-person": {
     "required": "Enter the name of the person who will be responsible for the licence",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Name of the responsible person must between 1 and 250 characters"
+    "maxlength": "Name of the responsible person must between 3 and 200 characters",
+    "minlength": "Name of the responsible person must between 3 and 200 characters"
   },
   "company-number": {
     "companyNumber": "Enter a real company number, like 16850062"
