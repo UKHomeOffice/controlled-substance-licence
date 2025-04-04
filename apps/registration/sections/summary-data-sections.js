@@ -1,4 +1,5 @@
 'use strict';
+const { formatDate } = require('../../../utils');
 
 module.exports = {
   'licence-holder-details': {
@@ -62,6 +63,33 @@ module.exports = {
       {
         step: '/legal-identity-changed',
         field: 'legal-identity-changed'
+      },
+
+      {
+        step: '/previously-held-licence',
+        field: 'previously-held-licence'
+      },
+
+      {
+        step: '/previous-licence-details',
+        field: 'previous-license-number'
+      },
+
+      {
+        step: '/previous-licence-details',
+        field: 'previous-license-holder-name'
+      },
+
+      {
+        step: '/previous-licence-details',
+        field: 'previous-license-date-of-issue',
+        parse: (list, req) => {
+          if (req.sessionModel.get('previously-held-licence') === 'no') return null;
+          const previousLicenseDateIssued = [
+            formatDate(req.sessionModel.get('previous-license-date-of-issue'))
+          ];
+          return previousLicenseDateIssued;
+        }
       }
     ]
   }

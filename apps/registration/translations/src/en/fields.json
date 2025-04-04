@@ -52,5 +52,27 @@
         "label": "No"
       }
     }
+  },
+  "previously-held-licence": {
+    "legend": "Under your previous legally registered identity, did you hold a controlled drugs licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "previous-license-number": {
+    "label": "Previous licence number"
+  },
+  "previous-license-holder-name": {
+    "label": "Licence holder name",
+    "hint": "The name of the company that held the previous licence"
+  },
+  "previous-license-date-of-issue": {
+    "legend": "Date issued",
+    "hint": "For example, 21 3 2019"
   }
 }
