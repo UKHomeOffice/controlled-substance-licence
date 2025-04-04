@@ -1,12 +1,12 @@
 module.exports = {
   'company-name': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'minlength', arguments: 2 }, { type: 'maxlength', arguments: 200 }],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'name-of-responsible-person': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'company-number': {

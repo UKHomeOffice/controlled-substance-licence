@@ -3,6 +3,10 @@
 
 @import "hof/frontend/themes/gov-uk/styles/govuk";
 
+h1 {
+  @extend .govuk-heading-l;
+}
+
 h2 {
   @extend .govuk-heading-m;
   margin-top: 20px;

@@ -36,6 +36,10 @@
   "other-licence-details": {
     "header": "Licence details"
   },
+  "company-certificate": {
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -124,6 +128,12 @@
       },
       "other-licence-details": {
         "label": "Licence Details"
+      },
+      "describe-business-model": {
+        "label": "Your business model"
+      },
+      "cultivate-industrial-hemp": {
+        "label": "Is the licence needed to cultivate low THC cannabis?"
       }
     }
   }
