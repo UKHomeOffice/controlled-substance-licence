@@ -2,7 +2,7 @@ const { model: Model } = require('hof');
 const { generateErrorMsg } = require('../../../utils/index');
 const config = require('../../../config');
 const { protocol, host, port } = config.saveService;
-const applicationsUrl = `${protocol}//${host}:${port}/applications`;
+const applicationsUrl = `${protocol}://${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
   async getValues(req, res, next) {
@@ -55,7 +55,13 @@ module.exports = superclass => class extends superclass {
     const resumeApplication = req.form.values['application-form-type'] === 'continue-an-application';
     const applicationToResume = req.sessionModel.get('application-to-resume');
     if (resumeApplication && applicationToResume) {
-      this.resumeSession(req, applicationToResume);
+      try {
+        this.resumeSession(req, applicationToResume);
+      } catch (error) {
+        // Saved session data is corrupt or cannot be resumed in this format
+        req.log('error', `Error parsing session: ${error}`);
+        return next(error);
+      }
     }
     req.sessionModel.unset('application-to-resume');
     return super.saveValues(req, res, next);
@@ -64,21 +70,13 @@ module.exports = superclass => class extends superclass {
   resumeSession(req, application) {
     req.log('info', `Resuming Form Session: ${application.id}`);
 
-    let session;
-
     const savedApplicationProps = {
       'application-id': application.id,
       'application-created-at': application.created_at,
       'application-expires-at': application.expires_at
     };
 
-    try {
-      session = JSON.parse(application.session);
-    } catch (error) {
-      // Log the error
-      req.log('warn', `Error parsing session: ${error}`);
-      session = application.session;
-    }
+    const session = typeof application.session === 'string' ? JSON.parse(application.session) : application.session;
 
     req.sessionModel.set(Object.assign({}, session, savedApplicationProps));
   }
