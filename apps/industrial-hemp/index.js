@@ -1,10 +1,12 @@
 const hof = require('hof');
-
+const CustomRedirect = require('./behaviours/custom-redirect');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
-
   /** Start of journey */
 
   '/application-type': {
@@ -42,6 +44,99 @@ const steps = {
       }
     ]
   },
+
+  /** Continue an application */
+
+
+  /** Renew existing licence - Background Information */
+
+  // Existing licensee renewing or changing a currently licensed site
+
+  '/company-number-changed': {
+    fields: ['is-company-ref-changed'],
+    next: '/company-name-changed',
+    behaviours: [SetSummaryReferrer, CustomRedirect]
+  },
+  '/register-again': {
+    backLink: '/industrial-hemp/company-number-changed'
+  },
+  '/company-name-changed': {
+    fields: ['is-company-name-changed'],
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: {
+          field: 'is-company-name-changed',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/change-witness-only'
+  },
+  '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    next: '/change-witness-only'
+  },
+  '/change-witness-only': {
+    fields: ['is-change-witness-only'],
+    next: '/additional-schedules'
+  },
+  '/additional-schedules': {
+    fields: ['is-additional-schedules'],
+    next: '/change-of-activity'
+  },
+  '/change-of-activity': {
+    fields: ['is-change-of-activity'],
+    next: '/licence-holder-details'
+  },
+  /** Existing licence apply for new site - Background Information */
+
+  '/why-new-licence': {
+    fields: ['why-new-licence'],
+    forks: [
+      {
+        target: '/when-moving-site',
+        condition: {
+          field: 'why-new-licence',
+          value: 'moving-site'
+        }
+      }
+    ],
+    next: '/contractual-agreement'
+  },
+  '/when-moving-site': {
+    fields: ['moving-site-date'],
+    next: '/licence-holder-details',
+    locals: { showSaveAndExit: true }
+  },
+
+  '/contractual-agreement': {
+    fields: ['is-contractual-agreement'],
+    forks: [
+      {
+        target: '/when-contract-start',
+        condition: {
+          field: 'is-contractual-agreement',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-holder-details'
+  },
+  '/when-contract-start': {
+    next: '/licence-holder-details'
+  },
+
+  /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
     behaviours: [customValidation],
@@ -150,24 +245,85 @@ const steps = {
 
   '/authorised-witness-dbs-updates': {
     fields: ['authorised-witness-dbs-subscription'],
-    next: '/confirm'
+    next: '/legal-business-proceedings',
+    template: 'site-responsible-officer-dbs-updates'
   },
 
   '/legal-business-proceedings': {
+    fields: ['legal-business-proceedings'],
+    forks: [
+      {
+        target: '/legal-business-proceedings-details',
+        condition: {
+          field: 'legal-business-proceedings',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/criminal-conviction'
+  },
+
+  '/legal-business-proceedings-details': {
+    fields: ['legal-business-proceedings-details'],
+    next: '/criminal-conviction'
+  },
+
+  '/criminal-conviction': {
+    fields: ['has-anyone-received-criminal-conviction'],
+    next: '/other-regulatory-licences'
+  },
+
+  '/other-regulatory-licences': {
+    fields: ['hold-other-regulatory-licences'],
+    forks: [
+      {
+        target: '/other-licence-details',
+        condition: {
+          field: 'hold-other-regulatory-licences',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/licence-refused'
+  },
+
+  '/other-licence-details': {
+    fields: [
+      'other-licence-type',
+      'other-licence-number',
+      'other-licence-date-of-issue'
+    ],
+    next: '/licence-refused'
+  },
+
+  '/licence-refused': {
+    fields: ['is-licence-refused'],
+    forks: [
+      {
+        target: '/refusal-reason',
+        condition: {
+          field: 'is-licence-refused',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/company-type'
+  },
+
+  '/refusal-reason': {
+    fields: ['refusal-reason'],
+    next: '/company-type'
+  },
+
+  '/company-type': {
     next: '/confirm'
   },
 
   /** Continue an application */
 
-
   /** Renew existing licence - Background Information */
 
-
   /** Existing licence apply for new site - Background Information */
-
-
-  /** First time licensee - About the applicants */
-
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
@@ -182,5 +338,6 @@ module.exports = {
   fields: 'apps/industrial-hemp/fields',
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  confirmStep: '/confirm'
 };
