@@ -394,5 +394,6 @@ module.exports = {
   fields: 'apps/industrial-hemp/fields',
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  confirmStep: '/confirm'
 };
