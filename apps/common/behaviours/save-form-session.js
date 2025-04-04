@@ -3,7 +3,7 @@ const { model: Model } = require('hof');
 const config = require('../../../config');
 const { generateErrorMsg } = require('../../../utils/index');
 const { protocol, host, port } = config.saveService;
-const applicationsUrl = `${protocol}//${host}:${port}/applications`;
+const applicationsUrl = `${protocol}://${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {

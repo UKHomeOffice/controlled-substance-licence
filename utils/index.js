@@ -4,7 +4,7 @@ const validators = require('hof/controller/validation/validators');
 const logger = require('hof/lib/logger')({ env: config.env });
 const { model: Model } = require('hof');
 const { protocol, host, port } = config.saveService;
-const rdsApiBaseUrl = `${protocol}//${host}:${port}`;
+const rdsApiBaseUrl = `${protocol}://${host}:${port}`;
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
