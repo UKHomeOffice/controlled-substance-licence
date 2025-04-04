@@ -52,6 +52,25 @@ const steps = {
   },
 
   '/previously-held-licence': {
+    fields: ['previously-held-licence'],
+    forks: [
+      {
+        target: '/previous-licence-details',
+        condition: {
+          field: 'previously-held-licence',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/business-type'
+  },
+
+  '/previous-licence-details': {
+    fields: [
+      'previous-license-number',
+      'previous-license-holder-name',
+      'previous-license-date-of-issue'
+    ],
     next: '/business-type'
   },
 
