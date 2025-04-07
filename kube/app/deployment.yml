@@ -121,6 +121,11 @@ spec:
                 secretKeyRef:
                   name: keycloak
                   key: token-url
+            - name: KEYCLOAK_LOGOUT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: logout-url
             - name: KEYCLOAK_PUBLIC_KEY
               valueFrom:
                 secretKeyRef:

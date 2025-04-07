@@ -19,6 +19,8 @@ module.exports = superclass => class extends superclass {
         next();
       })
       .catch(error => {
+        // Do not keep any entered password inputs from an incorrect login attempt
+        req.form.values.password = '';
         const errs = {
           username: validationErrorFunc('username', error.type),
           password: validationErrorFunc('password', error.type)

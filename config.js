@@ -66,6 +66,7 @@ module.exports = {
   },
   keycloak: {
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
     keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,

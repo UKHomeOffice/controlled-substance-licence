@@ -19,7 +19,7 @@ module.exports = superclass => class extends superclass {
       return res.redirect('/sign-in');
     }
 
-    if (auth.authorisedUserRole(req.sessionModel.get('tokens'))) {
+    if (!auth.authorisedUserRole(sessionTokens)) {
       req.log('info', 'User is not authorised to apply for a license.');
       return res.redirect('/signed-in-successfully');
     }

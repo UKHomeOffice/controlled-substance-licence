@@ -3,12 +3,13 @@
 const auth = require('../../../../utils/auth');
 
 module.exports = superclass => class extends superclass {
-  async configure(req, res, next) {
-    auth.logout();
+  async successHandler(req, res, next) {
+    await auth.logout();
 
-    // @todo: clear session
+    req.log('info', 'Clear session on sign out');
+    req.sessionModel.reset();
 
     // Continue with the rest of the process
-    return super.configure(req, res, next);
+    return super.successHandler(req, res, next);
   }
 };

@@ -160,7 +160,6 @@ const refreshToken = async () => {
 };
 
 const logout = async () => {
-  // @todo Implement logout logic
   logger.info('Logging out');
 
   try {
@@ -170,8 +169,6 @@ const logout = async () => {
     };
 
     const response = await hofModel._request(reqParams);
-
-    // @todo: handle error messages from Keycloak
 
     logger.info('Successfully logged out from Keycloak');
     return response.data;
