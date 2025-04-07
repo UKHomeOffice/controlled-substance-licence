@@ -327,7 +327,10 @@ const steps = {
       },
       {
         target: '/cultivate-industrial-hemp',
-        condition: req => req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site'
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
       }
     ],
     next: '/company-certificate'
