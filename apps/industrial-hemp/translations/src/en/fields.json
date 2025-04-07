@@ -312,5 +312,12 @@
   "refusal-reason": {
     "label": "Details of why you were refused a licence",
     "hint": "Enter details of what the licence was, the issuing body and the reason for the refusal"
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
   }
 }

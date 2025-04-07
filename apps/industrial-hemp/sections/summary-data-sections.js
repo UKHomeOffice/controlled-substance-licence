@@ -12,7 +12,7 @@ module.exports = {
         step: '/change-witness-only',
         field: 'is-change-witness-only',
         parse: (value, req) => {
-          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
             return value;
           }
           return null;
@@ -22,7 +22,7 @@ module.exports = {
         step: '/additional-schedules',
         field: 'is-additional-schedules',
         parse: (value, req) => {
-          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
             return value;
           }
           return null;
@@ -32,7 +32,7 @@ module.exports = {
         step: '/change-of-activity',
         field: 'is-change-of-activity',
         parse: (value, req) => {
-          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site') {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
             return value;
           }
           return null;
@@ -69,6 +69,27 @@ module.exports = {
         field: 'is-company-name-changed',
         parse: (value, req) => {
           if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/when-contract-start',
+        field: 'contract-start-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+            value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
             return null;
           }
           return value;

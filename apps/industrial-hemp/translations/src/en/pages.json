@@ -124,6 +124,12 @@
       },
       "other-licence-details": {
         "label": "Licence Details"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
       }
     }
   }
