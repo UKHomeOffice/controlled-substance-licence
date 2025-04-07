@@ -26,7 +26,7 @@ module.exports = {
     saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
   },
   saveService: {
-    protocol: process.env.DATASERVICE_USE_HTTP === 'true' ? 'http' : 'https',
+    protocol: process.env.DATASERVICE_USE_HTTPS === 'false' ? 'http' : 'https',
     port: process.env.DATASERVICE_SERVICE_PORT_HTTPS || '10443',
     host: process.env.DATASERVICE_SERVICE_HOST || '127.0.0.1'
   },
