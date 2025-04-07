@@ -4,13 +4,13 @@
   },
   "username": {
     "required": "Enter your username",
-    "authenticationError": "Invalid user credentials",
+    "authenticationError": "Enter valid username",
     "serverError": "Server error, please try again later",
     "unknownError": "Unknown error, please try again later"
   },
   "password": {
     "required": "Enter your password",
-    "authenticationError": "Invalid user credentials",
+    "authenticationError": "Enter valid password",
     "serverError": "Server error, please try again later",
     "unknownError": "Unknown error, please try again later"
   }
