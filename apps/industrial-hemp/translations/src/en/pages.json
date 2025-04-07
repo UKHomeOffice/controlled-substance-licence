@@ -103,7 +103,7 @@
         "label": "Has anyone ever received a criminal conviction?"
       },
       "is-change-witness-only": {
-        "label": "Change in authorised witness"
+        "label": "Change in authorised witness for this site only"
       },
       "is-additional-schedules": {
         "label": "Requesting additional schedules"
