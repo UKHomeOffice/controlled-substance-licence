@@ -133,9 +133,13 @@ const steps = {
     next: '/licence-holder-details'
   },
   '/when-contract-start': {
+    fields: ['contract-start-date'],
+    next: '/contract-details'
+  },
+  '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
-
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
