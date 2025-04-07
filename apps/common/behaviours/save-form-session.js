@@ -45,7 +45,8 @@ module.exports = superclass => class extends superclass {
 
       const response = await hofModel._request(reqParams);
       if (!response.data[0]?.id) {
-        req.sessionModel.unset('application-id');
+        const errorMessage = `Id not received in response ${JSON.stringify(response.data)}`;
+        throw new Error(errorMessage);
       }
 
       // @todo CSL-133 Add save-and-exit
