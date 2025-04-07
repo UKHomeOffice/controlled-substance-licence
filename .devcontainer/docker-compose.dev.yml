@@ -49,7 +49,7 @@ services:
       - "3000:3000"
 
   rds-api:
-    image: quay.io/ukhomeofficedigital/hof-rds-api:1335d7a18a80c24280093142d599a74becbbee7c
+    image: quay.io/ukhomeofficedigital/hof-rds-api:a27f07f7865a0a5c38032fb55c114b1673c41796
     networks:
       - csl-shared-network
     hostname: hof-rds-api
