@@ -233,5 +233,15 @@
     "required": "Enter details of why you were refused a licence",
     "maxlength": "Details of why you were refused a licence must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "contract-start-date": {
+    "required": "Enter the contract start date",
+    "date": "Enter a real date",
+    "before": "Contract start date must be in the past"
+  },
+  "contract-details": {
+    "required": "Enter details about the contract and how it affects your licence application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details about the contract must be 2,000 characters or less"
   }
 }
