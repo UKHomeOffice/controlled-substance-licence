@@ -543,5 +543,48 @@ module.exports = {
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'company-type': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'public-limited'
+      },
+      {
+        value: 'private'
+      },
+      {
+        value: 'other'
+      }
+    ],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'describe-business-model': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'cultivate-industrial-hemp': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

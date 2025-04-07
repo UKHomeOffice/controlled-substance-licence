@@ -6,7 +6,7 @@ module.exports = {
   },
   'name-of-responsible-person': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'company-number': {
