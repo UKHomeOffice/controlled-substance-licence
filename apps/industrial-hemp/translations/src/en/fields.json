@@ -216,13 +216,19 @@
       }
     }
   },
-  "file-upload": {
-    "label": "Upload a file",
-    "no-files-uploaded": "No files uploaded",
-    "files-uploaded": "Files uploaded"
-  },
   "is-company-ref-changed": {
     "legend": "Has your Companies House reference number changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-change-witness-only": {
+    "legend": "Are you requesting a change in authorised witness for this site only?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -242,6 +248,33 @@
         "label": "No"
       }
     }
+  },
+  "is-additional-schedules": {
+    "legend": "Are you requesting additional schedules?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-change-of-activity": {
+    "legend": "Are you requesting a change of activity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   },
   "hold-other-regulatory-licences": {
     "legend": "Do you hold any Home Office or other regulatory licenses?",
@@ -279,5 +312,41 @@
   "refusal-reason": {
     "label": "Details of why you were refused a licence",
     "hint": "Enter details of what the licence was, the issuing body and the reason for the refusal"
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
+  },
+  "company-type": {
+    "legend": "What type of company is your organisation?",
+    "options": {
+      "public-limited": {
+        "label": "Public limited company"
+      },
+      "private": {
+        "label": "Private company"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "describe-business-model": {
+    "label": "Describe your business model",
+    "hint": "If applicable, include your company type as registered with Companies House"
+  },
+  "cultivate-industrial-hemp": {
+    "legend": "Is the licence needed to cultivate and possess low THC cannabis (industrial hemp)?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

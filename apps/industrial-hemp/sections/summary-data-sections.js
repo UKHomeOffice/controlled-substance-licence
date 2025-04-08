@@ -9,6 +9,36 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/change-witness-only',
+        field: 'is-change-witness-only',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/additional-schedules',
+        field: 'is-additional-schedules',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
+        step: '/change-of-activity',
+        field: 'is-change-of-activity',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return value;
+          }
+          return null;
+        }
+      },
+      {
         step: '/company-registration-certificate',
         field: 'company-registration-certificate',
         dependsOn: 'is-company-name-changed',
@@ -36,8 +66,34 @@ module.exports = {
       },
       {
         step: '/company-name-changed',
-        field: 'is-company-name-changed'
-
+        field: 'is-company-name-changed',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return value;
+        }
+      },
+      {
+        step: '/when-contract-start',
+        field: 'contract-start-date',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-applying-for-new-site' &&
+            value) {
+            return formatDate(value);
+          }
+          return null;
+        }
+      },
+      {
+        step: '/contract-details',
+        field: 'contract-details',
+        parse: (value, req) => {
+          if (req.sessionModel.get('licensee-type') !== 'existing-licensee-applying-for-new-site') {
+            return null;
+          }
+          return value;
+        }
       }
     ]
   },
@@ -217,6 +273,28 @@ module.exports = {
       {
         step: '/refusal-reason',
         field: 'refusal-reason'
+      },
+      {
+        step: '/company-type',
+        field: 'company-type'
+      },
+      {
+        step: '/business-model',
+        field: 'describe-business-model'
+      },
+      {
+        step: '/company-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/cultivate-industrial-hemp',
+        field: 'cultivate-industrial-hemp'
       }
     ]
   }

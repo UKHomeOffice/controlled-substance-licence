@@ -36,6 +36,13 @@
   "other-licence-details": {
     "header": "Licence details"
   },
+  "company-certificate": {
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
+  "no-licence-needed": {
+    "header": "You need to apply for a controlled drugs licence"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -95,6 +102,15 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Has anyone ever received a criminal conviction?"
       },
+      "is-change-witness-only": {
+        "label": "Change in authorised witness for this site only"
+      },
+      "is-additional-schedules": {
+        "label": "Requesting additional schedules"
+      },
+      "is-change-of-activity": {
+        "label": "Change of activity"
+      },
       "company-registration-certificate": {
         "label": "Upload of Company House evidence"
       },
@@ -115,6 +131,18 @@
       },
       "other-licence-details": {
         "label": "Licence Details"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
+      },
+      "describe-business-model": {
+        "label": "Your business model"
+      },
+      "cultivate-industrial-hemp": {
+        "label": "Is the licence needed to cultivate low THC cannabis?"
       }
     }
   }

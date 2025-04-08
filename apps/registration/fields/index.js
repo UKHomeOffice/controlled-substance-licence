@@ -1,3 +1,5 @@
+const dateComponent = require('hof').components.date;
+
 module.exports = {
   'company-name': {
     mixin: 'input-text',
@@ -6,7 +8,7 @@ module.exports = {
   },
   'name-of-responsible-person': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 3 }, { type: 'maxlength', arguments: 200 }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'company-number': {
@@ -83,5 +85,56 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
-  }
+  },
+  'previously-held-licence': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+
+  },
+  'previous-licence-number': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 50 },
+      'alphanum'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'previous-licence-holder-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'previous-licence-date-of-issue': dateComponent('previous-licence-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      {type: 'after', arguments: ['1924-12-31'] },
+      {type: 'before', arguments: ['0', 'days'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  })
 };
