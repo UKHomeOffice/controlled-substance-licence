@@ -148,16 +148,16 @@ spec:
                   name: user-auth-client
                   key: allowed-role
             # admin-client is used to manage users (create, update, delete)
-            - name: ADMIN_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: admin-client
-                  key: id
-            - name: ADMIN_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: admin-client
-                  key: secret
+            # - name: ADMIN_CLIENT_ID
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: admin-client
+            #       key: id
+            # - name: ADMIN_CLIENT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: admin-client
+            #       key: secret
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
