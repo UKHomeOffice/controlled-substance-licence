@@ -28,10 +28,17 @@ module.exports = superclass => class extends superclass {
     const sessionSteps = req.sessionModel.get('steps');
     const stepJourneyFromValues = buildStepJourneyFromSessionValues(req);
     const visitedFormSteps = stepJourneyFromValues.filter(step => sessionSteps.includes(step));
+    console.log(visitedFormSteps)
     req.sessionModel.set('steps', visitedFormSteps);
 
     const lastVisitedStep = visitedFormSteps[visitedFormSteps.length - 1];
-    const nextStep = stepJourneyFromValues[stepJourneyFromValues.findIndex(item => item === lastVisitedStep) + 1];
+    let nextStep = stepJourneyFromValues[stepJourneyFromValues.findIndex(item => item === lastVisitedStep) + 1];
+
+    const { confirmStep } = req.form.options;
+    if (visitedFormSteps.includes(confirmStep)) {
+      nextStep = confirmStep;
+    }
+
     req.sessionModel.set('save-return-next-step', nextStep);
 
     return super.getValues(req, res, next);

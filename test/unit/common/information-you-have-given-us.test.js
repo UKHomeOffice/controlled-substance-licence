@@ -57,8 +57,13 @@ describe('information-you-have-given-us', () => {
           next: '/step-three'
         },
         '/step-three': {
-          fields: ['step-three']
-        }
+          fields: ['step-three'],
+          next: '/confirm'
+        },
+        '/confirm': {
+          next: '/declaration'
+        },
+        '/declaration': {}
       };
       req.sessionModel.set('step-one', 'yes');
     });
@@ -89,6 +94,19 @@ describe('information-you-have-given-us', () => {
       expect(req.sessionModel.get('steps')).toStrictEqual(['/step-one', '/step-one-point-five', '/step-two']);
       expect(req.sessionModel.get('save-return-next-step')).toBe('/step-three');
     });
+
+    test('Will set the confirm step as the next step if is has been visited', () => {
+      req.form.options.confirmStep = '/confirm';
+      req.sessionModel.set('steps', [
+        '/step-one',
+        '/step-two',
+        '/step-three',
+        '/confirm',
+        '/declaration'
+      ]);
+      instance.getValues(req, res, next);
+      expect(req.sessionModel.get('save-return-next-step')).toBe('/confirm');
+    })
 
     test('The \'referred-by-information-given-summary\' flag is set to true', () => {
       instance.getValues(req, res, next);
