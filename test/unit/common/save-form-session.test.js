@@ -150,7 +150,7 @@ describe('save-form-session', () => {
       expect(next).toHaveBeenCalledWith(error);
     });
 
-    test('application-id will be unset from session if it is not in the _request() response', async () => {
+    test('An error is thrown if application id is not in the _request() response', async () => {
       mockRequest = jest.fn().mockResolvedValue({ data: [] });
       Model.mockImplementation(() => {
         return {
@@ -158,7 +158,7 @@ describe('save-form-session', () => {
         };
       });
       await instance.successHandler(req, res, next);
-      expect(req.sessionModel.unset).toHaveBeenCalledWith('application-id');
+      expect(next).toHaveBeenCalledWith(new Error('Id not received in response []'));
     });
   });
 });
