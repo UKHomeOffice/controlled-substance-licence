@@ -106,7 +106,7 @@ describe('information-you-have-given-us', () => {
       ]);
       instance.getValues(req, res, next);
       expect(req.sessionModel.get('save-return-next-step')).toBe('/confirm');
-    })
+    });
 
     test('The \'referred-by-information-given-summary\' flag is set to true', () => {
       instance.getValues(req, res, next);
