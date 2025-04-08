@@ -133,9 +133,13 @@ const steps = {
     next: '/licence-holder-details'
   },
   '/when-contract-start': {
+    fields: ['contract-start-date'],
+    next: '/contract-details'
+  },
+  '/contract-details': {
+    fields: ['contract-details'],
     next: '/licence-holder-details'
   },
-
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
@@ -316,8 +320,67 @@ const steps = {
   },
 
   '/company-type': {
+    fields: ['company-type'],
+    forks: [
+      {
+        target: '/business-model',
+        condition: {
+          field: 'company-type',
+          value: 'other'
+        }
+      },
+      {
+        target: '/cultivate-industrial-hemp',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      }
+    ],
+    next: '/company-certificate'
+  },
+
+  '/business-model': {
+    fields: ['describe-business-model'],
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/company-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    template: 'company-registration-certificate',
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/cultivate-industrial-hemp': {
+    fields: ['cultivate-industrial-hemp'],
+    forks: [
+      {
+        target: '/where-cultivating-cannabis',
+        condition: {
+          field: 'cultivate-industrial-hemp',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/no-licence-needed'
+  },
+
+  '/where-cultivating-cannabis': {
     next: '/confirm'
   },
+
+  '/no-licence-needed': {
+  },
+
 
   /** Continue an application */
 
