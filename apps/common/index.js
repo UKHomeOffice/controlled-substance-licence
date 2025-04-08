@@ -36,10 +36,9 @@ const steps = {
     next: '/licence-type'
   },
   '/signed-in-successfully': {
-    behaviours: [ SignOut ],
+    behaviours: [ Auth, SignOut ],
     next: '/licence-type'
-  },
-  
+  }
 };
 
 module.exports = {

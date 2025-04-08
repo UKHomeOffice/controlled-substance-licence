@@ -5,6 +5,8 @@ const auth = require('../../../../utils/auth');
 
 module.exports = superclass => class extends superclass {
   validate(req, res, next) {
+    auth.setReq(req);
+
     const validationErrorFunc = (key, type, args) =>
       new this.ValidationError('username', { type: type, arguments: [args] });
 

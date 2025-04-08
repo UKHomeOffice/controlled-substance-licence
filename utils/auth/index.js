@@ -1,9 +1,13 @@
 const { model: Model } = require('hof');
 const config = require('../../config');
-const logger = require('hof/lib/logger')({ env: config.env });
 const crypto = require('node:crypto');
 
 const hofModel = new Model();
+
+let req = null;
+const setReq = request => {
+  req = request;
+};
 
 /**
  * Custom error class for handling authentication-related errors.
@@ -29,10 +33,10 @@ class AuthError extends Error {
  * @param {string} token - The JWT token to validate.
  * @returns {boolean} - Returns true if the token is valid, otherwise false.
  */
-const decodeAndVerifyJwt = token => {
+const isTokenVerified = token => {
   try {
     if (!token) {
-      logger.info('No JWT provided');
+      req.log('info', 'No JWT provided');
       return false;
     }
 
@@ -40,12 +44,9 @@ const decodeAndVerifyJwt = token => {
     const [header, payload, signature] = token.split('.');
 
     if (!header || !payload || !signature) {
-      logger.info('Invalid JWT format');
+      req.log('info', 'Invalid JWT format');
       return false;
     }
-
-    // Decode the payload (Base64URL decoding)
-    const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
 
     // Verify the signature (RS256)
     const verifier = crypto.createVerify('RSA-SHA256');
@@ -59,23 +60,35 @@ const decodeAndVerifyJwt = token => {
       'base64url'
     );
     if (!isValid) {
-      logger.info('JWT signature validation failed');
+      req.log('info', 'JWT signature validation failed');
       return false;
     }
 
-    // Check token expiration (exp claim)
-    const currentTime = Math.floor(Date.now() / 1000);
-    if (decodedPayload.exp && decodedPayload.exp < currentTime) {
-      logger.info('JWT has expired');
-      return false;
-    }
-
-    logger.info('JWT successfully validated');
+    req.log('info', 'JWT successfully validated');
     return true;
   } catch (error) {
-    logger.error('JWT validation failed', { error });
+    req.log('error', `JWT validation failed: ${error}`);
     return false;
   }
+};
+
+/**
+ * Checks if a JWT token is expired based on its `exp` claim.
+ * @param {string} token - The JWT token to check.
+ * @returns {boolean} - Returns `true` if the token is expired, otherwise `false`.
+ */
+const isTokenExpired = token => {
+  const [, payload] = token.split('.'); // Only extract the payload
+
+  // Decode the payload (Base64URL decoding)
+  const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'));
+
+  const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+  if (decodedPayload.exp && decodedPayload.exp < currentTime) {
+    req.log('info', 'JWT has expired');
+    return true;
+  }
+  return false;
 };
 
 /**
@@ -94,16 +107,33 @@ const determineErrorType = status => {
 
 /**
  * Validates the access token from the token object.
+ * Checks if the access token is present, valid, and not expired.
+ *
  * @param {object} tokens - The token object containing the access token and other details.
- * @returns {boolean} - Returns true if the access token is valid, otherwise false.
+ * @returns {object} - An object containing the validation result:
+ *   - {boolean} isValid - `true` if the token is valid, otherwise `false`.
+ *   - {string} reason - The reason for invalidity, if applicable. Possible values:
+ *     - 'missing': The token object or access token is missing
+ *     - 'invalid': The access token is invalid
+ *     - 'expired': The access token has expired
  */
-const validateToken = tokens => {
-  if (!tokens || !tokens.access_token) {
-    logger.info('No access token provided in the token object');
-    return false;
+const validateToken = accessToken => {
+  if (!accessToken) {
+    req.log('info', 'No access token provided');
+    return { isValid: false, reason: 'missing' };
   }
 
-  return decodeAndVerifyJwt(tokens.access_token);
+  if (!isTokenVerified(accessToken)) {
+    req.log('info', 'Invalid access token');
+    return { isValid: false, reason: 'invalid' };
+  }
+
+  if (isTokenExpired(accessToken)) {
+    req.log('info', 'Access token has expired');
+    return { isValid: false, reason: 'expired' };
+  }
+
+  return { isValid: true };
 };
 
 /**
@@ -132,7 +162,7 @@ const getTokens = async (username, password) => {
 
     const response = await hofModel._request(reqParams);
 
-    logger.info('Successfully fetched tokens from Keycloak');
+    req.log('info', 'Successfully fetched tokens from Keycloak');
     return response.data;
   } catch (error) {
     const status = error.response?.status || error.status;
@@ -143,7 +173,7 @@ const getTokens = async (username, password) => {
 
     const errorMessage = `${status} - ${statusText}: ${errorDescription}`;
 
-    logger.error('Failed to fetch tokens from Keycloak', { error: errorMessage });
+    req.log('error', `Failed to fetch tokens from Keycloak', ${errorMessage }`);
 
     throw new AuthError({
       status,
@@ -154,13 +184,56 @@ const getTokens = async (username, password) => {
   }
 };
 
-const refreshToken = async () => {
-  // @todo Implement token refresh logic
-  logger.info('Refreshing token');
+/**
+ * Refreshes the tokens using the refresh token.
+ * Sends a request to the Keycloak token endpoint to obtain a new access token.
+ *
+ * @param {string} refreshToken - The refresh token to use for obtaining a new access token.
+ * @returns {object|null} - Returns the new token object if successful, or `null` if the refresh fails.
+ */
+const getFreshTokens = async refreshToken => {
+  if (!refreshToken) {
+    req.log('info', 'No refresh token provided');
+    return null;
+  }
+
+  req.log('info', 'Refreshing token');
+  try {
+    const reqParams = {
+      url: config.keycloak.tokenUrl,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        client_id: config.keycloak.userAuthClient.clientId,
+        client_secret: config.keycloak.userAuthClient.secret,
+        refresh_token: refreshToken,
+        grant_type: 'refresh_token'
+      }
+    };
+
+    const response = await hofModel._request(reqParams);
+
+    req.log('info', 'Successfully refreshed tokens from Keycloak');
+    return response.data;
+  } catch (error) {
+    const errorMessage = error.response?.data || error.message;
+    req.log('error', `Failed to refresh tokens from Keycloak: ${JSON.stringify(errorMessage)}`);
+    return null;
+  }
 };
 
+
+/**
+ * Logs the user out by sending a request to the Keycloak logout endpoint.
+ * This function invalidates the user's session on the Keycloak server.
+ *
+ * @async
+ * @returns {object|null} - Returns the response data from Keycloak if the logout is successful, or `null` if it fails.
+ */
 const logout = async () => {
-  logger.info('Logging out');
+  req.log('info', 'Logging out');
 
   try {
     const reqParams = {
@@ -170,10 +243,11 @@ const logout = async () => {
 
     const response = await hofModel._request(reqParams);
 
-    logger.info('Successfully logged out from Keycloak');
+    req.log('info', 'Successfully logged out from Keycloak');
     return response.data;
   } catch (error) {
-    logger.error('Failed to logged out from Keycloak', { error: error.response?.data || error.message });
+    const errorMessage = error.response?.data || error.message;
+    req.log('error', `Failed to log out from Keycloak: ${JSON.stringify(errorMessage)}`);
     return null;
   }
 };
@@ -181,11 +255,11 @@ const logout = async () => {
 /**
  * Checks if the user belongs to the authorised user group.
  * @param {object} tokens - The token object containing the access token.
- * @returns {boolean} - Returns true if the user is authorised, otherwise false.
+ * @returns {boolean} - Returns `true` if the user is authorised, otherwise `false`.
  */
 const authorisedUserRole = tokens => {
   if (!tokens || !tokens.access_token) {
-    logger.info('No access token provided in the tokens object');
+    req.log('info', 'No access token provided in the tokens object');
     return false;
   }
 
@@ -193,18 +267,19 @@ const authorisedUserRole = tokens => {
 
   const userRoles = decodedPayload?.realm_access?.roles || [];
   if (userRoles.includes(config.keycloak.userAuthClient.allowedUserRole)) {
-    logger.info('User is authorised');
+    req.log('info', 'User is authorised');
     return true;
   }
 
-  logger.info('User is not authorised');
+  req.log('info', 'User is not authorised');
   return false;
 };
 
 module.exports = {
   validateToken,
   getTokens,
-  refreshToken,
+  getFreshTokens,
   logout,
-  authorisedUserRole
+  authorisedUserRole,
+  setReq
 };
