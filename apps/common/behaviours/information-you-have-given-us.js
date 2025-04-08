@@ -26,6 +26,9 @@ module.exports = superclass => class extends superclass {
     // steps in the session fall out of sync when changed from the current progress report page
     // this reorders them to ensure the user jumps to the last step they filled out
     const sessionSteps = req.sessionModel.get('steps');
+    if (!sessionSteps.includes('/information-you-have-given-us')) {
+      sessionSteps.push('/information-you-have-given-us');
+    }
     const stepJourneyFromValues = buildStepJourneyFromSessionValues(req);
     const visitedFormSteps = stepJourneyFromValues.filter(step => sessionSteps.includes(step));
     req.sessionModel.set('steps', visitedFormSteps);
