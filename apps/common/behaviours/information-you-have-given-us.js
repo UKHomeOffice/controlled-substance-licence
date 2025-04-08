@@ -28,7 +28,6 @@ module.exports = superclass => class extends superclass {
     const sessionSteps = req.sessionModel.get('steps');
     const stepJourneyFromValues = buildStepJourneyFromSessionValues(req);
     const visitedFormSteps = stepJourneyFromValues.filter(step => sessionSteps.includes(step));
-    console.log(visitedFormSteps)
     req.sessionModel.set('steps', visitedFormSteps);
 
     const lastVisitedStep = visitedFormSteps[visitedFormSteps.length - 1];
