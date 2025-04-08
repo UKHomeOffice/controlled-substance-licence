@@ -3,6 +3,8 @@ const CustomRedirect = require('./behaviours/custom-redirect');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
   /** Start of journey */
@@ -48,7 +50,54 @@ const steps = {
 
   /** Renew existing licence - Background Information */
 
+  // Existing licensee renewing or changing a currently licensed site
 
+  '/company-number-changed': {
+    fields: ['is-company-ref-changed'],
+    next: '/company-name-changed',
+    behaviours: [SetSummaryReferrer, CustomRedirect]
+  },
+  '/register-again': {
+    backLink: '/industrial-hemp/company-number-changed'
+  },
+  '/company-name-changed': {
+    fields: ['is-company-name-changed'],
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: {
+          field: 'is-company-name-changed',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/change-witness-only'
+  },
+  '/company-registration-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    next: '/change-witness-only'
+  },
+  '/change-witness-only': {
+    fields: ['is-change-witness-only'],
+    next: '/additional-schedules'
+  },
+  '/additional-schedules': {
+    fields: ['is-additional-schedules'],
+    next: '/change-of-activity'
+  },
+  '/change-of-activity': {
+    fields: ['is-change-of-activity'],
+    next: '/licence-holder-details'
+  },
   /** Existing licence apply for new site - Background Information */
 
   '/why-new-licence': {
@@ -64,7 +113,6 @@ const steps = {
     ],
     next: '/contractual-agreement'
   },
-
   '/when-moving-site': {
     fields: ['moving-site-date'],
     next: '/licence-holder-details',
@@ -84,9 +132,14 @@ const steps = {
     ],
     next: '/licence-holder-details'
   },
-
-  '/when-contract-start': {},
-
+  '/when-contract-start': {
+    fields: ['contract-start-date'],
+    next: '/contract-details'
+  },
+  '/contract-details': {
+    fields: ['contract-details'],
+    next: '/licence-holder-details'
+  },
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
@@ -225,48 +278,114 @@ const steps = {
   },
 
   '/other-regulatory-licences': {
-    next: '/confirm'
-  },
-
-  /** Continue an application */
-
-
-  /** Renew existing licence - Background Information */
-
-  // Existing licensee renewing or changing a currently licensed site
-  '/company-number-changed': {
-    fields: ['is-company-ref-changed'],
-    next: '/company-name-changed',
-    behaviours: [SetSummaryReferrer, CustomRedirect]
-  },
-  '/register-again': {
-    backLink: '/industrial-hemp/company-number-changed'
-  },
-  '/company-name-changed': {
-    fields: ['is-company-name-changed'],
+    fields: ['hold-other-regulatory-licences'],
     forks: [
       {
-        target: '/company-registration-certificate',
+        target: '/other-licence-details',
         condition: {
-          field: 'is-company-name-changed',
+          field: 'hold-other-regulatory-licences',
           value: 'yes'
         }
       }
     ],
-    next: '/change-witness-only'
+    next: '/licence-refused'
   },
-  '/company-registration-certificate': {
-    next: '/change-witness-only'
+
+  '/other-licence-details': {
+    fields: [
+      'other-licence-type',
+      'other-licence-number',
+      'other-licence-date-of-issue'
+    ],
+    next: '/licence-refused'
   },
-  '/change-witness-only': {
-    next: '/additional-schedules'
+
+  '/licence-refused': {
+    fields: ['is-licence-refused'],
+    forks: [
+      {
+        target: '/refusal-reason',
+        condition: {
+          field: 'is-licence-refused',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/company-type'
   },
-  '/additional-schedules': {
-    next: '/change-of-activity'
+
+  '/refusal-reason': {
+    fields: ['refusal-reason'],
+    next: '/company-type'
   },
-  '/change-of-activity': {
-    next: '/licence-holder-details'
+
+  '/company-type': {
+    fields: ['company-type'],
+    forks: [
+      {
+        target: '/business-model',
+        condition: {
+          field: 'company-type',
+          value: 'other'
+        }
+      },
+      {
+        target: '/cultivate-industrial-hemp',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      }
+    ],
+    next: '/company-certificate'
   },
+
+  '/business-model': {
+    fields: ['describe-business-model'],
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/company-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    template: 'company-registration-certificate',
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/cultivate-industrial-hemp': {
+    fields: ['cultivate-industrial-hemp'],
+    forks: [
+      {
+        target: '/where-cultivating-cannabis',
+        condition: {
+          field: 'cultivate-industrial-hemp',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/no-licence-needed'
+  },
+
+  '/where-cultivating-cannabis': {
+    next: '/confirm'
+  },
+
+  '/no-licence-needed': {
+  },
+
+
+  /** Continue an application */
+
+  /** Renew existing licence - Background Information */
+
   /** Existing licence apply for new site - Background Information */
   '/confirm': {
     behaviours: [Summary],
@@ -282,5 +401,6 @@ module.exports = {
   fields: 'apps/industrial-hemp/fields',
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  confirmStep: '/confirm'
 };

@@ -18,15 +18,6 @@
   "site-responsible-officer-dbs": {
     "header": "DBS information for the responsible person"
   },
-  "why-new-licence": {
-    "header": "Why are you requesting a new licence?"
-  },
-  "when-moving-site": {
-    "header": "When are you moving site?"
-  },
-  "contractual-agreement": {
-    "header": "Is the new site part of a contractual agreement?"
-  },
   "authorised-witness-details": {
     "header": "Authorised witness details",
     "intro": "Enter the details of the person who is responsible for witnessing the destruction of the controlled parts of the plant."
@@ -34,9 +25,23 @@
   "authorised-witness-dbs": {
     "header": "DBS information for authorised witness"
   },
+  "company-registration-certificate": {
+    "header": "Upload company registration certificate as evidence of name change",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
   "register-again": {
     "header": "You cannot continue this application",
     "intro": "As your registration number with Companies House has changed, you need to register again before you can apply for a licence."
+  },
+  "other-licence-details": {
+    "header": "Licence details"
+  },
+  "company-certificate": {
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
+  "no-licence-needed": {
+    "header": "You need to apply for a controlled drugs licence"
   },
   "confirm": {
     "header": "Check your answers",
@@ -97,6 +102,18 @@
       "has-anyone-received-criminal-conviction": {
         "label": "Has anyone ever received a criminal conviction?"
       },
+      "is-change-witness-only": {
+        "label": "Change in authorised witness for this site only"
+      },
+      "is-additional-schedules": {
+        "label": "Requesting additional schedules"
+      },
+      "is-change-of-activity": {
+        "label": "Change of activity"
+      },
+      "company-registration-certificate": {
+        "label": "Upload of Company House evidence"
+      },
       "why-new-licence": {
         "label": "Reason for collecting new licence"
       },
@@ -111,6 +128,21 @@
       },
       "is-company-name-changed": {
         "label": "Change in name"
+      },
+      "other-licence-details": {
+        "label": "Licence Details"
+      },
+      "contract-start-date": {
+        "label": "When does it start"
+      },
+      "contract-details": {
+        "label": "Tell us more about the contract"
+      },
+      "describe-business-model": {
+        "label": "Your business model"
+      },
+      "cultivate-industrial-hemp": {
+        "label": "Is the licence needed to cultivate low THC cannabis?"
       }
     }
   }

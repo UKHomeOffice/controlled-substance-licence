@@ -1,3 +1,78 @@
 {
-  
+  "company-name": {
+    "label": "Company name"
+  },
+  "name-of-responsible-person": {
+    "label": "Name of responsible person",
+    "hint": "The person who is in charge of the unit, department or area for which a licence is sought"
+  },
+  "company-number": {
+    "label": "Company number (optional)",
+    "hint": "Enter the number issued by Companies House"
+  },
+  "telephone": {
+    "label": "UK telephone number"
+  },
+  "email": {
+    "label": "Email address"
+  },
+  "website-url": {
+    "label": "Website URL (optional)"
+  },
+  "licence-holder-address-line-1": {
+    "label": "Address line 1"
+  },
+  "licence-holder-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "licence-holder-town-or-city": {
+    "label": "Town or city"
+  },
+  "licence-holder-postcode": {
+    "label": "Postcode"
+  },
+  "registered-charity": {
+    "legend": "Is the business a registered charity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "legal-identity-changed": {
+    "legend": "Has your legal identity changed at Companies House in the last 3 years?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "previously-held-licence": {
+    "legend": "Under your previous legally registered identity, did you hold a controlled drugs licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "previous-licence-number": {
+    "label": "Previous licence number"
+  },
+  "previous-licence-holder-name": {
+    "label": "Licence holder name",
+    "hint": "The name of the company that held the previous licence"
+  },
+  "previous-licence-date-of-issue": {
+    "legend": "Date issued",
+    "hint": "For example, 21 3 2019"
+  }
 }

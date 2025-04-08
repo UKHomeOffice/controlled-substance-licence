@@ -101,7 +101,7 @@
     "label": "DBS reference"
   },
   "responsible-person-dbs-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "responsible-officer-dbs-subscription": {
     "legend": "Has the responsible person subscribed to DBS updates?",
@@ -131,19 +131,22 @@
     "hint": "Providing a detailed description will help us process your application faster"
   },
   "why-new-licence": {
+    "legend": "Why are you requesting a new licence?",
     "options": {
       "moving-site": {
         "label": "We are moving site"
       },
-      "why-new-licence": {
+      "another-site": {
         "label": "For another site"
       }
     }
   },
   "moving-site-date": {
+    "legend": "When are you moving site?",
     "hint": "Enter the date you plan to move sites"
   },
   "is-contractual-agreement": {
+    "legend": "Is the new site part of a contractual agreement?",
     "options": {
       "yes": {
         "label": "Yes"
@@ -173,7 +176,7 @@
     "label": "DBS reference"
   },
   "authorised-witness-dbs-date-of-issue": {
-    "label": "Date of issue or application"
+    "legend": "Date of issue or application"
   },
   "authorised-witness-dbs-subscription": {
     "legend": "Has the authorised witness subscribed to DBS updates?",
@@ -224,8 +227,119 @@
       }
     }
   },
+  "is-change-witness-only": {
+    "legend": "Are you requesting a change in authorised witness for this site only?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "is-company-name-changed": {
     "legend": "Has your registered name at Companies House changed since your last application?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-additional-schedules": {
+    "legend": "Are you requesting additional schedules?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-change-of-activity": {
+    "legend": "Are you requesting a change of activity?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
+  },
+  "hold-other-regulatory-licences": {
+    "legend": "Do you hold any Home Office or other regulatory licenses?",
+    "hint": "This includes animal scientific procedures and firearms",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "other-licence-type": {
+    "label": "Licence type"
+  },
+  "other-licence-number": {
+    "label": "Licence number"
+  },
+  "other-licence-date-of-issue": {
+    "legend": "Date of issue or application"
+  },
+  "is-licence-refused": {
+    "legend": "Has your organisation ever been refused a licence?",
+    "hint": "This means licences issued by central or local government bodies and authorities, including the police",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "refusal-reason": {
+    "label": "Details of why you were refused a licence",
+    "hint": "Enter details of what the licence was, the issuing body and the reason for the refusal"
+  },
+  "contract-start-date": {
+    "legend": "When does the contract start?",
+    "hint": "Enter the date you plan to move sites"
+  },
+  "contract-details": {
+    "label": "Tell us more about the contract and how it affects your licence application"
+  },
+  "company-type": {
+    "legend": "What type of company is your organisation?",
+    "options": {
+      "public-limited": {
+        "label": "Public limited company"
+      },
+      "private": {
+        "label": "Private company"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "describe-business-model": {
+    "label": "Describe your business model",
+    "hint": "If applicable, include your company type as registered with Companies House"
+  },
+  "cultivate-industrial-hemp": {
+    "legend": "Is the licence needed to cultivate and possess low THC cannabis (industrial hemp)?",
     "options": {
       "yes": {
         "label": "Yes"

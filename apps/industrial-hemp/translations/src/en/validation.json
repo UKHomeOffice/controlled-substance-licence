@@ -181,10 +181,79 @@
   "has-anyone-received-criminal-conviction": {
     "required": "Select if anyone in your organisation has ever received a criminal conviction"
   },
+  "is-change-witness-only": {
+    "required": "Select if you are requesting a change in authorised witness for this site only"
+  },
+  "is-additional-schedules": {
+    "required": "Select if you are requesting additional schedules"
+  },
+  "is-change-of-activity": {
+    "required": "Select if you are requesting a change of activity"
+  },
+  "file-upload": {
+    "required": "Select a file",
+    "unsaved": "The selected file was not uploaded – try again",
+    "maxFileSize": "The selected files must be smaller than 25MB",
+    "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
+    "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
+    "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
+    "isDuplicateFileName": "A file with this name was already uploaded"
+  },
   "is-company-ref-changed": {
     "required": "Select if your Companies House reference number has changed since your last application"
   },
   "is-company-name-changed":{
     "required": "Select if your registered name at Companies House has changed since your last application"
+  },
+  "hold-other-regulatory-licences": {
+    "required": "Select if you hold any Home Office or other regulatory licences"
+  },
+  "other-licence-type": {
+    "required": "Enter the licence type, for example the name of the licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Licence type must be between 2 and 200 characters",
+    "minlength": "Licence type must be between 2 and 200 characters"
+  },
+  "other-licence-number": {
+    "required": "Enter the licence number or a reference number",
+    "maxlength": "Licence number must be between 2 and 50 characters",
+    "minlength": "Licence number must be between 2 and 50 characters",
+    "alphanum": "Enter a real licence number or application reference number"
+  },
+  "other-licence-date-of-issue": {
+    "required": "Enter the date of issue or application",
+    "date": "Enter a real date of issue or application",
+    "before": "Date of issue or application must be today's date or in the past",
+    "after": "Date of issue or application must be in the past 50 years"
+  },
+  "is-licence-refused": {
+    "required": "Select if your organisation has ever been refused a licence"
+  },
+  "refusal-reason": {
+    "required": "Enter details of why you were refused a licence",
+    "maxlength": "Details of why you were refused a licence must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "contract-start-date": {
+    "required": "Enter the contract start date",
+    "date": "Enter a real contract start date",
+    "before": "Contract start date must be in the past",
+    "after": "Contract start date must be in within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future"
+  },
+  "contract-details": {
+    "required": "Enter details about the contract and how it affects your licence application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details about the contract must be 2,000 characters or less"
+  },
+  "company-type": {
+    "required": "Select your organisation's company type"
+  },
+  "describe-business-model": {
+    "required": "Enter a description of your business model",
+    "maxlength": "Description of your business model must be 2,000 character or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "cultivate-industrial-hemp": {
+    "required": "Select if the licence is needed to cultivate and possess low THC cannabis"
   }
 }

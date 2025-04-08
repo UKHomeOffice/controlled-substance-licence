@@ -2,5 +2,52 @@
   "start": {
     "header": "Register for the controlled substance licensing system",
     "pageTitle": "Registration"
+  },
+
+  "licence-holder-details": {
+    "header": "Licence holder details"
+  },
+
+  "licence-holder-address": {
+    "header": "Licence holder address",
+    "intro": "This is the address your business is registered at."
+  },
+  "previous-licence-details": {
+    "header": "Previous licence details"
+  },
+
+  "confirm": {
+    "header": "Check your answers before submitting your registration",
+    "sections": {
+      "licence-holder-details": {
+        "header": "Licence holder details"
+      },
+      "licence-holder-address": {
+        "header": "Licence holder address"
+      },
+      "business-details": {
+        "header": "Business details"
+      }
+    },
+    "fields": {
+      "company-name": {
+        "label": "Licence holder name"
+      },
+      "telephone": {
+        "label": "Contact phone number"
+      },
+      "email": {
+        "label": "Contact email address"
+      },
+      "previously-held-licence": {
+        "label": "Did you previously hold a controlled drugs licence?"
+      },
+      "previous-licence-holder-name": {
+        "label": "Previous licence holder name"
+      },
+      "previous-licence-date-of-issue": {
+        "label": "Previous licence date issued"
+      }
+    }
   }
 }
