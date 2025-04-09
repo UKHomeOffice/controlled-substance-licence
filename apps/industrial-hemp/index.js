@@ -375,10 +375,27 @@ const steps = {
   },
 
   '/where-cultivating-cannabis': {
-    next: '/confirm'
+    fields: ['where-cultivating-cannabis'],
+    forks: [
+      {
+        target: '/field-acreage',
+        condition: {
+          field: 'where-cultivating-cannabis',
+          value: 'outside'
+        }
+      }
+    ],
+    next: '/controlled-drugs-licence'
   },
 
   '/no-licence-needed': {
+  },
+
+  '/controlled-drugs-licence': {
+  },
+
+  '/field-acreage': {
+    next: '/confirm'
   },
 
 

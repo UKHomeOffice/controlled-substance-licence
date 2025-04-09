@@ -43,6 +43,12 @@
   "no-licence-needed": {
     "header": "You need to apply for a controlled drugs licence"
   },
+  "controlled-drugs-licence": {
+    "header": "You need to apply for a controlled drugs licence"
+  },
+  "field-acreage": {
+    "header": "What is the total acreage of the fields?"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {

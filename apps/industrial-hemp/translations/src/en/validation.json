@@ -254,5 +254,8 @@
   },
   "cultivate-industrial-hemp": {
     "required": "Select if the licence is needed to cultivate and possess low THC cannabis"
+  },
+  "where-cultivating-cannabis": {
+    "required": "Select where you will be cultivating the low THC cannabis"
   }
 }
