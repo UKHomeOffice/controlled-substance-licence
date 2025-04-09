@@ -4,7 +4,7 @@ You cannot apply for any licences until we approve your registration application
 
 If you are successful, you will receive an email notification. You can then start an application for a controlled substance licence.
 
-## If you registration has not been approved after 5 working days
+## If your registration has not been approved after 5 working days
 
 If you have not received an email after 5 working days, contact us:
 
