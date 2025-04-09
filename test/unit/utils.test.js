@@ -66,7 +66,7 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
 
 describe('Utilities \'generateErrorMsg\'', () => {
   test('Returns a full message when the error object has all properties', () => {
-    const axiosError = {
+    const mockError = {
       message: 'Some error',
       response: {
         status: 401,
@@ -77,30 +77,30 @@ describe('Utilities \'generateErrorMsg\'', () => {
       }
     };
 
-    expect(generateErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(mockError)).toBe(
       '401 - Some error; Cause: {"item1":"one","item2":"two"}'
     );
   });
 
   test('Returns a shorter message when the error object does not contain data', () => {
-    const axiosError = {
+    const mockError = {
       message: 'Some error',
       response: {
         status: 401
       }
     };
 
-    expect(generateErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(mockError)).toBe(
       '401 - Some error; '
     );
   });
 
   test('Returns error.message only when no response prop is present in the error object', () => {
-    const axiosError = {
+    const mockError = {
       message: 'Some error'
     };
 
-    expect(generateErrorMsg(axiosError)).toBe(
+    expect(generateErrorMsg(mockError)).toBe(
       ' Some error; '
     );
   });
