@@ -532,7 +532,7 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'before', arguments: ['0', 'years'] },
+      { type: 'before', arguments: ['-1', 'years'] },
       { type: 'after', arguments: ['1', 'years'] }
     ],
     legend: {

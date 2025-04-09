@@ -1343,7 +1343,8 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'after', arguments: ['0', 'days'] }
+      { type: 'before', arguments: ['-1', 'years'] },
+      { type: 'after', arguments: ['1', 'years'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
