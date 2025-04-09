@@ -348,5 +348,16 @@
         "label": "No"
       }
     }
+  },
+  "where-cultivating-cannabis": {
+    "legend": "Where will you be cultivating the low THC cannabis?",
+    "options": {
+      "inside": {
+        "label": "Inside"
+      },
+      "outside": {
+        "label": "Outside"
+      }
+    }
   }
 }
