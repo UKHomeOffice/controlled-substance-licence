@@ -59,6 +59,7 @@ const steps = {
   },
   '/register-again': {
     backLink: '/industrial-hemp/company-number-changed'
+    // End of user journey
   },
   '/company-name-changed': {
     fields: ['is-company-name-changed'],
@@ -375,10 +376,29 @@ const steps = {
   },
 
   '/where-cultivating-cannabis': {
-    next: '/confirm'
+    fields: ['where-cultivating-cannabis'],
+    forks: [
+      {
+        target: '/field-acreage',
+        condition: {
+          field: 'where-cultivating-cannabis',
+          value: 'outside'
+        }
+      }
+    ],
+    next: '/controlled-drugs-licence'
   },
 
   '/no-licence-needed': {
+    // End of user journey
+  },
+
+  '/controlled-drugs-licence': {
+    // End of user journey
+  },
+
+  '/field-acreage': {
+    next: '/confirm'
   },
 
 

@@ -81,6 +81,7 @@ const steps = {
 
   '/cannot-continue': {
     backLink: '/precursor-chemicals/companies-house-number'
+    // End of user journey
   },
 
   '/upload-companies-house-evidence': {
