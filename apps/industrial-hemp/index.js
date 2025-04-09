@@ -59,6 +59,7 @@ const steps = {
   },
   '/register-again': {
     backLink: '/industrial-hemp/company-number-changed'
+    // End of user journey
   },
   '/company-name-changed': {
     fields: ['is-company-name-changed'],
@@ -389,9 +390,11 @@ const steps = {
   },
 
   '/no-licence-needed': {
+    // End of user journey
   },
 
   '/controlled-drugs-licence': {
+    // End of user journey
   },
 
   '/field-acreage': {
