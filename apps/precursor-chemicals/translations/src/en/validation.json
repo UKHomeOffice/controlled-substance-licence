@@ -40,7 +40,7 @@
   "contract-start-date": {
     "required": "Enter a date",
     "date": "Enter a date in the correct format",
-    "after": "Contract start date must be in within the past year",
+    "after": "Contract start date must be within the past year",
     "before": "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future"
   },
   "contract-details": {
