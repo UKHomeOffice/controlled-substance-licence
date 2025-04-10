@@ -604,5 +604,33 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'field-acreage': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 50 },
+      'alphanum'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-half']
+  },
+  'how-many-fields': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'numeric',
+      {type: 'max', arguments: 1000},
+      {type: 'min', arguments: 1}
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    attributes: [{ suffix: 'fields' }]
+  },
+  'cultivation-field-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    labelClassName: ['govuk-label--m']
   }
 };

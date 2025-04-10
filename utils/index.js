@@ -124,6 +124,7 @@ const isValidPhoneNumber = phoneNumber => {
   return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
 };
 
+
 module.exports = {
   getLabel,
   translateOption,
