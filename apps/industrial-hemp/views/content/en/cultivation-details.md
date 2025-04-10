@@ -1,5 +1,4 @@
 
-# Details of cultivation fields
 
 You must provide us with details of the fields you plan to cultivate low THC cannabis (industrial hemp) in.
 

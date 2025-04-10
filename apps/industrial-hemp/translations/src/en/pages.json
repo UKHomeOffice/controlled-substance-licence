@@ -46,6 +46,9 @@
   "controlled-drugs-licence": {
     "header": "You need to apply for a controlled drugs licence"
   },
+  "cultivation-field-details": {
+   "header": "Details of cultivation fields"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
