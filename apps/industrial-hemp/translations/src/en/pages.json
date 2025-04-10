@@ -149,6 +149,18 @@
       },
       "cultivate-industrial-hemp": {
         "label": "Is the licence needed to cultivate low THC cannabis?"
+      },
+      "where-cultivating-cannabis": {
+        "label": "Where you will be cultivating Low THC Cannabis?"
+      },
+      "is-company-own-fields": {
+        "label": "Does your company own all the fields?"
+      },
+      "is-who-own-fields": {
+        "label": "Who owns the fields?"
+      },
+      "is-permission-for-activities": {
+        "label": "Do you have permission from the owner to carryout your intended activities?"
       }
     }
   }

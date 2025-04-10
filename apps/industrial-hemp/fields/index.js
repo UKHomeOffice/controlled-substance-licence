@@ -604,5 +604,45 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'is-company-own-fields': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-who-own-fields': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'is-permission-for-activities': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

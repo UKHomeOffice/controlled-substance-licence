@@ -258,5 +258,15 @@
   },
   "where-cultivating-cannabis": {
     "required": "Select where you will be cultivating the low THC cannabis"
+  },
+  "is-company-own-fields": {
+    "required": "Select if your company owns all the fields"
+  },
+  "is-who-own-fields": {
+    "required": "Enter details of who owns the fields",
+    "maxlength": "Details of who owns the fields must be 2,000 characters or less"
+  },
+  "is-permission-for-activities": {
+    "required": "Select if you have permission from the owner to carry out your intended activities"
   }
 }
