@@ -150,6 +150,9 @@
       "cultivate-industrial-hemp": {
         "label": "Is the licence needed to cultivate low THC cannabis?"
       },
+      "where-cultivating-cannabis": {
+        "label": "Where you will be cultivating Low THC Cannabis?"
+      },
       "field-acreage": {
         "label": "Total acreage of fields"
       },
