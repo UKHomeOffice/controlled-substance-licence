@@ -1,4 +1,5 @@
 'use strict';
+const { formatDate } = require('../../../utils');
 
 module.exports = {
   'licence-holder-details': {
@@ -62,6 +63,30 @@ module.exports = {
       {
         step: '/legal-identity-changed',
         field: 'legal-identity-changed'
+      },
+
+      {
+        step: '/previously-held-licence',
+        field: 'previously-held-licence'
+      },
+
+      {
+        dependsOn: 'previously-held-licence',
+        step: '/previous-licence-details',
+        field: 'previous-licence-number'
+      },
+
+      {
+        dependsOn: 'previously-held-licence',
+        step: '/previous-licence-details',
+        field: 'previous-licence-holder-name'
+      },
+
+      {
+        dependsOn: 'previously-held-licence',
+        step: '/previous-licence-details',
+        field: 'previous-licence-date-of-issue',
+        parse: value => value ? formatDate(value) : null
       },
       {
         step: '/company-type',

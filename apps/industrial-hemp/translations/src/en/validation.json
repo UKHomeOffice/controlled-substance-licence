@@ -236,12 +236,27 @@
   },
   "contract-start-date": {
     "required": "Enter the contract start date",
-    "date": "Enter a real date",
-    "before": "Contract start date must be in the past"
+    "date": "Enter a real contract start date",
+    "before": "Contract start date must be in the past",
+    "after": "Contract start date must be in within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future"
   },
   "contract-details": {
     "required": "Enter details about the contract and how it affects your licence application",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Details about the contract must be 2,000 characters or less"
+  },
+  "company-type": {
+    "required": "Select your organisation's company type"
+  },
+  "describe-business-model": {
+    "required": "Enter a description of your business model",
+    "maxlength": "Description of your business model must be 2,000 character or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "cultivate-industrial-hemp": {
+    "required": "Select if the licence is needed to cultivate and possess low THC cannabis"
+  },
+  "where-cultivating-cannabis": {
+    "required": "Select where you will be cultivating the low THC cannabis"
   }
 }

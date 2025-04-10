@@ -59,6 +59,7 @@ const steps = {
   },
   '/register-again': {
     backLink: '/industrial-hemp/company-number-changed'
+    // End of user journey
   },
   '/company-name-changed': {
     fields: ['is-company-name-changed'],
@@ -320,8 +321,86 @@ const steps = {
   },
 
   '/company-type': {
+    fields: ['company-type'],
+    forks: [
+      {
+        target: '/business-model',
+        condition: {
+          field: 'company-type',
+          value: 'other'
+        }
+      },
+      {
+        target: '/cultivate-industrial-hemp',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      }
+    ],
+    next: '/company-certificate'
+  },
+
+  '/business-model': {
+    fields: ['describe-business-model'],
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/company-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    },
+    template: 'company-registration-certificate',
+    next: '/cultivate-industrial-hemp'
+  },
+
+  '/cultivate-industrial-hemp': {
+    fields: ['cultivate-industrial-hemp'],
+    forks: [
+      {
+        target: '/where-cultivating-cannabis',
+        condition: {
+          field: 'cultivate-industrial-hemp',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/no-licence-needed'
+  },
+
+  '/where-cultivating-cannabis': {
+    fields: ['where-cultivating-cannabis'],
+    forks: [
+      {
+        target: '/field-acreage',
+        condition: {
+          field: 'where-cultivating-cannabis',
+          value: 'outside'
+        }
+      }
+    ],
+    next: '/controlled-drugs-licence'
+  },
+
+  '/no-licence-needed': {
+    // End of user journey
+  },
+
+  '/controlled-drugs-licence': {
+    // End of user journey
+  },
+
+  '/field-acreage': {
     next: '/confirm'
   },
+
 
   /** Continue an application */
 

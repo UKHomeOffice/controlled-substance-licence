@@ -8,7 +8,8 @@
   "name-of-responsible-person": {
     "required": "Enter the name of the person who will be responsible for the licence",
     "notUrl": "Your answer must not contain URLs or links",
-    "maxlength": "Name of the responsible person must between 1 and 250 characters"
+    "maxlength": "Name of the responsible person must between 3 and 200 characters",
+    "minlength": "Name of the responsible person must between 3 and 200 characters"
   },
   "company-number": {
     "companyNumber": "Enter a real company number, like 16850062"
@@ -48,6 +49,29 @@
   },
   "legal-identity-changed": {
     "required": "Select if your legal identity has changed in the last 3 years"
+  },
+
+  "previously-held-licence": {
+    "required": "Select if you held a controlled drugs licence under your previous legal identity"
+  },
+  "previous-licence-number": {
+    "required": "Enter your previous licence number",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Previous licence number must be between 3 and 50 characters",
+    "maxlength": "Previous licence number must be between 3 and 50 characters",
+    "alphanum": "Enter your previous licence number"
+  },
+  "previous-licence-holder-name": {
+    "required": "Enter the name of the company that held the previous licence",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Previous licence holder name must be between 2 and 250 characters",
+    "maxlength": "Previous licence holder name must be between 2 and 250 characters"
+  },
+  "previous-licence-date-of-issue": {
+    "required": "Enter the date the previous licence was issued",
+    "date": "Enter a real date",
+    "before": "Date the previous licence was issued must be in the past",
+    "after": "Date when the previous licence was issued must be within the last 100 years"
   },
   "company-type": {
     "required": "Select your organisation's company type"

@@ -532,7 +532,8 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'before', arguments: ['0', 'days'] }
+      { type: 'before', arguments: ['0', 'years'] },
+      { type: 'after', arguments: ['1', 'years'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
@@ -543,5 +544,65 @@ module.exports = {
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'company-type': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'public-limited'
+      },
+      {
+        value: 'private'
+      },
+      {
+        value: 'other'
+      }
+    ],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'describe-business-model': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'cultivate-industrial-hemp': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'where-cultivating-cannabis': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'inside'
+      },
+      {
+        value: 'outside'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   }
 };

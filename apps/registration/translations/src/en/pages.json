@@ -12,6 +12,9 @@
     "header": "Licence holder address",
     "intro": "This is the address your business is registered at."
   },
+  "previous-licence-details": {
+    "header": "Previous licence details"
+  },
 
   "upload-company-certificate": {
     "header": "Upload company registration certificate"
@@ -39,6 +42,15 @@
       },
       "email": {
         "label": "Contact email address"
+      },
+      "previously-held-licence": {
+        "label": "Did you previously hold a controlled drugs licence?"
+      },
+      "previous-licence-holder-name": {
+        "label": "Previous licence holder name"
+      },
+      "previous-licence-date-of-issue": {
+        "label": "Previous licence date issued"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
