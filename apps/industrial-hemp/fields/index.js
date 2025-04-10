@@ -532,8 +532,8 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'before', arguments: ['0', 'years'] },
-      { type: 'after', arguments: ['1', 'years'] }
+      { type: 'before', arguments: ['-1', 'years'] }, // Validate the date to be within 1 year in the future
+      { type: 'after', arguments: ['1', 'years'] } // Validate the date to be less than 1 year in the past
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
