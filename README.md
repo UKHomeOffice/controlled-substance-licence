@@ -26,6 +26,7 @@ Controlled Substance Licence (CSL) allows the public to register and apply for a
 - [Node.js](https://nodejs.org/en/) - v.20 LTS
 - [Redis server](http://redis.io/download) running on default port 6379
 - [File Vault](https://github.com/UKHomeOffice/file-vault) Service - running port 3000
+- [hof-rds-api](https://github.com/UKHomeOffice/hof-rds-api) Service - running port 5000 for service 'csl'
 
 ### Setup
 
@@ -54,6 +55,8 @@ By following these steps, you should be able to install and run your application
 
 5. Run the necessary commands to install dependencies `yarn` and `yarn start:dev` to start your application.
 
+6. If you want to seed the postgres database with data specified in the CSL hof-rds-api service you can exec into the Docker container for hof-rds-api and run `yarn db:seed`. This should add some basic data to certain DB tables enabling basic functionality.
+
 ## Install & Run the Application locally with VS Code Dev Containers
 
 Alternatively, if you are using [Visual Studio Code](https://code.visualstudio.com/) (VS Code), you can run the application with a [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers).
@@ -76,11 +79,13 @@ By following these steps, you should be able to run your application using a dev
 
 4. Run the `Dev Containers: Open Folder in Container...` command from the Command Palette (F1) or click on the Remote Indicator (≶) in the status bar. This command will build and start the devcontainer based on the configuration files in the `.devcontainer` folder.
 
-7. Once the devcontainer is built and started, you will be inside the containerised environment. You can now work on your project as if you were working locally, but with all the necessary dependencies and tools installed within the container.
+5. Once the devcontainer is built and started, you will be inside the containerised environment. You can now work on your project as if you were working locally, but with all the necessary dependencies and tools installed within the container.
 
-8. To start the application, open a terminal within VS Code by going to `View -> Terminal` or by pressing `Ctrl+backtick`. In the terminal, navigate to the project directory if you're not already there.
+6. To start the application, open a terminal within VS Code by going to `View -> Terminal` or by pressing `Ctrl+backtick`. In the terminal, navigate to the project directory if you're not already there.
 
-9. Run the necessary commands to install dependencies `yarn` and `yarn start:dev` to start your application.
+7. Run the necessary commands to install dependencies `yarn` and `yarn start:dev` to start your application.
+
+8. If you want to seed the postgres database with data specified in the CSL hof-rds-api service you can exec into the Docker container for hof-rds-api and run `yarn db:seed`. This should add some basic data to certain DB tables enabling basic functionality.
 
 ### Testing
 

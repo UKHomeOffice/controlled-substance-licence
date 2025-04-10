@@ -11,7 +11,7 @@ spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   replicas: 2
   {{ else }}
-  replicas: 0
+  replicas: 1
   {{ end }}
   selector:
     matchLabels:
@@ -38,7 +38,7 @@ spec:
       containers:
         - name: data-service
           # release v2.0.1
-          image: quay.io/ukhomeofficedigital/hof-rds-api:16bc712744851373e533d94ecf04724836be8247
+          image: quay.io/ukhomeofficedigital/hof-rds-api:a27f07f7865a0a5c38032fb55c114b1673c41796
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
