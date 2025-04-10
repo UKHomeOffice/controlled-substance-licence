@@ -1,6 +1,10 @@
 const config = require('../config');
 const translations = require('../apps/precursor-chemicals/translations/src/en/fields.json');
 const validators = require('hof/controller/validation/validators');
+const logger = require('hof/lib/logger')({ env: config.env });
+const { model: Model } = require('hof');
+const { protocol, host, port } = config.saveService;
+const rdsApiBaseUrl = `${protocol}://${host}:${port}`;
 
 /**
  * Retrieves the label for a given field key and field value from the translations object.
@@ -124,6 +128,44 @@ const isValidPhoneNumber = phoneNumber => {
   return validators.regex(phoneNumberWithoutSpace, /^\(?\+?[\d()-]{8,16}$/);
 };
 
+/**
+ * Generates a useful error message from a typical Axios error reponse object
+ * It will return at a minimum error.message from the Error object passed in.
+ *
+ * @param {object} error - An Error object.
+ * @returns {string} - An error message for failed Axios requests containing key causal information.
+ */
+const generateErrorMsg = error => {
+  const errorDetails = error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
+  const errorCode = error.response?.status ? `${error.response.status} -` : '';
+  return `${errorCode} ${error.message}; ${errorDetails}`;
+};
+
+/**
+ * Makes a request to hof-rds-api service endpoint to clear table rows according to passed arguments
+ * calls generateErrorMsg if an error occurs with the hof _request method
+ *
+ * @param {string} table - The database table to clear rows from
+ * @param {string} submitStatus - The submission status of rows to be removed e.g. submitted/unsubmitted/all
+ * @param {string} dateType - The table datetime column to calculate retention period/expiry from
+ * @param {string} days - The number of days the retention period is calculated back to from today's date
+ * @param {string} periodType - Calculate retention period using either 'calendar' or 'business'
+ * @returns {Promise<void>} - A Promise that resolves when the operation is complete
+ */
+const clearExpiredApplictions = async (table, submitStatus, dateType, days, periodType) => {
+  const hofModel = new Model();
+  try {
+    await hofModel._request({
+      url: `${rdsApiBaseUrl}/${table}/clear/${submitStatus}/${dateType}/older/${days}/${periodType}`,
+      method: 'DELETE'
+    });
+    // eslint-disable-next-line max-len
+    logger.info(`Cleared ${submitStatus} ${table} where ${dateType} is older than ${days} ${periodType} days.`);
+  } catch (error) {
+    logger.error(generateErrorMsg(error));
+  }
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -131,5 +173,7 @@ module.exports = {
   sanitiseFilename,
   parseOperations,
   findArrayItemByValue,
-  isValidPhoneNumber
+  isValidPhoneNumber,
+  generateErrorMsg,
+  clearExpiredApplictions
 };

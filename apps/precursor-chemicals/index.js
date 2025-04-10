@@ -11,11 +11,15 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const SaveFormSession = require('../common/behaviours/save-form-session');
+const ResumeFormSession = require('../common/behaviours/resume-form-session');
+
 const steps = {
 
   /** Start of journey */
 
   '/application-type': {
+    behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
@@ -26,6 +30,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
@@ -48,6 +53,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licence-holder-details'
   },
 
@@ -502,5 +508,6 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
-  steps: steps
+  steps: steps,
+  behaviours: [SaveFormSession]
 };
