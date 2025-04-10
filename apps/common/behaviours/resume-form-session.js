@@ -1,3 +1,5 @@
+'use strict';
+
 const { model: Model } = require('hof');
 const { generateErrorMsg } = require('../../../utils/index');
 const config = require('../../../config');
@@ -12,6 +14,9 @@ module.exports = superclass => class extends superclass {
       const applicantId = 1; // todo: get applicantId from common session logged in user
       const licenceType = req.session['hof-wizard-common']?.['licence-type'];
 
+      req.sessionModel.set('applicant-id', applicantId);
+      req.sessionModel.set('licence-type', licenceType);
+
       const hofModel = new Model();
 
       const userApplications = await hofModel._request({
@@ -19,10 +24,13 @@ module.exports = superclass => class extends superclass {
         method: 'GET'
       });
 
-      const openApplications = userApplications.data
-        .filter(application => application.licence_type === licenceType && !application.submitted_at);
+      const savedApplication = userApplications.data.reduce((latest, current) => {
+        const isOpenApplication = current.licence_type === licenceType && !current.submitted_at;
 
-      const savedApplication = openApplications.reduce((latest, current) => {
+        if (!isOpenApplication) {
+          return latest; // Skip non-open applications
+        }
+
         return !latest || current.created_at > latest.created_at ? current : latest;
       }, null);
 
@@ -35,8 +43,6 @@ module.exports = superclass => class extends superclass {
           radio => radio.value !== 'continue-an-application'
         );
       }
-      req.sessionModel.set('applicant-id', applicantId);
-      req.sessionModel.set('licence-type', licenceType);
     } catch (error) {
       req.log('error', `Failed to get saved application: ${generateErrorMsg(error)}`);
       return next(error);
@@ -58,8 +64,9 @@ module.exports = superclass => class extends superclass {
       try {
         this.resumeSession(req, applicationToResume);
       } catch (error) {
-        // Saved session data is corrupt or cannot be resumed in this format
-        req.log('error', `Error parsing session: ${error}`);
+        // eslint-disable-next-line max-len
+        const errorMessage = `Failed to restore application, saved session data is corrupt or cannot be resumed in this format. Reason: ${error}`;
+        req.log('error', errorMessage);
         return next(error);
       }
     }
@@ -71,9 +78,7 @@ module.exports = superclass => class extends superclass {
     req.log('info', `Resuming Form Session: ${application.id}`);
 
     const savedApplicationProps = {
-      'application-id': application.id,
-      'application-created-at': application.created_at,
-      'application-expires-at': application.expires_at
+      'application-id': application.id
     };
 
     const session = typeof application.session === 'string' ? JSON.parse(application.session) : application.session;

@@ -71,8 +71,6 @@ describe('resume-form-session', () => {
         'website-url': 'https://www.homeoffice.gov.uk'
       },
       status_id: 1,
-      created_at: '2025-03-07T16:00:46.058Z',
-      updated_at: '2025-03-07T16:00:46.058Z',
       submitted_at: null,
       icasework_case_id: null,
       expires_at: '2025-03-14'
@@ -104,6 +102,15 @@ describe('resume-form-session', () => {
         set: jest.fn()
       };
       req.log = jest.fn();
+      req.form.options.fields = {
+        'application-form-type': {
+          options: [
+            { value: 'test' },
+            { value: 'continue-an-application' },
+            { value: 'amend-application' }
+          ]
+        }
+      };
     });
 
     afterEach(() => {
@@ -125,15 +132,6 @@ describe('resume-form-session', () => {
     });
 
     test('if no saved application is found for user and licence the continue radio option is removed', async () => {
-      req.form.options.fields = {
-        'application-form-type': {
-          options: [
-            { value: 'test' },
-            { value: 'continue-an-application' },
-            { value: 'amend-application' }
-          ]
-        }
-      };
       await instance.getValues(req, res, next);
       expect(req.form.options.fields['application-form-type'].options).toHaveLength(2);
     });
@@ -188,11 +186,7 @@ describe('resume-form-session', () => {
     });
 
     test('sessionModel.set() is called with expected properties when a saved application was found', () => {
-      const mockSavedApplicationProps = {
-        'application-id': 1,
-        'application-created-at': '2025-03-07T16:00:46.058Z',
-        'application-expires-at': '2025-03-14'
-      };
+      const mockSavedApplicationProps = { 'application-id': 1 };
       instance.saveValues(req, res, next);
       expect(req.log).toHaveBeenCalledWith('info', 'Resuming Form Session: 1');
       expect(req.sessionModel.set).toHaveBeenCalledWith(
