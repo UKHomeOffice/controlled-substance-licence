@@ -118,3 +118,45 @@ describe('Utilities \'findSatisfiedForkCondition\'', () => {
     expect(findSatisfiedForkCondition(req, forks)).toBe(undefined);
   });
 });
+
+describe('Utilities \'generateErrorMsg\'', () => {
+  test('Returns a full message when the error object has all properties', () => {
+    const mockError = {
+      message: 'Some error',
+      response: {
+        status: 401,
+        data: {
+          item1: 'one',
+          item2: 'two'
+        }
+      }
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      '401 - Some error; Cause: {"item1":"one","item2":"two"}'
+    );
+  });
+
+  test('Returns a shorter message when the error object does not contain data', () => {
+    const mockError = {
+      message: 'Some error',
+      response: {
+        status: 401
+      }
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      '401 - Some error; '
+    );
+  });
+
+  test('Returns error.message only when no response prop is present in the error object', () => {
+    const mockError = {
+      message: 'Some error'
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      ' Some error; '
+    );
+  });
+});
