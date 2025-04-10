@@ -1,9 +1,9 @@
 {
   "edit": "Change",
   "continue": "Continue",
-  "save-and-continue": "Save and continue",
+  "continue-only": "Continue",
   "save-and-exit": "Save and exit",
-  "start-now": "Start now", 
+  "start-now": "Start now",
   "sign-in": "Sign in",
   "exit": "Exit",
   "finish-and-exit": "Finish and exit",

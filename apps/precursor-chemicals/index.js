@@ -11,12 +11,16 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const SaveFormSession = require('../common/behaviours/save-form-session');
+const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const Auth = require('../common/behaviours/auth/auth-check');
+
 const steps = {
 
   /** Start of journey */
 
   '/application-type': {
+    behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
     forks: [
       {
@@ -27,6 +31,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
@@ -49,6 +54,7 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licence-holder-details'
   },
 
@@ -82,6 +88,7 @@ const steps = {
 
   '/cannot-continue': {
     backLink: '/precursor-chemicals/companies-house-number'
+    // End of user journey
   },
 
   '/upload-companies-house-evidence': {
@@ -503,5 +510,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [ Auth ]
+  behaviours: [Auth, SaveFormSession]
 };

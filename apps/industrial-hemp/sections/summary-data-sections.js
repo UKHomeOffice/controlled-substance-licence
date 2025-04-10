@@ -295,6 +295,10 @@ module.exports = {
       {
         step: '/cultivate-industrial-hemp',
         field: 'cultivate-industrial-hemp'
+      },
+      {
+        step: '/where-cultivating-cannabis',
+        field: 'where-cultivating-cannabis'
       }
     ]
   }

@@ -68,6 +68,7 @@ const steps = {
 
   '/register-again': {
     backLink: '/controlled-drugs/company-number-changed'
+    // End of user journey
   },
 
   '/company-name-changed': {
