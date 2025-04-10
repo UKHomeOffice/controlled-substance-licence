@@ -3,7 +3,8 @@ const {
   formatDate,
   findArrayItemByValue,
   isValidPhoneNumber,
-  findSatisfiedForkCondition
+  findSatisfiedForkCondition,
+  generateErrorMsg
 } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
