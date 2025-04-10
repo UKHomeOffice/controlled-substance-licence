@@ -52,5 +52,28 @@
         "label": "No"
       }
     }
+  },
+  "company-type": {
+    "legend": "What type of company is your organisation?",
+    "options": {
+      "public-limited": {
+        "label": "Public limited company"
+      },
+      "private": {
+        "label": "Private company"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "describe-business-model": {
+    "label": "Describe your business model",
+    "hint": "For example a sole trader or a partnership"
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   }
 }

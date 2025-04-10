@@ -1,6 +1,8 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
 
@@ -56,7 +58,48 @@ const steps = {
   },
 
   '/business-type': {
+    next: '/business-type-summary'
+  },
+
+  '/business-type-summary': {
+    next: '/company-type'
+  },
+
+  '/company-type': {
+    fields: ['company-type'],
+    forks: [
+      {
+        target: '/business-model',
+        condition: {
+          field: 'company-type',
+          value: 'other'
+        }
+      }
+    ],
+    next: '/upload-company-certificate'
+  },
+
+  '/business-model': {
+    fields: ['describe-business-model'],
+    next: '/mhra-licences'
+  },
+
+  '/mhra-licences': {
     next: '/confirm'
+  },
+
+  '/upload-company-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    next: '/confirm',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
   },
 
   '/confirm': {
