@@ -159,9 +159,9 @@ module.exports = {
   },
 
   'describe-business-model': {
-   mixin: 'textarea',
-   isPageHeading: true,
-   validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-   attributes: [{ attribute: 'rows', value: 8 }]
- },
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  }
 };
