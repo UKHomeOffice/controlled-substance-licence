@@ -53,6 +53,7 @@
       }
     }
   },
+
   "previously-held-licence": {
     "legend": "Under your previous legally registered identity, did you hold a controlled drugs licence?",
     "options": {
@@ -74,5 +75,28 @@
   "previous-licence-date-of-issue": {
     "legend": "Date issued",
     "hint": "For example, 21 3 2019"
+  },
+  "company-type": {
+    "legend": "What type of company is your organisation?",
+    "options": {
+      "public-limited": {
+        "label": "Public limited company"
+      },
+      "private": {
+        "label": "Private company"
+      },
+      "other": {
+        "label": "Other"
+      }
+    }
+  },
+  "describe-business-model": {
+    "label": "Describe your business model",
+    "hint": "For example a sole trader or a partnership"
+  },
+  "file-upload": {
+    "label": "Upload a file",
+    "no-files-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded"
   }
 }

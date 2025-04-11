@@ -87,6 +87,24 @@ module.exports = {
         step: '/previous-licence-details',
         field: 'previous-licence-date-of-issue',
         parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/company-type',
+        field: 'company-type'
+      },
+      {
+        step: '/business-model',
+        field: 'describe-business-model'
+      },
+      {
+        step: '/upload-company-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('company-type') === 'other') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   }
