@@ -1,4 +1,4 @@
-const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber } = require('../../utils');
+const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber, generateErrorMsg } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 
@@ -61,5 +61,47 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
     expect(isValidPhoneNumber('12345')).toBe(false);
     expect(isValidPhoneNumber('?01632 960000')).toBe(false);
     expect(isValidPhoneNumber('01632 960000143288')).toBe(false);
+  });
+});
+
+describe('Utilities \'generateErrorMsg\'', () => {
+  test('Returns a full message when the error object has all properties', () => {
+    const mockError = {
+      message: 'Some error',
+      response: {
+        status: 401,
+        data: {
+          item1: 'one',
+          item2: 'two'
+        }
+      }
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      '401 - Some error; Cause: {"item1":"one","item2":"two"}'
+    );
+  });
+
+  test('Returns a shorter message when the error object does not contain data', () => {
+    const mockError = {
+      message: 'Some error',
+      response: {
+        status: 401
+      }
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      '401 - Some error; '
+    );
+  });
+
+  test('Returns error.message only when no response prop is present in the error object', () => {
+    const mockError = {
+      message: 'Some error'
+    };
+
+    expect(generateErrorMsg(mockError)).toBe(
+      ' Some error; '
+    );
   });
 });
