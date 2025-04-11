@@ -46,8 +46,8 @@
   "controlled-drugs-licence": {
     "header": "You need to apply for a controlled drugs licence"
   },
-  "field-acreage": {
-    "header": "What is the total acreage of the fields?"
+  "cultivation-field-details": {
+   "header": "Details of cultivation fields"
   },
   "confirm": {
     "header": "Check your answers",
@@ -161,6 +161,15 @@
       },
       "is-permission-for-activities": {
         "label": "Do you have permission from the owner to carryout your intended activities?"
+      },
+      "field-acreage": {
+        "label": "Total acreage of fields"
+      },
+      "how-many-fields": {
+        "label": "Number of cultivating fields"
+      },
+      "cultivation-field-details": {
+        "label": "Details of cultivation fields"
       }
     }
   }

@@ -384,5 +384,15 @@
         "label": "No"
       }
     }
+  },
+  "field-acreage": {
+    "label": "What is the total acreage of the fields?",
+    "hint": "Enter a number and the unit of measure"
+  },
+  "how-many-fields": {
+    "label": "How many fields are you proposing to cultivate low THC cannabis in?"
+  },
+  "cultivation-field-details": {
+    "label": "Details of the fields you plan to cultivate low THC cannabis in"
   }
 }
