@@ -389,16 +389,25 @@ const steps = {
     next: '/controlled-drugs-licence'
   },
 
+  '/field-acreage': {
+    fields: ['field-acreage'],
+    next: '/how-many-fields'
+  },
+  '/how-many-fields': {
+    fields: ['how-many-fields'],
+    next: '/cultivation-field-details'
+  },
+  '/cultivation-field-details': {
+    fields: ['cultivation-field-details'],
+    next: '/confirm'
+  },
+
   '/no-licence-needed': {
     // End of user journey
   },
 
   '/controlled-drugs-licence': {
     // End of user journey
-  },
-
-  '/field-acreage': {
-    next: '/confirm'
   },
 
 

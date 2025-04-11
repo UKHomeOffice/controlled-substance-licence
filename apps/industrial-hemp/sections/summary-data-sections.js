@@ -299,6 +299,18 @@ module.exports = {
       {
         step: '/where-cultivating-cannabis',
         field: 'where-cultivating-cannabis'
+      },
+      {
+        step: '/field-acreage',
+        field: 'field-acreage'
+      },
+      {
+        step: '/how-many-fields',
+        field: 'how-many-fields'
+      },
+      {
+        step: '/cultivation-field-details',
+        field: 'cultivation-field-details'
       }
     ]
   }

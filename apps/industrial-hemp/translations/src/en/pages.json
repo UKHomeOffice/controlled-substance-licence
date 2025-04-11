@@ -46,8 +46,8 @@
   "controlled-drugs-licence": {
     "header": "You need to apply for a controlled drugs licence"
   },
-  "field-acreage": {
-    "header": "What is the total acreage of the fields?"
+  "cultivation-field-details": {
+   "header": "Details of cultivation fields"
   },
   "confirm": {
     "header": "Check your answers",
@@ -152,6 +152,15 @@
       },
       "where-cultivating-cannabis": {
         "label": "Where you will be cultivating Low THC Cannabis?"
+      },
+      "field-acreage": {
+        "label": "Total acreage of fields"
+      },
+      "how-many-fields": {
+        "label": "Number of cultivating fields"
+      },
+      "cultivation-field-details": {
+        "label": "Details of cultivation fields"
       }
     }
   }
