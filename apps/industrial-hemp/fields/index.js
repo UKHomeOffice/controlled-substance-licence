@@ -610,8 +610,7 @@ module.exports = {
     isPageHeading: true,
     validate: [
       'required',
-      { type: 'maxlength', arguments: 50 },
-      'alphanum'
+      { type: 'maxlength', arguments: 50 }
     ],
     className: ['govuk-input', 'govuk-!-width-one-half']
   },
