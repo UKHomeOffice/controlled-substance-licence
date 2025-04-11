@@ -13,6 +13,7 @@ const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
 
@@ -509,5 +510,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [SaveFormSession]
+  behaviours: [Auth, SaveFormSession]
 };
