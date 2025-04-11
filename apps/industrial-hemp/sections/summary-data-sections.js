@@ -306,7 +306,7 @@ module.exports = {
       },
       {
         step: '/who-owns-fields',
-        field: 'is-who-own-fields'
+        field: 'who-own-fields'
       },
       {
         step: '/permission-for-intended-activities',

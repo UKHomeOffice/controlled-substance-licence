@@ -622,7 +622,7 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'is-who-own-fields': {
+  'who-own-fields': {
     mixin: 'textarea',
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],

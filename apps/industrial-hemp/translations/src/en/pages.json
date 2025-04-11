@@ -156,7 +156,7 @@
       "is-company-own-fields": {
         "label": "Does your company own all the fields?"
       },
-      "is-who-own-fields": {
+      "who-own-fields": {
         "label": "Who owns the fields?"
       },
       "is-permission-for-activities": {

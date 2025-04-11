@@ -262,7 +262,7 @@
   "is-company-own-fields": {
     "required": "Select if your company owns all the fields"
   },
-  "is-who-own-fields": {
+  "who-own-fields": {
     "required": "Enter details of who owns the fields",
     "maxlength": "Details of who owns the fields must be 2,000 characters or less"
   },
@@ -277,7 +277,7 @@
     "required": "Enter the number of fields you will cultivate low THC cannabis in",
     "max": "Number of fields must be less than 1,000",
     "min": "Number of fields must be at least 1",
-    "numeric": "Number of fields must only contain numbers, commas or spaces"
+    "numeric": "Number of fields must only contain numbers"
   },
   "cultivation-field-details": {
     "required": "Enter details of the fields you plan to cultivate low THC cannabis in",

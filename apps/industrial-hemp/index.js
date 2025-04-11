@@ -388,7 +388,7 @@ const steps = {
     ],
     next: '/controlled-drugs-licence'
   },
- '/field-acreage': {
+  '/field-acreage': {
     fields: ['field-acreage'],
     next: '/how-many-fields'
   },
@@ -398,7 +398,7 @@ const steps = {
   },
   '/cultivation-field-details': {
     fields: ['cultivation-field-details'],
-    next: '/confirm'
+    next: '/aerial-photos-and-maps'
   },
   '/aerial-photos-and-maps': {
     next: '/company-own-fields'
@@ -417,7 +417,7 @@ const steps = {
     next: '/who-owns-fields'
   },
   '/who-owns-fields': {
-    fields: ['is-who-own-fields'],
+    fields: ['who-own-fields'],
     next: '/permission-for-intended-activities'
   },
   '/permission-for-intended-activities': {
