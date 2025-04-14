@@ -532,8 +532,8 @@ module.exports = {
     validate: [
       'required',
       'date',
-      { type: 'before', arguments: ['0', 'years'] },
-      { type: 'after', arguments: ['1', 'years'] }
+      { type: 'before', arguments: ['-1', 'years'] }, // Validate the date to be within 1 year in the future
+      { type: 'after', arguments: ['1', 'years'] } // Validate the date to be less than 1 year in the past
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
@@ -604,5 +604,72 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-6'
     }
+  },
+  'is-company-own-fields': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'who-own-fields': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'is-permission-for-activities': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'field-acreage': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 50 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-half']
+  },
+  'how-many-fields': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'numeric',
+      {type: 'max', arguments: 1000},
+      {type: 'min', arguments: 1}
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    attributes: [{ suffix: 'fields' }]
+  },
+  'cultivation-field-details': {
+    mixin: 'textarea',
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    labelClassName: ['govuk-label--m']
   }
 };
