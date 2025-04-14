@@ -197,7 +197,11 @@
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
-    "isDuplicateFileName": "A file with this name was already uploaded"
+    "isDuplicateFileName": "A file with this name was already uploaded",
+    "aerialPhotosUploadLimit" : "You may not add more than {{aerialPhotosUploadLimit}} file(s)",
+    "aerial-photos-upload": {
+      "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
+    }
   },
   "is-company-ref-changed": {
     "required": "Select if your Companies House reference number has changed since your last application"
