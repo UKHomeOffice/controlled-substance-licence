@@ -4,7 +4,9 @@
   {{/intro}}
 
   {{$form}}{{/form}}
-  {{> partials-save-and-exit-button}}
+  {{#showSaveAndExit}}
+    {{> partials-save-and-exit-button}}
+  {{#showSaveAndExit}}
 
   {{#csrf-token}}
     <input type="hidden" name="x-csrf-token" value="{{csrf-token}}" />
