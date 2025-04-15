@@ -51,6 +51,20 @@ describe('custom-redirect', () => {
       expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/summary');
     });
 
+    test('calls res.redirect if the user should be forwarded to /cannot-continue', () => {
+      req.form.options.route = '/companies-house-number';
+      req.form.values['companies-house-number-change'] = 'yes';
+      instance.successHandler(req, res, next);
+      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/cannot-continue');
+    });
+
+    test('calls res.redirect if the user should be forwarded to /information-you-have-given-us', () => {
+      req.sessionModel.set('referred-by-information-given-summary', true);
+      req.form.options.isContinueOnEdit = true;
+      instance.successHandler(req, res, next);
+      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/information-you-have-given-us');
+    });
+
     test('does not call res.redirect if no exisiting condition for redirection was met', () => {
       instance.successHandler(req, res, next);
       expect(res.redirect).not.toHaveBeenCalled();
