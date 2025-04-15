@@ -169,11 +169,11 @@ const clearExpiredApplictions = async (table, submitStatus, dateType, days, peri
 /**
  * Get an array of selected field options, excluding the 'other' option
  *
- * @param {*} req - The request object used to access aggregated field values from sessionModel.
- * @param {*} aggregateField - The name of the aggregate field array.
- * @param {*} fieldToFilter - This representing the name of the field to filter the select options.
- * @param {*} selectedOptions - Contains the values of the aggregate field array.
- * @param {*} fieldOptionsToFilter - Contains the filtered field options excluding 'Other'.
+ * @param {object} req - The request object used to access aggregated field values from sessionModel.
+ * @param {string} aggregateField - The name of the aggregate field array.
+ * @param {string} fieldToFilter - This representing the name of the field to filter the select options.
+ * @param {array} selectedOptions - Contains the values of the aggregate field array.
+ * @param {array} fieldOptionsToFilter - Contains the filtered field options excluding 'Other'.
  * @returns {Array} - An array of field values that need to be filtered from the main options.
  */
 const getFieldValuesToFilter = (req, aggregateField, fieldToFilter) => {
