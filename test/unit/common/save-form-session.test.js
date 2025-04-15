@@ -116,6 +116,7 @@ describe('save-form-session', () => {
         }
       });
       expect(mockSessionAttributes.steps).toContain('/save-me');
+      expect(req.sessionModel.set).toHaveBeenCalledWith('application-id', 1);
     });
 
     test('calls HOFs _request method with the expected values when an application-id exists', async () => {
@@ -126,6 +127,19 @@ describe('save-form-session', () => {
         method: 'PATCH',
         data: { session: mockSessionAttributes }
       });
+    });
+
+    test('calls _request with expected values if application-id and start-new-application flag is set', async () => {
+      jest.spyOn(Date.prototype, 'toISOString').mockReturnValue('2025-02-23T00:00:00.000Z');
+      mockSessionAttributes['application-id'] = 1;
+      mockSessionAttributes['start-new-application'] = true;
+      await instance.successHandler(req, res, next);
+      expect(mockRequest).toHaveBeenCalledWith({
+        url: 'http://127.0.0.1:5000/applications/1',
+        method: 'PATCH',
+        data: { session: mockSessionAttributes, created_at: '2025-02-23T00:00:00.000Z' }
+      });
+      expect(req.sessionModel.unset).toHaveBeenCalledWith('start-new-application');
     });
 
     test('does not cause saving behaviour if the current path is in the exemption list', async () => {
