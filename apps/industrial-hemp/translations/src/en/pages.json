@@ -153,6 +153,15 @@
       "where-cultivating-cannabis": {
         "label": "Where you will be cultivating Low THC Cannabis?"
       },
+      "is-company-own-fields": {
+        "label": "Does your company own all the fields?"
+      },
+      "who-own-fields": {
+        "label": "Who owns the fields?"
+      },
+      "is-permission-for-activities": {
+        "label": "Do you have permission from the owner to carryout your intended activities?"
+      },
       "field-acreage": {
         "label": "Total acreage of fields"
       },

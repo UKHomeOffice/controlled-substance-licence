@@ -360,6 +360,31 @@
       }
     }
   },
+  "is-company-own-fields": {
+    "legend": "Does your company own all the fields?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "who-own-fields": {
+    "label": "Who owns the fields?"
+  },
+  "is-permission-for-activities": {
+    "legend": "Do you have permission from the owner to carry out your intended activities?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "field-acreage": {
     "label": "What is the total acreage of the fields?",
     "hint": "Enter a number and the unit of measure"
