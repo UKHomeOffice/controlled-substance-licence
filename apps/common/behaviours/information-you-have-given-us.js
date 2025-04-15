@@ -9,7 +9,7 @@ const buildStepJourneyFromSessionValues = req => {
     const forksInStep = req.form.options.steps[currentStep].forks;
     const satisfiedForkCondition = findSatisfiedForkCondition(req, forksInStep);
     const nextStep = satisfiedForkCondition ? satisfiedForkCondition.target : req.form.options.steps[currentStep].next;
-    if (nextStep) {
+    if (nextStep && !stepJourney.includes(nextStep)) {
       stepJourney.push(nextStep);
       addNextStep(stepJourney);
     }

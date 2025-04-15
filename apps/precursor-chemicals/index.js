@@ -62,7 +62,7 @@ const steps = {
 
   '/information-you-have-given-us': {
     behaviours: [Summary, InformationYouHaveGivenUs],
-    template: 'summary',
+    template: 'information-you-have-given-us',
     sections: require('./sections/summary-data-sections'),
     next: '/licence-holder-details',
     locals: {

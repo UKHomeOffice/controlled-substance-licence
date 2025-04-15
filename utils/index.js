@@ -47,6 +47,7 @@ const formatDate = date => {
     const dateObj = new Date(date);
     return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
   } catch (error) {
+    logger.warn('Warning: Failed to format date', error);
     return undefined;
   }
 };
