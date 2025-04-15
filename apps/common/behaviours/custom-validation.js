@@ -35,7 +35,6 @@ module.exports = superclass => class extends superclass {
         }
       }
     }
-
     return super.validateField(key, req);
   }
 };
