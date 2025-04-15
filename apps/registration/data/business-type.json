@@ -1,0 +1,154 @@
+[
+  {
+    "label": "Aviation and emergency repatriation",
+    "value": "aviation-emergency-repatriation"
+  },
+  {
+    "label": "Broker",
+    "value": "broker"
+  },
+  {
+    "label": "Cannabis - all other cultivation",
+    "value": "cannabis-all-other-cultivation"
+  },
+  {
+    "label": "Cannabis - all other non-cultivation activities",
+    "value": "cannabis-non-cultivation-activities"
+  },
+  {
+    "label": "Care home",
+    "value": "care-home"
+  },
+  {
+    "label": "Clinical trials",
+    "value": "clinical-trials"
+  },
+  {
+    "label": "Doctor deputising service or other healthcare services (for example, out of hours GP)",
+    "value": "doctors-deputising-other-healthcare-services"
+  },
+  {
+    "label": "Dog handler or trainer",
+    "value": "dog-handler-trainer"
+  },
+  {
+    "label": "Drug research and development",
+    "value": "drug-research-development"
+  },
+  {
+    "label": "Event medical services",
+    "value": "event-medical-services"
+  },
+  {
+    "label": "Exporter",
+    "value": "exporter"
+  },
+  {
+    "label": "Fertility services",
+    "value": "fertility-services"
+  },
+  {
+    "label": "Forensics or toxicology (non-university)",
+    "value": "forensics-toxicology-non-university"
+  },
+  {
+    "label": "Healthcare distributor",
+    "value": "healthcare-distributor"
+  },
+  {
+    "label": "Hemp cultivation (seed and fibre only)",
+    "value": "hemp-cultivation-seed-and-fibre-only"
+  },
+  {
+    "label": "Importer",
+    "value": "importer"
+  },
+  {
+    "label": "NHS hospital",
+    "value": "nhs-hospital"
+  },
+  {
+    "label": "Nursing home",
+    "value": "nursing-home"
+  },
+  {
+    "label": "Pharmaceutical manufacturer producer",
+    "value": "pharmaceutical-manufacturer-producer"
+  },
+  {
+    "label": "Pharmaceutical wholesaler",
+    "value": "pharmaceutical-wholesaler"
+  },
+  {
+    "label": "Police custody",
+    "value": "police-custody"
+  },
+  {
+    "label": "Precursor chemicals",
+    "value": "precursor-chemicals"
+  },
+  {
+    "label": "Prison healthcare",
+    "value": "prison-healthcare"
+  },
+  {
+    "label": "Private ambulance provider",
+    "value": "private-ambulance-provider"
+  },
+  {
+    "label": "Private hospital or treatment centre or clinic",
+    "value": "private-hospital-treatment-centre-or-clinic"
+  },
+  {
+    "label": "Product packaging or labelling",
+    "value": "product-packaging-or-labelling"
+  },
+  {
+    "label": "Research (non-university) for In Vitro",
+    "value": "research-non-university-for-in-vitro"
+  },
+  {
+    "label": "Research (non-university) for In Vivo Human",
+    "value": "research-non-university-for-in-vivo-human"
+  },
+  {
+    "label": "Research (non-university) for in Vivo Animal",
+    "value": "research-non-university-for-in-vivo-animal"
+  },
+  {
+    "label": "Research (university) for In Vitro",
+    "value": "research-university-for-in-vitro"
+  },
+  {
+    "label": "Research (university) for In Vivo Human",
+    "value": "research-university-for-in-vivo-human"
+  },
+  {
+    "label": "Research (university) for In Vivo Animal",
+    "value": "research-university-for-in-vivo-animal"
+  },
+  {
+    "label": "Substance misuse service",
+    "value": "substabce-misuse-service"
+  },
+  {
+    "label": "Transport and distribution services",
+    "value": "transport-distribution-services"
+  },
+  {
+    "label": "University teaching",
+    "value": "university-teaching"
+  },
+  {
+    "label": "Veterinary wholesaler",
+    "value": "veterinary-wholesaler"
+  },
+  {
+    "label": "Waste management distribution services",
+    "value": "waste-management-distribution-services"
+  },
+  {
+    "label": "Other",
+    "value": "other"
+  }
+]

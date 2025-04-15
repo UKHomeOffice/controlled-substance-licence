@@ -12,6 +12,7 @@ const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
 const FileDownload = require('../common/behaviours/file-download');
+const getFilteredFieldOption = require('../common/behaviours/get-filtered-field-option');
 
 const steps = {
 
@@ -472,6 +473,7 @@ const steps = {
   },
 
   '/trading-reasons': {
+    behaviours: [getFilteredFieldOption('aggregated-trading-reasons', 'trading-reasons')],
     fields: ['trading-reasons'],
     forks: [
       {

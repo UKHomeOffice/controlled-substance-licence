@@ -15,6 +15,11 @@
   "previous-licence-details": {
     "header": "Previous licence details"
   },
+  "business-type-summary": {
+    "header": "What your business does",
+    "key": "Business type",
+    "otherKey": "Other business type"
+  },
 
   "confirm": {
     "header": "Check your answers before submitting your registration",
@@ -47,6 +52,9 @@
       },
       "previous-licence-date-of-issue": {
         "label": "Previous licence date issued"
+      },
+      "aggregated-business-type": {
+        "label": "What your business does"
       }
     }
   }

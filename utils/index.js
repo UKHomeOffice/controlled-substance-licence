@@ -166,6 +166,31 @@ const clearExpiredApplictions = async (table, submitStatus, dateType, days, peri
   }
 };
 
+/**
+ * Get an array of selected field options, excluding the 'other' option
+ *
+ * @param {*} req - The request object used to access aggregated field values from sessionModel.
+ * @param {*} aggregateField - The name of the aggregate field array.
+ * @param {*} fieldToFilter - This representing the name of the field to filter the select options.
+ * @param {*} selectedOptions - Contains the values of the aggregate field array.
+ * @param {*} fieldOptionsToFilter - Contains the filtered field options excluding 'Other'.
+ * @returns {Array} - An array of field values that need to be filtered from the main options.
+ */
+const getFieldValuesToFilter = (req, aggregateField, fieldToFilter) => {
+  const fieldOptionsToFilter = [];
+  if (req.sessionModel.get(aggregateField)?.aggregatedValues.length > 0) {
+    const selectedOptions = req.sessionModel.get(aggregateField);
+    selectedOptions.aggregatedValues.forEach(item => {
+      item.fields.forEach(field => {
+        if (field.field === fieldToFilter && field.value !== 'other') {
+          fieldOptionsToFilter.push(field.value);
+        }
+      });
+    });
+  }
+  return fieldOptionsToFilter;
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -175,5 +200,6 @@ module.exports = {
   findArrayItemByValue,
   isValidPhoneNumber,
   generateErrorMsg,
-  clearExpiredApplictions
+  clearExpiredApplictions,
+  getFieldValuesToFilter
 };

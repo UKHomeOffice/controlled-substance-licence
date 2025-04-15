@@ -74,5 +74,15 @@
   "previous-licence-date-of-issue": {
     "legend": "Date issued",
     "hint": "For example, 21 3 2019"
+  },
+  "business-type": {
+    "label": "Business type",
+    "hint": "Select a business type from the list",
+    "options": {
+      "none_selected": "Select business type"
+    }
+  },
+  "other-business-type": {
+    "label": "Specify your business type"
   }
 }

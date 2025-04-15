@@ -1,6 +1,10 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const parseAggregateSummary = require('./behaviours/parse-aggregate-summary');
+const getFilteredFieldOption = require('../common/behaviours/get-filtered-field-option');
 
 const steps = {
 
@@ -75,6 +79,46 @@ const steps = {
   },
 
   '/business-type': {
+    behaviours: [getFilteredFieldOption('aggregated-business-type', 'business-type')],
+    fields: ['business-type'],
+    forks: [
+      {
+        target: '/other-business-type',
+        condition: req => Array.isArray(req.sessionModel.get('business-type')) ?
+          req.sessionModel.get('business-type').includes('other') :
+          req.sessionModel.get('business-type') === 'other'
+      }
+    ],
+    next: '/business-type-summary'
+  },
+
+  '/other-business-type': {
+    fields: ['other-business-type'],
+    next: '/business-type-summary'
+  },
+
+  '/business-type-summary': {
+    behaviours: [
+      LoopAggregator,
+      SetSummaryReferrer,
+      parseAggregateSummary
+    ],
+    aggregateTo: 'aggregated-business-type',
+    aggregateFrom: [
+      'business-type',
+      'other-business-type'
+    ],
+    titleField: 'business-type',
+    addStep: 'business-type',
+    template: 'business-type-summary',
+    backLink: 'business-type',
+    next: '/company-type',
+    locals: {
+      fullWidthPage: true
+    }
+  },
+
+  '/company-type': {
     next: '/confirm'
   },
 
@@ -103,6 +147,7 @@ module.exports = {
   baseUrl: '/registration',
   fields: 'apps/registration/fields',
   translations: 'apps/registration/translations',
+  confirmStep: '/confirm',
   params: '/:action?/:id?/:edit?',
   steps: steps
 };
