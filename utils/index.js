@@ -43,13 +43,15 @@ const translateOption = (req, field, value) => {
  * formatDate('2023-10-23'); // returns '23 October 2023'
  */
 const formatDate = date => {
-  try {
-    const dateObj = new Date(date);
-    return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
-  } catch (error) {
-    logger.warn('Warning: Failed to format date', error);
-    return undefined;
+  if (date) {
+    try {
+      const dateObj = new Date(date);
+      return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+    } catch (error) {
+      logger.warn('Warning: Failed to format date', error);
+    }
   }
+  return undefined;
 };
 
 /**
