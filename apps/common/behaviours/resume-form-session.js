@@ -71,7 +71,7 @@ module.exports = superclass => class extends superclass {
           return next(error);
         }
       } else {
-        req.sessionModel.set('start-new-application', true);
+        req.sessionModel.set('overwrite-application', true);
         req.sessionModel.set('application-id', applicationToResume.id);
       }
       req.sessionModel.unset('application-to-resume');

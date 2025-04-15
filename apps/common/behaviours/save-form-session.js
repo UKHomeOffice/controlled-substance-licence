@@ -35,10 +35,10 @@ module.exports = superclass => class extends superclass {
     req.log('info', `Saving Form Session: ${applicationId ?? 'New application'}`);
 
     const patchData = { session };
-    if (applicationId && req.sessionModel.get('start-new-application')) {
+    if (applicationId && req.sessionModel.get('overwrite-application')) {
       req.log('info', `Overwriting saved application: ${applicationId}`);
       patchData.created_at = new Date().toISOString();
-      req.sessionModel.unset('start-new-application');
+      req.sessionModel.unset('overwrite-application');
     }
 
     const postData = { session, applicant_id, licence_type, status_id };

@@ -206,7 +206,7 @@ describe('resume-form-session', () => {
       req.form.values = { 'application-form-type': 'new-application' };
       const spiedResumeSession = jest.spyOn(instance, 'resumeSession');
       instance.saveValues(req, res, next);
-      expect(req.sessionModel.set).toHaveBeenCalledWith('start-new-application', true);
+      expect(req.sessionModel.set).toHaveBeenCalledWith('overwrite-application', true);
       expect(req.sessionModel.set).toHaveBeenCalledWith('application-id', 1);
       expect(req.sessionModel.set).not.toHaveBeenCalledWith(
         Object.assign({}, mockApplication.session, mockSavedApplicationProps)
