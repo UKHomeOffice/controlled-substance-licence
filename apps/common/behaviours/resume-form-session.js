@@ -74,8 +74,8 @@ module.exports = superclass => class extends superclass {
         req.sessionModel.set('start-new-application', true);
         req.sessionModel.set('application-id', applicationToResume.id);
       }
+      req.sessionModel.unset('application-to-resume');
     }
-    req.sessionModel.unset('application-to-resume');
     return super.saveValues(req, res, next);
   }
 
