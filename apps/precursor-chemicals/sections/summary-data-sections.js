@@ -124,7 +124,7 @@ module.exports = {
         parse: (list, req) => {
           const licenseHolderDetails = [
             req.sessionModel.get('company-name'),
-            req.sessionModel.get('company-number').toUpperCase(),
+            req.sessionModel.get('company-number')?.toUpperCase(),
             req.sessionModel.get('website-url'),
             req.sessionModel.get('telephone'),
             req.sessionModel.get('email')
@@ -173,7 +173,7 @@ module.exports = {
             req.sessionModel.get('premises-telephone'),
             req.sessionModel.get('premises-email')
           ];
-          return premisesContactDetails.join('\n');
+          return premisesContactDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -184,7 +184,7 @@ module.exports = {
             req.sessionModel.get('responsible-officer-fullname'),
             req.sessionModel.get('responsible-officer-email')
           ];
-          return responsibleOfficerDetails.join('\n');
+          return responsibleOfficerDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -196,7 +196,7 @@ module.exports = {
             req.sessionModel.get('responsible-officer-dbs-reference'),
             formatDate(req.sessionModel.get('responsible-officer-dbs-date-of-issue'))
           ];
-          return responsibleOfficerDBSInfo.join('\n');
+          return responsibleOfficerDBSInfo.filter(element => element).join('\n');
         }
       },
       {
@@ -211,7 +211,7 @@ module.exports = {
             req.sessionModel.get('guarantor-full-name'),
             req.sessionModel.get('guarantor-email-address')
           ];
-          return guarantorDetails.join('\n');
+          return guarantorDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -223,7 +223,7 @@ module.exports = {
             req.sessionModel.get('guarantor-dbs-reference'),
             formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue'))
           ];
-          return guarantorDbsInformation.join('\n');
+          return guarantorDbsInformation.filter(element => element).join('\n');
         }
       },
       {
@@ -384,6 +384,9 @@ module.exports = {
         step: '/extra-application-information',
         field: 'extra-information',
         parse: (list, req) => {
+          if ( !req.sessionModel.get('steps').includes('/extra-application-information')) {
+            return null;
+          }
           return req.sessionModel.get('extra-information') ||
             'Not provided';
         }

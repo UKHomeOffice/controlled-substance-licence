@@ -11,6 +11,7 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const LimitItems = require('../common/behaviours/limit-items');
 const ParseSubstanceSummary = require('./behaviours/parse-substance-summary');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const SaveAndExit = require('../common/behaviours/save-and-exit');
@@ -61,7 +62,13 @@ const steps = {
   /** Continue an application */
 
   '/information-you-have-given-us': {
-    next: '/licence-holder-details'
+    behaviours: [Summary, InformationYouHaveGivenUs],
+    template: 'information-you-have-given-us',
+    sections: require('./sections/summary-data-sections'),
+    next: '/licence-holder-details',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   /** Renew existing licence - Background Information */
@@ -69,7 +76,7 @@ const steps = {
   '/companies-house-number': {
     fields: ['companies-house-number-change'],
     next: '/companies-house-name',
-    behaviours: [SetSummaryReferrer, CustomRedirect]
+    behaviours: [SetSummaryReferrer]
   },
 
   '/companies-house-name': {
@@ -316,12 +323,14 @@ const steps = {
 
   '/substance-category': {
     fields: ['substance-category'],
+    ignoreCustomRedirect: true,
     next: '/which-chemical'
   },
 
   '/which-chemical': {
     fields: ['which-chemical'],
     behaviours: [FilterChemicals],
+    ignoreCustomRedirect: true,
     next: '/which-operation'
   },
 
@@ -335,11 +344,13 @@ const steps = {
           req.sessionModel.get('which-operation') === 'other'
       }
     ],
+    ignoreCustomRedirect: true,
     next: '/substances-in-licence'
   },
 
   '/what-operation': {
     fields: ['what-operation'],
+    ignoreCustomRedirect: true,
     next: '/substances-in-licence'
   },
 
@@ -348,8 +359,7 @@ const steps = {
       LoopAggregator,
       LimitItems,
       ParseSubstanceSummary,
-      SetSummaryReferrer,
-      CustomRedirect
+      SetSummaryReferrer
     ],
     aggregateTo: 'substances-in-licence',
     aggregateFrom: [
@@ -514,5 +524,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [SaveFormSession]
+  behaviours: [SaveFormSession, CustomRedirect]
 };
