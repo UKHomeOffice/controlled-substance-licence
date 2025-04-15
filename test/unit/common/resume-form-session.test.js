@@ -200,5 +200,19 @@ describe('resume-form-session', () => {
       instance.saveValues(req, res, next);
       expect(spiedResumeSession).not.toHaveBeenCalled();
     });
+
+    test('If the user is not resuming a session, only set the application-id and new application flag', () => {
+      const mockSavedApplicationProps = { 'application-id': 1 };
+      req.form.values = { 'application-form-type': 'new-application' };
+      const spiedResumeSession = jest.spyOn(instance, 'resumeSession');
+      instance.saveValues(req, res, next);
+      expect(req.sessionModel.set).toHaveBeenCalledWith('start-new-application', true);
+      expect(req.sessionModel.set).toHaveBeenCalledWith('application-id', 1);
+      expect(req.sessionModel.set).not.toHaveBeenCalledWith(
+        Object.assign({}, mockApplication.session, mockSavedApplicationProps)
+      );
+      expect(req.sessionModel.unset).toHaveBeenCalledWith('application-to-resume');
+      expect(spiedResumeSession).not.toHaveBeenCalled();
+    });
   });
 });

@@ -60,14 +60,19 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     const resumeApplication = req.form.values['application-form-type'] === 'continue-an-application';
     const applicationToResume = req.sessionModel.get('application-to-resume');
-    if (resumeApplication && applicationToResume) {
-      try {
-        this.resumeSession(req, applicationToResume);
-      } catch (error) {
-        // eslint-disable-next-line max-len
-        const errorMessage = `Failed to restore application, saved session data is corrupt or cannot be resumed in this format. Reason: ${error}`;
-        req.log('error', errorMessage);
-        return next(error);
+    if (applicationToResume) {
+      if (resumeApplication) {
+        try {
+          this.resumeSession(req, applicationToResume);
+        } catch (error) {
+          // eslint-disable-next-line max-len
+          const errorMessage = `Failed to restore application, saved session data is corrupt or cannot be resumed in this format. Reason: ${error}`;
+          req.log('error', errorMessage);
+          return next(error);
+        }
+      } else {
+        req.sessionModel.set('start-new-application', true);
+        req.sessionModel.set('application-id', applicationToResume.id);
       }
     }
     req.sessionModel.unset('application-to-resume');
