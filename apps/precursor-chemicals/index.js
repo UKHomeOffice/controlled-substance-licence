@@ -73,7 +73,8 @@ const steps = {
     ],
     next: '/licence-holder-details',
     locals: {
-      fullWidthPage: true
+      fullWidthPage: true,
+      showExit: true
     }
   },
 
@@ -516,7 +517,11 @@ const steps = {
     clearSession: true
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {},
+
+  '/save-and-exit': {
+    backLink: false
+  }
 };
 
 module.exports = {

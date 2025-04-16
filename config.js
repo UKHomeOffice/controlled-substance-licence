@@ -23,7 +23,13 @@ module.exports = {
   },
   sessionDefaults: {
     fields: ['csrf-secret'],
-    saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
+    saveExemptions: [
+      '/application-type',
+      '/licensee-type',
+      '/information-you-have-given-us',
+      '/application-submitted',
+      '/save-and-exit'
+    ]
   },
   saveService: {
     protocol: process.env.DATASERVICE_USE_HTTPS === 'false' ? 'http' : 'https',
