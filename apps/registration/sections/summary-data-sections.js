@@ -105,6 +105,25 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-details',
+        parse: (val, req) => {
+          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
+            return null;
+          }
+          const mhraLicenceDetails = [
+            req.sessionModel.get('mhra-licence-number'),
+            req.sessionModel.get('mhra-licence-type'),
+            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
+          ];
+          return mhraLicenceDetails.join('\n');
+        }
       }
     ]
   }

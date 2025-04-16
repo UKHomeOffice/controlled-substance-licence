@@ -103,22 +103,45 @@ const steps = {
     next: '/mhra-licences'
   },
 
-  '/mhra-licences': {
-    next: '/confirm'
-  },
-
   '/upload-company-certificate': {
     behaviours: [
       SaveDocument('company-registration-certificate', 'file-upload'),
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    next: '/confirm',
+    next: '/mhra-licences',
     locals: {
       documentCategory: {
         name: 'company-registration-certificate'
       }
     }
+  },
+
+  '/mhra-licences': {
+    fields: ['has-any-licence-issued-by-mhra'],
+    forks: [
+      {
+        target: '/care-quality-commission-or-equivalent',
+        condition: {
+          field: 'has-any-licence-issued-by-mhra',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/mhra-licence-details'
+  },
+
+  '/mhra-licence-details': {
+    fields: [
+      'mhra-licence-number',
+      'mhra-licence-type',
+      'mhra-licence-date-of-issue'
+    ],
+    next: '/care-quality-commission-or-equivalent'
+  },
+
+  '/care-quality-commission-or-equivalent': {
+    next: '/confirm'
   },
 
   '/confirm': {

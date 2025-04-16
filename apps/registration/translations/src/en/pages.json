@@ -21,6 +21,10 @@
     "intro": "Upload a scanned copy of your company registration certificate."
   },
 
+  "mhra-licence-details": {
+    "header": "Licence details"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {
@@ -58,6 +62,12 @@
       },
       "describe-business-model": {
         "label": "Your business model"
+      },
+      "has-any-licence-issued-by-mhra": {
+        "label": "Any licences issued by MHRA?"
+      },
+      "mhra-licence-details": {
+        "label": "Licence holder details"
       }
     }
   }
