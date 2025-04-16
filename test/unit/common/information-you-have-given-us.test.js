@@ -142,5 +142,11 @@ describe('information-you-have-given-us', () => {
       instance.saveValues(req, res, next);
       expect(req.sessionModel.get('referred-by-information-given-summary')).toBe(false);
     });
+
+    test('If the Exit button was clicked, redirect to /save-and-exit', () => {
+      req.body.exit = true;
+      instance.saveValues(req, res, next);
+      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/save-and-exit');
+    });
   });
 });
