@@ -1,6 +1,14 @@
-const { getLabel, formatDate, findArrayItemByValue, isValidPhoneNumber, generateErrorMsg } = require('../../utils');
+const {
+  getLabel,
+  formatDate,
+  findArrayItemByValue,
+  isValidPhoneNumber,
+  findSatisfiedForkCondition,
+  generateErrorMsg
+} = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
+const reqres = require('hof').utils.reqres;
 
 describe('Utilities \'getLabel\'', () => {
   test('returns undefined when an unexpected fieldKey parameter is passed', () => {
@@ -25,8 +33,8 @@ describe('Utilities \'formatDate\'', () => {
     expect(formatDate('08/14/1987')).toBe('14 August 1987');
   });
 
-  test('throws an error when the parameter cannot be parsed as a date', () => {
-    expect(() => formatDate('hello')).toThrow();
+  test('return undefined when the parameter cannot be parsed as a date', () => {
+    expect(formatDate('hello')).toBe(undefined);
   });
 });
 
@@ -61,6 +69,54 @@ describe('Utilities \'isValidPhoneNumber\'', () => {
     expect(isValidPhoneNumber('12345')).toBe(false);
     expect(isValidPhoneNumber('?01632 960000')).toBe(false);
     expect(isValidPhoneNumber('01632 960000143288')).toBe(false);
+  });
+});
+
+describe('Utilities \'findSatisfiedForkCondition\'', () => {
+  let req;
+  let forks;
+
+  beforeEach(() => {
+    req = reqres.req();
+  });
+
+  test('returns the fork object when a fork condition is satisfied', () => {
+    req.sessionModel.set('test-field', 'yes');
+    forks = [
+      {
+        target: '/test',
+        condition: {
+          field: 'test-field',
+          value: 'yes'
+        }
+      }
+    ];
+
+    expect(findSatisfiedForkCondition(req, forks)).toStrictEqual({
+      target: '/test',
+      condition: {
+        field: 'test-field',
+        value: 'yes'
+      }
+    });
+  });
+
+  test('returns undefined when no fork condition is satisfied', () => {
+    req.sessionModel.set('test-field', 'no');
+    forks = [
+      {
+        target: '/test',
+        condition: {
+          field: 'test-field',
+          value: 'yes'
+        }
+      }
+    ];
+
+    expect(findSatisfiedForkCondition(req, forks)).toBe(undefined);
+    req.sessionModel.set('test-field', 'no');
+    forks = [];
+    expect(findSatisfiedForkCondition(req, forks)).toBe(undefined);
   });
 });
 
