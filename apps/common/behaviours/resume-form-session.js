@@ -90,4 +90,11 @@ module.exports = superclass => class extends superclass {
 
     req.sessionModel.set(Object.assign({}, session, savedApplicationProps));
   }
+
+  successHandler(req, res, next) {
+    if (req.form.values['application-form-type'] === 'continue-an-application') {
+      return res.redirect(`${req.baseUrl}/information-you-have-given-us`);
+    }
+    return super.successHandler(req, res, next)
+  }
 };
