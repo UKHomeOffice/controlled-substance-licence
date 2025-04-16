@@ -32,6 +32,7 @@ describe('resume-form-session', () => {
   class Base {
     getValues() {}
     saveValues() {}
+    successHandler() {}
   }
 
   let req;
@@ -213,6 +214,37 @@ describe('resume-form-session', () => {
       );
       expect(req.sessionModel.unset).toHaveBeenCalledWith('application-to-resume');
       expect(spiedResumeSession).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('The \'successHandler\' method', () => {
+    beforeEach(() => {
+      Base.prototype.successHandler = jest.fn().mockReturnValue(req, res, next);
+
+      req.baseUrl = '/precursor-chemicals';
+
+      res.redirect = jest.fn();
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    test('If the user chose to continue-an-application redirect to information-you-have-given-us step', () => {
+      req.form.values = {
+        'application-form-type': 'continue-an-application'
+      };
+      instance.successHandler(req, res, next);
+      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/information-you-have-given-us');
+    });
+
+    test('If the user chose not to continue-an-application redirect according to step definitions', () => {
+      req.form.values = {
+        'application-form-type': 'new-application'
+      };
+      instance.successHandler(req, res, next);
+      expect(res.redirect).not.toHaveBeenCalled();
+      expect(Base.prototype.successHandler).toHaveBeenCalled();
     });
   });
 });
