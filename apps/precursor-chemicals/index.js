@@ -14,6 +14,7 @@ const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const SaveAndExit = require('../common/behaviours/save-and-exit');
 
 const steps = {
 
@@ -509,7 +510,11 @@ const steps = {
     clearSession: true
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {},
+  '/save-and-exit': {
+    behaviours: [SaveAndExit],
+    backLink: false
+  }
 };
 
 module.exports = {

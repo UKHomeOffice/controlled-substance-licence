@@ -107,7 +107,11 @@
   "application-submitted": {
     "confirmed": "Precursor chemicals application submitted"
   },
-  
+
+  "save-and-exit": {
+    "header": "We saved your application and signed you out"
+  },
+
   "confirm": {
     "sections": {
       "background-information": {

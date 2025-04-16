@@ -6,6 +6,17 @@ const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}://${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    const { route: currentRoute } = req.form.options;
+    const saveExemptList = config.sessionDefaults.saveExemptions;
+    if (saveExemptList.includes(currentRoute)) {
+      return locals;
+    }
+    locals.showSaveAndExit = true;
+    return locals;
+  }
+
   async successHandler(req, res, next) {
     // SaveFormSession is set at app level so ignore it for few steps that don't need save.
     const { route: currentRoute } = req.form.options;
@@ -48,15 +59,15 @@ module.exports = superclass => class extends superclass {
         const errorMessage = `Id not received in response ${JSON.stringify(response.data)}`;
         throw new Error(errorMessage);
       }
-
-      // @todo CSL-133 Add save-and-exit
-      // if (req.body['save-and-exit']) {
-      //  ...
-      // }
     } catch (error) {
       req.log('error', `Failed to save application: ${generateErrorMsg(error)}`);
       return next(error);
     }
+
+    if (req.body['save-and-exit']) {
+      return res.redirect(`${req.baseUrl}/save-and-exit`);
+    }
+
     return super.successHandler(req, res, next);
   }
 };
