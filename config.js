@@ -72,6 +72,10 @@ module.exports = {
           'application/msword',
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         ]
+      },
+      'record-keeping-document': {
+        limit: 20,
+        limitValidationError: 'recordKeepingDocumentLimit'
       }
     }
   },
