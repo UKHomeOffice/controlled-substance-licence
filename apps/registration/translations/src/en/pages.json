@@ -25,6 +25,10 @@
     "header": "Licence details"
   },
 
+  "registration-details": {
+    "header": "Registration details"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {
@@ -68,6 +72,18 @@
       },
       "mhra-licence-details": {
         "label": "Licence holder details"
+      },
+      "is-business-registered-with-cqc": {
+        "label": "Registered with care quality commission or equivalent?"
+      },
+      "registration-number": {
+        "label": "Care Quality Commission registration number"
+      },
+      "date-of-registration": {
+        "label": "Care Quality Commission registration date"
+      },
+      "regulatory-body-registration-details": {
+        "label": "Details of other regulatory bodies you are registered with"
       }
     }
   }
