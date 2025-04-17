@@ -14,6 +14,7 @@ const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
 
@@ -519,5 +520,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [SaveFormSession, CustomRedirect]
+  behaviours: [Auth, SaveFormSession, CustomRedirect]
 };

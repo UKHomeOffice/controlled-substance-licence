@@ -5,6 +5,7 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
   /** Start of journey */
@@ -467,5 +468,6 @@ module.exports = {
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
   steps: steps,
-  confirmStep: '/confirm'
+  confirmStep: '/confirm',
+  behaviours: [ Auth ]
 };

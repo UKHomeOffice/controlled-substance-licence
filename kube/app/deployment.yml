@@ -116,6 +116,48 @@ spec:
                 secretKeyRef:
                   name: file-vault-user
                   key: password
+            - name: KEYCLOAK_TOKEN_URL
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: token-url
+            - name: KEYCLOAK_LOGOUT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: logout-url
+            - name: KEYCLOAK_PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak
+                  key: public-key
+            # user-auth-client is used to authenticate and authorise users
+            - name: USER_AUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-auth-client
+                  key: id
+            - name: USER_AUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: user-auth-client
+                  key: secret
+            - name: USER_AUTH_ALLOWED_ROLE
+              valueFrom:
+                secretKeyRef:
+                  name: user-auth-client
+                  key: allowed-role
+            # admin-client is used to manage users (create, update, delete)
+            # - name: ADMIN_CLIENT_ID
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: admin-client
+            #       key: id
+            # - name: ADMIN_CLIENT_SECRET
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: admin-client
+            #       key: secret
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST
               value: dataservice-{{ .DRONE_SOURCE_BRANCH }}
