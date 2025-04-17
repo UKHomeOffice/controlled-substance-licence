@@ -46,7 +46,7 @@ describe('SignIn Behaviour', () => {
 
     expect(auth.setReq).toHaveBeenCalledWith(req);
     expect(auth.getTokens).toHaveBeenCalledWith('testuser', 'password123');
-    expect(req.sessionModel.set).toHaveBeenCalledWith('tokens', {
+    expect(req.sessionModel.set).toHaveBeenCalledWith('auth_tokens', {
       access_token: 'access.token',
       refresh_token: 'refresh.token'
     });

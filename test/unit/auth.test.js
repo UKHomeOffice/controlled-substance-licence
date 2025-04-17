@@ -25,10 +25,10 @@ describe('Auth Module', () => {
     jest.clearAllMocks();
   });
 
-  describe('validateToken', () => {
+  describe('validateAccessToken', () => {
     it('should return false with reason "missing" if access token is not provided', () => {
-      const result = auth.validateToken(null);
-      expect(result).toEqual({ isValid: false, reason: 'missing' });
+      const result = auth.validateAccessToken(null);
+      expect(result).toEqual({ isAccessTokenValid: false, invalidTokenReason: 'missing' });
       expect(mockRequest.log).toHaveBeenCalledWith('info', 'No access token provided');
     });
 
@@ -38,8 +38,8 @@ describe('Auth Module', () => {
         end: jest.fn(),
         verify: jest.fn(() => false) // Simulate invalid token
       }));
-      const result = auth.validateToken('invalid.token');
-      expect(result).toEqual({ isValid: false, reason: 'invalid' });
+      const result = auth.validateAccessToken('invalid.token');
+      expect(result).toEqual({ isAccessTokenValid: false, invalidTokenReason: 'invalid' });
       expect(mockRequest.log).toHaveBeenCalledWith('info', 'Invalid access token');
     });
 
@@ -55,8 +55,8 @@ describe('Auth Module', () => {
       ).toString('base64url');
       const token = `header.${expiredToken}.signature`;
 
-      const result = auth.validateToken(token);
-      expect(result).toEqual({ isValid: false, reason: 'expired' });
+      const result = auth.validateAccessToken(token);
+      expect(result).toEqual({ isAccessTokenValid: false, invalidTokenReason: 'expired' });
       expect(mockRequest.log).toHaveBeenCalledWith('info', 'Access token has expired');
     });
 
@@ -72,8 +72,8 @@ describe('Auth Module', () => {
       ).toString('base64url');
       const token = `header.${validToken}.signature`;
 
-      const result = auth.validateToken(token);
-      expect(result).toEqual({ isValid: true });
+      const result = auth.validateAccessToken(token);
+      expect(result).toEqual({ isAccessTokenValid: true });
     });
   });
 
@@ -89,7 +89,7 @@ describe('Auth Module', () => {
     it('should return false if no access token is provided', () => {
       const result = auth.authorisedUserRole(null);
       expect(result).toBe(false);
-      expect(mockRequest.log).toHaveBeenCalledWith('info', 'No access token provided in the tokens object');
+      expect(mockRequest.log).toHaveBeenCalledWith('info', 'No token provided');
     });
   });
 });

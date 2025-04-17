@@ -106,34 +106,34 @@ const determineErrorType = status => {
 };
 
 /**
- * Validates the access token from the token object.
+ * Validates the access token.
  * Checks if the access token is present, valid, and not expired.
  *
- * @param {object} tokens - The token object containing the access token and other details.
+ * @param {string} accessToken - The JWT access token as a string.
  * @returns {object} - An object containing the validation result:
- *   - {boolean} isValid - `true` if the token is valid, otherwise `false`.
- *   - {string} reason - The reason for invalidity, if applicable. Possible values:
+ *   - {boolean} isAccessTokenValid - `true` if the token is valid, otherwise `false`.
+ *   - {string} invalidTokenReason - The reason for invalidity, if applicable. Possible values:
  *     - 'missing': The token object or access token is missing
  *     - 'invalid': The access token is invalid
  *     - 'expired': The access token has expired
  */
-const validateToken = accessToken => {
+const validateAccessToken = accessToken => {
   if (!accessToken) {
     req.log('info', 'No access token provided');
-    return { isValid: false, reason: 'missing' };
+    return { isAccessTokenValid: false, invalidTokenReason: 'missing' };
   }
 
   if (!isTokenVerified(accessToken)) {
     req.log('info', 'Invalid access token');
-    return { isValid: false, reason: 'invalid' };
+    return { isAccessTokenValid: false, invalidTokenReason: 'invalid' };
   }
 
   if (isTokenExpired(accessToken)) {
     req.log('info', 'Access token has expired');
-    return { isValid: false, reason: 'expired' };
+    return { isAccessTokenValid: false, invalidTokenReason: 'expired' };
   }
 
-  return { isValid: true };
+  return { isAccessTokenValid: true };
 };
 
 /**
@@ -186,9 +186,9 @@ const getTokens = async (username, password) => {
 
 /**
  * Refreshes the tokens using the refresh token.
- * Sends a request to the Keycloak token endpoint to obtain a new access token.
+ * Sends a request to the Keycloak token endpoint to obtain a new set of tokens.
  *
- * @param {string} refreshToken - The refresh token to use for obtaining a new access token.
+ * @param {string} refreshToken - The refresh token to use for obtaining a new set of tokens.
  * @returns {object|null} - Returns the new token object if successful, or `null` if the refresh fails.
  */
 const getFreshTokens = async refreshToken => {
@@ -215,12 +215,17 @@ const getFreshTokens = async refreshToken => {
 
     const response = await hofModel._request(reqParams);
 
+    if (!response?.data?.access_token || !response?.data?.refresh_token) {
+      req.log('error', 'No data returned from Keycloak');
+      return null;
+    }
+
     req.log('info', 'Successfully refreshed tokens from Keycloak');
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data || error.message;
     req.log('error', `Failed to refresh tokens from Keycloak: ${JSON.stringify(errorMessage)}`);
-    return null;
+    return error;
   }
 };
 
@@ -254,16 +259,16 @@ const logout = async () => {
 
 /**
  * Checks if the user belongs to the authorised user group.
- * @param {object} tokens - The token object containing the access token.
+ * @param {string} token - The JWT token to validate.
  * @returns {boolean} - Returns `true` if the user is authorised, otherwise `false`.
  */
-const authorisedUserRole = tokens => {
-  if (!tokens || !tokens.access_token) {
-    req.log('info', 'No access token provided in the tokens object');
+const authorisedUserRole = token => {
+  if (!token) {
+    req.log('info', 'No token provided');
     return false;
   }
 
-  const decodedPayload = JSON.parse(Buffer.from(tokens.access_token.split('.')[1], 'base64url').toString('utf8'));
+  const decodedPayload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString('utf8'));
 
   const userRoles = decodedPayload?.realm_access?.roles || [];
   if (userRoles.includes(config.keycloak.userAuthClient.allowedUserRole)) {
@@ -276,7 +281,7 @@ const authorisedUserRole = tokens => {
 };
 
 module.exports = {
-  validateToken,
+  validateAccessToken,
   getTokens,
   getFreshTokens,
   logout,

@@ -1,14 +1,15 @@
 'use strict';
 
 const auth = require('../../../../utils/auth');
+const { resetAllSessions } = require('../../../../utils');
 
 module.exports = superclass => class extends superclass {
-  async successHandler(req, res, next) {
+  successHandler(req, res, next) {
     auth.setReq(req);
-    await auth.logout();
+    auth.logout();
 
     req.log('info', 'Clear session on sign out');
-    req.sessionModel.reset();
+    resetAllSessions(req);
 
     // Continue with the rest of the process
     return super.successHandler(req, res, next);

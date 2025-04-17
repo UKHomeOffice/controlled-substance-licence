@@ -8,11 +8,11 @@ module.exports = superclass => class extends superclass {
     auth.setReq(req);
 
     const validationErrorFunc = (key, type, args) =>
-      new this.ValidationError('username', { type: type, arguments: [args] });
+      new this.ValidationError(key, { type: type, arguments: [args] });
 
     return auth.getTokens(req.form.values.username, req.form.values.password)
       .then(tokens => {
-        req.sessionModel.set('tokens', {
+        req.sessionModel.set('auth_tokens', {
           access_token: tokens.access_token,
           refresh_token: tokens.refresh_token
         });
@@ -34,7 +34,7 @@ module.exports = superclass => class extends superclass {
 
   saveValues(req, res, next) {
     // Skip saving values to sessionModel
-    next();
+    return next();
   }
 
   // @todo: Revise default redirect and redirect users after successful sign-in to the page they were trying to access
