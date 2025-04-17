@@ -7,6 +7,7 @@ const parseAggregateSummary = require('./behaviours/parse-aggregate-summary');
 const getFilteredFieldOption = require('../common/behaviours/get-filtered-field-option');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const CustomRedirect = require('./behaviours/custom-redirect');
 
 const steps = {
 
@@ -103,7 +104,8 @@ const steps = {
     behaviours: [
       LoopAggregator,
       SetSummaryReferrer,
-      parseAggregateSummary
+      parseAggregateSummary,
+      CustomRedirect
     ],
     aggregateTo: 'aggregated-business-type',
     aggregateFrom: [
