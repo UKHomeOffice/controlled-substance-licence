@@ -118,5 +118,26 @@
   },
   "mhra-licence-date-of-issue": {
     "legend": "Date of issue"
+  },
+  "is-business-registered-with-cqc": {
+    "legend": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "registration-number": {
+    "label": "Registration number"
+  },
+  "date-of-registration": {
+    "legend": "Date of registration"
+  },
+  "regulatory-body-registration-details": {
+    "label": "Provide details of any other regulatory bodies that you are registered with (optional)",
+    "hint": "For example the Veterinary Medicines Directorate, the United Kingdom Accreditation Service or the Food Standards Agency"
   }
 }

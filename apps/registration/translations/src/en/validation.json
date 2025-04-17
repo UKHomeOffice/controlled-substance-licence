@@ -110,5 +110,24 @@
     "date": "Enter a real date of issue",
     "before": "MHRA licence date of issue must be in the past",
     "after": "MHRA licence date of issue must be on or after 01 January 2009"
+  },
+  "is-business-registered-with-cqc": {
+    "required": "Select if you are registered with the Care Quality Commission or its Scottish and Welsh equivalents"
+  },
+  "registration-number": {
+    "required": "Enter a registration number",
+    "maxlength": "Registration number must be between 3 and 50 characters",
+    "minlength": "Registration number must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "date-of-registration": {
+    "required": "Enter a date of registration",
+    "date": "Enter a real date of registration",
+    "before": "Date of registration must be in the past",
+    "after": "Date of registration must be on or after 1 January 2003"
+  },
+  "regulatory-body-registration-details": {
+    "maxlength": "Details of other regulatory bodies must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
