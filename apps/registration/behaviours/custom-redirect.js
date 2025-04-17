@@ -1,8 +1,7 @@
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
-    const { route: currentRoute, confirmStep } = req.form.options;
-    const { action } = req.params;
+    const { route: confirmStep } = req.form.options;
     const formApp = req.baseUrl;
 
     this.emit('complete', req, res);
