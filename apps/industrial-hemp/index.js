@@ -402,6 +402,17 @@ const steps = {
     next: '/aerial-photos-and-maps'
   },
   '/aerial-photos-and-maps': {
+    behaviours: [
+      SaveDocument('aerial-photos-upload', 'file-upload'),
+      RemoveDocument('aerial-photos-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'aerial-photos-upload',
+        customFileType: true
+      }
+    },
     next: '/company-own-fields'
   },
   '/company-own-fields': {

@@ -35,7 +35,6 @@ module.exports = {
     hostname: process.env.FILE_VAULT_URL,
     allowedMimeTypes: [
       'image/jpeg',
-      'image/jpg',
       'image/png',
       'application/pdf',
       'application/msword',
@@ -61,6 +60,17 @@ module.exports = {
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
           'application/vnd.ms-excel',
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        ]
+      },
+      'aerial-photos-upload': {
+        limit: 20,
+        limitValidationError: 'aerialPhotosUploadLimit',
+        allowedMimeTypes: [
+          'image/jpeg',
+          'image/png',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
         ]
       }
     }
