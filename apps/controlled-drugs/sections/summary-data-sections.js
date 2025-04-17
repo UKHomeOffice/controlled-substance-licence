@@ -148,7 +148,7 @@ module.exports = {
         parse: (list, req) => {
           const licenseHolderDetails = [
             req.sessionModel.get('company-name'),
-            req.sessionModel.get('company-number').toUpperCase(),
+            req.sessionModel.get('company-number')?.toUpperCase(),
             req.sessionModel.get('website-url'),
             req.sessionModel.get('telephone'),
             req.sessionModel.get('email')
@@ -197,7 +197,7 @@ module.exports = {
             req.sessionModel.get('premises-telephone'),
             req.sessionModel.get('premises-email')
           ];
-          return premisesContactDetails.join('\n');
+          return premisesContactDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -212,7 +212,7 @@ module.exports = {
             req.sessionModel.get('person-in-charge-full-name'),
             req.sessionModel.get('person-in-charge-email-address')
           ];
-          return personInchargeDetails.join('\n');
+          return personInchargeDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -224,7 +224,7 @@ module.exports = {
             req.sessionModel.get('person-in-charge-dbs-reference'),
             formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue'))
           ];
-          return personInChargeDbsInfo.join('\n');
+          return personInChargeDbsInfo.filter(element => element).join('\n');
         }
       },
       {
@@ -255,6 +255,7 @@ module.exports = {
         step: '/responsible-for-security',
         field: 'responsible-for-security',
         parse: (val, req) => {
+          if (!val) return null;
           const securityResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
 
@@ -277,7 +278,7 @@ module.exports = {
               req.sessionModel.get('person-responsible-for-security-full-name'),
               req.sessionModel.get('person-responsible-for-security-email-address')
             ];
-            return responsibleForSecDetails.join('\n');
+            return responsibleForSecDetails.filter(element => element).join('\n');
           }
 
           return null;
@@ -296,7 +297,7 @@ module.exports = {
               req.sessionModel.get('person-responsible-for-security-dbs-reference'),
               formatDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue'))
             ];
-            return responsibleForSecDbsInfo.join('\n');
+            return responsibleForSecDbsInfo.filter(element => element).join('\n');
           }
 
           return null;
@@ -306,6 +307,7 @@ module.exports = {
         step: '/security-officer-dbs-updates',
         field: 'person-responsible-for-security-dbs-subscription',
         parse: (val, req) => {
+          if (!val) return null;
           const securityResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-security') === 'same-as-managing-director';
 
@@ -322,6 +324,7 @@ module.exports = {
         step: '/compliance-and-regulatory',
         field: 'responsible-for-compliance-regulatory',
         parse: (val, req) => {
+          if (!val) return null;
           const compRegResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
 
@@ -344,7 +347,7 @@ module.exports = {
               req.sessionModel.get('responsible-for-compliance-regulatory-full-name'),
               req.sessionModel.get('responsible-for-compliance-regulatory-email-address')
             ];
-            return responsibleForCompRegDetails.join('\n');
+            return responsibleForCompRegDetails.filter(element => element).join('\n');
           }
 
           return null;
@@ -363,7 +366,7 @@ module.exports = {
               req.sessionModel.get('responsible-for-compliance-regulatory-dbs-reference'),
               formatDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue'))
             ];
-            return responsibleForCompRegDbsInfo.join('\n');
+            return responsibleForCompRegDbsInfo.filter(element => element).join('\n');
           }
 
           return null;
@@ -373,6 +376,7 @@ module.exports = {
         step: '/regulatory-and-compliance-dbs-updates',
         field: 'responsible-for-compliance-regulatory-dbs-subscription',
         parse: (val, req) => {
+          if (!val) return null;
           const compRegResponsibleIsSameAsMd =
             req.sessionModel.get('responsible-for-compliance-regulatory') === 'same-as-managing-director';
 
@@ -409,7 +413,7 @@ module.exports = {
         step: '/who-witnesses-destruction-of-drugs',
         field: 'responsible-for-witnessing-the-destruction',
         parse: (val, req) => {
-          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ) {
+          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' || !val) {
             return null;
           }
           const responsibleForWitnessDrugsIsSameAsMd =
@@ -432,7 +436,7 @@ module.exports = {
             req.sessionModel.get('responsible-for-witnessing-full-name'),
             req.sessionModel.get('responsible-for-witnessing-email-address')
           ];
-          return responsibleForWitnessDrugsDetails.join('\n');
+          return responsibleForWitnessDrugsDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -449,13 +453,14 @@ module.exports = {
             req.sessionModel.get('responsible-for-witnessing-dbs-reference'),
             formatDate(req.sessionModel.get('responsible-for-witnessing-dbs-date-of-issue'))
           ];
-          return responsibleForWitnessDrugsDbsInfo.join('\n');
+          return responsibleForWitnessDrugsDbsInfo.filter(element => element).join('\n');
         }
       },
       {
         step: '/witness-dbs-updates',
         field: 'responsible-for-witnessing-dbs-subscription',
         parse: (val, req) => {
+          if (!val) return null;
           if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
             req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
             return null;
@@ -476,22 +481,6 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
-      },
-      {
-        step: '/site-owner-contact-details',
-        field: 'site-owner-full-name'
-      },
-      {
-        step: '/site-owner-contact-details',
-        field: 'site-owner-email-address'
-      },
-      {
-        step: '/site-owner-contact-details',
-        field: 'site-owner-telephone'
-      },
-      {
-        step: '/site-owner-contact-details',
-        field: 'site-owner-address'
       },
       {
         step: '/trading-reasons-summary',
@@ -524,7 +513,7 @@ module.exports = {
             req.sessionModel.get('mhra-licence-type'),
             formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
           ];
-          return mhraLicenceDetails.join('\n');
+          return mhraLicenceDetails.filter(element => element).join('\n');
         }
       },
       {
@@ -544,6 +533,9 @@ module.exports = {
         step: '/regulatory-body-registration',
         field: 'regulatory-body-registration-details',
         parse: (value, req) => {
+          if ( !req.sessionModel.get('steps').includes('/regulatory-body-registration')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       },
@@ -567,34 +559,68 @@ module.exports = {
         field: 'status-of-site'
       },
       {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-full-name'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-email-address'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-telephone'
+      },
+      {
+        step: '/site-owner-contact-details',
+        field: 'site-owner-address'
+      },
+      {
         step: '/schedule-1-activities',
         field: 'schedule-1-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-1-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/schedule-2-activities',
         field: 'schedule-2-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-2-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/schedule-3-activities',
         field: 'schedule-3-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-3-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/schedule-4-part-1-activities',
         field: 'schedule-4-part-1-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-4-part-1-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/schedule-4-part-2-activities',
         field: 'schedule-4-part-2-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-4-part-2-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/schedule-5-activities',
         field: 'schedule-5-activities',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/schedule-5-activities') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/upload-activity-template',
@@ -606,7 +632,10 @@ module.exports = {
       {
         step: '/security-features',
         field: 'security-features',
-        parse: (list, req) => parseCheckboxes(list, req)
+        parse: (list, req) => {
+          return req.sessionModel.get('steps').includes('/security-features') ?
+            parseCheckboxes(list, req) : null
+        }
       },
       {
         step: '/separate-room',
@@ -725,6 +754,9 @@ module.exports = {
         step: '/invoicing-contact-details',
         field: 'invoicing-purchase-order-number',
         parse: (value, req) => {
+          if ( !req.sessionModel.get('steps').includes('/invoicing-contact-details')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       },
@@ -748,6 +780,9 @@ module.exports = {
         step: '/extra-information',
         field: 'extra-information',
         parse: (value, req) => {
+          if ( !req.sessionModel.get('steps').includes('/extra-information')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       }
