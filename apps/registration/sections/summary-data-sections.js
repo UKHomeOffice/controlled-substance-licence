@@ -104,6 +104,24 @@ module.exports = {
             return otherBusinessType ? `${businessTypeLabel}: ${otherBusinessType}` : businessTypeLabel;
           }).join('\n');
         }
+      },
+      {
+        step: '/company-type',
+        field: 'company-type'
+      },
+      {
+        step: '/business-model',
+        field: 'describe-business-model'
+      },
+      {
+        step: '/upload-company-certificate',
+        field: 'company-registration-certificate',
+        parse: (documents, req) => {
+          if (req.sessionModel.get('company-type') === 'other') {
+            return null;
+          }
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   }

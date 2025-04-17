@@ -197,7 +197,11 @@
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
-    "isDuplicateFileName": "A file with this name was already uploaded"
+    "isDuplicateFileName": "A file with this name was already uploaded",
+    "aerialPhotosUploadLimit" : "You may not add more than {{aerialPhotosUploadLimit}} file(s)",
+    "aerial-photos-upload": {
+      "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
+    }
   },
   "is-company-ref-changed": {
     "required": "Select if your Companies House reference number has changed since your last application"
@@ -237,8 +241,8 @@
   "contract-start-date": {
     "required": "Enter the contract start date",
     "date": "Enter a real contract start date",
-    "before": "Contract start date must be within the past year",
-    "after": "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future"
+    "after": "Contract start date must be within the past year",
+    "before": "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future"
   },
   "contract-details": {
     "required": "Enter details about the contract and how it affects your licence application",
@@ -258,5 +262,29 @@
   },
   "where-cultivating-cannabis": {
     "required": "Select where you will be cultivating the low THC cannabis"
+  },
+  "is-company-own-fields": {
+    "required": "Select if your company owns all the fields"
+  },
+  "who-own-fields": {
+    "required": "Enter details of who owns the fields",
+    "maxlength": "Details of who owns the fields must be 2,000 characters or less"
+  },
+  "is-permission-for-activities": {
+    "required": "Select if you have permission from the owner to carry out your intended activities"
+  },
+  "field-acreage": {
+    "required": "Enter the total acreage of the fields",
+    "maxlength": "Total acreage of the fields must be between 1 and 50 characters"
+  },
+  "how-many-fields": {
+    "required": "Enter the number of fields you will cultivate low THC cannabis in",
+    "max": "Number of fields must be less than 1,000",
+    "min": "Number of fields must be at least 1",
+    "numeric": "Number of fields must only contain numbers"
+  },
+  "cultivation-field-details": {
+    "required": "Enter details of the fields you plan to cultivate low THC cannabis in",
+    "maxlength": "Details of the fields you plan to cultivate low THC cannabis in must be 2,000 characters or less"
   }
 }

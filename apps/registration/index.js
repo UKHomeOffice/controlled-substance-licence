@@ -5,6 +5,8 @@ const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const parseAggregateSummary = require('./behaviours/parse-aggregate-summary');
 const getFilteredFieldOption = require('../common/behaviours/get-filtered-field-option');
+const SaveDocument = require('../common/behaviours/save-document');
+const RemoveDocument = require('../common/behaviours/remove-document');
 
 const steps = {
 
@@ -119,6 +121,39 @@ const steps = {
   },
 
   '/company-type': {
+    fields: ['company-type'],
+    forks: [
+      {
+        target: '/business-model',
+        condition: {
+          field: 'company-type',
+          value: 'other'
+        }
+      }
+    ],
+    next: '/upload-company-certificate'
+  },
+
+  '/business-model': {
+    fields: ['describe-business-model'],
+    next: '/mhra-licences'
+  },
+
+  '/upload-company-certificate': {
+    behaviours: [
+      SaveDocument('company-registration-certificate', 'file-upload'),
+      RemoveDocument('company-registration-certificate')
+    ],
+    fields: ['file-upload'],
+    next: '/mhra-licences',
+    locals: {
+      documentCategory: {
+        name: 'company-registration-certificate'
+      }
+    }
+  },
+
+  '/mhra-licences': {
     next: '/confirm'
   },
 

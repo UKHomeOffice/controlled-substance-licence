@@ -46,8 +46,12 @@
   "controlled-drugs-licence": {
     "header": "You need to apply for a controlled drugs licence"
   },
-  "field-acreage": {
-    "header": "What is the total acreage of the fields?"
+  "cultivation-field-details": {
+   "header": "Details of cultivation fields"
+  },
+  "aerial-photos-and-maps": {
+    "header": "Upload aerial photos and site maps",
+    "intro": "Upload a document containing aerial photos and site maps relating to the information supplied in the previous question."
   },
   "confirm": {
     "header": "Check your answers",
@@ -152,6 +156,27 @@
       },
       "where-cultivating-cannabis": {
         "label": "Where you will be cultivating Low THC Cannabis?"
+      },
+      "is-company-own-fields": {
+        "label": "Does your company own all the fields?"
+      },
+      "who-own-fields": {
+        "label": "Who owns the fields?"
+      },
+      "is-permission-for-activities": {
+        "label": "Do you have permission from the owner to carryout your intended activities?"
+      },
+      "field-acreage": {
+        "label": "Total acreage of fields"
+      },
+      "how-many-fields": {
+        "label": "Number of cultivating fields"
+      },
+      "cultivation-field-details": {
+        "label": "Details of cultivation fields"
+      },
+      "aerial-photos-upload":{
+        "label": "Aerial photos and site maps"
       }
     }
   }

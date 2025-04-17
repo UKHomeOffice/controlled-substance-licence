@@ -20,6 +20,10 @@
     "key": "Business type",
     "otherKey": "Other business type"
   },
+  "upload-company-certificate": {
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
+  },
 
   "confirm": {
     "header": "Check your answers before submitting your registration",
@@ -55,6 +59,12 @@
       },
       "aggregated-business-type": {
         "label": "What your business does"
+      },
+      "company-registration-certificate": {
+        "label": "Company registration certificate"
+      },
+      "describe-business-model": {
+        "label": "Your business model"
       }
     }
   }

@@ -36,15 +36,20 @@ const translateOption = (req, field, value) => {
  * Formats a given date string into a specified format.
  *
  * @param {string} date - The date string to be formatted.
- * @returns {string} - The formatted date string.
+ * @returns {string|undefined} - The formatted date string.
  *
  * @example
  * Assuming config.dateLocales is 'en-GB' and config.dateFormat is { day: 'numeric', month: 'long', year: 'numeric' }
  * formatDate('2023-10-23'); // returns '23 October 2023'
  */
 const formatDate = date => {
-  const dateObj = new Date(date);
-  return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+  try {
+    const dateObj = new Date(date);
+    return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+  } catch (error) {
+    logger.warn('Warning: Failed to format date', error);
+    return undefined;
+  }
 };
 
 /**
@@ -129,6 +134,26 @@ const isValidPhoneNumber = phoneNumber => {
 };
 
 /**
+ * From the request object, determines if any of the current step's fork conditions are satisfied by a field value.
+ *
+ * @param {object} req - The request object.
+ * @param {array} forks - Optionally pass the forks array for a specific step.
+ * @returns {object|undefined} - Returns a form step fork object if one was satisfied or undefined if not.
+ */
+const findSatisfiedForkCondition = (req, forks) => {
+  if (forks && Array.isArray(forks)) {
+    return forks.find(fork => {
+      if (typeof fork.condition === 'function') {
+        return fork.condition(req);
+      }
+      const { field, value } = fork.condition;
+      return req.sessionModel.get(field) === value;
+    });
+  }
+  return undefined;
+};
+
+/**
  * Generates a useful error message from a typical Axios error reponse object
  * It will return at a minimum error.message from the Error object passed in.
  *
@@ -199,6 +224,7 @@ module.exports = {
   parseOperations,
   findArrayItemByValue,
   isValidPhoneNumber,
+  findSatisfiedForkCondition,
   generateErrorMsg,
   clearExpiredApplictions,
   getFieldValuesToFilter
