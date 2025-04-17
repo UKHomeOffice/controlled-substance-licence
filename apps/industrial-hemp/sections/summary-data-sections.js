@@ -330,6 +330,17 @@ module.exports = {
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/record-keeping-details',
+        field: 'record-keeping-details'
+      },
+      {
+        step: '/record-keeping-document-images',
+        field: 'record-keeping-document',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   }

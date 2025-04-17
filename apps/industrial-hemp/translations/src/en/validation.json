@@ -191,9 +191,9 @@
     "required": "Select if you are requesting a change of activity"
   },
   "file-upload": {
-    "required": "Select a file",
+    "required": "Select a file to upload",
     "unsaved": "The selected file was not uploaded – try again",
-    "maxFileSize": "The selected files must be smaller than 25MB",
+    "maxFileSize": "The selected file must be 25MB or less",
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
@@ -286,5 +286,10 @@
   "cultivation-field-details": {
     "required": "Enter details of the fields you plan to cultivate low THC cannabis in",
     "maxlength": "Details of the fields you plan to cultivate low THC cannabis in must be 2,000 characters or less"
+  },
+  "record-keeping-details": {
+    "required": "Enter details of your record keeping",
+    "maxlength": "Details of your record keeping must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
