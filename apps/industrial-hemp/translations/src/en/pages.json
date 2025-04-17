@@ -49,6 +49,10 @@
   "cultivation-field-details": {
    "header": "Details of cultivation fields"
   },
+  "aerial-photos-and-maps": {
+    "header": "Upload aerial photos and site maps",
+    "intro": "Upload a document containing aerial photos and site maps relating to the information supplied in the previous question."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -170,6 +174,9 @@
       },
       "cultivation-field-details": {
         "label": "Details of cultivation fields"
+      },
+      "aerial-photos-upload":{
+        "label": "Aerial photos and site maps"
       }
     }
   }
