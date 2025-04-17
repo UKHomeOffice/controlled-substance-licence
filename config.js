@@ -110,5 +110,6 @@ module.exports = {
     controlledDrugs: {
       tradingReasonsLimit: 5
     }
-  }
+  },
+  wizardSessionKeyPrefix: 'hof-wizard'
 };

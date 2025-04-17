@@ -198,7 +198,12 @@ const clearExpiredApplictions = async (table, submitStatus, dateType, days, peri
  * @param {object} req - The request object containing the session.
  */
 const resetAllSessions = req => {
-  const prefix = 'hof-wizard';
+  if (config.wizardSessionKeyPrefix === undefined) {
+    const errorMessage = 'Session key prefix is not defined in the configuration.';
+    req.log('error', errorMessage);
+    throw new Error(errorMessage);
+  }
+  const prefix = config.wizardSessionKeyPrefix;
   Object.keys(req.session).forEach(key => {
     if (key.startsWith(prefix)) {
       req.session[key] = {};
