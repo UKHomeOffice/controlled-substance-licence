@@ -70,7 +70,6 @@ module.exports = superclass => class extends superclass {
         req.log('error', errorMessage);
         return next(error);
       }
-      req.sessionModel.unset('application-to-resume');
     }
 
     if (applicationToResume) {
