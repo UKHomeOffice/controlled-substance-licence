@@ -16,6 +16,7 @@ const InformationYouHaveGivenUs = require('../common/behaviours/information-you-
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
+const LogoutOnConfigure = require('../common/behaviours/logout-on-configure');
 
 const steps = {
 
@@ -912,6 +913,7 @@ const steps = {
   '/session-timeout': {},
 
   '/save-and-exit': {
+    behaviours: [LogoutOnConfigure],
     backLink: false
   }
 };
