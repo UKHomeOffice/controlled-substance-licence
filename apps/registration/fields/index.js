@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const businessTypeOptions = require('../data/business-type.json');
 
 module.exports = {
   'company-name': {
@@ -136,5 +137,49 @@ module.exports = {
     legend: {
       className: 'govuk-!-margin-bottom-4'
     }
-  })
+  }),
+  'company-type': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'public-limited'
+      },
+      {
+        value: 'private'
+      },
+      {
+        value: 'other'
+      }
+    ],
+    className: ['govuk-radios'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+
+  'describe-business-model': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'business-type': {
+    mixin: 'select',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.business-type.options.none_selected'
+    }].concat(businessTypeOptions),
+    showFieldInSummary: true,
+    className: ['govuk-!-width-one-half']
+  },
+  'other-business-type': {
+    mixin: 'textarea',
+    validate: ['required', { type: 'maxlength', arguments: 500 }, 'notUrl'],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
+  }
 };

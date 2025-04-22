@@ -9,6 +9,10 @@
     {{> partials-save-and-exit-button}}
   {{/showSaveAndExit}}
 
+  {{#showExit}}
+    {{> partials-exit-button}}
+  {{/showExit}}
+
   {{#csrf-token}}
     <input type="hidden" name="x-csrf-token" value="{{csrf-token}}" />
   {{/csrf-token}}

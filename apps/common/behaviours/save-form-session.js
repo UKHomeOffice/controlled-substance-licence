@@ -45,11 +45,19 @@ module.exports = superclass => class extends superclass {
 
     req.log('info', `Saving Form Session: ${applicationId ?? 'New application'}`);
 
+    const patchData = { session };
+    if (applicationId && req.sessionModel.get('application-form-type') !== 'continue-an-application') {
+      req.log('info', `Overwriting saved application: ${applicationId}`);
+      patchData.created_at = new Date().toISOString();
+    }
+
+    const postData = { session, applicant_id, licence_type, status_id };
+
     try {
       const reqParams = {
         url: applicationId ? `${applicationsUrl}/${applicationId}` : applicationsUrl,
         method: applicationId ? 'PATCH' : 'POST',
-        data: applicationId ? { session } : { session, applicant_id, licence_type, status_id }
+        data: applicationId ? patchData : postData
       };
 
       const hofModel = new Model();
@@ -58,6 +66,10 @@ module.exports = superclass => class extends superclass {
       if (!response.data[0]?.id) {
         const errorMessage = `Id not received in response ${JSON.stringify(response.data)}`;
         throw new Error(errorMessage);
+      }
+
+      if (!applicationId) {
+        req.sessionModel.set('application-id', response.data[0].id);
       }
     } catch (error) {
       req.log('error', `Failed to save application: ${generateErrorMsg(error)}`);
