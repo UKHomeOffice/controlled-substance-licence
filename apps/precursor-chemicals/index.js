@@ -22,15 +22,6 @@ const steps = {
   '/application-type': {
     behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
-    forks: [
-      {
-        target: '/information-you-have-given-us',
-        condition: {
-          field: 'application-form-type',
-          value: 'continue-an-application'
-        }
-      }
-    ],
     template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
@@ -64,9 +55,26 @@ const steps = {
     behaviours: [Summary, InformationYouHaveGivenUs],
     template: 'information-you-have-given-us',
     sections: require('./sections/summary-data-sections'),
+    forks: [
+      {
+        target: '/companies-house-number',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
     next: '/licence-holder-details',
     locals: {
-      fullWidthPage: true
+      fullWidthPage: true,
+      showExit: true
     }
   },
 
@@ -509,7 +517,11 @@ const steps = {
     clearSession: true
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {},
+
+  '/save-and-exit': {
+    backLink: false
+  }
 };
 
 module.exports = {
