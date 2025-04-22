@@ -4,7 +4,7 @@ const customValidation = require('../common/behaviours/custom-validation');
 const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const parseAggregateSummary = require('./behaviours/parse-aggregate-summary');
-const getFilteredFieldOption = require('../common/behaviours/get-filtered-field-option');
+const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const CustomRedirect = require('./behaviours/custom-redirect');
@@ -82,7 +82,7 @@ const steps = {
   },
 
   '/business-type': {
-    behaviours: [getFilteredFieldOption('aggregated-business-type', 'business-type')],
+    behaviours: [FilterSelectFieldOptions('aggregated-business-type', 'business-type')],
     fields: ['business-type'],
     forks: [
       {
