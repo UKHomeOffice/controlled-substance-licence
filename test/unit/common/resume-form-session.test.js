@@ -187,12 +187,9 @@ describe('resume-form-session', () => {
     });
 
     test('sessionModel.set() is called with expected properties when a saved application was found', () => {
-      const mockSavedApplicationProps = { 'application-id': 1 };
       instance.saveValues(req, res, next);
       expect(req.log).toHaveBeenCalledWith('info', 'Resuming Form Session: 1');
-      expect(req.sessionModel.set).toHaveBeenCalledWith(
-        Object.assign({}, mockApplication.session, mockSavedApplicationProps)
-      );
+      expect(req.sessionModel.set).toHaveBeenCalledWith(mockApplication.session);
     });
 
     test('this.resumeSession() is not called if no application was found', () => {
@@ -202,16 +199,12 @@ describe('resume-form-session', () => {
       expect(spiedResumeSession).not.toHaveBeenCalled();
     });
 
-    test('If the user is not resuming a session, only set the application-id and new application flag', () => {
-      const mockSavedApplicationProps = { 'application-id': 1 };
+    test('If the user is not resuming an application, only set the application-id and do not resumeSessionw', () => {
       req.form.values = { 'application-form-type': 'new-application' };
       const spiedResumeSession = jest.spyOn(instance, 'resumeSession');
       instance.saveValues(req, res, next);
-      expect(req.sessionModel.set).toHaveBeenCalledWith('overwrite-application', true);
       expect(req.sessionModel.set).toHaveBeenCalledWith('application-id', 1);
-      expect(req.sessionModel.set).not.toHaveBeenCalledWith(
-        Object.assign({}, mockApplication.session, mockSavedApplicationProps)
-      );
+      expect(req.sessionModel.set).not.toHaveBeenCalledWith(mockApplication.session);
       expect(req.sessionModel.unset).toHaveBeenCalledWith('application-to-resume');
       expect(spiedResumeSession).not.toHaveBeenCalled();
     });
