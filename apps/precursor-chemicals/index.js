@@ -14,6 +14,7 @@ const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const LogoutOnConfigure = require('../common/behaviours/logout-on-configure');
 
 const steps = {
 
@@ -520,6 +521,7 @@ const steps = {
   '/session-timeout': {},
 
   '/save-and-exit': {
+    behaviours: [LogoutOnConfigure],
     backLink: false
   }
 };
