@@ -28,7 +28,8 @@ module.exports = {
       '/licensee-type',
       '/information-you-have-given-us',
       '/application-submitted',
-      '/save-and-exit'
+      '/save-and-exit',
+      '/session-timeout'
     ]
   },
   saveService: {
