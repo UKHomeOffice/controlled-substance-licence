@@ -15,6 +15,7 @@ const FileDownload = require('../common/behaviours/file-download');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
 
 const steps = {
 
@@ -484,6 +485,7 @@ const steps = {
   },
 
   '/trading-reasons': {
+    behaviours: [FilterSelectFieldOptions('aggregated-trading-reasons', 'trading-reasons')],
     fields: ['trading-reasons'],
     forks: [
       {
