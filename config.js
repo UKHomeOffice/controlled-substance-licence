@@ -92,11 +92,22 @@ module.exports = {
   },
   keycloak: {
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
+    keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
       password: process.env.FILE_VAULT_PASSWORD,
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
+    },
+    userAuthClient: {
+      clientId: process.env.USER_AUTH_CLIENT_ID,
+      secret: process.env.USER_AUTH_CLIENT_SECRET,
+      allowedUserRole: process.env.USER_AUTH_ALLOWED_ROLE
+    },
+    adminClient: {
+      clientId: process.env.ADMIN_CLIENT_ID,
+      secret: process.env.ADMIN_CLIENT_SECRET
     }
   },
   aggregateLimits: {
@@ -106,5 +117,6 @@ module.exports = {
     controlledDrugs: {
       tradingReasonsLimit: 5
     }
-  }
+  },
+  wizardSessionKeyPrefix: 'hof-wizard'
 };
