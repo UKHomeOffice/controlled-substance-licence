@@ -115,4 +115,16 @@ describe('AuthCheck Behaviour', () => {
     expect(auth.authorisedUserRole).toHaveBeenCalledWith(req.session['hof-wizard-common'].auth_tokens.access_token);
     expect(next).toHaveBeenCalled();
   });
+
+  it('should throw an error if new tokens cannot be refreshed', async () => {
+    auth.validateAccessToken.mockReturnValue({ isAccessTokenValid: false, invalidTokenReason: 'expired' });
+    auth.getFreshTokens.mockResolvedValue(null);
+
+    await instance.configure(req, res, next);
+
+    expect(req.log).toHaveBeenCalledWith('info', 'Access token expired. Attempting to refresh token...');
+    expect(req.log).toHaveBeenCalledWith('error', 'Failed to refresh tokens');
+    expect(resetAllSessions).toHaveBeenCalled();
+    expect(res.redirect).toHaveBeenCalledWith('/sign-in');
+  });
 });
