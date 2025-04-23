@@ -1,8 +1,13 @@
 const hof = require('hof');
 const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
+const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const parseAggregateSummary = require('./behaviours/parse-aggregate-summary');
+const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const CustomRedirect = require('./behaviours/custom-redirect');
 
 const steps = {
 
@@ -77,11 +82,44 @@ const steps = {
   },
 
   '/business-type': {
+    behaviours: [FilterSelectFieldOptions('aggregated-business-type', 'business-type')],
+    fields: ['business-type'],
+    forks: [
+      {
+        target: '/other-business-type',
+        condition: req => Array.isArray(req.sessionModel.get('business-type')) ?
+          req.sessionModel.get('business-type').includes('other') :
+          req.sessionModel.get('business-type') === 'other'
+      }
+    ],
+    next: '/business-type-summary'
+  },
+
+  '/other-business-type': {
+    fields: ['other-business-type'],
     next: '/business-type-summary'
   },
 
   '/business-type-summary': {
-    next: '/company-type'
+    behaviours: [
+      LoopAggregator,
+      SetSummaryReferrer,
+      parseAggregateSummary,
+      CustomRedirect
+    ],
+    aggregateTo: 'aggregated-business-type',
+    aggregateFrom: [
+      'business-type',
+      'other-business-type'
+    ],
+    titleField: 'business-type',
+    addStep: 'business-type',
+    template: 'business-type-summary',
+    backLink: 'business-type',
+    next: '/company-type',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/company-type': {
@@ -103,22 +141,22 @@ const steps = {
     next: '/mhra-licences'
   },
 
-  '/mhra-licences': {
-    next: '/confirm'
-  },
-
   '/upload-company-certificate': {
     behaviours: [
       SaveDocument('company-registration-certificate', 'file-upload'),
       RemoveDocument('company-registration-certificate')
     ],
     fields: ['file-upload'],
-    next: '/confirm',
+    next: '/mhra-licences',
     locals: {
       documentCategory: {
         name: 'company-registration-certificate'
       }
     }
+  },
+
+  '/mhra-licences': {
+    next: '/confirm'
   },
 
   '/confirm': {
@@ -146,6 +184,7 @@ module.exports = {
   baseUrl: '/registration',
   fields: 'apps/registration/fields',
   translations: 'apps/registration/translations',
+  confirmStep: '/confirm',
   params: '/:action?/:id?/:edit?',
   steps: steps
 };

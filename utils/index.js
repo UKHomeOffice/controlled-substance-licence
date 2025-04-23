@@ -43,13 +43,15 @@ const translateOption = (req, field, value) => {
  * formatDate('2023-10-23'); // returns '23 October 2023'
  */
 const formatDate = date => {
-  try {
-    const dateObj = new Date(date);
-    return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
-  } catch (error) {
-    logger.warn('Warning: Failed to format date', error);
-    return undefined;
+  if (date) {
+    try {
+      const dateObj = new Date(date);
+      return new Intl.DateTimeFormat(config.dateLocales, config.dateFormat).format(dateObj);
+    } catch (error) {
+      logger.warn('Warning: Failed to format date', error);
+    }
   }
+  return undefined;
 };
 
 /**
@@ -192,6 +194,31 @@ const clearExpiredApplictions = async (table, submitStatus, dateType, days, peri
 };
 
 /**
+ * Get an array of selected field options, excluding the 'other' option
+ *
+ * @param {object} req - The request object used to access aggregated field values from sessionModel.
+ * @param {string} aggregateField - The name of the aggregate field array.
+ * @param {string} fieldToFilter - This representing the name of the field to filter the select options.
+ * @param {array} selectedOptions - Contains the values of the aggregate field array.
+ * @param {array} fieldOptionsToFilter - Contains the filtered field options excluding 'Other'.
+ * @returns {Array} - An array of field values that need to be filtered from the main options.
+ */
+const getFieldValuesToFilter = (req, aggregateField, fieldToFilter) => {
+  const fieldOptionsToFilter = [];
+  if (req.sessionModel.get(aggregateField)?.aggregatedValues.length > 0) {
+    const selectedOptions = req.sessionModel.get(aggregateField);
+    selectedOptions.aggregatedValues.forEach(item => {
+      item.fields.forEach(field => {
+        if (field.field === fieldToFilter && field.value !== 'other') {
+          fieldOptionsToFilter.push(field.value);
+        }
+      });
+    });
+  }
+  return fieldOptionsToFilter;
+};
+
+/**
  * Resets all session data for keys in `req.session` that start with the 'hof-wizard' prefix.
  * This is useful for clearing wizard-related session data while leaving other session data intact.
  *
@@ -224,5 +251,6 @@ module.exports = {
   findSatisfiedForkCondition,
   generateErrorMsg,
   clearExpiredApplictions,
+  getFieldValuesToFilter,
   resetAllSessions
 };
