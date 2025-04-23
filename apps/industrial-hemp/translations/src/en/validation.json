@@ -199,6 +199,7 @@
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded",
     "aerialPhotosUploadLimit" : "You may not add more than {{aerialPhotosUploadLimit}} file(s)",
+    "recordKeepingDocumentLimit" : "You may not add more than {{recordKeepingDocumentLimit}} file(s)",
     "aerial-photos-upload": {
       "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
     }
