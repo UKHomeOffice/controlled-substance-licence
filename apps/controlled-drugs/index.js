@@ -511,7 +511,7 @@ const steps = {
       LoopAggregator,
       LimitItems,
       SetSummaryReferrer,
-      ParseTradingReasonsSummary,
+      ParseTradingReasonsSummary
     ],
     aggregateTo: 'aggregated-trading-reasons',
     aggregateFrom: [
@@ -626,7 +626,8 @@ const steps = {
       {
         target: '/site-owner-contact-details',
         condition: req => {
-          return req.sessionModel.get('status-of-site') === 'rented' || req.sessionModel.get('status-of-site') === 'leased'
+          return req.sessionModel.get('status-of-site') === 'rented' ||
+            req.sessionModel.get('status-of-site') === 'leased';
         }
       }
     ],

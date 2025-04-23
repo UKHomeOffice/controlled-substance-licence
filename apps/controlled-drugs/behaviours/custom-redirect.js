@@ -132,12 +132,12 @@ module.exports = superclass => class extends superclass {
       ].some(Boolean);
 
       if (
-          req.sessionModel.get('referred-by-information-given-summary') &&
-          !findSatisfiedForkCondition(req, req.form.options.forks)
-        ) {
-          if (!isContinueOnEdit || redirectChecks) {
-            return res.redirect(`${formApp}/information-you-have-given-us`);
-          }
+        req.sessionModel.get('referred-by-information-given-summary') &&
+        !findSatisfiedForkCondition(req, req.form.options.forks)
+      ) {
+        if (!isContinueOnEdit || redirectChecks) {
+          return res.redirect(`${formApp}/information-you-have-given-us`);
+        }
       }
 
       if (req.sessionModel.get('referred-by-summary') || redirectChecks) {

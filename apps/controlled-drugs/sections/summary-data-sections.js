@@ -579,7 +579,7 @@ module.exports = {
         field: 'schedule-1-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-1-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -587,7 +587,7 @@ module.exports = {
         field: 'schedule-2-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-2-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -595,7 +595,7 @@ module.exports = {
         field: 'schedule-3-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-3-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -603,7 +603,7 @@ module.exports = {
         field: 'schedule-4-part-1-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-4-part-1-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -611,7 +611,7 @@ module.exports = {
         field: 'schedule-4-part-2-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-4-part-2-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -619,7 +619,7 @@ module.exports = {
         field: 'schedule-5-activities',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/schedule-5-activities') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
@@ -634,7 +634,7 @@ module.exports = {
         field: 'security-features',
         parse: (list, req) => {
           return req.sessionModel.get('steps').includes('/security-features') ?
-            parseCheckboxes(list, req) : null
+            parseCheckboxes(list, req) : null;
         }
       },
       {
