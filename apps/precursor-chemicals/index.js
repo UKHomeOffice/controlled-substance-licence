@@ -15,6 +15,7 @@ const InformationYouHaveGivenUs = require('../common/behaviours/information-you-
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const LogoutOnConfigure = require('../common/behaviours/logout-on-configure');
+const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
 
 const steps = {
 
@@ -518,7 +519,9 @@ const steps = {
     clearSession: true
   },
 
-  '/session-timeout': {},
+  '/session-timeout': {
+    behaviours: [SetTimeoutMessage]
+  },
 
   '/save-and-exit': {
     behaviours: [LogoutOnConfigure],

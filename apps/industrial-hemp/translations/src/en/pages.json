@@ -53,6 +53,9 @@
     "header": "Upload aerial photos and site maps",
     "intro": "Upload a document containing aerial photos and site maps relating to the information supplied in the previous question."
   },
+  "session-timeout" : {
+    "header": "You have been signed out"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {

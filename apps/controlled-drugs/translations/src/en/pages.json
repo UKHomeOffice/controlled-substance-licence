@@ -130,6 +130,10 @@
     "confirmed": "Application submitted"
   },
 
+  "session-timeout" : {
+    "header": "You have been signed out"
+  },
+
   "confirm": {
     "header": "Check your answers",
     "sections": {

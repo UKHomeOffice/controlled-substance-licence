@@ -4,5 +4,8 @@
   },
   "sign-in": {
     "header": "Sign in to apply for a domestic licence to produce, supply or possess controlled drugs"
+  },
+  "session-timeout" : {
+    "header": "You have been signed out"
   }
 }

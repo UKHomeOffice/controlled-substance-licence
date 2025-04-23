@@ -1,3 +1,5 @@
+const SetTimeoutMessage = require('./behaviours/set-timeout-message');
+
 const steps = {
   '/': {
     next: '/sign-in',
@@ -28,7 +30,9 @@ const steps = {
     next: '/industrial-hemp/application-type'
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {
+    behaviours: [SetTimeoutMessage]
+  }
 };
 
 module.exports = {

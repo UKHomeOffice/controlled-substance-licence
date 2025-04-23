@@ -5,6 +5,7 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
 
 const steps = {
   /** Start of journey */
@@ -457,7 +458,9 @@ const steps = {
     sections: require('./sections/summary-data-sections')
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {
+    behaviours: [SetTimeoutMessage]
+  }
 };
 
 module.exports = {

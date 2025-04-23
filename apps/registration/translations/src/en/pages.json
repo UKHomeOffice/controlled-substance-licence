@@ -24,6 +24,9 @@
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
   },
+  "session-timeout" : {
+    "header": "You have been signed out"
+  },
 
   "confirm": {
     "header": "Check your answers before submitting your registration",

@@ -13,6 +13,8 @@ const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
 const FileDownload = require('../common/behaviours/file-download');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
+const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
+
 
 const steps = {
 
@@ -899,7 +901,9 @@ const steps = {
     ]
   },
 
-  '/session-timeout': {}
+  '/session-timeout': {
+    behaviours: [SetTimeoutMessage]
+  }
 };
 
 module.exports = {

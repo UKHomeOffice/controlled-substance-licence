@@ -112,6 +112,10 @@
     "header": "We saved your application and signed you out"
   },
 
+  "session-timeout": {
+    "header": "You have been signed out"
+  },
+
   "confirm": {
     "sections": {
       "background-information": {
