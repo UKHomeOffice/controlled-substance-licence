@@ -183,8 +183,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 2 },
-      { type: 'maxlength', arguments: 250 },
-      'alphanum'
+      { type: 'maxlength', arguments: 250 }
     ],
     className: ['govuk-input', 'govuk-!-width-three-quarters']
   }
