@@ -24,12 +24,12 @@
     "value": "clinical-trials"
   },
   {
-    "label": "Doctors' deputising service/other healthcare services (for example, out of hours GP)",
+    "label": "Doctor deputising service or other healthcare services (for example, out of hours GP)",
     "value": "doctors-deputising-other-healthcare-services"
   },
   {
-    "label": "Dog training or handling",
-    "value": "dog-training-handling"
+    "label": "Dog handler or trainer",
+    "value": "dog-handler-trainer"
   },
   {
     "label": "Drug research and development",
@@ -108,24 +108,24 @@
     "value": "research-non-university-for-in-vitro"
   },
   {
-    "label": "Research (non-university) for In Vitro Human",
-    "value": "research-non-university-for-in-vitro-human"
+    "label": "Research (non-university) for In Vivo Human",
+    "value": "research-non-university-for-in-vivo-human"
   },
   {
-    "label": "Research (non-university) for in Vitro Animal",
-    "value": "research-non-university-for-in-vitro-animal"
+    "label": "Research (non-university) for in Vivo Animal",
+    "value": "research-non-university-for-in-vivo-animal"
   },
   {
     "label": "Research (university) for In Vitro",
     "value": "research-university-for-in-vitro"
   },
   {
-    "label": "Research (university) for In Vitro Human",
-    "value": "research-university-for-in-vitro-human"
+    "label": "Research (university) for In Vivo Human",
+    "value": "research-university-for-in-vivo-human"
   },
   {
-    "label": "Research (university) for In Vitro Animal",
-    "value": "research-university-for-in-vitro-animal"
+    "label": "Research (university) for In Vivo Animal",
+    "value": "research-university-for-in-vivo-animal"
   },
   {
     "label": "Substance misuse service",

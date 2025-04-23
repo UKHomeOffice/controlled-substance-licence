@@ -50,7 +50,6 @@
   "legal-identity-changed": {
     "required": "Select if your legal identity has changed in the last 3 years"
   },
-
   "previously-held-licence": {
     "required": "Select if you held a controlled drugs licence under your previous legal identity"
   },
@@ -72,6 +71,15 @@
     "date": "Enter a real date",
     "before": "Date the previous licence was issued must be in the past",
     "after": "Date when the previous licence was issued must be within the last 100 years"
+  },
+  "business-type": {
+    "required": "Enter a business type"
+  },
+  "other-business-type": {
+    "required": "Enter your specific business type",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Business type must be between 2 and 250 characters",
+    "maxlength": "Business type must be between 2 and 250 characters"
   },
   "company-type": {
     "required": "Select your organisation's company type"
