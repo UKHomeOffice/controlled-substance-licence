@@ -1,0 +1,13 @@
+{{<partials-page}}
+  {{$page-content}}
+    {{#timedOutSavedApplication}}
+      {{#markdown}}session-timeout-saved{{/markdown}}
+    {{/timedOutSavedApplication}}
+    {{^timedOutSavedApplication}}
+      {{#markdown}}session-timeout{{/markdown}}
+    {{/timedOutSavedApplication}}
+    <a href="/licence-type" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      {{#t}}buttons.sign-in-again{{/t}}
+    </a>
+  {{/page-content}}
+{{/partials-page}}
