@@ -1,15 +1,15 @@
+const Auth = require('./behaviours/auth/auth-check');
+const SignIn = require('./behaviours/auth/sign-in');
+const SignOut = require('./behaviours/auth/sign-out');
 const SetTimeoutMessage = require('./behaviours/set-timeout-message');
 
 const steps = {
   '/': {
-    next: '/sign-in',
+    next: '/licence-type',
     template: 'start'
   },
-  '/sign-in': {
-    fields: ['username', 'password'],
-    next: '/licence-type'
-  },
   '/licence-type': {
+    behaviours: [ Auth ],
     fields: ['licence-type'],
     forks: [
       {
@@ -29,7 +29,15 @@ const steps = {
     ],
     next: '/industrial-hemp/application-type'
   },
-
+  '/sign-in': {
+    behaviours: [ SignIn ],
+    fields: ['username', 'password'],
+    next: '/licence-type'
+  },
+  '/signed-in-successfully': {
+    behaviours: [ Auth, SignOut ],
+    next: '/licence-type'
+  },
   '/session-timeout': {
     behaviours: [SetTimeoutMessage]
   }

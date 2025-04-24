@@ -13,8 +13,8 @@ const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
 const FileDownload = require('../common/behaviours/file-download');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
+const Auth = require('../common/behaviours/auth/auth-check');
 const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
-
 
 const steps = {
 
@@ -914,5 +914,6 @@ module.exports = {
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/confirm',
-  steps: steps
+  steps: steps,
+  behaviours: [ Auth ]
 };

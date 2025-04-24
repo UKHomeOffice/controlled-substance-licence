@@ -5,6 +5,9 @@
   "sign-in": {
     "header": "Sign in to apply for a domestic licence to produce, supply or possess controlled drugs"
   },
+  "signed-in-successfully": {
+    "header": "Signed in successfully"
+  },
   "session-timeout" : {
     "header": "You have been signed out"
   }
