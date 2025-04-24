@@ -117,6 +117,7 @@
     "label": "Licence type"
   },
   "mhra-licence-date-of-issue": {
-    "legend": "Date of issue"
+    "legend": "Date issued",
+    "hint": "For example, 27 3 2019"
   }
 }

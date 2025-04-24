@@ -207,7 +207,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['2008-12-31'] }
+      { type: 'after', arguments: ['1925-01-01'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'

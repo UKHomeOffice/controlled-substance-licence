@@ -22,7 +22,8 @@
   },
 
   "mhra-licence-details": {
-    "header": "Licence details"
+    "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
+    "pageTitle": "MHRA licence details"
   },
 
   "confirm": {
