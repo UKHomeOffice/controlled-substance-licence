@@ -394,5 +394,9 @@
   },
   "cultivation-field-details": {
     "label": "Details of the fields you plan to cultivate low THC cannabis in"
+  },
+  "record-keeping-details": {
+    "label": "Provide details of your record keeping",
+    "hint": "For example, seed type, date sown, crop failure"
   }
 }

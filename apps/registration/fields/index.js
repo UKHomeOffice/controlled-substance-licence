@@ -177,9 +177,14 @@ module.exports = {
     className: ['govuk-!-width-one-half']
   },
   'other-business-type': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: 500 }, 'notUrl'],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    isPageHeading: true
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-three-quarters']
   }
 };
