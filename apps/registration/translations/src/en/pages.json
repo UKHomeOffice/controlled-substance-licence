@@ -30,6 +30,11 @@
     "message-2": "We did this to keep your information secure."
   },
 
+  "mhra-licence-details": {
+    "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
+    "pageTitle": "MHRA licence details"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {
@@ -63,13 +68,25 @@
         "label": "Previous licence date issued"
       },
       "aggregated-business-type": {
-        "label": "What your business does"
+        "label": "What your business does?"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
       "describe-business-model": {
         "label": "Your business model"
+      },
+      "has-any-licence-issued-by-mhra": {
+        "label": "Any licences issued by MHRA?"
+      },
+      "mhra-licence-number": {
+        "label": "MHRA licence number"
+      },
+      "mhra-licence-type": {
+        "label": "MHRA licence type"
+      },
+      "mhra-licence-date-of-issue": {
+        "label": "MHRA licence date of issue"
       }
     }
   }

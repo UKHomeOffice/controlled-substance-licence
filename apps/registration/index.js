@@ -156,6 +156,29 @@ const steps = {
   },
 
   '/mhra-licences': {
+    fields: ['has-any-licence-issued-by-mhra'],
+    forks: [
+      {
+        target: '/care-quality-commission-or-equivalent',
+        condition: {
+          field: 'has-any-licence-issued-by-mhra',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/mhra-licence-details'
+  },
+
+  '/mhra-licence-details': {
+    fields: [
+      'mhra-licence-number',
+      'mhra-licence-type',
+      'mhra-licence-date-of-issue'
+    ],
+    next: '/care-quality-commission-or-equivalent'
+  },
+
+  '/care-quality-commission-or-equivalent': {
     next: '/confirm'
   },
 

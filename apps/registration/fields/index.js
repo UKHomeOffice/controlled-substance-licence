@@ -177,9 +177,63 @@ module.exports = {
     className: ['govuk-!-width-one-half']
   },
   'other-business-type': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: 500 }, 'notUrl'],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    isPageHeading: true
-  }
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-three-quarters']
+  },
+  'has-any-licence-issued-by-mhra': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'mhra-licence-number': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 3 },
+      { type: 'maxlength', arguments: 50 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'mhra-licence-type': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'mhra-licence-date-of-issue': dateComponent('mhra-licence-date-of-issue', {
+    mixin: 'input-date',
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] },
+      { type: 'after', arguments: ['1925-01-01'] }
+    ],
+    legend: {
+      className: 'govuk-!-margin-bottom-4'
+    }
+  })
 };
