@@ -186,6 +186,24 @@
       },
       "record-keeping-document":{
         "label": "Images of record keeping documents"
+      },
+      "seed-supplier-details":{
+        "label": "Details of seed suppliers"
+      },
+      "customer-base-details":{
+        "label": "Details of customer base"
+      },
+      "end-product-details":{
+        "label": "Details of end products"
+      },
+      "end-product-production-details":{
+        "label": "How you produce your end products"
+      },
+      "seed-type-details":{
+        "label": "Details of seed types used to grow low THC cannabis"
+      },
+      "thc-content-level":{
+        "label": "THC content level"
       }
     }
   }
