@@ -9,6 +9,8 @@
     "header": "Signed in successfully"
   },
   "session-timeout" : {
-    "header": "You have been signed out"
+    "header": "You have been signed out",
+    "message-1": "We signed you out because you did not do anything for 30 minutes.",
+    "message-2": "You must sign in again to continue your application."
   }
 }

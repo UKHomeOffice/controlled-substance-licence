@@ -25,7 +25,9 @@
     "intro": "Upload a scanned copy of your company registration certificate."
   },
   "session-timeout" : {
-    "header": "You have been signed out"
+    "header": "You have been signed out",
+    "message-1": "We have reset your answers because you did not do anything for 30 minutes.",
+    "message-2": "We did this to keep your information secure."
   },
 
   "confirm": {
