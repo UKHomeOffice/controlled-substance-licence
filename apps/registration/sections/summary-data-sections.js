@@ -139,7 +139,7 @@ module.exports = {
         step: '/mhra-licence-details',
         field: 'mhra-licence-date-of-issue',
         parse: value => value ? formatDate(value) : null
-      },
+      }
     ]
   }
 };

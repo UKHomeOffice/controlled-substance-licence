@@ -155,7 +155,7 @@ const steps = {
     }
   },
 
-'/mhra-licences': {
+  '/mhra-licences': {
     fields: ['has-any-licence-issued-by-mhra'],
     forks: [
       {
