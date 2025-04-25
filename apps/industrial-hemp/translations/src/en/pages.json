@@ -178,6 +178,9 @@
       "cultivation-field-details": {
         "label": "Details of cultivation fields"
       },
+      "aerial-photos-upload":{
+        "label": "Aerial photos and site maps"
+      },
       "record-keeping-details": {
         "label": "Record keeping details"
       },
