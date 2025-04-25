@@ -394,5 +394,26 @@
   },
   "cultivation-field-details": {
     "label": "Details of the fields you plan to cultivate low THC cannabis in"
+  },
+  "seed-supplier-details": {
+    "label": "Provide details of your seed suppliers",
+    "hint": "Include their names and addresses"
+  },
+  "customer-base-details": {
+    "label": "Provide details of your customer base",
+    "hint": "Include their names, addresses and what end product you will be supplying them with"
+  },
+  "end-product-details": {
+    "label": "Provide details of your end products"
+  },
+  "end-product-production-details": {
+    "label": "Provide details of how you produce your end products"
+  },
+  "seed-type-details": {
+    "label": "Provide details of the seed types you will use to grow low THC cannabis"
+  },
+  "thc-content-level": {
+    "label": "Provide the THC content level",
+    "hint": "This must be lower than 0.2%"
   }
 }

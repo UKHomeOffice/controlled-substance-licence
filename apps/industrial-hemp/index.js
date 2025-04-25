@@ -376,6 +376,10 @@ const steps = {
     next: '/no-licence-needed'
   },
 
+  '/no-licence-needed': {
+    // End of user journey
+  },
+
   '/where-cultivating-cannabis': {
     fields: ['where-cultivating-cannabis'],
     forks: [
@@ -389,6 +393,11 @@ const steps = {
     ],
     next: '/controlled-drugs-licence'
   },
+
+  '/controlled-drugs-licence': {
+    // End of user journey
+  },
+
   '/field-acreage': {
     fields: ['field-acreage'],
     next: '/how-many-fields'
@@ -437,22 +446,70 @@ const steps = {
     next: '/other-operating-businesses'
   },
   '/other-operating-businesses': {
+    next: '/different-postcodes'
+  },
+
+  '/different-postcodes': {
+    next: '/adjacent-to-fields'
+  },
+
+  '/adjacent-to-fields': {
+    next: '/perimeter-details'
+  },
+
+  '/perimeter-details': {
+    next: '/perimeter-images'
+  },
+
+  '/perimeter-images': {
+    next: '/record-keeping-details'
+  },
+
+  '/record-keeping-details': {
+    next: '/record-keeping-document-images'
+  },
+
+  '/record-keeping-document-images': {
+    next: '/seed-supplier-details'
+  },
+
+  '/seed-supplier-details': {
+    fields: ['seed-supplier-details'],
+    next: '/customer-base-details'
+  },
+
+  '/customer-base-details': {
+    fields: ['customer-base-details'],
+    next: '/end-product-details'
+  },
+
+  '/end-product-details': {
+    fields: ['end-product-details'],
+    next: '/end-product-production'
+  },
+
+  '/end-product-production': {
+    fields: ['end-product-production-details'],
+    next: '/seed-type-details'
+  },
+
+  '/seed-type-details': {
+    fields: ['seed-type-details'],
+    next: '/thc-content-level'
+  },
+
+  '/thc-content-level': {
+    fields: ['thc-content-level'],
+    next: '/invoicing-address'
+  },
+
+  '/invoicing-address': {
     next: '/confirm'
   },
-  '/no-licence-needed': {
-    // End of user journey
-  },
-
-  '/controlled-drugs-licence': {
-    // End of user journey
-  },
-
 
   /** Continue an application */
 
-  /** Renew existing licence - Background Information */
 
-  /** Existing licence apply for new site - Background Information */
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
