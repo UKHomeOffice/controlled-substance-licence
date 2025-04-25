@@ -5,6 +5,7 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
   /** Start of journey */
@@ -375,6 +376,10 @@ const steps = {
     next: '/no-licence-needed'
   },
 
+  '/no-licence-needed': {
+    // End of user journey
+  },
+
   '/where-cultivating-cannabis': {
     fields: ['where-cultivating-cannabis'],
     forks: [
@@ -388,21 +393,41 @@ const steps = {
     ],
     next: '/controlled-drugs-licence'
   },
+
+  '/controlled-drugs-licence': {
+    // End of user journey
+  },
+
   '/field-acreage': {
     fields: ['field-acreage'],
     next: '/how-many-fields'
   },
+
   '/how-many-fields': {
     fields: ['how-many-fields'],
     next: '/cultivation-field-details'
   },
+
   '/cultivation-field-details': {
     fields: ['cultivation-field-details'],
     next: '/aerial-photos-and-maps'
   },
+
   '/aerial-photos-and-maps': {
+    behaviours: [
+      SaveDocument('aerial-photos-upload', 'file-upload'),
+      RemoveDocument('aerial-photos-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'aerial-photos-upload',
+        customFileType: true
+      }
+    },
     next: '/company-own-fields'
   },
+
   '/company-own-fields': {
     fields: ['is-company-own-fields'],
     forks: [
@@ -416,31 +441,62 @@ const steps = {
     ],
     next: '/who-owns-fields'
   },
+
   '/who-owns-fields': {
     fields: ['who-own-fields'],
     next: '/permission-for-intended-activities'
   },
+
   '/permission-for-intended-activities': {
     fields: ['is-permission-for-activities'],
     next: '/other-operating-businesses'
   },
+
   '/other-operating-businesses': {
+    next: '/different-postcodes'
+  },
+
+  '/different-postcodes': {
+    next: '/adjacent-to-fields'
+  },
+
+  '/adjacent-to-fields': {
+    next: '/perimeter-details'
+  },
+
+  '/perimeter-details': {
+    next: '/perimeter-images'
+  },
+
+  '/perimeter-images': {
+    next: '/record-keeping-details'
+  },
+
+  '/record-keeping-details': {
+    fields: ['record-keeping-details'],
+    next: '/record-keeping-document-images'
+  },
+
+  '/record-keeping-document-images': {
+    behaviours: [
+      SaveDocument('record-keeping-document', 'file-upload'),
+      RemoveDocument('record-keeping-document')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'record-keeping-document'
+      }
+    },
+    next: '/seed-supplier-details'
+  },
+
+  '/seed-supplier-details': {
     next: '/confirm'
   },
-  '/no-licence-needed': {
-    // End of user journey
-  },
-
-  '/controlled-drugs-licence': {
-    // End of user journey
-  },
-
 
   /** Continue an application */
 
-  /** Renew existing licence - Background Information */
-
-  /** Existing licence apply for new site - Background Information */
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
@@ -456,5 +512,6 @@ module.exports = {
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
   steps: steps,
-  confirmStep: '/confirm'
+  confirmStep: '/confirm',
+  behaviours: [ Auth ]
 };

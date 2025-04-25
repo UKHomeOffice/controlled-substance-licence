@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const businessTypeOptions = require('../data/business-type.json');
 
 module.exports = {
   'company-name': {
@@ -163,6 +164,28 @@ module.exports = {
     isPageHeading: true,
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
+  },
+  'business-type': {
+    mixin: 'select',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.business-type.options.none_selected'
+    }].concat(businessTypeOptions),
+    showFieldInSummary: true,
+    className: ['govuk-!-width-one-half']
+  },
+  'other-business-type': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-three-quarters']
   },
   'has-any-licence-issued-by-mhra': {
     mixin: 'radio-group',

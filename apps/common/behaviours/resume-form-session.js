@@ -60,7 +60,8 @@ module.exports = superclass => class extends superclass {
   saveValues(req, res, next) {
     const resumeApplication = req.form.values['application-form-type'] === 'continue-an-application';
     const applicationToResume = req.sessionModel.get('application-to-resume');
-    if (resumeApplication && applicationToResume) {
+
+    if (applicationToResume && resumeApplication) {
       try {
         this.resumeSession(req, applicationToResume);
       } catch (error) {
@@ -70,19 +71,27 @@ module.exports = superclass => class extends superclass {
         return next(error);
       }
     }
-    req.sessionModel.unset('application-to-resume');
+
+    if (applicationToResume) {
+      req.sessionModel.set('application-id', applicationToResume.id);
+      req.sessionModel.unset('application-to-resume');
+    }
+
     return super.saveValues(req, res, next);
   }
 
   resumeSession(req, application) {
     req.log('info', `Resuming Form Session: ${application.id}`);
 
-    const savedApplicationProps = {
-      'application-id': application.id
-    };
-
     const session = typeof application.session === 'string' ? JSON.parse(application.session) : application.session;
 
-    req.sessionModel.set(Object.assign({}, session, savedApplicationProps));
+    req.sessionModel.set(session);
+  }
+
+  successHandler(req, res, next) {
+    if (req.form.values['application-form-type'] === 'continue-an-application') {
+      return res.redirect(`${req.baseUrl}/information-you-have-given-us`);
+    }
+    return super.successHandler(req, res, next);
   }
 };

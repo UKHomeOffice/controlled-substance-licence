@@ -15,7 +15,11 @@
   "previous-licence-details": {
     "header": "Previous licence details"
   },
-
+  "business-type-summary": {
+    "header": "What your business does",
+    "key": "Business type",
+    "otherKey": "Other business type"
+  },
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
@@ -57,6 +61,9 @@
       },
       "previous-licence-date-of-issue": {
         "label": "Previous licence date issued"
+      },
+      "aggregated-business-type": {
+        "label": "What your business does?"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
