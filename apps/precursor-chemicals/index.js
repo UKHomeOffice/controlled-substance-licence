@@ -16,7 +16,6 @@ const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const LogoutOnConfigure = require('../common/behaviours/logout-on-configure');
 const Auth = require('../common/behaviours/auth/auth-check');
-const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
 
 const steps = {
 
@@ -518,10 +517,6 @@ const steps = {
   '/application-submitted': {
     backLink: false,
     clearSession: true
-  },
-
-  '/session-timeout': {
-    behaviours: [SetTimeoutMessage]
   },
 
   '/save-and-exit': {

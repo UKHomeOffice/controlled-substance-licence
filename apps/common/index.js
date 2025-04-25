@@ -1,7 +1,6 @@
 const Auth = require('./behaviours/auth/auth-check');
 const SignIn = require('./behaviours/auth/sign-in');
 const SignOut = require('./behaviours/auth/sign-out');
-const SetTimeoutMessage = require('./behaviours/set-timeout-message');
 
 const steps = {
   '/': {
@@ -37,9 +36,6 @@ const steps = {
   '/signed-in-successfully': {
     behaviours: [ Auth, SignOut ],
     next: '/licence-type'
-  },
-  '/session-timeout': {
-    behaviours: [SetTimeoutMessage]
   }
 };
 

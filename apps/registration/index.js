@@ -198,10 +198,7 @@ const steps = {
   '/registration-submitted': {
     backLink: false,
     clearSession: true
-  },
-
-  '/session-timeout': {}
-
+  }
 };
 
 module.exports = {

@@ -14,7 +14,6 @@ const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-r
 const FileDownload = require('../common/behaviours/file-download');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
 const Auth = require('../common/behaviours/auth/auth-check');
-const SetTimeoutMessage = require('../common/behaviours/set-timeout-message');
 
 const steps = {
 
@@ -899,10 +898,6 @@ const steps = {
     behaviours: [
       FileDownload('/assets/documents', 'controlled-drugs-activity-user-list.xlsx')
     ]
-  },
-
-  '/session-timeout': {
-    behaviours: [SetTimeoutMessage]
   }
 };
 
