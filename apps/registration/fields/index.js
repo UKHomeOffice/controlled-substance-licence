@@ -196,8 +196,8 @@ module.exports = {
     validate: [
       'required',
       'notUrl',
-      { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 50 }
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },

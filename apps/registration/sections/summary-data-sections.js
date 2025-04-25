@@ -112,19 +112,17 @@ module.exports = {
       },
       {
         step: '/mhra-licence-details',
-        field: 'mhra-licence-details',
-        parse: (val, req) => {
-          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
-            return null;
-          }
-          const mhraLicenceDetails = [
-            req.sessionModel.get('mhra-licence-number'),
-            req.sessionModel.get('mhra-licence-type'),
-            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
-          ];
-          return mhraLicenceDetails.join('\n');
-        }
-      }
+        field: 'mhra-licence-number'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-type'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-date-of-issue',
+        parse: value => value ? formatDate(value) : null
+      },
     ]
   }
 };

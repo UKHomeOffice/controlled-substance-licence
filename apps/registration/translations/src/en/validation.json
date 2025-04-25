@@ -91,7 +91,7 @@
     "isDuplicateFileName": "A file with this name was already uploaded"
   },
   "has-any-licence-issued-by-mhra": {
-    "required": "Select if you have any licences issued by the Medicines and Healthcare Products Regulatory Agency"
+    "required": "Select if your business possesses any licences issued by the MHRA"
   },
   "mhra-licence-number": {
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence number",
@@ -106,9 +106,9 @@
     "notUrl": "Your answer must not contain URLs or links"
   },
   "mhra-licence-date-of-issue": {
-    "required": "Enter the MHR licence date of issue",
-    "date": "Enter a real date of issue",
-    "before": "MHRA licence date of issue must be in the past",
-    "after": "MHRA licence date of issue must be on or after 01 January 2009"
+    "required": "Enter the date the MHRA licence was issued",
+    "date": "Enter a real date when the MHRA licence was issued",
+    "before": "Date MHRA licence was issued must be in the past",
+    "after": "MHRA licence must have been issued within the last 100 years"
   }
 }

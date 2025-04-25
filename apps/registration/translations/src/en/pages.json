@@ -67,8 +67,14 @@
       "has-any-licence-issued-by-mhra": {
         "label": "Any licences issued by MHRA?"
       },
-      "mhra-licence-details": {
-        "label": "Licence holder details"
+      "mhra-licence-number": {
+        "label": "MHRA licence number"
+      },
+      "mhra-licence-type": {
+        "label": "MHRA licence type"
+      },
+      "mhra-licence-date-of-issue": {
+        "label": "MHRA licence date of issue"
       }
     }
   }
