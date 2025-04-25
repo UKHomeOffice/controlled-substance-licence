@@ -1,13 +1,14 @@
-{{<partials-page}}
-  {{$page-content}}
-    {{#timedOutSavedApplication}}
-      {{#markdown}}session-timeout-saved{{/markdown}}
-    {{/timedOutSavedApplication}}
-    {{^timedOutSavedApplication}}
-      {{#markdown}}session-timeout{{/markdown}}
-    {{/timedOutSavedApplication}}
-    <a href="/licence-type" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      {{#t}}buttons.sign-in-again{{/t}}
+{{<error}}
+  {{$pageTitle}}
+    {{#t}}pages.session-timeout.header{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+
+  {{$content}}
+    <h1 class="govuk-heading-l">{{#t}}pages.session-timeout.header{{/t}}</h1>
+    <p class="govuk-body">{{#t}}pages.session-timeout.message-1{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.session-timeout.message-2{{/t}}</p>
+    <a href="{{startLink}}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
+      {{#t}}buttons.session-timeout-start-again{{/t}}
     </a>
-  {{/page-content}}
-{{/partials-page}}
+  {{/content}}
+{{/error}}
