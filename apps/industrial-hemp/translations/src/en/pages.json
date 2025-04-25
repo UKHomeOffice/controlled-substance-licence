@@ -56,24 +56,13 @@
   "record-keeping-document-images": {
     "header": "Upload images of your record keeping documents"
   },
-  "invoicing-address": {
-    "header": "Invoicing address"
+  "other-businesses-details": {
+    "header": "Details of businesses adjacent to or operating from your cultivation site"
   },
-  "invoicing-contact-details": {
-    "header": "Invoicing contact details"
-  },
-  "who-completing-application": {
-    "header": "Who is completing the application?"
-  },
-  "extra-information": {
-    "pageTitle": "Add any extra information to your application"
-  },
-  "perimeter-details": {
-    "header": "Perimeter details"
-  },
-  "perimeter-images": {
-    "header": "Upload images of the perimeters",
-    "intro": "Include images for each perimeter of every field which you intend to cultivate."
+  "other-businesses-summary": {
+    "header": "Businesses adjacent to or operating from your cultivation site",
+    "key": "Business",
+    "business-limit-exceeded": "You can not add any more substances"
   },
   "confirm": {
     "header": "Check your answers",
@@ -224,56 +213,17 @@
       "thc-content-level":{
         "label": "THC content level"
       },
-      "invoicing-address": {
-        "label": "Invoicing address"
+      "other-operating-businesses":{
+        "label": "Any other businesses operating from the cultivation site?"
       },
-      "invoicing-contact-name": {
-        "label": "Invoicing contact name"
+      "own-operating-businesses":{
+        "label": "Own any other businesses operating from the cultivation site?"
       },
-      "invoicing-contact-email": {
-        "label": "Invoicing contact email address"
+      "adjacent-businesses":{
+        "label": "Business adjacent to or operating from your cultivation site"
       },
-      "invoicing-contact-telephone": {
-        "label": "Invoicing contact number"
-      },
-      "invoicing-purchase-order-number": {
-        "label": "Purchase order number"
-      },
-      "licence-email-address": {
-        "label": "Email address for the licence"
-      },
-      "who-is-completing-application-full-name": {
-        "label": "Name of person completing application"
-      },
-      "who-is-completing-application-email": {
-        "label": "Email address of person completing application"
-      },
-      "who-is-completing-application-telephone": {
-        "label": "Contact number of person completing application"
-      },
-      "regulatory-affairs-officer": {
-        "label": "Regulatory affairs and compliance officer to discharge all licence responsibilities?"
-      },
-      "officer-non-compliance-reason": {
-        "label": "Why the officer will not discharge licence responsibilities"
-      },
-      "extra-information": {
-        "label": "Extra information"
-      },
-      "is-different-postcodes": {
-        "label": "Are any of the fields in a different postcode?"
-      },
-      "different-postcode-details": {
-        "label": "Addresses in another postcode"
-      },
-      "adjacent-field-details":{
-        "label": "What is adjacent to the fields you intend to cultivate?"
-      },
-      "perimeter-details": {
-        "label": "Perimeter details"
-      },
-      "perimeter-upload": {
-        "label": "Perimeter images"
+      "other-business-aggregate": {
+        "label" : "Businesses adjacent to or operating from your cultivation site"
       }
     }
   }

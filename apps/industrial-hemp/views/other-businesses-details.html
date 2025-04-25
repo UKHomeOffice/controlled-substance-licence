@@ -1,0 +1,11 @@
+{{<partials-page}}
+  {{$page-content}}
+    <div class="govuk-hint">
+        {{#markdown}}other-businesses{{/markdown}}
+    </div>
+        {{#fields}}
+            {{#renderField}}{{/renderField}}
+        {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

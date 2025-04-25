@@ -714,116 +714,7 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
-  'invoicing-address-line-1': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-address-line-2': {
-    mixin: 'input-text',
-    validate: ['notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-address-town-or-city': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-address-postcode': {
-    mixin: 'input-text',
-    validate: ['required', 'postcode'],
-    formatter: ['ukPostcode'],
-    className: ['govuk-input', 'govuk-input--width-10']
-  },
-  'invoicing-contact-name': {
-    mixin: 'input-text',
-    validate: [
-      'required',
-      'notUrl',
-      { type: 'minlength', arguments: [3] },
-      { type: 'maxlength', arguments: [200] }
-    ],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-contact-email': {
-    mixin: 'input-text',
-    validate: ['required', 'email'],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-contact-telephone': {
-    mixin: 'input-text',
-    validate: ['required'], // additional validation covered in custom-validation.js
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'invoicing-purchase-order-number': {
-    mixin: 'input-text',
-    validate: [
-      'notUrl',
-      { type: 'maxlength', arguments: [250] }
-    ],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'refund-accound-details': {
-    mixin: 'textarea',
-    validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }]
-  },
-  'licence-email-address': {
-    mixin: 'input-text',
-    validate: ['required', 'email'],
-    isPageHeading: true,
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'who-is-completing-application-full-name': {
-    mixin: 'input-text',
-    validate: [
-      'required',
-      'notUrl',
-      { type: 'minlength', arguments: [3] },
-      { type: 'maxlength', arguments: [200] }
-    ],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'who-is-completing-application-email': {
-    mixin: 'input-text',
-    validate: ['required', 'email'],
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'who-is-completing-application-telephone': {
-    mixin: 'input-text',
-    validate: ['required'], // additional validation covered in custom-validation.js
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'regulatory-affairs-officer': {
-    mixin: 'radio-group',
-    isPageHeading: 'true',
-    validate: ['required'],
-    options: [
-      {
-        value: 'yes'
-      },
-      {
-        value: 'no',
-        toggle: 'officer-non-compliance-reason',
-        child: 'textarea'
-      }
-    ]
-  },
-  'officer-non-compliance-reason': {
-    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    dependent: {
-      value: 'no',
-      field: 'regulatory-affairs-officer'
-    }
-  },
-  'extra-information': {
-    mixin: 'textarea',
-    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    isPageHeading: true
-  },
-  'is-different-postcodes': {
+  'is-operating-other-business': {
     mixin: 'radio-group',
     isPageHeading: true,
     validate: [ 'required' ],
@@ -840,22 +731,80 @@ module.exports = {
       className: 'govuk-!-margin-bottom-6'
     }
   },
-  'different-postcode-details': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    isPageHeading: true
+  'is-adjacent-businesses': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   },
-  'adjacent-field-details': {
-    mixin: 'textarea',
-    validate: ['required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 8 }],
-    isPageHeading: true
+  'is-own-other-businesses': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
   },
-  'perimeter-details': {
+  'business-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-type': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-owner': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-involvement': {
     mixin: 'textarea',
-    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    validate: [
+      'required',
+      'notUrl'
+    ],
     attributes: [{ attribute: 'rows', value: 8 }],
-    labelClassName: ['govuk-label--m']
+    showFieldInSummary: true
+  },
+  'ordinance-survey-reference': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
   }
 };
