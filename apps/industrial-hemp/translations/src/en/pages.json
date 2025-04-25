@@ -53,6 +53,9 @@
     "header": "Upload aerial photos and site maps",
     "intro": "Upload a document containing aerial photos and site maps relating to the information supplied in the previous question."
   },
+  "record-keeping-document-images": {
+    "header": "Upload images of your record keeping documents"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -174,6 +177,12 @@
       },
       "cultivation-field-details": {
         "label": "Details of cultivation fields"
+      },
+      "record-keeping-details": {
+        "label": "Record keeping details"
+      },
+      "record-keeping-document":{
+        "label": "Images of record keeping documents"
       },
       "seed-supplier-details":{
         "label": "Details of seed suppliers"

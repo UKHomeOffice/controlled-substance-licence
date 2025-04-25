@@ -672,6 +672,12 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }],
     labelClassName: ['govuk-label--m']
   },
+  'record-keeping-details': {
+    mixin: 'textarea',
+    isPageHeading: true,
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }]
+  },
   'seed-supplier-details': {
     mixin: 'textarea',
     isPageHeading: true,

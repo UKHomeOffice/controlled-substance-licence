@@ -78,6 +78,7 @@
   "other-business-type": {
     "required": "Enter your specific business type",
     "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Business type must be between 2 and 250 characters",
     "maxlength": "Business type must be between 2 and 250 characters"
   },
   "company-type": {
