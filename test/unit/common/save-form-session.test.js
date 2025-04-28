@@ -96,6 +96,7 @@ describe('save-form-session', () => {
         set: jest.fn(),
         toJSON: jest.fn().mockReturnValue(mockSessionAttributes)
       };
+      req.session = {'hof-wizard-common': { 'applicant-id': 1 }};
       req.log = jest.fn();
     });
 

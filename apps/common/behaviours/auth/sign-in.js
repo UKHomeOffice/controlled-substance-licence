@@ -2,39 +2,14 @@
 'use strict';
 
 const auth = require('../../../../utils/auth');
-const { model: Model } = require('hof');
-const config = require('../../../../config');
-const { protocol, host, port } = config.saveService;
-const applicantsUrl = `${protocol}://${host}:${port}/applicants`;
-
-/**
- * Retrieves the applicant ID associated with the given username.
- *
- * @async
- * @param {string} username - The username for which to retrieve the applicant ID.
- * @returns {Promise<string|null|Error>} - Resolves with the applicant ID if found,
- *                                         `null` if no applicant ID is found,
- *                                         or an error object if the request fails.
- */
-async function getApplicantId(username) {
-  try {
-    const hofModel = new Model();
-    const response = await hofModel._request({
-      url: `${applicantsUrl}/username/${username}`,
-      method: 'GET'
-    });
-    return response.data[0]?.applicant_id || null;
-  } catch (error) {
-    return error;
-  }
-}
+const { getApplicantId } = require('../../../../utils/data-service');
 
 module.exports = superclass => class extends superclass {
   async validate(req, res, next) {
     auth.setReq(req);
 
-    const validationErrorFunc = (key, type, args) =>
-      new this.ValidationError(key, { type: type, arguments: [args] });
+    const validationErrorFunc = (key, type) =>
+      new this.ValidationError(key, { type: type});
 
     try {
       const applicantId = await getApplicantId(req.form.values.username);
@@ -50,7 +25,6 @@ module.exports = superclass => class extends superclass {
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token
       });
-
     } catch (error) {
       req.log('error', `Validation failed: ${error.message}`);
 
@@ -62,10 +36,10 @@ module.exports = superclass => class extends superclass {
         password: validationErrorFunc('password', 'authenticationError')
       };
 
-      next(errs);
+      return next(errs);
     }
 
-    next();
+    return next();
   }
 
   saveValues(req, res, next) {

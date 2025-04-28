@@ -2,14 +2,19 @@
 
 const auth = require('../../../utils/auth');
 const SignIn = require('../../../apps/common/behaviours/auth/sign-in');
+const { getApplicantId } = require('../../../utils/data-service');
 
 jest.mock('../../../utils/auth');
+jest.mock('../../../utils/data-service', () => ({
+  getApplicantId: jest.fn()
+}));
 
 describe('SignIn Behaviour', () => {
   let req;
   let res;
   let next;
   let instance;
+  let expectedValidationError;
 
   beforeEach(() => {
     req = {
@@ -21,7 +26,8 @@ describe('SignIn Behaviour', () => {
       },
       sessionModel: {
         set: jest.fn()
-      }
+      },
+      log: jest.fn()
     };
 
     res = {};
@@ -29,9 +35,31 @@ describe('SignIn Behaviour', () => {
     auth.setReq = jest.fn();
     auth.getTokens = jest.fn();
 
-    const Superclass = class {};
+    const Superclass = class {
+      ValidationError = class {
+        constructor(key, options) {
+          this.key = key;
+          this.options = options;
+        }
+      };
+    };
     const SignInClass = SignIn(Superclass);
     instance = new SignInClass();
+
+    expectedValidationError = {
+      username: expect.objectContaining({
+        key: 'username',
+        options: expect.objectContaining({
+          type: 'authenticationError'
+        })
+      }),
+      password: expect.objectContaining({
+        key: 'password',
+        options: expect.objectContaining({
+          type: 'authenticationError'
+        })
+      })
+    };
   });
 
   it('should store tokens in session and call next on successful authentication', async () => {
@@ -39,6 +67,8 @@ describe('SignIn Behaviour', () => {
       access_token: 'access.token',
       refresh_token: 'refresh.token'
     };
+
+    getApplicantId.mockResolvedValue('applicant-123');
 
     auth.getTokens.mockResolvedValue(mockTokens);
 
@@ -51,6 +81,25 @@ describe('SignIn Behaviour', () => {
       refresh_token: 'refresh.token'
     });
     expect(next).toHaveBeenCalled();
+  });
+
+  it('should handle failure to retrieve applicant ID', async () => {
+    getApplicantId.mockResolvedValue(null);
+
+    await instance.validate(req, res, next);
+
+    expect(req.log).toHaveBeenCalledWith('error', 'Validation failed: Failed to retrieve applicant ID');
+    expect(next).toHaveBeenCalledWith(expectedValidationError);
+  });
+
+  it('should handle failure to generate tokens', async () => {
+    getApplicantId.mockResolvedValue('applicant-123');
+    auth.getTokens.mockRejectedValue(new Error('Token generation failed'));
+
+    await instance.validate(req, res, next);
+
+    expect(req.log).toHaveBeenCalledWith('error', 'Validation failed: Token generation failed');
+    expect(next).toHaveBeenCalledWith(expectedValidationError);
   });
 
   it('should call next immediately in saveValues', () => {
