@@ -28,8 +28,6 @@ const steps = {
     ],
     next: '/industrial-hemp/application-type'
   },
-
-  '/session-timeout': {},
   '/sign-in': {
     behaviours: [ SignIn ],
     fields: ['username', 'password'],
