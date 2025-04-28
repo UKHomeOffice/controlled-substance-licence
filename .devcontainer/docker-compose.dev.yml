@@ -75,8 +75,8 @@ services:
       - csl-shared-network
     hostname: hof-postgres
     environment:
-      POSTGRES_USER: postgres
       PGUSER: postgres
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: csl
     volumes:

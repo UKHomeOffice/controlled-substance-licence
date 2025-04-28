@@ -2,7 +2,6 @@
   "session": {
     "title": "You have been signed out",
     "message": "We signed you out because you did not do anything for 30 minutes.",
-    "is-message-2": true,
     "message-2": "You must sign in again to continue your application."
   }
 }
