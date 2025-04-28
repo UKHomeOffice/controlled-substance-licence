@@ -1,12 +1,12 @@
 {{<error}}
   {{$pageTitle}}
-    {{#t}}pages.session-timeout.header{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+    {{#t}}errors.session.title{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
   {{/pageTitle}}
 
   {{$content}}
-    <h1 class="govuk-heading-l">{{#t}}pages.session-timeout.header{{/t}}</h1>
-    <p class="govuk-body">{{#t}}pages.session-timeout.message-1{{/t}}</p>
-    <p class="govuk-body">{{#t}}pages.session-timeout.message-2{{/t}}</p>
+    <h1 class="govuk-heading-l">{{#t}}errors.session.title{{/t}}</h1>
+    <p class="govuk-body">{{#t}}errors.session.message{{/t}}</p>
+    <p class="govuk-body">{{#t}}errors.session.message-2{{/t}}</p>
     <a href="{{startLink}}" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
       {{#t}}buttons.session-timeout-start-again{{/t}}
     </a>

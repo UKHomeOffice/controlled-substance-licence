@@ -1,0 +1,7 @@
+{
+  "session": {
+    "title": "Your session has timed out",
+    "message": "We have reset your answers because you did not do anything for 30 minutes.",
+    "message-2": "We did this to keep your information secure."
+  }
+}
