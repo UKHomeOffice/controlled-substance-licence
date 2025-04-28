@@ -199,7 +199,6 @@ const steps = {
     backLink: false,
     clearSession: true
   }
-
 };
 
 module.exports = {
