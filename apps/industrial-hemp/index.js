@@ -492,6 +492,36 @@ const steps = {
   },
 
   '/seed-supplier-details': {
+    fields: ['seed-supplier-details'],
+    next: '/customer-base-details'
+  },
+
+  '/customer-base-details': {
+    fields: ['customer-base-details'],
+    next: '/end-product-details'
+  },
+
+  '/end-product-details': {
+    fields: ['end-product-details'],
+    next: '/end-product-production'
+  },
+
+  '/end-product-production': {
+    fields: ['end-product-production-details'],
+    next: '/seed-type-details'
+  },
+
+  '/seed-type-details': {
+    fields: ['seed-type-details'],
+    next: '/thc-content-level'
+  },
+
+  '/thc-content-level': {
+    fields: ['thc-content-level'],
+    next: '/invoicing-address'
+  },
+
+  '/invoicing-address': {
     next: '/confirm'
   },
 

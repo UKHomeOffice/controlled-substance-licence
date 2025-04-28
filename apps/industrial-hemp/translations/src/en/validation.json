@@ -292,5 +292,35 @@
     "required": "Enter details of your record keeping",
     "maxlength": "Details of your record keeping must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-supplier-details": {
+    "required": "Enter details of your seed suppliers",
+    "maxlength": "Details of your seed suppliers must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "customer-base-details": {
+    "required": "Enter details of your customer base",
+    "maxlength": "Details of your customer base must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-details": {
+    "required": "Enter details of your end products",
+    "maxlength": "Details of your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-production-details": {
+    "required": "Enter details of how you produce your end products",
+    "maxlength": "Details of how you produce your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-type-details": {
+    "required": "Enter details of the seed types you will use to grow low THC cannabis",
+    "maxlength": "Details of the seed types you will use to grow low THC cannabis must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "thc-content-level": {
+    "required": "Enter the THC content level",
+    "maxlength": "THC content level must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }
