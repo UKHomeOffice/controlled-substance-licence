@@ -522,8 +522,35 @@ const steps = {
   },
 
   '/invoicing-address': {
-    next: '/confirm'
-  },
+      fields: [
+        'invoicing-address-line-1',
+        'invoicing-address-line-2',
+        'invoicing-address-town-or-city',
+        'invoicing-address-postcode'
+      ],
+      next: '/invoicing-contact-details'
+    },
+  
+    '/invoicing-contact-details': {
+      behaviours: [customValidation],
+      fields: [
+        'invoicing-contact-name',
+        'invoicing-contact-email',
+        'invoicing-contact-telephone',
+        'invoicing-purchase-order-number',
+        'refund-accound-details'
+      ],
+      next: '/licence-email-address'
+    },
+  
+    '/licence-email-address': {
+      fields: ['licence-email-address'],
+      next: '/who-completing-application'
+    },
+
+    '/who-completing-application': {
+      next: '/confirm'
+    },
 
   /** Continue an application */
 

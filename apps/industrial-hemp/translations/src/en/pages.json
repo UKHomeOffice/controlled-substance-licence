@@ -56,6 +56,12 @@
   "record-keeping-document-images": {
     "header": "Upload images of your record keeping documents"
   },
+  "invoicing-address": {
+    "header": "Invoicing address"
+  },
+  "invoicing-contact-details": {
+    "header": "Invoicing contact details"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -204,6 +210,24 @@
       },
       "thc-content-level":{
         "label": "THC content level"
+      },
+      "invoicing-address": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-name": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-contact-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-contact-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
+      },
+      "licence-email-address": {
+        "label": "Email address for the licence"
       }
     }
   }
