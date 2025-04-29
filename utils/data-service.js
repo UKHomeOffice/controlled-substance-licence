@@ -24,7 +24,8 @@ async function getApplicantId(username) {
     });
     return response.data[0]?.applicant_id || null;
   } catch (error) {
-    return error;
+    const errorMessage = `Error retrieving applicant ID: ${JSON.stringify(error)}`;
+    throw new Error(errorMessage);
   }
 }
 

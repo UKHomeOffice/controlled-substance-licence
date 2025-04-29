@@ -3,6 +3,7 @@ const Behaviour = require('../../../apps/common/behaviours/save-form-session');
 const reqres = require('hof').utils.reqres;
 const Model = require('hof/model');
 const { generateErrorMsg } = require('../../../utils');
+const config = require('../../../config');
 
 jest.mock('hof/model');
 
@@ -33,6 +34,9 @@ describe('save-form-session', () => {
 
   class Base {
     successHandler() {}
+    locals() {
+      return { existingKey: 'existingValue' };
+    }
   }
 
   let req;
@@ -176,6 +180,36 @@ describe('save-form-session', () => {
       });
       await instance.successHandler(req, res, next);
       expect(next).toHaveBeenCalledWith(new Error('Id not received in response []'));
+    });
+  });
+
+  describe('The \'locals\' method', () => {
+    beforeEach(() => {
+      req.form.options.route = '/application-type';
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+      jest.clearAllMocks();
+    });
+
+    it('should return locals without modifying when the route is in saveExemptList', () => {
+      config.sessionDefaults.saveExemptions = ['/application-type', '/licensee-type'];
+
+      const result = instance.locals(req, res);
+
+      expect(result).toEqual({ existingKey: 'existingValue' });
+    });
+
+    it('should add showSaveAndExit to locals when the route is not in saveExemptList', () => {
+      config.sessionDefaults.saveExemptions = ['/licensee-type'];
+
+      const result = instance.locals(req, res);
+
+      expect(result).toEqual({
+        existingKey: 'existingValue',
+        showSaveAndExit: true
+      });
     });
   });
 });
