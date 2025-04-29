@@ -11,6 +11,15 @@ const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
 const reqres = require('hof').utils.reqres;
 
+const logger = require('hof/lib/logger');
+jest.mock('hof/lib/logger', () => {
+  return jest.fn(() => ({
+    info: jest.fn(),
+    warn: jest.fn(),
+    error: jest.fn()
+  }));
+});
+
 describe('Utilities \'getLabel\'', () => {
   test('returns undefined when an unexpected fieldKey parameter is passed', () => {
     expect(getLabel('cheese', 'very-satisfied')).toBe(undefined);
