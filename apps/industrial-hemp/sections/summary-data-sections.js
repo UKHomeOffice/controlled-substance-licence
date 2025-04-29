@@ -405,7 +405,7 @@ module.exports = {
       {
         step: '/licence-email-address',
         field: 'licence-email-address'
-      },
+      }
     ]
   }
 };
