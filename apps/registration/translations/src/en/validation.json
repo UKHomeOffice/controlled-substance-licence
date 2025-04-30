@@ -78,6 +78,7 @@
   "other-business-type": {
     "required": "Enter your specific business type",
     "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Business type must be between 2 and 250 characters",
     "maxlength": "Business type must be between 2 and 250 characters"
   },
   "company-type": {
@@ -96,5 +97,26 @@
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded"
+  },
+  "has-any-licence-issued-by-mhra": {
+    "required": "Select if your business possesses any licences issued by the MHRA"
+  },
+  "mhra-licence-number": {
+    "required": "Enter a Medicines and Healthcare products Regulatory Agency licence number",
+    "maxlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
+    "minlength": "Medicines and Healthcare products Regulatory Agency licence number must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "mhra-licence-type": {
+    "required": "Enter a Medicines and Healthcare products Regulatory Agency licence type",
+    "maxlength": "Licence type must be between 3 and 50 characters",
+    "minlength": "Licence type must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "mhra-licence-date-of-issue": {
+    "required": "Enter the date the MHRA licence was issued",
+    "date": "Enter a real date when the MHRA licence was issued",
+    "before": "Date MHRA licence was issued must be in the past",
+    "after": "MHRA licence must have been issued within the last 100 years"
   }
 }

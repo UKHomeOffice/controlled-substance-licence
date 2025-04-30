@@ -191,14 +191,15 @@
     "required": "Select if you are requesting a change of activity"
   },
   "file-upload": {
-    "required": "Select a file",
+    "required": "Select a file to upload",
     "unsaved": "The selected file was not uploaded – try again",
-    "maxFileSize": "The selected files must be smaller than 25MB",
+    "maxFileSize": "The selected file must be 25MB or less",
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
     "isDuplicateFileName": "A file with this name was already uploaded",
     "aerialPhotosUploadLimit" : "You may not add more than {{aerialPhotosUploadLimit}} file(s)",
+    "recordKeepingDocumentLimit" : "You may not add more than {{recordKeepingDocumentLimit}} file(s)",
     "aerial-photos-upload": {
       "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
     }
@@ -286,5 +287,40 @@
   "cultivation-field-details": {
     "required": "Enter details of the fields you plan to cultivate low THC cannabis in",
     "maxlength": "Details of the fields you plan to cultivate low THC cannabis in must be 2,000 characters or less"
+  },
+  "record-keeping-details": {
+    "required": "Enter details of your record keeping",
+    "maxlength": "Details of your record keeping must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-supplier-details": {
+    "required": "Enter details of your seed suppliers",
+    "maxlength": "Details of your seed suppliers must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "customer-base-details": {
+    "required": "Enter details of your customer base",
+    "maxlength": "Details of your customer base must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-details": {
+    "required": "Enter details of your end products",
+    "maxlength": "Details of your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-production-details": {
+    "required": "Enter details of how you produce your end products",
+    "maxlength": "Details of how you produce your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-type-details": {
+    "required": "Enter details of the seed types you will use to grow low THC cannabis",
+    "maxlength": "Details of the seed types you will use to grow low THC cannabis must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "thc-content-level": {
+    "required": "Enter the THC content level",
+    "maxlength": "THC content level must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }

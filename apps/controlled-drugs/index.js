@@ -912,8 +912,6 @@ const steps = {
     ]
   },
 
-  '/session-timeout': {},
-
   '/save-and-exit': {
     behaviours: [LogoutOnConfigure],
     backLink: false

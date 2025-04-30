@@ -330,6 +330,41 @@ module.exports = {
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/record-keeping-details',
+        field: 'record-keeping-details'
+      },
+      {
+        step: '/record-keeping-document-images',
+        field: 'record-keeping-document',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/seed-supplier-details',
+        field: 'seed-supplier-details'
+      },
+      {
+        step: '/customer-base-details',
+        field: 'customer-base-details'
+      },
+      {
+        step: '/end-product-details',
+        field: 'end-product-details'
+      },
+      {
+        step: '/end-product-production',
+        field: 'end-product-production-details'
+      },
+      {
+        step: '/seed-type-details',
+        field: 'seed-type-details'
+      },
+      {
+        step: '/thc-content-level',
+        field: 'thc-content-level'
       }
     ]
   }

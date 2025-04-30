@@ -122,6 +122,23 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-number'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-type'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-date-of-issue',
+        parse: value => value ? formatDate(value) : null
       }
     ]
   }
