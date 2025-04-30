@@ -766,7 +766,7 @@ module.exports = {
   'refund-accound-details': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
-    attributes: [{ attribute: 'rows', value: 5 }]
+    attributes: [{ attribute: 'rows', value: 8 }]
   },
   'licence-email-address': {
     mixin: 'input-text',
