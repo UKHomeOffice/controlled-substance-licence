@@ -53,7 +53,6 @@
       }
     }
   },
-
   "previously-held-licence": {
     "legend": "Under your previous legally registered identity, did you hold a controlled drugs licence?",
     "options": {
@@ -75,6 +74,16 @@
   "previous-licence-date-of-issue": {
     "legend": "Date issued",
     "hint": "For example, 21 3 2019"
+  },
+  "business-type": {
+    "label": "Business type",
+    "hint": "Select a business type from the list",
+    "options": {
+      "none_selected": "Select business type"
+    }
+  },
+  "other-business-type": {
+    "label": "Specify your business type"
   },
   "company-type": {
     "legend": "What type of company is your organisation?",
@@ -117,7 +126,8 @@
     "label": "Licence type"
   },
   "mhra-licence-date-of-issue": {
-    "legend": "Date of issue"
+    "legend": "Date issued",
+    "hint": "For example, 27 3 2019"
   },
   "is-business-registered-with-cqc": {
     "legend": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?",

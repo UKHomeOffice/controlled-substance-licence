@@ -23,7 +23,14 @@ module.exports = {
   },
   sessionDefaults: {
     fields: ['csrf-secret'],
-    saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
+    saveExemptions: [
+      '/application-type',
+      '/licensee-type',
+      '/information-you-have-given-us',
+      '/application-submitted',
+      '/save-and-exit',
+      '/session-timeout'
+    ]
   },
   saveService: {
     protocol: process.env.DATASERVICE_USE_HTTPS === 'false' ? 'http' : 'https',
@@ -35,7 +42,6 @@ module.exports = {
     hostname: process.env.FILE_VAULT_URL,
     allowedMimeTypes: [
       'image/jpeg',
-      'image/jpg',
       'image/png',
       'application/pdf',
       'application/msword',
@@ -62,6 +68,21 @@ module.exports = {
           'application/vnd.ms-excel',
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         ]
+      },
+      'aerial-photos-upload': {
+        limit: 20,
+        limitValidationError: 'aerialPhotosUploadLimit',
+        allowedMimeTypes: [
+          'image/jpeg',
+          'image/png',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ]
+      },
+      'record-keeping-document': {
+        limit: 20,
+        limitValidationError: 'recordKeepingDocumentLimit'
       }
     }
   },
@@ -75,11 +96,22 @@ module.exports = {
   },
   keycloak: {
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
+    keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
       password: process.env.FILE_VAULT_PASSWORD,
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
+    },
+    userAuthClient: {
+      clientId: process.env.USER_AUTH_CLIENT_ID,
+      secret: process.env.USER_AUTH_CLIENT_SECRET,
+      allowedUserRole: process.env.USER_AUTH_ALLOWED_ROLE
+    },
+    adminClient: {
+      clientId: process.env.ADMIN_CLIENT_ID,
+      secret: process.env.ADMIN_CLIENT_SECRET
     }
   },
   aggregateLimits: {
@@ -89,5 +121,6 @@ module.exports = {
     controlledDrugs: {
       tradingReasonsLimit: 5
     }
-  }
+  },
+  wizardSessionKeyPrefix: 'hof-wizard'
 };

@@ -1,5 +1,6 @@
 'use strict';
-const { formatDate } = require('../../../utils');
+const { formatDate, findArrayItemByValue } = require('../../../utils');
+const businessTypeOptions = require('../data/business-type.json');
 
 module.exports = {
   'licence-holder-details': {
@@ -89,6 +90,22 @@ module.exports = {
         parse: value => value ? formatDate(value) : null
       },
       {
+        step: '/business-type-summary',
+        field: 'aggregated-business-type',
+        changeLink: 'business-type-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const businessTypeValue = item.fields.find(field => field.field === 'business-type')?.value;
+            const businessTypeLabel = findArrayItemByValue(businessTypeOptions, businessTypeValue)?.label
+             ?? businessTypeValue;
+            const otherBusinessType = item.fields.find(field => field.field === 'other-business-type')?.value;
+
+            return otherBusinessType ? `${businessTypeLabel}: ${otherBusinessType}` : businessTypeLabel;
+          }).join('\n');
+        }
+      },
+      {
         step: '/company-type',
         field: 'company-type'
       },
@@ -112,18 +129,16 @@ module.exports = {
       },
       {
         step: '/mhra-licence-details',
-        field: 'mhra-licence-details',
-        parse: (val, req) => {
-          if (!req.sessionModel.get('steps').includes('/mhra-licence-details')) {
-            return null;
-          }
-          const mhraLicenceDetails = [
-            req.sessionModel.get('mhra-licence-number'),
-            req.sessionModel.get('mhra-licence-type'),
-            formatDate(req.sessionModel.get('mhra-licence-date-of-issue'))
-          ];
-          return mhraLicenceDetails.join('\n');
-        }
+        field: 'mhra-licence-number'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-type'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-date-of-issue',
+        parse: value => value ? formatDate(value) : null
       },
       {
         step: '/care-quality-commission-or-equivalent',

@@ -6,6 +6,17 @@ const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}://${host}:${port}/applications`;
 
 module.exports = superclass => class extends superclass {
+  locals(req, res) {
+    const locals = super.locals(req, res);
+    const { route: currentRoute } = req.form.options;
+    const saveExemptList = config.sessionDefaults.saveExemptions;
+    if (saveExemptList.includes(currentRoute)) {
+      return locals;
+    }
+    locals.showSaveAndExit = true;
+    return locals;
+  }
+
   async successHandler(req, res, next) {
     // SaveFormSession is set at app level so ignore it for few steps that don't need save.
     const { route: currentRoute } = req.form.options;
@@ -34,11 +45,19 @@ module.exports = superclass => class extends superclass {
 
     req.log('info', `Saving Form Session: ${applicationId ?? 'New application'}`);
 
+    const patchData = { session };
+    if (applicationId && req.sessionModel.get('application-form-type') !== 'continue-an-application') {
+      req.log('info', `Overwriting saved application: ${applicationId}`);
+      patchData.created_at = new Date().toISOString();
+    }
+
+    const postData = { session, applicant_id, licence_type, status_id };
+
     try {
       const reqParams = {
         url: applicationId ? `${applicationsUrl}/${applicationId}` : applicationsUrl,
         method: applicationId ? 'PATCH' : 'POST',
-        data: applicationId ? { session } : { session, applicant_id, licence_type, status_id }
+        data: applicationId ? patchData : postData
       };
 
       const hofModel = new Model();
@@ -49,14 +68,18 @@ module.exports = superclass => class extends superclass {
         throw new Error(errorMessage);
       }
 
-      // @todo CSL-133 Add save-and-exit
-      // if (req.body['save-and-exit']) {
-      //  ...
-      // }
+      if (!applicationId) {
+        req.sessionModel.set('application-id', response.data[0].id);
+      }
     } catch (error) {
       req.log('error', `Failed to save application: ${generateErrorMsg(error)}`);
       return next(error);
     }
+
+    if (req.body['save-and-exit']) {
+      return res.redirect(`${req.baseUrl}/save-and-exit`);
+    }
+
     return super.successHandler(req, res, next);
   }
 };

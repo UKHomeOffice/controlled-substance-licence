@@ -15,18 +15,23 @@
   "previous-licence-details": {
     "header": "Previous licence details"
   },
-
+  "business-type-summary": {
+    "header": "What your business does",
+    "key": "Business type",
+    "otherKey": "Other business type"
+  },
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
   },
 
   "mhra-licence-details": {
-    "header": "Licence details"
+    "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
+    "pageTitle": "MHRA licence details"
   },
 
   "registration-details": {
-    "header": "Registration details"
+    "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents"
   },
 
   "confirm": {
@@ -61,6 +66,9 @@
       "previous-licence-date-of-issue": {
         "label": "Previous licence date issued"
       },
+      "aggregated-business-type": {
+        "label": "What your business does?"
+      },
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
@@ -69,9 +77,6 @@
       },
       "has-any-licence-issued-by-mhra": {
         "label": "Any licences issued by MHRA?"
-      },
-      "mhra-licence-details": {
-        "label": "Licence holder details"
       },
       "is-business-registered-with-cqc": {
         "label": "Registered with care quality commission or equivalent?"
@@ -84,6 +89,15 @@
       },
       "regulatory-body-registration-details": {
         "label": "Details of other regulatory bodies you are registered with"
+      },
+      "mhra-licence-number": {
+        "label": "MHRA licence number"
+      },
+      "mhra-licence-type": {
+        "label": "MHRA licence type"
+      },
+      "mhra-licence-date-of-issue": {
+        "label": "MHRA licence date of issue"
       }
     }
   }

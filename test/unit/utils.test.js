@@ -4,7 +4,8 @@ const {
   findArrayItemByValue,
   isValidPhoneNumber,
   findSatisfiedForkCondition,
-  generateErrorMsg
+  generateErrorMsg,
+  resetAllSessions
 } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
@@ -159,5 +160,58 @@ describe('Utilities \'generateErrorMsg\'', () => {
     expect(generateErrorMsg(mockError)).toBe(
       ' Some error; '
     );
+  });
+});
+
+describe('resetAllSessions', () => {
+  let req;
+
+  beforeEach(() => {
+    req = {
+      session: {
+        'hof-wizard-common': {
+          'csrf-secret': 'AYNzwvMhQqQFqRlPc6yNkHYh',
+          errors: null,
+          steps: ['/']
+        },
+        'hof-wizard-controlled-drugs': {
+          'csrf-secret': 'BXYzwvMhQqQFqRlPc6yNkHYh',
+          errors: null,
+          steps: ['/step1', '/step2']
+        },
+        'non-wizard-key': {
+          data: 'irrelevant data'
+        }
+      },
+      log: jest.fn()
+    };
+  });
+
+  it('should reset all session keys that start with "hof-wizard"', () => {
+    resetAllSessions(req);
+
+    expect(req.session['hof-wizard-common']).toEqual({});
+    expect(req.session['hof-wizard-controlled-drugs']).toEqual({});
+  });
+
+  it('should not modify session keys that do not start with "hof-wizard"', () => {
+    resetAllSessions(req);
+
+    expect(req.session['non-wizard-key']).toEqual({ data: 'irrelevant data' });
+  });
+
+  it('should not throw an error if no keys match the prefix', () => {
+    req.session = {
+      'non-wizard-key': { data: 'irrelevant data' }
+    };
+
+    expect(() => resetAllSessions(req)).not.toThrow();
+    expect(req.session['non-wizard-key']).toEqual({ data: 'irrelevant data' });
+  });
+
+  it('should log a message indicating the reset operation', () => {
+    resetAllSessions(req);
+
+    expect(req.log).toHaveBeenCalledWith('info', "All sessions with prefix 'hof-wizard' have been reset.");
   });
 });

@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const businessTypeOptions = require('../data/business-type.json');
 
 module.exports = {
   'company-name': {
@@ -164,6 +165,28 @@ module.exports = {
     validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
   },
+  'business-type': {
+    mixin: 'select',
+    isPageHeading: true,
+    validate: ['required'],
+    options: [{
+      value: '',
+      label: 'fields.business-type.options.none_selected'
+    }].concat(businessTypeOptions),
+    showFieldInSummary: true,
+    className: ['govuk-!-width-one-half']
+  },
+  'other-business-type': {
+    mixin: 'input-text',
+    isPageHeading: true,
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ],
+    className: ['govuk-input', 'govuk-!-width-three-quarters']
+  },
   'has-any-licence-issued-by-mhra': {
     mixin: 'radio-group',
     isPageHeading: true,
@@ -196,8 +219,8 @@ module.exports = {
     validate: [
       'required',
       'notUrl',
-      { type: 'minlength', arguments: 3 },
-      { type: 'maxlength', arguments: 50 }
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
@@ -207,7 +230,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['2008-12-31'] }
+      { type: 'after', arguments: ['1925-01-01'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
@@ -246,7 +269,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['2002-12-31'] }
+      { type: 'after', arguments: ['1925-01-01'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
