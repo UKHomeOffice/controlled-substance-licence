@@ -2,5 +2,6 @@
   "continue": "Continue",
   "start-now": "Start now",
   "sign-in": "Sign in",
+  "session-timeout-start-again": "Sign in again",
   "sign-out": "Sign out"
-} 
+}
