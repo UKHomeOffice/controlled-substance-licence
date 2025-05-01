@@ -109,14 +109,14 @@
   },
   "mhra-licence-type": {
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence type",
-    "maxlength": "Licence type must be between 2 and 250 characters",
-    "minlength": "Licence type must be between 2 and 250 characters",
+    "maxlength": "Licence type must be between 3 and 250 characters",
+    "minlength": "Licence type must be between 3 and 250 characters",
     "notUrl": "Your answer must not contain URLs or links"
   },
   "mhra-licence-date-of-issue": {
     "required": "Enter the date the MHRA licence was issued",
     "date": "Enter a real date when the MHRA licence was issued",
-    "before": "Date MHRA licence was issued must be in the past",
+    "before": "MHRA licence date of issue must be in the past",
     "after": "MHRA licence must have been issued within the last 100 years"
   },
   "is-business-registered-with-cqc": {
