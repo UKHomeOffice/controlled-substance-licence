@@ -79,16 +79,13 @@
         "label": "Any licences issued by MHRA?"
       },
       "is-business-registered-with-cqc": {
-        "label": "Registered with care quality commission or equivalent?"
+        "label": "Is your business registered with the CQC or Scottish and Welsh equivalents?"
       },
       "registration-number": {
         "label": "Care Quality Commission registration number"
       },
       "date-of-registration": {
         "label": "Care Quality Commission registration date"
-      },
-      "regulatory-body-registration-details": {
-        "label": "Details of other regulatory bodies you are registered with"
       },
       "mhra-licence-number": {
         "label": "MHRA licence number"
