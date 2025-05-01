@@ -15,6 +15,7 @@ describe('SignIn Behaviour', () => {
   let next;
   let instance;
   let expectedValidationError;
+  const mockResponse = 'applicant-123';
 
   beforeEach(() => {
     req = {
@@ -68,7 +69,7 @@ describe('SignIn Behaviour', () => {
       refresh_token: 'refresh.token'
     };
 
-    getApplicantId.mockResolvedValue('applicant-123');
+    getApplicantId.mockResolvedValue(mockResponse);
 
     auth.getTokens.mockResolvedValue(mockTokens);
 
@@ -93,7 +94,7 @@ describe('SignIn Behaviour', () => {
   });
 
   it('should handle failure to generate tokens', async () => {
-    getApplicantId.mockResolvedValue('applicant-123');
+    getApplicantId.mockResolvedValue(mockResponse);
     auth.getTokens.mockRejectedValue(new Error('Token generation failed'));
 
     await instance.validate(req, res, next);

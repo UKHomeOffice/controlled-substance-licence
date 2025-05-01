@@ -19,7 +19,7 @@ jest.mock('../../config.js', () => {
 
 describe('getApplicantId', () => {
   beforeAll(() => {
-    mockRequest = jest.fn().mockResolvedValue({ data: [{ id: 1 }] });
+    mockRequest = jest.fn().mockResolvedValue({ data: [{ applicant_id: 'applicant-123' }] });
     Model.mockImplementation(() => {
       return {
         _request: mockRequest
@@ -38,11 +38,6 @@ describe('getApplicantId', () => {
   });
 
   it('should return the applicant ID when the username exists', async () => {
-    const mockResponse = {
-      data: [{ applicant_id: 'applicant-123' }]
-    };
-    hofModelMock._request.mockResolvedValue(mockResponse);
-
     const result = await getApplicantId('testuser');
 
     expect(hofModelMock._request).toHaveBeenCalledWith({
