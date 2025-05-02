@@ -1,4 +1,16 @@
 {{<error}}
+  {{$journeyHeader}}
+    {{#t}}journey.serviceName{{/t}}
+  {{/journeyHeader}}
+
+  {{$validationSummary}}
+    {{> partials-validation-summary}}
+  {{/validationSummary}}
+
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
   {{$pageTitle}}
     {{#t}}errors.session.title{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
   {{/pageTitle}}
