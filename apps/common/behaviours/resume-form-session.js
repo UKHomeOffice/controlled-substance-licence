@@ -11,7 +11,7 @@ module.exports = superclass => class extends superclass {
     try {
       this.cleanSession(req);
 
-      const applicantId = 1; // todo: get applicantId from common session logged in user
+      const applicantId = req.session['hof-wizard-common']?.['applicant-id'];
       const licenceType = req.session['hof-wizard-common']?.['licence-type'];
 
       req.sessionModel.set('applicant-id', applicantId);
