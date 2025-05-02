@@ -419,5 +419,39 @@
   "thc-content-level": {
     "label": "Provide the THC content level",
     "hint": "This must be lower than 0.2%"
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-address-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-address-postcode": {
+    "label": "Postcode"
+  },
+  "invoicing-contact-name": {
+    "label": "Contact name",
+    "hint": "Enter your contact's full name"
+  },
+  "invoicing-contact-email": {
+    "label": "Email address",
+    "hint": "Enter a shared email address to avoid delays in receiving invoices"
+  },
+  "invoicing-contact-telephone": {
+    "label": "Contact number"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)",
+    "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when the invoice is raised"
+  },
+  "refund-accound-details": {
+    "label": "Refund account details",
+    "hint": "This is where we should send any refunds to your organisation, where needed"
+  },
+  "licence-email-address": {
+    "label": "Which email address should we send the licence to?"
   }
 }
