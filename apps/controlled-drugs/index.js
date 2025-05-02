@@ -16,7 +16,8 @@ const InformationYouHaveGivenUs = require('../common/behaviours/information-you-
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
-const LogoutOnConfigure = require('../common/behaviours/logout-on-configure');
+const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
+
 const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
@@ -913,7 +914,7 @@ const steps = {
   },
 
   '/save-and-exit': {
-    behaviours: [LogoutOnConfigure],
+    behaviours: [SignOutOnExit],
     backLink: false
   }
 };
