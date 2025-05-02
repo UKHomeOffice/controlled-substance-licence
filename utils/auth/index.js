@@ -10,25 +10,6 @@ const setReq = request => {
 };
 
 /**
- * Custom error class for handling authentication-related errors.
- * This class extends the built-in Error class and adds additional properties
- * such as status, type, and details to provide more context about the error.
- *
- * @param {number} status - The HTTP status code associated with the error.
- * @param {string} type - The type of the error.
- * @param {string} message - A descriptive error message.
- * @param {object} [details] - Additional details about the error (optional).
- */
-class AuthError extends Error {
-  constructor({ status, type, message, details }) {
-    super(message);
-    this.status = status;
-    this.type = type;
-    this.details = details || null;
-  }
-}
-
-/**
  * Decodes and verifies a JWT token using the public key.
  * @param {string} token - The JWT token to validate.
  * @returns {boolean} - Returns true if the token is valid, otherwise false.
@@ -92,20 +73,6 @@ const isTokenExpired = token => {
 };
 
 /**
- * Determines the error type based on the HTTP status code.
- * @param {number} status - The HTTP status code.
- * @returns {string} - The error type.
- */
-const determineErrorType = status => {
-  if (status >= 400 && status < 500) {
-    return 'authenticationError';
-  } else if (status >= 500) {
-    return 'serverError';
-  }
-  return 'unknownError';
-};
-
-/**
  * Validates the access token.
  * Checks if the access token is present, valid, and not expired.
  *
@@ -141,7 +108,7 @@ const validateAccessToken = accessToken => {
  * @param {string} username - The username of the user.
  * @param {string} password - The password of the user.
  * @returns {object} - Returns the token object if successful.
- * @throws {AuthError} - Throws an AuthError if the token fetch fails.
+ * @throws {Error} - Throws an Error if the token fetch fails.
  */
 const getTokens = async (username, password) => {
   try {
@@ -169,18 +136,11 @@ const getTokens = async (username, password) => {
     const statusText = error.response?.statusText || 'Unknown Status Text';
     const errorDescription = error.response?.data?.error_description || error.message;
 
-    const errorType = determineErrorType(status);
-
     const errorMessage = `${status} - ${statusText}: ${errorDescription}`;
 
     req.log('error', `Failed to fetch tokens from Keycloak', ${errorMessage }`);
 
-    throw new AuthError({
-      status,
-      type: errorType,
-      message: errorMessage,
-      details: error.response?.data
-    });
+    throw new Error(errorMessage);
   }
 };
 
@@ -228,7 +188,6 @@ const getFreshTokens = async refreshToken => {
     return error;
   }
 };
-
 
 /**
  * Logs the user out by sending a request to the Keycloak logout endpoint.

@@ -95,7 +95,12 @@ describe('resume-form-session', () => {
     beforeEach(() => {
       Base.prototype.getValues = jest.fn().mockReturnValue(req, res, next);
 
-      req.session = {'hof-wizard-common': { 'licence-type': 'precursor-chemicals' }};
+      req.session = {
+        'hof-wizard-common': {
+          'licence-type': 'precursor-chemicals',
+          'applicant-id': 1
+        }
+      };
       req.sessionModel = {
         attributes: { 'csrf-secret': 'secret' },
         unset: jest.fn(),

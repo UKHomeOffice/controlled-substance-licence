@@ -26,7 +26,8 @@ const steps = {
         }
       }
     ],
-    next: '/industrial-hemp/application-type'
+    next: '/industrial-hemp/application-type',
+    backLink: ' ' // workaround to show Back link to the root of the app
   },
   '/sign-in': {
     behaviours: [ SignIn ],

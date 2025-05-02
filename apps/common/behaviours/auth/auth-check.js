@@ -3,8 +3,6 @@
 const auth = require('../../../../utils/auth');
 const { resetAllSessions } = require('../../../../utils');
 
-// @todo 'applicant-id' should be added to sessionModel once user is authenticated
-
 module.exports = superclass => class extends superclass {
   async configure(req, res, next) {
     req.log('info', 'Checking token validity');
