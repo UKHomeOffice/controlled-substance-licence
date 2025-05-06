@@ -30,6 +30,15 @@
     "pageTitle": "MHRA licence details"
   },
 
+  "care-quality-commission-or-equivalent": {
+    "pageTitle": "Care Quality Commission registration"
+  },
+
+  "registration-details": {
+    "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents",
+    "pageTitle": "Care Quality Commission registration details"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {
@@ -73,6 +82,15 @@
       },
       "has-any-licence-issued-by-mhra": {
         "label": "Any licences issued by MHRA?"
+      },
+      "is-business-registered-with-cqc": {
+        "label": "Is your business registered with the CQC or Scottish and Welsh equivalents?"
+      },
+      "registration-number": {
+        "label": "Care Quality Commission registration number"
+      },
+      "date-of-registration": {
+        "label": "Care Quality Commission registration date"
       },
       "mhra-licence-number": {
         "label": "MHRA licence number"

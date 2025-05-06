@@ -86,7 +86,7 @@
   },
   "describe-business-model": {
      "required": "Enter a description of your business model",
-     "maxlength": "Description of your business model must be 2,000 character or less",
+     "maxlength": "Description of your business model must be 2,000 characters or less",
      "notUrl": "Your answer must not contain URLs or links"
    },
   "file-upload": {
@@ -99,7 +99,7 @@
     "isDuplicateFileName": "A file with this name was already uploaded"
   },
   "has-any-licence-issued-by-mhra": {
-    "required": "Select if your business possesses any licences issued by the MHRA"
+    "required": "Select if you have any licences issued by the Medicines and Healthcare Products Regulatory Agency"
   },
   "mhra-licence-number": {
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence number",
@@ -109,14 +109,33 @@
   },
   "mhra-licence-type": {
     "required": "Enter a Medicines and Healthcare products Regulatory Agency licence type",
-    "maxlength": "Licence type must be between 3 and 50 characters",
-    "minlength": "Licence type must be between 3 and 50 characters",
+    "maxlength": "Licence type must be between 3 and 250 characters",
+    "minlength": "Licence type must be between 3 and 250 characters",
     "notUrl": "Your answer must not contain URLs or links"
   },
   "mhra-licence-date-of-issue": {
     "required": "Enter the date the MHRA licence was issued",
     "date": "Enter a real date when the MHRA licence was issued",
-    "before": "Date MHRA licence was issued must be in the past",
+    "before": "MHRA licence date of issue must be in the past",
     "after": "MHRA licence must have been issued within the last 100 years"
+  },
+  "is-business-registered-with-cqc": {
+    "required": "Select if you are registered with the Care Quality Commission or its Scottish and Welsh equivalents"
+  },
+  "registration-number": {
+    "required": "Enter your CQC or equivalent registration number",
+    "maxlength": "Registration number must be between 3 and 50 characters",
+    "minlength": "Registration number must be between 3 and 50 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "date-of-registration": {
+    "required": "Enter the date  your organisation registered with the CQC or its equivalents",
+    "date": "Enter a real date when you registered with the CQC or its equivalents",
+    "before": "Date you registered with the CQC or its equivalents must be in the past",
+    "after": "Registration with the CQC or its equivalent must have happened within the last 100 years"
+  },
+  "regulatory-body-registration-details": {
+    "maxlength": "Details of other regulatory bodies you are registered with must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
   }
 }

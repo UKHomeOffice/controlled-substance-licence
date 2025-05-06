@@ -139,6 +139,26 @@ module.exports = {
         step: '/mhra-licence-details',
         field: 'mhra-licence-date-of-issue',
         parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/care-quality-commission-or-equivalent',
+        field: 'is-business-registered-with-cqc'
+      },
+      {
+        step: '/registration-details',
+        field: 'registration-number'
+      },
+      {
+        step: '/registration-details',
+        field: 'date-of-registration',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/regulatory-body-registration',
+        field: 'regulatory-body-registration-details',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

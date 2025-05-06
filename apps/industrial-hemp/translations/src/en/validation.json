@@ -255,7 +255,7 @@
   },
   "describe-business-model": {
     "required": "Enter a description of your business model",
-    "maxlength": "Description of your business model must be 2,000 character or less",
+    "maxlength": "Description of your business model must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
   },
   "cultivate-industrial-hemp": {

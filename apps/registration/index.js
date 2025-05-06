@@ -179,6 +179,29 @@ const steps = {
   },
 
   '/care-quality-commission-or-equivalent': {
+    fields: ['is-business-registered-with-cqc'],
+    forks: [
+      {
+        target: '/regulatory-body-registration',
+        condition: {
+          field: 'is-business-registered-with-cqc',
+          value: 'no'
+        }
+      }
+    ],
+    next: '/registration-details'
+  },
+
+  '/registration-details': {
+    fields: [
+      'registration-number',
+      'date-of-registration'
+    ],
+    next: '/regulatory-body-registration'
+  },
+
+  '/regulatory-body-registration': {
+    fields: ['regulatory-body-registration-details'],
     next: '/confirm'
   },
 
