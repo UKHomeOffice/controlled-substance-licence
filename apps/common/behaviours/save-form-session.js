@@ -38,7 +38,7 @@ module.exports = superclass => class extends superclass {
     // ensure no /edit steps are add to the steps property when we save to the store
     session.steps = session.steps.filter(step => !step.match(/\/change|edit|delete$/));
 
-    const applicant_id = req.sessionModel.get('applicant-id');
+    const applicant_id = req.session['hof-wizard-common']?.['applicant-id'];
     const applicationId = req.sessionModel.get('application-id');
     const licence_type = req.sessionModel.get('licence-type');
     const status_id = 1;

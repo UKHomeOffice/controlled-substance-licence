@@ -12,22 +12,19 @@ const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const ScheduledActivitiesRedirect = require('./behaviours/scheduled-activities-redirect');
 const FileDownload = require('../common/behaviours/file-download');
+const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
+const SaveFormSession = require('../common/behaviours/save-form-session');
+const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const FilterSelectFieldOptions = require('../common/behaviours/filter-select-field-options');
+const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 
 const steps = {
 
   '/application-type': {
+    behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
-    forks: [
-      {
-        target: '/information-you-have-given-us',
-        condition: {
-          field: 'application-form-type',
-          value: 'continue-an-application'
-        }
-      }
-    ],
+    template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
@@ -50,13 +47,38 @@ const steps = {
         }
       }
     ],
+    template: 'continue-only',
     next: '/licence-holder-details'
   },
 
   /** Continue an application */
 
+
   '/information-you-have-given-us': {
-    next: '/licence-holder-details'
+    behaviours: [Summary, InformationYouHaveGivenUs],
+    template: 'information-you-have-given-us',
+    sections: require('./sections/summary-data-sections'),
+    forks: [
+      {
+        target: '/companies-house-number',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
+    next: '/licence-holder-details',
+    locals: {
+      fullWidthPage: true,
+      showExit: true
+    }
   },
 
   /** Existing licensee renewing or changing a currently licensed site - Background Information */
@@ -64,7 +86,7 @@ const steps = {
   '/company-number-changed': {
     fields: ['companies-house-number-change'],
     next: '/company-name-changed',
-    behaviours: [SetSummaryReferrer, CustomRedirect]
+    behaviours: [SetSummaryReferrer]
   },
 
   '/register-again': {
@@ -251,14 +273,14 @@ const steps = {
     fields: ['member-of-professional-body'],
     forks: [
       {
-        target: '/legal-business-proceedings',
+        target: '/professional-body-details',
         condition: {
           field: 'member-of-professional-body',
-          value: 'no'
+          value: 'yes'
         }
       }
     ],
-    next: '/professional-body-details'
+    next: '/legal-business-proceedings'
   },
 
   '/professional-body-details': {
@@ -270,14 +292,14 @@ const steps = {
     fields: ['legal-business-proceedings'],
     forks: [
       {
-        target: '/criminal-conviction',
+        target: '/legal-proceedings-details',
         condition: {
           field: 'legal-business-proceedings',
-          value: 'no'
+          value: 'yes'
         }
       }
     ],
-    next: '/legal-proceedings-details'
+    next: '/criminal-conviction'
   },
 
   '/legal-proceedings-details': {
@@ -292,7 +314,6 @@ const steps = {
 
   '/responsible-for-security': {
     fields: ['responsible-for-security'],
-    behaviours: [CustomRedirect],
     forks: [
       {
         target: '/person-responsible-for-security',
@@ -312,7 +333,6 @@ const steps = {
       'person-responsible-for-security-email-address',
       'person-responsible-for-security-confirmed-dbs'
     ],
-    behaviours: [CustomRedirect],
     next: '/security-officer-dbs',
     continueOnEdit: true
   },
@@ -324,7 +344,6 @@ const steps = {
       'person-responsible-for-security-dbs-reference',
       'person-responsible-for-security-dbs-date-of-issue'
     ],
-    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
@@ -336,7 +355,6 @@ const steps = {
 
   '/compliance-and-regulatory': {
     fields: ['responsible-for-compliance-regulatory'],
-    behaviours: [CustomRedirect],
     forks: [
       {
         target: '/person-responsible-for-compliance-and-regulatory',
@@ -356,7 +374,6 @@ const steps = {
       'responsible-for-compliance-regulatory-email-address',
       'responsible-for-compliance-regulatory-confirmed-dbs'
     ],
-    behaviours: [CustomRedirect],
     next: '/regulatory-and-compliance-dbs',
     continueOnEdit: true
   },
@@ -367,7 +384,6 @@ const steps = {
       'responsible-for-compliance-regulatory-dbs-reference',
       'responsible-for-compliance-regulatory-dbs-date-of-issue'
     ],
-    behaviours: [CustomRedirect],
     next: '/regulatory-and-compliance-dbs-updates',
     continueOnEdit: true
   },
@@ -405,7 +421,6 @@ const steps = {
   },
 
   '/who-witnesses-destruction-of-drugs': {
-    behaviours: [CustomRedirect],
     continueOnEdit: true,
     fields: ['responsible-for-witnessing-the-destruction'],
     forks: [
@@ -426,7 +441,6 @@ const steps = {
   },
 
   '/person-to-witness': {
-    behaviours: [CustomRedirect],
     fields: [
       'responsible-for-witnessing-full-name',
       'responsible-for-witnessing-email-address',
@@ -437,7 +451,6 @@ const steps = {
   },
 
   '/witness-dbs': {
-    behaviours: [CustomRedirect],
     fields: [
       'responsible-for-witnessing-dbs-fullname',
       'responsible-for-witnessing-dbs-reference',
@@ -484,11 +497,13 @@ const steps = {
           req.sessionModel.get('trading-reasons') === 'other'
       }
     ],
+    ignoreCustomRedirect: true,
     next: '/trading-reasons-summary'
   },
 
   '/specify-trading-reasons': {
     fields: ['specify-trading-reasons'],
+    ignoreCustomRedirect: true,
     next: '/trading-reasons-summary'
   },
 
@@ -497,8 +512,7 @@ const steps = {
       LoopAggregator,
       LimitItems,
       SetSummaryReferrer,
-      ParseTradingReasonsSummary,
-      CustomRedirect
+      ParseTradingReasonsSummary
     ],
     aggregateTo: 'aggregated-trading-reasons',
     aggregateFrom: [
@@ -535,14 +549,14 @@ const steps = {
     fields: ['has-any-licence-issued-by-mhra'],
     forks: [
       {
-        target: '/care-quality-commission-or-equivalent',
+        target: '/mhra-licence-details',
         condition: {
           field: 'has-any-licence-issued-by-mhra',
-          value: 'no'
+          value: 'yes'
         }
       }
     ],
-    next: '/mhra-licence-details'
+    next: '/care-quality-commission-or-equivalent'
   },
 
   '/mhra-licence-details': {
@@ -558,14 +572,14 @@ const steps = {
     fields: ['is-business-registered-with-cqc'],
     forks: [
       {
-        target: '/regulatory-body-registration',
+        target: '/registration-details',
         condition: {
           field: 'is-business-registered-with-cqc',
-          value: 'no'
+          value: 'yes'
         }
       }
     ],
-    next: '/registration-details'
+    next: '/regulatory-body-registration'
   },
 
   '/registration-details': {
@@ -593,14 +607,12 @@ const steps = {
       }
     ],
     next: '/status-of-site',
-    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
   '/service-details': {
     fields: ['service-details'],
     next: '/service-expiry-date',
-    behaviours: [CustomRedirect],
     continueOnEdit: true
   },
 
@@ -613,14 +625,14 @@ const steps = {
     fields: ['status-of-site'],
     forks: [
       {
-        target: '/licence-details',
-        condition: {
-          field: 'status-of-site',
-          value: 'owned-or-owner-occupied'
+        target: '/site-owner-contact-details',
+        condition: req => {
+          return req.sessionModel.get('status-of-site') === 'rented' ||
+            req.sessionModel.get('status-of-site') === 'leased';
         }
       }
     ],
-    next: '/site-owner-contact-details'
+    next: '/licence-details'
   },
 
   '/site-owner-contact-details': {
@@ -898,6 +910,11 @@ const steps = {
     behaviours: [
       FileDownload('/assets/documents', 'controlled-drugs-activity-user-list.xlsx')
     ]
+  },
+
+  '/save-and-exit': {
+    behaviours: [SignOutOnExit],
+    backLink: false
   }
 };
 
@@ -910,5 +927,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/confirm',
   steps: steps,
-  behaviours: [ Auth ]
+  behaviours: [Auth, SaveFormSession, CustomRedirect]
 };
