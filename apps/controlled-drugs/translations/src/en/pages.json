@@ -121,7 +121,9 @@
   "who-completing-application": {
     "header": "Who is completing the application?"
   },
-
+  "extra-information": {
+    "pageTitle": "Add any extra information to your application"
+  },
   "declaration": {
     "header": "Declaration"
   },

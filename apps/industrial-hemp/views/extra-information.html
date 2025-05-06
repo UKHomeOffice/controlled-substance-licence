@@ -1,0 +1,9 @@
+{{<partials-page}}
+  {{$pageTitle}}
+  {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}} {{#t}}pages.extra-information.pageTitle{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+    {{#renderField}}extra-information{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

@@ -773,5 +773,54 @@ module.exports = {
     validate: ['required', 'email'],
     isPageHeading: true,
     className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-full-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'who-is-completing-application-telephone': {
+    mixin: 'input-text',
+    validate: ['required'], // additional validation covered in custom-validation.js
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'regulatory-affairs-officer': {
+    mixin: 'radio-group',
+    isPageHeading: 'true',
+    validate: ['required'],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no',
+        toggle: 'officer-non-compliance-reason',
+        child: 'textarea'
+      }
+    ]
+  },
+  'officer-non-compliance-reason': {
+    validate: [ 'required', { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    dependent: {
+      value: 'no',
+      field: 'regulatory-affairs-officer'
+    }
+  },
+  'extra-information': {
+    mixin: 'textarea',
+    validate: [ { type: 'maxlength', arguments: 2000 }, 'notUrl' ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    isPageHeading: true
   }
 };
