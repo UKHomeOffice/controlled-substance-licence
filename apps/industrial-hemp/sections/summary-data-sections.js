@@ -405,6 +405,33 @@ module.exports = {
       {
         step: '/licence-email-address',
         field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'regulatory-affairs-officer'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'officer-non-compliance-reason'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

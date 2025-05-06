@@ -453,5 +453,32 @@
   },
   "licence-email-address": {
     "label": "Which email address should we send the licence to?"
+  },
+  "who-is-completing-application-full-name": {
+    "label": "Full name"
+  },
+  "who-is-completing-application-email": {
+    "label": "Email address"
+  },
+  "who-is-completing-application-telephone": {
+    "label": "UK contact number"
+  },
+  "regulatory-affairs-officer": {
+    "legend": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?",
+    "hint": "If you answer ‘No’, your registration might take longer and may not be approved",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "officer-non-compliance-reason": {
+    "label": "Explain why the officer will not discharge all licence responsibilities"
+  },
+  "extra-information": {
+    "label": "Add any extra information you think might help your application (optional)"
   }
 }

@@ -62,6 +62,12 @@
   "invoicing-contact-details": {
     "header": "Invoicing contact details"
   },
+  "who-completing-application": {
+    "header": "Who is completing the application?"
+  },
+  "extra-information": {
+    "pageTitle": "Add any extra information to your application"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -228,6 +234,24 @@
       },
       "licence-email-address": {
         "label": "Email address for the licence"
+      },
+      "who-is-completing-application-full-name": {
+        "label": "Name of person completing application"
+      },
+      "who-is-completing-application-email": {
+        "label": "Email address of person completing application"
+      },
+      "who-is-completing-application-telephone": {
+        "label": "Contact number of person completing application"
+      },
+      "regulatory-affairs-officer": {
+        "label": "Regulatory affairs and compliance officer to discharge all licence responsibilities?"
+      },
+      "officer-non-compliance-reason": {
+        "label": "Why the officer will not discharge licence responsibilities"
+      },
+      "extra-information": {
+        "label": "Extra information"
       }
     }
   }

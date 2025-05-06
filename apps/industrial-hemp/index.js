@@ -549,6 +549,22 @@ const steps = {
   },
 
   '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
+    next: '/regulatory-affairs-officer'
+  },
+
+  '/regulatory-affairs-officer': {
+    fields: ['regulatory-affairs-officer', 'officer-non-compliance-reason'],
+    next: '/extra-information'
+  },
+
+  '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
 
