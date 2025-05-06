@@ -162,7 +162,7 @@ module.exports = {
       }
     ]
   },
-  'invoicing-details':{
+  'invoicing-details': {
     steps: [
       {
         step: '/invoicing-details',
@@ -182,7 +182,7 @@ module.exports = {
         parse: (value, req) => {
           return value ? value : req.translate('journey.not-provided');
         }
-      },
+      }
     ]
   },
   'invoicing-address': {

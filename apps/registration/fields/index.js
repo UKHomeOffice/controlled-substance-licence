@@ -339,5 +339,5 @@ module.exports = {
     validate: ['postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
-  },
+  }
 };
