@@ -34,6 +34,14 @@
     "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents"
   },
 
+  "invoicing-details": {
+    "header": "Invoicing contact details"
+  },
+
+  "invoicing-address": {
+    "header": "Invoicing address"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {
@@ -45,6 +53,9 @@
       },
       "business-details": {
         "header": "Business details"
+      },
+      "invoicing-details": {
+        "header": "Invoicing details"
       }
     },
     "fields": {
@@ -95,6 +106,9 @@
       },
       "mhra-licence-date-of-issue": {
         "label": "MHRA licence date of issue"
+      },
+      "invoicing-contact-telephone": {
+        "label": "Contact phone number"
       }
     }
   }

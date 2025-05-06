@@ -161,5 +161,49 @@ module.exports = {
         }
       }
     ]
+  },
+  'invoicing-details':{
+    steps: [
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+    ]
+  },
+  'invoicing-address': {
+    steps: [
+      {
+        step: '/licence-holder-address',
+        field: 'licence-holder-address-line-1'
+      },
+      {
+        step: '/licence-holder-address',
+        field: 'licence-holder-address-line-2',
+        parse: (value, req) => value || req.translate('journey.not-provided')
+      },
+      {
+        step: '/licence-holder-address',
+        field: 'licence-holder-town-or-city'
+      },
+      {
+        step: '/licence-holder-address',
+        field: 'licence-holder-postcode'
+      }
+    ]
   }
 };

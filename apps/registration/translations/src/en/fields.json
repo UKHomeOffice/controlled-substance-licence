@@ -149,5 +149,32 @@
   "regulatory-body-registration-details": {
     "label": "Provide details of any other regulatory bodies that you are registered with (optional)",
     "hint": "For example the Veterinary Medicines Directorate, the United Kingdom Accreditation Service or the Food Standards Agency"
+  },
+  "invoicing-contact-name": {
+    "label": "Contact name",
+    "hint": "Enter your contact's full name"
+  },
+  "invoicing-contact-telephone": {
+    "label": "Contact number"
+  },
+  "invoicing-contact-email": {
+    "label": "Invoicing email address",
+    "hint": "Enter a shared email address to avoid delays in receiving invoices"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)",
+    "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when invoices are raised"
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-address-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-address-postcode": {
+    "label": "Postcode (required for UK)"
   }
 }
