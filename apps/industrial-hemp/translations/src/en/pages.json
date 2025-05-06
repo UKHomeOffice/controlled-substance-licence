@@ -252,6 +252,15 @@
       },
       "extra-information": {
         "label": "Extra information"
+      },
+      "is-different-postcodes": {
+        "label": "Are any of the fields in a different postcode?"
+      },
+      "different-postcode-details": {
+        "label": "Addresses in another postcode"
+      },
+      "adjacent-field-details":{
+        "label": "What is adjacent to the fields you intend to cultivate?"
       }
     }
   }
