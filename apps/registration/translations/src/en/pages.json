@@ -25,13 +25,18 @@
     "intro": "Upload a scanned copy of your company registration certificate."
   },
 
+  "mhra-licences": {
+    "pageTitle": "MHRA licences"
+  },
+
   "mhra-licence-details": {
     "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
     "pageTitle": "MHRA licence details"
   },
 
   "invoicing-details": {
-    "header": "Invoicing contact details"
+    "header": "Invoicing contact details",
+    "pageTitle": "Invoicing details"
   },
 
   "invoicing-address": {
@@ -87,7 +92,7 @@
         "label": "Previous licence date issued"
       },
       "aggregated-business-type": {
-        "label": "What your business does?"
+        "label": "What your business does"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
@@ -96,7 +101,7 @@
         "label": "Your business model"
       },
       "company-type": {
-        "label": "Company type?"
+        "label": "Company type"
       },
       "has-any-licence-issued-by-mhra": {
         "label": "Any licences issued by MHRA?"

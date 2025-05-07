@@ -155,7 +155,7 @@
     "hint": "Enter your contact's full name"
   },
   "invoicing-contact-telephone": {
-    "label": "Contact number"
+    "label": "Contact phone number"
   },
   "invoicing-contact-email": {
     "label": "Invoicing email address",

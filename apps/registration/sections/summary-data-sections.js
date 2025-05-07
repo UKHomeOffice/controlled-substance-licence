@@ -188,21 +188,22 @@ module.exports = {
   'invoicing-address': {
     steps: [
       {
-        step: '/licence-holder-address',
-        field: 'licence-holder-address-line-1'
+        step: '/invoicing-address',
+        field: 'invoicing-address-line-1'
       },
       {
-        step: '/licence-holder-address',
-        field: 'licence-holder-address-line-2',
+        step: '/invoicing-address',
+        field: 'invoicing-address-line-2',
         parse: (value, req) => value || req.translate('journey.not-provided')
       },
       {
-        step: '/licence-holder-address',
-        field: 'licence-holder-town-or-city'
+        step: '/invoicing-address',
+        field: 'invoicing-address-town-or-city'
       },
       {
-        step: '/licence-holder-address',
-        field: 'licence-holder-postcode'
+        step: '/invoicing-address',
+        field: 'invoicing-address-postcode',
+        parse: (value, req) => value || req.translate('journey.not-provided')
       }
     ]
   }
