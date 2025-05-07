@@ -419,5 +419,66 @@
   "thc-content-level": {
     "label": "Provide the THC content level",
     "hint": "This must be lower than 0.2%"
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-address-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-address-postcode": {
+    "label": "Postcode"
+  },
+  "invoicing-contact-name": {
+    "label": "Contact name",
+    "hint": "Enter your contact's full name"
+  },
+  "invoicing-contact-email": {
+    "label": "Email address",
+    "hint": "Enter a shared email address to avoid delays in receiving invoices"
+  },
+  "invoicing-contact-telephone": {
+    "label": "Contact number"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)",
+    "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when the invoice is raised"
+  },
+  "refund-accound-details": {
+    "label": "Refund account details",
+    "hint": "This is where we should send any refunds to your organisation, where needed"
+  },
+  "licence-email-address": {
+    "label": "Which email address should we send the licence to?"
+  },
+  "who-is-completing-application-full-name": {
+    "label": "Full name"
+  },
+  "who-is-completing-application-email": {
+    "label": "Email address"
+  },
+  "who-is-completing-application-telephone": {
+    "label": "UK contact number"
+  },
+  "regulatory-affairs-officer": {
+    "legend": "Will the regulatory affairs and compliance officer discharge all licence responsibilities?",
+    "hint": "If you answer ‘No’, your registration might take longer and may not be approved",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "officer-non-compliance-reason": {
+    "label": "Explain why the officer will not discharge all licence responsibilities"
+  },
+  "extra-information": {
+    "label": "Add any extra information you think might help your application (optional)"
   }
 }

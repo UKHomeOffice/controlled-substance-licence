@@ -365,6 +365,73 @@ module.exports = {
       {
         step: '/thc-content-level',
         field: 'thc-content-level'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address',
+        parse: (list, req) => {
+          const invoicingAddress = [
+            req.sessionModel.get('invoicing-address-line-1'),
+            req.sessionModel.get('invoicing-address-line-2'),
+            req.sessionModel.get('invoicing-address-town-or-city'),
+            req.sessionModel.get('invoicing-address-postcode')
+          ];
+          return invoicingAddress.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'refund-accound-details'
+      },
+      {
+        step: '/licence-email-address',
+        field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'regulatory-affairs-officer'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'officer-non-compliance-reason'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

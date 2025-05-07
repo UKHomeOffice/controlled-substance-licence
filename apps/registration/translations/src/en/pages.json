@@ -30,16 +30,21 @@
     "pageTitle": "MHRA licence details"
   },
 
-  "registration-details": {
-    "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents"
-  },
-
   "invoicing-details": {
     "header": "Invoicing contact details"
   },
 
   "invoicing-address": {
     "header": "Invoicing address"
+  },
+  
+  "care-quality-commission-or-equivalent": {
+    "pageTitle": "Care Quality Commission registration"
+  },
+
+  "registration-details": {
+    "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents",
+    "pageTitle": "Care Quality Commission registration details"
   },
 
   "confirm": {

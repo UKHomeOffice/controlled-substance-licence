@@ -3,5 +3,6 @@
   "serviceName": "Industrial hemp application",
   "error": "Error",
   "warning": "Warning",
-  "uploading": "Uploading your file..."
+  "uploading": "Uploading your file...",
+  "not-provided": "Not provided"
 }

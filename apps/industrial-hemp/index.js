@@ -522,6 +522,49 @@ const steps = {
   },
 
   '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-address-town-or-city',
+      'invoicing-address-postcode'
+    ],
+    next: '/invoicing-contact-details'
+  },
+
+  '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-contact-name',
+      'invoicing-contact-email',
+      'invoicing-contact-telephone',
+      'invoicing-purchase-order-number',
+      'refund-accound-details'
+    ],
+    next: '/licence-email-address'
+  },
+
+  '/licence-email-address': {
+    fields: ['licence-email-address'],
+    next: '/who-completing-application'
+  },
+
+  '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
+    next: '/regulatory-affairs-officer'
+  },
+
+  '/regulatory-affairs-officer': {
+    fields: ['regulatory-affairs-officer', 'officer-non-compliance-reason'],
+    next: '/extra-information'
+  },
+
+  '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
 

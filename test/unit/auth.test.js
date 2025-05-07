@@ -4,7 +4,7 @@ jest.mock('hof', () => ({
   }))
 }));
 
-const auth = require('../../utils/auth/index');
+const auth = require('../../utils/auth');
 
 jest.mock('node:crypto', () => ({
   createVerify: jest.fn(() => ({

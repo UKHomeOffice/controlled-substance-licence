@@ -1,3 +1,5 @@
+const { findSatisfiedForkCondition } = require('../../../utils');
+
 // Security responsible person redirects
 const checkResponsibleForSecurity = (req, currentRoute, action) => {
   if (
@@ -103,33 +105,44 @@ const checkCompaniesHouseRef = (req, currentRoute) => (
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
-    const { route: currentRoute, confirmStep } = req.form.options;
-    const { action } = req.params;
-    const formApp = req.baseUrl;
+    if (!req.form.options.ignoreCustomRedirect) {
+      const { route: currentRoute, confirmStep } = req.form.options;
+      const { action } = req.params;
+      const formApp = req.baseUrl;
+      const isContinueOnEdit = req.form.options.continueOnEdit;
 
-    this.emit('complete', req, res);
+      this.emit('complete', req, res);
 
-    if (checkCompaniesHouseRef(req, currentRoute)) {
-      return res.redirect(`${formApp}/register-again`);
-    }
+      if (checkCompaniesHouseRef(req, currentRoute)) {
+        return res.redirect(`${formApp}/register-again`);
+      }
 
-    const shouldRedirectToConfirmStep = [
-      req.sessionModel.get('referred-by-summary'),
-      checkResponsibleForSecurity(req, currentRoute, action),
-      checkResponsibleForSecurityDetails(req, currentRoute, action),
-      checkResponsibleForSecurityDbs(req, currentRoute, action),
-      checkResponsibleForCompReg(req, currentRoute, action),
-      checkResponsibleForCompRegDetails(req, currentRoute, action),
-      checkResponsibleForCompRegDbs(req, currentRoute, action),
-      checkResponsibleForWitnessDrugs(req, currentRoute, action),
-      checkResponsibleForWitnessDrugsDetails(req, currentRoute, action),
-      checkResponsibleForWitnessDrugsDbs(req, currentRoute, action),
-      checkProvidingContractService(req, currentRoute, action),
-      checkServiceDetails(req, currentRoute, action)
-    ].some(Boolean);
+      const redirectChecks = [
+        checkResponsibleForSecurity(req, currentRoute, action),
+        checkResponsibleForSecurityDetails(req, currentRoute, action),
+        checkResponsibleForSecurityDbs(req, currentRoute, action),
+        checkResponsibleForCompReg(req, currentRoute, action),
+        checkResponsibleForCompRegDetails(req, currentRoute, action),
+        checkResponsibleForCompRegDbs(req, currentRoute, action),
+        checkResponsibleForWitnessDrugs(req, currentRoute, action),
+        checkResponsibleForWitnessDrugsDetails(req, currentRoute, action),
+        checkResponsibleForWitnessDrugsDbs(req, currentRoute, action),
+        checkProvidingContractService(req, currentRoute, action),
+        checkServiceDetails(req, currentRoute, action)
+      ].some(Boolean);
 
-    if (shouldRedirectToConfirmStep) {
-      return res.redirect(`${formApp}${confirmStep}`);
+      if (
+        req.sessionModel.get('referred-by-information-given-summary') &&
+        !findSatisfiedForkCondition(req, req.form.options.forks)
+      ) {
+        if (!isContinueOnEdit || redirectChecks) {
+          return res.redirect(`${formApp}/information-you-have-given-us`);
+        }
+      }
+
+      if (req.sessionModel.get('referred-by-summary') || redirectChecks) {
+        return res.redirect(`${formApp}${confirmStep}`);
+      }
     }
 
     return super.successHandler(req, res, next);

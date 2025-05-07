@@ -182,7 +182,7 @@ const steps = {
     fields: ['is-business-registered-with-cqc'],
     forks: [
       {
-        target: '/other-regulatory-bodies',
+        target: '/regulatory-body-registration',
         condition: {
           field: 'is-business-registered-with-cqc',
           value: 'no'
@@ -197,10 +197,10 @@ const steps = {
       'registration-number',
       'date-of-registration'
     ],
-    next: '/other-regulatory-bodies'
+    next: '/regulatory-body-registration'
   },
 
-  '/other-regulatory-bodies': {
+  '/regulatory-body-registration': {
     fields: ['regulatory-body-registration-details'],
     next: '/invoicing-details'
   },

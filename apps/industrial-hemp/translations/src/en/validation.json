@@ -322,5 +322,76 @@
     "required": "Enter the THC content level",
     "maxlength": "THC content level must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing contact email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing contact number",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "refund-accound-details": {
+    "required": "Enter your refund account details",
+    "maxlength": "Refund account details must be 500 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "licence-email-address": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter the full name of the person completing the application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number for the person completing the form",
+    "ukPhoneNumber": "Enter a real UK telephone number, like 01632 960 001 or 07700 900 982"
+  },
+  "regulatory-affairs-officer": {
+    "required": "Select if the regulatory affairs officer will discharge all licence responsibilities"
+  },
+  "officer-non-compliance-reason": {
+    "required": "Explain why the officer will not discharge all licence responsibilities",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Reason why the officer will not discharge all licence responsibilities must be 2,000 characters or less"
+  },
+  "extra-information": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Extra information about your application must be 2,000 characters or less"
   }
 }
