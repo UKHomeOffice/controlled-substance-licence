@@ -498,5 +498,9 @@
   "adjacent-field-details": {
     "label": "What is adjacent to each of the fields you intend to cultivate?",
     "hint": "If you have multiple fields, refer to each one by its Ordnance Survey grid reference"
+  },
+  "perimeter-details": {
+    "label": "Enter perimeter details",
+    "hint": "For example, broadleaf hedges and fencing"
   }
 }

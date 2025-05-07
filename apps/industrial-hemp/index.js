@@ -477,10 +477,22 @@ const steps = {
     next: '/perimeter-details'
   },
   '/perimeter-details': {
+    fields: ['perimeter-details'],
     next: '/perimeter-images'
   },
 
   '/perimeter-images': {
+    behaviours: [
+      SaveDocument('perimeter-upload', 'file-upload'),
+      RemoveDocument('perimeter-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'perimeter-upload',
+        customFileType: true
+      }
+    },
     next: '/record-keeping-details'
   },
 
