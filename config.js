@@ -11,6 +11,11 @@ module.exports = {
     month: 'long',
     year: 'numeric'
   },
+  timeFormat: {
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric'
+  },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
