@@ -432,6 +432,18 @@ module.exports = {
         parse: (value, req) => {
           return value ? value : req.translate('journey.not-provided');
         }
+      },
+      {
+        step: '/different-postcodes',
+        field: 'is-different-postcodes'
+      },
+      {
+        step: '/different-postcode-addresses',
+        field: 'different-postcode-details'
+      },
+      {
+        step: '/adjacent-to-fields',
+        field: 'adjacent-field-details'
       }
     ]
   }
