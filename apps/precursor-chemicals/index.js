@@ -16,7 +16,7 @@ const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
-const Submit = require('../precursor-chemicals/behaviours/submit');
+const Submit = require('../common/behaviours/submit');
 
 const steps = {
 
