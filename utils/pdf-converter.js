@@ -42,6 +42,10 @@ module.exports = class PDFConverter extends HofPdfConverter {
 
     const locals = this.sortSections(content, licenceType, htmlLang);
 
+    if (locals.files && locals.files.length) {
+      delete locals.files;
+    }
+
     locals.htmlLang = htmlLang;
     locals.css = await this.readCss();
     locals['ho-logo'] = await this.readHOLogo();
@@ -55,15 +59,15 @@ module.exports = class PDFConverter extends HofPdfConverter {
     locals.referenceNumber = refNumber;
 
     if (target === 'business') {
-      let files = [];
+      const files = [];
       for (const section of locals.rows) {
         for (const field of section.fields) {
           if (field.file) {
             files.push({
               field: field.field,
               urls: req.sessionModel.get(field.field),
-              label: field.label,
-            })
+              label: field.label
+            });
           }
         }
       }
