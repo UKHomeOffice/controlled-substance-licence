@@ -9,7 +9,7 @@ module.exports = superclass => class extends superclass {
     const pdfConverter = new PDFConverter();
     const htmlLang = res.locals.htmlLang || 'en';
     const licenceType = req.session['hof-wizard-common']?.['licence-type'] || 'registration';
-    const licenceLabel = translateOption(req, 'licence-type', this.licenceType) || 'Registration';
+    const licenceLabel = translateOption(req, 'licence-type', licenceType) || 'Registration';
     const pdfConfig = { htmlLang, licenceType, licenceLabel, target: 'business' };
     try {
       const pdfData = await pdfConverter.generatePdf(req, res, locals, pdfConfig);

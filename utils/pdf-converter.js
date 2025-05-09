@@ -1,17 +1,10 @@
 const path = require('node:path');
 const fs = require('node:fs');
-
 const config = require('../config');
-const { translateOption } = require('.');
 
 const HofPdfConverter = require('hof').apis.pdfConverter;
 
 module.exports = class PDFConverter extends HofPdfConverter {
-  constructor(locals) {
-    super();
-    this.locals = locals;
-  }
-
   readCss() {
     return new Promise((resolve, reject) => {
       const cssFile = path.resolve(__dirname, '../public/css/app.css');
@@ -32,7 +25,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
   }
 
   sortSections(locals, licenceType, htmlLang) {
-    const translations = require(`../apps/${licenceType ?? 'registration'}/translations/src/${htmlLang}/pages.json`);
+    const translations = require(`../apps/${licenceType}/translations/src/${htmlLang}/pages.json`);
     const sectionHeaders = Object.values(translations.confirm.sections);
     const orderedSections = sectionHeaders.map(obj => obj.header);
     let rows = locals.rows;
@@ -43,38 +36,55 @@ module.exports = class PDFConverter extends HofPdfConverter {
     return locals;
   }
 
-  async renderHTML(req, res) {
-    const htmlLang = res.locals.htmlLang || 'en';
-    const licenceType = req.session['hof-wizard-common']?.['licence-type'];
-    const licenceLabel = translateOption(req, 'licence-type', licenceType) || 'Registration';
+  async renderHTML(req, res, content, pdfConfig) {
+    const { htmlLang, licenceType, licenceLabel, target } = pdfConfig;
+    const { dateFormat, timeFormat, dateLocales } = config;
 
-    let locals = this.sortSections(this.locals, licenceType, htmlLang);
+    const locals = this.sortSections(content, licenceType, htmlLang);
 
-    locals.title = `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
-    const pdfDateFormat = Object.assign({}, config.dateFormat, config.timeFormat);
-    locals.dateTime = new Intl.DateTimeFormat(config.dateLocales, pdfDateFormat).format(Date.now());
     locals.htmlLang = htmlLang;
+    locals.css = await this.readCss();
+    locals['ho-logo'] = await this.readHOLogo();
+    locals.title = `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
+
+    const pdfDateFormat = Object.assign({}, dateFormat, timeFormat);
+    locals.dateTime = new Intl.DateTimeFormat(dateLocales, pdfDateFormat).format(Date.now());
 
     // TODO: Add generated application reference number to the PDF.
     const refNumber = 'TODO: add reference';
     locals.referenceNumber = refNumber;
 
-    locals.css = await this.readCss(req);
-    locals['ho-logo'] = await this.readHOLogo();
+    if (target === 'business') {
+      let files = [];
+      for (const section of locals.rows) {
+        for (const field of section.fields) {
+          if (field.file) {
+            files.push({
+              field: field.field,
+              urls: req.sessionModel.get(field.field),
+              label: field.label,
+            })
+          }
+        }
+      }
+      locals.addFilesSection = true;
+      locals.files = files;
+    }
+
     return new Promise((resolve, reject) => {
       res.render('pdf.html', locals, (err, html) => err ? reject(err) : resolve(html));
     });
   }
 
-  async generatePdf(req, res) {
+  async generatePdf(req, res, locals, pdfConfig) {
     try {
-      const html = await this.renderHTML(req, res);
+      const html = await this.renderHTML(req, res, locals, pdfConfig);
       this.set({ template: html });
       const pdfData = await this.save();
-      req.log('info', 'PDF data generated successfully');
+      req.log('info', `${pdfConfig.licenceLabel} PDF data generated successfully`);
       return pdfData;
     } catch(error) {
-      req.log('error', 'Error generating PDF data');
+      req.log('error', `Error generating ${pdfConfig.licenceLabel} PDF data`);
       throw error;
     }
   }
