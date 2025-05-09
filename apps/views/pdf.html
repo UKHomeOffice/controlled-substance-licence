@@ -13,13 +13,12 @@
     <main id="content" class="main pdf-body" role="main">
       <img class="ho-logo" src="{{ho-logo}}" alt="Home Office logo"/>
       <h1>{{title}}</h1>
-      <h2>Your reference number: {{referenceNumber}}</h2>
-      <h2>Time and date: {{dateTime}}</h2>
+      <p class="govuk-body">Reference: {{referenceNumber}}</p>
+      <p class="govuk-body">Time and date: {{dateTime}}</p>
       {{#rows}}
         {{^omitFromPdf}}
-        <h2>{{section}}</h2>
           <table data-section="{{section}}" class="table-details">
-            <caption class="visuallyhidden">{{section}}</caption>
+            <caption class="govuk-table__caption pdf-table-caption">{{section}}</caption>
             <tbody{{#name}} data-group="{{name}}"{{/name}}>
             {{#fields}}
             {{^omitFromPdf}}

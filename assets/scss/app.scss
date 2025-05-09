@@ -95,7 +95,7 @@ textarea {
   margin-bottom: 0px !important;
 }
 
-.table-details {
+.table-spacing {
   margin-top: 60px !important;
 }
 
@@ -230,6 +230,10 @@ pre.looped-records {
   margin-left: 10px;
 }
 
+#report-submit {
+  display: inline-block
+}
+
 .ho-logo {
   margin-top: 30px;
 }
@@ -237,6 +241,11 @@ pre.looped-records {
 .pdf-body {
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.pdf-table-caption {
+  @extend .govuk-table__caption--m;
+  margin-top: 20px;
 }
 
 #declaration-check-group {
