@@ -48,6 +48,16 @@ services:
     ports:
       - "3000:3000"
 
+  html-pdf-converter:
+    image: quay.io/ukhomeofficedigital/html-pdf-converter:3.0.0@sha256:2f13eb3bc9d396f2685e22a66b40613a44dfd9956412fe2752477601bb33772c
+    networks:
+      - csl-shared-network
+    hostname: hof-html-pdf-converter
+    environment:
+      - APP_PORT=8082
+    ports:
+      - "8082:8082"
+
   rds-api:
     image: quay.io/ukhomeofficedigital/hof-rds-api:a27f07f7865a0a5c38032fb55c114b1673c41796
     networks:
