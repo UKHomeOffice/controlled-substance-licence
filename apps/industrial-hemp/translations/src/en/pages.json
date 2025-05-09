@@ -68,6 +68,13 @@
   "extra-information": {
     "pageTitle": "Add any extra information to your application"
   },
+  "perimeter-details": {
+    "header": "Perimeter details"
+  },
+  "perimeter-images": {
+    "header": "Upload images of the perimeters",
+    "intro": "Include images for each perimeter of every field which you intend to cultivate."
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -261,6 +268,12 @@
       },
       "adjacent-field-details":{
         "label": "What is adjacent to the fields you intend to cultivate?"
+      },
+      "perimeter-details": {
+        "label": "Perimeter details"
+      },
+      "perimeter-upload": {
+        "label": "Perimeter images"
       }
     }
   }
