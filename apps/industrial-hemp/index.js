@@ -597,7 +597,7 @@ const steps = {
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections'),
-     next: '/declaration'
+    next: '/declaration'
   },
 
   '/declaration': {
