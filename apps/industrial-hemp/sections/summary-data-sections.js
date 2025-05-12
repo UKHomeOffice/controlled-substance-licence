@@ -444,6 +444,17 @@ module.exports = {
       {
         step: '/adjacent-to-fields',
         field: 'adjacent-field-details'
+      },
+      {
+        step: '/perimeter-details',
+        field: 'perimeter-details'
+      },
+      {
+        step: '/perimeter-images',
+        field: 'perimeter-upload',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
       }
     ]
   }
