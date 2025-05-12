@@ -455,20 +455,44 @@ const steps = {
   '/other-operating-businesses': {
     next: '/different-postcodes'
   },
-
   '/different-postcodes': {
+    fields: ['is-different-postcodes'],
+    forks: [
+      {
+        target: '/different-postcode-addresses',
+        condition: {
+          field: 'is-different-postcodes',
+          value: 'yes'
+        }
+      }
+    ],
     next: '/adjacent-to-fields'
   },
-
+  '/different-postcode-addresses': {
+    fields: ['different-postcode-details'],
+    next: '/adjacent-to-fields'
+  },
   '/adjacent-to-fields': {
+    fields: ['adjacent-field-details'],
     next: '/perimeter-details'
   },
-
   '/perimeter-details': {
+    fields: ['perimeter-details'],
     next: '/perimeter-images'
   },
 
   '/perimeter-images': {
+    behaviours: [
+      SaveDocument('perimeter-upload', 'file-upload'),
+      RemoveDocument('perimeter-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'perimeter-upload',
+        customFileType: true
+      }
+    },
     next: '/record-keeping-details'
   },
 
