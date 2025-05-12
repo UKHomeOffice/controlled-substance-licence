@@ -415,5 +415,8 @@
     "required": "Enter details of the growing location's perimeter",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Perimeter details must be 2,000 characters or less"
+  },
+  "declaration-check": {
+    "required": "You must confirm you agree with this declaration to submit the application"
   }
 }

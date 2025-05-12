@@ -75,6 +75,9 @@
     "header": "Upload images of the perimeters",
     "intro": "Include images for each perimeter of every field which you intend to cultivate."
   },
+  "declaration": {
+    "header": "Declaration"
+  },
   "application-submitted": {
     "confirmed": "Application submitted"
   },

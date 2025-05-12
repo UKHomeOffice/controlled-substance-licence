@@ -502,5 +502,8 @@
   "perimeter-details": {
     "label": "Enter perimeter details",
     "hint": "For example, broadleaf hedges and fencing"
+  },
+  "declaration-check": {
+    "label": "I understand and agree with these statements"
   }
 }
