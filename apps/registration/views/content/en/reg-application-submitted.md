@@ -1,3 +1,5 @@
+Confirmation email sent to <a href="mailto:{{values.email}}" class="govuk-link">{{values.email}}</a>.
+
 Your confirmation email contains your username. You will receive a separate email with your password.
 
 ## What happens next

@@ -44,8 +44,7 @@
   },
 
   "registration-submitted": {
-    "confirmed": "Registration submitted",
-    "emailIntro": "Confirmation email sent to"
+    "confirmed": "Registration submitted"
   },
 
   "confirm": {
