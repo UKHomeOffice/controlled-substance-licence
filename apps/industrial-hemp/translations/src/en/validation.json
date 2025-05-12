@@ -202,6 +202,10 @@
     "recordKeepingDocumentLimit" : "You may not add more than {{recordKeepingDocumentLimit}} file(s)",
     "aerial-photos-upload": {
       "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
+    },
+    "perimeterUploadLimit" : "You may not add more than {{perimeterUploadLimit}} file(s)",
+    "perimeter-upload": {
+      "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
     }
   },
   "is-company-ref-changed": {
@@ -393,5 +397,23 @@
   "extra-information": {
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Extra information about your application must be 2,000 characters or less"
+  },
+  "is-different-postcodes": {
+    "required": "Select if any of the fields are in a different postcode to the site address"
+  },
+  "different-postcode-details":{
+    "required": "Enter the addresses of the fields that are in a different postcode",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Addresses of the fields that are in a different postcode must be 2,000 characters or less"
+  },
+  "adjacent-field-details": {
+    "required": "Enter what is adjacent to each of the fields you intend to cultivate",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of what is adjacent to each of the fields you intend to cultivate must be 2,000 characters or less"
+  },
+  "perimeter-details":{
+    "required": "Enter details of the growing location's perimeter",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Perimeter details must be 2,000 characters or less"
   }
 }

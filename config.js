@@ -83,6 +83,17 @@ module.exports = {
       'record-keeping-document': {
         limit: 20,
         limitValidationError: 'recordKeepingDocumentLimit'
+      },
+      'perimeter-upload': {
+        limit: 20,
+        limitValidationError: 'perimeterUploadLimit',
+        allowedMimeTypes: [
+          'image/jpeg',
+          'image/png',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ]
       }
     }
   },

@@ -480,5 +480,27 @@
   },
   "extra-information": {
     "label": "Add any extra information you think might help your application (optional)"
+  },
+  "is-different-postcodes": {
+    "legend": "Are any of the fields in a different postcode to the site address?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "different-postcode-details": {
+    "label": "Provide the addresses of the fields that are in a different postcode"
+  },
+  "adjacent-field-details": {
+    "label": "What is adjacent to each of the fields you intend to cultivate?",
+    "hint": "If you have multiple fields, refer to each one by its Ordnance Survey grid reference"
+  },
+  "perimeter-details": {
+    "label": "Enter perimeter details",
+    "hint": "For example, broadleaf hedges and fencing"
   }
 }
