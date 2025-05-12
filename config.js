@@ -133,5 +133,6 @@ module.exports = {
       tradingReasonsLimit: 5
     }
   },
-  wizardSessionKeyPrefix: 'hof-wizard'
+  wizardSessionKeyPrefix: 'hof-wizard',
+  feedback: process.env.FEEDBACK_URL
 };
