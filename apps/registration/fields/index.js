@@ -305,8 +305,8 @@ module.exports = {
     mixin: 'input-text',
     validate: [
       'notUrl',
-      { type: 'minlength', arguments: [3] },
-      { type: 'maxlength', arguments: [50] }
+      { type: 'minlength', arguments: [1] },
+      { type: 'maxlength', arguments: [250] }
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },

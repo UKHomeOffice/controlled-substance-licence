@@ -154,8 +154,8 @@
   },
   "invoicing-purchase-order-number": {
     "notUrl": "Your answer must not contain URLs or links",
-    "minlength": "Purchase order number must be between 3 and 50 characters",
-    "maxlength": "Purchase order number must be between 3 and 50 characters"
+    "minlength": "Purchase order number must be between 1 and 250 characters",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
   },
   "invoicing-address-line-1": {
     "required": "Enter address line 1, typically the building and street",
