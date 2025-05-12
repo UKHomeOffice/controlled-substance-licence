@@ -11,6 +11,7 @@ const OtherBusinessLoop = require('./behaviours/other-business-detail');
 const LimitItems = require('../common/behaviours/limit-items');
 const Config = require('../../config');
 const SubmitRequest = require('../common/behaviours/submit-request');
+const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 
 const steps = {
   /** Start of journey */
@@ -456,7 +457,6 @@ const steps = {
     fields: ['is-permission-for-activities'],
     next: '/other-operating-businesses'
   },
-
   '/other-operating-businesses': {
     fields: ['is-operating-other-business'],
     forks: [
@@ -689,5 +689,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   steps: steps,
   confirmStep: '/confirm',
-  behaviours: [ Auth ]
+  behaviours: [ Auth, SetFeedbackUrl]
 };

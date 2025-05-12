@@ -289,13 +289,13 @@
       "perimeter-upload": {
         "label": "Perimeter images"
       },
-      "other-operating-businesses":{
+      "is-operating-other-business":{
         "label": "Any other businesses operating from the cultivation site?"
       },
-      "own-operating-businesses":{
+      "is-own-other-businesses":{
         "label": "Own any other businesses operating from the cultivation site?"
       },
-      "adjacent-businesses":{
+      "is-adjacent-businesses":{
         "label": "Business adjacent to or operating from your cultivation site"
       },
       "other-business-aggregate": {
