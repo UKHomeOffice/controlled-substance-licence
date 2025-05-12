@@ -39,6 +39,15 @@
     "pageTitle": "Care Quality Commission registration details"
   },
 
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "registration-submitted": {
+    "confirmed": "Registration submitted",
+    "emailIntro": "Confirmation email sent to"
+  },
+
   "confirm": {
     "header": "Check your answers before submitting your registration",
     "sections": {

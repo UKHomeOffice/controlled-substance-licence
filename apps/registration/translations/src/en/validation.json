@@ -137,5 +137,8 @@
   "regulatory-body-registration-details": {
     "maxlength": "Details of other regulatory bodies you are registered with must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "declaration-check": {
+    "required": "Confirm you have read and agree to this declaration"
   }
 }

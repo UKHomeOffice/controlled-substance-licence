@@ -149,5 +149,8 @@
   "regulatory-body-registration-details": {
     "label": "Provide details of any other regulatory bodies that you are registered with (optional)",
     "hint": "For example the Veterinary Medicines Directorate, the United Kingdom Accreditation Service or the Food Standards Agency"
+  },
+  "declaration-check": {
+    "label": "I have read and agree to this declaration"
   }
 }
