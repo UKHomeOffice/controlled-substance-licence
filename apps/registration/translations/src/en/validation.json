@@ -160,19 +160,19 @@
   "invoicing-address-line-1": {
     "required": "Enter address line 1, typically the building and street",
     "notUrl": "Your answer must not contain URLs or links",
-    "minlength": "Address line 1 must be between 2 and 250 characters",
-    "maxlength": "Address line 1 must be between 2 and 250 characters"
+    "minlength": "Address line 1 must be between 1 and 250 characters",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
   },
   "invoicing-address-line-2": {
     "notUrl": "Your answer must not contain URLs or links",
-    "minlength": "Address line 2 must be between 2 and 250 characters",
-    "maxlength": "Address line 2 must be between 2 and 250 characters"
+    "minlength": "Address line 2 must be between 1 and 250 characters",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
   },
   "invoicing-address-town-or-city": {
     "required": "Enter town or city",
     "notUrl": "Your answer must not contain URLs or links",
-    "minlength": "Town or city must be between 2 and 250 characters",
-    "maxlength": "Town or city must be between 2 and 250 characters"
+    "minlength": "Town or city must be between 1 and 250 characters",
+    "maxlength": "Town or city must be between 1 and 250 characters"
   },
   "invoicing-address-postcode": {
     "postcode": "Enter a real UK postcode"

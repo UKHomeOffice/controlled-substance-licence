@@ -35,8 +35,7 @@
   },
 
   "invoicing-details": {
-    "header": "Invoicing contact details",
-    "pageTitle": "Invoicing details"
+    "header": "Invoicing contact details"
   },
 
   "invoicing-address": {
@@ -123,9 +122,6 @@
       },
       "mhra-licence-date-of-issue": {
         "label": "MHRA licence date of issue"
-      },
-      "invoicing-contact-telephone": {
-        "label": "Contact phone number"
       }
     }
   }

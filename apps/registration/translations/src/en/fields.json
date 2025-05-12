@@ -175,6 +175,6 @@
     "label": "Town or city"
   },
   "invoicing-address-postcode": {
-    "label": "Postcode (required for UK)"
+    "label": "Postcode"
   }
 }

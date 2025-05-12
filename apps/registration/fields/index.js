@@ -315,14 +315,14 @@ module.exports = {
     validate: [
       'required',
       'notUrl',
-      { type: 'minlength', arguments: [2] },
+      { type: 'minlength', arguments: [1] },
       { type: 'maxlength', arguments: [250] }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'invoicing-address-line-2': {
     mixin: 'input-text',
     validate: ['notUrl',
-      { type: 'minlength', arguments: [2] },
+      { type: 'minlength', arguments: [1] },
       { type: 'maxlength', arguments: [250] }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
@@ -330,7 +330,7 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required',
       'notUrl',
-      { type: 'minlength', arguments: [2] },
+      { type: 'minlength', arguments: [1] },
       { type: 'maxlength', arguments: [250] }],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
