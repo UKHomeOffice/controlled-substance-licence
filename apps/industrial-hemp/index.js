@@ -573,7 +573,18 @@ const steps = {
   '/confirm': {
     behaviours: [Summary],
     sections: require('./sections/summary-data-sections')
+  },
+
+  '/declaration': {
+    fields: ['declaration-check'],
+    next: '/application-submitted'
+  },
+
+  '/application-submitted': {
+    backLink: false,
+    clearSession: true
   }
+
 };
 
 module.exports = {

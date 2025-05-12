@@ -68,6 +68,9 @@
   "extra-information": {
     "pageTitle": "Add any extra information to your application"
   },
+  "application-submitted": {
+    "confirmed": "Application submitted"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
