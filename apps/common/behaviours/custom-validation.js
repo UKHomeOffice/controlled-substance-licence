@@ -14,6 +14,19 @@ module.exports = superclass => class extends superclass {
       }
     }
 
+    if (key === 'ordnance-survey-reference') {
+      const gridReference = req.form.values[key];
+      if (gridReference) {
+        if (!validators.regex(gridReference, /^[A-Za-z]{2}[\/,\-| ]?\d{5}[\/,\-| ]?\d{5}/)) {
+          return validationErrorFunc('numFormat');
+        }
+
+        if(!validators.max(gridReference.length, 14) || !validators.min(gridReference.length, 12)) {
+          return validationErrorFunc('lengthSize');
+        }
+      }
+    }
+
     if (key === 'telephone' || key === 'premises-telephone' ||
       key === 'invoicing-telephone' || key === 'who-is-completing-application-telephone' ||
       key === 'growing-location-uk-telephone' ||

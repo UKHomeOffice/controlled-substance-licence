@@ -6,6 +6,10 @@ const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const Auth = require('../common/behaviours/auth/auth-check');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const OtherBusinessLoop = require('./behaviours/other-business-detail');
+const LimitItems = require('../common/behaviours/limit-items');
+const Config = require('../../config');
 const Feedback = require('../common/behaviours/feedback');
 
 const steps = {
@@ -454,7 +458,70 @@ const steps = {
   },
 
   '/other-operating-businesses': {
+    fields: ['is-operating-other-business'],
+    forks: [
+      {
+        target: '/own-other-operating-businesses',
+        condition: {
+          field: 'is-operating-other-business',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/adjacent-businesses'
+  },
+  '/adjacent-businesses': {
+    fields: ['is-adjacent-businesses'],
+    forks: [
+      {
+        target: '/other-businesses-details',
+        condition: {
+          field: 'is-adjacent-businesses',
+          value: 'yes'
+        }
+      }
+    ],
     next: '/different-postcodes'
+  },
+  '/own-other-operating-businesses': {
+    fields: ['is-own-other-businesses'],
+    next: '/other-businesses-details'
+  },
+  '/other-businesses-details': {
+    fields: [
+      'business-name',
+      'business-type',
+      'business-owner',
+      'business-involvement',
+      'ordnance-survey-reference'
+    ],
+    continueOnEdit: true,
+    next: '/other-businesses-summary'
+  },
+  '/other-businesses-summary': {
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      OtherBusinessLoop,
+      SetSummaryReferrer,
+      CustomRedirect
+    ],
+    aggregateTo: 'other-business-aggregate',
+    aggregateFrom: [
+      'business-name',
+      'business-type',
+      'business-owner',
+      'business-involvement',
+      'ordnance-survey-reference'
+    ],
+    titleField: 'other-businesses-details',
+    template: 'other-businesses-summary',
+    addStep: 'other-businesses-details',
+    next: '/different-postcodes',
+    aggregateLimit: Config.aggregateLimits.industrialHemp.businessAdjacentLimit,
+    locals: {
+      fullWidthPage: true
+    }
   },
   '/different-postcodes': {
     fields: ['is-different-postcodes'],
