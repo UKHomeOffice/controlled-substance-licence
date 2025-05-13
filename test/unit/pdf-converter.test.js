@@ -1,0 +1,234 @@
+const PDFConverter = require('../../utils/pdf-converter');
+const reqres = require('hof').utils.reqres;
+const path = require('node:path');
+const fs = require('node:fs');
+
+const converterDir = path.resolve('./utils');
+const cssDir = path.resolve('./public/css/app.css');
+const HOLogoDir = path.resolve('./assets/images/ho-logo.png');
+
+describe('PDFConverter class: ', () => {
+  let req;
+  let res;
+  let locals;
+  let sortedLocals;
+  let pdfConfig;
+  let pdfConverter;
+  let setSpy;
+  let pathSpy;
+  let fsSpy;
+
+  beforeEach(() => {
+    req = reqres.req();
+    res = reqres.res();
+
+    pdfConverter = new PDFConverter();
+
+    pathSpy = jest.spyOn(path, 'resolve');
+    fsSpy = jest.spyOn(fs, 'readFile');
+
+    pdfConfig = {
+      htmlLang: 'en',
+      licenceType: 'precursor-chemicals',
+      licenceLabel: 'Precursor chemicals',
+      target: 'business'
+    };
+
+    locals = {
+      rows: [
+        {
+          section: 'Evidence',
+          fields: [
+            {
+              label: 'Applicant certificate of good conduct',
+              value: 'cert.png',
+              step: '/upload-conduct-certificate',
+              field: 'certificate-of-good-conduct',
+              file: true
+            }
+          ],
+          omitFromPdf: false
+        },
+        {
+          section: 'About the licence',
+          fields: [
+            {
+              label: 'Reason for chemical application',
+              value: 'test-reason',
+              step: '/why-chemicals-needed',
+              field: 'chemicals-used-for'
+            }
+          ],
+          omitFromPdf: false
+        }
+      ],
+      files: [
+        {
+          field: 'certificate-of-registration',
+          urls: ['url', 'url'],
+          label: 'Company registration certificate'
+        }
+      ]
+    };
+
+    sortedLocals = {
+      rows: [
+        {
+          section: 'About the licence',
+          fields: [
+            {
+              label: 'Reason for chemical application',
+              value: 'test-reason',
+              step: '/why-chemicals-needed',
+              field: 'chemicals-used-for'
+            }
+          ],
+          omitFromPdf: false
+        },
+        {
+          section: 'Evidence',
+          fields: [
+            {
+              label: 'Applicant certificate of good conduct',
+              value: 'cert.png',
+              step: '/upload-conduct-certificate',
+              field: 'certificate-of-good-conduct',
+              file: true
+            }
+          ],
+          omitFromPdf: false
+        }
+      ]
+    };
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+    jest.clearAllMocks();
+  });
+
+  describe('readCSS method', () => {
+    it('calls path.resolve and fs.readFile with the correct values', async () => {
+      await pdfConverter.readCss();
+      expect(pathSpy).toHaveBeenCalledWith(converterDir, '../public/css/app.css');
+      expect(fsSpy).toHaveBeenCalledWith(cssDir, expect.any(Function));
+    });
+
+    it('rejects with an error on failure', async () => {
+      fs.readFile = jest.fn().mockImplementation((filePath, cb) => {
+        cb(new Error('readFile error'));
+      });
+      pdfConverter.readCss()
+        .catch(error => {
+          expect(error.message).toBe('readFile error');
+        });
+    });
+  });
+
+  describe('readHOLogo method', () => {
+    it('calls path.resolve and fs.readFilewith the correct values', async () => {
+      await pdfConverter.readHOLogo();
+      expect(pathSpy).toHaveBeenCalledWith(converterDir, '../assets/images/ho-logo.png');
+      expect(fsSpy).toHaveBeenCalledWith(HOLogoDir, expect.any(Function));
+    });
+
+    it('rejects with an error on failure', async () => {
+      fs.readFile = jest.fn().mockImplementation((filePath, cb) => {
+        cb(new Error('readFile error'));
+      });
+      pdfConverter.readHOLogo()
+        .catch(error => {
+          expect(error.message).toBe('readFile error');
+        });
+    });
+  });
+
+  describe('sortSections method', () => {
+    it('sorts locals.rows as expected', () => {
+      delete locals.files;
+      expect(pdfConverter.sortSections(locals, pdfConfig.licenceType, pdfConfig.htmlLang)).toStrictEqual(sortedLocals);
+    });
+  });
+
+  describe('renderHTML method', () => {
+    beforeEach(() => {
+      pdfConverter.readCss = jest.fn().mockResolvedValue('I am a CSS');
+      pdfConverter.readHOLogo = jest.fn().mockResolvedValue('I am an image');
+      sortSectionsSpy = jest.spyOn(pdfConverter, 'sortSections');
+      req.sessionModel.get = jest.fn().mockReturnValue(['url', 'url']);
+      jest.spyOn(Date, 'now').mockReturnValue(1747133651980);
+      res.render = jest.fn().mockImplementation((template, data, cb) => {
+        return cb();
+      });
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls res.render with the correct locals for business PDF', async () => {
+      await pdfConverter.renderHTML(req, res, locals, pdfConfig);
+      expect(pdfConverter.readCss).toHaveBeenCalled();
+      expect(pdfConverter.readHOLogo).toHaveBeenCalled();
+      expect(sortSectionsSpy).toHaveBeenCalledWith(locals, pdfConfig.licenceType, pdfConfig.htmlLang);
+      expect(res.render).toHaveBeenCalledWith('pdf.html', Object.assign({}, sortedLocals, {
+        htmlLang: 'en',
+        css: 'I am a CSS',
+        'ho-logo': 'I am an image',
+        title: 'Apply for a domestic licence for controlled substances: Precursor chemicals',
+        dateTime: '13 May 2025 at 11:54:11',
+        referenceNumber: 'TODO: add reference',
+        addFilesSection: true,
+        files: [
+          {
+            field: 'certificate-of-good-conduct',
+            urls: ['url', 'url'],
+            label: 'Applicant certificate of good conduct'
+          }
+        ]
+      }), expect.any(Function));
+    });
+
+    it('calls res.render with the correct locals for public PDF', async () => {
+      pdfConfig.target = 'public';
+      await pdfConverter.renderHTML(req, res, locals, pdfConfig);
+      expect(pdfConverter.readCss).toHaveBeenCalled();
+      expect(pdfConverter.readHOLogo).toHaveBeenCalled();
+      expect(sortSectionsSpy).toHaveBeenCalledWith(locals, pdfConfig.licenceType, pdfConfig.htmlLang);
+      expect(res.render).toHaveBeenCalledWith('pdf.html', Object.assign({}, sortedLocals, {
+        htmlLang: 'en',
+        css: 'I am a CSS',
+        'ho-logo': 'I am an image',
+        title: 'Apply for a domestic licence for controlled substances: Precursor chemicals',
+        dateTime: '13 May 2025 at 11:54:11',
+        referenceNumber: 'TODO: add reference'
+      }), expect.any(Function));
+    });
+  });
+
+  describe('generatePDF method: ', () => {
+    beforeEach(() => {
+      pdfConverter.readCss = jest.fn().mockResolvedValue('I am a CSS');
+      pdfConverter.readHOLogo = jest.fn().mockResolvedValue('I am an image');
+      sortSectionsSpy = jest.spyOn(pdfConverter, 'sortSections');
+      setSpy = jest.spyOn(pdfConverter, 'set');
+      pdfConverter.renderHTML = jest.fn().mockResolvedValue('I am HTML');
+      req.sessionModel.get = jest.fn().mockReturnValue(['url', 'url']);
+      req.log = jest.fn();
+      pdfConverter.save = jest.fn().mockResolvedValue('I am a PDF');
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('calls all methods and returns expected values', async () => {
+      const pdfData = await pdfConverter.generatePdf(req, res, locals, pdfConfig);
+      expect(pdfConverter.renderHTML).toHaveBeenCalledWith(req, res, locals, pdfConfig);
+      expect(setSpy).toHaveBeenCalledWith({ template: 'I am HTML' });
+      expect(pdfConverter.save).toHaveBeenCalled();
+      expect(pdfData).toBe('I am a PDF');
+      expect(req.log).toHaveBeenCalledWith('info', 'Precursor chemicals PDF data generated successfully');
+    });
+  });
+});
