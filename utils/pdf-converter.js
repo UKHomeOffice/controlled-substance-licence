@@ -88,7 +88,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
       req.log('info', `${pdfConfig.licenceLabel} PDF data generated successfully`);
       return pdfData;
     } catch(error) {
-      req.log('error', `Error generating ${pdfConfig.licenceLabel} PDF data`);
+      req.log('error', `Error generating ${pdfConfig.licenceLabel} PDF. Cause: ${error.status} - ${error.message}`);
       throw error;
     }
   }

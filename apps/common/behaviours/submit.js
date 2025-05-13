@@ -33,7 +33,6 @@ module.exports = superclass => class extends superclass {
         console.log('File written successfully!');
       });
     } catch (error) {
-      req.log('error', JSON.stringify(error));
       return next(error);
     }
     return super.successHandler(req, res, next);
