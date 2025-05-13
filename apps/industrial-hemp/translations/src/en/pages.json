@@ -81,7 +81,7 @@
   "other-businesses-summary": {
     "header": "Businesses adjacent to or operating from your cultivation site",
     "key": "Business",
-    "business-limit-exceeded": "You can not add any more substances"
+    "business-limit-exceeded": "You can not add any more businesses"
   },
   "confirm": {
     "header": "Check your answers",
