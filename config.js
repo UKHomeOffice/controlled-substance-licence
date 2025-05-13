@@ -136,6 +136,9 @@ module.exports = {
     },
     controlledDrugs: {
       tradingReasonsLimit: 5
+    },
+    industrialHemp: {
+      businessAdjacentLimit: 100
     }
   },
   wizardSessionKeyPrefix: 'hof-wizard'

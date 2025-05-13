@@ -137,5 +137,45 @@
   "regulatory-body-registration-details": {
     "maxlength": "Details of other regulatory bodies you are registered with must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing telephone number",
+    "internationalPhoneNumber": "Enter a real telephone number"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Purchase order number must be between 1 and 250 characters",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Address line 1 must be between 1 and 250 characters",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Address line 2 must be between 1 and 250 characters",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Town or city must be between 1 and 250 characters",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
   }
 }
