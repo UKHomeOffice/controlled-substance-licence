@@ -336,7 +336,7 @@ module.exports = {
   },
   'invoicing-address-postcode': {
     mixin: 'input-text',
-    validate: ['postcode'],
+    validate: ['required', 'postcode'],
     formatter: ['ukPostcode'],
     className: ['govuk-input', 'govuk-input--width-10']
   }

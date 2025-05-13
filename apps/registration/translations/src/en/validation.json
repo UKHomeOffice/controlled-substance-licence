@@ -175,6 +175,7 @@
     "maxlength": "Town or city must be between 1 and 250 characters"
   },
   "invoicing-address-postcode": {
+    "required": "Enter a postcode",
     "postcode": "Enter a real UK postcode"
   }
 }
