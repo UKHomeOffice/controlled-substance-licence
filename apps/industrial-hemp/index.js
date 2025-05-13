@@ -673,7 +673,7 @@ const steps = {
   },
   '/application-submitted': {
     backLink: false
-  },
+  }
 };
 
 module.exports = {
