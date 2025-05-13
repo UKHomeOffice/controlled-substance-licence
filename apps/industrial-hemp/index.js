@@ -6,6 +6,7 @@ const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const Auth = require('../common/behaviours/auth/auth-check');
+const Feedback = require('../common/behaviours/feedback');
 
 const steps = {
   /** Start of journey */
@@ -608,5 +609,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   steps: steps,
   confirmStep: '/confirm',
-  behaviours: [ Auth ]
+  behaviours: [ Auth, Feedback]
 };

@@ -16,6 +16,7 @@ const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
+const Feedback = require('../common/behaviours/feedback');
 
 const steps = {
 
@@ -532,5 +533,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [Auth, SaveFormSession, CustomRedirect]
+  behaviours: [Auth, SaveFormSession, CustomRedirect, Feedback]
 };
