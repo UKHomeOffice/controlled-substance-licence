@@ -10,6 +10,8 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const OtherBusinessLoop = require('./behaviours/other-business-detail');
 const LimitItems = require('../common/behaviours/limit-items');
 const Config = require('../../config');
+const SubmitRequest = require('../common/behaviours/submit-request');
+
 const steps = {
   /** Start of journey */
 
@@ -662,8 +664,16 @@ const steps = {
 
   '/confirm': {
     behaviours: [Summary],
-    sections: require('./sections/summary-data-sections')
-  }
+    sections: require('./sections/summary-data-sections'),
+    next: '/declaration'
+  },
+  '/declaration': {
+    behaviours: [SubmitRequest],
+    next: '/application-submitted'
+  },
+  '/application-submitted': {
+    backLink: false
+  },
 };
 
 module.exports = {

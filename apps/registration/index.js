@@ -8,6 +8,7 @@ const FilterSelectFieldOptions = require('../common/behaviours/filter-select-fie
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const CustomRedirect = require('./behaviours/custom-redirect');
+const SubmitRequest = require('./behaviours/submit-request');
 
 const steps = {
 
@@ -236,6 +237,7 @@ const steps = {
   },
 
   '/declaration': {
+    behaviours: [SubmitRequest],
     next: '/registration-submitted'
   },
 
