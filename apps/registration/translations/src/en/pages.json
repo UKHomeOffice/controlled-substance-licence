@@ -25,9 +25,21 @@
     "intro": "Upload a scanned copy of your company registration certificate."
   },
 
+  "mhra-licences": {
+    "pageTitle": "MHRA licences"
+  },
+
   "mhra-licence-details": {
     "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
     "pageTitle": "MHRA licence details"
+  },
+
+  "invoicing-details": {
+    "header": "Invoicing contact details"
+  },
+
+  "invoicing-address": {
+    "header": "Invoicing address"
   },
 
   "care-quality-commission-or-equivalent": {
@@ -37,6 +49,10 @@
   "registration-details": {
     "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents",
     "pageTitle": "Care Quality Commission registration details"
+  },
+
+  "regulatory-body-registration": {
+    "pageTitle": "Details of registration with other regulatory bodies"
   },
 
   "declaration": {
@@ -58,6 +74,9 @@
       },
       "business-details": {
         "header": "Business details"
+      },
+      "invoicing-details": {
+        "header": "Invoicing details"
       }
     },
     "fields": {
@@ -80,13 +99,16 @@
         "label": "Previous licence date issued"
       },
       "aggregated-business-type": {
-        "label": "What your business does?"
+        "label": "What your business does"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"
       },
       "describe-business-model": {
         "label": "Your business model"
+      },
+      "company-type": {
+        "label": "Company type"
       },
       "has-any-licence-issued-by-mhra": {
         "label": "Any licences issued by MHRA?"
