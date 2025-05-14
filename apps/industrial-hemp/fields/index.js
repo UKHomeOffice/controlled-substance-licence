@@ -946,7 +946,8 @@ module.exports = {
     mixin: 'textarea',
     validate: [
       'required',
-      'notUrl'
+      'notUrl',
+      { type: 'maxlength', arguments: 2000 }
     ],
     attributes: [{ attribute: 'rows', value: 8 }],
     showFieldInSummary: true
