@@ -419,6 +419,9 @@
   "is-operating-other-business": {
     "required": "Select if there are any other businesses operating from your intended cultivation site"
   },
+  "is-own-other-businesses": {
+    "required": "Select if you own any other businesses operating from your intended cultivation site"
+  },
   "is-adjacent-businesses": {
     "required": "Select if there are any businesses adjacent to your intended cultivation site"
   },
