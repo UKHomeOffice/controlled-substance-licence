@@ -1,6 +1,6 @@
-Application reference number: 12345678
+Application reference number: {{! @todo: placeholder for case-id }} 
 
-An email confirming your application and a PDF of your details has been sent to {{values.licence-email-address}}.
+An email confirming your application and a PDF of your details has been sent to <a href="mailto:{{values.licence-email-address}}" class="govuk-link">{{values.licence-email-address}}</a>.
 
 ## What happens next
 
