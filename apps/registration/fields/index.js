@@ -269,7 +269,7 @@ module.exports = {
       'required',
       'date',
       { type: 'before', arguments: ['0', 'days'] },
-      { type: 'after', arguments: ['100', 'years'] } // Validate the date to be less than 100 years in the past
+      { type: 'after', arguments: ['2002-12-31'] }
     ],
     legend: {
       className: 'govuk-!-margin-bottom-4'
