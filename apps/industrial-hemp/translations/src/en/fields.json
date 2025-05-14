@@ -503,6 +503,56 @@
     "label": "Enter perimeter details",
     "hint": "For example, broadleaf hedges and fencing"
   },
+  "is-operating-other-business": {
+    "legend": "Are there any other businesses operating from your intended cultivation site?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-adjacent-businesses": {
+    "legend": "Are there any businesses adjacent to your intended cultivation site?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "is-own-other-businesses": {
+    "legend": "Do you own any other businesses operating from your intended cultivation site?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "business-name": {
+    "label": "Business name"
+  },
+  "business-type": {
+    "label": "Type of business"
+  },
+  "business-owner": {
+    "label": "Who owns the business?"
+  },
+  "business-involvement": {
+    "label": "Describe your involvement in this business",
+    "summary-label": "Your involvement in this business"
+  },
+  "ordnance-survey-reference": {
+    "label": "Ordnance survey grid reference",
+    "hint": "For example, SZ 65750 98047"
+  },
   "declaration-check": {
     "label": "I understand and agree with these statements"
   }

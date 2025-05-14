@@ -301,18 +301,6 @@ module.exports = {
         field: 'where-cultivating-cannabis'
       },
       {
-        step: '/company-own-fields',
-        field: 'is-company-own-fields'
-      },
-      {
-        step: '/who-owns-fields',
-        field: 'who-own-fields'
-      },
-      {
-        step: '/permission-for-intended-activities',
-        field: 'is-permission-for-activities'
-      },
-      {
         step: '/field-acreage',
         field: 'field-acreage'
       },
@@ -330,6 +318,52 @@ module.exports = {
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/company-own-fields',
+        field: 'is-company-own-fields'
+      },
+      {
+        step: '/who-owns-fields',
+        field: 'who-own-fields'
+      },
+      {
+        step: '/permission-for-intended-activities',
+        field: 'is-permission-for-activities'
+      },
+      {
+        step: '/other-operating-businesses',
+        field: 'other-operating-businesses'
+      },
+      {
+        step: '/adjacent-businesses',
+        field: 'adjacent-businesses'
+      },
+      {
+        step: '/own-other-operating-businesses',
+        field: 'own-operating-businesses'
+      },
+      {
+        step: '/other-businesses-summary',
+        field: 'other-business-aggregate',
+        changeLink: 'other-businesses-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const businessName = item.fields.find(field => field.field === 'business-name')?.value;
+            const businessType = item.fields.find(field => field.field === 'business-type')?.value;
+            const businessOwner = item.fields.find(field => field.field === 'business-owner')?.value;
+            const businessInvolve = item.fields.find(field => field.field === 'business-involvement')?.value;
+            const surveyRef = item.fields.find(field => field.field === 'ordnance-survey-reference')?.value;
+
+            return `${businessName}\n` +
+                   `${businessType}\n` +
+                   `${businessOwner}\n` +
+                   `${businessInvolve}\n` +
+                   `${surveyRef}\n`;
+          }).join('\n');
+        }
+
       },
       {
         step: '/different-postcodes',

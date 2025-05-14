@@ -75,6 +75,14 @@
     "header": "Upload images of the perimeters",
     "intro": "Include images for each perimeter of every field which you intend to cultivate."
   },
+  "other-businesses-details": {
+    "header": "Details of businesses adjacent to or operating from your cultivation site"
+  },
+  "other-businesses-summary": {
+    "header": "Businesses adjacent to or operating from your cultivation site",
+    "key": "Business",
+    "business-limit-exceeded": "You can not add any more businesses"
+  },
   "declaration": {
     "header": "Declaration"
   },
@@ -280,6 +288,18 @@
       },
       "perimeter-upload": {
         "label": "Perimeter images"
+      },
+      "other-operating-businesses":{
+        "label": "Any other businesses operating from the cultivation site?"
+      },
+      "own-operating-businesses":{
+        "label": "Own any other businesses operating from the cultivation site?"
+      },
+      "adjacent-businesses":{
+        "label": "Business adjacent to or operating from your cultivation site"
+      },
+      "other-business-aggregate": {
+        "label" : "Businesses adjacent to or operating from your cultivation site"
       }
     }
   }

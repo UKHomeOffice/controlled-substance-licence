@@ -858,6 +858,105 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }],
     labelClassName: ['govuk-label--m']
   },
+  'is-operating-other-business': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-adjacent-businesses': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'is-own-other-businesses': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: [ 'required' ],
+    options: [
+      {
+        value: 'yes'
+      },
+      {
+        value: 'no'
+      }
+    ],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-!-margin-bottom-6'
+    }
+  },
+  'business-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-type': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-owner': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: [3] },
+      { type: 'maxlength', arguments: [200] }
+    ],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
+  'business-involvement': {
+    mixin: 'textarea',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    attributes: [{ attribute: 'rows', value: 8 }],
+    showFieldInSummary: true
+  },
+  'ordnance-survey-reference': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    showFieldInSummary: true
+  },
   'declaration-check': {
     mixin: 'checkbox',
     validate: ['required']

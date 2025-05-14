@@ -416,6 +416,41 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Perimeter details must be 2,000 characters or less"
   },
+  "is-operating-other-business": {
+    "required": "Select if there are any other businesses operating from your intended cultivation site"
+  },
+  "is-adjacent-businesses": {
+    "required": "Select if there are any businesses adjacent to your intended cultivation site"
+  },
+  "business-name": {
+    "required": "Enter the name of the business adjacent to or operating from your site",
+    "maxlength": "Name of business must be between 3 and 200 characters",
+    "minlength": "Name of business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-type": {
+    "required": "Enter the type of business",
+    "maxlength": "Type of business must be between 3 and 200 characters",
+    "minlength": "Type of business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-owner": {
+    "required": "Enter details of who owns the business",
+    "maxlength": "Details of who owns the business must be between 3 and 200 characters",
+    "minlength": "Details of who owns the business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-involvement": {
+    "required": "Describe your involvement in this business",
+    "maxlength": "Description of your involvement in this business must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "ordnance-survey-reference": {
+    "required": "Enter the ordnance survey grid reference of the business location",
+    "lengthSize": "Ordnance survey grid reference must be between 12 and 14 characters",
+    "numFormat": "Enter a real ordnance survey grid reference, like SZ 65750 98047",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
   "declaration-check": {
     "required": "You must confirm you agree with this declaration to submit the application"
   }
