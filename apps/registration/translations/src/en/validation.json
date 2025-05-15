@@ -132,7 +132,7 @@
     "required": "Enter the date  your organisation registered with the CQC or its equivalents",
     "date": "Enter a real date when you registered with the CQC or its equivalents",
     "before": "Date you registered with the CQC or its equivalents must be in the past",
-    "after": "Registration with the CQC or its equivalent must have happened within the last 100 years"
+    "after": "Date of registration must be on or after 1 January 2003"
   },
   "regulatory-body-registration-details": {
     "maxlength": "Details of other regulatory bodies you are registered with must be 2,000 characters or less",
@@ -177,5 +177,8 @@
   "invoicing-address-postcode": {
     "required": "Enter a postcode",
     "postcode": "Enter a real UK postcode"
+  },
+    "declaration-check": {
+    "required": "Confirm you have read and agree to this declaration"
   }
 }

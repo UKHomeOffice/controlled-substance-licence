@@ -949,7 +949,10 @@ module.exports = {
       'notUrl',
       { type: 'maxlength', arguments: 2000 }
     ],
-    attributes: [{ attribute: 'rows', value: 8 }],
+    attributes: [
+      { attribute: 'rows', value: 8 },
+      { type: 'maxlength', arguments: 2000 }
+    ],
     showFieldInSummary: true
   },
   'ordnance-survey-reference': {
