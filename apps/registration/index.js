@@ -236,6 +236,7 @@ const steps = {
   },
 
   '/declaration': {
+    fields: ['declaration-check'],
     next: '/registration-submitted'
   },
 
