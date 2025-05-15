@@ -950,8 +950,7 @@ module.exports = {
       { type: 'maxlength', arguments: 2000 }
     ],
     attributes: [
-      { attribute: 'rows', value: 8 },
-      { type: 'maxlength', arguments: 2000 }
+      { attribute: 'rows', value: 8 }
     ],
     showFieldInSummary: true
   },
