@@ -10,6 +10,8 @@ const LoopAggregator = require('../common/behaviours/loop-aggregator');
 const OtherBusinessLoop = require('./behaviours/other-business-detail');
 const LimitItems = require('../common/behaviours/limit-items');
 const Config = require('../../config');
+const SubmitRequest = require('../common/behaviours/submit-request');
+
 const steps = {
   /** Start of journey */
 
@@ -667,6 +669,7 @@ const steps = {
   },
 
   '/declaration': {
+    behaviours: [SubmitRequest],
     fields: ['declaration-check'],
     next: '/application-submitted'
   },
