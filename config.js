@@ -13,9 +13,12 @@ module.exports = {
   },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
-    caseworkerEmail: process.env.CASEWORKER_EMAIL,
-    userConfirmationTemplateId: process.env.USER_CONFIRMATION_TEMPLATE_ID,
-    businessConfirmationTemplateId: process.env.BUSINESS_CONFIRMATION_TEMPLATE_ID
+    emailTemplates: {
+      licenceApplicationUserConfirmation: process.env.EMAIL_TEMPLATE_ID_LICENCE_APPLICATION_USER_CONFIRMATION,
+      registrationUserConfirmation: process.env.EMAIL_TEMPLATE_ID_REGISTRATION_USER_CONFIRMATION,
+      registrationPassword: process.env.EMAIL_TEMPLATE_ID_REGISTRATION_PASSWORD
+    },
+    replyToId: process.env.EMAIL_REPLY_TO_ID
   },
   redis: {
     port: process.env.REDIS_PORT || '6379',

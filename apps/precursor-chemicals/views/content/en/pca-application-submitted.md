@@ -1,3 +1,5 @@
+Application reference number: {{! @todo: placeholder for case-id }}
+
 ## What happens next
 
 A message confirming these details and a PDF of  your application has been sent to the email address you provided.

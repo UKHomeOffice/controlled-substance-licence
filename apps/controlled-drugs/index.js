@@ -21,6 +21,7 @@ const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('./behaviours/submit-request');
 const Feedback = require('../common/behaviours/feedback');
 
+
 const steps = {
 
   '/application-type': {
@@ -900,6 +901,7 @@ const steps = {
   },
 
   '/declaration': {
+    behaviours: [SubmitRequest],
     fields: ['declaration-check'],
     next: '/application-submitted'
   },

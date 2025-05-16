@@ -11,6 +11,7 @@ const CustomRedirect = require('./behaviours/custom-redirect');
 const SubmitRequest = require('./behaviours/submit-request');
 const Feedback = require('../common/behaviours/feedback');
 
+
 const steps = {
 
   '/': {
@@ -238,6 +239,8 @@ const steps = {
   },
 
   '/declaration': {
+    behaviours: [SubmitRequest],
+    fields: ['declaration-check'],
     next: '/registration-submitted'
   },
 

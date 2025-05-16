@@ -8,6 +8,10 @@
     "header": "Licence holder details"
   },
 
+  "previously-held-licence": {
+    "pageTitle": "Did you previously hold a controlled drugs licence? "
+  },
+
   "licence-holder-address": {
     "header": "Licence holder address",
     "intro": "This is the address your business is registered at."
@@ -20,6 +24,11 @@
     "key": "Business type",
     "otherKey": "Other business type"
   },
+
+  "company-type": {
+    "pageTitle": "Are you a private or public limited company?"
+  },
+
   "upload-company-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
@@ -53,6 +62,14 @@
 
   "regulatory-body-registration": {
     "pageTitle": "Details of registration with other regulatory bodies"
+  },
+
+  "declaration": {
+    "header": "Declaration"
+  },
+
+  "registration-submitted": {
+    "confirmed": "Registration submitted"
   },
 
   "confirm": {

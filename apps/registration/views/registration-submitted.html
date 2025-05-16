@@ -1,0 +1,18 @@
+{{<partials-page}}
+  {{$pageTitle}}
+    {{#t}}pages.registration-submitted.confirmed{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+  
+  <div class="govuk-panel alert-complete govuk-panel--confirmation">
+    <h1 class="govuk-panel__title">
+      {{#t}}pages.registration-submitted.confirmed{{/t}}
+    </h1>
+  </div>
+
+  <!-- @todo: Display application reference number here from iCasework -->
+
+  {{#markdown}}reg-application-submitted{{/markdown}}
+
+  {{/page-content}}
+{{/partials-page}}
