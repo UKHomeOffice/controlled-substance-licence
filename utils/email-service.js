@@ -4,24 +4,6 @@ const { generateErrorMsg } = require('../utils');
 
 const Notify = new NotifyClient(config.govukNotify.notifyApiKey);
 
-class EmailProps {
-  constructor(replyToId) {
-    this.personalisation = {};
-    if (replyToId) {
-      this.emailReplyToId = replyToId;
-    }
-  }
-
-  /**
-   * Adds personalisation data to the email.
-   *
-   * @param {object} newPersonalisation - An object containing personalisation key-value pairs.
-   */
-  addPersonalisation(newPersonalisation) {
-    Object.assign(this.personalisation, newPersonalisation);
-  }
-}
-
 /**
  * Sends an email using the GovUK Notify service.
  *
@@ -32,9 +14,11 @@ class EmailProps {
  * @throws {Error} - Throws an error if the email fails to send.
  */
 async function sendEmail(templateId, recipientEmail, personalisation) {
-  const emailProps = new EmailProps(config.govukNotify.replyToId);
+  const emailProps = {
+    personalisation,
+    emailReplyToId: config.govukNotify.replyToId
+  };
 
-  emailProps.addPersonalisation(personalisation);
 
   try {
     await Notify.sendEmail(templateId, recipientEmail, emailProps);
