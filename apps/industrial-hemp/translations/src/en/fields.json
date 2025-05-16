@@ -552,5 +552,8 @@
   "ordnance-survey-reference": {
     "label": "Ordnance survey grid reference",
     "hint": "For example, SZ 65750 98047"
+  },
+  "declaration-check": {
+    "label": "I understand and agree with these statements"
   }
 }
