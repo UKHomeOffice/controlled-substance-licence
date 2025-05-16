@@ -366,6 +366,29 @@ module.exports = {
 
       },
       {
+        step: '/different-postcodes',
+        field: 'is-different-postcodes'
+      },
+      {
+        step: '/different-postcode-addresses',
+        field: 'different-postcode-details'
+      },
+      {
+        step: '/adjacent-to-fields',
+        field: 'adjacent-field-details'
+      },
+      {
+        step: '/perimeter-details',
+        field: 'perimeter-details'
+      },
+      {
+        step: '/perimeter-images',
+        field: 'perimeter-upload',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
         step: '/record-keeping-details',
         field: 'record-keeping-details'
       },
@@ -465,29 +488,6 @@ module.exports = {
         field: 'extra-information',
         parse: (value, req) => {
           return value ? value : req.translate('journey.not-provided');
-        }
-      },
-      {
-        step: '/different-postcodes',
-        field: 'is-different-postcodes'
-      },
-      {
-        step: '/different-postcode-addresses',
-        field: 'different-postcode-details'
-      },
-      {
-        step: '/adjacent-to-fields',
-        field: 'adjacent-field-details'
-      },
-      {
-        step: '/perimeter-details',
-        field: 'perimeter-details'
-      },
-      {
-        step: '/perimeter-images',
-        field: 'perimeter-upload',
-        parse: documents => {
-          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
       }
     ]

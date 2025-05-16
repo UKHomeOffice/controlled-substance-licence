@@ -238,6 +238,7 @@ const steps = {
 
   '/declaration': {
     behaviours: [SubmitRequest],
+    fields: ['declaration-check'],
     next: '/registration-submitted'
   },
 

@@ -144,7 +144,8 @@
     "label": "Registration number"
   },
   "date-of-registration": {
-    "legend": "Date of registration"
+    "legend": "Date registered",
+    "hint": "For example, 27 3 2019"
   },
   "regulatory-body-registration-details": {
     "label": "Provide details of any other regulatory bodies you are registered with (optional)",
@@ -176,5 +177,8 @@
   },
   "invoicing-address-postcode": {
     "label": "Postcode"
+  },
+    "declaration-check": {
+    "label": "I have read and agree to this declaration"
   }
 }
