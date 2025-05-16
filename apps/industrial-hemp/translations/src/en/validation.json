@@ -453,5 +453,8 @@
     "lengthSize": "Ordnance survey grid reference must be between 12 and 14 characters",
     "numFormat": "Enter a real ordnance survey grid reference, like SZ 65750 98047",
     "notUrl": "Your answer must not contain URLs or links"
+  },
+  "declaration-check": {
+    "required": "You must confirm you agree with this declaration to submit the application"
   }
 }
