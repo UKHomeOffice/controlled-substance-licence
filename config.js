@@ -139,5 +139,12 @@ module.exports = {
       businessAdjacentLimit: 100
     }
   },
-  wizardSessionKeyPrefix: 'hof-wizard'
+  wizardSessionKeyPrefix: 'hof-wizard',
+  feedback: {
+    common: process.env.FEEDBACK_URL_COMMON,
+    controlledDrugs: process.env.FEEDBACK_URL_CONTROLLED_DRUG,
+    industrialHemp: process.env.FEEDBACK_URL_INDUSTRIAL_HEMP,
+    precursorChemicals: process.env.FEEDBACK_URL_PRECURSOR_CHEMICALS,
+    registration: process.env.FEEDBACK_URL_REGISTRATION
+  }
 };
