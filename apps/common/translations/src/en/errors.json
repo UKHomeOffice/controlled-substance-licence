@@ -1,7 +1,7 @@
 {
   "session": {
     "title": "You have been signed out",
-    "message": "We signed you out because you did not do anything for 30 minutes.",
-    "message-2": "You must sign in again to continue your application."
+    "message": "We signed you out to keep your information secure. We did this because you did not do anything for 30 minutes. Sign in again to continue your application.",
+    "message-2": "If you selected 'Save and continue', we will keep your answers from the last saved page."
   }
 }
