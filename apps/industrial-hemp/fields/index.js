@@ -946,9 +946,12 @@ module.exports = {
     mixin: 'textarea',
     validate: [
       'required',
-      'notUrl'
+      'notUrl',
+      { type: 'maxlength', arguments: 2000 }
     ],
-    attributes: [{ attribute: 'rows', value: 8 }],
+    attributes: [
+      { attribute: 'rows', value: 8 }
+    ],
     showFieldInSummary: true
   },
   'ordnance-survey-reference': {
@@ -956,5 +959,9 @@ module.exports = {
     validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
     showFieldInSummary: true
+  },
+  'declaration-check': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

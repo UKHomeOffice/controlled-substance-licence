@@ -17,6 +17,7 @@ const ResumeFormSession = require('../common/behaviours/resume-form-session');
 const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 const Submit = require('../common/behaviours/submit');
+const SubmitRequest = require('../common/behaviours/submit-request');
 
 const steps = {
 
@@ -511,7 +512,7 @@ const steps = {
   },
 
   '/declaration': {
-    behaviours: [Summary, Submit],
+    behaviours: [Summary, SubmitRequest],
     sections: require('./sections/summary-data-sections'),
     fields: ['declaration-check'],
     next: '/application-submitted'

@@ -83,6 +83,12 @@
     "key": "Business",
     "business-limit-exceeded": "You can not add any more businesses"
   },
+  "declaration": {
+    "header": "Declaration"
+  },
+  "application-submitted": {
+    "confirmed": "Application submitted"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
