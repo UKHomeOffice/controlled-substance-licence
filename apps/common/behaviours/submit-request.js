@@ -1,20 +1,40 @@
 const config = require('../../../config');
-const { sendEmail } = require('../../../utils/email-service');
+const { sendEmail, prepareUpload } = require('../../../utils/email-service');
+
+const PDFConverter = require('../../../utils/pdf-converter');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // @todo: a few additional steps are required before sending the email:
-    // - PDF generation
     // - iCasework integration to create a case assosiated with the application
     // - obtain the unique reference number from iCasework (case id)
     // - update application record in DB with received reference number and application status
 
+    // generate PDFs
+    const locals = super.locals(req, res);
+    const pdfConverter = new PDFConverter();
+    const pdfConfig = pdfConverter.createBaseConfig(req, res);
+    let pdfData;
+    try {
+      pdfData = await Promise.all([
+        pdfConverter.generatePdf(req, res, locals, Object.assign(pdfConfig, { target: 'business' })),
+        pdfConverter.generatePdf(req, res, locals, Object.assign(pdfConfig, { target: 'applicant' }))
+      ]);
+    } catch (error) {
+      const errorMsg = `Failed to generate PDF data: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    const [businessPdfData, applicantPdfData] = pdfData;
     const recipientEmail = req.sessionModel.get('email');
+    const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisation = {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
       referenceNumber: req.sessionModel.get('referenceNumber'),
       // @todo: 'body' should be removed once templates are ready
-      body: 'Licence application submitted successfully.'
+      body: 'Licence application submitted successfully.',
+      applicantSubmissionLink
     };
 
     try {
