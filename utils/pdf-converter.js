@@ -2,6 +2,7 @@ const path = require('node:path');
 const fs = require('node:fs');
 const config = require('../config');
 
+const { translateOption } = require('.');
 const HofPdfConverter = require('hof').apis.pdfConverter;
 
 module.exports = class PDFConverter extends HofPdfConverter {
@@ -78,6 +79,13 @@ module.exports = class PDFConverter extends HofPdfConverter {
     return new Promise((resolve, reject) => {
       res.render('pdf.html', locals, (err, html) => err ? reject(err) : resolve(html));
     });
+  }
+
+  createBaseConfig(req, res) {
+    const htmlLang = res.locals.htmlLang || 'en';
+    const licenceType = req.session['hof-wizard-common']?.['licence-type'] || 'registration';
+    const licenceLabel = translateOption(req, 'licence-type', licenceType) || 'Registration';
+    return { htmlLang, licenceType, licenceLabel };
   }
 
   async generatePdf(req, res, locals, pdfConfig) {

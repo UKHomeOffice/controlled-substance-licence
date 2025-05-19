@@ -206,7 +206,44 @@ describe('PDFConverter class: ', () => {
     });
   });
 
-  describe('generatePDF method: ', () => {
+  describe('createBaseConfig method', () => {
+    beforeEach(() => {
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+    });
+
+    it('returns expected default config based on req and res', () => {
+      // utils.translateOption.mockReturnValue('Very satisfied');
+      req.translate = jest.fn().mockReturnValue(undefined);
+      const defaultConfig = pdfConverter.createBaseConfig(req, res);
+      expect(defaultConfig).toHaveProperty('htmlLang', 'en');
+      expect(defaultConfig).toHaveProperty('licenceType', 'registration');
+      expect(defaultConfig).toHaveProperty('licenceLabel', 'Registration');
+      expect(defaultConfig).not.toHaveProperty('target');
+    });
+
+    it('returns expected config based on set values in req and res', () => {
+      // utils.translateOption.mockReturnValue('Very satisfied');
+      res.locals.htmlLang = 'fr';
+      req = {
+        session: {
+          'hof-wizard-common': {
+            'licence-type': 'precursor-chemicals'
+          }
+        },
+        translate: jest.fn().mockReturnValue('Precursor chemicals')
+      };
+      const setConfig = pdfConverter.createBaseConfig(req, res);
+      expect(setConfig).toHaveProperty('htmlLang', 'fr');
+      expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
+      expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
+      expect(setConfig).not.toHaveProperty('target');
+    });
+  });
+
+  describe('generatePDF method', () => {
     beforeEach(() => {
       pdfConverter.readCss = jest.fn().mockResolvedValue('I am a CSS');
       pdfConverter.readHOLogo = jest.fn().mockResolvedValue('I am an image');
