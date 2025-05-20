@@ -89,6 +89,9 @@
   "application-submitted": {
     "confirmed": "Application submitted"
   },
+  "save-and-exit": {
+    "header": "We saved your application and signed you out"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {

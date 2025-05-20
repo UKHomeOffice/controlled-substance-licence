@@ -452,6 +452,9 @@ module.exports = {
         step: '/invoicing-contact-details',
         field: 'invoicing-purchase-order-number',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/invoicing-contact-details')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       },
@@ -487,6 +490,9 @@ module.exports = {
         step: '/extra-information',
         field: 'extra-information',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/extra-information')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       }
