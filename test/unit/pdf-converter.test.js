@@ -211,7 +211,7 @@ describe('PDFConverter class: ', () => {
     });
 
     it('returns expected config if baseUrl is /registration', () => {
-      req.baseUrl = '/registration'
+      req.baseUrl = '/registration';
       const registrationConfig = pdfConverter.createBaseConfig(req, res);
       expect(registrationConfig).toHaveProperty('htmlLang', 'en');
       expect(registrationConfig).toHaveProperty('licenceType', 'registration');
