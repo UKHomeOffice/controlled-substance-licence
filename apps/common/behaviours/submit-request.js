@@ -14,8 +14,7 @@ module.exports = superclass => class extends superclass {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
       referenceNumber: req.sessionModel.get('referenceNumber'),
       // @todo: 'body' should be removed once templates are ready
-      body: 'Licence application submitted successfully.',
-      applicantSubmissionLink: ''
+      body: 'Licence application submitted successfully.'
     };
 
     try {
