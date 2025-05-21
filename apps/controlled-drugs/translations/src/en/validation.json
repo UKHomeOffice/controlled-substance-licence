@@ -332,7 +332,7 @@
     "after": "MHRA licence date of issue must be on or after 01 January 2009"
   },
   "is-business-registered-with-cqc": {
-    "required": "Select if you are registered with the Care Quality Commission or its Scottish and Welsh equivalents"
+    "required": "Select if you have registered with the Care Quality Commission or its Scottish and Welsh equivalents"
   },
   "registration-number": {
     "required": "Enter a registration number",
