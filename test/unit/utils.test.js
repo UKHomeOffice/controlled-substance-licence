@@ -5,7 +5,8 @@ const {
   isValidPhoneNumber,
   findSatisfiedForkCondition,
   generateErrorMsg,
-  resetAllSessions
+  resetAllSessions,
+  getApplicationFiles
 } = require('../../utils');
 const chemicals = require('../../apps/precursor-chemicals/data/chemicals.json');
 const tradingReasons = require('../../apps/controlled-drugs/data/trading-reasons.json');
@@ -221,5 +222,88 @@ describe('resetAllSessions', () => {
     resetAllSessions(req);
 
     expect(req.log).toHaveBeenCalledWith('info', "All sessions with prefix 'hof-wizard' have been reset.");
+  });
+});
+
+describe('getApplicationFiles', () => {
+  const req = {
+    sessionModel: {
+      get: jest.fn().mockReturnValue(['https://file-vault-url.homeoffice.gov.uk/file'])
+    }
+  }
+  let rows;
+
+  it('Returns an empty array if no rows of data were passed', () => {
+    rows = [];
+    expect(getApplicationFiles(req, rows)).toStrictEqual([]);
+    rows = undefined;
+    expect(getApplicationFiles(req, rows)).toStrictEqual([]);
+  });
+
+  it('Returns an empty array if data was passed but no files were present', () => {
+    rows = [
+      {
+        section: 'About the licence',
+        fields: [
+          {
+            label: 'Reason for chemical application',
+            value: 'test-reason',
+            step: '/why-chemicals-needed',
+            field: 'chemicals-used-for'
+          }
+        ],
+        omitFromPdf: false
+      }
+    ];
+    expect(getApplicationFiles(req, rows)).toStrictEqual([]);
+  });
+
+  it('Returns a list of files if they were found in the rows', () => {
+    rows = [
+      {
+        section: 'About the licence',
+        fields: [
+          {
+            label: 'Reason for chemical application',
+            value: 'test-reason',
+            step: '/why-chemicals-needed',
+            field: 'chemicals-used-for'
+          }
+        ],
+        omitFromPdf: false
+      },
+      {
+        section: 'Evidence',
+        fields: [
+          {
+            label: 'Company registration certificate',
+            value: 'cert1.png',
+            step: '/company-registration-certificate',
+            field: 'company-registration-certificate',
+            file: true
+          },
+          {
+            label: 'Applicant certificate of good conduct',
+            value: 'cert2.png',
+            step: '/upload-conduct-certificate',
+            field: 'certificate-of-good-conduct',
+            file: true
+          }
+        ],
+        omitFromPdf: false
+      }
+    ];
+    expect(getApplicationFiles(req, rows)).toStrictEqual([
+      {
+        field: 'company-registration-certificate',
+        urls: ['https://file-vault-url.homeoffice.gov.uk/file'],
+        label: 'Company registration certificate'
+      },
+      {
+        field: 'certificate-of-good-conduct',
+        urls: ['https://file-vault-url.homeoffice.gov.uk/file'],
+        label: 'Applicant certificate of good conduct'
+      }
+    ]);
   });
 });
