@@ -230,7 +230,7 @@ describe('getApplicationFiles', () => {
     sessionModel: {
       get: jest.fn().mockReturnValue(['https://file-vault-url.homeoffice.gov.uk/file'])
     }
-  }
+  };
   let rows;
 
   it('Returns an empty array if no rows of data were passed', () => {

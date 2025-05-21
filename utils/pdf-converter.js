@@ -70,8 +70,12 @@ module.exports = class PDFConverter extends HofPdfConverter {
 
   createBaseConfig(req, res) {
     const htmlLang = res.locals.htmlLang || 'en';
-    const licenceType = req.session['hof-wizard-common']?.['licence-type'] || 'registration';
-    const licenceLabel = translateOption(req, 'licence-type', licenceType) || 'Registration';
+    const formApp = req.baseUrl;
+    if (formApp === '/registration') {
+      return { htmlLang, licenceType: 'registration', licenceLabel: 'Registration' };
+    }
+    const licenceType = req.session['hof-wizard-common']?.['licence-type'];
+    const licenceLabel = translateOption(req, 'licence-type', licenceType);
     return { htmlLang, licenceType, licenceLabel };
   }
 
