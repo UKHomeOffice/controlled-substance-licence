@@ -52,7 +52,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
     const pdfDateFormat = Object.assign({}, dateFormat, timeFormat);
     localContent.dateTime = new Intl.DateTimeFormat(dateLocales, pdfDateFormat).format(Date.now());
 
-    // TODO: Add generated application reference number to the PDF.
+    // @todo: Add generated application reference number to the PDF.
     const refNumber = 'TODO: add reference';
     localContent.referenceNumber = refNumber;
 

@@ -48,6 +48,7 @@ module.exports = superclass => class extends superclass {
     try {
       await upload.save();
       req.log('info', 'Registration submission PDF uploaded successfully');
+      // @todo: remove below log during icasework integration
       req.log('info', upload.toJSON().url);
     } catch (error) {
       const errorMsg = `Failed to upload registration submission PDF: ${error}`;
