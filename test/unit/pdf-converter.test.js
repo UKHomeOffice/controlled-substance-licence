@@ -210,17 +210,15 @@ describe('PDFConverter class: ', () => {
       jest.restoreAllMocks();
     });
 
-    it('returns expected default config based on req and res', () => {
-      // utils.translateOption.mockReturnValue('Very satisfied');
-      req.translate = jest.fn().mockReturnValue(undefined);
-      const defaultConfig = pdfConverter.createBaseConfig(req, res);
-      expect(defaultConfig).toHaveProperty('htmlLang', 'en');
-      expect(defaultConfig).toHaveProperty('licenceType', 'registration');
-      expect(defaultConfig).toHaveProperty('licenceLabel', 'Registration');
+    it('returns expected config if baseUrl is /registration', () => {
+      req.baseUrl = '/registration'
+      const registrationConfig = pdfConverter.createBaseConfig(req, res);
+      expect(registrationConfig).toHaveProperty('htmlLang', 'en');
+      expect(registrationConfig).toHaveProperty('licenceType', 'registration');
+      expect(registrationConfig).toHaveProperty('licenceLabel', 'Registration');
     });
 
     it('returns expected config based on set values in req and res', () => {
-      // utils.translateOption.mockReturnValue('Very satisfied');
       res.locals.htmlLang = 'fr';
       req = {
         session: {
