@@ -1,5 +1,6 @@
 const config = require('../../../config');
 const { sendEmail, prepareUpload } = require('../../../utils/email-service');
+const { getApplicationFiles } = require('../../../utils');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
@@ -13,13 +14,15 @@ module.exports = superclass => class extends superclass {
 
     // generate PDFs
     const locals = super.locals(req, res);
+    const applicationFiles = getApplicationFiles(req, locals.rows);
+
     const pdfConverter = new PDFConverter();
     const pdfConfig = pdfConverter.createBaseConfig(req, res);
     let pdfData;
     try {
       pdfData = await Promise.all([
-        pdfConverter.generatePdf(req, res, locals, Object.assign({}, pdfConfig, { target: 'business' })),
-        pdfConverter.generatePdf(req, res, locals, Object.assign({}, pdfConfig, { target: 'applicant' }))
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
       ]);
     } catch (error) {
       const errorMsg = `Failed to generate PDF data: ${error}`;
@@ -37,11 +40,11 @@ module.exports = superclass => class extends superclass {
       data: businessPdfData,
       mimetype: 'application/pdf'
     };
-    // const upload = new FileUpload(businessPDF);
-
+    const upload = new FileUpload(businessPDF);
     try {
       await upload.save();
-      req.log('info', upload.toJSON().url)
+      req.log('info', 'Submission PDF uploaded successfully');
+      req.log('info', upload.toJSON().url);
     } catch (error) {
       const errorMsg = `Failed to upload business PDF: ${error}`;
       req.log('error', errorMsg);
@@ -57,7 +60,6 @@ module.exports = superclass => class extends superclass {
       body: 'Licence application submitted successfully.',
       applicantSubmissionLink
     };
-
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.licenceApplicationUserConfirmation,

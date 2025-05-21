@@ -37,47 +37,34 @@ module.exports = class PDFConverter extends HofPdfConverter {
     return locals;
   }
 
-  async renderHTML(req, res, content, pdfConfig) {
-    const { htmlLang, licenceType, licenceLabel, target } = pdfConfig;
+  async renderHTML(res, content, pdfConfig, files) {
+    const { htmlLang, licenceType, licenceLabel } = pdfConfig;
     const { dateFormat, timeFormat, dateLocales } = config;
 
-    const locals = this.sortSections(content, licenceType, htmlLang);
+    let localContent = Object.assign({}, content);
+    localContent = this.sortSections(localContent, licenceType, htmlLang);
 
-    if (locals.files && locals.files.length) {
-      delete locals.files;
-    }
-
-    locals.htmlLang = htmlLang;
-    locals.css = await this.readCss();
-    locals['ho-logo'] = await this.readHOLogo();
-    locals.title = `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
+    localContent.htmlLang = htmlLang;
+    localContent.css = await this.readCss();
+    localContent['ho-logo'] = await this.readHOLogo();
+    localContent.title = `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
 
     const pdfDateFormat = Object.assign({}, dateFormat, timeFormat);
-    locals.dateTime = new Intl.DateTimeFormat(dateLocales, pdfDateFormat).format(Date.now());
+    localContent.dateTime = new Intl.DateTimeFormat(dateLocales, pdfDateFormat).format(Date.now());
 
     // TODO: Add generated application reference number to the PDF.
     const refNumber = 'TODO: add reference';
-    locals.referenceNumber = refNumber;
+    localContent.referenceNumber = refNumber;
 
-    if (target === 'business') {
-      const files = [];
-      for (const section of locals.rows) {
-        for (const field of section.fields) {
-          if (field.file) {
-            files.push({
-              field: field.field,
-              urls: req.sessionModel.get(field.field),
-              label: field.label
-            });
-          }
-        }
-      }
-      locals.addFilesSection = true;
-      locals.files = files;
+    if (files && files.length) {
+      localContent.addFilesSection = true;
+      localContent.files = files;
+    } else if (localContent.files && localContent.files.length) {
+      delete localContent.files;
     }
 
     return new Promise((resolve, reject) => {
-      res.render('pdf.html', locals, (err, html) => err ? reject(err) : resolve(html));
+      res.render('pdf.html', localContent, (err, html) => err ? reject(err) : resolve(html));
     });
   }
 
@@ -88,12 +75,13 @@ module.exports = class PDFConverter extends HofPdfConverter {
     return { htmlLang, licenceType, licenceLabel };
   }
 
-  async generatePdf(req, res, locals, pdfConfig) {
+  async generatePdf(req, res, locals, pdfConfig, files) {
     try {
-      const html = await this.renderHTML(req, res, locals, pdfConfig);
+      const html = await this.renderHTML(res, locals, pdfConfig, files);
       this.set({ template: html });
       const pdfData = await this.save();
-      req.log('info', `${pdfConfig.licenceLabel} ${pdfConfig.target} PDF data generated successfully`);
+      const userType = files ? 'business' : 'applicant';
+      req.log('info', `${pdfConfig.licenceLabel} ${userType} PDF data generated successfully`);
       return pdfData;
     } catch(error) {
       req.log('error', `Error generating ${pdfConfig.licenceLabel} PDF. Cause: ${error.status} - ${error.message}`);

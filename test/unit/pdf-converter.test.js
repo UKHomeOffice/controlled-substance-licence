@@ -12,6 +12,7 @@ describe('PDFConverter class: ', () => {
   let res;
   let locals;
   let sortedLocals;
+  let files;
   let pdfConfig;
   let pdfConverter;
   let setSpy;
@@ -30,8 +31,7 @@ describe('PDFConverter class: ', () => {
     pdfConfig = {
       htmlLang: 'en',
       licenceType: 'precursor-chemicals',
-      licenceLabel: 'Precursor chemicals',
-      target: 'business'
+      licenceLabel: 'Precursor chemicals'
     };
 
     locals = {
@@ -60,13 +60,6 @@ describe('PDFConverter class: ', () => {
             }
           ],
           omitFromPdf: false
-        }
-      ],
-      files: [
-        {
-          field: 'certificate-of-registration',
-          urls: ['url', 'url'],
-          label: 'Company registration certificate'
         }
       ]
     };
@@ -100,6 +93,14 @@ describe('PDFConverter class: ', () => {
         }
       ]
     };
+
+    files = [
+      {
+        field: 'certificate-of-good-conduct',
+        urls: ['url', 'url'],
+        label: 'Applicant certificate of good conduct'
+      }
+    ];
   });
 
   afterEach(() => {
@@ -145,7 +146,6 @@ describe('PDFConverter class: ', () => {
 
   describe('sortSections method', () => {
     it('sorts locals.rows as expected', () => {
-      delete locals.files;
       expect(pdfConverter.sortSections(locals, pdfConfig.licenceType, pdfConfig.htmlLang)).toStrictEqual(sortedLocals);
     });
   });
@@ -167,10 +167,10 @@ describe('PDFConverter class: ', () => {
     });
 
     it('calls res.render with the correct locals for business PDF', async () => {
-      await pdfConverter.renderHTML(req, res, locals, pdfConfig);
+      await pdfConverter.renderHTML(res, locals, pdfConfig, files);
       expect(pdfConverter.readCss).toHaveBeenCalled();
       expect(pdfConverter.readHOLogo).toHaveBeenCalled();
-      expect(sortSectionsSpy).toHaveBeenCalledWith(locals, pdfConfig.licenceType, pdfConfig.htmlLang);
+      expect(sortSectionsSpy).toHaveBeenCalled();
       expect(res.render).toHaveBeenCalledWith('pdf.html', Object.assign({}, sortedLocals, {
         htmlLang: 'en',
         css: 'I am a CSS',
@@ -190,11 +190,10 @@ describe('PDFConverter class: ', () => {
     });
 
     it('calls res.render with the correct locals for public PDF', async () => {
-      pdfConfig.target = 'public';
-      await pdfConverter.renderHTML(req, res, locals, pdfConfig);
+      await pdfConverter.renderHTML(res, locals, pdfConfig, null);
       expect(pdfConverter.readCss).toHaveBeenCalled();
       expect(pdfConverter.readHOLogo).toHaveBeenCalled();
-      expect(sortSectionsSpy).toHaveBeenCalledWith(locals, pdfConfig.licenceType, pdfConfig.htmlLang);
+      expect(sortSectionsSpy).toHaveBeenCalled();
       expect(res.render).toHaveBeenCalledWith('pdf.html', Object.assign({}, sortedLocals, {
         htmlLang: 'en',
         css: 'I am a CSS',
@@ -207,9 +206,6 @@ describe('PDFConverter class: ', () => {
   });
 
   describe('createBaseConfig method', () => {
-    beforeEach(() => {
-    });
-
     afterEach(() => {
       jest.restoreAllMocks();
     });
@@ -221,7 +217,6 @@ describe('PDFConverter class: ', () => {
       expect(defaultConfig).toHaveProperty('htmlLang', 'en');
       expect(defaultConfig).toHaveProperty('licenceType', 'registration');
       expect(defaultConfig).toHaveProperty('licenceLabel', 'Registration');
-      expect(defaultConfig).not.toHaveProperty('target');
     });
 
     it('returns expected config based on set values in req and res', () => {
@@ -239,7 +234,6 @@ describe('PDFConverter class: ', () => {
       expect(setConfig).toHaveProperty('htmlLang', 'fr');
       expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
       expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
-      expect(setConfig).not.toHaveProperty('target');
     });
   });
 
@@ -259,13 +253,22 @@ describe('PDFConverter class: ', () => {
       jest.restoreAllMocks();
     });
 
-    it('calls all methods and returns expected values', async () => {
-      const pdfData = await pdfConverter.generatePdf(req, res, locals, pdfConfig);
-      expect(pdfConverter.renderHTML).toHaveBeenCalledWith(req, res, locals, pdfConfig);
+    it('calls all methods and returns expected values for a business PDF', async () => {
+      const pdfData = await pdfConverter.generatePdf(req, res, locals, pdfConfig, files);
+      expect(pdfConverter.renderHTML).toHaveBeenCalledWith(res, locals, pdfConfig, files);
       expect(setSpy).toHaveBeenCalledWith({ template: 'I am HTML' });
       expect(pdfConverter.save).toHaveBeenCalled();
       expect(pdfData).toBe('I am a PDF');
-      expect(req.log).toHaveBeenCalledWith('info', 'Precursor chemicals PDF data generated successfully');
+      expect(req.log).toHaveBeenCalledWith('info', 'Precursor chemicals business PDF data generated successfully');
+    });
+
+    it('calls all methods and returns expected values for an applicant PDF', async () => {
+      const pdfData = await pdfConverter.generatePdf(req, res, locals, pdfConfig, null);
+      expect(pdfConverter.renderHTML).toHaveBeenCalledWith(res, locals, pdfConfig, null);
+      expect(setSpy).toHaveBeenCalledWith({ template: 'I am HTML' });
+      expect(pdfConverter.save).toHaveBeenCalled();
+      expect(pdfData).toBe('I am a PDF');
+      expect(req.log).toHaveBeenCalledWith('info', 'Precursor chemicals applicant PDF data generated successfully');
     });
   });
 });
