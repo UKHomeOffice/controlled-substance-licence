@@ -93,7 +93,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
       const html = await this.renderHTML(req, res, locals, pdfConfig);
       this.set({ template: html });
       const pdfData = await this.save();
-      req.log('info', `${pdfConfig.licenceLabel} PDF data generated successfully`);
+      req.log('info', `${pdfConfig.licenceLabel} ${pdfConfig.target} PDF data generated successfully`);
       return pdfData;
     } catch(error) {
       req.log('error', `Error generating ${pdfConfig.licenceLabel} PDF. Cause: ${error.status} - ${error.message}`);

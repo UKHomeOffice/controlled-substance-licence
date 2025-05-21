@@ -2,6 +2,7 @@ const config = require('../../../config');
 const { sendEmail, prepareUpload } = require('../../../utils/email-service');
 
 const PDFConverter = require('../../../utils/pdf-converter');
+const FileUpload = require('../../../utils/file-upload');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
@@ -17,21 +18,41 @@ module.exports = superclass => class extends superclass {
     let pdfData;
     try {
       pdfData = await Promise.all([
-        pdfConverter.generatePdf(req, res, locals, Object.assign(pdfConfig, { target: 'business' })),
-        pdfConverter.generatePdf(req, res, locals, Object.assign(pdfConfig, { target: 'applicant' }))
+        pdfConverter.generatePdf(req, res, locals, Object.assign({}, pdfConfig, { target: 'business' })),
+        pdfConverter.generatePdf(req, res, locals, Object.assign({}, pdfConfig, { target: 'applicant' }))
       ]);
     } catch (error) {
       const errorMsg = `Failed to generate PDF data: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
-
     const [businessPdfData, applicantPdfData] = pdfData;
+
+    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
+    const referenceNumber = req.sessionModel.get('referenceNumber');
+
+    // Upload business PDF via file-vault
+    const businessPDF = {
+      name: `${referenceNumber}.pdf`,
+      data: businessPdfData,
+      mimetype: 'application/pdf'
+    };
+    // const upload = new FileUpload(businessPDF);
+
+    try {
+      await upload.save();
+      req.log('info', upload.toJSON().url)
+    } catch (error) {
+      const errorMsg = `Failed to upload business PDF: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisation = {
-      // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-      referenceNumber: req.sessionModel.get('referenceNumber'),
+      referenceNumber,
       // @todo: 'body' should be removed once templates are ready
       body: 'Licence application submitted successfully.',
       applicantSubmissionLink
