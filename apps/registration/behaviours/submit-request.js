@@ -1,5 +1,9 @@
 const config = require('../../../config');
-const { sendEmail } = require('../../../utils/email-service');
+const { sendEmail, prepareUpload } = require('../../../utils/email-service');
+const { getApplicationFiles } = require('../../../utils');
+
+const PDFConverter = require('../../../utils/pdf-converter');
+const FileUpload = require('../../../utils/file-upload');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
@@ -11,12 +15,55 @@ module.exports = superclass => class extends superclass {
     // - iCasework integration to create a case assosiated with the application
     // - obtain the unique reference number from iCasework (case id)
 
+    // generate PDFs
+    const locals = super.locals(req, res);
+    const applicationFiles = getApplicationFiles(req, locals.rows);
+
+    const pdfConverter = new PDFConverter();
+    const pdfConfig = pdfConverter.createBaseConfig(req, res);
+    let pdfData;
+    try {
+      pdfData = await Promise.all([
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
+      ]);
+    } catch (error) {
+      const errorMsg = `Failed to generate PDF data: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+    const [businessPdfData, applicantPdfData] = pdfData;
+
+
+    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
+    const referenceNumber = req.sessionModel.get('referenceNumber');
+
+    // Upload business PDF via file-vault
+    const businessPDF = {
+      name: `${referenceNumber}.pdf`,
+      data: businessPdfData,
+      mimetype: 'application/pdf'
+    };
+    const upload = new FileUpload(businessPDF);
+    try {
+      await upload.save();
+      req.log('info', 'Registration submission PDF uploaded successfully');
+      req.log('info', upload.toJSON().url);
+    } catch (error) {
+      const errorMsg = `Failed to upload registration submission PDF: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');
+    const applicantSubmissionLink = prepareUpload(applicantPdfData);
+
     const personalisationConfirmation = {
-      // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-      referenceNumber: req.sessionModel.get('referenceNumber'),
+      referenceNumber,
       // @todo: 'body' should be removed once templates are ready
-      body: 'Registration application submitted successfully.'
+      body: 'Registration application submitted successfully.',
+      applicantSubmissionLink
     };
 
     try {
@@ -35,8 +82,7 @@ module.exports = superclass => class extends superclass {
     // Send the email with password
 
     const personalisationPassword = {
-      // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-      referenceNumber: req.sessionModel.get('referenceNumber'),
+      referenceNumber,
       // @todo: 'body' should be removed once templates are ready
       body: 'Password email.'
     };
