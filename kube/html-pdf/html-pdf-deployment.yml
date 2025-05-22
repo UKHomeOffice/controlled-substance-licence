@@ -56,6 +56,8 @@ spec:
           env:
             - name: APP_PORT
               value: "8001"
+            - name: DEBUG
+              value: "*"
           securityContext:
             runAsNonRoot: true
 
