@@ -336,15 +336,15 @@ module.exports = {
       },
       {
         step: '/other-operating-businesses',
-        field: 'other-operating-businesses'
+        field: 'is-operating-other-business'
       },
       {
         step: '/adjacent-businesses',
-        field: 'adjacent-businesses'
+        field: 'is-adjacent-businesses'
       },
       {
         step: '/own-other-operating-businesses',
-        field: 'own-operating-businesses'
+        field: 'is-own-other-businesses'
       },
       {
         step: '/other-businesses-summary',
