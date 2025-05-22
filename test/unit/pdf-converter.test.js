@@ -2,7 +2,6 @@ const PDFConverter = require('../../utils/pdf-converter');
 const reqres = require('hof').utils.reqres;
 const path = require('node:path');
 const fs = require('node:fs');
-const DateTimeFormat = Intl.DateTimeFormat;
 
 const converterDir = path.resolve('./utils');
 const cssDir = path.resolve('./public/css/app.css');
@@ -157,7 +156,6 @@ describe('PDFConverter class: ', () => {
       pdfConverter.readHOLogo = jest.fn().mockResolvedValue('I am an image');
       sortSectionsSpy = jest.spyOn(pdfConverter, 'sortSections');
       req.sessionModel.get = jest.fn().mockReturnValue(['url', 'url']);
-      // jest.spyOn(DateTimeFormat.prototype, 'format').mockReturnValue('13 May 2025 at 11:54:11');
       jest.spyOn(Intl, 'DateTimeFormat').mockImplementation(() => ({
         format: jest.fn().mockReturnValue('13 May 2025 at 11:54:11')
       }));
