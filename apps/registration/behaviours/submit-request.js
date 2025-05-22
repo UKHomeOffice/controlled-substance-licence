@@ -35,10 +35,12 @@ module.exports = superclass => class extends superclass {
     const pdfConfig = pdfConverter.createBaseConfig(req, res);
     let pdfData;
     try {
-      pdfData = await Promise.all([
-        pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
-        pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
-      ]);
+      // pdfData = await Promise.all([
+      //   pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
+      //   pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
+      // ]);
+      pdfData[0] = await pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles);
+      pdfData[1] = await pdfConverter.generatePdf(req, res, locals, pdfConfig, null);
     } catch (error) {
       const errorMsg = `Failed to generate PDF data: ${error}`;
       req.log('error', errorMsg);
