@@ -27,20 +27,10 @@ module.exports = class UploadModel extends Model {
     };
 
     const formData = new FormData();
-    const data = this.get('data');
-    if (typeof data === 'string') {
-      logger.info('Data is a string, converting to Buffer');
-      formData.append('document', Buffer.from(data), {
-        filename: this.get('name'),
-        contentType: this.get('mimetype')
-      });
-    } else {
-      logger.info('Data is a Buffer, appending directly');
-      formData.append('document', data, {
-        filename: this.get('name'),
-        contentType: this.get('mimetype')
-      });
-    }
+    formData.append('document', this.get('data'), {
+      filename: this.get('name'),
+      contentType: this.get('mimetype')
+    });
 
     const reqConf = url.parse(this.url(attributes));
     reqConf.data = formData;
