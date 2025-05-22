@@ -33,16 +33,23 @@ module.exports = superclass => class extends superclass {
     });
 
     const pdfConfig = pdfConverter.createBaseConfig(req, res);
-    let pdfData;
+    let pdfData = [];
     try {
       // pdfData = await Promise.all([
       //   pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
       //   pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
       // ]);
       pdfData[0] = await pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles);
+    } catch (error) {
+      const errorMsg = `Failed to generate PDF data for [0]: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+    try {
+      
       pdfData[1] = await pdfConverter.generatePdf(req, res, locals, pdfConfig, null);
     } catch (error) {
-      const errorMsg = `Failed to generate PDF data: ${error}`;
+      const errorMsg = `Failed to generate PDF data for [1]: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
