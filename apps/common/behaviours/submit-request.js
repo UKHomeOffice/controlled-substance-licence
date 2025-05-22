@@ -31,6 +31,9 @@ module.exports = superclass => class extends superclass {
     }
     const [businessPdfData, applicantPdfData] = pdfData;
 
+    console.log('business DATA', businessPdfData);
+    console.log('applicant DATA', applicantPdfData);
+
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = req.sessionModel.get('referenceNumber');
 

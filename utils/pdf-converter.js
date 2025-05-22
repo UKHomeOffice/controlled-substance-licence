@@ -63,6 +63,8 @@ module.exports = class PDFConverter extends HofPdfConverter {
       delete localContent.files;
     }
 
+    console.log('locals', localContent);
+
     return new Promise((resolve, reject) => {
       res.render('pdf.html', localContent, (err, html) => err ? reject(err) : resolve(html));
     });
@@ -82,6 +84,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
   async generatePdf(req, res, locals, pdfConfig, files) {
     try {
       const html = await this.renderHTML(res, locals, pdfConfig, files);
+      console.log(pdfConfig, html);
       this.set({ template: html });
       const pdfData = await this.save();
       const userType = files ? 'business' : 'applicant';
