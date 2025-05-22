@@ -20,6 +20,14 @@ module.exports = superclass => class extends superclass {
     const applicationFiles = getApplicationFiles(req, locals.rows);
 
     const pdfConverter = new PDFConverter();
+    pdfConverter.on('fail', error => {
+      const errorMsg = `PDF generation failed: ${error}`;
+      req.log('error', errorMsg);
+    });
+    pdfConverter.on('success', responseData => {
+      req.log('info', `PDF generation succeeded`);
+    });
+
     const pdfConfig = pdfConverter.createBaseConfig(req, res);
     let pdfData;
     try {
