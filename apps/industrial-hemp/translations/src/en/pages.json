@@ -92,6 +92,9 @@
   "save-and-exit": {
     "header": "We saved your application and signed you out"
   },
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
