@@ -88,7 +88,8 @@ module.exports = class PDFConverter extends HofPdfConverter {
       this.set({ template: html });
       const pdfData = await this.save(null, error => {
         if (error) {
-          req.log('error', `[ERROR IN MODEL WHILE SAVING/REQUEST] Error generating PDF: ${error.message}`);
+          req.log('error', `[ERROR IN MODEL WHILE SAVING/REQUEST] Error generating PDF: ${error.message}
+            FULL ERROR: ${JSON.stringify(error)}`);
         }
       });
       const userType = files ? 'business' : 'applicant';
