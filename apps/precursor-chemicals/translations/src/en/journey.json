@@ -3,5 +3,6 @@
   "serviceName": "Precursor chemicals application",
   "error": "Error",
   "warning": "Warning",
-  "uploading": "Uploading your file..."
+  "uploading": "Uploading your file...",
+  "email-header": "precursor chemicals"
 }
