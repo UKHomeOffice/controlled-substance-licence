@@ -9,6 +9,7 @@ const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
 const CustomRedirect = require('./behaviours/custom-redirect');
 const SubmitRequest = require('./behaviours/submit-request');
+const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 
 const steps = {
 
@@ -255,5 +256,6 @@ module.exports = {
   translations: 'apps/registration/translations',
   confirmStep: '/confirm',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  behaviours: [SetFeedbackUrl]
 };
