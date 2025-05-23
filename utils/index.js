@@ -240,6 +240,31 @@ const resetAllSessions = req => {
   req.log('info', `All sessions with prefix '${prefix}' have been reset.`);
 };
 
+/**
+ * Get a list of files uploaded during an application from HOF Summary locals.rows
+ *
+ * @param {Array} rows - An array of form fields and values added to locals by the HOF Summary behaviour
+ * @returns {Array} - An array of uploaded files with field name, field label and file-vault URL
+ */
+const getApplicationFiles = (req, rows) => {
+  const files = [];
+  if (!rows) {
+    return files;
+  }
+  for (const section of rows) {
+    for (const field of section.fields) {
+      if (field.file) {
+        files.push({
+          field: field.field,
+          urls: req.sessionModel.get(field.field),
+          label: field.label
+        });
+      }
+    }
+  }
+  return files;
+};
+
 module.exports = {
   getLabel,
   translateOption,
@@ -252,5 +277,6 @@ module.exports = {
   generateErrorMsg,
   clearExpiredApplictions,
   getFieldValuesToFilter,
-  resetAllSessions
+  resetAllSessions,
+  getApplicationFiles
 };

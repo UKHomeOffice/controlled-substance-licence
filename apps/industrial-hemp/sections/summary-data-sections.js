@@ -47,7 +47,8 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/when-moving-site',
@@ -290,7 +291,8 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/cultivate-industrial-hemp',
@@ -317,7 +319,8 @@ module.exports = {
         field: 'aerial-photos-upload',
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/company-own-fields',
@@ -386,7 +389,8 @@ module.exports = {
         field: 'perimeter-upload',
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/record-keeping-details',
@@ -397,7 +401,8 @@ module.exports = {
         field: 'record-keeping-document',
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/seed-supplier-details',

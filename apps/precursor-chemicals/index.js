@@ -512,7 +512,8 @@ const steps = {
   },
 
   '/declaration': {
-    behaviours: [SubmitRequest],
+    behaviours: [Summary, SubmitRequest],
+    sections: require('./sections/summary-data-sections'),
     fields: ['declaration-check'],
     next: '/application-submitted'
   },
