@@ -11,7 +11,6 @@ module.exports = superclass => class extends superclass {
     // - generate username and password for the user
     // - create user in Keycloak
     // - create user in DB
-    // - PDF generation
     // - iCasework integration to create a case assosiated with the application
     // - obtain the unique reference number from iCasework (case id)
 
@@ -20,8 +19,12 @@ module.exports = superclass => class extends superclass {
     const applicationFiles = getApplicationFiles(req, locals.rows);
 
     const pdfConverter = new PDFConverter();
-    pdfConverter.on('fail', (error, responseData) => {
-      const errorMsg = `PDF generation failed: ${error}, ${JSON.stringify(responseData)}`;
+    pdfConverter.on('fail', (error, responseData, originalSettings, statusCode, responseTime) => {
+      const errorMsg = `PDF generation failed: ${error}
+      responseData: ${JSON.stringify(responseData)}
+      originalSettings: ${JSON.stringify(originalSettings)}
+      statusCode: ${statusCode}
+      responseTime: ${responseTime}`;
       req.log('error', errorMsg);
     });
     pdfConverter.on('success', () => {
@@ -41,7 +44,6 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
     const [businessPdfData, applicantPdfData] = pdfData;
-
 
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = req.sessionModel.get('referenceNumber');

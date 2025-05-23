@@ -17,6 +17,18 @@ module.exports = superclass => class extends superclass {
     const applicationFiles = getApplicationFiles(req, locals.rows);
 
     const pdfConverter = new PDFConverter();
+    pdfConverter.on('fail', (error, responseData, originalSettings, statusCode, responseTime) => {
+      const errorMsg = `PDF generation failed: ${error}
+      responseData: ${JSON.stringify(responseData)}
+      originalSettings: ${JSON.stringify(originalSettings)}
+      statusCode: ${statusCode}
+      responseTime: ${responseTime}`;
+      req.log('error', errorMsg);
+    });
+    pdfConverter.on('success', () => {
+      req.log('info', 'PDF generation succeeded');
+    });
+
     const pdfConfig = pdfConverter.createBaseConfig(req, res);
     let pdfData;
     try {
@@ -30,9 +42,6 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
     const [businessPdfData, applicantPdfData] = pdfData;
-
-    console.log('business DATA', businessPdfData);
-    console.log('applicant DATA', applicantPdfData);
 
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = req.sessionModel.get('referenceNumber');
