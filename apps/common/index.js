@@ -1,6 +1,7 @@
 const Auth = require('./behaviours/auth/auth-check');
 const SignIn = require('./behaviours/auth/sign-in');
 const SignOut = require('./behaviours/auth/sign-out');
+const SetFeedbackUrl = require('./behaviours/set-feedback-url');
 
 const steps = {
   '/': {
@@ -46,5 +47,6 @@ module.exports = {
   translations: 'apps/common/translations',
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  behaviours: [SetFeedbackUrl]
 };
