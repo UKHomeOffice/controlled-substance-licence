@@ -13,7 +13,10 @@ module.exports = superclass => class extends superclass {
     const personalisation = {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
       referenceNumber: req.sessionModel.get('referenceNumber'),
-      // @todo: 'body' should be removed once templates are ready
+      // @todo: 'body' should be removed once templates are ready,
+      isLowThcEmail: req.translate('journey.email-header') === 'low THC cannabis' ? 'yes' : 'no',
+      emailHeader: req.translate('journey.email-header'),
+      emailIntro: req.translate('journey.email-intro') || null,
       body: 'Licence application submitted successfully.'
     };
 
