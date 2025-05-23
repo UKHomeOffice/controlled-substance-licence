@@ -11,6 +11,7 @@ const OtherBusinessLoop = require('./behaviours/other-business-detail');
 const LimitItems = require('../common/behaviours/limit-items');
 const Config = require('../../config');
 const SubmitRequest = require('../common/behaviours/submit-request');
+const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
@@ -481,7 +482,6 @@ const steps = {
     fields: ['is-permission-for-activities'],
     next: '/other-operating-businesses'
   },
-
   '/other-operating-businesses': {
     fields: ['is-operating-other-business'],
     forks: [
@@ -719,5 +719,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   steps: steps,
   confirmStep: '/confirm',
-  behaviours: [ Auth, SaveFormSession, CustomRedirect ]
+  behaviours: [ Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };
