@@ -89,6 +89,12 @@
   "application-submitted": {
     "confirmed": "Application submitted"
   },
+  "save-and-exit": {
+    "header": "We saved your application and signed you out"
+  },
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -289,13 +295,13 @@
       "perimeter-upload": {
         "label": "Perimeter images"
       },
-      "other-operating-businesses":{
+      "is-operating-other-business":{
         "label": "Any other businesses operating from the cultivation site?"
       },
-      "own-operating-businesses":{
+      "is-own-other-businesses":{
         "label": "Own any other businesses operating from the cultivation site?"
       },
-      "adjacent-businesses":{
+      "is-adjacent-businesses":{
         "label": "Business adjacent to or operating from your cultivation site"
       },
       "other-business-aggregate": {

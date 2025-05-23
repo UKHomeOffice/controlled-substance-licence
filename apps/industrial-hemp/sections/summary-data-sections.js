@@ -333,15 +333,15 @@ module.exports = {
       },
       {
         step: '/other-operating-businesses',
-        field: 'other-operating-businesses'
+        field: 'is-operating-other-business'
       },
       {
         step: '/adjacent-businesses',
-        field: 'adjacent-businesses'
+        field: 'is-adjacent-businesses'
       },
       {
         step: '/own-other-operating-businesses',
-        field: 'own-operating-businesses'
+        field: 'is-own-other-businesses'
       },
       {
         step: '/other-businesses-summary',
@@ -452,6 +452,9 @@ module.exports = {
         step: '/invoicing-contact-details',
         field: 'invoicing-purchase-order-number',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/invoicing-contact-details')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       },
@@ -487,6 +490,9 @@ module.exports = {
         step: '/extra-information',
         field: 'extra-information',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/extra-information')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       }
