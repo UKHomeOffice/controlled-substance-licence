@@ -11,7 +11,7 @@ module.exports = {
         value: 'controlled-drugs'
       },
       {
-        value: 'low-thc-cannabis'
+        value: 'industrial-hemp'
       }
     ]
   },

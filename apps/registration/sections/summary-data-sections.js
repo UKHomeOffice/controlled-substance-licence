@@ -121,7 +121,8 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/mhra-licences',
