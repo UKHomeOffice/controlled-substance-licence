@@ -105,7 +105,7 @@ module.exports = {
         parse: (list, req) => {
           const licenseHolderDetails = [
             req.sessionModel.get('company-name'),
-            req.sessionModel.get('company-number').toUpperCase(),
+            req.sessionModel.get('company-number')?.toUpperCase(),
             req.sessionModel.get('website-url'),
             req.sessionModel.get('telephone'),
             req.sessionModel.get('email')
@@ -452,6 +452,9 @@ module.exports = {
         step: '/invoicing-contact-details',
         field: 'invoicing-purchase-order-number',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/invoicing-contact-details')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       },
@@ -487,6 +490,9 @@ module.exports = {
         step: '/extra-information',
         field: 'extra-information',
         parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/extra-information')) {
+            return null;
+          }
           return value ? value : req.translate('journey.not-provided');
         }
       }
