@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 const Behaviour = require('../../../apps/common/behaviours/save-form-session');
 const reqres = require('hof').utils.reqres;
 const Model = require('hof/model');
 const { generateErrorMsg } = require('../../../utils');
+const config = require('../../../config');
 
 jest.mock('hof/model');
 
@@ -32,6 +34,9 @@ describe('save-form-session', () => {
 
   class Base {
     successHandler() {}
+    locals() {
+      return { existingKey: 'existingValue' };
+    }
   }
 
   let req;
@@ -95,6 +100,7 @@ describe('save-form-session', () => {
         set: jest.fn(),
         toJSON: jest.fn().mockReturnValue(mockSessionAttributes)
       };
+      req.session = {'hof-wizard-common': { 'applicant-id': 1 }};
       req.log = jest.fn();
     });
 
@@ -116,16 +122,31 @@ describe('save-form-session', () => {
         }
       });
       expect(mockSessionAttributes.steps).toContain('/save-me');
+      expect(req.sessionModel.set).toHaveBeenCalledWith('application-id', 1);
     });
 
-    test('calls HOFs _request method with the expected values when an application-id exists', async () => {
+    test('calls _request expected values if application-id exists and user will continue previous application', async () => {
       mockSessionAttributes['application-id'] = 1;
+      mockSessionAttributes['application-form-type'] = 'continue-an-application';
       await instance.successHandler(req, res, next);
       expect(mockRequest).toHaveBeenCalledWith({
         url: 'http://127.0.0.1:5000/applications/1',
         method: 'PATCH',
         data: { session: mockSessionAttributes }
       });
+      expect(req.log).not.toHaveBeenCalledWith('info', 'Overwriting saved application: 1');
+    });
+
+    test('calls _request with expected values if application-id exists but user will not continue previous application', async () => {
+      jest.spyOn(Date.prototype, 'toISOString').mockReturnValue('2025-02-23T00:00:00.000Z');
+      mockSessionAttributes['application-id'] = 1;
+      await instance.successHandler(req, res, next);
+      expect(mockRequest).toHaveBeenCalledWith({
+        url: 'http://127.0.0.1:5000/applications/1',
+        method: 'PATCH',
+        data: { session: mockSessionAttributes, created_at: '2025-02-23T00:00:00.000Z' }
+      });
+      expect(req.log).toHaveBeenCalledWith('info', 'Overwriting saved application: 1');
     });
 
     test('does not cause saving behaviour if the current path is in the exemption list', async () => {
@@ -159,6 +180,36 @@ describe('save-form-session', () => {
       });
       await instance.successHandler(req, res, next);
       expect(next).toHaveBeenCalledWith(new Error('Id not received in response []'));
+    });
+  });
+
+  describe('The \'locals\' method', () => {
+    beforeEach(() => {
+      req.form.options.route = '/application-type';
+    });
+
+    afterEach(() => {
+      jest.restoreAllMocks();
+      jest.clearAllMocks();
+    });
+
+    it('should return locals without modifying when the route is in saveExemptList', () => {
+      config.sessionDefaults.saveExemptions = ['/application-type', '/licensee-type'];
+
+      const result = instance.locals(req, res);
+
+      expect(result).toEqual({ existingKey: 'existingValue' });
+    });
+
+    it('should add showSaveAndExit to locals when the route is not in saveExemptList', () => {
+      config.sessionDefaults.saveExemptions = ['/licensee-type'];
+
+      const result = instance.locals(req, res);
+
+      expect(result).toEqual({
+        existingKey: 'existingValue',
+        showSaveAndExit: true
+      });
     });
   });
 });

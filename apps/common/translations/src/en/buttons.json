@@ -1,5 +1,7 @@
 {
   "continue": "Continue",
   "start-now": "Start now",
-  "sign-in": "Sign in"
-} 
+  "sign-in": "Sign in",
+  "session-timeout-start-again": "Continue application",
+  "sign-out": "Sign out"
+}

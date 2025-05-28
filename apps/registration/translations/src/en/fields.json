@@ -53,7 +53,6 @@
       }
     }
   },
-
   "previously-held-licence": {
     "legend": "Under your previous legally registered identity, did you hold a controlled drugs licence?",
     "options": {
@@ -75,6 +74,16 @@
   "previous-licence-date-of-issue": {
     "legend": "Date issued",
     "hint": "For example, 21 3 2019"
+  },
+  "business-type": {
+    "label": "Business type",
+    "hint": "Select a business type from the list",
+    "options": {
+      "none_selected": "Select business type"
+    }
+  },
+  "other-business-type": {
+    "label": "Specify your business type"
   },
   "company-type": {
     "legend": "What type of company is your organisation?",
@@ -98,5 +107,78 @@
     "label": "Upload a file",
     "no-files-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded"
+  },
+  "has-any-licence-issued-by-mhra": {
+    "legend": "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "mhra-licence-number": {
+    "label": "Licence number"
+  },
+  "mhra-licence-type": {
+    "label": "Licence type"
+  },
+  "mhra-licence-date-of-issue": {
+    "legend": "Date issued",
+    "hint": "For example, 27 3 2019"
+  },
+  "is-business-registered-with-cqc": {
+    "legend": "Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "registration-number": {
+    "label": "Registration number"
+  },
+  "date-of-registration": {
+    "legend": "Date registered",
+    "hint": "For example, 27 3 2019"
+  },
+  "regulatory-body-registration-details": {
+    "label": "Provide details of any other regulatory bodies you are registered with (optional)",
+    "hint": "For example the Veterinary Medicines Directorate, the United Kingdom Accreditation Service or the Food Standards Agency"
+  },
+  "invoicing-contact-name": {
+    "label": "Contact name",
+    "hint": "Enter your contact's full name"
+  },
+  "invoicing-contact-telephone": {
+    "label": "Contact phone number"
+  },
+  "invoicing-contact-email": {
+    "label": "Invoicing email address",
+    "hint": "Enter a shared email address to avoid delays in receiving invoices"
+  },
+  "invoicing-purchase-order-number": {
+    "label": "Purchase order number (optional)",
+    "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when invoices are raised"
+  },
+  "invoicing-address-line-1": {
+    "label": "Address line 1"
+  },
+  "invoicing-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "invoicing-address-town-or-city": {
+    "label": "Town or city"
+  },
+  "invoicing-address-postcode": {
+    "label": "Postcode"
+  },
+    "declaration-check": {
+    "label": "I have read and agree to this declaration"
   }
 }

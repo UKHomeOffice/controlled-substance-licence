@@ -1,0 +1,11 @@
+{{<partials-page}}
+  {{$pageTitle}}
+  {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}} {{#t}}pages.mhra-licence-details.pageTitle{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+    {{#renderField}}mhra-licence-number{{/renderField}}
+    {{#renderField}}mhra-licence-type{{/renderField}}
+    {{#renderField}}mhra-licence-date-of-issue{{/renderField}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

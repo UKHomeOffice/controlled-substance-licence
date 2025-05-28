@@ -301,6 +301,25 @@ module.exports = {
         field: 'where-cultivating-cannabis'
       },
       {
+        step: '/field-acreage',
+        field: 'field-acreage'
+      },
+      {
+        step: '/how-many-fields',
+        field: 'how-many-fields'
+      },
+      {
+        step: '/cultivation-field-details',
+        field: 'cultivation-field-details'
+      },
+      {
+        step: '/aerial-photos-and-maps',
+        field: 'aerial-photos-upload',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
         step: '/company-own-fields',
         field: 'is-company-own-fields'
       },
@@ -313,16 +332,169 @@ module.exports = {
         field: 'is-permission-for-activities'
       },
       {
-        step: '/field-acreage',
-        field: 'field-acreage'
+        step: '/other-operating-businesses',
+        field: 'is-operating-other-business'
       },
       {
-        step: '/how-many-fields',
-        field: 'how-many-fields'
+        step: '/adjacent-businesses',
+        field: 'is-adjacent-businesses'
       },
       {
-        step: '/cultivation-field-details',
-        field: 'cultivation-field-details'
+        step: '/own-other-operating-businesses',
+        field: 'is-own-other-businesses'
+      },
+      {
+        step: '/other-businesses-summary',
+        field: 'other-business-aggregate',
+        changeLink: 'other-businesses-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const businessName = item.fields.find(field => field.field === 'business-name')?.value;
+            const businessType = item.fields.find(field => field.field === 'business-type')?.value;
+            const businessOwner = item.fields.find(field => field.field === 'business-owner')?.value;
+            const businessInvolve = item.fields.find(field => field.field === 'business-involvement')?.value;
+            const surveyRef = item.fields.find(field => field.field === 'ordnance-survey-reference')?.value;
+
+            return `${businessName}\n` +
+                   `${businessType}\n` +
+                   `${businessOwner}\n` +
+                   `${businessInvolve}\n` +
+                   `${surveyRef}\n`;
+          }).join('\n');
+        }
+
+      },
+      {
+        step: '/different-postcodes',
+        field: 'is-different-postcodes'
+      },
+      {
+        step: '/different-postcode-addresses',
+        field: 'different-postcode-details'
+      },
+      {
+        step: '/adjacent-to-fields',
+        field: 'adjacent-field-details'
+      },
+      {
+        step: '/perimeter-details',
+        field: 'perimeter-details'
+      },
+      {
+        step: '/perimeter-images',
+        field: 'perimeter-upload',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/record-keeping-details',
+        field: 'record-keeping-details'
+      },
+      {
+        step: '/record-keeping-document-images',
+        field: 'record-keeping-document',
+        parse: documents => {
+          return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
+        }
+      },
+      {
+        step: '/seed-supplier-details',
+        field: 'seed-supplier-details'
+      },
+      {
+        step: '/customer-base-details',
+        field: 'customer-base-details'
+      },
+      {
+        step: '/end-product-details',
+        field: 'end-product-details'
+      },
+      {
+        step: '/end-product-production',
+        field: 'end-product-production-details'
+      },
+      {
+        step: '/seed-type-details',
+        field: 'seed-type-details'
+      },
+      {
+        step: '/thc-content-level',
+        field: 'thc-content-level'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address',
+        parse: (list, req) => {
+          const invoicingAddress = [
+            req.sessionModel.get('invoicing-address-line-1'),
+            req.sessionModel.get('invoicing-address-line-2'),
+            req.sessionModel.get('invoicing-address-town-or-city'),
+            req.sessionModel.get('invoicing-address-postcode')
+          ];
+          return invoicingAddress.filter(element => element).join('\n');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/invoicing-contact-details')) {
+            return null;
+          }
+          return value ? value : req.translate('journey.not-provided');
+        }
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'refund-accound-details'
+      },
+      {
+        step: '/licence-email-address',
+        field: 'licence-email-address'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-full-name'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-email'
+      },
+      {
+        step: '/who-completing-application',
+        field: 'who-is-completing-application-telephone'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'regulatory-affairs-officer'
+      },
+      {
+        step: '/regulatory-affairs-officer',
+        field: 'officer-non-compliance-reason'
+      },
+      {
+        step: '/extra-information',
+        field: 'extra-information',
+        parse: (value, req) => {
+          if (!req.sessionModel.get('steps').includes('/extra-information')) {
+            return null;
+          }
+          return value ? value : req.translate('journey.not-provided');
+        }
       }
     ]
   }

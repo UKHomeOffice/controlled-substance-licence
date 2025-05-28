@@ -67,10 +67,12 @@
     "pageTitle": "Explain why you are applying for a licence"
   },
   "mhra-licence-details": {
-    "header": "Licence details"
+    "header": "Medicines and Healthcare Products Regulatory Agency (MHRA) licence details",
+    "pageTitle": "MHRA licence details"
   },
   "registration-details": {
-    "header": "Registration details"
+    "header": "Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents",
+    "pageTitle": "Regulatory body registration details"
   },
   "site-owner-contact-details": {
     "header": "Site owner’s contact details",
@@ -121,13 +123,19 @@
   "who-completing-application": {
     "header": "Who is completing the application?"
   },
-
+  "extra-information": {
+    "pageTitle": "Add any extra information to your application"
+  },
   "declaration": {
     "header": "Declaration"
   },
 
   "application-submitted": {
     "confirmed": "Application submitted"
+  },
+
+  "save-and-exit": {
+    "header": "We saved your application and signed you out"
   },
 
   "confirm": {

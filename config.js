@@ -13,9 +13,12 @@ module.exports = {
   },
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
-    caseworkerEmail: process.env.CASEWORKER_EMAIL,
-    userConfirmationTemplateId: process.env.USER_CONFIRMATION_TEMPLATE_ID,
-    businessConfirmationTemplateId: process.env.BUSINESS_CONFIRMATION_TEMPLATE_ID
+    emailTemplates: {
+      licenceApplicationUserConfirmation: process.env.EMAIL_TEMPLATE_ID_LICENCE_APPLICATION_USER_CONFIRMATION,
+      registrationUserConfirmation: process.env.EMAIL_TEMPLATE_ID_REGISTRATION_USER_CONFIRMATION,
+      registrationPassword: process.env.EMAIL_TEMPLATE_ID_REGISTRATION_PASSWORD
+    },
+    replyToId: process.env.EMAIL_REPLY_TO_ID
   },
   redis: {
     port: process.env.REDIS_PORT || '6379',
@@ -23,7 +26,14 @@ module.exports = {
   },
   sessionDefaults: {
     fields: ['csrf-secret'],
-    saveExemptions: ['/application-type', '/licensee-type', '/information-you-have-given-us', '/application-submitted']
+    saveExemptions: [
+      '/application-type',
+      '/licensee-type',
+      '/information-you-have-given-us',
+      '/application-submitted',
+      '/save-and-exit',
+      '/session-timeout'
+    ]
   },
   saveService: {
     protocol: process.env.DATASERVICE_USE_HTTPS === 'false' ? 'http' : 'https',
@@ -35,7 +45,6 @@ module.exports = {
     hostname: process.env.FILE_VAULT_URL,
     allowedMimeTypes: [
       'image/jpeg',
-      'image/jpg',
       'image/png',
       'application/pdf',
       'application/msword',
@@ -62,6 +71,32 @@ module.exports = {
           'application/vnd.ms-excel',
           'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
         ]
+      },
+      'aerial-photos-upload': {
+        limit: 20,
+        limitValidationError: 'aerialPhotosUploadLimit',
+        allowedMimeTypes: [
+          'image/jpeg',
+          'image/png',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ]
+      },
+      'record-keeping-document': {
+        limit: 20,
+        limitValidationError: 'recordKeepingDocumentLimit'
+      },
+      'perimeter-upload': {
+        limit: 20,
+        limitValidationError: 'perimeterUploadLimit',
+        allowedMimeTypes: [
+          'image/jpeg',
+          'image/png',
+          'application/pdf',
+          'application/msword',
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        ]
       }
     }
   },
@@ -75,11 +110,22 @@ module.exports = {
   },
   keycloak: {
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
+    logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
+    keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
       password: process.env.FILE_VAULT_PASSWORD,
       clientId: process.env.FILE_VAULT_CLIENT_ID,
       secret: process.env.FILE_VAULT_CLIENT_SECRET
+    },
+    userAuthClient: {
+      clientId: process.env.USER_AUTH_CLIENT_ID,
+      secret: process.env.USER_AUTH_CLIENT_SECRET,
+      allowedUserRole: process.env.USER_AUTH_ALLOWED_ROLE
+    },
+    adminClient: {
+      clientId: process.env.ADMIN_CLIENT_ID,
+      secret: process.env.ADMIN_CLIENT_SECRET
     }
   },
   aggregateLimits: {
@@ -88,6 +134,17 @@ module.exports = {
     },
     controlledDrugs: {
       tradingReasonsLimit: 5
+    },
+    industrialHemp: {
+      businessAdjacentLimit: 100
     }
+  },
+  wizardSessionKeyPrefix: 'hof-wizard',
+  feedback: {
+    common: process.env.FEEDBACK_URL_COMMON,
+    controlledDrugs: process.env.FEEDBACK_URL_CONTROLLED_DRUG,
+    industrialHemp: process.env.FEEDBACK_URL_INDUSTRIAL_HEMP,
+    precursorChemicals: process.env.FEEDBACK_URL_PRECURSOR_CHEMICALS,
+    registration: process.env.FEEDBACK_URL_REGISTRATION
   }
 };

@@ -14,6 +14,10 @@ const SetSummaryReferrer = require('../common/behaviours/set-summary-referrer');
 const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
 const SaveFormSession = require('../common/behaviours/save-form-session');
 const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
+const Auth = require('../common/behaviours/auth/auth-check');
+const SubmitRequest = require('../common/behaviours/submit-request');
+const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 
 const steps = {
 
@@ -22,15 +26,6 @@ const steps = {
   '/application-type': {
     behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
-    forks: [
-      {
-        target: '/information-you-have-given-us',
-        condition: {
-          field: 'application-form-type',
-          value: 'continue-an-application'
-        }
-      }
-    ],
     template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
@@ -64,9 +59,26 @@ const steps = {
     behaviours: [Summary, InformationYouHaveGivenUs],
     template: 'information-you-have-given-us',
     sections: require('./sections/summary-data-sections'),
+    forks: [
+      {
+        target: '/companies-house-number',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
     next: '/licence-holder-details',
     locals: {
-      fullWidthPage: true
+      fullWidthPage: true,
+      showExit: true
     }
   },
 
@@ -500,6 +512,7 @@ const steps = {
   },
 
   '/declaration': {
+    behaviours: [SubmitRequest],
     fields: ['declaration-check'],
     next: '/application-submitted'
   },
@@ -509,7 +522,10 @@ const steps = {
     clearSession: true
   },
 
-  '/session-timeout': {}
+  '/save-and-exit': {
+    behaviours: [SignOutOnExit],
+    backLink: false
+  }
 };
 
 module.exports = {
@@ -519,5 +535,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
   steps: steps,
-  behaviours: [SaveFormSession, CustomRedirect]
+  behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };

@@ -191,13 +191,22 @@
     "required": "Select if you are requesting a change of activity"
   },
   "file-upload": {
-    "required": "Select a file",
+    "required": "Select a file to upload",
     "unsaved": "The selected file was not uploaded – try again",
-    "maxFileSize": "The selected files must be smaller than 25MB",
+    "maxFileSize": "The selected file must be 25MB or less",
     "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file",
     "virusCheck": "The file you have uploaded may have a virus. Please try a different file.",
     "companyRegistrationCertificateLimit" : "You may not add more than {{companyRegistrationCertificateLimit}} file(s)",
-    "isDuplicateFileName": "A file with this name was already uploaded"
+    "isDuplicateFileName": "A file with this name was already uploaded",
+    "aerialPhotosUploadLimit" : "You may not add more than {{aerialPhotosUploadLimit}} file(s)",
+    "recordKeepingDocumentLimit" : "You may not add more than {{recordKeepingDocumentLimit}} file(s)",
+    "aerial-photos-upload": {
+      "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
+    },
+    "perimeterUploadLimit" : "You may not add more than {{perimeterUploadLimit}} file(s)",
+    "perimeter-upload": {
+      "fileType": "The selected file must be a PNG, PDF, JPEG or Microsoft Word file"
+    }
   },
   "is-company-ref-changed": {
     "required": "Select if your Companies House reference number has changed since your last application"
@@ -250,7 +259,7 @@
   },
   "describe-business-model": {
     "required": "Enter a description of your business model",
-    "maxlength": "Description of your business model must be 2,000 character or less",
+    "maxlength": "Description of your business model must be 2,000 characters or less",
     "notUrl": "Your answer must not contain URLs or links"
   },
   "cultivate-industrial-hemp": {
@@ -282,5 +291,170 @@
   "cultivation-field-details": {
     "required": "Enter details of the fields you plan to cultivate low THC cannabis in",
     "maxlength": "Details of the fields you plan to cultivate low THC cannabis in must be 2,000 characters or less"
+  },
+  "record-keeping-details": {
+    "required": "Enter details of your record keeping",
+    "maxlength": "Details of your record keeping must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-supplier-details": {
+    "required": "Enter details of your seed suppliers",
+    "maxlength": "Details of your seed suppliers must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "customer-base-details": {
+    "required": "Enter details of your customer base",
+    "maxlength": "Details of your customer base must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-details": {
+    "required": "Enter details of your end products",
+    "maxlength": "Details of your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "end-product-production-details": {
+    "required": "Enter details of how you produce your end products",
+    "maxlength": "Details of how you produce your end products must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "seed-type-details": {
+    "required": "Enter details of the seed types you will use to grow low THC cannabis",
+    "maxlength": "Details of the seed types you will use to grow low THC cannabis must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "thc-content-level": {
+    "required": "Enter the THC content level",
+    "maxlength": "THC content level must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "invoicing-address-line-1": {
+    "required": "Enter address line 1, typically the building and street",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 1 must be between 1 and 250 characters"
+  },
+  "invoicing-address-line-2": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Address line 2 must be between 1 and 250 characters"
+  },
+  "invoicing-address-town-or-city": {
+    "required": "Enter a town or city",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Town or city must be between 1 and 250 characters"
+  },
+  "invoicing-address-postcode": {
+    "required": "Enter a postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "invoicing-contact-name": {
+    "required": "Enter an invoicing contact name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Invoicing contact name must be between 3 and 200 characters",
+    "minlength": "Invoicing contact name must be between 3 and 200 characters"
+  },
+  "invoicing-contact-email": {
+    "required": "Enter an invoicing contact email address",
+    "email": "Enter a real email address"
+  },
+  "invoicing-contact-telephone": {
+    "required": "Enter an invoicing contact number",
+    "internationalPhoneNumber": "Enter a real telephone number, like 07700 900000"
+  },
+  "invoicing-purchase-order-number": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Purchase order number must be between 1 and 250 characters"
+  },
+  "refund-accound-details": {
+    "required": "Enter your refund account details",
+    "maxlength": "Refund account details must be 500 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "licence-email-address": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-full-name": {
+    "required": "Enter the full name of the person completing the application",
+    "notUrl": "Your answer must not contain URLs or links",
+    "minlength": "Full name must be between 3 and 200 characters",
+    "maxlength": "Full name must be between 3 and 200 characters"
+  },
+  "who-is-completing-application-email": {
+    "required": "Enter an email address where we should send the licence",
+    "email": "Enter a real email address"
+  },
+  "who-is-completing-application-telephone": {
+    "required": "Enter a UK telephone number for the person completing the form",
+    "ukPhoneNumber": "Enter a real UK telephone number, like 01632 960 001 or 07700 900 982"
+  },
+  "regulatory-affairs-officer": {
+    "required": "Select if the regulatory affairs officer will discharge all licence responsibilities"
+  },
+  "officer-non-compliance-reason": {
+    "required": "Explain why the officer will not discharge all licence responsibilities",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Reason why the officer will not discharge all licence responsibilities must be 2,000 characters or less"
+  },
+  "extra-information": {
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Extra information about your application must be 2,000 characters or less"
+  },
+  "is-different-postcodes": {
+    "required": "Select if any of the fields are in a different postcode to the site address"
+  },
+  "different-postcode-details":{
+    "required": "Enter the addresses of the fields that are in a different postcode",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Addresses of the fields that are in a different postcode must be 2,000 characters or less"
+  },
+  "adjacent-field-details": {
+    "required": "Enter what is adjacent to each of the fields you intend to cultivate",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Details of what is adjacent to each of the fields you intend to cultivate must be 2,000 characters or less"
+  },
+  "perimeter-details":{
+    "required": "Enter details of the growing location's perimeter",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Perimeter details must be 2,000 characters or less"
+  },
+  "is-operating-other-business": {
+    "required": "Select if there are any other businesses operating from your intended cultivation site"
+  },
+  "is-own-other-businesses": {
+    "required": "Select if you own any other businesses operating from your intended cultivation site"
+  },
+  "is-adjacent-businesses": {
+    "required": "Select if there are any businesses adjacent to your intended cultivation site"
+  },
+  "business-name": {
+    "required": "Enter the name of the business adjacent to or operating from your site",
+    "maxlength": "Name of business must be between 3 and 200 characters",
+    "minlength": "Name of business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-type": {
+    "required": "Enter the type of business",
+    "maxlength": "Type of business must be between 3 and 200 characters",
+    "minlength": "Type of business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-owner": {
+    "required": "Enter details of who owns the business",
+    "maxlength": "Details of who owns the business must be between 3 and 200 characters",
+    "minlength": "Details of who owns the business must be between 3 and 200 characters",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "business-involvement": {
+    "required": "Describe your involvement in this business",
+    "maxlength": "Description of your involvement in this business must be 2,000 characters or less",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "ordnance-survey-reference": {
+    "required": "Enter the ordnance survey grid reference of the business location",
+    "lengthSize": "Ordnance survey grid reference must be between 12 and 14 characters",
+    "numFormat": "Enter a real ordnance survey grid reference, like SZ 65750 98047",
+    "notUrl": "Your answer must not contain URLs or links"
+  },
+  "declaration-check": {
+    "required": "You must confirm you agree with this declaration to submit the application"
   }
 }

@@ -49,6 +49,52 @@
   "cultivation-field-details": {
    "header": "Details of cultivation fields"
   },
+  "aerial-photos-and-maps": {
+    "header": "Upload aerial photos and site maps",
+    "intro": "Upload a document containing aerial photos and site maps relating to the information supplied in the previous question."
+  },
+  "record-keeping-document-images": {
+    "header": "Upload images of your record keeping documents"
+  },
+  "invoicing-address": {
+    "header": "Invoicing address"
+  },
+  "invoicing-contact-details": {
+    "header": "Invoicing contact details"
+  },
+  "who-completing-application": {
+    "header": "Who is completing the application?"
+  },
+  "extra-information": {
+    "pageTitle": "Add any extra information to your application"
+  },
+  "perimeter-details": {
+    "header": "Perimeter details"
+  },
+  "perimeter-images": {
+    "header": "Upload images of the perimeters",
+    "intro": "Include images for each perimeter of every field which you intend to cultivate."
+  },
+  "other-businesses-details": {
+    "header": "Details of businesses adjacent to or operating from your cultivation site"
+  },
+  "other-businesses-summary": {
+    "header": "Businesses adjacent to or operating from your cultivation site",
+    "key": "Business",
+    "business-limit-exceeded": "You can not add any more businesses"
+  },
+  "declaration": {
+    "header": "Declaration"
+  },
+  "application-submitted": {
+    "confirmed": "Application submitted"
+  },
+  "save-and-exit": {
+    "header": "We saved your application and signed you out"
+  },
+  "information-you-have-given-us": {
+    "header": "Information you have given us"
+  },
   "confirm": {
     "header": "Check your answers",
     "sections": {
@@ -170,6 +216,96 @@
       },
       "cultivation-field-details": {
         "label": "Details of cultivation fields"
+      },
+      "aerial-photos-upload":{
+        "label": "Aerial photos and site maps"
+      },
+      "record-keeping-details": {
+        "label": "Record keeping details"
+      },
+      "record-keeping-document":{
+        "label": "Images of record keeping documents"
+      },
+      "seed-supplier-details":{
+        "label": "Details of seed suppliers"
+      },
+      "customer-base-details":{
+        "label": "Details of customer base"
+      },
+      "end-product-details":{
+        "label": "Details of end products"
+      },
+      "end-product-production-details":{
+        "label": "How you produce your end products"
+      },
+      "seed-type-details":{
+        "label": "Details of seed types used to grow low THC cannabis"
+      },
+      "thc-content-level":{
+        "label": "THC content level"
+      },
+      "invoicing-address": {
+        "label": "Invoicing address"
+      },
+      "invoicing-contact-name": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-contact-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-contact-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
+      },
+      "licence-email-address": {
+        "label": "Email address for the licence"
+      },
+      "who-is-completing-application-full-name": {
+        "label": "Name of person completing application"
+      },
+      "who-is-completing-application-email": {
+        "label": "Email address of person completing application"
+      },
+      "who-is-completing-application-telephone": {
+        "label": "Contact number of person completing application"
+      },
+      "regulatory-affairs-officer": {
+        "label": "Regulatory affairs and compliance officer to discharge all licence responsibilities?"
+      },
+      "officer-non-compliance-reason": {
+        "label": "Why the officer will not discharge licence responsibilities"
+      },
+      "extra-information": {
+        "label": "Extra information"
+      },
+      "is-different-postcodes": {
+        "label": "Are any of the fields in a different postcode?"
+      },
+      "different-postcode-details": {
+        "label": "Addresses in another postcode"
+      },
+      "adjacent-field-details":{
+        "label": "What is adjacent to the fields you intend to cultivate?"
+      },
+      "perimeter-details": {
+        "label": "Perimeter details"
+      },
+      "perimeter-upload": {
+        "label": "Perimeter images"
+      },
+      "is-operating-other-business":{
+        "label": "Any other businesses operating from the cultivation site?"
+      },
+      "is-own-other-businesses":{
+        "label": "Own any other businesses operating from the cultivation site?"
+      },
+      "is-adjacent-businesses":{
+        "label": "Business adjacent to or operating from your cultivation site"
+      },
+      "other-business-aggregate": {
+        "label" : "Businesses adjacent to or operating from your cultivation site"
       }
     }
   }

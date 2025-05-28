@@ -1,13 +1,15 @@
+const Auth = require('./behaviours/auth/auth-check');
+const SignIn = require('./behaviours/auth/sign-in');
+const SignOut = require('./behaviours/auth/sign-out');
+const SetFeedbackUrl = require('./behaviours/set-feedback-url');
+
 const steps = {
   '/': {
-    next: '/sign-in',
+    next: '/licence-type',
     template: 'start'
   },
-  '/sign-in': {
-    fields: ['username', 'password'],
-    next: '/licence-type'
-  },
   '/licence-type': {
+    behaviours: [ Auth ],
     fields: ['licence-type'],
     forks: [
       {
@@ -25,10 +27,18 @@ const steps = {
         }
       }
     ],
-    next: '/industrial-hemp/application-type'
+    next: '/industrial-hemp/application-type',
+    backLink: ' ' // workaround to show Back link to the root of the app
   },
-
-  '/session-timeout': {}
+  '/sign-in': {
+    behaviours: [ SignIn ],
+    fields: ['username', 'password'],
+    next: '/licence-type'
+  },
+  '/signed-in-successfully': {
+    behaviours: [ Auth, SignOut ],
+    next: '/licence-type'
+  }
 };
 
 module.exports = {
@@ -37,5 +47,6 @@ module.exports = {
   translations: 'apps/common/translations',
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
-  steps: steps
+  steps: steps,
+  behaviours: [SetFeedbackUrl]
 };

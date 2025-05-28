@@ -1,5 +1,6 @@
 'use strict';
-const { formatDate } = require('../../../utils');
+const { formatDate, findArrayItemByValue } = require('../../../utils');
+const businessTypeOptions = require('../data/business-type.json');
 
 module.exports = {
   'licence-holder-details': {
@@ -89,6 +90,22 @@ module.exports = {
         parse: value => value ? formatDate(value) : null
       },
       {
+        step: '/business-type-summary',
+        field: 'aggregated-business-type',
+        changeLink: 'business-type-summary/edit',
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
+          return obj.aggregatedValues.map(item => {
+            const businessTypeValue = item.fields.find(field => field.field === 'business-type')?.value;
+            const businessTypeLabel = findArrayItemByValue(businessTypeOptions, businessTypeValue)?.label
+             ?? businessTypeValue;
+            const otherBusinessType = item.fields.find(field => field.field === 'other-business-type')?.value;
+
+            return otherBusinessType ? `${businessTypeLabel}: ${otherBusinessType}` : businessTypeLabel;
+          }).join('\n');
+        }
+      },
+      {
         step: '/company-type',
         field: 'company-type'
       },
@@ -105,6 +122,88 @@ module.exports = {
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
         }
+      },
+      {
+        step: '/mhra-licences',
+        field: 'has-any-licence-issued-by-mhra'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-number'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-type'
+      },
+      {
+        step: '/mhra-licence-details',
+        field: 'mhra-licence-date-of-issue',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/care-quality-commission-or-equivalent',
+        field: 'is-business-registered-with-cqc'
+      },
+      {
+        step: '/registration-details',
+        field: 'registration-number'
+      },
+      {
+        step: '/registration-details',
+        field: 'date-of-registration',
+        parse: value => value ? formatDate(value) : null
+      },
+      {
+        step: '/regulatory-body-registration',
+        field: 'regulatory-body-registration-details',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      }
+    ]
+  },
+  'invoicing-details': {
+    steps: [
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-name'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-telephone'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-contact-email'
+      },
+      {
+        step: '/invoicing-details',
+        field: 'invoicing-purchase-order-number',
+        parse: (value, req) => {
+          return value ? value : req.translate('journey.not-provided');
+        }
+      }
+    ]
+  },
+  'invoicing-address': {
+    steps: [
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address-line-1'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address-line-2',
+        parse: (value, req) => value || req.translate('journey.not-provided')
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address-town-or-city'
+      },
+      {
+        step: '/invoicing-address',
+        field: 'invoicing-address-postcode',
+        parse: (value, req) => value || req.translate('journey.not-provided')
       }
     ]
   }

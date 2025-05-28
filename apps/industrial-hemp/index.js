@@ -5,21 +5,25 @@ const Summary = hof.components.summary;
 const customValidation = require('../common/behaviours/custom-validation');
 const SaveDocument = require('../common/behaviours/save-document');
 const RemoveDocument = require('../common/behaviours/remove-document');
+const Auth = require('../common/behaviours/auth/auth-check');
+const LoopAggregator = require('../common/behaviours/loop-aggregator');
+const OtherBusinessLoop = require('./behaviours/other-business-detail');
+const LimitItems = require('../common/behaviours/limit-items');
+const Config = require('../../config');
+const SubmitRequest = require('../common/behaviours/submit-request');
+const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
+const InformationYouHaveGivenUs = require('../common/behaviours/information-you-have-given-us');
+const SaveFormSession = require('../common/behaviours/save-form-session');
+const ResumeFormSession = require('../common/behaviours/resume-form-session');
+const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 
 const steps = {
   /** Start of journey */
 
   '/application-type': {
+    behaviours: [ResumeFormSession],
     fields: ['application-form-type', 'amend-application-details'],
-    forks: [
-      {
-        target: '/information-you-have-given-us',
-        condition: {
-          field: 'application-form-type',
-          value: 'continue-an-application'
-        }
-      }
-    ],
+    template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
@@ -47,6 +51,32 @@ const steps = {
 
   /** Continue an application */
 
+  '/information-you-have-given-us': {
+    behaviours: [Summary, InformationYouHaveGivenUs],
+    template: 'information-you-have-given-us',
+    sections: require('./sections/summary-data-sections'),
+    forks: [
+      {
+        target: '/companies-house-number',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-renew-or-change-site'
+        }
+      },
+      {
+        target: '/why-new-licence',
+        condition: {
+          field: 'licensee-type',
+          value: 'existing-licensee-applying-for-new-site'
+        }
+      }
+    ],
+    next: '/licence-holder-details',
+    locals: {
+      fullWidthPage: true,
+      showExit: true
+    }
+  },
 
   /** Renew existing licence - Background Information */
 
@@ -55,7 +85,7 @@ const steps = {
   '/company-number-changed': {
     fields: ['is-company-ref-changed'],
     next: '/company-name-changed',
-    behaviours: [SetSummaryReferrer, CustomRedirect]
+    behaviours: [SetSummaryReferrer]
   },
   '/register-again': {
     backLink: '/industrial-hemp/company-number-changed'
@@ -99,6 +129,7 @@ const steps = {
     fields: ['is-change-of-activity'],
     next: '/licence-holder-details'
   },
+
   /** Existing licence apply for new site - Background Information */
 
   '/why-new-licence': {
@@ -141,6 +172,7 @@ const steps = {
     fields: ['contract-details'],
     next: '/licence-holder-details'
   },
+
   /** First time licensee - About the applicants */
 
   '/licence-holder-details': {
@@ -375,6 +407,10 @@ const steps = {
     next: '/no-licence-needed'
   },
 
+  '/no-licence-needed': {
+    // End of user journey
+  },
+
   '/where-cultivating-cannabis': {
     fields: ['where-cultivating-cannabis'],
     forks: [
@@ -388,21 +424,41 @@ const steps = {
     ],
     next: '/controlled-drugs-licence'
   },
+
+  '/controlled-drugs-licence': {
+    // End of user journey
+  },
+
   '/field-acreage': {
     fields: ['field-acreage'],
     next: '/how-many-fields'
   },
+
   '/how-many-fields': {
     fields: ['how-many-fields'],
     next: '/cultivation-field-details'
   },
+
   '/cultivation-field-details': {
     fields: ['cultivation-field-details'],
     next: '/aerial-photos-and-maps'
   },
+
   '/aerial-photos-and-maps': {
+    behaviours: [
+      SaveDocument('aerial-photos-upload', 'file-upload'),
+      RemoveDocument('aerial-photos-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'aerial-photos-upload',
+        customFileType: true
+      }
+    },
     next: '/company-own-fields'
   },
+
   '/company-own-fields': {
     fields: ['is-company-own-fields'],
     forks: [
@@ -416,37 +472,243 @@ const steps = {
     ],
     next: '/who-owns-fields'
   },
+
   '/who-owns-fields': {
     fields: ['who-own-fields'],
     next: '/permission-for-intended-activities'
   },
+
   '/permission-for-intended-activities': {
     fields: ['is-permission-for-activities'],
     next: '/other-operating-businesses'
   },
   '/other-operating-businesses': {
+    fields: ['is-operating-other-business'],
+    forks: [
+      {
+        target: '/own-other-operating-businesses',
+        condition: {
+          field: 'is-operating-other-business',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/adjacent-businesses'
+  },
+  '/adjacent-businesses': {
+    fields: ['is-adjacent-businesses'],
+    forks: [
+      {
+        target: '/other-businesses-details',
+        condition: {
+          field: 'is-adjacent-businesses',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/different-postcodes'
+  },
+  '/own-other-operating-businesses': {
+    fields: ['is-own-other-businesses'],
+    next: '/other-businesses-details'
+  },
+  '/other-businesses-details': {
+    fields: [
+      'business-name',
+      'business-type',
+      'business-owner',
+      'business-involvement',
+      'ordnance-survey-reference'
+    ],
+    continueOnEdit: true,
+    next: '/other-businesses-summary'
+  },
+  '/other-businesses-summary': {
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      OtherBusinessLoop,
+      SetSummaryReferrer
+    ],
+    aggregateTo: 'other-business-aggregate',
+    aggregateFrom: [
+      'business-name',
+      'business-type',
+      'business-owner',
+      'business-involvement',
+      'ordnance-survey-reference'
+    ],
+    titleField: 'other-businesses-details',
+    template: 'other-businesses-summary',
+    addStep: 'other-businesses-details',
+    next: '/different-postcodes',
+    aggregateLimit: Config.aggregateLimits.industrialHemp.businessAdjacentLimit,
+    locals: {
+      fullWidthPage: true
+    }
+  },
+  '/different-postcodes': {
+    fields: ['is-different-postcodes'],
+    forks: [
+      {
+        target: '/different-postcode-addresses',
+        condition: {
+          field: 'is-different-postcodes',
+          value: 'yes'
+        }
+      }
+    ],
+    next: '/adjacent-to-fields'
+  },
+  '/different-postcode-addresses': {
+    fields: ['different-postcode-details'],
+    next: '/adjacent-to-fields'
+  },
+  '/adjacent-to-fields': {
+    fields: ['adjacent-field-details'],
+    next: '/perimeter-details'
+  },
+  '/perimeter-details': {
+    fields: ['perimeter-details'],
+    next: '/perimeter-images'
+  },
+
+  '/perimeter-images': {
+    behaviours: [
+      SaveDocument('perimeter-upload', 'file-upload'),
+      RemoveDocument('perimeter-upload')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'perimeter-upload',
+        customFileType: true
+      }
+    },
+    next: '/record-keeping-details'
+  },
+
+  '/record-keeping-details': {
+    fields: ['record-keeping-details'],
+    next: '/record-keeping-document-images'
+  },
+
+  '/record-keeping-document-images': {
+    behaviours: [
+      SaveDocument('record-keeping-document', 'file-upload'),
+      RemoveDocument('record-keeping-document')
+    ],
+    fields: ['file-upload'],
+    locals: {
+      documentCategory: {
+        name: 'record-keeping-document'
+      }
+    },
+    next: '/seed-supplier-details'
+  },
+
+  '/seed-supplier-details': {
+    fields: ['seed-supplier-details'],
+    next: '/customer-base-details'
+  },
+
+  '/customer-base-details': {
+    fields: ['customer-base-details'],
+    next: '/end-product-details'
+  },
+
+  '/end-product-details': {
+    fields: ['end-product-details'],
+    next: '/end-product-production'
+  },
+
+  '/end-product-production': {
+    fields: ['end-product-production-details'],
+    next: '/seed-type-details'
+  },
+
+  '/seed-type-details': {
+    fields: ['seed-type-details'],
+    next: '/thc-content-level'
+  },
+
+  '/thc-content-level': {
+    fields: ['thc-content-level'],
+    next: '/invoicing-address'
+  },
+
+  '/invoicing-address': {
+    fields: [
+      'invoicing-address-line-1',
+      'invoicing-address-line-2',
+      'invoicing-address-town-or-city',
+      'invoicing-address-postcode'
+    ],
+    next: '/invoicing-contact-details'
+  },
+
+  '/invoicing-contact-details': {
+    behaviours: [customValidation],
+    fields: [
+      'invoicing-contact-name',
+      'invoicing-contact-email',
+      'invoicing-contact-telephone',
+      'invoicing-purchase-order-number',
+      'refund-accound-details'
+    ],
+    next: '/licence-email-address'
+  },
+
+  '/licence-email-address': {
+    fields: ['licence-email-address'],
+    next: '/who-completing-application'
+  },
+
+  '/who-completing-application': {
+    behaviours: [customValidation],
+    fields: [
+      'who-is-completing-application-full-name',
+      'who-is-completing-application-email',
+      'who-is-completing-application-telephone'
+    ],
+    next: '/regulatory-affairs-officer'
+  },
+
+  '/regulatory-affairs-officer': {
+    fields: ['regulatory-affairs-officer', 'officer-non-compliance-reason'],
+    next: '/extra-information'
+  },
+
+  '/extra-information': {
+    fields: ['extra-information'],
     next: '/confirm'
   },
-  '/no-licence-needed': {
-    // End of user journey
-  },
 
-  '/controlled-drugs-licence': {
-    // End of user journey
-  },
-
-
-  /** Continue an application */
-
-  /** Renew existing licence - Background Information */
-
-  /** Existing licence apply for new site - Background Information */
   '/confirm': {
     behaviours: [Summary],
-    sections: require('./sections/summary-data-sections')
+    sections: require('./sections/summary-data-sections'),
+    next: '/declaration',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
-  '/session-timeout': {}
+  '/declaration': {
+    behaviours: [SubmitRequest],
+    fields: ['declaration-check'],
+    next: '/application-submitted'
+  },
+
+  '/application-submitted': {
+    backLink: false,
+    clearSession: true
+  },
+
+  '/save-and-exit': {
+    behaviours: [SignOutOnExit],
+    backLink: false
+  }
+
 };
 
 module.exports = {
@@ -456,5 +718,6 @@ module.exports = {
   translations: 'apps/industrial-hemp/translations',
   params: '/:action?/:id?/:edit?',
   steps: steps,
-  confirmStep: '/confirm'
+  confirmStep: '/confirm',
+  behaviours: [ Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };

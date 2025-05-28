@@ -50,6 +50,10 @@ module.exports = superclass => class extends superclass {
     const formApp = req.baseUrl;
     req.sessionModel.set('referred-by-information-given-summary', false);
 
+    if (req.body.exit) {
+      return res.redirect(`${formApp}/save-and-exit`);
+    }
+
     const nextUnsavedStep = req.sessionModel.get('save-return-next-step');
     if (nextUnsavedStep) {
       return res.redirect(`${formApp}${nextUnsavedStep}`);
