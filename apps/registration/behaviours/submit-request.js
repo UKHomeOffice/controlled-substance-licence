@@ -33,12 +33,11 @@ module.exports = superclass => class extends superclass {
     }
 
     // Send the email with password
-
+    const password = 'auto-generated-password'; // @todo: replace with the actual generated password
     const personalisationPassword = {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
       referenceNumber: req.sessionModel.get('referenceNumber'),
-      // @todo: 'body' should be removed once templates are ready
-      body: 'Password email.'
+      password
     };
     try {
       await sendEmail(
