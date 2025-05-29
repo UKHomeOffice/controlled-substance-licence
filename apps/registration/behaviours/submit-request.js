@@ -46,7 +46,7 @@ module.exports = superclass => class extends superclass {
     const [businessPdfData, applicantPdfData] = pdfData;
 
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-    const referenceNumber = req.sessionModel.get('referenceNumber');
+    const referenceNumber = 'reference-number-placeholder';
 
     // Upload business PDF via file-vault
     const businessPDF = {
@@ -72,8 +72,8 @@ module.exports = superclass => class extends superclass {
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisationConfirmation = {
       referenceNumber,
-      username,
-      applicantSubmissionLink
+      applicantSubmissionLink,
+      username
     };
 
     try {
