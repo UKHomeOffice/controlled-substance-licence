@@ -3451,11 +3451,6 @@ insert-module-globals@^7.2.1:
     undeclared-identifiers "^1.1.2"
     xtend "^4.0.0"
 
-install@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/install/-/install-0.13.0.tgz#6af6e9da9dd0987de2ab420f78e60d9c17260776"
-  integrity sha512-zDml/jzr2PKU9I8J/xyZBQn8rPCAY//UOYNmR01XwNwyfhEWObo2SWfSl1+0tm1u6PhxLwDnfsT/6jB7OUxqFA==
-
 internal-slot@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/internal-slot/-/internal-slot-1.0.7.tgz#c06dcca3ed874249881007b0a5523b172a190802"
@@ -5880,6 +5875,11 @@ undici-types@~6.19.2:
   version "6.19.8"
   resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
   integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
+
+unique-random@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/unique-random/-/unique-random-4.0.0.tgz#878eaa1d78a13414bc874a32952325133fafdfae"
+  integrity sha512-lrIvMDF5M9DOCy6j1YdNkMkAZkQAd0Bk7PWazA/Kr3cy2L0NhanxdeFmBFg+tDUirNHrIcQf3K7oIeBTCXpIFQ==
 
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
