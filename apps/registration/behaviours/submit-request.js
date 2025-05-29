@@ -12,11 +12,11 @@ module.exports = superclass => class extends superclass {
     // - obtain the unique reference number from iCasework (case id)
 
     const recipientEmail = req.sessionModel.get('email');
+    const applicantSubmissionLink = 'link-to-PDF'; // @todo: replace with the actual link to the PDF document
     const personalisationConfirmation = {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
       referenceNumber: req.sessionModel.get('referenceNumber'),
-      // @todo: 'body' should be removed once templates are ready
-      body: 'Registration application submitted successfully.'
+      applicantSubmissionLink
     };
 
     try {
