@@ -13,7 +13,7 @@ module.exports = superclass => class extends superclass {
     if (saveExemptList.includes(currentRoute)) {
       return locals;
     }
-    if(currentRoute !== '/declaration'){
+    if(currentRoute !== '/declaration') {
       locals.showSaveAndExit = true;
     }
     return locals;
