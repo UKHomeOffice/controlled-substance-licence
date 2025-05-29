@@ -147,5 +147,10 @@ module.exports = {
     industrialHemp: process.env.FEEDBACK_URL_INDUSTRIAL_HEMP,
     precursorChemicals: process.env.FEEDBACK_URL_PRECURSOR_CHEMICALS,
     registration: process.env.FEEDBACK_URL_REGISTRATION
+  },
+  passWrd: {
+    min: 8,
+    max: 20,
+    type: 'ascii-printable'
   }
 };
