@@ -10,12 +10,15 @@ module.exports = superclass => class extends superclass {
     // - update application record in DB with received reference number and application status
 
     const recipientEmail = req.sessionModel.get('email');
+    const licenceType = req.sessionModel.get('licence-type');
     const applicantSubmissionLink = 'link-to-PDF'; // @todo: replace with the actual link to the PDF document
+    const referenceNumber = 'reference-number-placeholder'; // @todo: replace with the actual reference number from iCasework
     const personalisation = {
       // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-      referenceNumber: req.sessionModel.get('referenceNumber'),
+      referenceNumber,
       emailHeader: req.translate('journey.email-header'),
       emailIntro: req.translate('journey.email-intro') || req.translate('journey.email-header'),
+      licenseType: req.translate(`fields.${licenceType}.label`),
       applicantSubmissionLink
     };
 

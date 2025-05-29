@@ -14,9 +14,9 @@ module.exports = superclass => class extends superclass {
     const recipientEmail = req.sessionModel.get('email');
     const applicantSubmissionLink = 'link-to-PDF'; // @todo: replace with the actual link to the PDF document
     const username = 'auto-generated-username'; // @todo: replace with the actual generated username
+    const referenceNumber = 'reference-number-placeholder'; // @todo: replace with the actual reference number from iCasework
     const personalisationConfirmation = {
-      // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-      referenceNumber: req.sessionModel.get('referenceNumber'),
+      referenceNumber,
       applicantSubmissionLink,
       username
     };
