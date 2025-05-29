@@ -126,6 +126,10 @@ module.exports = {
     adminClient: {
       clientId: process.env.ADMIN_CLIENT_ID,
       secret: process.env.ADMIN_CLIENT_SECRET
+    },
+    passwordPolicy: {
+      length: 8,
+      characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789!#$%&*+=?@'
     }
   },
   aggregateLimits: {
