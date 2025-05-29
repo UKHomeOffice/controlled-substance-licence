@@ -74,7 +74,7 @@ module.exports = superclass => class extends superclass {
       referenceNumber,
       username,
       applicantSubmissionLink
-    }
+    };
 
     try {
       await sendEmail(
