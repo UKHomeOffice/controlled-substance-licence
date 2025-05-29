@@ -106,7 +106,7 @@ module.exports = {
         parse: (list, req) => {
           const licenseHolderDetails = [
             req.sessionModel.get('company-name'),
-            req.sessionModel.get('company-number').toUpperCase(),
+            req.sessionModel.get('company-number')?.toUpperCase(),
             req.sessionModel.get('website-url'),
             req.sessionModel.get('telephone'),
             req.sessionModel.get('email')

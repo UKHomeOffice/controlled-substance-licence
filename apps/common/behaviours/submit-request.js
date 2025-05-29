@@ -69,8 +69,8 @@ module.exports = superclass => class extends superclass {
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisation = {
       referenceNumber,
-      // @todo: 'body' should be removed once templates are ready
-      body: 'Licence application submitted successfully.',
+      emailHeader: req.translate('journey.email-header'),
+      emailIntro: req.translate('journey.email-intro') || req.translate('journey.email-header'),
       applicantSubmissionLink
     };
     try {

@@ -16,7 +16,7 @@ module.exports = {
       {
         step: '/licence-holder-details',
         field: 'company-number',
-        parse: (value, req) => value.toUpperCase() || req.translate('journey.not-provided')
+        parse: (value, req) => value?.toUpperCase() || req.translate('journey.not-provided')
       },
       {
         step: '/licence-holder-details',

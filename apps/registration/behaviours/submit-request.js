@@ -66,16 +66,15 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
-    // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');
+    // send applicant confirmation with PDF attachment
+    const username = 'auto-generated-username'; // @todo: replace with the actual generated username
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
-
     const personalisationConfirmation = {
       referenceNumber,
-      // @todo: 'body' should be removed once templates are ready
-      body: 'Registration application submitted successfully.',
+      username,
       applicantSubmissionLink
-    };
+    }
 
     try {
       await sendEmail(
@@ -91,12 +90,12 @@ module.exports = superclass => class extends superclass {
     }
 
     // Send the email with password
-
+    const password = 'auto-generated-password'; // @todo: replace with the actual generated password
     const personalisationPassword = {
       referenceNumber,
-      // @todo: 'body' should be removed once templates are ready
-      body: 'Password email.'
+      password
     };
+
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.registrationPassword,
