@@ -18,7 +18,7 @@ module.exports = superclass => class extends superclass {
 
     const pdfConverter = new PDFConverter();
     pdfConverter.on('fail', (error, responseData, originalSettings, statusCode, responseTime) => {
-      const errorMsg = `PDF generation failed: ${error}
+      const errorMsg = `PDF generation failed: ${JSON.stringify({message: error.message, stack: error.stack, ...error})}
       responseData: ${JSON.stringify(responseData)}
       originalSettings: ${JSON.stringify(originalSettings)}
       statusCode: ${statusCode}
