@@ -32,8 +32,7 @@ module.exports = {
       '/information-you-have-given-us',
       '/application-submitted',
       '/save-and-exit',
-      '/session-timeout',
-      '/declaration'
+      '/session-timeout'
     ]
   },
   saveService: {
