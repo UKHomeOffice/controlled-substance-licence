@@ -56,7 +56,7 @@ module.exports = superclass => class extends superclass {
     try {
       await upload.save();
       req.log('info', 'Submission PDF uploaded successfully');
-      // @todo: remove below log during icasework integration
+      // @todo: remove below log and add upload URL to icasework integration
       req.log('info', upload.toJSON().url);
     } catch (error) {
       const errorMsg = `Failed to upload business PDF: ${error}`;
@@ -67,12 +67,13 @@ module.exports = superclass => class extends superclass {
     // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
-    const licenceType = req.sessionModel.get('licence-type');
+    const emailHeader = req.translate('journey.email-header');
+    const emailIntro = req.translate('journey.email-intro');
     const personalisation = {
       referenceNumber,
-      emailHeader: req.translate('journey.email-header'),
-      emailIntro: req.translate('journey.email-intro') || req.translate('journey.email-header'),
-      licenseType: req.translate(`fields.${licenceType}.label`),
+      emailHeader,
+      emailIntro: emailIntro !== 'journey.email-intro' ? emailIntro : emailHeader,
+      licenseType: pdfConfig.licenceLabel,
       applicantSubmissionLink
     };
     try {
