@@ -53,7 +53,8 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/change-witness-only',
@@ -468,7 +469,8 @@ module.exports = {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/trading-reasons-summary',
@@ -627,7 +629,8 @@ module.exports = {
         field: 'user-activity-template',
         parse: documents => {
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;
-        }
+        },
+        file: true
       },
       {
         step: '/security-features',

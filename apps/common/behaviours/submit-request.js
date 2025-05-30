@@ -1,27 +1,81 @@
 const config = require('../../../config');
-const { sendEmail } = require('../../../utils/email-service');
+const { sendEmail, prepareUpload } = require('../../../utils/email-service');
+const { getApplicationFiles } = require('../../../utils');
+
+const PDFConverter = require('../../../utils/pdf-converter');
+const FileUpload = require('../../../utils/file-upload');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // @todo: a few additional steps are required before sending the email:
-    // - PDF generation
     // - iCasework integration to create a case assosiated with the application
     // - obtain the unique reference number from iCasework (case id)
     // - update application record in DB with received reference number and application status
 
-    const recipientEmail = req.sessionModel.get('email');
-    const licenceType = req.sessionModel.get('licence-type');
-    const applicantSubmissionLink = 'link-to-PDF'; // @todo: replace with the actual link to the PDF document
-    // @todo: replace with the actual reference number from iCasework
+    // generate PDFs
+    const locals = super.locals(req, res);
+    const applicationFiles = getApplicationFiles(req, locals.rows);
+
+    const pdfConverter = new PDFConverter();
+    pdfConverter.on('fail', (error, responseData, originalSettings, statusCode, responseTime) => {
+      const errorMsg = `PDF generation failed: ${JSON.stringify({message: error.message, stack: error.stack, ...error})}
+      responseData: ${JSON.stringify(responseData)}
+      originalSettings: ${JSON.stringify(originalSettings)}
+      statusCode: ${statusCode}
+      responseTime: ${responseTime}`;
+      req.log('error', errorMsg);
+    });
+    pdfConverter.on('success', () => {
+      req.log('info', 'PDF generation succeeded');
+    });
+
+    const pdfConfig = pdfConverter.createBaseConfig(req, res);
+    let pdfData;
+    try {
+      pdfData = await Promise.all([
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, applicationFiles),
+        pdfConverter.generatePdf(req, res, locals, pdfConfig, null)
+      ]);
+    } catch (error) {
+      const errorMsg = `Failed to generate PDF data: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+    const [businessPdfData, applicantPdfData] = pdfData;
+
+    // Upload business PDF via file-vault
+    const businessPDF = {
+      name: `${req.sessionID}.pdf`,
+      data: businessPdfData,
+      mimetype: 'application/pdf'
+    };
+    const upload = new FileUpload(businessPDF);
+    try {
+      await upload.save();
+      req.log('info', 'Submission PDF uploaded successfully');
+      // @todo: remove below log and add upload URL to icasework integration
+      req.log('info', upload.toJSON().url);
+    } catch (error) {
+      const errorMsg = `Failed to upload business PDF: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
+
+    // send applicant confirmation with PDF attachment
+    const recipientEmail = req.sessionModel.get('email');
+    const applicantSubmissionLink = prepareUpload(applicantPdfData);
+    const emailHeader = req.translate('journey.email-header');
+    const emailIntro = req.translate('journey.email-intro');
     const personalisation = {
       referenceNumber,
-      emailHeader: req.translate('journey.email-header'),
-      emailIntro: req.translate('journey.email-intro') || req.translate('journey.email-header'),
-      licenseType: req.translate(`fields.${licenceType}.label`),
+      emailHeader,
+      emailIntro: emailIntro !== 'journey.email-intro' ? emailIntro : emailHeader,
+      licenseType: pdfConfig.licenceLabel,
       applicantSubmissionLink
     };
-
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.licenceApplicationUserConfirmation,
