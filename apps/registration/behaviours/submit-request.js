@@ -45,12 +45,9 @@ module.exports = superclass => class extends superclass {
     }
     const [businessPdfData, applicantPdfData] = pdfData;
 
-    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-    const referenceNumber = 'reference-number-placeholder';
-
     // Upload business PDF via file-vault
     const businessPDF = {
-      name: `${referenceNumber}.pdf`,
+      name: `${req.sessionID}.pdf`,
       data: businessPdfData,
       mimetype: 'application/pdf'
     };
@@ -65,6 +62,9 @@ module.exports = superclass => class extends superclass {
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
+
+    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
+    const referenceNumber = 'reference-number-placeholder';
 
     const recipientEmail = req.sessionModel.get('email');
     // send applicant confirmation with PDF attachment

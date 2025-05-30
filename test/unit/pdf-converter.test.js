@@ -179,7 +179,6 @@ describe('PDFConverter class: ', () => {
         'ho-logo': 'I am an image',
         title: 'Apply for a domestic licence for controlled substances: Precursor chemicals',
         dateTime: '13 May 2025 at 11:54:11',
-        referenceNumber: 'TODO: add reference',
         addFilesSection: true,
         files: [
           {
@@ -201,8 +200,7 @@ describe('PDFConverter class: ', () => {
         css: 'I am a CSS',
         'ho-logo': 'I am an image',
         title: 'Apply for a domestic licence for controlled substances: Precursor chemicals',
-        dateTime: '13 May 2025 at 11:54:11',
-        referenceNumber: 'TODO: add reference'
+        dateTime: '13 May 2025 at 11:54:11'
       }), expect.any(Function));
     });
   });
