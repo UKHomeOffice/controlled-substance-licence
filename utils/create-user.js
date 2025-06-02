@@ -99,11 +99,11 @@ module.exports = class UserCreator {
             value: password,
             temporary: false
           }
-        ]
+        ],
+        groups: config.keycloak.adminClient.defaultGroups
       },
       method: 'POST'
     };
-
     try {
       const response = await this.hofModel._request(reqConfig);
 

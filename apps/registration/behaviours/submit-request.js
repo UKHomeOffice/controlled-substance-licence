@@ -4,6 +4,7 @@ const { getApplicationFiles } = require('../../../utils');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
+const UserCreator = require('../../../utils/create-user');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
@@ -63,12 +64,31 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
+    const recipientEmail = req.sessionModel.get('email');
+    const username = 'auto-generated-username-2'; // @todo: replace with the actual generated username
+    const password = 'Aaaaaa$8';
+
+    // Create user account in auth provider
+    const userCreator = new UserCreator();
+    const token = await userCreator.auth();
+    const userDetails = {
+      username,
+      password,
+      email: recipientEmail
+    }
+    try {
+      const response = await userCreator.requestCreateUser(userDetails, token);
+      console.log(response);
+    } catch (error) {
+      const errorMsg = `Failed to create new user account: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
 
-    const recipientEmail = req.sessionModel.get('email');
     // send applicant confirmation with PDF attachment
-    const username = 'auto-generated-username'; // @todo: replace with the actual generated username
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisationConfirmation = {
       referenceNumber,
@@ -90,7 +110,6 @@ module.exports = superclass => class extends superclass {
     }
 
     // Send the email with password
-    const password = 'auto-generated-password'; // @todo: replace with the actual generated password
     const personalisationPassword = {
       password
     };
