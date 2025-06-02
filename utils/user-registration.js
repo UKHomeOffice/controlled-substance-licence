@@ -8,9 +8,10 @@
  * @returns {string} - A unique, lowercase username string.
  */
 function generateUniqueUsername(companyName, postcode, lastGeneratedUsername) {
-  const companyNamePart = companyName.length < 5 ? companyName : companyName.slice(0, 5);
-  const postcodePart = postcode.slice(0, 3).trimEnd();
-  let username = (companyNamePart + postcodePart).toLowerCase();
+  const sanitizedCompanyName = companyName.replace(/[^a-zA-Z0-9]/g, '');
+  const companyNamePart = sanitizedCompanyName.slice(0, 5);
+  const postcodePart = postcode.split(' ')[0];
+  let username = (companyNamePart + postcodePart).toUpperCase();
 
   // Append an incremented integer suffix to the username if lastGeneratedUsername is provided
   if (lastGeneratedUsername) {
