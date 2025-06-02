@@ -12,6 +12,8 @@ const generatePass =  async (length, characterType) => {
         !randomPass?.match(/[!#$%&*+=?@]/) &&
         !randomPass?.match(/\d/));
 
+  console.log(randomPass);
+
   return randomPass;
 };
 
