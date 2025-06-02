@@ -29,5 +29,6 @@ async function sendEmail(templateId, recipientEmail, personalisation) {
 }
 
 module.exports = {
-  sendEmail
+  sendEmail,
+  prepareUpload: Notify.prepareUpload
 };
