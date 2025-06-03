@@ -38,4 +38,18 @@ describe('generateUniqueUsername', () => {
     const result = generateUniqueUsername('A&B Logistics Ltd.', 'SW1A 1AA', null);
     expect(result).toBe('ABLOGSW1A');
   });
+
+  it('should throw an error if companyName or postcode is not provided', () => {
+    expect(() => {
+      generateUniqueUsername(null, 'SW1A 1AA', null);
+    }).toThrow('Both companyName and postcode are required to generate username');
+
+    expect(() => {
+      generateUniqueUsername('TechCorp', null, null);
+    }).toThrow('Both companyName and postcode are required to generate username');
+
+    expect(() => {
+      generateUniqueUsername(null, null, null);
+    }).toThrow('Both companyName and postcode are required to generate username');
+  });
 });
