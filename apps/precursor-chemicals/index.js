@@ -506,6 +506,7 @@ const steps = {
     behaviours: [Summary, CancelSummaryReferrer],
     sections: require('./sections/summary-data-sections'),
     next: '/declaration',
+    template: 'confirm',
     locals: {
       fullWidthPage: true
     }
