@@ -206,7 +206,7 @@
         "label": "Who owns the fields?"
       },
       "is-permission-for-activities": {
-        "label": "Do you have permission from the owner to carryout your intended activities?"
+        "label": "Do you have permission from the owner to carry out your intended activities?"
       },
       "field-acreage": {
         "label": "Total acreage of fields"
