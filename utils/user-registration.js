@@ -12,7 +12,7 @@
  */
 function generateUniqueUsername(companyName, postcode, lastGeneratedUsername) {
   if (!companyName || !postcode) {
-    throw new Error("Both companyName and postcode are required to generate username");
+    throw new Error('Both companyName and postcode are required to generate username');
   }
 
   const sanitizedCompanyName = companyName.replace(/[^a-zA-Z0-9]/g, '');
