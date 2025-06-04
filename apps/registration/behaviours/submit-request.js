@@ -64,23 +64,19 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
-    const recipientEmail = req.sessionModel.get('email');
-    const username = 'auto-generated-username-2'; // @todo: replace with the actual generated username
-    const password = 'Aaaaaa$8';
+    const userDetails = {
+      recipientEmail: req.sessionModel.get('email'),
+      companyName: req.sessionModel.get('company-name'),
+      companyPostcode: req.sessionModel.get('licence-holder-postcode')
+    }
 
     // Create user account in auth provider
-    const userCreator = new UserCreator();
-    const token = await userCreator.auth();
-    const userDetails = {
-      username,
-      password,
-      email: recipientEmail
-    }
     try {
-      const response = await userCreator.requestCreateUser(userDetails, token);
-      console.log(response);
+      const userCreator = new UserCreator();
+      const authToken = await userCreator.auth();
+      await userCreator.createUser(userDetails, authToken);
     } catch (error) {
-      const errorMsg = `Failed to create new user account: ${error}`;
+      const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }

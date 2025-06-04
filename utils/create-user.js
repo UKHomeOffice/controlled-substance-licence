@@ -53,15 +53,15 @@ module.exports = class UserCreator {
       return {
         bearer: response.data.access_token
       };
-    } catch(err) {
-      const errorMsg = `Error occurred: ${err.message},
-        Cause: ${err.response.status} ${err.response.statusText}, Data: ${JSON.stringify(err.response.data)}`;
+    } catch(error) {
+      const errorMsg = `Error retrieving auth token: ${error.message},
+        Cause: ${error.response.status} ${error.response.statusText}, Data: ${JSON.stringify(error.response.data)}`;
       logger.error(errorMsg);
-      throw new Error(errorMsg);
+      throw error;
     }
   }
 
-  async requestCreateUser(userDetails, authToken) {
+  createRequestConfig(userDetails, authToken) {
     const { username, password, email } = userDetails;
 
     let errorMsg;
@@ -104,8 +104,16 @@ module.exports = class UserCreator {
       },
       method: 'POST'
     };
+
+    return reqConfig;
+  }
+
+  async createUser(userDetails, authToken) {
+    const username = 'auto-generated-username-2'; // @todo: replace with the actual generated username
+    const password = 'Aaaaaa$8';
     try {
-      const response = await this.hofModel._request(reqConfig);
+      const userRequestConfig = this.createRequestConfig(userDetails, authToken);
+      const response = await this.hofModel._request(userRequestConfig);
 
       if (!response || typeof response !== 'object' || Object.keys(response).length === 0) {
         const errorMsg = 'Received empty or invalid response';
@@ -113,11 +121,17 @@ module.exports = class UserCreator {
         throw new Error(errorMsg);
       }
 
-      return response;
+    return response;
     } catch (error) {
-      logger.error(`User creation request failed: ${error.message},
-        error: ${JSON.stringify({stack: error.stack, ...error})}`);
-      throw new Error(`User creation request failed: ${error.message}`);
+      if (error.status === 409 && error.response.data.errorMessage === 'User exists with same username') {
+        logger.warn('User exists with same username, regenerating name');
+      } else {
+        const errorMsg = `Error retrieving auth token: ${error.message},
+        Cause: ${error.response.status} ${error.response.statusText}, Data: ${JSON.stringify(error.response.data)}`;
+        logger.error(`User creation request failed: ${error.message},
+          error: ${JSON.stringify({stack: error.stack, ...error})}`);
+        throw new Error(`User creation request failed: ${error.message}`);
+      }
     }
   }
-}
+};
