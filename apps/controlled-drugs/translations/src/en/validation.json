@@ -21,7 +21,8 @@
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Company name must be between 2 and 200 characters",
-    "minlength": "Company name must be between 2 and 200 characters"
+    "minlength": "Company name must be between 2 and 200 characters",
+    "companyName": "Enter a real company name"
   },
   "company-number": {
     "companyNumber": "Enter a real company number, like 16850062"

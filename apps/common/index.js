@@ -41,6 +41,10 @@ const steps = {
   }
 };
 
+const pages = {
+  '/accessibility': 'static/accessibility'
+};
+
 module.exports = {
   name: 'common',
   fields: 'apps/common/fields',
@@ -48,5 +52,6 @@ module.exports = {
   baseUrl: '/',
   params: '/:action?/:id?/:edit?',
   steps: steps,
-  behaviours: [SetFeedbackUrl]
+  behaviours: [SetFeedbackUrl],
+  pages: pages
 };

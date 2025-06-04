@@ -3,7 +3,8 @@
     "required": "Enter a company name",
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Company name must be between 2 and 200 characters",
-    "minlength": "Company name must be between 2 and 200 characters"
+    "minlength": "Company name must be between 2 and 200 characters",
+    "companyName": "Enter a real company name"
   },
   "name-of-responsible-person": {
     "required": "Enter the name of the person who will be responsible for the licence",
