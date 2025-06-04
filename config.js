@@ -133,7 +133,7 @@ module.exports = {
     adminClient: {
       clientId: process.env.ADMIN_CLIENT_ID,
       secret: process.env.ADMIN_CLIENT_SECRET,
-      defaultGroups: ['external-users']
+      defaultGroups: ['External users']
     }
   },
   aggregateLimits: {
