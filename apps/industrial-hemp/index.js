@@ -493,6 +493,7 @@ const steps = {
         }
       }
     ],
+    continueOnEdit: true,
     next: '/adjacent-businesses'
   },
   '/adjacent-businesses': {
@@ -506,11 +507,13 @@ const steps = {
         }
       }
     ],
+    continueOnEdit: true,
     next: '/different-postcodes'
   },
   '/own-other-operating-businesses': {
     fields: ['is-own-other-businesses'],
-    next: '/other-businesses-details'
+    next: '/other-businesses-details',
+    continueOnEdit: true
   },
   '/other-businesses-details': {
     fields: [
@@ -520,7 +523,7 @@ const steps = {
       'business-involvement',
       'ordnance-survey-reference'
     ],
-    continueOnEdit: true,
+    ignoreCustomRedirect: true,
     next: '/other-businesses-summary'
   },
   '/other-businesses-summary': {

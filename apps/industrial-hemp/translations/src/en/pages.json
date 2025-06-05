@@ -182,7 +182,7 @@
         "label": "Change in name"
       },
       "other-licence-details": {
-        "label": "Licence Details"
+        "label": "Licence details"
       },
       "contract-start-date": {
         "label": "When does it start"
@@ -300,9 +300,6 @@
       },
       "is-own-other-businesses":{
         "label": "Own any other businesses operating from the cultivation site?"
-      },
-      "is-adjacent-businesses":{
-        "label": "Business adjacent to or operating from your cultivation site"
       },
       "other-business-aggregate": {
         "label" : "Businesses adjacent to or operating from your cultivation site"
