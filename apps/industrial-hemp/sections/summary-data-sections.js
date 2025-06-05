@@ -352,7 +352,8 @@ module.exports = {
         changeLink: 'other-businesses-summary/edit',
         parse: (obj, req) => {
           if ((!obj?.aggregatedValues) ||
-            (req.sessionModel.get('is-operating-other-business') === 'no' && req.sessionModel.get('is-adjacent-businesses') === 'no')) {
+            (req.sessionModel.get('is-operating-other-business') === 'no' &&
+             req.sessionModel.get('is-adjacent-businesses') === 'no')) {
             return null;
           }
           return obj.aggregatedValues.map(item => {
