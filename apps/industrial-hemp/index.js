@@ -493,6 +493,7 @@ const steps = {
         }
       }
     ],
+    ignoreCustomRedirect: true,
     next: '/adjacent-businesses'
   },
   '/adjacent-businesses': {
@@ -520,7 +521,7 @@ const steps = {
       'business-involvement',
       'ordnance-survey-reference'
     ],
-    continueOnEdit: true,
+    ignoreCustomRedirect: true,
     next: '/other-businesses-summary'
   },
   '/other-businesses-summary': {
