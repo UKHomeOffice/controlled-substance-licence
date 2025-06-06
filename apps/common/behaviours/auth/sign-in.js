@@ -21,6 +21,7 @@ module.exports = superclass => class extends superclass {
       const tokens = await auth.getTokens(req.form.values.username, req.form.values.password);
 
       req.sessionModel.set('applicant-id', applicantId);
+      req.sessionModel.set('applicant-username', req.form.values.username);
       req.sessionModel.set('auth_tokens', {
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token

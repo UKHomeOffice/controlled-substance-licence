@@ -30,7 +30,7 @@ module.exports = {
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
   sessionDefaults: {
-    fields: ['csrf-secret'],
+    fields: ['csrf-secret', 'username'],
     saveExemptions: [
       '/application-type',
       '/licensee-type',
@@ -132,6 +132,12 @@ module.exports = {
       clientId: process.env.ADMIN_CLIENT_ID,
       secret: process.env.ADMIN_CLIENT_SECRET
     }
+  },
+  icasework: {
+    apiKey: process.env.ICASEWORK_API_KEY,
+    apiSecret: process.env.ICASEWORK_API_SECRET,
+    url: process.env.ICASEWORK_URL,
+    db: process.env.ICASEWORK_DB
   },
   aggregateLimits: {
     precursorChemicals: {
