@@ -6,10 +6,13 @@ const Model = require('hof').model;
 const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
+const { generateUniqueUsername } = require('./user-registration');
 
 module.exports = class UserCreator {
   constructor() {
     this.hofModel = new Model();
+    this.username = '';
+    this.requestAttempts = 1;
   }
 
   async auth() {
@@ -108,29 +111,30 @@ module.exports = class UserCreator {
     return reqConfig;
   }
 
-  async createUser(userDetails, authToken) {
-    const username = 'auto-generated-username-2'; // @todo: replace with the actual generated username
-    const password = 'Aaaaaa$8';
+  async registerUser(userDetails, authToken) {
+    const { companyName, companyPostcode } = userDetails;
+    this.username = generateUniqueUsername(companyName, companyPostcode, this.username);
+    const password = 'Aaaaaa$8'; // @todo: replace with password generation
+    const prospectiveUser = Object.assign({}, userDetails, {
+      username: this.username,
+      password
+    });
     try {
-      const userRequestConfig = this.createRequestConfig(userDetails, authToken);
-      const response = await this.hofModel._request(userRequestConfig);
-
-      if (!response || typeof response !== 'object' || Object.keys(response).length === 0) {
-        const errorMsg = 'Received empty or invalid response';
-        logger.error(errorMsg);
-        throw new Error(errorMsg);
-      }
-
-    return response;
+      const userRequestConfig = this.createRequestConfig(prospectiveUser, authToken);
+      logger.info(`Register user attempt: ${this.requestAttempts}`);
+      await this.hofModel._request(userRequestConfig);
+      logger.info('User registered successfully');
+      console.log('REG USER: ', prospectiveUser);
+      return prospectiveUser;
     } catch (error) {
       if (error.status === 409 && error.response.data.errorMessage === 'User exists with same username') {
-        logger.warn('User exists with same username, regenerating name');
+        logger.warn(`User exists with generated username: regenerate and retry...`);
+        this.requestAttempts++;
+        await this.registerUser(userDetails, authToken);
       } else {
-        const errorMsg = `Error retrieving auth token: ${error.message},
-        Cause: ${error.response.status} ${error.response.statusText}, Data: ${JSON.stringify(error.response.data)}`;
-        logger.error(`User creation request failed: ${error.message},
-          error: ${JSON.stringify({stack: error.stack, ...error})}`);
-        throw new Error(`User creation request failed: ${error.message}`);
+        const errorMsg = `Error registering new user: ${JSON.stringify({message: error.message, stack: error.stack, ...error})}`;
+        logger.error(errorMsg);
+        throw error;
       }
     }
   }

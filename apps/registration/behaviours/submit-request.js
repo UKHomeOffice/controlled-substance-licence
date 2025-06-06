@@ -65,7 +65,7 @@ module.exports = superclass => class extends superclass {
     }
 
     const userDetails = {
-      recipientEmail: req.sessionModel.get('email'),
+      email: req.sessionModel.get('email'),
       companyName: req.sessionModel.get('company-name'),
       companyPostcode: req.sessionModel.get('licence-holder-postcode')
     }
@@ -74,7 +74,10 @@ module.exports = superclass => class extends superclass {
     try {
       const userCreator = new UserCreator();
       const authToken = await userCreator.auth();
-      await userCreator.createUser(userDetails, authToken);
+      const registeredUser = await userCreator.registerUser(userDetails, authToken);
+      console.log('RETURNED REG USER', registeredUser);
+      userDetails.username = registeredUser.username;
+      userDetails.password = registeredUser.password;
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
@@ -89,13 +92,13 @@ module.exports = superclass => class extends superclass {
     const personalisationConfirmation = {
       referenceNumber,
       applicantSubmissionLink,
-      username
+      username: userDetails.username
     };
 
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.registrationUserConfirmation,
-        recipientEmail,
+        userDetails.email,
         personalisationConfirmation
       );
       req.log('info', 'Registration confirmation sent successfully');
@@ -107,13 +110,13 @@ module.exports = superclass => class extends superclass {
 
     // Send the email with password
     const personalisationPassword = {
-      password
+      password: userDetails.password
     };
 
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.registrationPassword,
-        recipientEmail,
+        userDetails.email,
         personalisationPassword
       );
       req.log('info', 'Password email sent successfully');
