@@ -493,7 +493,7 @@ const steps = {
         }
       }
     ],
-    continueOnEdit: true,
+    ignoreCustomRedirect: true,
     next: '/adjacent-businesses'
   },
   '/adjacent-businesses': {
@@ -507,13 +507,11 @@ const steps = {
         }
       }
     ],
-    continueOnEdit: true,
     next: '/different-postcodes'
   },
   '/own-other-operating-businesses': {
     fields: ['is-own-other-businesses'],
-    next: '/other-businesses-details',
-    continueOnEdit: true
+    next: '/other-businesses-details'
   },
   '/other-businesses-details': {
     fields: [
