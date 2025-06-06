@@ -5,5 +5,6 @@
   "warning": "Warning",
   "uploading": "Uploading your file...",
   "not-provided": "Not provided",
-  "email-header": "controlled drugs"
+  "email-header": "controlled drugs",
+  "formName": "Controlled drugs form"
 }

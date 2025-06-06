@@ -4,5 +4,6 @@
   "error": "Error",
   "warning": "Warning",
   "uploading": "Uploading your file...",
-  "not-provided": "Not provided"
+  "not-provided": "Not provided",
+  "formName": "Registration form"
 }

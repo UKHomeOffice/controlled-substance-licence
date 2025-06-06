@@ -4,13 +4,14 @@ const { getApplicationFiles } = require('../../../utils');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
+const iCasework = require('../../../utils/icasework');
+const buildCaseData = require('../../../utils/icasework/build-case-data');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // @todo: a few additional steps are required before sending the email:
-    // - iCasework integration to create a case assosiated with the application
-    // - obtain the unique reference number from iCasework (case id)
     // - update application record in DB with received reference number and application status
+    
 
     // generate PDFs
     const locals = super.locals(req, res);
@@ -52,6 +53,7 @@ module.exports = superclass => class extends superclass {
     const upload = new FileUpload(businessPDF);
     try {
       await upload.save();
+      businessPDF.url = upload.toJSON().url;
       req.log('info', 'Submission PDF uploaded successfully');
       // @todo: remove below log and add upload URL to icasework integration
       req.log('info', upload.toJSON().url);
@@ -61,8 +63,30 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
-    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-    const referenceNumber = 'reference-number-placeholder';
+    let authToken;
+    try {
+      authToken = await upload.auth();
+    } catch (error) {
+      const errorMsg = `Failed to fetch authToken: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // Build caseData from session or other sources
+    const caseData = buildCaseData(req, businessPDF, applicationFiles, authToken.bearer);
+
+    // Create case in iCasework and get reference number
+    let referenceNumber;
+    iCasework.setReq(req);
+    try {
+      const newCase = await iCasework.createCase(caseData);
+      referenceNumber = newCase.caseid;
+      req.log('info', 'Case created in iCasework. Reference: %s', referenceNumber);
+    } catch (error) {
+      const errorMsg = `Failed to create case in iCasework: ${error.message}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
 
     // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');

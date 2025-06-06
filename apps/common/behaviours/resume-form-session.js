@@ -12,9 +12,11 @@ module.exports = superclass => class extends superclass {
       this.cleanSession(req);
 
       const applicantId = req.session['hof-wizard-common']?.['applicant-id'];
+      const applicantUsername = req.session['hof-wizard-common']?.['applicant-username'];
       const licenceType = req.session['hof-wizard-common']?.['licence-type'];
 
       req.sessionModel.set('applicant-id', applicantId);
+      req.sessionModel.set('applicant-username', applicantUsername);
       req.sessionModel.set('licence-type', licenceType);
 
       const hofModel = new Model();

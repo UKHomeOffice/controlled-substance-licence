@@ -265,6 +265,18 @@ const getApplicationFiles = (req, rows) => {
   return files;
 };
 
+/**
+ * Joins all non-empty elements of an array into a single string, separated by newline characters.
+ *
+ * @param {Array} array - The array of strings to join.
+ * @returns {string} - A string with non-empty elements joined by '\n'.
+ *
+ * @example
+ * joinNonEmptyLines(['line 1', '', 'line 2']);
+ * // returns 'line 1\nline 2'
+ */
+const joinNonEmptyLines = array => array.filter(element => element).join('\n');
+
 module.exports = {
   getLabel,
   translateOption,
@@ -278,5 +290,6 @@ module.exports = {
   clearExpiredApplictions,
   getFieldValuesToFilter,
   resetAllSessions,
-  getApplicationFiles
+  getApplicationFiles,
+  joinNonEmptyLines
 };
