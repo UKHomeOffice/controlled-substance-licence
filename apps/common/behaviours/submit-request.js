@@ -11,7 +11,6 @@ module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // @todo: a few additional steps are required before sending the email:
     // - update application record in DB with received reference number and application status
-    
 
     // generate PDFs
     const locals = super.locals(req, res);
