@@ -111,31 +111,34 @@ module.exports = class UserCreator {
     return reqConfig;
   }
 
-  async registerUser(userDetails, authToken) {
+  registerUser(userDetails, authToken) {
     const { companyName, companyPostcode } = userDetails;
     this.username = generateUniqueUsername(companyName, companyPostcode, this.username);
-    const password = 'Aaaaaa$8'; // @todo: replace with password generation
+    const password = 'Pas$w0rd'; // @todo: replace with password generation
     const prospectiveUser = Object.assign({}, userDetails, {
       username: this.username,
       password
     });
-    try {
-      const userRequestConfig = this.createRequestConfig(prospectiveUser, authToken);
-      logger.info(`Register user attempt: ${this.requestAttempts}`);
-      await this.hofModel._request(userRequestConfig);
-      logger.info('User registered successfully');
-      console.log('REG USER: ', prospectiveUser);
-      return prospectiveUser;
-    } catch (error) {
-      if (error.status === 409 && error.response.data.errorMessage === 'User exists with same username') {
-        logger.warn(`User exists with generated username: regenerate and retry...`);
-        this.requestAttempts++;
-        await this.registerUser(userDetails, authToken);
-      } else {
-        const errorMsg = `Error registering new user: ${JSON.stringify({message: error.message, stack: error.stack, ...error})}`;
+
+    const userRequestConfig = this.createRequestConfig(prospectiveUser, authToken);
+
+    logger.info(`Register user attempt: ${this.requestAttempts}`);
+    return this.hofModel._request(userRequestConfig)
+      .then(() => {
+        logger.info('User registered successfully');
+        return prospectiveUser;
+      })
+      .catch(error => {
+        if (error.status === 409 && error.response.data.errorMessage === 'User exists with same username') {
+          logger.warn('User exists with generated username: regenerate and retry...');
+          this.requestAttempts++;
+          return this.registerUser(userDetails, authToken);
+        }
+        const errorMsg = `Error registering new user: ${JSON.stringify(
+          {message: error.message, stack: error.stack, ...error}
+        )}`;
         logger.error(errorMsg);
         throw error;
-      }
-    }
+      });
   }
 };

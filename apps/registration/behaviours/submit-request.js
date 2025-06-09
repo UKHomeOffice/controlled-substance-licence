@@ -68,16 +68,14 @@ module.exports = superclass => class extends superclass {
       email: req.sessionModel.get('email'),
       companyName: req.sessionModel.get('company-name'),
       companyPostcode: req.sessionModel.get('licence-holder-postcode')
-    }
+    };
 
     // Create user account in auth provider
     try {
       const userCreator = new UserCreator();
       const authToken = await userCreator.auth();
       const registeredUser = await userCreator.registerUser(userDetails, authToken);
-      console.log('RETURNED REG USER', registeredUser);
-      userDetails.username = registeredUser.username;
-      userDetails.password = registeredUser.password;
+      Object.assign(userDetails, registeredUser);
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
