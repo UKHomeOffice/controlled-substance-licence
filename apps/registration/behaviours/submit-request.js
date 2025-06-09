@@ -1,6 +1,7 @@
 const config = require('../../../config');
 const { sendEmail, prepareUpload } = require('../../../utils/email-service');
 const { getApplicationFiles } = require('../../../utils');
+const { generatePassword } = require('../../../utils/pass-generator');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
@@ -67,7 +68,11 @@ module.exports = superclass => class extends superclass {
     const userDetails = {
       email: req.sessionModel.get('email'),
       companyName: req.sessionModel.get('company-name'),
-      companyPostcode: req.sessionModel.get('licence-holder-postcode')
+      companyPostcode: req.sessionModel.get('licence-holder-postcode'),
+      password: await generatePassword(
+        config.keycloak.passwordPolicy.length,
+        config.keycloak.passwordPolicy.characterSet
+      )
     };
 
     // Create user account in auth provider
@@ -76,15 +81,14 @@ module.exports = superclass => class extends superclass {
       const userCreator = new UserCreator();
       const authToken = await userCreator.auth();
       const registeredUser = await userCreator.registerUser(userDetails, authToken);
-      Object.assign(userDetails, registeredUser);
-      const newApplicantId = await userCreator.addUserToApplicants(userDetails);
-      userDetails.applicantId = newApplicantId;
+      const applicantId = await userCreator.addUserToApplicants(registeredUser);
+      Object.assign(userDetails, registeredUser, { applicantId });
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
-    console.log('USER DETAILS', userDetails);
+
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
 

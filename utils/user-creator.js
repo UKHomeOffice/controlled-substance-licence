@@ -114,12 +114,7 @@ module.exports = class UserCreator {
   registerUser(userDetails, authToken) {
     const { companyName, companyPostcode } = userDetails;
     this.username = generateUniqueUsername(companyName, companyPostcode, this.username);
-    const password = 'Pas$w0rd'; // @todo: replace with password generation
-    const prospectiveUser = Object.assign({}, userDetails, {
-      username: this.username,
-      password
-    });
-
+    const prospectiveUser = Object.assign({}, userDetails, { username: this.username });
     const userRequestConfig = this.createRequestConfig(prospectiveUser, authToken);
 
     logger.info(`Register user attempt: ${this.requestAttempts}`);
