@@ -141,4 +141,36 @@ module.exports = class UserCreator {
         throw error;
       });
   }
+
+  async addUserToApplicants(user) {
+    if (!user.username) {
+      const errorMsg = 'Username missing from create applicant config';
+      logger.error(errorMsg);
+      throw new Error(errorMsg);
+    }
+
+    const { protocol, host, port } = config.saveService;
+    const reqParams = {
+      url: `${protocol}://${host}:${port}/applicants`,
+      method: 'POST',
+      data: { username: user.username }
+    };
+
+    try {
+      const response = await this.hofModel._request(reqParams);
+
+      if (!response.data[0]?.applicant_id) {
+        const errorMsg = `Applicant id not received in response ${JSON.stringify(response.data)}`;
+        throw new Error(errorMsg);
+      }
+
+      return response.data[0]?.applicant_id;
+    } catch (error) {
+      const errorMsg = `Error adding user to applicants: ${JSON.stringify(
+        { message: error.message, stack: error.stack, ...error }
+      )}`;
+      logger.error(errorMsg);
+      throw error;
+    }
+  }
 };

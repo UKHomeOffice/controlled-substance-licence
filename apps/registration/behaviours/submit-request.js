@@ -71,17 +71,20 @@ module.exports = superclass => class extends superclass {
     };
 
     // Create user account in auth provider
+    // Add user to applicants
     try {
       const userCreator = new UserCreator();
       const authToken = await userCreator.auth();
       const registeredUser = await userCreator.registerUser(userDetails, authToken);
       Object.assign(userDetails, registeredUser);
+      const newApplicantId = await userCreator.addUserToApplicants(userDetails);
+      userDetails.applicantId = newApplicantId;
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
-
+    console.log('USER DETAILS', userDetails);
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
 
