@@ -4,7 +4,7 @@ const { getApplicationFiles } = require('../../../utils');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
-const UserCreator = require('../../../utils/create-user');
+const UserCreator = require('../../../utils/user-creator');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
