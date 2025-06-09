@@ -133,6 +133,10 @@ module.exports = {
       clientId: process.env.ADMIN_CLIENT_ID,
       secret: process.env.ADMIN_CLIENT_SECRET,
       defaultGroups: ['External users']
+    },
+    passwordPolicy: {
+      length: 8,
+      characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789!#$%&*+=?@'
     }
   },
   aggregateLimits: {

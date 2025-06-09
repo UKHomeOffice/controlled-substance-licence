@@ -182,7 +182,7 @@
         "label": "Change in name"
       },
       "other-licence-details": {
-        "label": "Licence Details"
+        "label": "Licence details"
       },
       "contract-start-date": {
         "label": "When does it start"
@@ -197,7 +197,7 @@
         "label": "Is the licence needed to cultivate low THC cannabis?"
       },
       "where-cultivating-cannabis": {
-        "label": "Where you will be cultivating low THC Cannabis?"
+        "label": "Where will you be cultivating low THC Cannabis?"
       },
       "is-company-own-fields": {
         "label": "Does your company own all the fields?"
@@ -300,9 +300,6 @@
       },
       "is-own-other-businesses":{
         "label": "Own any other businesses operating from the cultivation site?"
-      },
-      "is-adjacent-businesses":{
-        "label": "Business adjacent to or operating from your cultivation site"
       },
       "other-business-aggregate": {
         "label" : "Businesses adjacent to or operating from your cultivation site"
