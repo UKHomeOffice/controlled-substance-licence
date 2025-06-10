@@ -37,8 +37,8 @@ spec:
     spec:
       containers:
         - name: data-service
-          # hof-rds-api: v3.0.0 updated on 28/05/2025
-          image: quay.io/ukhomeofficedigital/hof-rds-api:3.0.0@sha256:f38b11e4d94265bd06e6907a02020d4e9991e720eb3ecc0f1bf0ddb9e115610a
+          # hof-rds-api: v3.1.0 updated on 10/06/2025
+          image: quay.io/ukhomeofficedigital/hof-rds-api:3.1.0@sha256:400336f799bb75a0b51f8defb4134d698477e177f35f409d6574684242f97ea2
           envFrom:
             - configMapRef:
                 {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
