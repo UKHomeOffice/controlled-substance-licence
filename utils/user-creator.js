@@ -15,6 +15,14 @@ module.exports = class UserCreator {
     this.requestAttempts = 1;
   }
 
+  /**
+  * Retrieves a Keycloak access token for the appropriate client.
+  * grant_type is 'client_credentials'
+  *
+  * @async
+  * @returns {Promise<object>} Resolves with an object containing the access token in 'bearer' param.
+  * @throws {Error} Throws an error if the request fails or if required configuration is not present.
+  */
   async auth() {
     const requiredProperties = ['clientId', 'secret'];
 
@@ -64,6 +72,14 @@ module.exports = class UserCreator {
     }
   }
 
+  /**
+  * Creates a request configuration to create a new user in Keycloak.
+  *
+  * @param {object} userDetails - The user data for the request to be created.
+  * @param {object} authToken - Contains a bearer token to add to Authorization header.
+  * @returns {object} Returns the created request configuration.
+  * @throws {Error} Throws an error if required data are missing.
+  */
   createRequestConfig(userDetails, authToken) {
     const { username, password, email } = userDetails;
 
@@ -111,6 +127,18 @@ module.exports = class UserCreator {
     return reqConfig;
   }
 
+  /**
+  * POSTs a new user to Keycloak via API.
+  *
+  * Generates a unique username based on user inputted data.
+  * Generates a request configuration from user data and auth token.
+  * If a request failed because the username was unavailable, generates a new username and recurses until successful
+  *
+  * @param {object} userDetails - The user data for the POST request.
+  * @param {object} authToken - Contains a bearer token to authenticate the request.
+  * @returns {<Promise>object} Returns collected data about the user that was successfully created.
+  * @throws {Error} Throws an error if the request to create a user was unsuccessful.
+  */
   registerUser(userDetails, authToken) {
     const { companyName, companyPostcode } = userDetails;
     this.username = generateUniqueUsername(companyName, companyPostcode, this.username);
@@ -137,6 +165,14 @@ module.exports = class UserCreator {
       });
   }
 
+  /**
+  * Creates a new applicant record in CSL database
+  *
+  * @async
+  * @param {object} user - Contains user data to be added to the record.
+  * @returns {<Promise>number} Returns the applicant_id created for the new record.
+  * @throws {Error} Throws an error if the request was unsuccessful or did not return an applicant_id in response.
+  */
   async addUserToApplicants(user) {
     if (!user.username) {
       const errorMsg = 'Username missing from create applicant config';
