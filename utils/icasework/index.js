@@ -10,24 +10,6 @@ const setReq = request => {
 };
 
 /**
- * Generates a useful error message from a typical iCasework REST API error response object.
- * It will return at a minimum error.message from the Error object passed in.
- *
- * @param {object} error - An Error object.
- * @returns {string} - An error message for failed iCasework requests containing key causal information.
- */
-const generateErrorMsg = error => {
-  const errorDetails = 
-    error.response?.headers?.['x-application-error-code'] && 
-    error.response?.headers?.['x-application-error-info'] ? `Cause: 
-      ERROR CODE: ${error.response?.headers?.['x-application-error-code']}
-      ERROR INFO: ${error.response?.headers?.['x-application-error-info']}` :
-    error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
-  const errorCode = error.response?.status ? `${error.response.status} -` : '';
-  return `${errorCode} ${error.message}; ${redactToken(errorDetails)}`;
-};
-
-/**
  * Redacts token values in URLs within a log message.
  * Replaces any 'token=...' with 'token=**REDACTED**'.
  *
@@ -37,6 +19,27 @@ const generateErrorMsg = error => {
 function redactToken(logMessage) {
   return logMessage.replace(/token=[^&\s"]+/g, 'token=**REDACTED**');
 }
+
+/**
+ * Generates a useful error message from a typical iCasework REST API error response object.
+ * It will return at a minimum error.message from the Error object passed in.
+ *
+ * @param {object} error - An Error object.
+ * @returns {string} - An error message for failed iCasework requests containing key causal information.
+ */
+const generateErrorMsg = error => {
+  let errorDetails;
+  if (error.response?.headers?.['x-application-error-code'] &&
+    error.response?.headers?.['x-application-error-info']) {
+    errorDetails = `Cause: 
+      ERROR CODE: ${error.response?.headers?.['x-application-error-code']}
+      ERROR INFO: ${error.response?.headers?.['x-application-error-info']}`;
+  } else if (error.response?.data?.error) {
+    errorDetails = `Cause: ${error.response.data.error}`;
+  }
+  const errorCode = error.response?.status ? `${error.response.status} -` : '';
+  return `${errorCode} ${error.message}; ${redactToken(errorDetails)}`;
+};
 
 /**
  * Builds a full URL for an iCasework API resource, including the optional `db` parameter
