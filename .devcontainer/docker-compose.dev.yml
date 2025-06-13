@@ -99,6 +99,16 @@ services:
       timeout: 5s
       retries: 10
 
+  icasework-mock:
+    build:
+      context: .
+      dockerfile: ./devtools/Dockerfile.icasework-mock
+    networks:
+      - csl-shared-network
+    hostname: hof-icasework-mock
+    ports:
+      - "4000:4000"
+
 networks:
   csl-shared-network:
     driver: bridge

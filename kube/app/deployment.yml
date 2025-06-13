@@ -88,13 +88,13 @@ spec:
               {{ end }}
             - name: FILE_VAULT_URL
               {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk/file
+              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk/file
+              value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk
               {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
+              value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
               {{ end }}
             - name: FILE_VAULT_CLIENT_SECRET
               valueFrom:
@@ -142,6 +142,17 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: admin-client
+                  key: secret
+            # iCasework API key and secret
+            - name: ICASEWORK_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: icasework-api
+                  key: key
+            - name: ICASEWORK_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: icasework-api
                   key: secret
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DATASERVICE_SERVICE_HOST

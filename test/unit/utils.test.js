@@ -1,5 +1,6 @@
 const {
   getLabel,
+  joinNonEmptyLines,
   formatDate,
   findArrayItemByValue,
   isValidPhoneNumber,
@@ -305,5 +306,23 @@ describe('getApplicationFiles', () => {
         label: 'Applicant certificate of good conduct'
       }
     ]);
+  });
+
+  describe('Utilities \'joinNonEmptyLines\'', () => {
+    test('joins non-empty strings with newline', () => {
+      expect(joinNonEmptyLines(['a', '', 'b', null, 'c'])).toBe('a\nb\nc');
+    });
+
+    test('returns empty string for all empty elements', () => {
+      expect(joinNonEmptyLines(['', null, undefined, false])).toBe('');
+    });
+
+    test('returns single string if only one non-empty element', () => {
+      expect(joinNonEmptyLines(['', 'only', ''])).toBe('only');
+    });
+
+    test('returns empty string for empty array', () => {
+      expect(joinNonEmptyLines([])).toBe('');
+    });
   });
 });

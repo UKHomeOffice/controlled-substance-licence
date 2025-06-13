@@ -6,6 +6,8 @@ const { generatePassword } = require('../../../utils/pass-generator');
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
 const UserCreator = require('../../../utils/user-creator');
+const iCasework = require('../../../utils/icasework');
+const buildCaseData = require('../../../utils/icasework/build-case-data');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
@@ -13,8 +15,6 @@ module.exports = superclass => class extends superclass {
     // - generate username and password for the user
     // - create user in Keycloak
     // - create user in DB
-    // - iCasework integration to create a case assosiated with the application
-    // - obtain the unique reference number from iCasework (case id)
 
     // generate PDFs
     const locals = super.locals(req, res);
@@ -56,6 +56,7 @@ module.exports = superclass => class extends superclass {
     const upload = new FileUpload(businessPDF);
     try {
       await upload.save();
+      businessPDF.url = upload.toJSON().url;
       req.log('info', 'Registration submission PDF uploaded successfully');
       // @todo: remove below log during icasework integration
       req.log('info', upload.toJSON().url);
@@ -89,9 +90,34 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
-    // @todo: 'referenceNumber' replace with the actual reference number from iCasework
-    const referenceNumber = 'reference-number-placeholder';
-    req.sessionModel.set('referenceNumber', referenceNumber);
+    let authToken;
+    try {
+      authToken = await upload.auth();
+    } catch (error) {
+      const errorMsg = `Failed to fetch authToken: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // Build caseData from session or other sources
+    const caseData = buildCaseData(req, businessPDF, applicationFiles, authToken.bearer);
+
+    // Create case in iCasework and get reference number
+    let referenceNumber;
+    iCasework.setReq(req);
+    try {
+      const newCase = await iCasework.createCase(caseData);
+      referenceNumber = newCase.caseid;
+      req.sessionModel.set('referenceNumber', referenceNumber);
+      req.log('info', 'Case created in iCasework. Reference: %s', referenceNumber);
+    } catch (error) {
+      const errorMsg = `Failed to get Reference number from iCasework: ${error.message}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
+    // Update application record with reference number and status
+    // @todo: implement this step
 
     // send applicant confirmation with PDF attachment
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
