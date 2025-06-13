@@ -1,9 +1,11 @@
 const config = require('../../../config');
 const { sendEmail, prepareUpload } = require('../../../utils/email-service');
 const { getApplicationFiles } = require('../../../utils');
+const { generatePassword } = require('../../../utils/pass-generator');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
+const UserCreator = require('../../../utils/user-creator');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
@@ -63,24 +65,46 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
+    const userDetails = {
+      email: req.sessionModel.get('email'),
+      companyName: req.sessionModel.get('company-name'),
+      companyPostcode: req.sessionModel.get('licence-holder-postcode'),
+      password: await generatePassword(
+        config.keycloak.passwordPolicy.length,
+        config.keycloak.passwordPolicy.characterSet
+      )
+    };
+
+    // Create user account in auth provider
+    // Add user to applicants
+    try {
+      const userCreator = new UserCreator();
+      const authToken = await userCreator.auth();
+      const registeredUser = await userCreator.registerUser(userDetails, authToken);
+      const applicantId = await userCreator.addUserToApplicants(registeredUser);
+      Object.assign(userDetails, registeredUser, { applicantId });
+    } catch (error) {
+      const errorMsg = `Failed to create new user: ${error}`;
+      req.log('error', errorMsg);
+      return next(Error(errorMsg));
+    }
+
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
     req.sessionModel.set('referenceNumber', referenceNumber);
 
-    const recipientEmail = req.sessionModel.get('email');
     // send applicant confirmation with PDF attachment
-    const username = 'auto-generated-username'; // @todo: replace with the actual generated username
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const personalisationConfirmation = {
       referenceNumber,
       applicantSubmissionLink,
-      username
+      username: userDetails.username
     };
 
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.registrationUserConfirmation,
-        recipientEmail,
+        userDetails.email,
         personalisationConfirmation
       );
       req.log('info', 'Registration confirmation sent successfully');
@@ -91,15 +115,14 @@ module.exports = superclass => class extends superclass {
     }
 
     // Send the email with password
-    const password = 'auto-generated-password'; // @todo: replace with the actual generated password
     const personalisationPassword = {
-      password
+      password: userDetails.password
     };
 
     try {
       await sendEmail(
         config.govukNotify.emailTemplates.registrationPassword,
-        recipientEmail,
+        userDetails.email,
         personalisationPassword
       );
       req.log('info', 'Password email sent successfully');
