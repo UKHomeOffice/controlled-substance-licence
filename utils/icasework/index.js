@@ -1,7 +1,6 @@
 const { model: Model } = require('hof');
 const config = require('../../config');
 const crypto = require('node:crypto');
-const { generateErrorMsg } = require('../../utils');
 
 const hofModel = new Model();
 
@@ -9,6 +8,35 @@ let req = null;
 const setReq = request => {
   req = request;
 };
+
+/**
+ * Generates a useful error message from a typical iCasework REST API error response object.
+ * It will return at a minimum error.message from the Error object passed in.
+ *
+ * @param {object} error - An Error object.
+ * @returns {string} - An error message for failed iCasework requests containing key causal information.
+ */
+const generateErrorMsg = error => {
+  const errorDetails = 
+    error.response?.headers?.['x-application-error-code'] && 
+    error.response?.headers?.['x-application-error-info'] ? `Cause: 
+      ERROR CODE: ${error.response?.headers?.['x-application-error-code']}
+      ERROR INFO: ${error.response?.headers?.['x-application-error-info']}` :
+    error.response?.data ? `Cause: ${JSON.stringify(error.response.data)}` : '';
+  const errorCode = error.response?.status ? `${error.response.status} -` : '';
+  return `${errorCode} ${error.message}; ${redactToken(errorDetails)}`;
+};
+
+/**
+ * Redacts token values in URLs within a log message.
+ * Replaces any 'token=...' with 'token=**REDACTED**'.
+ *
+ * @param {string} logMessage - The log message to redact.
+ * @returns {string} - The log message with token values redacted.
+ */
+function redactToken(logMessage) {
+  return logMessage.replace(/token=[^&\s"]+/g, 'token=**REDACTED**');
+}
 
 /**
  * Builds a full URL for an iCasework API resource, including the optional `db` parameter
@@ -127,7 +155,6 @@ const getToken = async () => {
     return response.data;
   } catch (error) {
     const errorMessage = `Failed to fetch tokens from iCasework: ${generateErrorMsg(error)}`;
-    req.log('error', errorMessage);
     throw new Error(errorMessage);
   }
 };
@@ -171,7 +198,6 @@ const createCase = async caseData => {
     return response.data.createcaseresponse;
   } catch (error) {
     const errorMessage = `Failed to create case in iCasework: ${generateErrorMsg(error)}`;
-    req.log('error', errorMessage);
     throw new Error(errorMessage);
   }
 };

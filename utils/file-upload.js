@@ -23,7 +23,7 @@ module.exports = class UploadModel extends Model {
     }
 
     const attributes = {
-      url: config.upload.hostname
+      url: `${config.upload.hostname}/file`
     };
 
     const formData = new FormData();

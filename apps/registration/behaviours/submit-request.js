@@ -84,7 +84,7 @@ module.exports = superclass => class extends superclass {
       referenceNumber = newCase.caseid;
       req.log('info', 'Case created in iCasework. Reference: %s', referenceNumber);
     } catch (error) {
-      const errorMsg = `Failed to create case in iCasework: ${error.message}`;
+      const errorMsg = `Failed to get Reference number from iCasework: ${error.message}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }

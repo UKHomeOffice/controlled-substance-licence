@@ -42,7 +42,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
 
   // Add applicationForm as Document1 if present
   if (applicationForm) {
-    documents[`Document${docNum}.URL`] = `${applicationForm.url.replace('/file', '/vault')}&token=${authToken}`;
+    documents[`Document${docNum}.URL`] = `${applicationForm.url}&token=${authToken}`;
     documents[`Document${docNum}.Name`] = req.translate('journey.formName');
     documents[`Document${docNum}.MimeType`] = applicationForm.mimetype;
     documents[`Document${docNum}.URLLoadContent`] = true;
@@ -54,7 +54,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   applicationFiles.forEach( category => {
     const categoryLabel = category.label;
     (category.urls || []).forEach(file => {
-      documents[`Document${docNum}.URL`] = `${file.url.replace('/file', '/vault')}&token=${authToken}`;
+      documents[`Document${docNum}.URL`] = `${file.url}&token=${authToken}`;
       documents[`Document${docNum}.Name`] = file.name;
       documents[`Document${docNum}.MimeType`] = file.mimetype;
       documents[`Document${docNum}.Category`] = categoryLabel;
