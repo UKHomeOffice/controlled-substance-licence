@@ -54,8 +54,6 @@ module.exports = superclass => class extends superclass {
       await upload.save();
       businessPDF.url = upload.toJSON().url;
       req.log('info', 'Submission PDF uploaded successfully');
-      // @todo: remove below log and add upload URL to icasework integration
-      req.log('info', upload.toJSON().url);
     } catch (error) {
       const errorMsg = `Failed to upload business PDF: ${error}`;
       req.log('error', errorMsg);
@@ -80,12 +78,16 @@ module.exports = superclass => class extends superclass {
     try {
       const newCase = await iCasework.createCase(caseData);
       referenceNumber = newCase.caseid;
+      req.sessionModel.set('referenceNumber', referenceNumber);
       req.log('info', 'Case created in iCasework. Reference: %s', referenceNumber);
     } catch (error) {
-      const errorMsg = `Failed to create case in iCasework: ${error.message}`;
+      const errorMsg = `Failed to get Reference number from iCasework: ${error.message}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
+
+    // Update application record with reference number and status
+    // @todo: implement this step
 
     // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');

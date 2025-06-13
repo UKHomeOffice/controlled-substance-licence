@@ -1,4 +1,4 @@
-Application reference number: {{! @todo: placeholder for case-id }}
+Application reference number: {{values.referenceNumber}} 
 
 ## What happens next
 
