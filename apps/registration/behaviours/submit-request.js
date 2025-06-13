@@ -65,6 +65,7 @@ module.exports = superclass => class extends superclass {
 
     // @todo: 'referenceNumber' replace with the actual reference number from iCasework
     const referenceNumber = 'reference-number-placeholder';
+    req.sessionModel.set('referenceNumber', referenceNumber);
 
     const recipientEmail = req.sessionModel.get('email');
     // send applicant confirmation with PDF attachment
