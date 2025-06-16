@@ -11,11 +11,6 @@ const buildCaseData = require('../../../utils/icasework/build-case-data');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
-    // @todo: a few additional steps are required before sending the email:
-    // - generate username and password for the user
-    // - create user in Keycloak
-    // - create user in DB
-
     // generate PDFs
     const locals = super.locals(req, res);
     const applicationFiles = getApplicationFiles(req, locals.rows);
@@ -84,12 +79,14 @@ module.exports = superclass => class extends superclass {
       const registeredUser = await userCreator.registerUser(userDetails, authToken);
       const applicantId = await userCreator.addUserToApplicants(registeredUser);
       Object.assign(userDetails, registeredUser, { applicantId });
+      req.sessionModel.set('applicant-username', userDetails.username);
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
 
+    // Fetch auth token required for generating document links in caseData
     let authToken;
     try {
       authToken = await upload.auth();
