@@ -64,6 +64,9 @@ steps:
         from_secret: DRONE_GIT_TOKEN
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - cd hof-services-config
+      - git checkout CSL-239-location-rules
+      - cd ..
       - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
