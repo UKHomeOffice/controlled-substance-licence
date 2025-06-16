@@ -11,7 +11,6 @@ const buildCaseData = require('../../../utils/icasework/build-case-data');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
-
     // generate PDFs
     const locals = super.locals(req, res);
     const applicationFiles = getApplicationFiles(req, locals.rows);
