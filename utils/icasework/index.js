@@ -28,7 +28,7 @@ function redactToken(logMessage) {
  * @returns {string} - An error message for failed iCasework requests containing key causal information.
  */
 const generateErrorMsg = error => {
-  let errorDetails;
+  let errorDetails = '';
   if (error.response?.headers?.['x-application-error-code'] &&
     error.response?.headers?.['x-application-error-info']) {
     errorDetails = `Cause: 

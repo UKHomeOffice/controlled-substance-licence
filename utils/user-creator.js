@@ -157,9 +157,7 @@ module.exports = class UserCreator {
           this.requestAttempts++;
           return this.registerUser(userDetails, authToken);
         }
-        const errorMsg = `Error registering new user: ${JSON.stringify(
-          {message: error.message, stack: error.stack, ...error}
-        )}`;
+        const errorMsg = `Error registering new user: message=${error.message}, stack=${error.stack}`;
         logger.error(errorMsg);
         throw error;
       });

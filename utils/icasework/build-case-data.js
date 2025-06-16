@@ -42,7 +42,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
 
   // Add applicationForm as Document1 if present
   if (applicationForm) {
-    documents[`Document${docNum}.URL`] = `${applicationForm.url}&token=${authToken}`;
+    documents[`Document${docNum}.URL`] = `${applicationForm.url}?token=${authToken}`;
     documents[`Document${docNum}.Name`] = req.translate('journey.formName');
     documents[`Document${docNum}.MimeType`] = applicationForm.mimetype;
     documents[`Document${docNum}.URLLoadContent`] = true;
@@ -54,7 +54,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   applicationFiles.forEach( category => {
     const categoryLabel = category.label;
     (category.urls || []).forEach(file => {
-      documents[`Document${docNum}.URL`] = `${file.url}&token=${authToken}`;
+      documents[`Document${docNum}.URL`] = `${file.url}?token=${authToken}`;
       documents[`Document${docNum}.Name`] = file.name;
       documents[`Document${docNum}.MimeType`] = file.mimetype;
       documents[`Document${docNum}.Category`] = categoryLabel;
@@ -133,16 +133,10 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         ...baseData,
         ...documents,
         Type: '47400', // Case type for registration
-
-        // @todo: Change to actual applicant-id and username,
-        // once user creation functionality is implemented
-        OrganisationUserId: '1',
-        OrganisationRef: '1',
-        OrganisationUserName: 'FAKEUSERNAME',
-        // OrganisationUserId: req.sessionModel.get('applicant-id'),
-        // OrganisationRef: req.sessionModel.get('applicant-id'),
-        // OrganisationUserName: req.sessionModel.get('applicant-username'),
-
+        OrganisationUserId: req.sessionModel.get('applicant-id'),
+        OrganisationRef: req.sessionModel.get('applicant-id'),
+        OrganisationUserName: req.sessionModel.get('applicant-username'),
+        ExternalId: req.sessionModel.get('applicant-username'),
         OrganisationName: req.sessionModel.get('company-name'),
         OrganisationAddress: joinNonEmptyLines([
           req.sessionModel.get('licence-holder-address-line-1'),
