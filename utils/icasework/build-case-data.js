@@ -29,6 +29,19 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
     }).join('\n');
   };
 
+/**
+ * Returns a document URL with /file/ replaced by /vault/ and appends the token as a query parameter.
+ *
+ * @param {string} url - The original file URL.
+ * @param {string} token - The authentication token to append.
+ * @returns {string} - The updated URL for iCasework.
+ */
+function buildVaultUrl(url, token) {
+  if (!url || !token) return url;
+  const vaultUrl = url.replace('/file/', '/vault/');
+  return `${vaultUrl}?token=${token}`;
+}
+
   // Common fields
   const baseData = {
     Format: 'json',
@@ -42,7 +55,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
 
   // Add applicationForm as Document1 if present
   if (applicationForm) {
-    documents[`Document${docNum}.URL`] = `${applicationForm.url}?token=${authToken}`;
+    documents[`Document${docNum}.URL`] = buildVaultUrl(applicationForm.url, authToken);
     documents[`Document${docNum}.Name`] = req.translate('journey.formName');
     documents[`Document${docNum}.MimeType`] = applicationForm.mimetype;
     documents[`Document${docNum}.URLLoadContent`] = true;
@@ -54,7 +67,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   applicationFiles.forEach( category => {
     const categoryLabel = category.label;
     (category.urls || []).forEach(file => {
-      documents[`Document${docNum}.URL`] = `${file.url}?token=${authToken}`;
+      documents[`Document${docNum}.URL`] = buildVaultUrl(file.url, authToken);
       documents[`Document${docNum}.Name`] = file.name;
       documents[`Document${docNum}.MimeType`] = file.mimetype;
       documents[`Document${docNum}.Category`] = categoryLabel;
