@@ -29,18 +29,18 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
     }).join('\n');
   };
 
-/**
- * Returns a document URL with /file/ replaced by /vault/ and appends the token as a query parameter.
- *
- * @param {string} url - The original file URL.
- * @param {string} token - The authentication token to append.
- * @returns {string} - The updated URL for iCasework.
- */
-function buildVaultUrl(url, token) {
-  if (!url || !token) return url;
-  const vaultUrl = url.replace('/file/', '/vault/');
-  return `${vaultUrl}?token=${token}`;
-}
+  /**
+   * Returns a document URL with /file/ replaced by /vault/ and appends the token as a query parameter.
+   *
+   * @param {string} url - The original file URL.
+   * @param {string} token - The authentication token to append.
+   * @returns {string} - The updated URL for iCasework.
+   */
+  function buildVaultUrl(url, token) {
+    if (!url || !token) return url;
+    const vaultUrl = url.replace('/file/', '/vault/');
+    return `${vaultUrl}?token=${token}`;
+  }
 
   // Common fields
   const baseData = {
