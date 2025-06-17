@@ -53,8 +53,6 @@ module.exports = superclass => class extends superclass {
       await upload.save();
       businessPDF.url = upload.toJSON().url;
       req.log('info', 'Registration submission PDF uploaded successfully');
-      // @todo: remove below log during icasework integration
-      req.log('info', upload.toJSON().url);
     } catch (error) {
       const errorMsg = `Failed to upload registration submission PDF: ${error}`;
       req.log('error', errorMsg);
@@ -112,9 +110,6 @@ module.exports = superclass => class extends superclass {
       req.log('error', errorMsg);
       return next(Error(errorMsg));
     }
-
-    // Update application record with reference number and status
-    // @todo: implement this step
 
     // send applicant confirmation with PDF attachment
     const applicantSubmissionLink = prepareUpload(applicantPdfData);

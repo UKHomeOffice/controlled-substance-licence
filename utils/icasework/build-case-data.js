@@ -100,7 +100,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
-          req.sessionMode.get('licensee-type')),
+          req.sessionModel.get('licensee-type')),
         LegalIdentity: '',
         PreviousLicence: '',
         TimeRenewal: '',
