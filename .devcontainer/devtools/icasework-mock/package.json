@@ -4,6 +4,6 @@
   "description": "Mock server for iCasework API integration",
   "main": "icasework-mock.js",
   "dependencies": {
-    "express": "^4.18.4"
+    "express": "latest"
   }
 }

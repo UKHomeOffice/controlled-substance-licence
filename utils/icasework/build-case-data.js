@@ -17,7 +17,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
 
   const type = req.sessionModel.get('licence-type');
 
-  const parseAggregatedValues = obj => {
+  const parseAggregatedBusinessTypes = obj => {
     if (!obj?.aggregatedValues) { return null; }
     return obj.aggregatedValues.map(item => {
       const businessTypeValue = item.fields.find(field => field.field === 'business-type')?.value;
@@ -37,7 +37,9 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
    * @returns {string} - The updated URL for iCasework.
    */
   function buildVaultUrl(url, token) {
-    if (!url || !token) return url;
+    if (!url || !token) {
+      throw new Error('Both url and token are required to build a vault URL');
+    }
     const vaultUrl = url.replace('/file/', '/vault/');
     return `${vaultUrl}?token=${token}`;
   }
@@ -82,7 +84,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '48705',  // Case type for industrial hemp
+        Type: 'Hemp', // Identifier code on iCasework system - 48705
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
@@ -138,7 +140,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '48272', // Case type for controlled drugs
+        Type: 'ControlledDrugs', // Identifier code on iCasework system - 48272
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
@@ -199,7 +201,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '10000', // Case type for precursor chemicals
+        Type: 'PrecursorChemicals', // Identifier code on iCasework system - 10000
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
@@ -248,7 +250,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '47400', // Case type for registration
+        Type: '47400', // Case type for Registration
         OrganisationUserId: req.sessionModel.get('applicant-id'),
         OrganisationRef: req.sessionModel.get('applicant-id'),
         OrganisationUserName: req.sessionModel.get('applicant-username'),
@@ -266,7 +268,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         OrganisationRegisteredCharity: getLabel(
           'registered-charity',
           req.sessionModel.get('registered-charity')),
-        OrganisationBusinessType: parseAggregatedValues(
+        OrganisationBusinessType: parseAggregatedBusinessTypes(
           req.sessionModel.get('aggregated-business-type'))
       };
   }

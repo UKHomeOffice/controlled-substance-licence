@@ -104,7 +104,7 @@ module.exports = superclass => class extends superclass {
       const newCase = await iCasework.createCase(caseData);
       referenceNumber = newCase.caseid;
       req.sessionModel.set('referenceNumber', referenceNumber);
-      req.log('info', 'Case created in iCasework. Reference: %s', referenceNumber);
+      req.log('info', `Case created in iCasework. Reference: ${referenceNumber}`);
     } catch (error) {
       const errorMsg = `Failed to get Reference number from iCasework: ${error.message}`;
       req.log('error', errorMsg);
