@@ -17,7 +17,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
 
   const type = req.sessionModel.get('licence-type');
 
-  const parseAggregatedValues = obj => {
+  const parseAggregatedBusinessTypes = obj => {
     if (!obj?.aggregatedValues) { return null; }
     return obj.aggregatedValues.map(item => {
       const businessTypeValue = item.fields.find(field => field.field === 'business-type')?.value;
@@ -37,7 +37,9 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
    * @returns {string} - The updated URL for iCasework.
    */
   function buildVaultUrl(url, token) {
-    if (!url || !token) return url;
+    if (!url || !token) {
+      throw new Error('Both url and token are required to build a vault URL');
+    }
     const vaultUrl = url.replace('/file/', '/vault/');
     return `${vaultUrl}?token=${token}`;
   }
@@ -163,7 +165,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         OrganisationRegisteredCharity: getLabel(
           'registered-charity',
           req.sessionModel.get('registered-charity')),
-        OrganisationBusinessType: parseAggregatedValues(
+        OrganisationBusinessType: parseAggregatedBusinessTypes(
           req.sessionModel.get('aggregated-business-type'))
       };
   }

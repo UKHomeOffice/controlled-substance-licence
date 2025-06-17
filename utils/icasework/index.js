@@ -27,7 +27,7 @@ function redactToken(logMessage) {
  * @param {object} error - An Error object.
  * @returns {string} - An error message for failed iCasework requests containing key causal information.
  */
-const generateErrorMsg = error => {
+const generateiCaseworkErrorMsg = error => {
   let errorDetails = '';
   if (error.response?.headers?.['x-application-error-code'] &&
     error.response?.headers?.['x-application-error-info']) {
@@ -157,7 +157,7 @@ const getToken = async () => {
     req.log('info', 'Successfully fetched tokens from iCasework');
     return response.data;
   } catch (error) {
-    const errorMessage = `Failed to fetch tokens from iCasework: ${generateErrorMsg(error)}`;
+    const errorMessage = `Failed to fetch tokens from iCasework: ${generateiCaseworkErrorMsg(error)}`;
     throw new Error(errorMessage);
   }
 };
@@ -200,7 +200,7 @@ const createCase = async caseData => {
 
     return response.data.createcaseresponse;
   } catch (error) {
-    const errorMessage = `Failed to create case in iCasework: ${generateErrorMsg(error)}`;
+    const errorMessage = `Failed to create case in iCasework: ${generateiCaseworkErrorMsg(error)}`;
     throw new Error(errorMessage);
   }
 };
