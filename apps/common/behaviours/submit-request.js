@@ -6,19 +6,17 @@ const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
 const iCasework = require('../../../utils/icasework');
 const buildCaseData = require('../../../utils/icasework/build-case-data');
+const { updateApplication } = require('../../../utils/data-service');
 
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
-    // @todo: a few additional steps are required before sending the email:
-    // - update application record in DB with received reference number and application status
-
     // generate PDFs
     const locals = super.locals(req, res);
     const applicationFiles = getApplicationFiles(req, locals.rows);
 
     const pdfConverter = new PDFConverter();
     pdfConverter.on('fail', (error, responseData, originalSettings, statusCode, responseTime) => {
-      const errorMsg = `PDF generation failed: ${JSON.stringify({message: error.message, stack: error.stack, ...error})}
+      const errorMsg = `PDF generation failed: message: ${error.message}, stack: ${error.stack}
       responseData: ${JSON.stringify(responseData)}
       originalSettings: ${JSON.stringify(originalSettings)}
       statusCode: ${statusCode}
@@ -60,6 +58,7 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
+    // Fetch auth token required for generating document links in caseData
     let authToken;
     try {
       authToken = await upload.auth();
@@ -87,7 +86,18 @@ module.exports = superclass => class extends superclass {
     }
 
     // Update application record with reference number and status
-    // @todo: implement this step
+    try {
+      const applicationData = {
+        applicationId: req.sessionModel.get('application-id'),
+        caseId: referenceNumber,
+        statusId: 3 // Completed
+      };
+
+      await updateApplication(applicationData);
+    } catch (error) {
+      req.log('error', `Failed to updated application: ${error.message}`);
+      return next(error);
+    }
 
     // send applicant confirmation with PDF attachment
     const recipientEmail = req.sessionModel.get('email');
