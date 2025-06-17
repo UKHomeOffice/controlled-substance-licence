@@ -53,8 +53,8 @@ const getKeycloakAccessToken = async() => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
             data: {
-                client_id: 'admin-cli',
-                client_secret: 'qlZrtmKCmKVpS5h1wYe6cXaFiWi4n41Y',
+                client_id: config.keycloak.adminClient.clientId,
+                client_secret: config.keycloak.adminClient.secret,
                 grant_type: 'client_credentials'
             }
         };
