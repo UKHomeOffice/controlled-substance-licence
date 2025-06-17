@@ -58,6 +58,7 @@ module.exports = superclass => class extends superclass {
       return next(Error(errorMsg));
     }
 
+    // Fetch auth token required for generating document links in caseData
     let authToken;
     try {
       authToken = await upload.auth();

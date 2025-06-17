@@ -39,7 +39,7 @@ async function updateApplication(applicationData) {
     const patchData = {
       icasework_case_id: applicationData.caseId,
       status_id: applicationData.statusId,
-      submitted_at: new Date().toISOString(),
+      submitted_at: new Date().toISOString()
     };
 
     const hofModel = new Model();
