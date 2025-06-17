@@ -84,21 +84,21 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '48705'  // Case type for industrial hemp
+        Type: 'Hemp', // Identifier code on iCasework system - 48705
         // @todo: add fields specific to THC...
       };
     case 'controlled-drugs':
       return {
         ...baseData,
         ...documents,
-        Type: '48272' // Case type for controlled drugs
+        Type: 'ControlledDrugs', // Identifier code on iCasework system - 48272
         // @todo: add fields specific to CD...
       };
     case 'precursor-chemicals':
       return {
         ...baseData,
         ...documents,
-        Type: '10000', // Case type for precursor chemicals
+        Type: 'PrecursorChemicals', // Identifier code on iCasework system - 10000
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
@@ -147,7 +147,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       return {
         ...baseData,
         ...documents,
-        Type: '47400', // Case type for registration
+        Type: '47400', // Case type for Registration
         OrganisationUserId: req.sessionModel.get('applicant-id'),
         OrganisationRef: req.sessionModel.get('applicant-id'),
         OrganisationUserName: req.sessionModel.get('applicant-username'),
