@@ -157,7 +157,7 @@ module.exports = class UserCreator {
           this.requestAttempts++;
           return this.registerUser(userDetails, authToken);
         }
-        const errorMsg = `Error registering new user: message=${error.message}, stack=${error.stack}`;
+        const errorMsg = `Error registering new user: message: ${error.message}, stack: ${error.stack}`;
         logger.error(errorMsg);
         throw error;
       });
@@ -195,9 +195,7 @@ module.exports = class UserCreator {
 
       return response.data[0]?.applicant_id;
     } catch (error) {
-      const errorMsg = `Error adding user to applicants: ${JSON.stringify(
-        { message: error.message, stack: error.stack, ...error }
-      )}`;
+      const errorMsg = `Error adding user to applicants:  message: ${error.message}, stack: ${error.stack}`;
       logger.error(errorMsg);
       throw error;
     }
