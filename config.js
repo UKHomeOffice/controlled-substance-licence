@@ -115,6 +115,7 @@ module.exports = {
     region: process.env.AWS_REGION
   },
   keycloak: {
+    apiDomain: process.env.KEYCLOAK_API_DOMAIN,
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
     logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
     keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
@@ -152,5 +153,8 @@ module.exports = {
     industrialHemp: process.env.FEEDBACK_URL_INDUSTRIAL_HEMP,
     precursorChemicals: process.env.FEEDBACK_URL_PRECURSOR_CHEMICALS,
     registration: process.env.FEEDBACK_URL_REGISTRATION
+  },
+  dataMigration: {
+    userDataFileName: process.env.USER_DATA_FILE_NAME
   }
 };
