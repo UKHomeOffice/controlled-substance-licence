@@ -15,9 +15,11 @@ metadata:
   {{ end }}
 spec:
   {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
-  replicas: 2
-  {{ else }}
+  replicas: 5
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   replicas: 1
+  {{ else }}
+  replicas: 2
   {{ end }}
   selector:
     matchLabels:
@@ -49,8 +51,9 @@ spec:
           resources:
             requests:
               memory: 1024Mi
+              cpu: 300m
             limits:
-              cpu: 200m
+              cpu: 500m
               memory: 2048Mi
           env:
             - name: APP_PORT
