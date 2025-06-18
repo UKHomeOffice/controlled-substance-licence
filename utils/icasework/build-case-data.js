@@ -116,7 +116,9 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         RespAddress: '',
         AddressPostcodeRp: '',
         EmailAddressRp: req.sessionModel.get('site-responsible-person-email'),
-        DbsCheck: 'Yes',
+        DbsCheck:  getLabel(
+          'responsible-officer-dbs-subscription',
+          req.sessionModel.get('responsible-officer-dbs-subscription')),
         DbsDisclosure: formatDate(req.sessionModel.get('responsible-person-dbs-date-of-issue')),
         WitnessName: req.sessionModel.get('authorised-witness-full-name'),
         WitnessAddress: '',
