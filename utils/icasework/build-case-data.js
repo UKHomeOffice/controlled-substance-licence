@@ -85,14 +85,117 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         ...baseData,
         ...documents,
         Type: 'Hemp', // Identifier code on iCasework system - 48705
-        // @todo: add fields specific to THC...
+        'Applicant.Id': req.sessionModel.get('applicant-id'),
+        Renewal: getLabel(
+          'licensee-type',
+          req.sessionMode.get('licensee-type')),
+        LegalIdentity: '',
+        PreviousLicence: '',
+        PreviousName: '',
+        ChangePersonel: '',
+        AdditionalSchedules: '',
+        ChangeActivity: '',
+        'Applicant.OrganisationName': req.sessionModel.get('company-name'),
+        'Applicant.OrganisationAlternativeId1': req.sessionModel.get('applicant-id'), // Match the text
+        'Applicant.OrganisationAddress': joinNonEmptyLines([
+          req.sessionModel.get('licence-holder-address-line-1'),
+          req.sessionModel.get('licence-holder-address-line-2'),
+          req.sessionModel.get('licence-holder-town-or-city')]),
+        'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
+        'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
+        'Applicant.OrganisationEmail': req.sessionModel.get('email'),
+        SiteAddress: joinNonEmptyLines([
+          req.sessionModel.get('growing-location-address-line-1'),
+          req.sessionModel.get('growing-location-address-line-2'),
+          req.sessionModel.get('growing-location-town-or-city')]),
+        SiteAddressRegion: '',
+        SiteAddressPostcode: req.sessionModel.get('growing-location-postcode'),
+        SitePhone: req.sessionModel.get('growing-location-uk-telephone'),
+        SiteEmailContactAddress: req.sessionModel.get('growing-location-email'),
+        RespName: req.sessionModel.get('site-responsible-person-full-name'),
+        RespAddress: '',
+        AddressPostcodeRp: '',
+        EmailAddressRp: req.sessionModel.get('site-responsible-person-email'),
+        DbsCheck: 'Yes',
+        DbsDisclosure: formatDate(req.sessionModel.get('responsible-person-dbs-date-of-issue')),
+        WitnessName: req.sessionModel.get('authorised-witness-full-name'),
+        WitnessAddress: '',
+        WitnessAddressPostcode: '',
+        WitnessEmail: req.sessionModel.get('authorised-witness-email'),
+        WitnessDbsCheck: 'Yes',
+        WitnessDisclosure: formatDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue')),
+        HoLicencesAlreadyHeld: getLabel(
+          'hold-other-regulatory-licences',
+          req.sessionMode.get('hold-other-regulatory-licences')),
+        NumberHempFields: req.sessionModel.get('how-many-fields'),
+        HempFieldsDetails: req.sessionModel.get('cultivation-field-details'),
+        OwnFields: req.sessionModel.get('who-own-fields'),
+        FieldsDifferentPostcode: req.sessionModel.get('different-postcode-details'),
+        RecordsSeedSuppliers: req.sessionModel.get('seed-supplier-details'),
+        RecordsCustomerBaseProduct: req.sessionModel.get('customer-base-details'),
+        RecordsEndProduct: req.sessionModel.get('end-product-details'),
+        InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
     case 'controlled-drugs':
       return {
         ...baseData,
         ...documents,
         Type: 'ControlledDrugs', // Identifier code on iCasework system - 48272
-        // @todo: add fields specific to CD...
+        'Applicant.Id': req.sessionModel.get('applicant-id'),
+        Renewal: getLabel(
+          'licensee-type',
+          req.sessionMode.get('licensee-type')),
+        LegalIdentity: '',
+        PreviousLicence: '',
+        PreviousName: '',
+        TimeRenewal: '',
+        ChangePersonel: '', // Match the text
+        AdditionalSchedules: '', // Match the text
+        ChangeActivity: '', // Match the text
+        'Applicant.OrganisationName': req.sessionModel.get('company-name'),
+        'Applicant.OrganisationAlternativeId1': req.sessionModel.get('applicant-id'), // Match the text
+        'Applicant.OrganisationAddress': joinNonEmptyLines([
+          req.sessionModel.get('licence-holder-address-line-1'),
+          req.sessionModel.get('licence-holder-address-line-2'),
+          req.sessionModel.get('licence-holder-town-or-city')]),
+        'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
+        'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
+        'Applicant.OrganisationEmail': req.sessionModel.get('email'),
+        SiteAddress: joinNonEmptyLines([
+          req.sessionModel.get('premises-address-line-1'),
+          req.sessionModel.get('premises-address-line-2'),
+          req.sessionModel.get('premises-town-or-city')]),
+        SiteAddressRegion: '',
+        SiteAddressPostcode: req.sessionModel.get('premises-postcode'),
+        SitePhone: req.sessionModel.get('premises-telephone'),
+        SiteEmailContactAddress: req.sessionModel.get('premises-email'),
+        ManagingDirectorName: req.sessionModel.get('person-in-charge-full-name'), // Required
+        ManagingDirectorAddress: '',
+        AddressPostcodeMd: '',
+        EmailMd: req.sessionModel.get('person-in-charge-email-address'),
+        MdDbsCheck: 'Yes',
+        MdDbsDisclosure: formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
+        CriminalConvictions: req.sessionModel.get('has-anyone-received-criminal-conviction'),
+        SecurityName: req.sessionModel.get('person-responsible-for-security-full-name'),
+        SecurityAddress: '',
+        SecurityAddressPostcode: '',
+        SecDbsCheck: 'Yes',
+        SecurityEmailAddress: req.sessionModel.get('person-responsible-for-security-email-address'),
+        SecDbsDisclosure: 'Yes',
+        RespName: req.sessionModel.get('responsible-for-compliance-regulatory-full-name'),
+        RespAddress: '',
+        AddressPostcodeRp: '',
+        EmailAddressRp: req.sessionModel.get('responsible-for-compliance-regulatory-email-address'),
+        DbsCheck: 'Yes',
+        DbsDisclosure: formatDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue')),
+        WitnessName: req.sessionModel.get('responsible-for-witnessing-full-name'),
+        WitnessAddress: '',
+        WitnessEmailAddress: req.sessionModel.get('responsible-for-witnessing-email-address'),
+        WitnessAddressPostcode: '',
+        WitnessDbsCheck: 'Yes',
+        SiteBusinessType: req.sessionModel.get(''),
+        OtherBusinessType: '',
+        InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
     case 'precursor-chemicals':
       return {
