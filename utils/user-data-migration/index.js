@@ -9,6 +9,7 @@ const { model: Model } = require('hof');
 const config = require('../../config');
 //@todo a more flexible way of passing in the the data file, the data file should not be part of the repo
 const userDataFilePath = __dirname + '/data-file/' + config.dataMigration.userDataFileName;
+const failedUserDataFilePath = __dirname + '/data-file/failedRows.csv';
 const keyCloakCreateUserEndpoint = config.keycloak.apiDomain + 'users'
 const { protocol, host, port } = config.saveService;
 const rdsUrl = `${protocol}://${host}:${port}/applicants`;
@@ -96,11 +97,21 @@ const createUserOnKeycloak = async (accessToken, username, email, createdAt) => 
         return response.data;
 
     } catch (error) {
-        console.log(error.response);
+        console.log('KeyCloak API error');
+        console.log(error.response.config.headers.data, error.response.data);
+        writeFailedRow([username, email]);
     }
 
 }
 
+const writeFailedRow = (row) => {
+    let data = row.join([',']) + '\r\n';
+    fileSystem.appendFile(failedUserDataFilePath, data, function (error) {
+        if (error) {
+            console.log(error);
+        }
+    })
+}
 /**
  * @param {array} row
  * @returns {Boolean}
@@ -118,6 +129,7 @@ const importUsers = async () => {
     console.log('Starting migration process ...');
     let rowCount = 1;
     //@todo find out total number of rows efficiently to display progress
+    const start = Date.now();
     try {
         fileSystem.createReadStream(userDataFilePath)
             .pipe(csvParse({ delimiter: ',', from_line: 2 }))
@@ -128,10 +140,13 @@ const importUsers = async () => {
                     console.log('Data row ' + rowCount + ' is valid ...');
                     let rdsSaveResponse = saveApplicantRecordToRdsService(row[0], row[1], row[4], row[6]);
                     let keycloakApiResponse = createUserOnKeycloak(accessTokenObject.access_token, row[1], row[3], row[4]);
+                    const ms = Date.now() - start;
+                    console.log(`seconds elapsed = ${Math.floor(ms / 1000)}`);
                     //@todo process the response from rds and keycloak
                 } else {
                     console.log('Do not process the row, row data is not valid');
                     console.log(row);
+                    writeFailedRow([row[1], row[3]]);
                     //@todo capture and output problematic records
                 }
                 rowCount ++;
