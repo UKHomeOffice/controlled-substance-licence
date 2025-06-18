@@ -88,7 +88,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
-          req.sessionMode.get('licensee-type')),
+          req.sessionModel.get('licensee-type')),
         LegalIdentity: '',
         PreviousLicence: '',
         PreviousName: '',
@@ -193,7 +193,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         WitnessEmailAddress: req.sessionModel.get('responsible-for-witnessing-email-address'),
         WitnessAddressPostcode: '',
         WitnessDbsCheck: 'Yes',
-        SiteBusinessType: req.sessionModel.get(''),
+        SiteBusinessType: '',
         OtherBusinessType: '',
         InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
