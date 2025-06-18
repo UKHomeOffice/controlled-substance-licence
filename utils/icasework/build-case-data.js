@@ -126,7 +126,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         WitnessDisclosure: formatDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue')),
         HoLicencesAlreadyHeld: getLabel(
           'hold-other-regulatory-licences',
-          req.sessionMode.get('hold-other-regulatory-licences')),
+          req.sessionModel.get('hold-other-regulatory-licences')),
         NumberHempFields: req.sessionModel.get('how-many-fields'),
         HempFieldsDetails: req.sessionModel.get('cultivation-field-details'),
         OwnFields: req.sessionModel.get('who-own-fields'),
@@ -144,7 +144,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         'Applicant.Id': req.sessionModel.get('applicant-id'),
         Renewal: getLabel(
           'licensee-type',
-          req.sessionMode.get('licensee-type')),
+          req.sessionModel.get('licensee-type')),
         LegalIdentity: '',
         PreviousLicence: '',
         PreviousName: '',
