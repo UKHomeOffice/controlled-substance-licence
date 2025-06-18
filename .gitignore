@@ -3,7 +3,7 @@ node_modules
 public
 .idea
 coverage
-.env
+*.env
 output/
 *.iml
 .nyc_output
@@ -18,4 +18,3 @@ test/_accessibility/tmp/*
 .nyc_output
 .devcontainer/*.env
 .cache
-*.env

@@ -23,7 +23,7 @@ module.exports = class UploadModel extends Model {
     }
 
     const attributes = {
-      url: config.upload.hostname
+      url: `${config.upload.hostname}/file`
     };
 
     const formData = new FormData();
@@ -107,7 +107,7 @@ module.exports = class UploadModel extends Model {
         throw new Error(errorMsg);
       }
 
-      logger.info('Successfully retrieved access token');
+      logger.info('Successfully retrieved Keycloak access token for File-vault service usage.');
       return {
         bearer: response.data.access_token
       };
