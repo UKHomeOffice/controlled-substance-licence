@@ -9,6 +9,10 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/licensee-type',
+        field: 'licensee-type'
+      },
+      {
         step: '/change-witness-only',
         field: 'is-change-witness-only',
         parse: (value, req) => {
