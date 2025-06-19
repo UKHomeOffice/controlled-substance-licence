@@ -25,6 +25,10 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/licensee-type',
+        field: 'licensee-type'
+      },
+      {
         step: '/company-number-changed',
         field: 'companies-house-number-change',
         parse: (value, req) => {
