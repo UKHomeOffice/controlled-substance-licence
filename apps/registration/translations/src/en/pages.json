@@ -86,6 +86,9 @@
       },
       "invoicing-details": {
         "header": "Invoicing details"
+      },
+      "invoicing-address": {
+        "header": "Invoicing address"
       }
     },
     "fields": {

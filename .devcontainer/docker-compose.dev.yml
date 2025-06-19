@@ -59,7 +59,7 @@ services:
       - "8082:8082"
 
   rds-api:
-    image: quay.io/ukhomeofficedigital/hof-rds-api:3.1.1@sha256:68ae6f0a0dfd9ce85d3bc3575d61c353777fe2c33f07915ee9eb149b99478159
+    image: quay.io/ukhomeofficedigital/hof-rds-api:3.1.2@sha256:1b48e63b3a28a2d748f7b02de5b66a1a37f5d9920e8e226b93b5f45d44f8388c
     networks:
       - csl-shared-network
     hostname: hof-rds-api
