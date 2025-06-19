@@ -13,7 +13,16 @@ module.exports = superclass => class extends superclass {
     if (saveExemptList.includes(currentRoute)) {
       return locals;
     }
-    if(currentRoute !== '/declaration') {
+
+    const routesWithoutSaveAndExit = [
+      '/declaration',
+      '/register-again',
+      '/no-licence-needed',
+      '/cannot-continue',
+      '/controlled-drugs-licence'
+    ];
+
+    if (!routesWithoutSaveAndExit.includes(currentRoute)) {
       locals.showSaveAndExit = true;
     }
     return locals;
