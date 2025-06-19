@@ -137,6 +137,9 @@
       "amend-application-details": {
         "label": "Application reference number"
       },
+      "licensee-type": {
+        "label": "Licensee type"
+      },
       "why-requesting-new-licence": {
         "label": "Reason for collecting new license"
       },
