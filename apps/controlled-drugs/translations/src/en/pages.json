@@ -141,11 +141,11 @@
   "confirm": {
     "header": "Check your answers",
     "sections": {
-      "about-the-applicants": {
-        "header": "About the applicants"
-      },
       "background-information": {
         "header": "Background information"
+      },
+      "about-the-applicants": {
+        "header": "About the applicants"
       }
     },
     "fields": {
