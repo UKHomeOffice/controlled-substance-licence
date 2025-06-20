@@ -3,52 +3,52 @@ const config = require('../../config');
 
 
 jest.unstable_mockModule('crypto-random-string', () => ({
-  default: jest.fn().mockReturnValue('#Rt8$IK6')
+  default: jest.fn().mockReturnValue('7pc2yNhp?DP+1Any')
 }));
 
 
 describe('validatePassword', () => {
-  it('should return true if passward is valid', () => {
-    const actual = validatePassword('#Rt8$IK6');
+  it('should return true if password is valid', () => {
+    const actual = validatePassword('7pc2yNhp?DP+1Any');
     expect(actual).toEqual(true);
   });
 
-  it('should return false if passward is not valid', () => {
+  it('should return false if password is not valid', () => {
     const actual = validatePassword('#Rt8$I');
     expect(actual).toEqual(false);
   });
 
-  it('should return false if passward not contain Uppercase', () => {
-    const actual = validatePassword('#rt8$ik6');
+  it('should return false if password not contain Uppercase', () => {
+    const actual = validatePassword('7pc2ynhp?dp+1any');
     expect(actual).toEqual(false);
   });
 
-  it('should return false if passward not contain Lowercase', () => {
-    const actual = validatePassword('#RT8$IK6');
+  it('should return false if password not contain Lowercase', () => {
+    const actual = validatePassword('7PC2YNHP?DP+1ANY');
     expect(actual).toEqual(false);
   });
 
-  it('should return false if passward not contain ASCII value', () => {
-    const actual = validatePassword('sRT8yIk6');
+  it('should return false if password not contain ASCII value', () => {
+    const actual = validatePassword('7pc2yNhp4DP61Any');
     expect(actual).toEqual(false);
   });
 
-  it('should return false if passward more than 8 character', () => {
-    const actual = validatePassword('sRT8yIk6hkkkkW');
+  it('should return false if password is more than 16 character', () => {
+    const actual = validatePassword('7pc2yNhp?DP+1Any16');
     expect(actual).toEqual(false);
   });
 
-  it('should return false if passward less than 8 character', () => {
-    const actual = validatePassword('sRT8yIk');
+  it('should return false if password less than 16 character', () => {
+    const actual = validatePassword('7pc2yNhp?DP+1An');
     expect(actual).toEqual(false);
   });
 });
 
 describe('generatePassword', () => {
-  it('should generate password with Max length of 8', async () => {
+  it('should generate password with length of 16', async () => {
     const actual = await generatePassword(config.keycloak.passwordPolicy.length,
       config.keycloak.passwordPolicy.characterSet);
-    expect(actual.length).toEqual(8);
+    expect(actual.length).toEqual(16);
   });
 
   it('should generate password and be a ASCII', async () => {

@@ -2,8 +2,8 @@
 const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
-// At least one uppercase, one lowercase, one special character, and one digit, and minimum 8 characters
-const passwordPolicyRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#$%&*+=?@])(?=.*\d)[A-Za-z!#$%&*+=?@0-9]{8,}$/;
+// At least one uppercase, one lowercase, one special character, and one digit, and length of 16 characters
+const passwordPolicyRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[!#$%&*+=?@])(?=.*\d)[A-Za-z!#$%&*+=?@0-9]{16}$/;
 
 /**
  * Check if passward value is valid
@@ -15,7 +15,7 @@ const validatePassword = value => passwordPolicyRegex.test(value);
 
 /**
   * Generates a password that meets the following requirements:
-  * - Minimum length of 8 characters.
+  * - Minimum length of 16 characters.
   * - Must contain at least one uppercase letter.
   * - Must contain at least one lowercase letter.
   * - Must contain at least one digit.
