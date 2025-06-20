@@ -135,7 +135,7 @@ module.exports = {
       defaultGroups: ['External users']
     },
     passwordPolicy: {
-      length: 8,
+      length: 16,
       characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789!#$%&*+=?@'
     }
   },
