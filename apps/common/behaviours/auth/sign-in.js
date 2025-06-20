@@ -12,7 +12,7 @@ module.exports = superclass => class extends superclass {
       new this.ValidationError(key, { type: type});
 
     try {
-      const applicantId = await getApplicantId(req.form.values.username);
+      const applicantId = await getApplicantId(req.form.values.username?.toUpperCase());
       if (!applicantId) {
         const errorMessage = 'Failed to retrieve applicant ID';
         throw new Error(errorMessage);
@@ -21,6 +21,7 @@ module.exports = superclass => class extends superclass {
       const tokens = await auth.getTokens(req.form.values.username, req.form.values.password);
 
       req.sessionModel.set('applicant-id', applicantId);
+      req.sessionModel.set('applicant-username', req.form.values.username);
       req.sessionModel.set('auth_tokens', {
         access_token: tokens.access_token,
         refresh_token: tokens.refresh_token

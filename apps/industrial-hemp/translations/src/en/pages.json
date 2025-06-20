@@ -98,16 +98,19 @@
   "confirm": {
     "header": "Check your answers",
     "sections": {
-      "about-the-applicants": {
-        "header": "About the applicants"
-      },
       "background-information": {
         "header": "Background information"
+      },
+      "about-the-applicants": {
+        "header": "About the applicants"
       }
     },
     "fields": {
       "amend-application-details": {
         "label": "Application reference number"
+      },
+      "licensee-type": {
+        "label": "Licensee type"
       },
       "licence-holder-details": {
         "label": "Licence holder details"
@@ -182,7 +185,7 @@
         "label": "Change in name"
       },
       "other-licence-details": {
-        "label": "Licence Details"
+        "label": "Licence details"
       },
       "contract-start-date": {
         "label": "When does it start"
@@ -197,7 +200,7 @@
         "label": "Is the licence needed to cultivate low THC cannabis?"
       },
       "where-cultivating-cannabis": {
-        "label": "Where you will be cultivating Low THC Cannabis?"
+        "label": "Where will you be cultivating low THC Cannabis?"
       },
       "is-company-own-fields": {
         "label": "Does your company own all the fields?"
@@ -206,7 +209,7 @@
         "label": "Who owns the fields?"
       },
       "is-permission-for-activities": {
-        "label": "Do you have permission from the owner to carryout your intended activities?"
+        "label": "Do you have permission from the owner to carry out your intended activities?"
       },
       "field-acreage": {
         "label": "Total acreage of fields"
@@ -284,7 +287,7 @@
         "label": "Are any of the fields in a different postcode?"
       },
       "different-postcode-details": {
-        "label": "Addresses in another postcode"
+        "label": "Addresses in a different postcode"
       },
       "adjacent-field-details":{
         "label": "What is adjacent to the fields you intend to cultivate?"
@@ -300,9 +303,6 @@
       },
       "is-own-other-businesses":{
         "label": "Own any other businesses operating from the cultivation site?"
-      },
-      "is-adjacent-businesses":{
-        "label": "Business adjacent to or operating from your cultivation site"
       },
       "other-business-aggregate": {
         "label" : "Businesses adjacent to or operating from your cultivation site"

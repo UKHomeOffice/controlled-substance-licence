@@ -30,15 +30,14 @@ module.exports = {
     host: process.env.REDIS_HOST || '127.0.0.1'
   },
   sessionDefaults: {
-    fields: ['csrf-secret'],
+    fields: ['csrf-secret', 'username'],
     saveExemptions: [
       '/application-type',
       '/licensee-type',
       '/information-you-have-given-us',
       '/application-submitted',
       '/save-and-exit',
-      '/session-timeout',
-      '/declaration'
+      '/session-timeout'
     ]
   },
   saveService: {
@@ -118,6 +117,7 @@ module.exports = {
     apiDomain: process.env.KEYCLOAK_API_DOMAIN,
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
     logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
+    adminUrl: process.env.KEYCLOAK_ADMIN_URL,
     keycloakPublicKey: process.env.KEYCLOAK_PUBLIC_KEY,
     fileVault: {
       username: process.env.FILE_VAULT_USERNAME,
@@ -132,8 +132,19 @@ module.exports = {
     },
     adminClient: {
       clientId: process.env.ADMIN_CLIENT_ID,
-      secret: process.env.ADMIN_CLIENT_SECRET
+      secret: process.env.ADMIN_CLIENT_SECRET,
+      defaultGroups: ['External users']
+    },
+    passwordPolicy: {
+      length: 16,
+      characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789!#$%&*+=?@'
     }
+  },
+  icasework: {
+    apiKey: process.env.ICASEWORK_API_KEY,
+    apiSecret: process.env.ICASEWORK_API_SECRET,
+    url: process.env.ICASEWORK_URL,
+    db: process.env.ICASEWORK_DB
   },
   aggregateLimits: {
     precursorChemicals: {

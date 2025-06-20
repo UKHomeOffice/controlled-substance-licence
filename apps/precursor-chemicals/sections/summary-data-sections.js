@@ -11,6 +11,10 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/licensee-type',
+        field: 'licensee-type'
+      },
+      {
         step: 'change-responsible-officer-or-guarantor',
         field: 'change-responsible-officer-or-guarantor'
       },

@@ -9,6 +9,10 @@ module.exports = {
         field: 'amend-application-details'
       },
       {
+        step: '/licensee-type',
+        field: 'licensee-type'
+      },
+      {
         step: '/change-witness-only',
         field: 'is-change-witness-only',
         parse: (value, req) => {
@@ -350,8 +354,12 @@ module.exports = {
         step: '/other-businesses-summary',
         field: 'other-business-aggregate',
         changeLink: 'other-businesses-summary/edit',
-        parse: obj => {
-          if (!obj?.aggregatedValues) { return null; }
+        parse: (obj, req) => {
+          if ((!obj?.aggregatedValues) ||
+            (req.sessionModel.get('is-operating-other-business') === 'no' &&
+             req.sessionModel.get('is-adjacent-businesses') === 'no')) {
+            return null;
+          }
           return obj.aggregatedValues.map(item => {
             const businessName = item.fields.find(field => field.field === 'business-name')?.value;
             const businessType = item.fields.find(field => field.field === 'business-type')?.value;
