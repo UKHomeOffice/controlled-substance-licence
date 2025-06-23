@@ -8,7 +8,7 @@ const csvParse = require('csv-parse').parse;
 const { model: Model } = require('hof');
 const config = require('../../config');
 // @todo a more flexible way of passing in the the data file, the data file should not be part of the repo
-const userDataFilePath = __dirname + '/data-file/' + config.dataMigration.userDataFileName;
+const userDataFilePath = __dirname + '/data-file/userData.csv';
 const failedUserDataFilePath = __dirname + '/data-file/failedRows.csv';
 const keyCloakCreateUserEndpoint = config.keycloak.adminUrl + '/users';
 const { protocol, host, port } = config.saveService;
