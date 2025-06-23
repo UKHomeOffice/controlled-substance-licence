@@ -169,8 +169,8 @@ const importUsers = async () => {
           row[2] = row[2].trim();
           if(!validator.email(row[2])) {
             console.log('Invalid email for user: ' + row[1]);
-            row[2] = ''
-          } 
+            row[2] = '';
+          }
           await saveApplicantRecordToRdsService(row[0], row[1], row[3], row[4]);
           await createUserOnKeycloak(accessTokenObject.access_token, row[1], row[2], row[3], row[5]);
           const ms = Date.now() - start;
