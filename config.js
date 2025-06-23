@@ -114,7 +114,6 @@ module.exports = {
     region: process.env.AWS_REGION
   },
   keycloak: {
-    apiDomain: process.env.KEYCLOAK_API_DOMAIN,
     tokenUrl: process.env.KEYCLOAK_TOKEN_URL,
     logoutUrl: process.env.KEYCLOAK_LOGOUT_URL,
     adminUrl: process.env.KEYCLOAK_ADMIN_URL,

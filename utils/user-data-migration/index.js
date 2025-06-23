@@ -3,14 +3,14 @@
  * Could be better structured
  */
 
-const fileSystem = require('fs');
+const fileSystem = require('node:fs');
 const csvParse = require("csv-parse").parse;
 const { model: Model } = require('hof');
 const config = require('../../config');
 //@todo a more flexible way of passing in the the data file, the data file should not be part of the repo
 const userDataFilePath = __dirname + '/data-file/' + config.dataMigration.userDataFileName;
 const failedUserDataFilePath = __dirname + '/data-file/failedRows.csv';
-const keyCloakCreateUserEndpoint = config.keycloak.apiDomain + 'users'
+const keyCloakCreateUserEndpoint = config.keycloak.adminUrl + '/users'
 const { protocol, host, port } = config.saveService;
 const rdsUrl = `${protocol}://${host}:${port}/applicants`;
 const hofModel = new Model();
@@ -25,19 +25,22 @@ const validator = require('hof').controller.validators;
  */
 const saveApplicantRecordToRdsService = async (applicantId, username, createdAt, updatedAt) => {
     try {
+        let processedUsername = (typeof username === 'string' || username instanceof String) ?
+            username.toUpperCase() : username;
         const reqParams = {
             url: rdsUrl,
             method: 'POST',
             data: {
                 applicant_id: applicantId,
-                username: username,
-                created_at: createdAt,
-                updated_at: updatedAt
+                username: processedUsername,
+                created_at: new Date(createdAt).toISOString(),
+                updated_at: new Date(updatedAt).toISOString()
             }
         };
         const response = await hofModel._request(reqParams);
         return response.data;
     } catch (error) {
+        writeFailedRow([username, '', 'rds']);
         console.log(error);
     }
 };
@@ -72,11 +75,16 @@ const getKeycloakAccessToken = async() => {
  * @param {string} username
  * @param {string} email
  * @param {string} createdAt
+ * @param {string} isApproved
  * @returns {Object}
  */
-const createUserOnKeycloak = async (accessToken, username, email, createdAt) => {
+const createUserOnKeycloak = async (accessToken, username, email, createdAt, isApproved) => {
     //@todo check if the username do not exist first
     try {
+        let groups = ['Migrated from TopLevel', 'External users'];
+        if(isApproved === '1') {
+            groups.push('Approved applicants')
+        }
         const reqParams = {
             url: keyCloakCreateUserEndpoint,
             method: 'POST',
@@ -88,9 +96,9 @@ const createUserOnKeycloak = async (accessToken, username, email, createdAt) => 
                 username: username,
                 enabled: true,
                 email: email,
-                emailVerified: true,
+                emailVerified: false,
                 createdTimestamp: (new Date(createdAt)).getTime(),
-                groups: ['Approved applicants', 'Migrated from TopLevel', 'External users']
+                groups: groups
             }
         };
         const response = await hofModel._request(reqParams);
@@ -99,7 +107,7 @@ const createUserOnKeycloak = async (accessToken, username, email, createdAt) => 
     } catch (error) {
         console.log('KeyCloak API error');
         console.log(error.response.config.headers.data, error.response.data);
-        writeFailedRow([username, email]);
+        writeFailedRow([username, email, 'keycloak']);
     }
 
 }
@@ -118,12 +126,36 @@ const writeFailedRow = (row) => {
  */
 const userDataIntegrityCheck = (row) => {
     //@todo better structure of the data row and definition of which index is for what value
-    return Number.isInteger(Number(row[0])) && // applicant ID is integer
+    // console.log(Array.isArray(row),
+    //     row.length === 6,
+    //     Number.isInteger(Number(row[0])),
+    //     ((typeof row[1] === 'string' || row[1] instanceof String) && row[1] !== ''), //username is string and not empty
+    //     // !isNaN(new Date(row[3])),
+    //     // !isNaN(new Date(row[4])),
+    //     ((typeof row[5] === 'string' || row[5] instanceof String) && row[5] !== '' && (row[5] === '1' || row[5] === '0')) // approved user column should only be string '1' (approved) or string '0' (not apporved)
+    // );
+    return Array.isArray(row) &&
+        row.length === 6 &&
+        Number.isInteger(Number(row[0])) && // applicant ID is integer
         ((typeof row[1] === 'string' || row[1] instanceof String) && row[1] !== '') && //username is string and not empty
-        (validator.email(row[3]) && row[3] !== '') && // email address is valid
-        !isNaN(new Date(row[4])) &&
-        !isNaN(new Date(row[6]))
+        // !isNaN(new Date(row[3])) &&
+        // !isNaN(new Date(row[4])) &&
+        ((typeof row[5] === 'string' || row[5] instanceof String) && row[5] !== '' && (row[5] === '1' || row[5] === '0')) // approved user column should only be string '1' (approved) or string '0' (not apporved)
+
 }
+
+/**
+ * @param {string} dateString
+ * @returns {string}
+ */
+const formatDate = (dateString) => {
+    let data = dateString.split(' ');
+    let initial = data[0].split(/\//);
+    let formattedDate = [ initial[1], initial[0], initial[2] ].join('/')
+    let result = [formattedDate, data[1]].join(' ');
+    return result;
+}
+
 const importUsers = async () => {
     const accessTokenObject = await getKeycloakAccessToken();
     console.log('Starting migration process ...');
@@ -133,21 +165,25 @@ const importUsers = async () => {
     try {
         fileSystem.createReadStream(userDataFilePath)
             .pipe(csvParse({ delimiter: ',', from_line: 2 }))
-            .on('data', function (row) {
+            .on('data', async function (row) {
                 //@todo output progress
                 console.log('Processing data row ' + rowCount);
                 if(userDataIntegrityCheck(row)) {
-                    console.log('Data row ' + rowCount + ' is valid ...');
-                    let rdsSaveResponse = saveApplicantRecordToRdsService(row[0], row[1], row[4], row[6]);
-                    let keycloakApiResponse = createUserOnKeycloak(accessTokenObject.access_token, row[1], row[3], row[4]);
+                    row[1] = row[1].trim(row[1]);
+                    row[3] = formatDate(row[3]);
+                    row[4] = row[4] === 'NULL' ? new Date().toISOString() : formatDate(row[4]);
+                    row[2] = row[1].trim(row[2]);
+                    row[2] = validator.email(row[2]) ? row[2] : '';
+                    let rdsSaveResponse = await saveApplicantRecordToRdsService(row[0], row[1], row[3], row[4]);
+                    // let keycloakApiResponse = await createUserOnKeycloak(accessTokenObject.access_token, row[1], row[2], row[3], row[5]);
                     const ms = Date.now() - start;
                     console.log(`seconds elapsed = ${Math.floor(ms / 1000)}`);
                     //@todo process the response from rds and keycloak
                 } else {
                     console.log('Do not process the row, row data is not valid');
                     console.log(row);
-                    writeFailedRow([row[1], row[3]]);
-                    //@todo capture and output problematic records
+                    writeFailedRow([row[1], row[2]], 'validation');
+                    // //@todo capture and output problematic records
                 }
                 rowCount ++;
             })
