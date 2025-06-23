@@ -163,8 +163,5 @@ module.exports = {
     industrialHemp: process.env.FEEDBACK_URL_INDUSTRIAL_HEMP,
     precursorChemicals: process.env.FEEDBACK_URL_PRECURSOR_CHEMICALS,
     registration: process.env.FEEDBACK_URL_REGISTRATION
-  },
-  dataMigration: {
-    userDataFileName: process.env.USER_DATA_FILE_NAME
   }
 };
