@@ -163,10 +163,10 @@ const importUsers = async () => {
         // @todo output progress
         console.log('Processing data row ' + rowCount);
         if(userDataIntegrityCheck(row)) {
-          row[1] = row[1].trim(row[1]);
+          row[1] = row[1].trim();
           row[3] = formatDate(row[3]);
           row[4] = row[4] === 'NULL' ? new Date().toISOString() : formatDate(row[4]);
-          row[2] = row[1].trim(row[2]);
+          row[2] = row[2].trim();
           row[2] = validator.email(row[2]) ? row[2] : '';
           await saveApplicantRecordToRdsService(row[0], row[1], row[3], row[4]);
           await createUserOnKeycloak(accessTokenObject.access_token, row[1], row[2], row[3], row[5]);
