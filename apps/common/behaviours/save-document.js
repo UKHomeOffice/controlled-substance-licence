@@ -27,7 +27,9 @@ module.exports = (documentCategory, fieldName) => superclass => class extends su
     const validationErrorFunc = (type, args) => new this.ValidationError(key, { type: type, arguments: [args] });
 
     // To check required type, when trying to do continue without upload
-    if (req.body.continueWithoutUpload && documentsByCategory.length === 0) {
+    if ((req.body.continueWithoutUpload ||
+         req.body['save-and-exit']) &&
+          documentsByCategory.length === 0) {
       return validationErrorFunc('required');
     } else if (fileToBeValidated) {
       const uploadSize = fileToBeValidated.size;
