@@ -14,8 +14,8 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   if (!authToken) {
     throw new Error('authToken is required to build case data for iCasework with downloadable documents');
   }
-
-  const type = req.sessionModel.get('licence-type');
+  const amendment = req.sessionModel.get('application-form-type') === 'amend-application';
+  const type = amendment ? 'amendment' : req.sessionModel.get('licence-type');
 
   const parseAggregatedBusinessTypes = obj => {
     if (!obj?.aggregatedValues) { return null; }
@@ -80,6 +80,13 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   });
 
   switch (type) {
+    case 'amendment':
+      return {
+        ...baseData,
+        ...documents,
+        Type: '47980', // Case type for Amendment for any Licence
+        CaseId: req.sessionModel.get('amend-application-details')
+      };
     case 'industrial-hemp':
       return {
         ...baseData,
