@@ -8,6 +8,15 @@
   "signed-in-successfully": {
     "header": "Signed in successfully"
   },
+  "exit": {
+    "header": "We signed you out"
+  },
+  "session-timeout-warning": {
+    "dialog-title": "Your session will time out soon",
+    "dialog-text": "If that happens, your progress will not be saved.",
+    "timeout-continue-button": "Stay on this page",
+    "dialog-exit-link": "Exit this form"
+  },
   "accessibility": {
     "title": "Accessibility statement"
   }

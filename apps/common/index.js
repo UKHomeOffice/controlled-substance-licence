@@ -1,6 +1,7 @@
 const Auth = require('./behaviours/auth/auth-check');
 const SignIn = require('./behaviours/auth/sign-in');
 const SignOut = require('./behaviours/auth/sign-out');
+const SignOutOnExit = require('./behaviours/sign-out-on-exit');
 const SetFeedbackUrl = require('./behaviours/set-feedback-url');
 
 const steps = {
@@ -38,6 +39,11 @@ const steps = {
   '/signed-in-successfully': {
     behaviours: [ Auth, SignOut ],
     next: '/licence-type'
+  },
+  '/session-timeout': {},
+  '/exit': {
+    backLink: false,
+    behaviours: [ SignOutOnExit ]
   }
 };
 
