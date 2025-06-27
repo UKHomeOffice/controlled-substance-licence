@@ -112,6 +112,13 @@
     "header": "We saved your application and signed you out"
   },
 
+  "session-timeout-warning": {
+    "dialog-title": "Your session will time out soon",
+    "dialog-text": "If that happens, your progress will be saved from the last completed page.",
+    "timeout-continue-button": "Stay on this page",
+    "dialog-exit-link": "Save and exit this form"
+  },
+
   "confirm": {
     "sections": {
       "background-information": {

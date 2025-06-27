@@ -524,6 +524,8 @@ const steps = {
     clearSession: true
   },
 
+  '/session-timeout': {},
+
   '/save-and-exit': {
     behaviours: [SignOutOnExit],
     backLink: false
@@ -536,6 +538,7 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
+  exitStep: '/save-and-exit',
   steps: steps,
   behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };
