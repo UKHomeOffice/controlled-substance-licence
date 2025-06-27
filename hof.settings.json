@@ -2,8 +2,10 @@
   "appName": "Controlled Substance Licence",
   "theme": "govUK",
   "behaviours": [
-    "hof/components/clear-session"
+    "hof/components/clear-session",
+    "hof/components/session-timeout-warning"
   ],
+  "sessionTimeoutWarningContent": true,
   "translations": "./apps/precursor-chemicals/translations",
   "views": [
     "./apps/views"
