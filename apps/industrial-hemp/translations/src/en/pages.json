@@ -113,10 +113,10 @@
         "label": "Licensee type"
       },
       "licence-holder-details": {
-        "label": "Licence holder details"
+        "label": "Company details"
       },
       "licence-holder-address": {
-        "label": "Licence holder address"
+        "label": "Company registered address"
       },
       "growing-location-address": {
         "label": "Growing location address"

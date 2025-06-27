@@ -168,10 +168,10 @@
         "label": "Change of name"
       },
       "licence-holder-details": {
-         "label": "Licence holder details"
+         "label": "Company details"
       },
        "licence-holder-address": {
-         "label": "Licence holder address"
+         "label": "Company registered address"
       },
       "is-premises-address-same": {
         "label": "Re-use the same contact details for the premises"
