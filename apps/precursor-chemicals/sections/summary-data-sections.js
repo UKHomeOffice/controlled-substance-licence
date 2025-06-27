@@ -254,19 +254,19 @@ module.exports = {
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-fullname',
+        field: 'invoicing-fullname'
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-email',
+        field: 'invoicing-email'
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-telephone',
+        field: 'invoicing-telephone'
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-purchase-order-number',
+        field: 'invoicing-purchase-order-number'
       }
     ]
   },
