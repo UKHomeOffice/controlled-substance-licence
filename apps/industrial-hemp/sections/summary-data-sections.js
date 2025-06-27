@@ -473,7 +473,7 @@ module.exports = {
       },
       {
         step: '/invoicing-contact-details',
-        field: 'refund-accound-details'
+        field: 'refund-account-details'
       },
       {
         step: '/licence-email-address',

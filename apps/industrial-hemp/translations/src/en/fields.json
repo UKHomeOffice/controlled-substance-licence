@@ -447,7 +447,7 @@
     "label": "Purchase order number (optional)",
     "hint": "Enter a reference if your organisation needs a purchase order number to be quoted when the invoice is raised"
   },
-  "refund-accound-details": {
+  "refund-account-details": {
     "label": "Refund account details",
     "hint": "This is where we should send any refunds to your organisation, where needed"
   },
