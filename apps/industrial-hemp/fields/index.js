@@ -763,7 +763,7 @@ module.exports = {
     ],
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
-  'refund-accound-details': {
+  'refund-account-details': {
     mixin: 'textarea',
     validate: [ 'required', { type: 'maxlength', arguments: 500 }, 'notUrl' ],
     attributes: [{ attribute: 'rows', value: 8 }]
