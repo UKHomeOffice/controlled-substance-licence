@@ -144,5 +144,12 @@
         "label": "MHRA licence date of issue"
       }
     }
+  },
+
+  "session-timeout-warning": {
+    "dialog-title": "Your session will time out soon",
+    "dialog-text": "If that happens, your progress will not be saved.",
+    "timeout-continue-button": "Stay on this page",
+    "dialog-exit-link": "Exit this form"
   }
 }

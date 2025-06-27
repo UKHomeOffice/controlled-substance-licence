@@ -10,6 +10,7 @@ const RemoveDocument = require('../common/behaviours/remove-document');
 const CustomRedirect = require('./behaviours/custom-redirect');
 const SubmitRequest = require('./behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
+const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 
 const steps = {
 
@@ -247,7 +248,14 @@ const steps = {
   '/registration-submitted': {
     backLink: false,
     clearSession: true
-  }
+  },
+
+  '/exit': {
+      backLink: false,
+      behaviours: [ SignOutOnExit ]
+  },
+
+  '/session-timeout': {},
 };
 
 module.exports = {

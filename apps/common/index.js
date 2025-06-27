@@ -40,11 +40,11 @@ const steps = {
     behaviours: [ Auth, SignOut ],
     next: '/licence-type'
   },
-  '/session-timeout': {},
   '/exit': {
     backLink: false,
     behaviours: [ SignOutOnExit ]
-  }
+  },
+  '/session-timeout': {}
 };
 
 const pages = {

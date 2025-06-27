@@ -89,9 +89,6 @@
   "application-submitted": {
     "confirmed": "Application submitted"
   },
-  "save-and-exit": {
-    "header": "We saved your application and signed you out"
-  },
   "information-you-have-given-us": {
     "header": "Information you have given us"
   },
@@ -308,5 +305,11 @@
         "label" : "Businesses adjacent to or operating from your cultivation site"
       }
     }
+  },
+  "session-timeout-warning": {
+    "dialog-title": "Your session will time out soon",
+    "dialog-text": "If that happens, your progress will be saved from the last completed page.",
+    "timeout-continue-button": "Stay on this page",
+    "dialog-exit-link": "Save and exit this form"
   }
 }

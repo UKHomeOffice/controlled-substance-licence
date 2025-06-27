@@ -919,7 +919,9 @@ const steps = {
   '/save-and-exit': {
     behaviours: [SignOutOnExit],
     backLink: false
-  }
+  },
+  
+  '/session-timeout': {}
 };
 
 module.exports = {
@@ -930,6 +932,7 @@ module.exports = {
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/confirm',
+  exitStep: '/save-and-exit',
   steps: steps,
   behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };

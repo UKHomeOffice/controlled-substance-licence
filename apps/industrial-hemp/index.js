@@ -709,8 +709,9 @@ const steps = {
   '/save-and-exit': {
     behaviours: [SignOutOnExit],
     backLink: false
-  }
+  },
 
+  '/session-timeout': {}
 };
 
 module.exports = {
@@ -721,5 +722,6 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   steps: steps,
   confirmStep: '/confirm',
+  exitStep: '/save-and-exit',
   behaviours: [ Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };
