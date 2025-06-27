@@ -254,16 +254,19 @@ module.exports = {
       },
       {
         step: '/invoicing-contact-details',
-        field: 'invoicing-contact-details',
-        parse: (list, req) => {
-          const invoicingContactDetails = [
-            req.sessionModel.get('invoicing-fullname'),
-            req.sessionModel.get('invoicing-email'),
-            req.sessionModel.get('invoicing-telephone'),
-            req.sessionModel.get('invoicing-purchase-order-number')
-          ];
-          return invoicingContactDetails.filter(element => element).join('\n');
-        }
+        field: 'invoicing-fullname',
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-email',
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-telephone',
+      },
+      {
+        step: '/invoicing-contact-details',
+        field: 'invoicing-purchase-order-number',
       }
     ]
   },

@@ -206,8 +206,17 @@
       "invoicing-address-details": {
         "label": "Invoicing address"
       },
-      "invoicing-contact-details": {
-        "label": "Invoicing contact details"
+      "invoicing-fullname": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
       },
       "parsed-substance-categories": {
         "label": "Categories the licence will cover"
