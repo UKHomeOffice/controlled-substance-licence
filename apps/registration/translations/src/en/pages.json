@@ -76,10 +76,10 @@
     "header": "Check your answers before submitting your registration",
     "sections": {
       "licence-holder-details": {
-        "header": "Licence holder details"
+        "header": "Company details"
       },
       "licence-holder-address": {
-        "header": "Licence holder address"
+        "header": "Company registered address"
       },
       "business-details": {
         "header": "Business details"
@@ -92,9 +92,6 @@
       }
     },
     "fields": {
-      "company-name": {
-        "label": "Licence holder name"
-      },
       "telephone": {
         "label": "Contact phone number"
       },
