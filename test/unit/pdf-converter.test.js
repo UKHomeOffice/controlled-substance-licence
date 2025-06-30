@@ -31,7 +31,8 @@ describe('PDFConverter class: ', () => {
     pdfConfig = {
       htmlLang: 'en',
       licenceType: 'precursor-chemicals',
-      licenceLabel: 'Precursor chemicals'
+      licenceLabel: 'Precursor chemicals',
+      amendment: false
     };
 
     locals = {
@@ -203,6 +204,26 @@ describe('PDFConverter class: ', () => {
         dateTime: '13 May 2025 at 11:54:11'
       }), expect.any(Function));
     });
+
+    it('uses amendment title variation if amendment is true in pdfConfig', async () => {
+      pdfConfig.amendment = true;
+      await pdfConverter.renderHTML(res, locals, pdfConfig, files);
+      expect(res.render).toHaveBeenCalledWith('pdf.html', Object.assign({}, sortedLocals, {
+        htmlLang: 'en',
+        css: 'I am a CSS',
+        'ho-logo': 'I am an image',
+        title: 'Amending precursor chemicals licence application',
+        dateTime: '13 May 2025 at 11:54:11',
+        addFilesSection: true,
+        files: [
+          {
+            field: 'certificate-of-good-conduct',
+            urls: ['url', 'url'],
+            label: 'Applicant certificate of good conduct'
+          }
+        ]
+      }), expect.any(Function));
+    });
   });
 
   describe('createBaseConfig method', () => {
@@ -226,12 +247,35 @@ describe('PDFConverter class: ', () => {
             'licence-type': 'precursor-chemicals'
           }
         },
+        sessionModel: {
+          get: jest.fn().mockReturnValue('new-application')
+        },
         translate: jest.fn().mockReturnValue('Precursor chemicals')
       };
       const setConfig = pdfConverter.createBaseConfig(req, res);
       expect(setConfig).toHaveProperty('htmlLang', 'fr');
       expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
       expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
+      expect(setConfig).toHaveProperty('amendment', false);
+    });
+
+    it('returns expected config for an amendment type application', () => {
+      req = {
+        session: {
+          'hof-wizard-common': {
+            'licence-type': 'precursor-chemicals'
+          }
+        },
+        sessionModel: {
+          get: jest.fn().mockReturnValue('amend-application')
+        },
+        translate: jest.fn().mockReturnValue('Precursor chemicals')
+      };
+      const setConfig = pdfConverter.createBaseConfig(req, res);
+      expect(setConfig).toHaveProperty('htmlLang', 'en');
+      expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
+      expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
+      expect(setConfig).toHaveProperty('amendment', true);
     });
   });
 
