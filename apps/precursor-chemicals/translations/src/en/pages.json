@@ -168,10 +168,10 @@
         "label": "Change of name"
       },
       "licence-holder-details": {
-         "label": "Licence holder details"
+         "label": "Company details"
       },
        "licence-holder-address": {
-         "label": "Licence holder address"
+         "label": "Company registered address"
       },
       "is-premises-address-same": {
         "label": "Re-use the same contact details for the premises"
@@ -206,8 +206,17 @@
       "invoicing-address-details": {
         "label": "Invoicing address"
       },
-      "invoicing-contact-details": {
-        "label": "Invoicing contact details"
+      "invoicing-fullname": {
+        "label": "Invoicing contact name"
+      },
+      "invoicing-email": {
+        "label": "Invoicing contact email address"
+      },
+      "invoicing-telephone": {
+        "label": "Invoicing contact number"
+      },
+      "invoicing-purchase-order-number": {
+        "label": "Purchase order number"
       },
       "parsed-substance-categories": {
         "label": "Categories the licence will cover"
