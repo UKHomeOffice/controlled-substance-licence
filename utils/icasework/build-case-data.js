@@ -1,4 +1,4 @@
-const { getLabel, joinNonEmptyLines, formatDate, findArrayItemByValue } = require('../../utils');
+const { getLabel, joinNonEmptyLines, formatDate, findArrayItemByValue, translateOption } = require('../../utils');
 const businessTypeOptions = require('../../apps/registration/data/business-type.json');
 
 /**
@@ -265,9 +265,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         OrganisationBusinessNumber: req.sessionModel.get('company-number'),
         OrganisationPhone: req.sessionModel.get('telephone'),
         OrganisationEmail: req.sessionModel.get('email'),
-        OrganisationRegisteredCharity: getLabel(
+        OrganisationRegisteredCharity: translateOption(
+          req,
           'registered-charity',
-          req.sessionModel.get('registered-charity')),
+          req.sessionModel.get('registered-charity')
+        ),
         OrganisationBusinessType: parseAggregatedBusinessTypes(
           req.sessionModel.get('aggregated-business-type'))
       };
