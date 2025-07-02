@@ -77,6 +77,7 @@ module.exports = superclass => class extends superclass {
       const registeredUser = await userCreator.registerUser(userDetails, authToken);
       const applicantId = await userCreator.addUserToApplicants(registeredUser);
       Object.assign(userDetails, registeredUser, { applicantId });
+      req.sessionModel.set('applicant-id', userDetails.applicantId);
       req.sessionModel.set('applicant-username', userDetails.username);
     } catch (error) {
       const errorMsg = `Failed to create new user: ${error}`;

@@ -38,7 +38,7 @@ module.exports = class PDFConverter extends HofPdfConverter {
   }
 
   async renderHTML(res, content, pdfConfig, files) {
-    const { htmlLang, licenceType, licenceLabel } = pdfConfig;
+    const { htmlLang, licenceType, licenceLabel, amendment } = pdfConfig;
     const { dateFormat, timeFormat, dateLocales } = config;
 
     let localContent = Object.assign({}, content);
@@ -47,7 +47,9 @@ module.exports = class PDFConverter extends HofPdfConverter {
     localContent.htmlLang = htmlLang;
     localContent.css = await this.readCss();
     localContent['ho-logo'] = await this.readHOLogo();
-    localContent.title = `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
+    localContent.title = amendment ?
+      `Amending ${licenceLabel.toLowerCase()} licence application` :
+      `Apply for a domestic licence for controlled substances: ${licenceLabel}`;
 
     const pdfDateFormat = Object.assign({}, dateFormat, timeFormat);
     localContent.dateTime = new Intl.DateTimeFormat(dateLocales, pdfDateFormat).format(Date.now());
@@ -72,7 +74,8 @@ module.exports = class PDFConverter extends HofPdfConverter {
     }
     const licenceType = req.session['hof-wizard-common']?.['licence-type'];
     const licenceLabel = translateOption(req, 'licence-type', licenceType);
-    return { htmlLang, licenceType, licenceLabel };
+    const amendment = req.sessionModel.get('application-form-type') === 'amend-application';
+    return { htmlLang, licenceType, licenceLabel, amendment };
   }
 
   async generatePdf(req, res, locals, pdfConfig, files) {
