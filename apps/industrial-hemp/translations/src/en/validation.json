@@ -364,7 +364,7 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Purchase order number must be between 1 and 250 characters"
   },
-  "refund-accound-details": {
+  "refund-account-details": {
     "required": "Enter your refund account details",
     "maxlength": "Refund account details must be 500 characters or less",
     "notUrl": "Your answer must not contain URLs or links"

@@ -1,4 +1,4 @@
-const { getLabel, joinNonEmptyLines, formatDate, findArrayItemByValue } = require('../../utils');
+const { joinNonEmptyLines, formatDate, findArrayItemByValue, translateOption } = require('../../utils');
 const businessTypeOptions = require('../../apps/registration/data/business-type.json');
 
 /**
@@ -14,8 +14,8 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   if (!authToken) {
     throw new Error('authToken is required to build case data for iCasework with downloadable documents');
   }
-
-  const type = req.sessionModel.get('licence-type');
+  const amendment = req.sessionModel.get('application-form-type') === 'amend-application';
+  const type = amendment ? 'amendment' : req.sessionModel.get('licence-type');
 
   const parseAggregatedBusinessTypes = obj => {
     if (!obj?.aggregatedValues) { return null; }
@@ -80,15 +80,24 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
   });
 
   switch (type) {
+    case 'amendment':
+      return {
+        ...baseData,
+        ...documents,
+        Type: '47980', // Case type for Amendment for any Licence
+        CaseId: req.sessionModel.get('amend-application-details')
+      };
     case 'industrial-hemp':
       return {
         ...baseData,
         ...documents,
         Type: 'Hemp', // Identifier code on iCasework system - 48705
         'Applicant.Id': req.sessionModel.get('applicant-id'),
-        Renewal: getLabel(
+        Renewal: translateOption(
+          req,
           'licensee-type',
-          req.sessionModel.get('licensee-type')),
+          req.sessionModel.get('licensee-type')
+        ),
         LegalIdentity: '',
         PreviousLicence: '',
         PreviousName: '',
@@ -124,9 +133,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         WitnessEmail: req.sessionModel.get('authorised-witness-email'),
         WitnessDbsCheck: 'Yes',
         WitnessDisclosure: formatDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue')),
-        HoLicencesAlreadyHeld: getLabel(
+        HoLicencesAlreadyHeld: translateOption(
+          req,
           'hold-other-regulatory-licences',
-          req.sessionModel.get('hold-other-regulatory-licences')),
+          req.sessionModel.get('hold-other-regulatory-licences')
+        ),
         NumberHempFields: req.sessionModel.get('how-many-fields'),
         HempFieldsDetails: req.sessionModel.get('cultivation-field-details'),
         OwnFields: req.sessionModel.get('who-own-fields'),
@@ -142,9 +153,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         ...documents,
         Type: 'ControlledDrugs', // Identifier code on iCasework system - 48272
         'Applicant.Id': req.sessionModel.get('applicant-id'),
-        Renewal: getLabel(
+        Renewal: translateOption(
+          req,
           'licensee-type',
-          req.sessionModel.get('licensee-type')),
+          req.sessionModel.get('licensee-type')
+        ),
         LegalIdentity: '',
         PreviousLicence: '',
         PreviousName: '',
@@ -203,9 +216,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         ...documents,
         Type: 'PrecursorChemicals', // Identifier code on iCasework system - 10000
         'Applicant.Id': req.sessionModel.get('applicant-id'),
-        Renewal: getLabel(
+        Renewal: translateOption(
+          req,
           'licensee-type',
-          req.sessionModel.get('licensee-type')),
+          req.sessionModel.get('licensee-type')
+        ),
         LegalIdentity: '',
         PreviousLicence: '',
         TimeRenewal: '',
@@ -241,9 +256,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         GuarEmailAddress: req.sessionModel.get('guarantor-email-address'),
         GuarDbsCheck: 'Yes',
         GuarDbsDisclosure: formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue')),
-        CriminalConvictions: getLabel(
+        CriminalConvictions: translateOption(
+          req,
           'has-anyone-received-criminal-conviction',
-          req.sessionModel.get('has-anyone-received-criminal-conviction')),
+          req.sessionModel.get('has-anyone-received-criminal-conviction')
+        ),
         InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
     default:
@@ -265,9 +282,11 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         OrganisationBusinessNumber: req.sessionModel.get('company-number'),
         OrganisationPhone: req.sessionModel.get('telephone'),
         OrganisationEmail: req.sessionModel.get('email'),
-        OrganisationRegisteredCharity: getLabel(
+        OrganisationRegisteredCharity: translateOption(
+          req,
           'registered-charity',
-          req.sessionModel.get('registered-charity')),
+          req.sessionModel.get('registered-charity')
+        ),
         OrganisationBusinessType: parseAggregatedBusinessTypes(
           req.sessionModel.get('aggregated-business-type'))
       };

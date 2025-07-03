@@ -655,7 +655,7 @@ const steps = {
       'invoicing-contact-email',
       'invoicing-contact-telephone',
       'invoicing-purchase-order-number',
-      'refund-accound-details'
+      'refund-account-details'
     ],
     next: '/licence-email-address'
   },

@@ -7,7 +7,7 @@ app.post('/token', (req, res) => {
 });
 
 app.post('/createcase', (req, res) => {
-  res.json({ createcaseresponse: { caseid: 'MOCK-CASE-12345' } });
+  res.json({ createcaseresponse: { caseid: '10000001' } });
 });
 
 app.listen(4000, () => {

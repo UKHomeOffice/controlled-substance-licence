@@ -31,8 +31,7 @@
     "crypto-random-string": "^5.0.0",
     "form-data": "^4.0.2",
     "hof": "~22.7.2",
-    "notifications-node-client": "^8.2.1",
-    "csv-parse": "^5.6.0"
+    "notifications-node-client": "^8.2.1"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
