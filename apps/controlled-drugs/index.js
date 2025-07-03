@@ -916,11 +916,16 @@ const steps = {
     ]
   },
 
+  '/exit': {
+    behaviours: [SignOutOnExit],
+    backLink: false
+  },
+
   '/save-and-exit': {
     behaviours: [SignOutOnExit],
     backLink: false
   },
-  
+
   '/session-timeout': {}
 };
 
@@ -932,7 +937,6 @@ module.exports = {
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/confirm',
-  exitStep: '/save-and-exit',
   steps: steps,
   behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };
