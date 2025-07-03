@@ -543,6 +543,7 @@ module.exports = {
   baseUrl: '/precursor-chemicals',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/summary',
+  saveAndExitStep: '/exit',
   steps: steps,
   behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };

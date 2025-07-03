@@ -937,6 +937,7 @@ module.exports = {
   baseUrl: '/controlled-drugs',
   params: '/:action?/:id?/:edit?',
   confirmStep: '/confirm',
+  saveAndExitStep: '/exit',
   steps: steps,
   behaviours: [Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
 };

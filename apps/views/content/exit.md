@@ -1,3 +1,5 @@
-Not a message about saving the last page.
+If you were previously signed in, you are now signed out. If you selected 'Save and continue', we have kept your answers from the last saved page.
 
-Users on common routes may have been signed in, but also might not have been. Users on registration routes would not have signed in.
+If you were not signed in, your answers have not been saved.
+
+To continue, either [sign in](/licence-type) or [register](/registration) for the system.

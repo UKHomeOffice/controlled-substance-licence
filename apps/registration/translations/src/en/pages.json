@@ -145,7 +145,7 @@
 
   "session-timeout-warning": {
     "dialog-title": "You will exit this form soon",
-    "dialog-text": "If you are signed in, your answers will be kept from the last saved page. Any progress on this page will not be saved\n\nIf you are not signed in, your answers will be permanently deleted.",
+    "dialog-text": "If you are signed in, your answers will be kept from the last saved page. Any progress on this page will not be saved. If you are not signed in, your answers will be permanently deleted.",
     "timeout-continue-button": "Stay on form",
     "dialog-exit-link": "Exit form"
   }
