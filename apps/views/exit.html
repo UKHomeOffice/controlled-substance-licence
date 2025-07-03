@@ -5,14 +5,14 @@
 
   {{$propositionHeader}}{{/propositionHeader}}
 
-  {{$header}}
-    {{header}}
-  {{/header}}
+  {{$pageTitle}}
+    {{#t}}exit.header{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
 
   {{$content}}
     {{#markdown}}exit{{/markdown}}
     <a href="/licence-type" role="button" draggable="false" class="govuk-button" data-module="govuk-button">
-      {{#t}}buttons.sign-in-again{{/t}}
+      {{#t}}buttons.session-timeout-start-again{{/t}}
     </a>
   {{/content}}
 {{/layout}}

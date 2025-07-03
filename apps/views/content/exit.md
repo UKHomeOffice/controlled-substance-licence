@@ -1,3 +1,3 @@
 Not a message about saving the last page.
 
-Sign in again to continue your application.
+Users on common routes may have been signed in, but also might not have been. Users on registration routes would not have signed in.
