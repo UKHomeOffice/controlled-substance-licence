@@ -251,11 +251,11 @@ const steps = {
   },
 
   '/exit': {
-      backLink: false,
-      behaviours: [ SignOutOnExit ]
+    backLink: false,
+    behaviours: [ SignOutOnExit ]
   },
 
-  '/session-timeout': {},
+  '/session-timeout': {}
 };
 
 module.exports = {
