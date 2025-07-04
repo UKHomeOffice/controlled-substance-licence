@@ -81,7 +81,7 @@ module.exports = class UserCreator {
   * @throws {Error} Throws an error if required data are missing.
   */
   createRequestConfig(userDetails, authToken) {
-    const { username, password, email } = userDetails;
+    const { username, password, email, companyName } = userDetails;
 
     let errorMsg;
     if (!username || !password || !email) {
@@ -101,6 +101,10 @@ module.exports = class UserCreator {
       throw new Error(errorMsg);
     }
 
+    if (!companyName) {
+      logger.warn('Company name is missing or empty. Proceeding without setting the attribute.');
+    }
+
     const reqConfig = {
       url: `${config.keycloak.adminUrl}/users`,
       headers: {
@@ -112,6 +116,7 @@ module.exports = class UserCreator {
         enabled: true,
         email: email,
         emailVerified: false,
+        attributes: { 'Company name': companyName },
         credentials: [
           {
             type: 'password',
