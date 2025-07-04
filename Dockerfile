@@ -1,4 +1,4 @@
-FROM quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21@sha256:aad584fa26cb2838739527166c8965d95d0d2d9b88cfd5e3e2d3b8647ae03101
+FROM node:20.19.3-alpine3.22@sha256:6d6b06f970b08f9ebbe65a5561c20e8623d6afa612ea035bbbe38fb78dd94b14
 USER root
 
 # Update the package index and upgrade all installed packages to their latest versions
