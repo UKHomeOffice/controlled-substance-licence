@@ -15,8 +15,6 @@ WORKDIR /app
 
 COPY --chown=999:998 . /app
 
-RUN rm package-lock.json
-
 RUN yarn install --frozen-lockfile --production --ignore-optional && \
     yarn run postinstall
 
