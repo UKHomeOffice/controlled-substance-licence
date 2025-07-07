@@ -1,4 +1,6 @@
-If you have forgotten your details or cannot sign in contact <a href="dflu.dom@homeoffice.gov.uk" class="govuk-link">dflu.dom@homeoffice.gov.uk</a> to reset your password.
+If you have forgotten your sign in details or you are signing in for the first time since 24 June 2025, you must email [dflu.dom@homeoffice.gov.uk](mailto:dflu.dom@homeoffice.gov.uk) with the following subject line:
+
+Password reset required - [Company Name] - [Company Account Number]
 
 <details class="govuk-details">
   <summary class="govuk-details__summary">
