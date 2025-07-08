@@ -480,15 +480,34 @@ module.exports = {
         step: '/trading-reasons-summary',
         field: 'aggregated-trading-reasons',
         changeLink: 'trading-reasons-summary/edit',
-        parse: obj => {
+        parse: (obj, req) => {
           if (!obj?.aggregatedValues) { return null; }
-          return obj.aggregatedValues.map(item => {
+
+          const tradingReasonLabels = [];
+          const customReasons = [];
+
+          const tradingReasonsSummary = obj.aggregatedValues.map(item => {
             const reasonValue = item.fields.find(field => field.field === 'trading-reasons')?.value;
             const reasonLabel = findArrayItemByValue(tradingReasons, reasonValue)?.label ?? reasonValue;
             const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
 
+            if (reasonLabel !== 'Other') {
+              tradingReasonLabels.push(reasonLabel);
+            }
+
+            if (customReason) {
+              customReasons.push(customReason);
+            }
+
             return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
-          }).join('\n');
+          });
+
+          req.sessionModel.set('tradingReasons', tradingReasonLabels);
+          if(customReasons.length) {
+            req.sessionModel.set('tradingCustonReasons', customReasons);
+          }
+
+          return tradingReasonsSummary.join('\n');
         }
       },
       {

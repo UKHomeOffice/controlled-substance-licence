@@ -183,7 +183,8 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
             req.sessionModel.get('licence-holder-address-line-1'),
             req.sessionModel.get('licence-holder-address-line-2'),
             req.sessionModel.get('licence-holder-town-or-city')]),
-        SiteAddressRegion: '',
+        SiteAddressRegion: req.sessionModel.get('is-premises-address-same') === 'no' ?
+          req.sessionModel.get('premises-town-or-city') : req.sessionModel.get('licence-holder-town-or-city'),
         SiteAddressPostcode: req.sessionModel.get('is-premises-address-same') === 'no' ?
           req.sessionModel.get('premises-postcode') :
           req.sessionModel.get('licence-holder-postcode'),
@@ -220,17 +221,17 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         DbsDisclosure: req.sessionModel.get('responsible-for-compliance-regulatory') === 'someone-else' ?
           formatDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue')) :
           formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
-        WitnessName: req.sessionModel.get('responsible-for-witnessing-the-destruction') ?
+        WitnessName: req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'someone-else' ?
           req.sessionModel.get('responsible-for-witnessing-full-name') :
           req.sessionModel.get('person-in-charge-full-name'),
         WitnessAddress: '',
-        WitnessEmailAddress: req.sessionModel.get('responsible-for-witnessing-the-destruction') ?
+        WitnessEmailAddress: req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'someone-else' ?
           req.sessionModel.get('responsible-for-witnessing-email-address') :
           req.sessionModel.get('person-in-charge-email-address'),
         WitnessAddressPostcode: '',
         WitnessDbsCheck: 'Yes',
-        SiteBusinessType: '',
-        OtherBusinessType: '',
+        SiteBusinessType: req.sessionModel.get('tradingReasons'),
+        OtherBusinessType: req.sessionModel.get('tradingCustonReasons') ?? '',
         InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
     case 'precursor-chemicals':
@@ -259,12 +260,19 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
         'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
         'Applicant.OrganisationEmail': req.sessionModel.get('email'),
-        SiteAddress: joinNonEmptyLines([
-          req.sessionModel.get('premises-address-line-1'),
-          req.sessionModel.get('premises-address-line-2'),
-          req.sessionModel.get('premises-town-or-city')]),
-        SiteAddressRegion: '',
-        SiteAddressPostcode: req.sessionModel.get('premises-postcode'),
+        SiteAddress: req.sessionModel.get('is-premises-address-same') === 'no' ?
+          joinNonEmptyLines([
+            req.sessionModel.get('premises-address-line-1'),
+            req.sessionModel.get('premises-address-line-2'),
+            req.sessionModel.get('premises-town-or-city')]) :
+          joinNonEmptyLines([
+            req.sessionModel.get('licence-holder-address-line-1'),
+            req.sessionModel.get('licence-holder-address-line-2'),
+            req.sessionModel.get('licence-holder-town-or-city')]),
+        SiteAddressRegion: req.sessionModel.get('is-premises-address-same') === 'no' ?
+          req.sessionModel.get('premises-town-or-city') : req.sessionModel.get('licence-holder-town-or-city'),
+        SiteAddressPostcode: req.sessionModel.get('is-premises-address-same') === 'no' ?
+          req.sessionModel.get('premises-postcode') : req.sessionModel.get('licence-holder-postcode'),
         SitePhone: req.sessionModel.get('premises-telephone'),
         SiteEmailContactAddress: req.sessionModel.get('premises-email'),
         RespName: req.sessionModel.get('responsible-officer-fullname'),
