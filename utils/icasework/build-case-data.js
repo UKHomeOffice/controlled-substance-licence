@@ -183,8 +183,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
             req.sessionModel.get('licence-holder-address-line-1'),
             req.sessionModel.get('licence-holder-address-line-2'),
             req.sessionModel.get('licence-holder-town-or-city')]),
-        SiteAddressRegion: req.sessionModel.get('is-premises-address-same') === 'no' ?
-          req.sessionModel.get('premises-town-or-city') : req.sessionModel.get('licence-holder-town-or-city'),
+        SiteAddressRegion: '',
         SiteAddressPostcode: req.sessionModel.get('is-premises-address-same') === 'no' ?
           req.sessionModel.get('premises-postcode') :
           req.sessionModel.get('licence-holder-postcode'),
@@ -269,8 +268,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
             req.sessionModel.get('licence-holder-address-line-1'),
             req.sessionModel.get('licence-holder-address-line-2'),
             req.sessionModel.get('licence-holder-town-or-city')]),
-        SiteAddressRegion: req.sessionModel.get('is-premises-address-same') === 'no' ?
-          req.sessionModel.get('premises-town-or-city') : req.sessionModel.get('licence-holder-town-or-city'),
+        SiteAddressRegion: '',
         SiteAddressPostcode: req.sessionModel.get('is-premises-address-same') === 'no' ?
           req.sessionModel.get('premises-postcode') : req.sessionModel.get('licence-holder-postcode'),
         SitePhone: req.sessionModel.get('premises-telephone'),
