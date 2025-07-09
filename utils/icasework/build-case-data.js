@@ -230,7 +230,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         WitnessAddressPostcode: '',
         WitnessDbsCheck: 'Yes',
         SiteBusinessType: req.sessionModel.get('tradingReasons'),
-        OtherBusinessType: req.sessionModel.get('tradingCustonReasons') ?? '',
+        OtherBusinessType: req.sessionModel.get('tradingCustomReasons') ?? '',
         InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
       };
     case 'precursor-chemicals':
