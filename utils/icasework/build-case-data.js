@@ -110,7 +110,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('licence-holder-address-line-1'),
           req.sessionModel.get('licence-holder-address-line-2'),
           req.sessionModel.get('licence-holder-town-or-city')]),
-        'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
+        'Applicant.OrganisationRegion': '',
         'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
         'Applicant.OrganisationEmail': req.sessionModel.get('email'),
         SiteAddress: joinNonEmptyLines([
@@ -171,7 +171,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('licence-holder-address-line-1'),
           req.sessionModel.get('licence-holder-address-line-2'),
           req.sessionModel.get('licence-holder-town-or-city')]),
-        'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
+        'Applicant.OrganisationRegion': '',
         'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
         'Applicant.OrganisationEmail': req.sessionModel.get('email'),
         SiteAddress: req.sessionModel.get('is-premises-address-same') === 'no' ?
@@ -256,7 +256,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('licence-holder-address-line-1'),
           req.sessionModel.get('licence-holder-address-line-2'),
           req.sessionModel.get('licence-holder-town-or-city')]),
-        'Applicant.OrganisationRegion': req.sessionModel.get('licence-holder-town-or-city'),
+        'Applicant.OrganisationRegion': '',
         'Applicant.OrganisationPostcode': req.sessionModel.get('licence-holder-postcode'),
         'Applicant.OrganisationEmail': req.sessionModel.get('email'),
         SiteAddress: req.sessionModel.get('is-premises-address-same') === 'no' ?
@@ -306,7 +306,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('licence-holder-address-line-1'),
           req.sessionModel.get('licence-holder-address-line-2'),
           req.sessionModel.get('licence-holder-town-or-city')]),
-        OrganisationRegion: req.sessionModel.get('licence-holder-town-or-city'),
+        OrganisationRegion: '',
         OrganisationPostcode: req.sessionModel.get('licence-holder-postcode'),
         OrganisationBusinessNumber: req.sessionModel.get('company-number'),
         OrganisationPhone: req.sessionModel.get('telephone'),
