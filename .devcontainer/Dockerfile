@@ -1,9 +1,12 @@
-FROM node:20.19.0-alpine3.21@sha256:37a5a350292926f98d48de9af160b0a3f7fcb141566117ee452742739500a5bd
+FROM node:20.19.3-alpine3.22@sha256:9d015b82e81e8107ef0d341a8ef2d6ca4a6bc6f3b6659bd5869316eef3779761
 
 USER root
 
 # Update the package index and upgrade all installed packages to their latest versions
 RUN apk update && apk upgrade
+
+# Update npm to latest version to address vulnerabilities
+RUN npm install -g npm@latest
 
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
