@@ -2,9 +2,9 @@ FROM quay.io/ukhomeofficedigital/hof-nodejs:20.19.0-alpine3.21@sha256:aad584fa26
 USER root
 
 # Update the package index and upgrade all installed packages to their latest versions
-RUN echo "http://uk.alpinelinux.org/alpine/v3.21/main" > /etc/apk/repositories && \
-    echo "http://uk.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories && \
-    apk update && apk upgrade --no-cache
+RUN echo "http://uk.alpinelinux.org/alpine/v3.21/main" > /etc/apk/repositories && \
+    echo "http://uk.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories && \
+    apk update && apk upgrade --no-cache
 
 
 # Setup nodejs group & nodejs user
