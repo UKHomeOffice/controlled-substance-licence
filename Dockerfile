@@ -4,8 +4,6 @@ USER root
 RUN echo "http://uk.alpinelinux.org/alpine/v3.21/main" > /etc/apk/repositories ; \
     echo "http://uk.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories ; \
     apk add --no-cache bash ; \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.21/main" > /etc/apk/repositories ; \
-    echo "http://dl-cdn.alpinelinux.org/alpine/v3.21/community" >> /etc/apk/repositories ; \
     apk update && apk upgrade --no-cache
 
 # Update the package index and upgrade all installed packages to their latest versions
