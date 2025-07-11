@@ -133,10 +133,6 @@ steps:
   - name: build_image
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
-    resources:
-      limits:
-        cpu: 1000
-        memory: 1024Mi
     commands:
       # wait for docker service to be up before running docker build
       - /usr/local/bin/wait
@@ -156,10 +152,6 @@ steps:
   - name: image_to_ecr
     pull: if-not-exists
     image: plugins/ecr
-    resources:
-      limits:
-        cpu: 1000
-        memory: 1024Mi
     settings:
       access_key:
         from_secret: aws_access_key_id
@@ -177,6 +169,7 @@ steps:
     depends_on:
       - linting
       - unit_tests
+      - build_image
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
