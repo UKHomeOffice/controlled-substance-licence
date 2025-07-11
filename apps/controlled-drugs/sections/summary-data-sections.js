@@ -502,7 +502,7 @@ module.exports = {
             return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
           });
 
-          req.sessionModel.set('tradingReasons', tradingReasonLabels);
+          req.sessionModel.set('tradingReasons', tradingReasonLabels.join('\n'));
           if(customReasons.length) {
             req.sessionModel.set('tradingCustomReasons', customReasons);
           }
