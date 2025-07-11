@@ -504,7 +504,7 @@ module.exports = {
 
           req.sessionModel.set('tradingReasons', tradingReasonLabels.join('\n'));
           if(customReasons.length) {
-            req.sessionModel.set('tradingCustomReasons', customReasons);
+            req.sessionModel.set('tradingCustomReasons', customReasons.join('\n'));
           }
 
           return tradingReasonsSummary.join('\n');
