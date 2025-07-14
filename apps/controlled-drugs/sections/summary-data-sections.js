@@ -491,15 +491,14 @@ module.exports = {
             const reasonLabel = findArrayItemByValue(tradingReasons, reasonValue)?.label ?? reasonValue;
             const customReason = item.fields.find(field => field.field === 'specify-trading-reasons')?.value;
 
-            if (reasonLabel !== 'Other') {
-              tradingReasonLabels.push(reasonLabel);
-            }
+            const label = customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
+            tradingReasonLabels.push(label);
 
             if (customReason) {
               customReasons.push(customReason);
             }
 
-            return customReason ? `${reasonLabel}: ${customReason}` : reasonLabel;
+            return label;
           });
 
           req.sessionModel.set('tradingReasons', tradingReasonLabels.join('\n'));
