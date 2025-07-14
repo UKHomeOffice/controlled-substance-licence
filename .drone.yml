@@ -130,13 +130,12 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
-  - name: build_image
+  - name: build_image_for_trivy
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
       # wait for docker service to be up before running docker build
       - /usr/local/bin/wait
-      - n=0; while [ "$n" -lt 60 ] && ! docker stats --no-stream >/dev/null 2>&1; do n=$(( n + 1 )); sleep 1; done
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -149,7 +148,7 @@ steps:
       - linting
       - unit_tests
 
-  - name: image_to_ecr
+  - name: build_image_and_push_to_ecr
     pull: if-not-exists
     image: plugins/ecr
     settings:
@@ -169,7 +168,7 @@ steps:
     depends_on:
       - linting
       - unit_tests
-      - build_image
+      - build_image_for_trivy
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -191,7 +190,7 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
-      - build_image
+      - build_image_for_trivy
 
   # Deploy to pull request UAT environment
   - name: deploy_to_branch
@@ -211,7 +210,7 @@ steps:
       event: pull_request
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   - name: deploy_to_uat
     pull: if-not-exists
@@ -229,7 +228,7 @@ steps:
       event: push
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
@@ -289,7 +288,7 @@ steps:
       event: push
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   ## Checks that a build being promoted has passed and is on the default branch, indicating a healthy build
   - name: sanity_check_build_prod
