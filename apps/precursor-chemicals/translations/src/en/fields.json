@@ -1,23 +1,24 @@
 {
   "application-form-type": {
-    "legend": "How are you applying for your precursor chemicals licence?",
+    "legend": "How are you applying for your controlled drugs licence?",
     "options": {
       "new-application": {
-        "label": "A new application",
-        "hint": "You will need a controlled drug activity user list to upload later"
+        "label": "Start a new application",
+        "hint": "This will overwrite any draft applications"
       },
       "continue-an-application": {
-        "label": "Continue an application",
-        "hint": "An incomplete application stays on the system for 5 days and is then deleted"
+        "label": "Continue a draft application",
+        "hint": "Draft applications are deleted after 5 days"
       },
       "amend-application": {
-        "label": "Amend pending application"
+        "label": "Amend a pending application",
+        "hint": "Amend a recently submitted application - this will overwrite any draft applications"
       }
     }
   },
   "amend-application-details": {
-    "label": "Application reference number",
-    "hint": "For example, 12345678"
+    "label": "Enter your application reference number",
+    "hint": "This is 8 numbers and appears in the confirmation email from your original application"
   },
   "licensee-type": {
     "legend": "What type of precursor chemicals licensee are you?",

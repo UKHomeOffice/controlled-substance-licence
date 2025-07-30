@@ -21,7 +21,7 @@ module.exports = {
   'background-information': {
     steps: [
       {
-        step: '/application-type',
+        step: '/application-reference',
         field: 'amend-application-details'
       },
       {

@@ -25,10 +25,24 @@ const steps = {
 
   '/application-type': {
     behaviours: [ResumeFormSession],
-    fields: ['application-form-type', 'amend-application-details'],
+    fields: ['application-form-type'],
+    forks: [
+      {
+        target: '/application-reference',
+        condition: {
+          field: 'application-form-type',
+          value: 'amend-application'
+        }
+      }
+    ],
     template: 'continue-only',
     next: '/licensee-type',
     backLink: '/licence-type'
+  },
+
+  '/application-reference': {
+    fields: ['amend-application-details'],
+    next: '/licence-holder-details'
   },
 
   '/licensee-type': {
