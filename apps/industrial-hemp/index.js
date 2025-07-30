@@ -38,8 +38,8 @@ const steps = {
   },
 
   '/application-reference': {
-  fields: ['amend-application-details'],
-  next: '/licence-holder-details'
+    fields: ['amend-application-details'],
+    next: '/licence-holder-details'
   },
 
   '/licensee-type': {
