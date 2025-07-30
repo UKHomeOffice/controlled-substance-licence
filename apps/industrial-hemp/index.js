@@ -37,6 +37,11 @@ const steps = {
     backLink: '/licence-type'
   },
 
+  '/application-reference': {
+  fields: ['amend-application-details'],
+  next: '/licence-holder-details'
+  },
+
   '/licensee-type': {
     fields: ['licensee-type'],
     next: '/licence-holder-details',
