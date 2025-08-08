@@ -35,7 +35,7 @@ const steps = {
         }
       }
     ],
-    template: 'continue-only',
+    template: 'application-type',
     next: '/licensee-type',
     backLink: '/licence-type'
   },
