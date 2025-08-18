@@ -11,7 +11,23 @@ const steps = {
   '/licence-type': {
     behaviours: [ Auth ],
     fields: ['licence-type'],
-    next: '/application-type',
+    forks: [
+      {
+        target: '/precursor-chemicals/application-type',
+        condition: {
+          field: 'licence-type',
+          value: 'precursor-chemicals'
+        }
+      },
+      {
+        target: '/controlled-drugs/application-type',
+        condition: {
+          field: 'licence-type',
+          value: 'controlled-drugs'
+        }
+      }
+    ],
+    next: '/industrial-hemp/application-type',
     backLink: ' ' // workaround to show Back link to the root of the app
   },
   '/sign-in': {
