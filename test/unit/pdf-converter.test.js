@@ -269,7 +269,7 @@ describe('PDFConverter class: ', () => {
         sessionModel: {
           get: jest.fn(key => {
             if (key === 'application-form-type') return 'amend-application';
-            if (key === 'amend-application-details') return true;
+            if (key === 'amend-application-details') return "12345678"; // Application Reference Number
             return null;
           })
         },
@@ -282,7 +282,7 @@ describe('PDFConverter class: ', () => {
       expect(setConfig).toHaveProperty('amendment', true);
     });
 
-    it('returns expected config for amendment type continue-an-application', () => {
+    it('returns expected config for amendment type, when continuing a draft application', () => {
       req = {
         session: {
           'hof-wizard-common': {
@@ -292,7 +292,7 @@ describe('PDFConverter class: ', () => {
         sessionModel: {
           get: jest.fn(key => {
             if (key === 'application-form-type') return 'continue-an-application';
-            if (key === 'amend-application-details') return true;
+            if (key === 'amend-application-details') return "12345678"; // Application Reference Number
             return null;
           })
         },
