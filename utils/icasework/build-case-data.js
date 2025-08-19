@@ -15,7 +15,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
     throw new Error('authToken is required to build case data for iCasework with downloadable documents');
   }
   const amendment = (req.sessionModel.get('application-form-type') !== 'new-application'
-      && req.sessionModel.get('amend-application-details'));
+      && typeof req.sessionModel.get('amend-application-details') === 'string');
 
   const type = amendment ? 'amendment' : req.sessionModel.get('licence-type');
 
