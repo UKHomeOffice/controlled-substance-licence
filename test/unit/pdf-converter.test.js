@@ -279,7 +279,7 @@ describe('PDFConverter class: ', () => {
       expect(setConfig).toHaveProperty('htmlLang', 'en');
       expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
       expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
-      expect(setConfig).toHaveProperty('amendment', '12345678');
+      expect(setConfig).toHaveProperty('amendment', true);
     });
 
     it('returns expected config for amendment type, when continuing a draft application', () => {
@@ -302,7 +302,7 @@ describe('PDFConverter class: ', () => {
       expect(setConfig).toHaveProperty('htmlLang', 'en');
       expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
       expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
-      expect(setConfig).toHaveProperty('amendment', '12345678');
+      expect(setConfig).toHaveProperty('amendment', true);
     });
   });
 
