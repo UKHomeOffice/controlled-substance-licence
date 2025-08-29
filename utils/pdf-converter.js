@@ -74,7 +74,8 @@ module.exports = class PDFConverter extends HofPdfConverter {
     }
     const licenceType = req.session['hof-wizard-common']?.['licence-type'];
     const licenceLabel = translateOption(req, 'licence-type', licenceType);
-    const amendment = req.sessionModel.get('application-form-type') === 'amend-application';
+    const amendment = req.sessionModel.get('application-form-type') !== 'new-application'
+      && Boolean(req.sessionModel.get('amend-application-details'));
     return { htmlLang, licenceType, licenceLabel, amendment };
   }
 

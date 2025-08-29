@@ -267,7 +267,34 @@ describe('PDFConverter class: ', () => {
           }
         },
         sessionModel: {
-          get: jest.fn().mockReturnValue('amend-application')
+          get: jest.fn(key => {
+            if (key === 'application-form-type') return 'amend-application';
+            if (key === 'amend-application-details') return '12345678'; // Application Reference Number
+            return null;
+          })
+        },
+        translate: jest.fn().mockReturnValue('Precursor chemicals')
+      };
+      const setConfig = pdfConverter.createBaseConfig(req, res);
+      expect(setConfig).toHaveProperty('htmlLang', 'en');
+      expect(setConfig).toHaveProperty('licenceType', 'precursor-chemicals');
+      expect(setConfig).toHaveProperty('licenceLabel', 'Precursor chemicals');
+      expect(setConfig).toHaveProperty('amendment', true);
+    });
+
+    it('returns expected config for amendment type, when continuing a draft application', () => {
+      req = {
+        session: {
+          'hof-wizard-common': {
+            'licence-type': 'precursor-chemicals'
+          }
+        },
+        sessionModel: {
+          get: jest.fn(key => {
+            if (key === 'application-form-type') return 'continue-an-application';
+            if (key === 'amend-application-details') return '12345678'; // Application Reference Number
+            return null;
+          })
         },
         translate: jest.fn().mockReturnValue('Precursor chemicals')
       };

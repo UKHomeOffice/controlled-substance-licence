@@ -13,25 +13,20 @@ module.exports = {
         value: 'continue-an-application'
       },
       {
-        value: 'amend-application',
-        toggle: 'amend-application-details',
-        child: 'input-text'
+        value: 'amend-application'
       }
     ]
   },
   'amend-application-details': {
     mixin: 'input-text',
+    isPageHeading: 'true',
     validate: [
       'required',
       'numeric',
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 8 }
     ],
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    dependent: {
-      value: 'amend-application',
-      field: 'application-form-type'
-    }
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'licensee-type': {
     mixin: 'radio-group',
