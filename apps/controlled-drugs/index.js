@@ -432,41 +432,21 @@ const steps = {
           req.sessionModel.get('require-witness-destruction-of-drugs') === 'no'
       }
     ],
-    next: '/who-witnesses-destruction-of-drugs',
+    next: '/authorised-witness-information',
     continueOnEdit: true
   },
 
-  '/who-witnesses-destruction-of-drugs': {
-    continueOnEdit: true,
-    fields: ['responsible-for-witnessing-the-destruction'],
-    forks: [
-      {
-        target: '/person-to-witness',
-        condition: {
-          field: 'responsible-for-witnessing-the-destruction',
-          value: 'someone-else'
-        }
-      },
-      {
-        target: '/company-registration-certificate',
-        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site' &&
-          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director'
-      }
-    ],
-    next: '/trading-reasons'
-  },
-
-  '/person-to-witness': {
+  '/authorised-witness-information': {
     fields: [
       'responsible-for-witnessing-full-name',
       'responsible-for-witnessing-email-address',
       'responsible-for-witnessing-confirmed-dbs'
     ],
-    next: '/witness-dbs',
+    next: '/witness-dbs-information',
     continueOnEdit: true
   },
 
-  '/witness-dbs': {
+  '/witness-dbs-information': {
     fields: [
       'responsible-for-witnessing-dbs-fullname',
       'responsible-for-witnessing-dbs-reference',
