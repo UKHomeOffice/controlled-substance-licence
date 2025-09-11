@@ -469,7 +469,7 @@ const steps = {
         target: '/company-registration-certificate',
         condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
       }
-    ],
+    ]
   },
 
   '/company-registration-certificate': {
