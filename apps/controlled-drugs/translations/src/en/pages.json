@@ -57,7 +57,7 @@
   },
   "company-registration-certificate": {
     "header": "Upload company registration certificate",
-     "intro": "Upload a scanned copy of your company registration certificate."
+    "intro": "Upload a scanned copy of your company registration certificate."
   },
   "trading-reasons-summary": {
     "header": "Summary of trading reasons",
