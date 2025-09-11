@@ -307,7 +307,8 @@
     }
   },
   "require-witness-destruction-of-drugs": {
-    "legend": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?",
+    "legend": "Does your company have any authorised witnesses for the destruction of controlled drugs?",
+    "hint": "Authorised witnesses must have a valid DBS certificate, or have applied for one",
     "options": {
       "yes": {
         "label": "Yes"
