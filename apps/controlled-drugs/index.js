@@ -458,6 +458,11 @@ const steps = {
 
   '/witness-dbs-updates': {
     fields: ['responsible-for-witnessing-dbs-subscription'],
+    next: '/witness-update-service',
+    template: 'person-in-charge-dbs-updates'
+  },
+
+  '/witness-update-service': {
     next: '/trading-reasons',
     forks: [
       {
@@ -465,7 +470,6 @@ const steps = {
         condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
       }
     ],
-    template: 'person-in-charge-dbs-updates'
   },
 
   '/company-registration-certificate': {
