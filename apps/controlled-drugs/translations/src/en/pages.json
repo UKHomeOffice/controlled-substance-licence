@@ -49,14 +49,15 @@
   "regulatory-and-compliance-dbs": {
     "header": "DBS information for person responsible for compliance and regulatory affairs"
   },
-  "person-to-witness": {
-    "header": "Person responsible for witnessing the destruction of controlled drugs"
+  "authorised-witness-information": {
+    "header": "Authorised witness information"
   },
-  "witness-dbs": {
+  "witness-dbs-information": {
     "header": "DBS information for the person responsible for witnessing the destruction of controlled drugs"
   },
   "company-registration-certificate": {
-    "header": "Upload company registration certificate"
+    "header": "Upload company registration certificate",
+    "intro": "Upload a scanned copy of your company registration certificate."
   },
   "trading-reasons-summary": {
     "header": "Summary of trading reasons",
