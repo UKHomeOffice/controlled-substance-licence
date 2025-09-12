@@ -55,6 +55,10 @@
   "witness-dbs-information": {
     "header": "DBS information for the person responsible for witnessing the destruction of controlled drugs"
   },
+  "witness-update-service": {
+    "header": "Using the DBS Update Service",
+    "title": "Email us to use the DBS Update Service"
+  },
   "company-registration-certificate": {
     "header": "Upload company registration certificate",
     "intro": "Upload a scanned copy of your company registration certificate."
