@@ -53,7 +53,16 @@
     "header": "Authorised witness information"
   },
   "witness-dbs-information": {
-    "header": "DBS information for the person responsible for witnessing the destruction of controlled drugs"
+    "header": "DBS information for {{values.responsible-for-witnessing-full-name}}"
+  },
+  "witness-dbs-summary": {
+    "header": "Witnesses you have told us about",
+    "intro": "You must tell us about all authorised witnesses your company has.",
+    "limit-exceeded": "You can not add any more witnesses",
+    "key": "DBS information"
+  },
+  "witness-update-service": {
+    "header": "Using the DBS Update Service"
   },
   "witness-update-service": {
     "header": "Using the DBS Update Service",
@@ -151,6 +160,12 @@
       },
       "about-the-applicants": {
         "header": "About the applicants"
+      },
+      "witnesses-details": {
+        "header": "Witnesses you have told us about"
+      },
+      "about-the-organisation": {
+        "header": "About the organisation"
       }
     },
     "fields": {
@@ -250,17 +265,11 @@
       "source-drugs-details": {
         "label": "Details of where you source the drugs from"
       },
-      "responsible-for-witnessing-the-destruction": {
-        "label": "Is your company's person responsible for witnessing the destruction of controlled drugs premises the same as the managing director?"
-      },
-      "responsible-for-witnessing-details": {
-        "label": "Person responsible for witnessing the destruction of drugs"
-      },
-      "responsible-for-witnessing-dbs-information": {
-        "label": "Person responsible for witnessing destruction of drugs DBS information"
+      "responsible-for-witnessing-dbs-fullname": {
+        "label": "DBS application name"
       },
       "responsible-for-witnessing-dbs-subscription": {
-        "label": "Person responsible for destruction of drugs DBS updates"
+        "label": "Subscribed to DBS Update Service"
       },
       "company-registration-certificate": {
         "label": "Company registration certificate"

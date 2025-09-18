@@ -401,68 +401,38 @@ module.exports = {
       {
         step: '/witness-destruction-of-drugs',
         field: 'require-witness-destruction-of-drugs'
-      },
+      }
+    ]
+  },
+  'witnesses-details': {
+    steps: [
       {
-        step: '/who-witnesses-destruction-of-drugs',
-        field: 'responsible-for-witnessing-the-destruction',
-        parse: (val, req) => {
-          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' || !val) {
-            return null;
-          }
-          const responsibleForWitnessDrugsIsSameAsMd =
-          req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director';
+        step: '/witness-dbs-summary',
+        field: 'aggregated-witness-dbs-info',
+        addElementSeparators: true,
+        parse: obj => {
+          if (!obj?.aggregatedValues) { return null; }
 
-          return translateOption(req, 'responsible-for-witnessing-the-destruction',
-            responsibleForWitnessDrugsIsSameAsMd ? 'yes' : 'no');
-        }
-      },
-      {
-        step: '/person-to-witness',
-        field: 'responsible-for-witnessing-details',
-        parse: (list, req) => {
-          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
-            return null;
-          }
+          obj.aggregatedValues.map(item => {
+            item.fields = item.fields.map(field => {
+              if (field.field === 'responsible-for-witnessing-full-name') {
+                field.isAggregatorTitle = true;
+              }
+              if (field.field === 'responsible-for-witnessing-dbs-date-of-issue' && field.value) {
+                field.parsed = formatDate(field.value);
+              }
+              field.omitChangeLink = true;
+              return field;
+            });
+          });
 
-          const responsibleForWitnessDrugsDetails = [
-            req.sessionModel.get('responsible-for-witnessing-full-name'),
-            req.sessionModel.get('responsible-for-witnessing-email-address')
-          ];
-          return responsibleForWitnessDrugsDetails.filter(element => element).join('\n');
+          return obj;
         }
-      },
-      {
-        step: '/witness-dbs',
-        field: 'responsible-for-witnessing-dbs-information',
-        parse: (val, req) => {
-          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
-            return null;
-          }
-
-          const responsibleForWitnessDrugsDbsInfo = [
-            req.sessionModel.get('responsible-for-witnessing-dbs-fullname'),
-            req.sessionModel.get('responsible-for-witnessing-dbs-reference'),
-            formatDate(req.sessionModel.get('responsible-for-witnessing-dbs-date-of-issue'))
-          ];
-          return responsibleForWitnessDrugsDbsInfo.filter(element => element).join('\n');
-        }
-      },
-      {
-        step: '/witness-dbs-updates',
-        field: 'responsible-for-witnessing-dbs-subscription',
-        parse: (val, req) => {
-          if (!val) return null;
-          if(req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director') {
-            return null;
-          }
-          const fieldToTranslate = 'responsible-for-witnessing-dbs-subscription';
-          const valueToTranslate = req.sessionModel.get('responsible-for-witnessing-dbs-subscription');
-          return translateOption(req, fieldToTranslate, valueToTranslate);
-        }
-      },
+      }
+    ]
+  },
+  'about-the-organisation': {
+    steps: [
       {
         step: '/company-registration-certificate',
         field: 'company-registration-certificate',

@@ -116,7 +116,9 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
-    const action = req.params.action || this.getAction(req, res, next);
+    const action = req.params.action === 'edit' ? this.getAction(req, res, next)
+      : req.params.action || this.getAction(req, res, next);
+
     this.handleAction(req, res, next, action);
   }
 

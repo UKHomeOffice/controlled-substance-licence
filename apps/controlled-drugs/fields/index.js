@@ -526,7 +526,6 @@ module.exports = {
   ),
   'responsible-for-compliance-regulatory-dbs-subscription': {
     mixin: 'radio-group',
-    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
@@ -593,22 +592,6 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 8 }],
     isPageHeading: true
   },
-  'responsible-for-witnessing-the-destruction': {
-    mixin: 'radio-group',
-    isPageHeading: true,
-    validate: [ 'required' ],
-    options: [
-      {
-        value: 'same-as-managing-director'
-      },
-      {
-        value: 'someone-else'
-      }
-    ],
-    legend: {
-      className: 'govuk-!-margin-bottom-6'
-    }
-  },
   'responsible-for-witnessing-full-name': {
     mixin: 'input-text',
     validate: [
@@ -662,7 +645,6 @@ module.exports = {
   }),
   'responsible-for-witnessing-dbs-subscription': {
     mixin: 'radio-group',
-    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {
