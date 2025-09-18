@@ -58,8 +58,7 @@
   "witness-dbs-summary": {
     "header": "Witnesses you have told us about",
     "intro": "You must tell us about all authorised witnesses your company has.",
-    "limit-exceeded": "You can not add any more witnesses",
-    "key": "DBS information"
+    "limit-exceeded": "You can not add any more witnesses"
   },
   "witness-update-service": {
     "header": "Using the DBS Update Service",
