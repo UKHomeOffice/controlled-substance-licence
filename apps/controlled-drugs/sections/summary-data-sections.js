@@ -410,6 +410,8 @@ module.exports = {
         step: '/witness-dbs-summary',
         field: 'aggregated-witness-dbs-info',
         addElementSeparators: true,
+        changeLink: 'witness-dbs-summary/edit',
+        dependsOn: 'require-witness-destruction-of-drugs',
         parse: obj => {
           if (!obj?.aggregatedValues) { return null; }
 
@@ -437,9 +439,7 @@ module.exports = {
         step: '/company-registration-certificate',
         field: 'company-registration-certificate',
         parse: (documents, req) => {
-          if (req.sessionModel.get('require-witness-destruction-of-drugs') === 'no' ||
-            req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'same-as-managing-director' ||
-            req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
+          if (req.sessionModel.get('licensee-type') === 'existing-licensee-renew-or-change-site') {
             return null;
           }
           return Array.isArray(documents) && documents.length > 0 ? documents.map(doc => doc.name).join('\n') : null;

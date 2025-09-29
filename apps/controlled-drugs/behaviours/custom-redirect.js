@@ -76,10 +76,20 @@ const checkCompaniesHouseRef = (req, currentRoute) => (
   req.form.values['companies-house-number-change'] === 'yes'
 );
 
-const checkWitnessDbsSummary = (currentRoute, action) => (
-  currentRoute === '/witness-dbs-summary' &&
-  action === 'edit'
-);
+const checkHasAuthorisedDestruction = (req, currentRoute, action) => {
+  if (
+    currentRoute !== '/witness-destruction-of-drugs' ||
+    action !== 'edit' ||
+    req.form.values['require-witness-destruction-of-drugs'] !== 'no'
+  ) {
+    return false;
+  }
+
+  const hasTradingReasonsAdded = !!req.sessionModel.get('aggregated-trading-reasons')?.aggregatedValues?.length;
+  const hasCompanyCertificateUploaded = !!req.sessionModel.get('company-registration-certificate');
+
+  return hasTradingReasonsAdded || hasCompanyCertificateUploaded;
+};
 
 module.exports = superclass => class extends superclass {
   successHandler(req, res, next) {
@@ -106,8 +116,12 @@ module.exports = superclass => class extends superclass {
         checkServiceDetails(req, currentRoute, action)
       ].some(Boolean);
 
-      if (req.sessionModel.get('referred-by-information-given-summary') &&
-        checkWitnessDbsSummary(currentRoute, action) ) {
+      const shouldRedirectToInfoSummary =
+        (req.sessionModel.get('referred-by-information-given-summary') &&
+          currentRoute === '/witness-dbs-summary') ||
+        checkHasAuthorisedDestruction(req, currentRoute, action);
+
+      if (shouldRedirectToInfoSummary) {
         return res.redirect(`${formApp}/information-you-have-given-us`);
       }
 
