@@ -13,13 +13,13 @@
           {{#changeLink}}
           <a class="govuk-link" href="{{changeLink}}" id="{{field}}-change-{{index}}">
             {{#t}}buttons.change{{/t}}
-            <span class="govuk-visually-hidden">{{changeLinkDescription}} from {{value}}</span>
+            <span class="govuk-visually-hidden">{{value}}'s witness details</span>
           </a>
           {{/changeLink}}
           {{^changeLink}}
           <a class="govuk-link" href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">
             {{#t}}buttons.change{{/t}}
-            <span class="govuk-visually-hidden">{{changeLinkDescription}} from {{value}}</span>
+            <span class="govuk-visually-hidden">{{value}}'s witness details</span>
           </a>
           {{/changeLink}}
         </div>

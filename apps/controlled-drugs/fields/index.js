@@ -526,6 +526,7 @@ module.exports = {
   ),
   'responsible-for-compliance-regulatory-dbs-subscription': {
     mixin: 'radio-group',
+    isPageHeading: true,
     validate: [ 'required' ],
     options: [
       {

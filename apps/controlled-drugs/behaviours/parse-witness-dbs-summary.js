@@ -1,11 +1,11 @@
 const { formatDate } = require('../../../utils');
-const translations = require('../translations/src/en/fields.json');
+const translations = require('../translations/src/en/pages.json');
 
 module.exports = superclass => class extends superclass {
   configure(req, res, next) {
     // To redirect to the loop section intro when all witness details are removed from the summary.
     if (req.sessionModel.get('aggregated-witness-dbs-info') &&
-      !req.sessionModel.get('aggregated-witness-dbs-info').aggregatedValues.length) {
+      !req.sessionModel.get('aggregated-witness-dbs-info').aggregatedValues?.length) {
       req.form.options.addStep = 'witness-destruction-of-drugs';
     }
     super.configure(req, res, next);
@@ -27,9 +27,9 @@ module.exports = superclass => class extends superclass {
         if (field.field?.includes('responsible-for-witnessing-dbs-date-of-issue') && field.value !== undefined) {
           field.parsed = formatDate(field.value);
         }
-        // Use summaryHeading if available
-        if (translations[field.field]?.['summary-heading']) {
-          field.field = `${field.field}.summary-heading`;
+        // Use summary page custom label if available
+        if(translations.confirm?.fields?.[field.field]) {
+          field.label = translations.confirm.fields[field.field].label;
         }
         return field;
       });

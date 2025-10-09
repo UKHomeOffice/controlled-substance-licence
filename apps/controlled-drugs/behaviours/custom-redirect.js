@@ -105,6 +105,18 @@ module.exports = superclass => class extends superclass {
         return res.redirect(`${formApp}/register-again`);
       }
 
+      if (
+        currentRoute === '/witness-destruction-of-drugs' &&
+        action === 'edit' &&
+        req.form.values['require-witness-destruction-of-drugs'] === 'yes'
+      ) {
+        const witnessInfo = req.sessionModel.get('aggregated-witness-dbs-info');
+        if (Array.isArray(witnessInfo?.aggregatedValues) && witnessInfo.aggregatedValues.length > 0) {
+          witnessInfo.aggregatedValues = [];
+          req.sessionModel.set('aggregated-witness-dbs-info', witnessInfo);
+        }
+      }
+
       const redirectChecks = [
         checkResponsibleForSecurity(req, currentRoute, action),
         checkResponsibleForSecurityDetails(req, currentRoute, action),

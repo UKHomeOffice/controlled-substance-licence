@@ -21,6 +21,7 @@ const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 const ParseWitnessDBSSummary = require('./behaviours/parse-witness-dbs-summary');
+const ModifyCheckboxField = require('./behaviours/modify-witness-checkbox-field');
 
 const steps = {
 
@@ -437,6 +438,7 @@ const steps = {
   },
 
   '/authorised-witness-information': {
+    behaviours: [ModifyCheckboxField],
     fields: [
       'responsible-for-witnessing-full-name',
       'responsible-for-witnessing-email-address',

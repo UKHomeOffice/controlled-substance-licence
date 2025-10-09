@@ -116,6 +116,10 @@ module.exports = superclass => class extends superclass {
   }
 
   getValues(req, res, next) {
+    // Special handling for the 'edit' action
+    // When editing the answer to 'yes' on the /witness-destruction-of-drugs page via the change link in check-answers,
+    // it allows user to enter witness details in the user flow
+    // we still want to retrieve the action using getAction() to ensure new items are added correctly in the aggregator loop.
     const action = req.params.action === 'edit' ? this.getAction(req, res, next)
       : req.params.action || this.getAction(req, res, next);
 
