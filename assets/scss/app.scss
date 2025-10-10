@@ -236,9 +236,8 @@ pre.looped-records {
   padding-right: 15px;
 }
 
-.pdf-table-caption {
-  @extend .govuk-table__caption--m;
-  margin-top: 20px;
+.pdf-summary-key {
+  font-weight: normal
 }
 
 #declaration-check-group {

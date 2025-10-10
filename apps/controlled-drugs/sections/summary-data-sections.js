@@ -409,7 +409,6 @@ module.exports = {
       {
         step: '/witness-dbs-summary',
         field: 'aggregated-witness-dbs-info',
-        addElementSeparators: true,
         changeLink: 'witness-dbs-summary/edit',
         dependsOn: 'require-witness-destruction-of-drugs',
         parse: obj => {
