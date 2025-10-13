@@ -55,6 +55,28 @@ const formatDate = date => {
 };
 
 /**
+ * Formats a given date string into a specified format.
+ *
+ * @param {string} date - The date string to be formatted.
+ * @returns {string|undefined} - The formatted date string.
+ *
+ * @example
+ * Assuming config.dateLocales is 'en-GB'
+ * formatDate('2023-10-23'); // returns '23/10/2023'
+ */
+const formatCaseDate = date => {
+  if (date) {
+    try {
+      const dateObj = new Date(date);
+      return new Intl.DateTimeFormat(config.dateLocales).format(dateObj);
+    } catch (error) {
+      logger.warn('Warning: Failed to format icasework date', error);
+    }
+  }
+  return undefined;
+};
+
+/**
  * Sanitises a filename by replacing the middle part with **REDACTED**,
  * keeping the first 2 and last 2 characters before the extension.
  *
@@ -281,6 +303,7 @@ module.exports = {
   getLabel,
   translateOption,
   formatDate,
+  formatCaseDate,
   sanitiseFilename,
   parseOperations,
   findArrayItemByValue,

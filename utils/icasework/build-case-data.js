@@ -1,4 +1,4 @@
-const { joinNonEmptyLines, formatDate, findArrayItemByValue, translateOption } = require('../../utils');
+const { joinNonEmptyLines, formatCaseDate, findArrayItemByValue, translateOption } = require('../../utils');
 const businessTypeOptions = require('../../apps/registration/data/business-type.json');
 
 /**
@@ -81,6 +81,27 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
     docNum++;
   });
 
+  // Function to build additional witness data for controlled drugs applications
+  const buildAdditionalWitness = () => {
+    const witnessData = {};
+
+    const getFieldValue = (fields, fieldName) =>
+      fields.find(field => field.field === fieldName)?.value || '';
+
+    (req.sessionModel.get('aggregated-witness-dbs-info').aggregatedValues || []).forEach((item, index) => {
+      witnessData[`Witness${index + 1}.WitnessName`] =
+        getFieldValue(item.fields, 'responsible-for-witnessing-full-name');
+      witnessData[`Witness${index + 1}.WitnessAddress`] = '';
+      witnessData[`Witness${index + 1}.WitnessAddressPostcode`] = '';
+      witnessData[`Witness${index + 1}.WitnessEmailAddress`] =
+        getFieldValue(item.fields, 'responsible-for-witnessing-email');
+      witnessData[`Witness${index + 1}.WitnessDbsCheck`] = 'Yes';
+      witnessData[`Witness${index + 1}.WitnessDisclosure`] =
+        formatCaseDate(getFieldValue(item.fields, 'responsible-for-witnessing-dbs-date-of-issue')) || '';
+    });
+    return witnessData;
+  };
+
   switch (type) {
     case 'amendment':
       return {
@@ -128,13 +149,13 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         AddressPostcodeRp: '',
         EmailAddressRp: req.sessionModel.get('site-responsible-person-email'),
         DbsCheck: 'Yes',
-        DbsDisclosure: formatDate(req.sessionModel.get('responsible-person-dbs-date-of-issue')),
+        DbsDisclosure: formatCaseDate(req.sessionModel.get('responsible-person-dbs-date-of-issue')),
         WitnessName: req.sessionModel.get('authorised-witness-full-name'),
         WitnessAddress: '',
         WitnessAddressPostcode: '',
         WitnessEmail: req.sessionModel.get('authorised-witness-email'),
         WitnessDbsCheck: 'Yes',
-        WitnessDisclosure: formatDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue')),
+        WitnessDisclosure: formatCaseDate(req.sessionModel.get('authorised-witness-dbs-date-of-issue')),
         HoLicencesAlreadyHeld: translateOption(
           req,
           'hold-other-regulatory-licences',
@@ -196,7 +217,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         AddressPostcodeMd: '',
         EmailMd: req.sessionModel.get('person-in-charge-email-address'),
         MdDbsCheck: 'Yes',
-        MdDbsDisclosure: formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
+        MdDbsDisclosure: formatCaseDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
         CriminalConvictions: req.sessionModel.get('has-anyone-received-criminal-conviction'),
         SecurityName: req.sessionModel.get('responsible-for-security') === 'someone-else' ?
           req.sessionModel.get('person-responsible-for-security-full-name') :
@@ -208,8 +229,8 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('person-responsible-for-security-email-address') :
           req.sessionModel.get('person-in-charge-email-address'),
         SecDbsDisclosure: req.sessionModel.get('responsible-for-security') === 'someone-else' ?
-          formatDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue')) :
-          formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
+          formatCaseDate(req.sessionModel.get('person-responsible-for-security-dbs-date-of-issue')) :
+          formatCaseDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
         RespName: req.sessionModel.get('responsible-for-compliance-regulatory') === 'someone-else' ?
           req.sessionModel.get('responsible-for-compliance-regulatory-full-name') :
           req.sessionModel.get('person-in-charge-full-name'),
@@ -220,17 +241,9 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
           req.sessionModel.get('person-in-charge-email-address'),
         DbsCheck: 'Yes',
         DbsDisclosure: req.sessionModel.get('responsible-for-compliance-regulatory') === 'someone-else' ?
-          formatDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue')) :
-          formatDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
-        WitnessName: req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'someone-else' ?
-          req.sessionModel.get('responsible-for-witnessing-full-name') :
-          req.sessionModel.get('person-in-charge-full-name'),
-        WitnessAddress: '',
-        WitnessEmailAddress: req.sessionModel.get('responsible-for-witnessing-the-destruction') === 'someone-else' ?
-          req.sessionModel.get('responsible-for-witnessing-email-address') :
-          req.sessionModel.get('person-in-charge-email-address'),
-        WitnessAddressPostcode: '',
-        WitnessDbsCheck: 'Yes',
+          formatCaseDate(req.sessionModel.get('responsible-for-compliance-regulatory-dbs-date-of-issue')) :
+          formatCaseDate(req.sessionModel.get('person-in-charge-dbs-date-of-issue')),
+        ...buildAdditionalWitness(),
         SiteBusinessType: req.sessionModel.get('tradingReasons'),
         OtherBusinessType: req.sessionModel.get('tradingCustomReasons') ?? '',
         InvoicingPoNum: req.sessionModel.get('invoicing-purchase-order-number')
@@ -280,13 +293,13 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
         AddressPostcodeRp: '',
         EmailAddressRp: req.sessionModel.get('responsible-officer-email'),
         DbsCheck: 'Yes',
-        DbsDisclosure: formatDate(req.sessionModel.get('responsible-officer-dbs-date-of-issue')),
+        DbsDisclosure: formatCaseDate(req.sessionModel.get('responsible-officer-dbs-date-of-issue')),
         GuarName: req.sessionModel.get('guarantor-full-name'),
         GuarAddress: '',
         GuarAddressPostcode: req.sessionModel.get('email'),
         GuarEmailAddress: req.sessionModel.get('guarantor-email-address'),
         GuarDbsCheck: 'Yes',
-        GuarDbsDisclosure: formatDate(req.sessionModel.get('guarantor-dbs-date-of-issue')),
+        GuarDbsDisclosure: formatCaseDate(req.sessionModel.get('guarantor-dbs-date-of-issue')),
         CriminalConvictions: translateOption(
           req,
           'has-anyone-received-criminal-conviction',
