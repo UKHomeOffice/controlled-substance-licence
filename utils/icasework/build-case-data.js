@@ -94,7 +94,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
       witnessData[`Witness${index + 1}.WitnessAddress`] = '';
       witnessData[`Witness${index + 1}.WitnessAddressPostcode`] = '';
       witnessData[`Witness${index + 1}.WitnessEmailAddress`] =
-        getFieldValue(item.fields, 'responsible-for-witnessing-email');
+        getFieldValue(item.fields, 'responsible-for-witnessing-email-address');
       witnessData[`Witness${index + 1}.WitnessDbsCheck`] = 'Yes';
       witnessData[`Witness${index + 1}.WitnessDisclosure`] =
         formatCaseDate(getFieldValue(item.fields, 'responsible-for-witnessing-dbs-date-of-issue')) || '';
