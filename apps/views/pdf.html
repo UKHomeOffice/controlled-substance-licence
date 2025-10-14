@@ -51,19 +51,11 @@
     {{#files}}
     <dl class="govuk-summary-list govuk-!-margin-0">
       <div class="govuk-summary-list__row">
-        
-        <dt class="govuk-summary-list__key">{{label}}</dt>
-        <dd class="govuk-summary-list__value" data-value="{{label}}">
-          <ul class="govuk-list govuk-list--number">
-          {{#urls}}
-          <li><a class="govuk-link" href="{{url}}">{{name}}</a></li>
-          {{/urls}}
-          </ul>
-        </dd>
-       
+        <dt class="govuk-summary-list__key pdf-summary-key">{{label}}</dt>
+        <dd class="govuk-summary-list__value" data-value="{{label}}"><ul class="govuk-list govuk-list--number">{{#urls}}<li><a class="govuk-link" href="{{url}}">{{name}}</a></li>{{/urls}}</ul></dd>
       </div>
     </dl>
-     {{/files}}
+    {{/files}}
     {{/addFilesSection}}
   </main>
   {{/main}}
