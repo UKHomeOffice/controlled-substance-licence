@@ -88,7 +88,7 @@ function buildCaseData(req, applicationForm = null, applicationFiles = [], authT
     const getFieldValue = (fields, fieldName) =>
       fields.find(field => field.field === fieldName)?.value || '';
 
-    (req.sessionModel.get('aggregated-witness-dbs-info').aggregatedValues || []).forEach((item, index) => {
+    (req.sessionModel.get('aggregated-witness-dbs-info')?.aggregatedValues || []).forEach((item, index) => {
       witnessData[`Witness${index + 1}.WitnessName`] =
         getFieldValue(item.fields, 'responsible-for-witnessing-full-name');
       witnessData[`Witness${index + 1}.WitnessAddress`] = '';
