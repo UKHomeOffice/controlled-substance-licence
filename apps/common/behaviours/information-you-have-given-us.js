@@ -34,14 +34,20 @@ module.exports = superclass => class extends superclass {
     req.sessionModel.set('steps', visitedFormSteps);
 
     let nextStep;
+    let missingSteps = [];
     const { confirmStep } = req.form.options;
     if (visitedFormSteps.includes(confirmStep)) {
       nextStep = confirmStep;
     } else {
       const lastVisitedStep = visitedFormSteps[visitedFormSteps.length - 1];
+      const stepJourneyVisited = stepJourneyFromValues.slice(0, stepJourneyFromValues.findIndex(item => item === lastVisitedStep) + 1);
+
+      // Now compare to find missing steps within that subset
+      missingSteps = stepJourneyVisited.filter(step => !visitedFormSteps.includes(step));
       nextStep = stepJourneyFromValues[stepJourneyFromValues.findIndex(item => item === lastVisitedStep) + 1];
     }
     req.sessionModel.set('save-return-next-step', nextStep);
+    req.sessionModel.set('save-return-missing-steps', missingSteps);
 
     return super.getValues(req, res, next);
   }
@@ -53,8 +59,11 @@ module.exports = superclass => class extends superclass {
     if (req.body.exit) {
       return res.redirect(`${formApp}/save-and-exit`);
     }
-
+    const missingSteps = req.sessionModel.get('save-return-missing-steps');
     const nextUnsavedStep = req.sessionModel.get('save-return-next-step');
+    if(missingSteps.length > 0){
+      return res.redirect(`${formApp}${missingSteps[0]}`);
+    }
     if (nextUnsavedStep) {
       return res.redirect(`${formApp}${nextUnsavedStep}`);
     }
