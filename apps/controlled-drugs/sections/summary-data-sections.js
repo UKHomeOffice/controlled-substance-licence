@@ -409,7 +409,6 @@ module.exports = {
       {
         step: '/witness-dbs-summary',
         field: 'aggregated-witness-dbs-info',
-        changeLink: 'witness-dbs-summary/edit',
         dependsOn: 'require-witness-destruction-of-drugs',
         parse: obj => {
           if (!obj?.aggregatedValues) { return null; }

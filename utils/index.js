@@ -55,7 +55,7 @@ const formatDate = date => {
 };
 
 /**
- * Formats a given date string into a specified format.
+ * Formats a given date string into a specified format for icasework data
  *
  * @param {string} date - The date string to be formatted.
  * @returns {string|undefined} - The formatted date string.
