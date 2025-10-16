@@ -1,0 +1,57 @@
+<div>
+  <h2 class="section-header">{{section}}</h2>
+</div>
+
+{{#fields}}
+  {{^omitFromSummary}}
+
+    {{#isAggregatorTitle}}
+    <div class="govuk-summary-card govuk-!-margin-top-2 govuk-!-margin-bottom-2">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">{{value}}</h2>
+        <div class="govuk-summary-card__actions">
+          {{#changeLink}}
+          <a class="govuk-link" href="{{changeLink}}" id="{{field}}-change-{{index}}">
+            {{#t}}buttons.change{{/t}}
+            <span class="govuk-visually-hidden">{{value}}'s witness details</span>
+          </a>
+          {{/changeLink}}
+          {{^changeLink}}
+          <a class="govuk-link" href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">
+            {{#t}}buttons.change{{/t}}
+            <span class="govuk-visually-hidden">{{value}}'s witness details</span>
+          </a>
+          {{/changeLink}}
+        </div>
+      </div>
+    </div>
+    {{/isAggregatorTitle}}
+
+    <dl class="govuk-summary-list govuk-!-margin-0">
+      <div class="govuk-summary-list__row">
+        {{#isSeparator}}
+        {{/isSeparator}}
+        {{^isSeparator}}
+        <dt class="govuk-summary-list__key">{{label}}</dt>
+        <dd class="govuk-summary-list__value" data-value="{{value}}">{{value}}</dd>
+        <dd class="govuk-summary-list__actions">
+          {{^omitChangeLink}}
+          {{#changeLink}}
+          <a class="govuk-link" href="{{changeLink}}" id="{{field}}-change-{{index}}">{{#t}}buttons.change{{/t}} <span
+              class="govuk-visually-hidden">{{changeLinkDescription}} from {{value}}</span></a>
+          {{/changeLink}}
+          {{^changeLink}}
+          <a class="govuk-link" href="{{baseUrl}}{{step}}/edit#{{field}}" id="{{field}}-change">{{#t}}buttons.change{{/t}}
+            <span class="govuk-visually-hidden">{{changeLinkDescription}} from {{value}}</span></a>
+          {{/changeLink}}
+          {{/omitChangeLink}}
+        </dd>
+        {{#omitChangeLink}}
+        <dd> </dd>
+        {{/omitChangeLink}}
+        {{/isSeparator}}
+      </div>
+    </dl>
+
+  {{/omitFromSummary}}
+{{/fields}}

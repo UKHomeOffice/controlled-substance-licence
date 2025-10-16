@@ -235,9 +235,6 @@
     "notUrl": "Your answer must not contain URLs or links",
     "maxlength": "Details of where you source the drugs from must be 2,000 characters or less"
   },
-  "responsible-for-witnessing-the-destruction": {
-    "required": "Select who is responsible for witnessing the destruction of controlled drugs"
-  },
   "responsible-for-witnessing-full-name": {
     "required": "Enter the name of the authorised witness",
     "minlength": "Full name must be between 3 and 200 characters",

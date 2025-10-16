@@ -20,6 +20,8 @@ const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
+const ParseWitnessDBSSummary = require('./behaviours/parse-witness-dbs-summary');
+const ModifyCheckboxField = require('./behaviours/modify-witness-checkbox-field');
 
 const steps = {
 
@@ -420,10 +422,10 @@ const steps = {
     // The conditional check should be performed in reverse order, as the last fork takes over.
     forks: [
       {
-        target: '/trading-reasons',
+        target: '/authorised-witness-information',
         condition: {
           field: 'require-witness-destruction-of-drugs',
-          value: 'no'
+          value: 'yes'
         }
       },
       {
@@ -432,34 +434,72 @@ const steps = {
           req.sessionModel.get('require-witness-destruction-of-drugs') === 'no'
       }
     ],
-    next: '/authorised-witness-information',
-    continueOnEdit: true
+    next: '/trading-reasons'
   },
 
   '/authorised-witness-information': {
+    behaviours: [ModifyCheckboxField],
     fields: [
       'responsible-for-witnessing-full-name',
       'responsible-for-witnessing-email-address',
       'responsible-for-witnessing-confirmed-dbs'
     ],
     next: '/witness-dbs-information',
-    continueOnEdit: true
+    ignoreCustomRedirect: true
   },
 
   '/witness-dbs-information': {
     fields: [
       'responsible-for-witnessing-dbs-fullname',
       'responsible-for-witnessing-dbs-reference',
-      'responsible-for-witnessing-dbs-date-of-issue'
+      'responsible-for-witnessing-dbs-date-of-issue',
+      'responsible-for-witnessing-dbs-subscription'
     ],
-    next: '/witness-dbs-updates',
-    continueOnEdit: true
+    next: '/witness-dbs-summary',
+    ignoreCustomRedirect: true
   },
 
-  '/witness-dbs-updates': {
-    fields: ['responsible-for-witnessing-dbs-subscription'],
-    next: '/witness-update-service',
-    template: 'person-in-charge-dbs-updates'
+  '/witness-dbs-summary': {
+    behaviours: [
+      LoopAggregator,
+      LimitItems,
+      SetSummaryReferrer,
+      ParseWitnessDBSSummary
+    ],
+    aggregateTo: 'aggregated-witness-dbs-info',
+    aggregateFrom: [
+      'responsible-for-witnessing-full-name',
+      'responsible-for-witnessing-email-address',
+      'responsible-for-witnessing-dbs-fullname',
+      'responsible-for-witnessing-dbs-reference',
+      'responsible-for-witnessing-dbs-date-of-issue',
+      'responsible-for-witnessing-dbs-subscription'
+    ],
+    titleField: 'responsible-for-witnessing-full-name',
+    addStep: 'authorised-witness-information',
+    template: 'witness-dbs-summary',
+    backLink: 'authorised-witness-information',
+    aggregateLimit: config.aggregateLimits.controlledDrugs.witnessDetailsLimit,
+    forks: [
+      {
+        target: '/company-registration-certificate',
+        condition: req => req.sessionModel.get('licensee-type') !== 'existing-licensee-renew-or-change-site'
+      },
+      {
+        target: '/witness-update-service',
+        condition: req =>
+          req.sessionModel.get('aggregated-witness-dbs-info')?.aggregatedValues?.some(item =>
+            item.fields?.some(field =>
+              field.field === 'responsible-for-witnessing-dbs-subscription' &&
+              field.value === 'yes'
+            )
+          )
+      }
+    ],
+    next: '/trading-reasons',
+    locals: {
+      fullWidthPage: true
+    }
   },
 
   '/witness-update-service': {
