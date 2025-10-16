@@ -119,11 +119,11 @@ module.exports = superclass => class extends superclass {
 
     if (hasDbsSubscription) {
       dbsUpdateServiceInstructions = fs.readFileSync(
-        path.join(__dirname, '../views/content/en/dbs-update-service-instructions.md'), 
+        path.join(__dirname, '../views/content/en/dbs-update-service-instructions.md'),
         'utf8'
       );
     }
-    
+
     const personalisation = {
       referenceNumber,
       emailHeader,
