@@ -150,6 +150,7 @@ module.exports = {
       substanceLimit: 100
     },
     controlledDrugs: {
+      witnessDetailsLimit: 10,
       tradingReasonsLimit: 5
     },
     industrialHemp: {
