@@ -8,6 +8,9 @@ const iCasework = require('../../../utils/icasework');
 const buildCaseData = require('../../../utils/icasework/build-case-data');
 const { updateApplication } = require('../../../utils/data-service');
 
+const fs = require('node:fs');
+const path = require('node:path');
+
 module.exports = superclass => class extends superclass {
   async successHandler(req, res, next) {
     // generate PDFs
@@ -104,12 +107,30 @@ module.exports = superclass => class extends superclass {
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const emailHeader = req.translate('journey.email-header');
     const emailIntro = req.translate('journey.email-intro');
+
+    // Check if DBS update service instructions should be included
+    let dbsUpdateServiceInstructions = '';
+    const hasDbsSubscription = req.sessionModel.get('aggregated-witness-dbs-info')?.aggregatedValues?.some(item =>
+      item.fields?.some(field =>
+        field.field === 'responsible-for-witnessing-dbs-subscription' &&
+        field.value === 'yes'
+      )
+    );
+
+    if (hasDbsSubscription) {
+      dbsUpdateServiceInstructions = fs.readFileSync(
+        path.join(__dirname, '../views/content/en/dbs-update-service-instructions.md'),
+        'utf8'
+      );
+    }
+
     const personalisation = {
       referenceNumber,
       emailHeader,
       emailIntro: emailIntro !== 'journey.email-intro' ? emailIntro : emailHeader,
       licenseType: pdfConfig.licenceLabel,
-      applicantSubmissionLink
+      applicantSubmissionLink,
+      dbsUpdateServiceInstructions
     };
     try {
       await sendEmail(
