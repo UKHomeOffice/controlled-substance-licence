@@ -27,12 +27,12 @@ module.exports = superclass => class extends superclass {
     if (!sessionSteps.includes('/information-you-have-given-us')) {
       sessionSteps.push('/information-you-have-given-us');
     }
-    
+
     const stepJourneyFromValues = buildStepJourneyFromSessionValues(req);
-    
-    const nextStep = stepJourneyFromValues.find(step => !sessionSteps.includes(step)) || 
+
+    const nextStep = stepJourneyFromValues.find(step => !sessionSteps.includes(step)) ||
                     req.form.options.confirmStep;
-    
+
     req.sessionModel.set('save-return-next-step', nextStep);
 
     return super.getValues(req, res, next);
@@ -45,9 +45,9 @@ module.exports = superclass => class extends superclass {
     if (req.body.exit) {
       return res.redirect(`${formApp}/save-and-exit`);
     }
-    
+
     const nextUnsavedStep = req.sessionModel.get('save-return-next-step');
-    
+
     if (nextUnsavedStep) {
       return res.redirect(`${formApp}${nextUnsavedStep}`);
     }

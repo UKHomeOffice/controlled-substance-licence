@@ -77,13 +77,13 @@ describe('information-you-have-given-us', () => {
       expect(Base.prototype.getValues).toHaveBeenCalled();
     });
 
-    test('Saves correctly ordered steps and next step to session when no fork is satisfied', () => {
+    test('Saves correctly next step to session when no fork is satisfied', () => {
       instance.getValues(req, res, next);
       expect(req.sessionModel.get('steps')).toStrictEqual(['/step-one', '/step-two']);
       expect(req.sessionModel.get('save-return-next-step')).toBe('/step-three');
     });
 
-    test('Saves correctly ordered steps and next step to session when a fork is satisfied', () => {
+    test('Saves correctly the next step to session when a fork is satisfied', () => {
       req.sessionModel.set('step-one', 'no');
       req.sessionModel.set('steps', [
         '/step-one',
@@ -91,8 +91,17 @@ describe('information-you-have-given-us', () => {
         '/step-one-point-five'
       ]);
       instance.getValues(req, res, next);
-      expect(req.sessionModel.get('steps')).toStrictEqual(['/step-one', '/step-one-point-five', '/step-two']);
       expect(req.sessionModel.get('save-return-next-step')).toBe('/step-three');
+    });
+
+    test('Saves correctly the next step to session when user journey has been changed', () => {
+      req.sessionModel.set('steps', [
+        '/step-one',
+        '/step-which-does-not-exist-anymore',
+        '/step-three'
+      ]);
+      instance.getValues(req, res, next);
+      expect(req.sessionModel.get('save-return-next-step')).toBe('/step-two');
     });
 
     test('Will set the confirm step as the next step if is has been visited', () => {
