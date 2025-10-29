@@ -1,0 +1,11 @@
+{{<partials-page}}
+  {{$pageTitle}}
+  {{#errorlist.length}}{{#t}}errorlist.prefix{{/t}}{{/errorlist.length}} {{#t}}pages.witness-dbs-information.pageTitle{{/t}} &ndash; {{#t}}journey.serviceName{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+    {{#fields}}
+        {{#renderField}}{{/renderField}}
+    {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
