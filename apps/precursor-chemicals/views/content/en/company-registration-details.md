@@ -5,6 +5,6 @@
     </span>
   </summary>
   <div class="govuk-details__text">
-    <p class="govuk-body">Email <a href="mailto:DFLU.dom@homeoffice.gov.uk" class="govuk-link">DFLU.dom@homeoffice.gov.uk</a> to amend company registration details.</p>
+    <p class="govuk-body">Email <a href="mailto:dflu.dom@homeoffice.gov.uk" class="govuk-link">dflu.dom@homeoffice.gov.uk</a> to amend company registration details.</p>
   </div>
 </details>
