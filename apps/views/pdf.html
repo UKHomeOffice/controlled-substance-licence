@@ -14,49 +14,56 @@
       <img class="ho-logo" src="{{ho-logo}}" alt="Home Office logo"/>
       <h1 class="govuk-heading-l">{{title}}</h1>
       <p class="govuk-body">Time and date: {{dateTime}}</p>
-      {{#rows}}
-        {{^omitFromPdf}}
-          <table data-section="{{section}}" class="table-details">
-            <caption class="govuk-table__caption pdf-table-caption">{{section}}</caption>
-            <tbody{{#name}} data-group="{{name}}"{{/name}}>
-            {{#fields}}
-            {{^omitFromPdf}}
-              {{#isSeparator}}
-                <tr class="spacer">
-                  <td colspan="2"></td>
-                </tr>
-              {{/isSeparator}}
-              {{^isSeparator}}
-                <tr data-id="{{field}}"{{#className}} class="{{className}}"{{/className}}>
-                  <td data-label="{{label}}">{{label}}</td>
-                  <td data-value="{{value}}">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
-                </tr>
-              {{/isSeparator}}
-            {{/omitFromPdf}}
-            {{/fields}}
-            </tbody>
-          </table>
-        {{/omitFromPdf}}
-      {{/rows}}
-      {{#addFilesSection}}
-        <table data-section="files" class="table-details">
-          <caption class="govuk-table__caption pdf-table-caption">Files</caption>
-          <tbody>
-          {{#files}}
-            <tr data-id="{{field}}"{{#className}} class="{{className}}"{{/className}}>
-              <td data-label="{{label}}">{{label}}</td>
-              <td data-value="{{label}}">
-                <ul class="govuk-list govuk-list--number">
-                  {{#urls}}
-                    <li><a class="govuk-link" href="{{url}}">{{name}}</a></li>
-                  {{/urls}}
-                </ul>
-              </td>
-            </tr>
-          {{/files}}
-          </tbody>
-        </table>
-      {{/addFilesSection}}
-    </main>
+
+    {{#rows}}
+    {{^omitFromPdf}}
+    <div>
+      <h2 class="section-header">{{section}}</h2>
+    </div>
+    {{#fields}}
+    {{^omitFromPdf}}
+    {{#isAggregatorTitle}}
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">{{value}}</h2>
+      </div>
+    </div>
+    {{/isAggregatorTitle}}
+    <dl class="govuk-summary-list govuk-!-margin-0">
+      <div class="govuk-summary-list__row">
+        {{#isSeparator}}
+        {{/isSeparator}}
+        {{^isSeparator}}
+          <dt class="govuk-summary-list__key pdf-summary-key">{{label}}</dt>
+          <dd class="govuk-summary-list__value" data-value="{{value}}">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</dd>
+        {{/isSeparator}}
+      </div>
+    </dl>
+    {{/omitFromPdf}}
+    {{/fields}}
+    {{/omitFromPdf}}
+    {{/rows}}
+
+    {{#addFilesSection}}
+    <div>
+      <h2 class="section-header" data-section="files">Files</h2>
+    </div>
+    {{#files}}
+    <dl class="govuk-summary-list govuk-!-margin-0">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key pdf-summary-key">{{label}}</dt>
+        <dd class="govuk-summary-list__value pdf-summary-value" data-value="{{label}}">
+          <ul class="govuk-list govuk-list--number">
+            {{#urls}}
+            <li><a class="govuk-link" href="{{url}}">{{name}}</a></li>
+            {{/urls}}
+          </ul>
+        </dd>
+      </div>
+    </dl>
+    {{/files}}
+    {{/addFilesSection}}
+  </main>
   {{/main}}
-{{/govuk-template}}
+  {{/govuk-template}}
+  

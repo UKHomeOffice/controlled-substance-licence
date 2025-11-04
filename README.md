@@ -39,6 +39,7 @@ Controlled Substance Licence (CSL) allows the public to register and apply for a
 You can containerise the application using [Docker](https://www.docker.com). The `.devcontainer` directory includes a `docker-compose.dev.yml` file for orchestrating multi-container application.
 
 ### Prerequisites
+
    - [Docker](https://www.docker.com)
 
 ### Setup

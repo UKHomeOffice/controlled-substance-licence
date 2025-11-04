@@ -87,7 +87,7 @@ textarea {
 }
 
 .section-header {
-  margin-top: 20px !important;
+  margin-top: 40px !important;
 }
 
 .section-fields {
@@ -135,7 +135,7 @@ textarea {
   }
 }
 
-.wrap-table-cell, .confirm-row {
+.govuk-summary-list__value {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -236,9 +236,12 @@ pre.looped-records {
   padding-right: 15px;
 }
 
-.pdf-table-caption {
-  @extend .govuk-table__caption--m;
-  margin-top: 20px;
+.pdf-summary-key {
+  font-weight: normal
+}
+
+.pdf-summary-value{
+  white-space: normal;
 }
 
 #declaration-check-group {
@@ -253,4 +256,11 @@ pre.looped-records {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.govuk-summary-card__title-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0 !important;
 }

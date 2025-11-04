@@ -307,7 +307,8 @@
     }
   },
   "require-witness-destruction-of-drugs": {
-    "legend": "Do you require somebody within your company to be authorised to witness the destruction of controlled drugs?",
+    "legend": "Does your company have any authorised witnesses for the destruction of controlled drugs?",
+    "hint": "Authorised witnesses must have a valid DBS certificate, or have applied for one",
     "options": {
       "yes": {
         "label": "Yes"
@@ -327,24 +328,6 @@
     "hint": "This includes details of your suppliers, or the raw materials and where you get them",
     "label": "Provide details of where you source the drugs from"
   },
-  "responsible-for-witnessing-the-destruction": {
-    "legend": "Who is responsible for witnessing the destruction of controlled drugs?",
-    "options": {
-      "same-as-managing-director": {
-        "label": "The same person as the managing director",
-        "hint": "Re-use their contact and DBS information"
-      },
-      "someone-else": {
-        "label": "Someone else"
-      },
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
   "responsible-for-witnessing-full-name": {
     "label": "Full name"
   },
@@ -356,7 +339,8 @@
   },
   "responsible-for-witnessing-dbs-fullname": {
     "label": "Full name",
-    "hint": "Enter the name as it appears on your DBS application"
+    "hint": "Enter the name as it appears on your DBS application",
+    "summary-heading": "DBS application name"
   },
   "responsible-for-witnessing-dbs-reference": {
     "label": "DBS reference"
@@ -365,7 +349,8 @@
     "legend": "Date of issue or application"
   },
   "responsible-for-witnessing-dbs-subscription": {
-    "legend": "Has the person responsible for witnessing the destruction of controlled drugs subscribed to DBS updates?",
+    "legend": "Has {{values.responsible-for-witnessing-full-name}} subscribed to the DBS Update Service?",
+    "summary-heading": "Subscribed to DBS Update Service",
     "options": {
       "yes": {
         "label": "Yes"
