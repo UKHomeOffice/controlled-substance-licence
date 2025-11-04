@@ -1,4 +1,4 @@
-To allow the Drugs and Firearms Licensing Unit (DFLU) to access the <a href="https://www.gov.uk/dbs-update-service" target="_blank">DBS Update Service (opens in a new tab)</a>, each authorised witness must email <a href="mailto:DFLU.dom@homeoffice.gov.uk" class="govuk-link">DFLU.dom@homeoffice.gov.uk</a> with:
+To allow the Drugs and Firearms Licensing Unit (DFLU) to access the <a href="https://www.gov.uk/dbs-update-service" target="_blank">DBS Update Service (opens in a new tab)</a>, each authorised witness must email <a href="mailto:dflu.dom@homeoffice.gov.uk" class="govuk-link">dflu.dom@homeoffice.gov.uk</a> with:
 
 - their full name
 - their date of birth
