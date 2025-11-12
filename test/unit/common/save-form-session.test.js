@@ -232,7 +232,7 @@ describe('save-form-session', () => {
 
       req.body = {
         ...req.body,
-        'save-and-exit': 'true' 
+        'save-and-exit': 'true'
       };
       req.baseUrl = '/precursor-chemicals';
 
@@ -256,7 +256,6 @@ describe('save-form-session', () => {
       expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/save-and-exit');
       expect(next).not.toHaveBeenCalled();
     });
-
   });
 
   describe('The \'locals\' method', () => {
