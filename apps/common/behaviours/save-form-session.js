@@ -52,7 +52,7 @@ module.exports = superclass => class extends superclass {
     // Filter out temporary navigation steps (edit/change/delete operations and their sub-routes)
     // to ensure only the main application flow is preserved when saving session state
     session.steps = session.steps.filter(step => !EXCLUDE_TEMP_STEPS_REGEX.test(step));
-    
+
     const applicant_id = req.session['hof-wizard-common']?.['applicant-id'];
     const applicationId = req.sessionModel.get('application-id');
     const licence_type = req.sessionModel.get('licence-type');
