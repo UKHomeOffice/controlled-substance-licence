@@ -5,6 +5,9 @@ const { generateErrorMsg } = require('../../../utils/index');
 const { protocol, host, port } = config.saveService;
 const applicationsUrl = `${protocol}://${host}:${port}/applications`;
 
+// Regex to exclude temporary navigation steps (edit/change/delete operations) from saved session
+const EXCLUDE_TEMP_STEPS_REGEX = /\/(change|edit|delete)(?:\/|$)/;
+
 module.exports = superclass => class extends superclass {
   locals(req, res) {
     const locals = super.locals(req, res);
@@ -46,9 +49,10 @@ module.exports = superclass => class extends superclass {
       session.steps.push(currentRoute);
     }
 
-    // ensure no /edit steps are add to the steps property when we save to the store
-    session.steps = session.steps.filter(step => !step.match(/\/change|edit|delete$/));
-
+    // Filter out temporary navigation steps (edit/change/delete operations and their sub-routes)
+    // to ensure only the main application flow is preserved when saving session state
+    session.steps = session.steps.filter(step => !EXCLUDE_TEMP_STEPS_REGEX.test(step));
+    
     const applicant_id = req.session['hof-wizard-common']?.['applicant-id'];
     const applicationId = req.sessionModel.get('application-id');
     const licence_type = req.sessionModel.get('licence-type');
