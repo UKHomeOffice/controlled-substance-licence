@@ -181,6 +181,81 @@ describe('save-form-session', () => {
       await instance.successHandler(req, res, next);
       expect(next).toHaveBeenCalledWith(new Error('Id not received in response []'));
     });
+
+    test('filters out temporary navigation steps (edit/change/delete operations) from session steps', async () => {
+      mockSessionAttributes.steps = [
+        '/application-type',
+        '/licensee-type',
+        '/licence-holder-details/edit',
+        '/company-details/change',
+        '/witness/edit/19',
+        '/contact-info/delete',
+        '/personal-details',
+        '/change-witness-only',
+        '/delete-request',
+        '/declaration'
+      ];
+
+      await instance.successHandler(req, res, next);
+
+      const expectedSteps = [
+        '/application-type',
+        '/licensee-type',
+        '/personal-details',
+        '/change-witness-only',
+        '/delete-request',
+        '/declaration',
+        '/save-me'
+      ];
+
+      expect(mockRequest).toHaveBeenCalledWith({
+        url: 'http://127.0.0.1:5000/applications',
+        method: 'POST',
+        data: {
+          session: expect.objectContaining({
+            steps: expectedSteps
+          }),
+          applicant_id: 1,
+          licence_type: 'precursor-chemicals',
+          status_id: 1
+        }
+      });
+    });
+
+    test('redirects to save-and-exit route when save-and-exit button is pressed', async () => {
+      mockRequest = jest.fn().mockResolvedValue({ data: [{id: 1}] });
+      Model.mockImplementation(() => {
+        return {
+          _request: mockRequest
+        };
+      });
+
+      req.body = {
+        ...req.body,
+        'save-and-exit': 'true'
+      };
+      req.baseUrl = '/precursor-chemicals';
+
+      res.redirect = jest.fn();
+
+      await instance.successHandler(req, res, next);
+
+      expect(mockRequest).toHaveBeenCalledWith({
+        url: 'http://127.0.0.1:5000/applications',
+        method: 'POST',
+        data: {
+          session: expect.objectContaining({
+            steps: expect.arrayContaining(['/save-me'])
+          }),
+          applicant_id: 1,
+          licence_type: 'precursor-chemicals',
+          status_id: 1
+        }
+      });
+
+      expect(res.redirect).toHaveBeenCalledWith('/precursor-chemicals/save-and-exit');
+      expect(next).not.toHaveBeenCalled();
+    });
   });
 
   describe('The \'locals\' method', () => {

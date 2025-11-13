@@ -11,7 +11,8 @@
     "!apps/**/fields/*.js",
     "!apps/**/index.js",
     "!apps/**/sections/*",
-    "!server.js"
+    "!server.js",
+    "!**/.devcontainer/**"
   ],
   "setupFiles": ["<rootDir>/jest.env.js"]
 }
