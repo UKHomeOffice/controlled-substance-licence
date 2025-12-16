@@ -103,7 +103,7 @@ module.exports = superclass => class extends superclass {
     }
 
     // send applicant confirmation with PDF attachment
-    const recipientEmail = req.sessionModel.get('email');
+    const recipientEmail = req.sessionModel.get('who-is-completing-application-email');
     const applicantSubmissionLink = prepareUpload(applicantPdfData);
     const emailHeader = req.translate('journey.email-header');
     const emailIntro = req.translate('journey.email-intro');
