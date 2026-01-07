@@ -1,6 +1,6 @@
 Application reference number: {{values.referenceNumber}} 
 
-An email confirming your application and a PDF of your details has been sent to <a href="mailto:{{values.licence-email-address}}" class="govuk-link">{{values.licence-email-address}}</a>.
+An email confirming your application and a PDF of your details has been sent to <a href="mailto:{{values.who-is-completing-application-email}}" class="govuk-link">{{values.who-is-completing-application-email}}</a>.
 
 ## What happens next
 
