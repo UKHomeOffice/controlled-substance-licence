@@ -735,5 +735,5 @@ module.exports = {
   params: '/:action?/:id?/:edit?',
   steps: steps,
   confirmStep: '/confirm',
-  behaviours: [ Auth, SaveFormSession, CustomRedirect, SetFeedbackUrl]
+  behaviours: [ Auth, CustomRedirect, SaveFormSession, SetFeedbackUrl]
 };
