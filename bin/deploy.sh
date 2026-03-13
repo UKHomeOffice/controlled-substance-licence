@@ -10,6 +10,8 @@ export FILEVAULT_NGINX_SETTINGS=$HOF_CONFIG/filevault-nginx-settings.yaml
 export FILEVAULT_INGRESS_EXTERNAL_ANNOTATIONS=$HOF_CONFIG/filevault-ingress-external-annotations.yaml
 
 kd='kd --insecure-skip-tls-verify --timeout 10m --check-interval 10s'
+redis_storage_files='kube/redis/redis-persistent-volume-claim.yml'
+redis_runtime_files='kube/redis/redis-service.yml -f kube/redis/redis-network-policy.yml -f kube/redis/redis-deployment.yml'
 
 if [[ $1 == 'tear_down' ]]; then
   export KUBE_NAMESPACE=$BRANCH_ENV
@@ -23,26 +25,43 @@ fi
 
 export KUBE_NAMESPACE=$1
 export DRONE_SOURCE_BRANCH=$(echo $DRONE_SOURCE_BRANCH | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+export REDIS_PERSISTENCE_ENABLED=${REDIS_PERSISTENCE_ENABLED:-true}
+export REDIS_PERSISTENCE_ACCESS_MODES=${REDIS_PERSISTENCE_ACCESS_MODES:-ReadWriteOnce}
+export REDIS_PERSISTENCE_STORAGE_CLASS=${REDIS_PERSISTENCE_STORAGE_CLASS:-}
+export REDIS_PERSISTENCE_EXISTING_CLAIM=${REDIS_PERSISTENCE_EXISTING_CLAIM:-}
+export REDIS_PERSISTENCE_ANNOTATIONS_FILE=${REDIS_PERSISTENCE_ANNOTATIONS_FILE:-}
+
+if [[ -z "${REDIS_PERSISTENCE_SIZE}" ]]; then
+  if [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
+    export REDIS_PERSISTENCE_SIZE=10Gi
+  else
+    export REDIS_PERSISTENCE_SIZE=1Gi
+  fi
+fi
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps -f kube/certs
-  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf -f kube/file-vault
+  $kd -f $redis_storage_files
+  $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf -f kube/file-vault
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
+  $kd -f $redis_storage_files
+  $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${STG_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
+  $kd -f $redis_storage_files
+  $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${PROD_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f kube/redis -f kube/hof-rds-api -f kube/html-pdf
+  $kd -f $redis_storage_files
+  $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
   $kd -f kube/app/service.yml -f kube/app/ingress-external.yml
