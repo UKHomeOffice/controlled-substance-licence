@@ -99,3 +99,41 @@ By following these steps, you should be able to run your application using a dev
 ### Deployment
 
 This application is containerised and ready for deployment on Kubernetes. Refer to the `kube/` directory for Kubernetes deployment scripts.
+
+### Redis persistent storage (Kubernetes)
+
+Redis stores session/cache state under `/var/lib/redis` (see `kube/redis/redis-deployment.yml`).
+This repo now supports PVC-backed Redis storage so data can survive pod restarts.
+
+#### Configuration
+
+Set these environment variables in your deploy context (Drone step env or secret values):
+
+- `REDIS_PERSISTENCE_ENABLED` (`true`/`false`, default: `true`)
+- `REDIS_PERSISTENCE_SIZE` (default: `1Gi` non-prod, `10Gi` prod)
+- `REDIS_PERSISTENCE_ACCESS_MODES` (default: `ReadWriteOnce`)
+- `REDIS_PERSISTENCE_STORAGE_CLASS` (default: empty, uses cluster default StorageClass)
+- `REDIS_PERSISTENCE_EXISTING_CLAIM` (optional, default: empty)
+- `REDIS_PERSISTENCE_ANNOTATIONS_FILE` (optional path to YAML key/value annotations)
+
+When enabled, `kube/redis/redis-persistent-volume-claim.yml` is rendered and `kube/redis/redis-deployment.yml` mounts that claim into `/var/lib/redis`.
+When disabled, Redis falls back to `emptyDir` and deployment behaviour remains unchanged.
+
+#### Cluster prerequisites
+
+- A default StorageClass in the target cluster, or set `REDIS_PERSISTENCE_STORAGE_CLASS` explicitly.
+- Sufficient capacity in the selected storage class for the requested PVC size.
+
+#### How to test persistence
+
+1. Deploy with `REDIS_PERSISTENCE_ENABLED=true`.
+2. Confirm PVC is bound: `kubectl get pvc -n <namespace>`.
+3. Write test data in Redis: `kubectl exec -n <namespace> deploy/redis -- redis-cli SET persistence-check ok`.
+4. Restart Redis pod: `kubectl rollout restart deploy/redis -n <namespace>` (branch deploys use suffixed names).
+5. Verify data survives restart: `kubectl exec -n <namespace> deploy/redis -- redis-cli GET persistence-check`.
+
+#### Upgrade and migration notes
+
+- PVC fields are mostly immutable after creation (for example, storage class and some access mode changes).
+- If you need to change immutable PVC settings, create a new claim and set `REDIS_PERSISTENCE_EXISTING_CLAIM`.
+- Helm-style upgrade behaviour still applies conceptually to immutable PVC constraints even though this repo deploys via `kd` and raw manifests.
