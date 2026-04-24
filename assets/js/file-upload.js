@@ -1,6 +1,6 @@
 'use strict';
 
-const {upload: uploadConfig} = require('../../config');
+const uploadConfig = require('./file-upload-config');
 
 /**
  * Handles the status of the file upload process.

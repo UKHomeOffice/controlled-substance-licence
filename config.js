@@ -2,6 +2,7 @@
 /* eslint no-process-env: 0 */
 
 const env = process.env.NODE_ENV || 'production';
+const fileUploadConfig = require('./assets/js/file-upload-config');
 
 module.exports = {
   env: env,
@@ -46,64 +47,8 @@ module.exports = {
     host: process.env.DATASERVICE_SERVICE_HOST || '127.0.0.1'
   },
   upload: {
-    maxFileSizeInBytes: 25 * 1024 * 1024, // 25MiB in bytes
-    hostname: process.env.FILE_VAULT_URL,
-    allowedMimeTypes: [
-      'image/jpeg',
-      'image/png',
-      'application/pdf',
-      'application/msword',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.ms-excel',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    ],
-    documentCategories: {
-      'company-registration-certificate': {
-        limit: 20,
-        limitValidationError: 'companyRegistrationCertificateLimit'
-      },
-      'certificate-of-good-conduct': {
-        limit: 20,
-        limitValidationError: 'certificateOfGoodConductLimit'
-      },
-      'user-activity-template': {
-        limit: 1,
-        limitValidationError: 'userActivityTemplateLimit',
-        allowedMimeTypes: [
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-          'application/vnd.ms-excel',
-          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-        ]
-      },
-      'aerial-photos-upload': {
-        limit: 20,
-        limitValidationError: 'aerialPhotosUploadLimit',
-        allowedMimeTypes: [
-          'image/jpeg',
-          'image/png',
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        ]
-      },
-      'record-keeping-document': {
-        limit: 20,
-        limitValidationError: 'recordKeepingDocumentLimit'
-      },
-      'perimeter-upload': {
-        limit: 20,
-        limitValidationError: 'perimeterUploadLimit',
-        allowedMimeTypes: [
-          'image/jpeg',
-          'image/png',
-          'application/pdf',
-          'application/msword',
-          'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        ]
-      }
-    }
+    ...fileUploadConfig,
+    hostname: process.env.FILE_VAULT_URL
   },
   aws: {
     bucket: process.env.AWS_BUCKET,
