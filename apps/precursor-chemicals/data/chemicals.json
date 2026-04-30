@@ -18,34 +18,16 @@
     "cnCode": "2926 4000"
   },
   {
-    "label": "Chloroephedrine (2939 7990)",
-    "value": "Chloroephedrine",
+    "label": "Chloroephedrine 1(2939 7990)",
+    "value": "Chloroephedrine 1",
     "category": "1",
     "cnCode": "2939 7990"
   },
   {
-    "label": "Chloropseudoephedrine (2939 7990)",
-    "value": "Chloropseudoephedrine",
+    "label": "Chloropseudoephedrine 1(2939 7990)",
+    "value": "Chloropseudoephedrine 1",
     "category": "1",
     "cnCode": "2939 7990"
-  },
-  {
-    "label": "Ephedrine (2939 4100)",
-    "value": "Ephedrine",
-    "category": "1",
-    "cnCode": "2939 4100"
-  },
-  {
-    "label": "Ergometrine (2939 6100)",
-    "value": "Ergometrine",
-    "category": "1",
-    "cnCode": "2939 6100"
-  },
-  {
-    "label": "Ergotamine (2939 6200)",
-    "value": "Ergotamine",
-    "category": "1",
-    "cnCode": "2939 6200"
   },
   {
     "label": "Isosafrole (2932 9100)",
@@ -238,5 +220,23 @@
     "value": "Toluene",
     "category": "3",
     "cnCode": "2902 3000"
+  },
+  {
+    "label": "Chloropseudoephedrine 2(2939 7990)",
+    "value": "Chloropseudoephedrine 2",
+    "category": "1",
+    "cnCode": "2939 7990"
+  },
+  {
+    "label": "Chloropseudoephedrine 3(2939 7990)",
+    "value": "Chloropseudoephedrine 3",
+    "category": "1",
+    "cnCode": "2939 7990"
+  },
+  {
+    "label": "Chloropseudoephedrine 4(2939 7990)",
+    "value": "Chloropseudoephedrine 4",
+    "category": "1",
+    "cnCode": "2939 7990"
   }
 ]
