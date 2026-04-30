@@ -18,26 +18,8 @@
     "cnCode": "2926 4000"
   },
   {
-    "label": "Chloroephedrine 1(2939 7990)",
-    "value": "Chloroephedrine 1",
-    "category": "1",
-    "cnCode": "2939 7990"
-  },
-  {
-    "label": "Chloropseudoephedrine 1(2939 7990)",
-    "value": "Chloropseudoephedrine 1",
-    "category": "1",
-    "cnCode": "2939 7990"
-  },
-  {
-    "label": "Isosafrole (2932 9100)",
-    "value": "Isosafrole",
-    "category": "1",
-    "cnCode": "2932 9100"
-  },
-  {
-    "label": "Lysergic Acid (2939 6300)",
-    "value": "Lysergic Acid",
+    "label": "Lysergic Acid 1 (2939 6300)",
+    "value": "Lysergic Acid 1",
     "category": "1",
     "cnCode": "2939 6300"
   },
