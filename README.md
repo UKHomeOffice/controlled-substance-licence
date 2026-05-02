@@ -137,3 +137,5 @@ When disabled, Redis falls back to `emptyDir` and deployment behaviour remains u
 - PVC fields are mostly immutable after creation (for example, storage class and some access mode changes).
 - If you need to change immutable PVC settings, create a new claim and set `REDIS_PERSISTENCE_EXISTING_CLAIM`.
 - Helm-style upgrade behaviour still applies conceptually to immutable PVC constraints even though this repo deploys via `kd` and raw manifests.
+
+Test branch
