@@ -51,11 +51,11 @@ describe('Utilities \'formatDate\'', () => {
 
 describe('Utilities \'findArrayItemByValue\'', () => {
   test('finds the correct chemical object from the list for a correct input', () => {
-    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('label', 'Ephedrine (2939 4100)');
-    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('value', 'Ephedrine');
-    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('category', '1');
-    expect(findArrayItemByValue(chemicals, 'Ephedrine')).toHaveProperty('cnCode', '2939 4100');
-    expect(findArrayItemByValue(chemicals, 'Ephedrine')).not.toHaveProperty('category', '2');
+    expect(findArrayItemByValue(chemicals, 'Pseudoephedrine')).toHaveProperty('label', 'Pseudoephedrine (2939 4200)');
+    expect(findArrayItemByValue(chemicals, 'Pseudoephedrine')).toHaveProperty('value', 'Pseudoephedrine');
+    expect(findArrayItemByValue(chemicals, 'Pseudoephedrine')).toHaveProperty('category', '1');
+    expect(findArrayItemByValue(chemicals, 'Pseudoephedrine')).toHaveProperty('cnCode', '2939 4200');
+    expect(findArrayItemByValue(chemicals, 'Pseudoephedrine')).not.toHaveProperty('category', '2');
     expect(findArrayItemByValue(tradingReasons, 'broker')).toHaveProperty('label', 'Broker');
     expect(findArrayItemByValue(tradingReasons, 'broker')).toHaveProperty('value', 'broker');
   });
