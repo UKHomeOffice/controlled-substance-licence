@@ -18,6 +18,11 @@ describe('validatePassword', () => {
     expect(actual).toEqual(false);
   });
 
+  it('should return false if first character is not a letter or digit', () => {
+    const actual = validatePassword('?pc2yNhpDP+17Any');
+    expect(actual).toEqual(false);
+  });
+
   it('should return false if password not contain Uppercase', () => {
     const actual = validatePassword('7pc2ynhp?dp+1any');
     expect(actual).toEqual(false);
@@ -33,13 +38,23 @@ describe('validatePassword', () => {
     expect(actual).toEqual(false);
   });
 
-  it('should return false if password is more than 16 character', () => {
-    const actual = validatePassword('7pc2yNhp?DP+1Any16');
+  it('should return false if password contains more than one special character', () => {
+    const actual = validatePassword('7pc2yNhp?DP+1An');
+    expect(actual).toEqual(false);
+  });
+
+  it('should return false if password contains a special character outside @!?=', () => {
+    const actual = validatePassword('7pc2yNhp#DP61Any');
     expect(actual).toEqual(false);
   });
 
   it('should return false if password less than 16 character', () => {
     const actual = validatePassword('7pc2yNhp?DP+1An');
+    expect(actual).toEqual(false);
+  });
+
+  it('should return false if password is same as username', () => {
+    const actual = validatePassword('7pc2yNhp?DP+1Any', '7pc2yNhp?DP+1Any');
     expect(actual).toEqual(false);
   });
 });
@@ -76,7 +91,7 @@ describe('generatePassword', () => {
   it('should generate password which most include special character', async () => {
     const actual =  [...await generatePassword(config.keycloak.passwordPolicy.length,
       config.keycloak.passwordPolicy)]
-      .some(char => /[!#$%&*+=?@]/.test(char));
+      .some(char => /[@!?=]/.test(char));
     expect(actual).toEqual(true);
   });
 
