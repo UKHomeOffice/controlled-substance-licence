@@ -3,6 +3,7 @@ const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
 // At least one uppercase, one lowercase, length of 16 characters and first character must be letter or digit.
+// eslint-disable-next-line max-len
 const passwordPolicyRegex = /^(?=[A-Za-z0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@!?=])(?!.*[@!?=].*[@!?=])[A-Za-z@!?=0-9]{16}$/;
 
 /**
