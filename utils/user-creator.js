@@ -7,6 +7,7 @@ const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
 const { generateUniqueUsername } = require('./user-registration');
+const { generatePassword } = require('./pass-generator');
 
 module.exports = class UserCreator {
   constructor() {
@@ -139,15 +140,21 @@ module.exports = class UserCreator {
   * Generates a request configuration from user data and auth token.
   * If a request failed because the username was unavailable, generates a new username and recurses until successful
   *
+  * @async
   * @param {object} userDetails - The user data for the POST request.
   * @param {object} authToken - Contains a bearer token to authenticate the request.
   * @returns {<Promise>object} Returns collected data about the user that was successfully created.
   * @throws {Error} Throws an error if the request to create a user was unsuccessful.
   */
-  registerUser(userDetails, authToken) {
+  async registerUser(userDetails, authToken) {
     const { companyName, companyPostcode } = userDetails;
     this.username = generateUniqueUsername(companyName, companyPostcode, this.username);
     const prospectiveUser = Object.assign({}, userDetails, { username: this.username });
+    prospectiveUser.password = await generatePassword(
+      config.keycloak.passwordPolicy.length,
+      config.keycloak.passwordPolicy.characterSet,
+      prospectiveUser.username
+    );
     const userRequestConfig = this.createRequestConfig(prospectiveUser, authToken);
 
     logger.info(`Register user attempt: ${this.requestAttempts}`);
