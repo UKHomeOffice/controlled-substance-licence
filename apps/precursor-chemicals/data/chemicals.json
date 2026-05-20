@@ -102,14 +102,8 @@
     "cnCode": "2933 3700"
   },
   {
-    "label": "Methyl 3-(1,3-benzodioxol-5-yl)-2- methyloxirane-2-carboxylate (PMK methyl glycidate) (2932 9900)",
-    "value": "Methyl 3-(1,3-benzodioxol-5-yl)-2- methyloxirane-2-carboxylate (PMK methyl glycidate)",
-    "category": "1",
-    "cnCode": "2932 9900"
-  },
-  {
-    "label": "3-(1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylic acid (PMK glycidic acid) (2932 9900)",
-    "value": "3-(1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylic acid (PMK glycidic acid)",
+    "label": "3-(1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylic acid (PMK glycidic acid and any controlled esters) (2932 9900)",
+    "value": "3-(1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylic acid (PMK glycidic acid and any controlled esters)",
     "category": "1",
     "cnCode": "2932 9900"
   },
@@ -126,14 +120,8 @@
     "cnCode": "2918 3000"
   },
   {
-    "label": "Methyl 2-methyl-3-phenyloxirane-2-carboxylate (BMK methyl glycidate) (2918 9990)",
-    "value": "Methyl 2-methyl-3-phenyloxirane-2-carboxylate (BMK methyl glycidate)",
-    "category": "1",
-    "cnCode": "2918 9990"
-  },
-  {
-    "label": "2‐methyl-3-phenyloxirane-2- carboxylic acid (BMK glycidic acid) (2918 9990)",
-    "value": "2‐methyl-3-phenyloxirane-2- carboxylic acid (BMK glycidic acid)",
+    "label": "2‐methyl-3-phenyloxirane-2- carboxylic acid (BMK glycidic acid and any controlled esters) (2918 9990)",
+    "value": "2‐methyl-3-phenyloxirane-2- carboxylic acid (BMK glycidic acid and any controlled esters)",
     "category": "1",
     "cnCode": "2918 9990"
   },
@@ -142,12 +130,6 @@
     "value": "Diethyl (phenylacetyl) propanedioate (DEPAPD)",
     "category": "1",
     "cnCode": "2918 3000"
-  },
-  {
-    "label": "Ethyl3-(2H-1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylate (PMK ethyl glycidate) (Northern Ireland only) (2932 9900)",
-    "value": "Ethyl3-(2H-1,3-benzodioxol-5-yl)-2-methyloxirane-2-carboxylate (PMK ethyl glycidate)",
-    "category": "1",
-    "cnCode": "2932 9900"
   },
   {
     "label": "N-phenylpiperidin-4-amine (4-AP) (Northern Ireland only) (2933 3999)",
@@ -174,7 +156,7 @@
     "cnCode": "2915 2400"
   },
   {
-    "label": "Red Phosphorous (Northern Ireland only) (2804 7000)",
+    "label": "Red Phosphorous (2804 7000)",
     "value": "Red Phosphorous",
     "category": "2",
     "cnCode": "2804 7000"
@@ -238,5 +220,59 @@
     "value": "Toluene",
     "category": "3",
     "cnCode": "2902 3000"
+  },
+  {
+    "label": "DEPAPD (Diethyl (phenylacetyl) propanedioate) (2918 30 00)",
+    "value": "DEPAPD (Diethyl (phenylacetyl) propanedioate)",
+    "category": "1",
+    "cnCode": "2918 30 00"
+  },
+  {
+    "label": "EAPA (Ethyl alpha-phenylacetoacetate) (2918 30 00)",
+    "value": "EAPA (Ethyl alpha-phenylacetoacetate)",
+    "category": "1",
+    "cnCode": "2918 30 00"
+  },
+  {
+    "label": "IMDPAM (Isopropylidene (2-(3,4-methylenedioxyphenyl)acetyl)malonate) (2932 99 00)",
+    "value": "IMDPAM (Isopropylidene (2-(3,4-methylenedioxyphenyl)acetyl)malonate)",
+    "category": "1",
+    "cnCode": "2932 99 00"
+  },
+  {
+    "label": "MAMDPA (Methyl 3-oxo-2-(3,4-methylenedioxyphenyl)butanoate) (2932 99 00)",
+    "value": "MAMDPA (Methyl 3-oxo-2-(3,4-methylenedioxyphenyl)butanoate)",
+    "category": "1",
+    "cnCode": "2932 99 00"
+  },
+  {
+    "label": "4-AP (N-phenylpiperidin-4-amine) (2933 39 99)",
+    "value": "4-AP (N-phenylpiperidin-4-amine)",
+    "category": "1",
+    "cnCode": "2933 39 99"
+  },
+  {
+    "label": "1-boc-4-AP (Tert-butyl 4-anilinopiperidine-1-carboxylate) (2933 39 99)",
+    "value": "1-boc-4-AP (Tert-butyl 4-anilinopiperidine-1-carboxylate)",
+    "category": "1",
+    "cnCode": "2933 39 99"
+  },
+  {
+    "label": "Norfentanyl (N-phenyl-N-(piperidin-4-yl)propanamide) (2933 39 99)",
+    "value": "Norfentanyl (N-phenyl-N-(piperidin-4-yl)propanamide)",
+    "category": "1",
+    "cnCode": "2933 39 99"
+  },
+  {
+    "label": "1-boc-4-piperidone (tert-butyl 4-oxopiperidine-1-carboxylate)  (2933 39 99)",
+    "value": "1-boc-4-piperidone (tert-butyl 4-oxopiperidine-1-carboxylate)",
+    "category": "1",
+    "cnCode": "2933 39 99"
+  },
+  {
+    "label": "4-piperidone (Piperidin-4-one) (2933 39 99)",
+    "value": "4-piperidone (Piperidin-4-one)",
+    "category": "1",
+    "cnCode": "2933 39 99"
   }
 ]
