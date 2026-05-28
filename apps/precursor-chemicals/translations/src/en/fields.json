@@ -299,8 +299,18 @@
       "none_selected": "Select a chemical"
     }
   },
+  "chemical-not-listed": {
+    "options": {
+      "chemical-not-listed-checked": {
+        "label": "The chemical is not listed"
+      }
+    }
+  },
+  "manually-enter-chemical": {
+    "label": "Enter the chemical name"
+  },
   "which-operation": {
-    "legend": "Which operation applies to this licence for {{values.which-chemical}}",
+    "legend": "Which operation applies to this licence for {{chemicalName}}",
     "options": {
       "resale-or-supply": {
         "label": "Resale/supply within the EU"

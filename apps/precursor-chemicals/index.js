@@ -18,6 +18,8 @@ const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
+const checkValidation = require('./behaviours/check-validation');
+const SetChemicalName = require('./behaviours/set-chemical-name');
 
 const steps = {
 
@@ -353,14 +355,15 @@ const steps = {
   },
 
   '/which-chemical': {
-    fields: ['which-chemical'],
-    behaviours: [FilterChemicals],
+    fields: ['which-chemical', 'chemical-not-listed', 'manually-enter-chemical'],
+    behaviours: [FilterChemicals, checkValidation],
     ignoreCustomRedirect: true,
     next: '/which-operation'
   },
 
   '/which-operation': {
     fields: ['which-operation'],
+    behaviours: [SetChemicalName],
     forks: [
       {
         target: '/what-operation',

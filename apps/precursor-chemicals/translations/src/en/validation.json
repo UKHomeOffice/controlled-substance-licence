@@ -226,8 +226,11 @@
   "substance-category": {
     "required": "Select a category for the new substance"
   },
-  "which-chemical": {
-    "required": "Enter which chemical you are applying for"
+  "which-chemical" :{
+    "requiredChemicalList": "Select a chemical from the list"
+  },
+  "manually-enter-chemical" :{
+    "requiredChemicalName": "Enter the chemical name"
   },
   "which-operation": {
     "required": "Select the operation this licence is for"

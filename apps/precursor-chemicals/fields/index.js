@@ -479,12 +479,33 @@ module.exports = {
     mixin: 'select',
     isPageHeading: true,
     className: ['typeahead'],
-    validate: ['required'],
+    // Validation rules for chemicals found in check-validation behaviour
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
     }].concat(chemicals),
     showFieldInSummary: true
+  },
+  'chemical-not-listed': {
+    mixin: 'checkbox-group',
+    options: [
+      {
+        value: 'chemical-not-listed-checked',
+        toggle: 'manually-enter-chemical',
+        child: 'input-text'
+      }
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'manually-enter-chemical': {
+    mixin: 'input-text',
+    dependent: {
+      field: 'chemical-not-listed',
+      value: 'chemical-not-listed-checked'
+    },
+    labelClassName: ['govuk-label--s']
   },
   'which-operation': {
     mixin: 'checkbox-group',
