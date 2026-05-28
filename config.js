@@ -81,7 +81,7 @@ module.exports = {
     },
     passwordPolicy: {
       length: 16,
-      characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789!#$%&*+=?@'
+      characterSet: 'ABCDEFGHJKMNPRTUVWXYabcdefghjkmnprtuvwxy0123456789@!?='
     }
   },
   icasework: {
