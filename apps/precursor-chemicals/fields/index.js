@@ -479,7 +479,6 @@ module.exports = {
     mixin: 'select',
     isPageHeading: true,
     className: ['typeahead'],
-    // Validation rules for chemicals found in check-validation behaviour
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
@@ -500,6 +499,7 @@ module.exports = {
     }
   },
   'manually-enter-chemical': {
+    // Validation rules for chemicals found in check-validation behaviour
     mixin: 'input-text',
     dependent: {
       field: 'chemical-not-listed',

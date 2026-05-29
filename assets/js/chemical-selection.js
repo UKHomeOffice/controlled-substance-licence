@@ -11,7 +11,7 @@ module.exports = function initChemicalSelection() {
   const whichChemicalInput = document.querySelector('select[id="which-chemical-select"]');
 
   const manualChemicalInput = document.querySelector('input[name="manually-enter-chemical"]');
-  const manualChemicalContainer = manualChemicalInput?.closest('.govuk-form-group');
+  const manualChemicalContainer = document.querySelector('#manually-enter-chemical-group');
 
   const normalise = value => (value || '').trim().toLowerCase();
 
