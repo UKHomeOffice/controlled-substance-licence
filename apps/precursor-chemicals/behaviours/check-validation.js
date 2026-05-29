@@ -13,7 +13,7 @@ module.exports = superclass => class extends superclass {
 
     if (key === 'manually-enter-chemical' && chemicalNotListed === 'chemical-not-listed-checked') {
       const notUrl = validators.notUrl(manuallyEnterChemical);
-      const maxlength = 5;
+      const maxlength = 250;
       if (!manuallyEnterChemical) {
         return validationErrorFunc('requiredChemicalName');
       }
