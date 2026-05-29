@@ -230,7 +230,9 @@
     "requiredChemicalList": "Select a chemical from the list"
   },
   "manually-enter-chemical" :{
-    "requiredChemicalName": "Enter the chemical name"
+    "requiredChemicalName": "Enter the chemical name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Chemical name must be between 1 and 250 characters"
   },
   "which-operation": {
     "required": "Select the operation this licence is for"
