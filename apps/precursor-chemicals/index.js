@@ -20,6 +20,7 @@ const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
 const checkValidation = require('./behaviours/check-validation');
 const SetChemicalName = require('./behaviours/set-chemical-name');
+const SetAggregateFrom = require('./behaviours/set-aggregate-from');
 
 const steps = {
 
@@ -355,7 +356,7 @@ const steps = {
   },
 
   '/which-chemical': {
-    fields: ['which-chemical', 'chemical-not-listed', 'manually-enter-chemical'],
+    fields: ['which-chemical', 'is-chemical-not-listed', 'not-listed-chemical-name'],
     behaviours: [FilterChemicals, checkValidation],
     ignoreCustomRedirect: true,
     next: '/which-operation'
@@ -385,18 +386,15 @@ const steps = {
   '/substances-in-licence': {
     behaviours: [
       LoopAggregator,
+      SetAggregateFrom,
       LimitItems,
       ParseSubstanceSummary,
       SetSummaryReferrer
     ],
     aggregateTo: 'substances-in-licence',
-    aggregateFrom: [
-      'manually-enter-chemical',
-      'which-chemical',
-      'substance-category',
-      'which-operation',
-      'what-operation'
-    ],
+    /* SetAggregateFrom behaviour is called before LoopAggregator to set an aggregateFrom field
+     depending on which field has a value in session. */
+    aggregateFrom: [],
     titleField: 'which-chemical',
     addStep: 'substance-category',
     continueOnEdit: false,

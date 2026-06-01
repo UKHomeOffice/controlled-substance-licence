@@ -4,14 +4,14 @@ module.exports = superclass => class extends superclass {
   validateField(key, req) {
     const validationErrorFunc = type => new this.ValidationError(key, { type: type });
     const whichChemical = req.form.values['which-chemical'];
-    const chemicalNotListed = req.form.values['chemical-not-listed'];
-    const manuallyEnterChemical = req.form.values['manually-enter-chemical'];
+    const chemicalNotListed = req.form.values['is-chemical-not-listed'];
+    const manuallyEnterChemical = req.form.values['not-listed-chemical-name'];
 
     if (key === 'which-chemical' && !whichChemical && !chemicalNotListed) {
       return validationErrorFunc('requiredChemicalList');
     }
 
-    if (key === 'manually-enter-chemical' && chemicalNotListed === 'chemical-not-listed-checked') {
+    if (key === 'not-listed-chemical-name' && chemicalNotListed === 'is-chemical-not-listed-checked') {
       const notUrl = validators.notUrl(manuallyEnterChemical);
       const maxlength = 250;
       if (!manuallyEnterChemical) {

@@ -299,14 +299,14 @@
       "none_selected": "Select a chemical"
     }
   },
-  "chemical-not-listed": {
+  "is-chemical-not-listed": {
     "options": {
-      "chemical-not-listed-checked": {
+      "is-chemical-not-listed-checked": {
         "label": "The chemical is not listed"
       }
     }
   },
-  "manually-enter-chemical": {
+  "not-listed-chemical-name": {
     "label": "Enter the chemical name"
   },
   "which-operation": {

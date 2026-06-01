@@ -285,14 +285,18 @@ module.exports = {
           if (!obj?.aggregatedValues) { return null; }
           return obj.aggregatedValues.map(item => {
             const substance = item.fields.find(field => field.field === 'which-chemical')?.value;
-            const manualChemical = item.fields.find(field => field.field === 'manually-enter-chemical')?.value;
+            const manualChemical = item.fields.find(field => field.field === 'not-listed-chemical-name')?.value;
             const standardOps = item.fields.find(field => field.field === 'which-operation');
             const customOps = item.fields.find(field => field.field === 'what-operation')?.value;
 
             const parsedSubstance = findArrayItemByValue(chemicals, substance)?.label ?? substance;
             const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
 
-            return `${manualChemical}${parsedSubstance}\n\n${parsedOps}`;
+            if (manualChemical) {
+              return `Not listed / ${manualChemical}\n\n${parsedOps}`;
+            }
+
+            return `${parsedSubstance}\n\n${parsedOps}`;
           }).join('\n\n');
         }
       },

@@ -6,12 +6,12 @@
  * - Clears invalid autocomplete values
  */
 module.exports = function initChemicalSelection() {
-  const notListedCheckbox = document.querySelector('input[name="chemical-not-listed"]');
+  const notListedCheckbox = document.querySelector('input[name="is-chemical-not-listed"]');
   const typeaheadInput = document.querySelector('.autocomplete__input');
   const whichChemicalInput = document.querySelector('select[id="which-chemical-select"]');
 
-  const manualChemicalInput = document.querySelector('input[name="manually-enter-chemical"]');
-  const manualChemicalContainer = document.querySelector('#manually-enter-chemical-group');
+  const manualChemicalInput = document.querySelector('input[name="not-listed-chemical-name"]');
+  const manualChemicalContainer = document.querySelector('#not-listed-chemical-name-group');
 
   const normalise = value => (value || '').trim().toLowerCase();
 
