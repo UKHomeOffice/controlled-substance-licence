@@ -391,6 +391,7 @@ const steps = {
     ],
     aggregateTo: 'substances-in-licence',
     aggregateFrom: [
+      'manually-enter-chemical',
       'which-chemical',
       'substance-category',
       'which-operation',

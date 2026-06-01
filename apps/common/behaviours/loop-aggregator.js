@@ -56,7 +56,7 @@ module.exports = superclass => class extends superclass {
         showFieldInSummary: req.form.options.fieldsConfig[aggregateFromField].showFieldInSummary,
         changeField: aggregateFromElement.changeField
       });
-
+      console.log("fields: ", fields)
       this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
     });
@@ -84,6 +84,7 @@ module.exports = superclass => class extends superclass {
 
   setAggregateArray(req, value) {
     req.sessionModel.set(req.form.options.aggregateTo, { aggregatedValues: value });
+    console.log("SessionModelGet: ", req.sessionModel.get('substances-in-licence').aggregatedValues[0])
   }
 
   newFieldsProvided(req) {

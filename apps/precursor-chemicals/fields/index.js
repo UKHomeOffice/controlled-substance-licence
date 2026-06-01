@@ -476,6 +476,20 @@ module.exports = {
     showFieldInSummary: true
   },
   'which-chemical': {
+    // when showFieldInSummary is false for which-chemical and showFieldInSummary is true for manually-enter-chemical
+    // the table looks fine only for manual chemical names
+    // when both are set to showFieldSummary: true the table goes out of whack
+    // Maybe I need to set showFieldInSummary to false when which-chemical is empty
+    // I feel like this will still mess up the table?
+    //  DO I need a conditional in aggreagtor table? so something like
+    //   {{#showFieldInSummary}}
+    //      {{#which-chemical}}
+    //       <td class="govuk-table__cell">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
+    //      {{/which-chemical}}
+    //      {{#manually-enter-chemical}}
+    //       <td class="govuk-table__cell">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
+    //      {{/manually-enter-chemical}}
+    //   {{/showFieldInSummary}}
     mixin: 'select',
     isPageHeading: true,
     className: ['typeahead'],
@@ -505,7 +519,8 @@ module.exports = {
       field: 'chemical-not-listed',
       value: 'chemical-not-listed-checked'
     },
-    labelClassName: ['govuk-label--s']
+    labelClassName: ['govuk-label--s'],
+    showFieldInSummary: true
   },
   'which-operation': {
     mixin: 'checkbox-group',
