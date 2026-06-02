@@ -1,14 +1,15 @@
 'use strict';
 
 /**
- * Initialise chemical selection behaviour:
- * - Keeps autocomplete, manual input, and "not listed" checkbox in sync
- * - Clears invalid autocomplete values
+ * Initialises chemical selection behaviour.
+ * Keeps the typeahead input, backing select value, and
+ * "not listed" manual-entry flow in sync.
  */
-module.exports = function initChemicalSelection() {
-  const notListedCheckbox = document.querySelector('input[name="is-chemical-not-listed"]');
-  const typeaheadInput = document.querySelector('.autocomplete__input');
-  const whichChemicalInput = document.querySelector('select[id="which-chemical-select"]');
+const initChemicalSelection = () => {
+  const notListedCheckbox = document.querySelector('input[name="chemical-not-listed"]');
+
+  const whichChemicalInput = document.querySelector('input[id="which-chemical"]');
+  const whichChemicalSelect = document.querySelector('select[id="which-chemical-select"]');
 
   const manualChemicalInput = document.querySelector('input[name="not-listed-chemical-name"]');
   const manualChemicalContainer = document.querySelector('#not-listed-chemical-name-group');
@@ -24,79 +25,65 @@ module.exports = function initChemicalSelection() {
     input.dispatchEvent(new Event('change', { bubbles: true }));
   };
 
-  const clearTypeahead = () => {
-    if (!typeaheadInput || !typeaheadInput.value) {
-      return;
-    }
-
-    // Keep the visible autocomplete input in sync when toggling "not listed".
-    typeaheadInput.value = '';
-    typeaheadInput.dispatchEvent(new Event('input', { bubbles: true }));
-    typeaheadInput.dispatchEvent(new Event('change', { bubbles: true }));
-  };
-
   const syncTypedValueToSelection = () => {
-    if (!typeaheadInput || !whichChemicalInput) {
+    if (!whichChemicalInput || !whichChemicalSelect) {
       return;
     }
 
-    const typedValue = normalise(typeaheadInput.value);
+    const typedValue = normalise(whichChemicalInput.value);
 
     if (!typedValue) {
-      // User cleared text manually, so clear the stored field value as well.
-      clearInput(whichChemicalInput);
+      // If the user clears the visible typeahead, clear the selected value too.
+      clearInput(whichChemicalSelect);
       return;
     }
 
-    if (!whichChemicalInput.value) {
-      return;
-    }
+    // Treat either option values or labels as valid typeahead matches.
+    const optionValuesAndLabels = new Set(
+      Array.from(whichChemicalSelect.options)
+        .flatMap(option => [option.value, option.textContent])
+        .map(normalise)
+        .filter(Boolean)
+    );
 
-    let selectedValue = normalise(whichChemicalInput.value);
-    let selectedLabel = '';
-
-    if (whichChemicalInput.tagName === 'SELECT') {
-      // Compare typed text against both stored value and option label.
-      const selectedOption = whichChemicalInput.options[whichChemicalInput.selectedIndex];
-      selectedValue = normalise(selectedOption?.value);
-      selectedLabel = normalise(selectedOption?.textContent);
-    }
-
-    if (typedValue !== selectedValue && typedValue !== selectedLabel) {
-      clearInput(whichChemicalInput);
+    // Clear stale selection if typed text is not a valid option.
+    if (!optionValuesAndLabels.has(typedValue)) {
+      clearInput(whichChemicalSelect);
     }
   };
 
   /**
-   * Scenario 1:
-   * Checkbox checked -> clear typeahead
+   * Scenario 1: "Not listed" checked.
+    * Clear typeahead + selected values and show manual entry.
    */
   notListedCheckbox?.addEventListener('change', () => {
     if (!notListedCheckbox.checked) {
       return;
     }
 
-    clearTypeahead();
     clearInput(whichChemicalInput);
+    clearInput(whichChemicalSelect);
     manualChemicalContainer?.classList.remove('govuk-visually-hidden');
   });
 
   /**
-   * Scenario 2:
-   * Typeahead selected -> uncheck checkbox, clear + hide manual entry
+   * Scenario 2: user types/selects a known chemical.
+   * Uncheck "not listed", clear manual entry, and hide manual field.
    */
   const handleTypeaheadSelection = () => {
     // Drop stale selection when typed text no longer matches current selection.
     syncTypedValueToSelection();
 
-    if (notListedCheckbox.checked && (whichChemicalInput?.value || typeaheadInput?.value)) {
+    if (notListedCheckbox.checked && (whichChemicalSelect?.value || whichChemicalInput?.value)) {
       notListedCheckbox.checked = false;
       clearInput(manualChemicalInput);
       manualChemicalContainer?.classList.add('govuk-visually-hidden');
     }
   };
 
-  typeaheadInput?.addEventListener('input', handleTypeaheadSelection);
-  typeaheadInput?.addEventListener('change', handleTypeaheadSelection);
-  whichChemicalInput?.addEventListener('change', handleTypeaheadSelection);
+  whichChemicalInput?.addEventListener('input', handleTypeaheadSelection);
+};
+
+module.exports = {
+  initChemicalSelection
 };

@@ -1,5 +1,5 @@
 const CHEMICAL_FIELD = 'which-chemical';
-const NOT_LISTED_CHEMICAL_NAME_FIELD = 'manually-enter-chemical';
+const NOT_LISTED_CHEMICAL_NAME_FIELD = 'not-listed-chemical-name';
 
 const setChemicalNameField = req => {
   const hasValue = value => (typeof value === 'string' ? value.trim().length > 0 : Boolean(value));
