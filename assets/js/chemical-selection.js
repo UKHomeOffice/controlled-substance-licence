@@ -6,7 +6,7 @@
  * "not listed" manual-entry flow in sync.
  */
 const initChemicalSelection = () => {
-  const notListedCheckbox = document.querySelector('input[name="chemical-not-listed"]');
+  const notListedCheckbox = document.querySelector('input[name="is-chemical-not-listed"]');
 
   const whichChemicalInput = document.querySelector('input[id="which-chemical"]');
   const whichChemicalSelect = document.querySelector('select[id="which-chemical-select"]');
