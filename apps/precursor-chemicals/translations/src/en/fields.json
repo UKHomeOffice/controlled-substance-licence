@@ -301,7 +301,7 @@
   },
   "is-chemical-not-listed": {
     "options": {
-      "is-chemical-not-listed-checked": {
+      "is-chemical-not-listed": {
         "label": "The chemical is not listed"
       }
     }

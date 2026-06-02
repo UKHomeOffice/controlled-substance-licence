@@ -74,12 +74,20 @@ const initChemicalSelection = () => {
     // Drop stale selection when typed text no longer matches current selection.
     syncTypedValueToSelection();
 
-    if (notListedCheckbox.checked && (whichChemicalSelect?.value || whichChemicalInput?.value)) {
+    if (notListedCheckbox?.checked && (whichChemicalSelect?.value || whichChemicalInput?.value)) {
       notListedCheckbox.checked = false;
       clearInput(manualChemicalInput);
       manualChemicalContainer?.classList.add('govuk-visually-hidden');
     }
   };
+
+  // If nothing has been entered yet, clear the checkbox and keep manual entry hidden.
+  if (notListedCheckbox?.checked && !manualChemicalInput?.value
+    && !whichChemicalInput?.value && !whichChemicalSelect?.value
+  ) {
+    notListedCheckbox.checked = false;
+    manualChemicalContainer?.classList.add('govuk-visually-hidden');
+  }
 
   whichChemicalInput?.addEventListener('input', handleTypeaheadSelection);
 };
