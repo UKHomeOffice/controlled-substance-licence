@@ -499,7 +499,6 @@ module.exports = {
     }
   },
   'not-listed-chemical-name': {
-    // Validation rules for chemicals found in check-validation behaviour
     mixin: 'input-text',
     dependent: {
       field: 'is-chemical-not-listed',
