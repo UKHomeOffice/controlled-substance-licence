@@ -489,7 +489,7 @@ module.exports = {
     mixin: 'checkbox-group',
     options: [
       {
-        value: 'is-chemical-not-listed-checked',
+        value: 'is-chemical-not-listed',
         toggle: 'not-listed-chemical-name',
         child: 'input-text'
       }
@@ -503,7 +503,7 @@ module.exports = {
     mixin: 'input-text',
     dependent: {
       field: 'is-chemical-not-listed',
-      value: 'is-chemical-not-listed-checked'
+      value: 'is-chemical-not-listed'
     },
     labelClassName: ['govuk-label--s'],
     showFieldInSummary: true

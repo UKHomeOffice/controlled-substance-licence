@@ -11,7 +11,7 @@ module.exports = superclass => class extends superclass {
       return validationErrorFunc('requiredChemicalList');
     }
 
-    if (key === 'not-listed-chemical-name' && chemicalNotListed === 'is-chemical-not-listed-checked') {
+    if (key === 'not-listed-chemical-name' && chemicalNotListed === 'is-chemical-not-listed') {
       const notUrl = validators.notUrl(manuallyEnterChemical);
       const maxlength = 250;
       if (!manuallyEnterChemical) {
