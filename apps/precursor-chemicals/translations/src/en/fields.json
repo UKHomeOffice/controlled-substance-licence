@@ -293,8 +293,8 @@
       }
     }
   },
-  "which-chemical": {
-    "label": "Which chemical are you applying for?",
+"which-chemical": {
+    "label": "Describe your chemical",
     "options": {
       "none_selected": "Select a chemical"
     }

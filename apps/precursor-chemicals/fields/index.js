@@ -477,7 +477,6 @@ module.exports = {
   },
   'which-chemical': {
     mixin: 'select',
-    isPageHeading: true,
     className: ['typeahead'],
     options: [{
       value: '',

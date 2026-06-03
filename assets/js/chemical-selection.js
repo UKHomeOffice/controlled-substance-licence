@@ -63,7 +63,7 @@ const initChemicalSelection = () => {
 
     clearInput(whichChemicalInput);
     clearInput(whichChemicalSelect);
-    manualChemicalContainer?.classList.remove('govuk-visually-hidden');
+    manualChemicalContainer?.classList.remove('govuk-!-display-none');
   });
 
   /**
@@ -77,16 +77,25 @@ const initChemicalSelection = () => {
     if (notListedCheckbox?.checked && (whichChemicalSelect?.value || whichChemicalInput?.value)) {
       notListedCheckbox.checked = false;
       clearInput(manualChemicalInput);
-      manualChemicalContainer?.classList.add('govuk-visually-hidden');
+      manualChemicalContainer?.classList.add('govuk-!-display-none');
     }
   };
 
+  // Below 2 conditions added for handling edge cases where the page is re-rendered with validation errors,
+  //  to ensure the state of the checkboxes and visibility of manual entry field are correct based on the
+  //  current values.
+  // if there is any alternative better option find in future to handle this scenario without
+  //  relying on DOM manipulation that is currently being done in this section.
+  const hasManualChemicalError = manualChemicalContainer?.classList.contains('govuk-form-group--error');
+
+  if (manualChemicalInput?.value) {
+    notListedCheckbox.checked = true;
+    manualChemicalContainer?.classList.remove('govuk-!-display-none');
+  }
   // If nothing has been entered yet, clear the checkbox and keep manual entry hidden.
-  if (notListedCheckbox?.checked && !manualChemicalInput?.value
-    && !whichChemicalInput?.value && !whichChemicalSelect?.value
-  ) {
+  if (notListedCheckbox?.checked && !hasManualChemicalError && !manualChemicalInput?.value) {
     notListedCheckbox.checked = false;
-    manualChemicalContainer?.classList.add('govuk-visually-hidden');
+    manualChemicalContainer?.classList.add('govuk-!-display-none');
   }
 
   whichChemicalInput?.addEventListener('input', handleTypeaheadSelection);

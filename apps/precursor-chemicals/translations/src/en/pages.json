@@ -61,6 +61,10 @@
     "header": "Invoicing contact details"
   },
 
+ "which-chemical": {
+    "header": "Which chemical are you applying for?"
+  },
+
   "substances-in-licence": {
     "header": "Substances in your licence",
     "table-headers": {

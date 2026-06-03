@@ -359,7 +359,10 @@ const steps = {
     fields: ['which-chemical', 'is-chemical-not-listed', 'not-listed-chemical-name'],
     behaviours: [FilterChemicals, checkValidation],
     ignoreCustomRedirect: true,
-    next: '/which-operation'
+    next: '/which-operation',
+    locals: {
+      precursorChemicalLink: true
+    }
   },
 
   '/which-operation': {
