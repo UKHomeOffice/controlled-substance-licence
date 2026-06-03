@@ -11,8 +11,8 @@ const initChemicalSelection = () => {
   const whichChemicalInput = document.querySelector('input[id="which-chemical"]');
   const whichChemicalSelect = document.querySelector('select[id="which-chemical-select"]');
 
-  const manualChemicalInput = document.querySelector('input[name="not-listed-chemical-name"]');
-  const manualChemicalContainer = document.querySelector('#not-listed-chemical-name-group');
+  const notListedChemicalNameInput = document.querySelector('input[name="not-listed-chemical-name"]');
+  const notListedChemicalNameContainer = document.querySelector('#not-listed-chemical-name-group');
 
   const normalise = value => (value || '').trim().toLowerCase();
 
@@ -63,7 +63,7 @@ const initChemicalSelection = () => {
 
     clearInput(whichChemicalInput);
     clearInput(whichChemicalSelect);
-    manualChemicalContainer?.classList.remove('govuk-!-display-none');
+    notListedChemicalNameContainer?.classList.remove('govuk-!-display-none');
   });
 
   /**
@@ -76,8 +76,8 @@ const initChemicalSelection = () => {
 
     if (notListedCheckbox?.checked && (whichChemicalSelect?.value || whichChemicalInput?.value)) {
       notListedCheckbox.checked = false;
-      clearInput(manualChemicalInput);
-      manualChemicalContainer?.classList.add('govuk-!-display-none');
+      clearInput(notListedChemicalNameInput);
+      notListedChemicalNameContainer?.classList.add('govuk-!-display-none');
     }
   };
 
@@ -86,16 +86,16 @@ const initChemicalSelection = () => {
   //  current values.
   // if there is any alternative better option find in future to handle this scenario without
   //  relying on DOM manipulation that is currently being done in this section.
-  const hasManualChemicalError = manualChemicalContainer?.classList.contains('govuk-form-group--error');
+  const hasnotListedChemicalNameError = notListedChemicalNameContainer?.classList.contains('govuk-form-group--error');
 
-  if (manualChemicalInput?.value) {
+  if (notListedChemicalNameInput?.value) {
     notListedCheckbox.checked = true;
-    manualChemicalContainer?.classList.remove('govuk-!-display-none');
+    notListedChemicalNameContainer?.classList.remove('govuk-!-display-none');
   }
   // If nothing has been entered yet, clear the checkbox and keep manual entry hidden.
-  if (notListedCheckbox?.checked && !hasManualChemicalError && !manualChemicalInput?.value) {
+  if (notListedCheckbox?.checked && !hasnotListedChemicalNameError && !notListedChemicalNameInput?.value) {
     notListedCheckbox.checked = false;
-    manualChemicalContainer?.classList.add('govuk-!-display-none');
+    notListedChemicalNameContainer?.classList.add('govuk-!-display-none');
   }
 
   whichChemicalInput?.addEventListener('input', handleTypeaheadSelection);
