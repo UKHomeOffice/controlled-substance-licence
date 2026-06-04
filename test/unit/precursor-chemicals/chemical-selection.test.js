@@ -10,8 +10,7 @@ const buildDom = ({
   whichChemicalValue = '',
   selectValue = '',
   notListedNameValue = '',
-  manualHidden = true,
-  manualHasError = false
+  manualHidden = true
 } = {}) => {
   document.body.innerHTML = `
     <div id="fixture">
@@ -29,7 +28,7 @@ const buildDom = ({
 
         <div
           id="not-listed-chemical-name-group"
-          class="${manualHidden ? 'govuk-!-display-none' : ''} ${manualHasError ? 'govuk-form-group--error' : ''}"
+          class="${manualHidden ? 'govuk-!-display-none' : ''}"
         >
           <input name="not-listed-chemical-name" value="${notListedNameValue}" />
         </div>
@@ -50,7 +49,7 @@ describe('initChemicalSelection', () => {
     document.body.innerHTML = '';
   });
 
-  test('checks not-listed flow: clears known chemical fields and enters manual entry', () => {
+  test('checks not-listed flow: clears known chemical fields and shows manual entry', () => {
     const {
       notListedCheckbox,
       notListedChemicalNameInput,

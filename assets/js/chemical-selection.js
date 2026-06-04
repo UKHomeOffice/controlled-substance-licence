@@ -81,23 +81,6 @@ const initChemicalSelection = () => {
     }
   };
 
-  // Below 2 conditions added for handling edge cases where the page is re-rendered with validation errors,
-  //  to ensure the state of the checkboxes and visibility of manual entry field are correct based on the
-  //  current values.
-  // if there is any alternative better option find in future to handle this scenario without
-  //  relying on DOM manipulation that is currently being done in this section.
-  const hasnotListedChemicalNameError = notListedChemicalNameContainer?.classList.contains('govuk-form-group--error');
-
-  if (notListedChemicalNameInput?.value) {
-    notListedCheckbox.checked = true;
-    notListedChemicalNameContainer?.classList.remove('govuk-!-display-none');
-  }
-  // If nothing has been entered yet, clear the checkbox and keep manual entry hidden.
-  if (notListedCheckbox?.checked && !hasnotListedChemicalNameError && !notListedChemicalNameInput?.value) {
-    notListedCheckbox.checked = false;
-    notListedChemicalNameContainer?.classList.add('govuk-!-display-none');
-  }
-
   whichChemicalInput?.addEventListener('input', handleTypeaheadSelection);
 };
 
