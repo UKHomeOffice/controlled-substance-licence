@@ -1,7 +1,6 @@
 const config = require('../../../config');
 const { sendEmail, prepareUpload } = require('../../../utils/email-service');
 const { getApplicationFiles } = require('../../../utils');
-const { generatePassword } = require('../../../utils/pass-generator');
 
 const PDFConverter = require('../../../utils/pdf-converter');
 const FileUpload = require('../../../utils/file-upload');
@@ -62,11 +61,7 @@ module.exports = superclass => class extends superclass {
     const userDetails = {
       email: req.sessionModel.get('email'),
       companyName: req.sessionModel.get('company-name'),
-      companyPostcode: req.sessionModel.get('licence-holder-postcode'),
-      password: await generatePassword(
-        config.keycloak.passwordPolicy.length,
-        config.keycloak.passwordPolicy.characterSet
-      )
+      companyPostcode: req.sessionModel.get('licence-holder-postcode')
     };
 
     // Create user account in auth provider
