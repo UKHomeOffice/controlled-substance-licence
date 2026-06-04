@@ -1,5 +1,5 @@
 const validators = require('hof/controller/validation/validators');
-const checkValidation = require('../../../apps/precursor-chemicals/behaviours/check-validation');
+const ValidateChemicalFields = require('../../../apps/precursor-chemicals/behaviours/validate-chemical-fields');
 
 jest.mock('hof/controller/validation/validators', () => ({
   notUrl: jest.fn()
@@ -23,7 +23,7 @@ class BaseController {
   }
 }
 
-const Controller = checkValidation(BaseController);
+const Controller = ValidateChemicalFields(BaseController);
 
 const makeReq = values => ({
   form: {
@@ -31,7 +31,7 @@ const makeReq = values => ({
   }
 });
 
-describe('precursor-chemicals/behaviours/check-validation', () => {
+describe('precursor-chemicals/behaviours/validate-chemical-fields', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     validators.notUrl.mockReturnValue(true);

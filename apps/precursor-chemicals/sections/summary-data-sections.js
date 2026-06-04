@@ -292,8 +292,9 @@ module.exports = {
             const parsedSubstance = findArrayItemByValue(chemicals, substance)?.label ?? substance;
             const parsedOps = parseOperations(req, standardOps.field, standardOps.value, customOps);
 
-            // eslint-disable-next-line max-len
-            const substanceDisplayName = notListedChemicalName ? `Not listed / ${notListedChemicalName}` : parsedSubstance;
+            const substanceDisplayName = notListedChemicalName
+              ? `Not listed / ${notListedChemicalName}`
+              : parsedSubstance;
             return `${substanceDisplayName}\n\n${parsedOps}`;
           }).join('\n\n');
         }

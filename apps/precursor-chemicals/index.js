@@ -18,7 +18,7 @@ const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
-const checkValidation = require('./behaviours/check-validation');
+const ValidateChemicalFields = require('./behaviours/validate-chemical-fields');
 const SetChemicalName = require('./behaviours/set-chemical-name');
 const SetAggregateFrom = require('./behaviours/set-aggregate-from');
 
@@ -357,7 +357,7 @@ const steps = {
 
   '/which-chemical': {
     fields: ['which-chemical', 'is-chemical-not-listed', 'not-listed-chemical-name'],
-    behaviours: [FilterChemicals, checkValidation],
+    behaviours: [FilterChemicals, ValidateChemicalFields],
     ignoreCustomRedirect: true,
     next: '/which-operation',
     locals: {

@@ -56,6 +56,7 @@ module.exports = superclass => class extends superclass {
         showFieldInSummary: req.form.options.fieldsConfig[aggregateFromField].showFieldInSummary,
         changeField: aggregateFromElement.changeField
       });
+
       this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
     });
