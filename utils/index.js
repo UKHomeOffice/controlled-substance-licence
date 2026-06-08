@@ -104,12 +104,14 @@ const sanitiseFilename = filename => filename?.replace(/^(.{2}).*(.{2}\.[^.]+)$/
  * @returns {string} - A the joined concatenated array of operations, all translated from value to label.
  */
 const parseOperations = (req, opsField, standardOps, customOps) => {
+  if (standardOps === undefined || standardOps === null || standardOps === '') {
+    return '';
+  }
   let checkedOps = standardOps;
   // A single checked box will be stored as a string not an array of length 1 so...
   if (typeof checkedOps === 'string') {
     checkedOps = Array.of(checkedOps);
   }
-
   return checkedOps.map(operation => {
     if (operation === 'other' && customOps) {
       return `${translateOption(req, opsField, operation)}: ${customOps}`;

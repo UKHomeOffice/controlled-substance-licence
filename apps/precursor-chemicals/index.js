@@ -18,6 +18,9 @@ const SignOutOnExit = require('../common/behaviours/sign-out-on-exit');
 const Auth = require('../common/behaviours/auth/auth-check');
 const SubmitRequest = require('../common/behaviours/submit-request');
 const SetFeedbackUrl = require('../common/behaviours/set-feedback-url');
+const ValidateChemicalFields = require('./behaviours/validate-chemical-fields');
+const SetChemicalName = require('./behaviours/set-chemical-name');
+const SetAggregateFrom = require('./behaviours/set-aggregate-from');
 
 const steps = {
 
@@ -353,14 +356,18 @@ const steps = {
   },
 
   '/which-chemical': {
-    fields: ['which-chemical'],
-    behaviours: [FilterChemicals],
+    fields: ['which-chemical', 'is-chemical-not-listed', 'not-listed-chemical-name'],
+    behaviours: [FilterChemicals, ValidateChemicalFields],
     ignoreCustomRedirect: true,
-    next: '/which-operation'
+    next: '/which-operation',
+    locals: {
+      precursorChemicalLink: true
+    }
   },
 
   '/which-operation': {
     fields: ['which-operation'],
+    behaviours: [SetChemicalName],
     forks: [
       {
         target: '/what-operation',
@@ -382,17 +389,15 @@ const steps = {
   '/substances-in-licence': {
     behaviours: [
       LoopAggregator,
+      SetAggregateFrom,
       LimitItems,
       ParseSubstanceSummary,
       SetSummaryReferrer
     ],
     aggregateTo: 'substances-in-licence',
-    aggregateFrom: [
-      'which-chemical',
-      'substance-category',
-      'which-operation',
-      'what-operation'
-    ],
+    /* SetAggregateFrom behaviour is called before LoopAggregator to set an aggregateFrom field
+     depending on which field has a value in session. */
+    aggregateFrom: [],
     titleField: 'which-chemical',
     addStep: 'substance-category',
     continueOnEdit: false,

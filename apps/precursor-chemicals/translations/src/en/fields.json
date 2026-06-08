@@ -293,14 +293,24 @@
       }
     }
   },
-  "which-chemical": {
-    "label": "Which chemical are you applying for?",
+"which-chemical": {
+    "label": "Describe your chemical",
     "options": {
       "none_selected": "Select a chemical"
     }
   },
+  "is-chemical-not-listed": {
+    "options": {
+      "is-chemical-not-listed": {
+        "label": "The chemical is not listed"
+      }
+    }
+  },
+  "not-listed-chemical-name": {
+    "label": "Enter the chemical name"
+  },
   "which-operation": {
-    "legend": "Which operation applies to this licence for {{values.which-chemical}}",
+    "legend": "Which operation applies to this licence for {{chemicalName}}",
     "options": {
       "resale-or-supply": {
         "label": "Resale/supply within the EU"

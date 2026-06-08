@@ -477,13 +477,33 @@ module.exports = {
   },
   'which-chemical': {
     mixin: 'select',
-    isPageHeading: true,
     className: ['typeahead'],
-    validate: ['required'],
     options: [{
       value: '',
       label: 'fields.which-chemical.options.none_selected'
     }].concat(chemicals),
+    showFieldInSummary: true
+  },
+  'is-chemical-not-listed': {
+    mixin: 'checkbox-group',
+    options: [
+      {
+        value: 'is-chemical-not-listed',
+        toggle: 'not-listed-chemical-name',
+        child: 'input-text'
+      }
+    ],
+    legend: {
+      className: 'visuallyhidden'
+    }
+  },
+  'not-listed-chemical-name': {
+    mixin: 'input-text',
+    dependent: {
+      field: 'is-chemical-not-listed',
+      value: 'is-chemical-not-listed'
+    },
+    labelClassName: ['govuk-label--s'],
     showFieldInSummary: true
   },
   'which-operation': {

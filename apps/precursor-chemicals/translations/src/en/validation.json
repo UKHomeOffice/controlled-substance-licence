@@ -226,8 +226,13 @@
   "substance-category": {
     "required": "Select a category for the new substance"
   },
-  "which-chemical": {
-    "required": "Enter which chemical you are applying for"
+  "which-chemical" :{
+    "requiredChemicalList": "Select a chemical from the list"
+  },
+  "not-listed-chemical-name" :{
+    "requiredChemicalName": "Enter the chemical name",
+    "notUrl": "Your answer must not contain URLs or links",
+    "maxlength": "Chemical name must be between 1 and 250 characters"
   },
   "which-operation": {
     "required": "Select the operation this licence is for"
