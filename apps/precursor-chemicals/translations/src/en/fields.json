@@ -294,7 +294,8 @@
     }
   },
 "which-chemical": {
-    "label": "Describe your chemical",
+    "label": "Select the name of your chemical",
+    "hint": "Start typing the name of your chemical",
     "options": {
       "none_selected": "Select a chemical"
     }
@@ -302,7 +303,7 @@
   "is-chemical-not-listed": {
     "options": {
       "is-chemical-not-listed": {
-        "label": "The chemical is not listed"
+        "label": "I cannot select the chemical I am applying for"
       }
     }
   },
