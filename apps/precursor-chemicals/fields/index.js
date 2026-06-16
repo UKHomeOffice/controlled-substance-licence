@@ -482,7 +482,8 @@ module.exports = {
       value: '',
       label: 'fields.which-chemical.options.none_selected'
     }].concat(chemicals),
-    showFieldInSummary: true
+    showFieldInSummary: true,
+    labelClassName: ['govuk-label--s']
   },
   'is-chemical-not-listed': {
     mixin: 'checkbox-group',

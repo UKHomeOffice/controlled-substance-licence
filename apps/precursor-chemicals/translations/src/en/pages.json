@@ -62,6 +62,7 @@
   },
 
  "which-chemical": {
+    "intro": "You should only register chemicals that are specified in the \"Drug precursor chemicals\" found on GOV.UK.",
     "header": "Which chemical are you applying for?"
   },
 
