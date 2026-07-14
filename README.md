@@ -23,7 +23,7 @@ Controlled Substance Licence (CSL) allows the public to register and apply for a
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/) `>=24.18.0 <25.0.0`
+- [Node.js](https://nodejs.org/en/) - for supported versions see `engines.node` in [package.json](package.json)
 - [Redis server](http://redis.io/download) running on default port 6379
 - [File Vault](https://github.com/UKHomeOffice/file-vault) Service - running port 3000
 - [hof-rds-api](https://github.com/UKHomeOffice/hof-rds-api) Service - running port 5000 for service 'csl'
