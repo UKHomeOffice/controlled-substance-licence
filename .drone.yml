@@ -285,6 +285,7 @@ steps:
         from_secret: KUBE_SERVER_PROD
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_PROD
+      REDIS_PERSISTENCE_ENABLED: "true"
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
@@ -336,6 +337,7 @@ steps:
         from_secret: KUBE_SERVER_PROD
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_PROD
+      REDIS_PERSISTENCE_ENABLED: "true"
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
