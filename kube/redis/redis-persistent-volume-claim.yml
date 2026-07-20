@@ -1,12 +1,8 @@
-{{ if eq .REDIS_PERSISTENCE_ENABLED "true" }}
+{{ if and (eq .REDIS_PERSISTENCE_ENABLED "true") (or (eq .KUBE_NAMESPACE .STG_ENV) (eq .KUBE_NAMESPACE .PROD_ENV)) }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-  name: redis-pvc-{{ .DRONE_SOURCE_BRANCH }}
-  {{ else }}
   name: redis-pvc
-  {{ end }}
   {{ if ne .REDIS_PERSISTENCE_ANNOTATIONS_FILE "" }}
   annotations:
 {{ file .REDIS_PERSISTENCE_ANNOTATIONS_FILE | indent 4 }}

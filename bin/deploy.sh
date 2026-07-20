@@ -45,12 +45,10 @@ fi
 
 if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
   $kd -f kube/configmaps -f kube/certs
-  $kd -f $redis_storage_files
   $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf -f kube/file-vault
   $kd -f kube/app
 elif [[ ${KUBE_NAMESPACE} == ${UAT_ENV} ]]; then
   $kd -f kube/configmaps/configmap.yml
-  $kd -f $redis_storage_files
   $kd -f $redis_runtime_files -f kube/hof-rds-api -f kube/html-pdf
   $kd -f kube/file-vault/file-vault-service.yml -f kube/file-vault/file-vault-ingress.yml
   $kd -f kube/file-vault/file-vault-deployment.yml -f kube/file-vault/file-vault-network-policy.yml
