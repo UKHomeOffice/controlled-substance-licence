@@ -2,9 +2,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: redis
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: redis-{{ .DRONE_SOURCE_BRANCH }}
   {{ else }}
+  annotations:
+    downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: redis
   {{ end }}
 spec:
@@ -32,16 +38,23 @@ spec:
         {{ end }}
     spec:
       securityContext:
-        fsGroup: 994
-        fsGroupChangePolicy: OnRootMismatch
+        fsGroup: 999
       containers:
         - name: redis
           # redis:v7.0.15
           image: quay.io/ukhomeofficedigital/hof-docker-redis:7.0.15@sha256:cd4965fbb8aa6e4eba058985cc52f6a3ececdfa6d79ba44206f051f72a1f0611
+          args:
+            - redis-server
+            - --appendonly
+            - "yes"
+            - --dir
+            - /data
+            - --protected-mode
+            - "no"
           ports:
             - containerPort: 6379
           volumeMounts:
-            - mountPath: /var/lib/redis
+            - mountPath: /data
               name: data
           securityContext:
             runAsNonRoot: true
@@ -53,19 +66,16 @@ spec:
               cpu: "100m"
               memory: "200Mi"
       volumes:
-        {{ if and (eq .REDIS_PERSISTENCE_ENABLED "true") (ne .REDIS_PERSISTENCE_EXISTING_CLAIM "") }}
         - name: data
+          {{ if eq .REDIS_PERSISTENCE_ENABLED "true" }}
           persistentVolumeClaim:
+            {{ if ne .REDIS_PERSISTENCE_EXISTING_CLAIM "" }}
             claimName: {{ .REDIS_PERSISTENCE_EXISTING_CLAIM }}
-        {{ else if eq .REDIS_PERSISTENCE_ENABLED "true" }}
-        - name: data
-          persistentVolumeClaim:
-            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-            claimName: redis-pvc-{{ .DRONE_SOURCE_BRANCH }}
+            {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            claimName: redis-data-{{ .DRONE_SOURCE_BRANCH }}
             {{ else }}
-            claimName: redis-pvc
+            claimName: redis-data
             {{ end }}
-        {{ else }}
-        - name: data
+          {{ else }}
           emptyDir: {}
-        {{ end }}
+          {{ end }}

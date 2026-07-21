@@ -207,6 +207,7 @@ steps:
         from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_DEV
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -225,6 +226,7 @@ steps:
         from_secret: KUBE_SERVER_DEV
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_DEV
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - sh bin/deploy.sh $${UAT_ENV}
     when:
@@ -285,6 +287,7 @@ steps:
         from_secret: KUBE_SERVER_PROD
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_PROD
+      REDIS_PERSISTENCE_ENABLED: "true"
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
@@ -336,6 +339,7 @@ steps:
         from_secret: KUBE_SERVER_PROD
       KUBE_TOKEN:
         from_secret: KUBE_TOKEN_PROD
+      REDIS_PERSISTENCE_ENABLED: "true"
     commands:
       - bin/deploy.sh $${PROD_ENV}
     when:
