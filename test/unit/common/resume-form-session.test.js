@@ -68,7 +68,7 @@ describe('resume-form-session', () => {
         'company-name': 'Home Office',
         'company-number': '16850062',
         telephone: '07777777777',
-        email: 'sas-hof-test@digital.homeoffice.gov.uk',
+        email: 'test@example.com',
         'website-url': 'https://www.homeoffice.gov.uk'
       },
       status_id: 1,
