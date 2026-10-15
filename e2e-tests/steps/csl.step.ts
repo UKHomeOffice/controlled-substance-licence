@@ -6,9 +6,7 @@ import { RegStepLib } from './reg.step';
 import { CdaStepLib } from './cda.step';
 import { PcaStepLib } from './pca.step';
 import { LthccStepLib } from './lthcc.step';
-import { ConstantsLib } from '../utility-helper/constants-lib';
-
-const { USER_NAME, PASSWORD, USER_NAME_PENDING, PASSWORD_PENDING } = ConstantsLib;
+import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 const { Given, When, Then } = createBdd(test);
 
@@ -85,7 +83,7 @@ When('I select the sign in again button on {string} form', async ({ pages }, app
 When('I choose to sign in, then select {string} form and then select {string} option', async ({ pages }, application: string, option: string) => {
   const common = new CommonCslStepLib(pages);
   await common.completeApplyForADomesticLicenceForControlledSubstancesPage();
-  await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
+  await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
   switch (application.toLowerCase()) {
     case 'precursor chemicals':
       await common.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
@@ -106,8 +104,8 @@ When('I choose to sign in, then select {string} form and then select {string} op
 When('I choose to sign in as {string} user', async ({ pages }, userType: string) => {
   const common = new CommonCslStepLib(pages);
   switch (userType.toLowerCase()) {
-    case 'valid': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD); break;
-    case 'pending': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME_PENDING, PASSWORD_PENDING); break;
+    case 'valid': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD); break;
+    case 'pending': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME_PENDING, c.PASSWORD_PENDING); break;
     default: throw new Error(`Wrong user type: ${userType}`);
   }
 });
@@ -155,8 +153,11 @@ Then('I should see {string} count error message displayed on the text area field
 });
 Then('I should see {string} count message displayed on the text area field', async ({ pages }, text: string) => {
   const escaped = text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const countPattern = escaped.replace(/\d[\d,]*/g, count =>
-    count.replaceAll(',', '').replace(/\B(?=(\d{3})+(?!\d))/g, ',?'));
+  const countPattern = escaped.replace(
+    /\d[\d,]*/g,
+    count =>
+    count.replaceAll(',', '').replace(/\B(?=(\d{3})+(?!\d))/g, ',?')
+  );
   await expect(pages.basePage.remainingCharacters).toHaveText(new RegExp(`^${countPattern}$`));
 });
 When('I select (save and )continue on upload photo', async ({ pages }) => {

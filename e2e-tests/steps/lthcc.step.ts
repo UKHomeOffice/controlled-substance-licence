@@ -3,38 +3,7 @@ import { DataTable } from '@cucumber/cucumber';
 import { createBdd } from 'playwright-bdd';
 import { test, type Pages } from '../fixture/fixture';
 import { CommonCslStepLib } from './csl-common.step';
-import { ConstantsLib } from '../utility-helper/constants-lib';
-
-const {
-    ADDRESS_LINE_1,
-    ADDRESS_LINE_2,
-    AMEND_PENDING_APPLICATION,
-    BUSINESS_DETAILS,
-    BUSINESS_OR_COMPANY_NAME,
-    COMPANY_NO,
-    CONFIRM_DBS_CERTIFICATE,
-    CONTACT_NAME,
-    DATE_IS_WITHIN_3_YEARS,
-    DBS_REFERENCE,
-    EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE,
-    EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE,
-    FIRST_TIME_LICENSEE,
-    FULL_NAME,
-    LOW_THC_CANNABIS_INDUSTRIAL_HEMP,
-    PASSWORD,
-    POSTCODE,
-    RESPONSE_NO,
-    RESPONSE_YES,
-    SAS_HOF_EMAIL,
-    START_NEW_APPLICATION,
-    TELEPHONE,
-    TEXT_AREA_FIELD_DATA,
-    TOMORROW_S_DATE,
-    TOWN_OR_CITY,
-    TYPE_BUSINESS,
-    USER_NAME,
-    YESTERDAY_S_DATE
-} = ConstantsLib;
+import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class LthccStepLib extends CommonCslStepLib {
     async selectLinkWithText(linkText: string): Promise<void> {
@@ -66,7 +35,6 @@ export class LthccStepLib extends CommonCslStepLib {
         await this.pages.lthccEnterYourApplicationReferenceNumberPage.enterApplicationReferenceNo(applicationRefNo);
         await this.pages.lthccEnterYourApplicationReferenceNumberPage.clickSaveAndContinue();
     }
-
 
     async completeWhatTypeOfLowThcCannabisLicenceAreYouPage(optionText: string): Promise<void> {
         await this.pages.lthccWhatTypeOfLowThcCannabisLicenceAreYouPage.assertPageTitle();
@@ -516,285 +484,282 @@ export class LthccStepLib extends CommonCslStepLib {
 
     async answersLowThcCannabisFormFor(scenario: string): Promise<void> {
         await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
 
         switch (scenario.toLowerCase()) {
             case "t1: a new application - a first time licensee - yes authorised destruction - no company own fields - yes businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("1000");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_YES);
-                await this.completeDoYouOwnAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(BUSINESS_OR_COMPANY_NAME, TYPE_BUSINESS, "HOF", BUSINESS_DETAILS, "SZ659856");
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_YES);
+                await this.completeDoYouOwnAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(c.BUSINESS_OR_COMPANY_NAME, c.TYPE_BUSINESS, "HOF", c.BUSINESS_DETAILS, "SZ659856");
                 //Add another BusinessesAdjacent
                 await this.pages.lthccBusinessesAdjacentToOrOperatingFromYourCultivationSitePage.clickLinkWithText("Add another business");
-                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(BUSINESS_OR_COMPANY_NAME, TYPE_BUSINESS, "HOF2Test", BUSINESS_DETAILS, "12QW1234");
+                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(c.BUSINESS_OR_COMPANY_NAME, c.TYPE_BUSINESS, "HOF2Test", c.BUSINESS_DETAILS, "12QW1234");
                 await this.completeBusinessesAdjacentToOrOperatingFromYourCultivationSitePage();
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_YES);
-                await this.completeProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage(TEXT_AREA_FIELD_DATA);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_YES);
+                await this.completeProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage(c.TEXT_AREA_FIELD_DATA);
                 break;
-
 
             case "t2: a new application - existing licensee renewing or changing a currently licensed site - yes upload - no authorised destruction - yes company own fields - no businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(RESPONSE_NO);
-                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(RESPONSE_YES);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
+                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
                 await this.completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage("cslCdat.pdf");
-                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(RESPONSE_YES);
-                await this.completeAreYouRequestingAdditionalSchedulesPage(RESPONSE_YES);
-                await this.completeAreYouRequestingAChangeOfActivityPage(RESPONSE_YES);
-//Existing licensee renewing or changing a currently licensed site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(c.RESPONSE_YES);
+                await this.completeAreYouRequestingAdditionalSchedulesPage(c.RESPONSE_YES);
+                await this.completeAreYouRequestingAChangeOfActivityPage(c.RESPONSE_YES);
+                //Existing licensee renewing or changing a currently licensed site
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
                 break;
-
 
             case "t3: a new application - existing licensee renewing or changing a currently licensed site - no upload - no authorised destruction - yes company own fields - no businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(RESPONSE_NO);
-                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(RESPONSE_NO);
-                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(RESPONSE_NO);
-                await this.completeAreYouRequestingAdditionalSchedulesPage(RESPONSE_NO);
-                await this.completeAreYouRequestingAChangeOfActivityPage(RESPONSE_NO);
-//Existing licensee renewing or changing a currently licensed site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_NO);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
+                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(c.RESPONSE_NO);
+                await this.completeAreYouRequestingAdditionalSchedulesPage(c.RESPONSE_NO);
+                await this.completeAreYouRequestingAChangeOfActivityPage(c.RESPONSE_NO);
+                //Existing licensee renewing or changing a currently licensed site
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_NO);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
                 break;
 
-
             case "t4: a new application - existing licensee applying for a new site - we are moving site - no authorised destruction - yes company own fields - no businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
                 await this.completeWhyAreYouRequestingANewLicencePage("We are moving site");
-                await this.completeWhenAreYouMovingSitePage(TOMORROW_S_DATE);
-//Existing licensee applying for a new site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
+                //Existing licensee applying for a new site
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
                 break;
 
             case "t5: a new application - existing licensee applying for a new site - for another site - agreement no - no authorised destruction - yes company own fields - no businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
                 await this.completeWhyAreYouRequestingANewLicencePage("For another site");
-                await this.completeIsTheNewSitePartOfAContractualAgreementPage(RESPONSE_NO);
-//Existing licensee applying for a new site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_NO);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_NO);
+                //Existing licensee applying for a new site
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_NO);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
                 break;
 
             case "t6: a new application - existing licensee applying for a new site - for another site - agreement yes - no authorised destruction - yes company own fields - no businesses adjacent to site":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
                 await this.completeWhyAreYouRequestingANewLicencePage("For another site");
-                await this.completeIsTheNewSitePartOfAContractualAgreementPage(RESPONSE_YES);
-                await this.completeWhenDoesTheContractStartPage(YESTERDAY_S_DATE);
-                await this.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(TEXT_AREA_FIELD_DATA);
-//Existing licensee applying for a new site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
+                await this.completeWhenDoesTheContractStartPage(c.YESTERDAY_S_DATE);
+                await this.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
+                //Existing licensee applying for a new site
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
                 break;
 
             case "t7: amend a pending application - yes authorised destruction - no company own fields - yes businesses adjacent to site":
-                await this.completeHowAreYouApplyingForYourLowThcCannabisLicencePage(AMEND_PENDING_APPLICATION);
+                await this.completeHowAreYouApplyingForYourLowThcCannabisLicencePage(c.AMEND_PENDING_APPLICATION);
                 await this.completeEnterYourApplicationReferenceNumberPage("12345678");
-//Amend a pending application => A first time licensee
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                //Amend a pending application => A first time licensee
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_YES);
-                await this.completeDoYouOwnAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(BUSINESS_OR_COMPANY_NAME, TYPE_BUSINESS, "HOF", BUSINESS_DETAILS, "SZ659856");
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_YES);
+                await this.completeDoYouOwnAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(c.BUSINESS_OR_COMPANY_NAME, c.TYPE_BUSINESS, "HOF", c.BUSINESS_DETAILS, "SZ659856");
                 await this.completeBusinessesAdjacentToOrOperatingFromYourCultivationSitePage();
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_YES);
-                await this.completeProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage(TEXT_AREA_FIELD_DATA);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_YES);
+                await this.completeProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage(c.TEXT_AREA_FIELD_DATA);
                 break;
 
             default:
                 throw new Error("Failed: Wrong radio value scenario name: " + scenario);
         }
-        await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(TEXT_AREA_FIELD_DATA);
-        await this.completePerimeterDetailsPage(TEXT_AREA_FIELD_DATA);
+        await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(c.TEXT_AREA_FIELD_DATA);
+        await this.completePerimeterDetailsPage(c.TEXT_AREA_FIELD_DATA);
         await this.completeUploadImagesOfThePerimeterPage("cslCdat.pdf");
-        await this.completeProvideDetailsOfYourRecordKeepingPage(TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfYourRecordKeepingPage(c.TEXT_AREA_FIELD_DATA);
         await this.completeUploadImagesOfYourRecordKeepingDocumentsPage("cslCdat.pdf");
-        await this.completeProvideDetailsOfYourSeedSuppliersPage(TEXT_AREA_FIELD_DATA);
-        await this.completeProvideDetailsOfYourCustomerBasePage(TEXT_AREA_FIELD_DATA);
-        await this.completeProvideDetailsOfYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-        await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-        await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(TEXT_AREA_FIELD_DATA);
-        await this.completeProvideTheThcContentLevelPage(TEXT_AREA_FIELD_DATA);
-        await this.completeInvoicingAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-        await this.completeInvoicingContactDetailsPage(CONTACT_NAME, SAS_HOF_EMAIL, TELEPHONE, "123456789", TEXT_AREA_FIELD_DATA);
-        await this.completeWhichEmailAddressShouldWeSendTheLicenceToPage(SAS_HOF_EMAIL);
-        await this.completeWhoIsCompletingTheApplicationPage(FULL_NAME, SAS_HOF_EMAIL, TELEPHONE);
-        await this.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(RESPONSE_NO, TEXT_AREA_FIELD_DATA);
-        await this.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage(TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfYourSeedSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfYourCustomerBasePage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeProvideTheThcContentLevelPage(c.TEXT_AREA_FIELD_DATA);
+        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.completeInvoicingContactDetailsPage(c.CONTACT_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, "123456789", c.TEXT_AREA_FIELD_DATA);
+        await this.completeWhichEmailAddressShouldWeSendTheLicenceToPage(c.SAS_HOF_EMAIL);
+        await this.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE);
+        await this.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(c.RESPONSE_NO, c.TEXT_AREA_FIELD_DATA);
+        await this.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage(c.TEXT_AREA_FIELD_DATA);
         await this.completeCheckYourAnswersPage();
         await this.completeDeclarationPage("I understand and agree with these statements");
         await this.completeApplicationSubmittedPage();
@@ -803,53 +768,52 @@ export class LthccStepLib extends CommonCslStepLib {
 
     async answersLthccFormWhenYouNeedToApplyForControlledDrugsLicenceFor(scenario: string): Promise<void> {
         await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
 
         switch (scenario.toLowerCase()) {
             case "t1: when no licence needed to cultivate and possess low thc cannabis (industrial hemp)":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_NO);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_NO);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_NO);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_NO);
                 await this.completeYouNeedToApplyForAControlledDrugLicencePage();
                 break;
 
             case "t2: when inside is where you be cultivating the low thc cannabis":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_NO);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_NO);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Inside");
                 await this.completeYouNeedToApplyForAControlledDrugsLicenceNoToHempPag();
                 break;
-
 
             default:
                 throw new Error("Failed: Wrong radio value scenario name: " + scenario);
@@ -860,10 +824,10 @@ export class LthccStepLib extends CommonCslStepLib {
     async answerToExistingLicenseeRenewingOrChangingCannonContinue(): Promise<void> {
         //Existing licensee renewing or changing a currently licensed site
         await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-        await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-        await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(RESPONSE_YES);
+        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+        await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
+        await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
         await this.completeYouCannotContinueThisApplicationPage();
     }
 
@@ -976,314 +940,313 @@ export class LthccStepLib extends CommonCslStepLib {
         }
     }
 
-
     async navigateToPage(pageName: string): Promise<void> {
         switch (pageName.toLowerCase()) {
             case "what type of licence are you applying for?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
                 break;
 
             case "licence holder details":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
                 break;
 
             case "details of the responsible person for the site":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
                 break;
 
             case "how will the leaves and flowers be destroyed?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
                 break;
 
             case "why are you requesting a new licence?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
                 break;
 
             case "has your companies house reference number changed since your last application?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
                 break;
 
             case "do you hold any home office or other regulatory licenses?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
                 break;
 
             case "describe your business model":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_NO);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_NO);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
                 break;
 
             case "upload aerial photos and site maps":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_NO);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_NO);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_NO);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_NO);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_NO);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_NO);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("20");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 break;
 
 
             case "are there any business adjacent to your intended cultivation site?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("1000");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
                 break;
 
             case "provide details of your record keeping":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("1000");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
-                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(TEXT_AREA_FIELD_DATA);
-                await this.completePerimeterDetailsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
+                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(c.TEXT_AREA_FIELD_DATA);
+                await this.completePerimeterDetailsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadImagesOfThePerimeterPage("cslCdat.pdf");
                 break;
 
             case "invoicing address":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("1000");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
-                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(TEXT_AREA_FIELD_DATA);
-                await this.completePerimeterDetailsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
+                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(c.TEXT_AREA_FIELD_DATA);
+                await this.completePerimeterDetailsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadImagesOfThePerimeterPage("cslCdat.pdf");
-                await this.completeProvideDetailsOfYourRecordKeepingPage(TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourRecordKeepingPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadImagesOfYourRecordKeepingDocumentsPage("cslCdat.pdf");
-                await this.completeProvideDetailsOfYourSeedSuppliersPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfYourCustomerBasePage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideTheThcContentLevelPage(TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourSeedSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourCustomerBasePage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideTheThcContentLevelPage(c.TEXT_AREA_FIELD_DATA);
                 break;
 
 
             case "who is completing the application?":
                 await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_YES);
+                await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+                await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_YES);
                 await this.completeLicenceDetailsPage("licenceType", "123456", "yesterday's date");
-                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(RESPONSE_YES);
-                await this.completeDetailsOfWhyYouWereRefusedALicencePage(TEXT_AREA_FIELD_DATA);
+                await this.completeHasYourOrganisationEverBeenRefusedALicencePage(c.RESPONSE_YES);
+                await this.completeDetailsOfWhyYouWereRefusedALicencePage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
                 await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(RESPONSE_YES);
+                await this.completeIsTheLicenceNeededToCultivateAndPossessLowThcCannabisIndustrialHempPage(c.RESPONSE_YES);
                 await this.completeWhereWillYouBeCultivatingTheLowThcCannabisPage("Outside");
                 await this.completeWhatIsTheTotalAcreageOfTheFieldsPage("100");
                 await this.completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage("1000");
-                await this.completeDetailsOfCultivationFieldsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDetailsOfCultivationFieldsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadAerialPhotosAndSiteMapsPage("cslCdat.pdf");
-                await this.completeDoesYourCompanyOwnAllTheFieldsPage(RESPONSE_NO);
-                await this.completeWhoOwnsTheFieldsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(RESPONSE_YES);
-                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(RESPONSE_NO);
-                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(RESPONSE_NO);
-                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(TEXT_AREA_FIELD_DATA);
-                await this.completePerimeterDetailsPage(TEXT_AREA_FIELD_DATA);
+                await this.completeDoesYourCompanyOwnAllTheFieldsPage(c.RESPONSE_NO);
+                await this.completeWhoOwnsTheFieldsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeDoYouHavePermissionFromTheOwnerToCarryOutYourIntendedActivitiesPage(c.RESPONSE_YES);
+                await this.completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreThereAnyBusinessesAdjacentToYourIntendedCultivationSitePage(c.RESPONSE_NO);
+                await this.completeAreAnyOfTheFieldsInADifferentPostcodeToTheSiteAddressPage(c.RESPONSE_NO);
+                await this.completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(c.TEXT_AREA_FIELD_DATA);
+                await this.completePerimeterDetailsPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadImagesOfThePerimeterPage("cslCdat.pdf");
-                await this.completeProvideDetailsOfYourRecordKeepingPage(TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourRecordKeepingPage(c.TEXT_AREA_FIELD_DATA);
                 await this.completeUploadImagesOfYourRecordKeepingDocumentsPage("cslCdat.pdf");
-                await this.completeProvideDetailsOfYourSeedSuppliersPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfYourCustomerBasePage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(TEXT_AREA_FIELD_DATA);
-                await this.completeProvideTheThcContentLevelPage(TEXT_AREA_FIELD_DATA);
-                await this.completeInvoicingAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeInvoicingContactDetailsPage(CONTACT_NAME, SAS_HOF_EMAIL, TELEPHONE, "123456789", TEXT_AREA_FIELD_DATA);
-                await this.completeWhichEmailAddressShouldWeSendTheLicenceToPage(SAS_HOF_EMAIL);
+                await this.completeProvideDetailsOfYourSeedSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourCustomerBasePage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfHowYouProduceYourEndProductsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeProvideTheThcContentLevelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeInvoicingContactDetailsPage(c.CONTACT_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, "123456789", c.TEXT_AREA_FIELD_DATA);
+                await this.completeWhichEmailAddressShouldWeSendTheLicenceToPage(c.SAS_HOF_EMAIL);
                 break;
 
             default:
@@ -1378,7 +1341,7 @@ export class LthccStepLib extends CommonCslStepLib {
     }
 
 
-//###################################################### SAVE AND EXIT #########################################################
+    //###################################################### SAVE AND EXIT #########################################################
 
     async completeAndSelectSaveAndExitDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(option: string): Promise<void> {
         await this.pages.lthccDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage.assertPageTitle();
@@ -1400,53 +1363,53 @@ export class LthccStepLib extends CommonCslStepLib {
 
     async answersLowThcCannabisFormForContinuingAnApplication(scenario: string): Promise<void> {
         await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(USER_NAME, PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
+        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.LOW_THC_CANNABIS_INDUSTRIAL_HEMP);
 
         switch (scenario.toLowerCase()) {
             //A first time licensee
             case "t1: a first time licensee - page: do you hold any home office or other regulatory licenses?":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, FIRST_TIME_LICENSEE);
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, COMPANY_NO, TELEPHONE, SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
-                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(RESPONSE_YES);
-                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(TEXT_AREA_FIELD_DATA);
-                await this.completeAuthorisedWitnessDetailsPage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForAuthorisedWitnessPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(RESPONSE_YES);
-                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(RESPONSE_YES);
-                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(TEXT_AREA_FIELD_DATA);
-                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(RESPONSE_YES);
-                await this.completeAndSelectSaveAndExitDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(RESPONSE_NO);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+                await this.completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(c.RESPONSE_YES);
+                await this.completeHowWillTheLeavesAndFlowersBeDestroyedPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeAuthorisedWitnessDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForAuthorisedWitnessPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeHasTheAuthorisedWitnessSubscribedToDbsPage(c.RESPONSE_YES);
+                await this.completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(c.RESPONSE_YES);
+                await this.completeProvideDetailsOfTheLegalBusinessProceedingsPage(c.TEXT_AREA_FIELD_DATA);
+                await this.completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(c.RESPONSE_YES);
+                await this.completeAndSelectSaveAndExitDoYouHoldAnyHomeOfficeOrOtherRegulatoryLicensesPage(c.RESPONSE_NO);
                 break;
 
             case "t2: existing licensee renewing or changing a currently licensed site - page: has the responsible person subscribed to dbs updates?":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(RESPONSE_NO);
-                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(RESPONSE_YES);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
+                await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+                await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
                 await this.completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage("cslCdat.pdf");
-                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(RESPONSE_YES);
-                await this.completeAreYouRequestingAdditionalSchedulesPage(RESPONSE_YES);
-                await this.completeAreYouRequestingAChangeOfActivityPage(RESPONSE_YES);
+                await this.completeAreYouRequestingAChangeInAuthorisedWitnessForThisSiteOnlyPage(c.RESPONSE_YES);
+                await this.completeAreYouRequestingAdditionalSchedulesPage(c.RESPONSE_YES);
+                await this.completeAreYouRequestingAChangeOfActivityPage(c.RESPONSE_YES);
                 //Existing licensee renewing or changing a currently licensed site
-                await this.completeLicenceHolderDetailsPage(BUSINESS_OR_COMPANY_NAME, "", TELEPHONE, SAS_HOF_EMAIL, "");
-                await this.completeLicenceHolderAddressPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(ADDRESS_LINE_1, ADDRESS_LINE_2, TOWN_OR_CITY, POSTCODE);
-                await this.completeGrowingLocationContactDetailsPagePage(SAS_HOF_EMAIL, TELEPHONE);
-                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(FULL_NAME, TELEPHONE, SAS_HOF_EMAIL, CONFIRM_DBS_CERTIFICATE);
-                await this.completeDbsInformationForTheResponsiblePersonPage(FULL_NAME, DBS_REFERENCE, DATE_IS_WITHIN_3_YEARS);
-                await this.completeAndSelectSaveAndExitHasTheResponsiblePersonSubscribedToDbsUpdatesPage(RESPONSE_YES);
+                await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.completeGrowingLocationContactDetailsPagePage(c.SAS_HOF_EMAIL, c.TELEPHONE);
+                await this.completeDetailsOfTheResponsiblePersonForTheSitePage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+                await this.completeDbsInformationForTheResponsiblePersonPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+                await this.completeAndSelectSaveAndExitHasTheResponsiblePersonSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
                 break;
 
             case "t3: existing licensee applying for a new site - page: is the new site part of a contractual agreement?":
-                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(START_NEW_APPLICATION, EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
+                await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
                 await this.completeWhyAreYouRequestingANewLicencePage("For another site");
-                await this.completeAndSelectSaveAndExitIsTheNewSitePartOfAContractualAgreementPage(RESPONSE_YES);
+                await this.completeAndSelectSaveAndExitIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
                 break;
 
             default:
@@ -1659,4 +1622,4 @@ When("I select Confirm Submission on Check Your Answers page for LTHCC", async (
 });
 
 // Source step body is empty; kept as a no-op for parity.
-When("I select confirm and submit on Declaration page for LTHCC", async () => {});
+When("I select confirm and submit on Declaration page for LTHCC", async () => { });

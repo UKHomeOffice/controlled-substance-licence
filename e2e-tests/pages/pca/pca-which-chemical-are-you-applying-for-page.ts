@@ -44,10 +44,7 @@ export class PcaWhichChemicalAreYouApplyingForPage extends basePage {
     if (await chemicalNameLabel.count()) {
       const chemicalNameFieldId = await chemicalNameLabel.getAttribute('for');
       if (chemicalNameFieldId?.trim()) {
-        await this.clearAndEnterTextInElement(
-          this.page.locator(`[id="${chemicalNameFieldId}"]`),
-          chemicalName
-        );
+        await this.clearAndEnterTextInElement(this.page.locator(`[id="${chemicalNameFieldId}"]`), chemicalName);
         return;
       }
     }

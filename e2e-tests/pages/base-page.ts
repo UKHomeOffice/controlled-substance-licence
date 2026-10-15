@@ -245,4 +245,16 @@ export class basePage {
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
   }
+
+  generatePcaAlphabetString(charSize: string): string {
+    if (!/^[+-]?\d+$/.test(charSize)) {
+      throw new Error(`Invalid character count: ${charSize}`);
+    }
+    const length = Number(charSize);
+    if (!Number.isSafeInteger(length) || length < 0 || length > 2_147_483_647) {
+      throw new Error(`Invalid character count: ${charSize}`);
+    }
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+  }
 }

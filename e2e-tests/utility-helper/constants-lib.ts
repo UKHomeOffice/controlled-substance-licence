@@ -36,6 +36,8 @@ export class ConstantsLib {
   static readonly CONFIRM_DBS_CERTIFICATE = 'I confirm this person has applied for or currently holds a DBS certificate';
   static readonly TEXT_AREA_FIELD_DATA = 'HOF Test Data Test!! Checking the text area field';
   static readonly DBS_REFERENCE = '123456';
+  static readonly PCA_WARNING_TEXT_FOR_DBS = "If yes, they must email dflu.dom@homeoffice.gov.uk with their date of birth, DBS reference number, issue date and explicit consent for the Drugs and Firearms Licensing Unit to access this service";
+  static readonly PCA_WARNING_TEXT_FOR_CONVICTION = "If you answer ‘Yes’, you must email dflu.dom@homeoffice.gov.uk with details of the employee and their conviction after submitting this form";
   static readonly DATE_IS_WITHIN_3_YEARS = 'Within the last 3 years';
   static readonly TODAY_S_DATE = "today's date";
   static readonly TOMORROW_S_DATE = "tomorrow's date";
