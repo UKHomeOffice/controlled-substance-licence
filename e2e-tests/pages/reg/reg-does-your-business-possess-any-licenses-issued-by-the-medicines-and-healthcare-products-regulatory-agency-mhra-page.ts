@@ -12,4 +12,9 @@ export class RegDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthc
             ? "Error: MHRA licences – Register for controlled substance licensing"
             : "MHRA licences – Register for controlled substance licensing";
     }
+    async completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(optValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optValue);
+        await this.clickContinue();
+    }
 }

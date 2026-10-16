@@ -12,4 +12,9 @@ export class PcaDescribeHowYouManageChemicalStockControlPage extends basePage {
   async enterDescribeHowYouManageChemicalStockControl(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textField, text);
   }
+  async completeDescribeHowYouManageChemicalStockControlPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterDescribeHowYouManageChemicalStockControl(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

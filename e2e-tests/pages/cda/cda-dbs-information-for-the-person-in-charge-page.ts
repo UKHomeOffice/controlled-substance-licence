@@ -18,4 +18,9 @@ export class CdaDbsInformationForThePersonInChargePage extends basePage {
         await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
         await this.enterDateOrDob(date);
     }
+    async completeDbsInformationForThePersonInChargePagePage(fullName: string, dbsReference: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformation(fullName, dbsReference, date);
+        await this.clickSaveAndContinue();
+    }
 }

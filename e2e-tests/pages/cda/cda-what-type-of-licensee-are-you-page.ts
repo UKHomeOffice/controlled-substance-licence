@@ -8,4 +8,9 @@ export class CdaWhatTypeOfLicenseeAreYouPage extends basePage {
     async selectWhatTypeOfLicenseeAreYou(optText: string): Promise<void> {
         await this.selectRadioOptionWithText(optText);
     }
+    async completeWhatTypeOfLicenseeAreYouPage(optText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectWhatTypeOfLicenseeAreYou(optText);
+        await this.clickContinue();
+    }
 }

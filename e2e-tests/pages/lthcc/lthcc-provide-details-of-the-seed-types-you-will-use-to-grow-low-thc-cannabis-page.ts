@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage
     async enterProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabis(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabisPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfTheSeedTypesYouWillUseToGrowLowThcCannabis(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

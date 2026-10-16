@@ -12,4 +12,8 @@ export class LthccBusinessesAdjacentToOrOperatingFromYourCultivationSitePage ext
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Businesses adjacent to or operating from your cultivation site – Industrial hemp application');
     }
+    async completeBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSaveAndContinue();
+    }
 }

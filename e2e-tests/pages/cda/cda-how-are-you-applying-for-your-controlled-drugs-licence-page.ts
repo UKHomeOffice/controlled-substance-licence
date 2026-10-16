@@ -11,4 +11,9 @@ export class CdaHowAreYouApplyingForYourControlledDrugsLicencePage extends baseP
             ? "Error: How are you applying for your controlled drugs licence? – Controlled drugs application"
             : "How are you applying for your controlled drugs licence? – Controlled drugs application";
     }
+    async completeHowAreYouApplyingForYourControlledDrugsLicencePage(optText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optText);
+        await this.clickContinue();
+    }
 }

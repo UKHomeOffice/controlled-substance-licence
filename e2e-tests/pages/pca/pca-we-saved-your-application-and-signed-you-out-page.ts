@@ -7,4 +7,8 @@ export class PcaWeSavedYourApplicationAndSignedYouOutPage extends basePage {
             ? "Error: We saved your application and signed you out – Precursor chemicals application"
             : "We saved your application and signed you out – Precursor chemicals application";
   }
+  async SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(): Promise<void> {
+    await this.assertPageTitle();
+    await this.clickSignInAgain();
+  }
 }

@@ -5,4 +5,9 @@ export class CdaDoesTheAlarmSystemHaveAPoliceUniqueReferenceNumberUrnPage extend
             ? "Error: Does the alarm system have a police unique reference number (URN)? – Controlled drugs application"
             : "Does the alarm system have a police unique reference number (URN)? – Controlled drugs application";
     }
+    async completeDoesTheAlarmSystemHaveAPoliceUniqueReferenceNumberUrnPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

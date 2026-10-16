@@ -15,4 +15,8 @@ export class LthccWeSavedYourApplicationAndSignedYouOutPage extends basePage {
             ? 'Error:We saved your application and signed you out – Industrial hemp application'
             : 'We saved your application and signed you out – Industrial hemp application';
     }
+    async SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSignInAgain();
+    }
 }

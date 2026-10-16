@@ -12,4 +12,9 @@ export class PcaWhatOtherOperationsAppliesToTheLicencePage extends basePage {
   async enterWhatOtherOperationsAppliesToTheLicence(chemicalName: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.chemicalNameField, chemicalName);
   }
+  async completeWhatOtherOperationsAppliesToTheLicencePage(value: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhatOtherOperationsAppliesToTheLicence(value);
+    await this.clickSaveAndContinue();
+  }
 }

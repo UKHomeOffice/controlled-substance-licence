@@ -5,4 +5,8 @@ export class CdaLicenceDetailsPage extends basePage {
             ? "Error: Licence details – Controlled drugs application"
             : "Licence details – Controlled drugs application";
     }
+    async completeLicenceDetailsPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSaveAndContinue();
+    }
 }

@@ -20,4 +20,15 @@ export class PcaGuarantorDetailsPage extends basePage {
     await this.clearAndEnterTextInElement(this.fullNameField, fullName);
     await this.clearAndEnterTextInElement(this.emailField, email);
   }
+  async enterGuarantorDetailsFullNameAndEmailDetails(fullName: string, email: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterFullNameAndEmailDetails(fullName, email);
+    await this.clickSaveAndContinue();
+  }
+
+  async completeGuarantorDetailsPage(fullName: string, email: string, optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterGuarantorDetails(fullName, email, optText);
+    await this.clickSaveAndContinue();
+  }
 }

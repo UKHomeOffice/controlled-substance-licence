@@ -12,4 +12,9 @@ export class LthccUploadImagesOfYourRecordKeepingDocumentsPage extends basePage 
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Upload images of your record keeping documents – Industrial hemp application');
     }
+    async completeUploadImagesOfYourRecordKeepingDocumentsPage(fileName: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.uploadFileFromUserUploadFolder(fileName);
+        await this.selectContinueUploadBtn();
+    }
 }

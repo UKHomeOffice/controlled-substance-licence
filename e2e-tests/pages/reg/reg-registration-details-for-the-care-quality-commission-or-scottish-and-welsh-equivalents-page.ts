@@ -19,4 +19,9 @@ export class RegRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelsh
         await this.clearAndEnterTextInElement(this.RegistrationNumberField, registrationNumber);
         await this.enterDateOrDob(date);
     }
+    async completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(registrationNumber: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalents(registrationNumber, date);
+        await this.clickContinue();
+    }
 }

@@ -16,4 +16,9 @@ export class LthccWhoOwnsTheFieldsPage extends basePage {
     async enterWhoOwnsTheFields(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeWhoOwnsTheFieldsPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhoOwnsTheFields(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

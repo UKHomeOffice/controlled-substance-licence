@@ -12,4 +12,9 @@ export class PcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage exten
   async enterAddAnyExtraInformationYouThinkMightHelpYourApplication(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textAreaField, text);
   }
+  async completeAddAnyExtraInformationYouThinkMightHelpYourApplicationPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterAddAnyExtraInformationYouThinkMightHelpYourApplication(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

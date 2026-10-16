@@ -17,4 +17,8 @@ export class LthccCheckYourAnswersPage extends basePage {
         await this.confirmSubmissionButton.waitFor();
         await this.confirmSubmissionButton.click();
     }
+    async completeCheckYourAnswersPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSaveAndContinue();
+    }
 }

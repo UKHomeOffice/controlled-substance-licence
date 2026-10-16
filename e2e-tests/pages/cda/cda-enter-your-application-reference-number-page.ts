@@ -14,4 +14,9 @@ export class CdaEnterYourApplicationReferenceNumberPage extends basePage {
     async enterApplicationReferenceNo(applicationRefNo: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.ApplicationRefNoField, applicationRefNo);
     }
+    async completeEnterYourApplicationReferenceNumberPage(applicationRefNo: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterApplicationReferenceNo(applicationRefNo);
+        await this.clickSaveAndContinue();
+    }
 }

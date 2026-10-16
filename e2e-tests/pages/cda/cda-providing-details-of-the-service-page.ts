@@ -14,4 +14,9 @@ export class CdaProvidingDetailsOfTheServicePage extends basePage {
     async enterProvidingDetailsOfTheService(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textValue);
     }
+    async completeProvideDetailsOfTheServicePage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvidingDetailsOfTheService(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

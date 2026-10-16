@@ -18,4 +18,9 @@ export class CdaElectronicAlarmSystemDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.installingCompanyAddressField, installingCompanyAddress);
         await this.selectRadioOptionWithText(optText);
     }
+    async completeElectronicAlarmSystemDetailsPage(installingCompanyName: string, installingCompanyAddress: string, option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterElectronicAlarmSystemDetails(installingCompanyName, installingCompanyAddress, option);
+        await this.clickSaveAndContinue();
+    }
 }

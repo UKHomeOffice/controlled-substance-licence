@@ -5,4 +5,9 @@ export class CdaDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheD
             ? "Error:Does your company have any authorised witnesses for the destruction of controlled drugs? – Controlled drugs application"
             : "Does your company have any authorised witnesses for the destruction of controlled drugs? – Controlled drugs application";
     }
+    async completeDoesYourCompanyHaveAnyAuthorisedWitnessesForTheDestructionOfControlledDrugsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -20,4 +20,9 @@ export class LthccDbsInformationForAuthorisedWitnessPage extends basePage {
         await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
         await this.enterDateOrDob(dateValue);
     }
+    async completeDbsInformationForAuthorisedWitnessPage(fullName: string, dbsReference: string, dateValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformationForAuthorisedWitness(fullName, dbsReference, dateValue);
+        await this.clickSaveAndContinue();
+    }
 }

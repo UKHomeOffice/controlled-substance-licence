@@ -15,7 +15,7 @@
     "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "bddgen": "bddgen",
     "test:e2e": "bddgen && playwright test",
-    "test:e2e:smoke": "bddgen && playwright test --grep @smoke --workers=2",
+    "test:e2e:smoke": "bddgen && playwright test --grep @CslRegression --workers=2",
     "test:e2e:typecheck": "tsc --noEmit",
     "test:e2e:headed": "bddgen && playwright test --headed",
     "test:e2e:report": "playwright show-report"

@@ -20,4 +20,9 @@ export class LthccDbsInformationForTheResponsiblePersonPage extends basePage {
         await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
         await this.enterDateOrDob(dateValue);
     }
+    async completeDbsInformationForTheResponsiblePersonPage(fullName: string, dbsReference: string, dateValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformationForTheResponsiblePerson(fullName, dbsReference, dateValue);
+        await this.clickSaveAndContinue();
+    }
 }

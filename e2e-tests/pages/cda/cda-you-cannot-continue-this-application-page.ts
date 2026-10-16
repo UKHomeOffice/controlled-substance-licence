@@ -5,4 +5,7 @@ export class CdaYouCannotContinueThisApplicationPage extends basePage {
             ? "Error: You cannot continue this application – Controlled drugs application"
             : "You cannot continue this application – Controlled drugs application";
     }
+    async completeYouCannotContinueThisApplicationPage(): Promise<void> {
+        await this.assertPageTitle();
+    }
 }

@@ -18,4 +18,9 @@ export class CdaDbsInformationForPersonResponsibleForSecurityOfPremisesPage exte
         await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
         await this.enterDateOrDob(date);
     }
+    async completeDbsInformationForPersonResponsibleForSecurityOfPremisesPage(fullName: string, dbsReference: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformationForPersonResponsibleForSecurityOfPremises(fullName, dbsReference, date);
+        await this.clickSaveAndContinue();
+    }
 }

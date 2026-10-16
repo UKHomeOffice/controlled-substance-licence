@@ -29,4 +29,14 @@ export class LthccDetailsOfTheResponsiblePersonForTheSitePage extends basePage {
         await this.clearAndEnterTextInElement(this.ukTelephoneNumberField, telephoneNumber);
         await this.clearAndEnterTextInElement(this.emailAddressField, email);
     }
+    async enterDetailsOfTheResponsiblePersonForTheSiteFullNameTelephoneNoAndEmailDetails(fullName: string, telephoneNumber: string, email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDetailsOfTheResponsiblePersonForTheSiteWithoutConfirmingDbs(fullName, telephoneNumber, email);
+    }
+
+    async completeDetailsOfTheResponsiblePersonForTheSitePage(fullName: string, telephoneNumber: string, email: string, optValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDetailsOfTheResponsiblePersonForTheSite(fullName, telephoneNumber, email, optValue);
+        await this.clickSaveAndContinue();
+    }
 }

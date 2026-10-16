@@ -6,7 +6,7 @@
 @CslRegression
 Feature: CSL - Registration Form
 
-  @smoke
+
   @CslRegressionCI
   @CslRegression
   Scenario Outline: Registration application journey form for E2E test
@@ -18,7 +18,7 @@ Feature: CSL - Registration Form
     Examples:
       | REG Test                                                                                                               |
       | T1: Yes Identity changes in the last 3yrs - Other business type - Other type of company - Yes to MHRA - Yes to CQCSW   |
-      # | T2: No Identity changes in the last 3yrs - Not Other business type - Public type of company - No to MHRA - NO to CQCSW |
+      | T2: No Identity changes in the last 3yrs - Not Other business type - Public type of company - No to MHRA - NO to CQCSW |
 
 
   Scenario Outline: Registration user can login successfully and pending

@@ -5,4 +5,9 @@ export class CdaWhoIsResponsibleForTheSecurityOfThePremisesPage extends basePage
             ? "Error: Who is responsible for the security of the premises? – Controlled drugs application"
             : "Who is responsible for the security of the premises? – Controlled drugs application";
     }
+    async completeWhoIsResponsibleForTheSecurityOfThePremisesPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

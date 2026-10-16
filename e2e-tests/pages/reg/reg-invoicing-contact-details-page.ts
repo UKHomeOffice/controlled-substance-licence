@@ -27,4 +27,9 @@ export class RegInvoicingContactDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.invoicingEmailAddressField, email);
         await this.clearAndEnterTextInElement(this.purchaseOrderNumberField, purchaseOrderNumber);
     }
+    async completeInvoicingContactDetailsPage(contactName: string, email: string, contactNo: string, purchaseOrderNo: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterLicenceDetails(contactName, email, contactNo, purchaseOrderNo);
+        await this.clickContinue();
+    }
 }

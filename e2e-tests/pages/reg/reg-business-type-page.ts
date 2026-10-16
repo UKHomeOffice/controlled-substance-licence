@@ -18,4 +18,9 @@ export class RegBusinessTypePage extends basePage {
     async selectBusinessTypeFromDropDownField(businessTypeValue: string): Promise<void> {
         await this.selectValueFromDropDownField(this.businessTypeField, businessTypeValue);
     }
+    async completeBusinessTypePage(businessTypeValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectBusinessTypeFromDropDownField(businessTypeValue);
+        await this.clickContinue();
+    }
 }

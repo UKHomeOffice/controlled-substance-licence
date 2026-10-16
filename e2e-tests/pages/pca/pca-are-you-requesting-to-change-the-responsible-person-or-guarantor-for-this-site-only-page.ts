@@ -7,4 +7,9 @@ export class PcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSi
             ? "Error: Are you requesting to change the responsible person or guarantor for this site only? – Precursor chemicals application"
             : "Are you requesting to change the responsible person or guarantor for this site only? – Precursor chemicals application";
   }
+  async completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(option: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectYesOrNoRadioOption(option);
+    await this.clickSaveAndContinue();
+  }
 }

@@ -12,4 +12,9 @@ export class RegHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPa
             ? "Error: Has your legal identity changed at Companies House in the last 3 years? – Register for controlled substance licensing"
             : "Has your legal identity changed at Companies House in the last 3 years? – Register for controlled substance licensing";
     }
+    async completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickContinue();
+    }
 }

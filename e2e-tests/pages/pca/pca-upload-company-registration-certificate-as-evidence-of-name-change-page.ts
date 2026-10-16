@@ -7,4 +7,9 @@ export class PcaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage e
             ? "Error: Upload company registration certificate as evidence of name change – Precursor chemicals application"
             : "Upload company registration certificate as evidence of name change – Precursor chemicals application";
   }
+  async completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage(uploadFileName: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadFileFromUserUploadFolder(uploadFileName);
+    await this.selectContinueUploadBtn();
+  }
 }

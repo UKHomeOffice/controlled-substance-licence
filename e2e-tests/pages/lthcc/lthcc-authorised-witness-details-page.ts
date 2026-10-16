@@ -29,4 +29,14 @@ export class LthccAuthorisedWitnessDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.ukTelephoneNumberField, telephoneNumber);
         await this.clearAndEnterTextInElement(this.emailAddressField, email);
     }
+    async completeAuthorisedWitnessDetailsWithoutConfirmingDbs(fullName: string, telephoneNumber: string, email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterAuthorisedWitnessDetailsWithoutConfirmingDbs(fullName, telephoneNumber, email);
+    }
+
+    async completeAuthorisedWitnessDetailsPage(fullName: string, telephoneNumber: string, email: string, optValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterAuthorisedWitnessDetails(fullName, telephoneNumber, email, optValue);
+        await this.clickSaveAndContinue();
+    }
 }

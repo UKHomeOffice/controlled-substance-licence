@@ -14,4 +14,9 @@ export class CdaGiveDetailsOfSpecificationsAndAnySerialNumbersThatApplyPage exte
     async enterGiveDetailsOfSpecificationsAndAnySerialNumbersThatApply(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textValue);
     }
+    async completeGiveDetailsOfSpecificationsAndAnySerialNumbersThatApplyPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterGiveDetailsOfSpecificationsAndAnySerialNumbersThatApply(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

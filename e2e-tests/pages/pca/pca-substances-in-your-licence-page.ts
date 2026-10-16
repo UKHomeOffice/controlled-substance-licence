@@ -7,4 +7,8 @@ export class PcaSubstancesInYourLicencePage extends basePage {
             ? "Error: Substances in your licence – Precursor chemicals application"
             : "Substances in your licence – Precursor chemicals application";
   }
+  async completeSubstancesInYourLicencePage(): Promise<void> {
+    await this.assertPageTitle();
+    await this.clickSaveAndContinue();
+  }
 }

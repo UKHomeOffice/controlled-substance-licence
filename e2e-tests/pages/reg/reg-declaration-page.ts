@@ -12,4 +12,9 @@ export class RegDeclarationPage extends basePage {
             ? "Error: Declaration – Register for controlled substance licensing"
             : "Declaration – Register for controlled substance licensing";
     }
+    async completeDeclarationPage(optText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optText);
+        await this.clickSubmitRegistration();
+    }
 }

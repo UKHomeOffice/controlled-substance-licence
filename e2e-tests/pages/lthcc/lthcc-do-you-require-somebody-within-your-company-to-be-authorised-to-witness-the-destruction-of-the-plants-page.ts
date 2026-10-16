@@ -5,4 +5,9 @@ export class LthccDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTh
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Do you require somebody within your company to be authorised to witness the destruction of the plant? – Industrial hemp application');
     }
+    async completeDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -12,4 +12,9 @@ export class PcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage exten
   async enterTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedFor(chemicalName: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.chemicalNameField, chemicalName);
   }
+  async completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedFor(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

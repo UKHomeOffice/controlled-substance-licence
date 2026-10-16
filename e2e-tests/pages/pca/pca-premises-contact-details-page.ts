@@ -14,4 +14,9 @@ export class PcaPremisesContactDetailsPage extends basePage {
     await this.clearAndEnterTextInElement(this.ukTelPhoneNoField, ukTelPhoneNo);
     await this.clearAndEnterTextInElement(this.emailField, email);
   }
+  async completePremisesContactDetailsPage(ukTelPhoneNo: string, email: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterPremisesContactDetails(ukTelPhoneNo, email);
+    await this.clickSaveAndContinue();
+  }
 }

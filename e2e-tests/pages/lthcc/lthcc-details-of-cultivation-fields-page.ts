@@ -16,4 +16,9 @@ export class LthccDetailsOfCultivationFieldsPage extends basePage {
     async enterDetailsOfCultivationFields(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeDetailsOfCultivationFieldsPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDetailsOfCultivationFields(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

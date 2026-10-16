@@ -8,4 +8,9 @@ export class CdaWhatDateDoesTheServiceExpireOnPage extends basePage {
     async enterWhatDateDoesTheServiceExpireOn(date: string): Promise<void> {
         await this.enterDateOrDob(date);
     }
+    async completeWhatDateDoesTheServiceExpireOnPage(date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhatDateDoesTheServiceExpireOn(date);
+        await this.clickSaveAndContinue();
+    }
 }

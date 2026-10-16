@@ -8,4 +8,9 @@ export class PcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage extends ba
             ? "Error: How are you applying for your precursor chemicals licence? – Precursor chemicals application"
             : "How are you applying for your precursor chemicals licence? – Precursor chemicals application";
   }
+  async completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectRadioOptionWithText(optText);
+    await this.clickContinue();
+  }
 }

@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfYourRecordKeepingPage extends basePage {
     async enterProvideDetailsOfYourRecordKeeping(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfYourRecordKeepingPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfYourRecordKeeping(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

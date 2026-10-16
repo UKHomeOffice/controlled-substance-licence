@@ -120,6 +120,10 @@ export class basePage {
   getPageLinkByText(text: string) { return this.page.getByRole('link', { name: text, exact: true }); }
   getPartialLink(text: string) { return this.getLink(text); }
   async clickLinkWithText(text: string) { await this.getLink(text).click(); }
+  async clickLinkOrButtonWithText(text: string) {
+    await this.page.getByRole('button', { name: text, exact: true })
+      .or(this.page.getByRole('link', { name: text, exact: true })).click();
+  }
   async isLinkTextDisplayed(text: string) { return this.getLink(text).isVisible(); }
   async getLinkUrl(text: string) { return this.getLink(text).getAttribute('href'); }
   async assertLinkUrl(text: string, url: string) { await expect(this.getLink(text)).toHaveAttribute('href', url); }

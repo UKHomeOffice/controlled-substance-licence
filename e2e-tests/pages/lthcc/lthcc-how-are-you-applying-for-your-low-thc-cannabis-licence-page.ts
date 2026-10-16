@@ -12,4 +12,9 @@ export class LthccHowAreYouApplyingForYourLowThcCannabisLicencePage extends base
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('How are you applying for your low THC cannabis license? – Industrial hemp application');
     }
+    async completeHowAreYouApplyingForYourLowThcCannabisLicencePage(optionText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optionText);
+        await this.clickContinue();
+    }
 }

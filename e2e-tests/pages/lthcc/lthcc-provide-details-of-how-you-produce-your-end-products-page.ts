@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfHowYouProduceYourEndProductsPage extends baseP
     async enterProvideDetailsOfHowYouProduceYourEndProducts(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfHowYouProduceYourEndProductsPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfHowYouProduceYourEndProducts(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

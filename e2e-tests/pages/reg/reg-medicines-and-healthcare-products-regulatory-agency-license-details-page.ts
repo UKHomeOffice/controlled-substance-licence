@@ -22,4 +22,9 @@ export class RegMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage
         await this.clearAndEnterTextInElement(this.licenseTypeField, licenseType);
         await this.enterDateOrDob(date);
     }
+    async completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage(licenceNumber: string, licenceType: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetails(licenceNumber, licenceType, date);
+        await this.clickContinue();
+    }
 }

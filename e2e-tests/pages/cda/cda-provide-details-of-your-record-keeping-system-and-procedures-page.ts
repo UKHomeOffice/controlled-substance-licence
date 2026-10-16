@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfYourRecordKeepingSystemAndProceduresPage extends
     async enterProvideDetailsOfYourRecordKeepingSystemAndProcedures(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeProvideDetailsOfYourRecordKeepingSystemAndProceduresPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfYourRecordKeepingSystemAndProcedures(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -16,4 +16,9 @@ export class LthccWhichEmailAddressShouldWeSendTheLicenceToPage extends basePage
     async enterWhichEmailAddressShouldWeSendTheLicenceTo(email: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.emailField, email);
     }
+    async completeWhichEmailAddressShouldWeSendTheLicenceToPage(email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhichEmailAddressShouldWeSendTheLicenceTo(email);
+        await this.clickSaveAndContinue();
+    }
 }

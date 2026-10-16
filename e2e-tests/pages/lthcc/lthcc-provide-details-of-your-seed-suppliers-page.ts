@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfYourSeedSuppliersPage extends basePage {
     async enterProvideDetailsOfYourSeedSuppliers(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfYourSeedSuppliersPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfYourSeedSuppliers(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -5,4 +5,7 @@ export class CdaApplicationSubmittedPage extends basePage {
             ? "Error: Application submitted – Controlled drugs application"
             : "Application submitted – Controlled drugs application";
     }
+    async completeApplicationSubmittedPage(): Promise<void> {
+        await this.assertPageTitle();
+    }
 }

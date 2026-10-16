@@ -12,4 +12,9 @@ export class RegIsTheBusinessARegisteredCharityPage extends basePage {
             ? "Error: Is the business a registered charity? – Register for controlled substance licensing"
             : "Is the business a registered charity? – Register for controlled substance licensing";
     }
+    async completeIsTheBusinessARegisteredCharityPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickContinue();
+    }
 }

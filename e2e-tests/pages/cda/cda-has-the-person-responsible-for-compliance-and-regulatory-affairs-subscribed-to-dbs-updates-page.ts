@@ -5,4 +5,9 @@ export class CdaHasThePersonResponsibleForComplianceAndRegulatoryAffairsSubscrib
             ? "Error: Has the person responsible for compliance and regulatory affairs subscribed to DBS updates? – Controlled drugs application"
             : "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates? – Controlled drugs application";
     }
+    async completeHasThePersonResponsibleForComplianceAndRegulatoryAffairsSubscribedToDbsUpdatesPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

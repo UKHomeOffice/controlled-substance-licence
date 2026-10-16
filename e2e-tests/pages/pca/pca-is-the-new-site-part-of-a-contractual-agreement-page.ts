@@ -7,4 +7,9 @@ export class PcaIsTheNewSitePartOfAContractualAgreementPage extends basePage {
             ? "Error: Is the new site part of a contractual agreement? – Precursor chemicals application"
             : "Is the new site part of a contractual agreement? – Precursor chemicals application";
   }
+  async completeIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectYesOrNoRadioOption(option);
+    await this.clickSaveAndContinue();
+  }
 }

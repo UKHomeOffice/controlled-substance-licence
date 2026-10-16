@@ -15,4 +15,9 @@ export class PcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceR
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
   }
+  async completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(option: string, textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilities(option, textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

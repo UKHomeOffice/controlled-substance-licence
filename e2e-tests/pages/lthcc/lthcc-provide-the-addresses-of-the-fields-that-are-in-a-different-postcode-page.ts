@@ -16,4 +16,9 @@ export class LthccProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage 
     async enterProvideTheAddressesOfTheFieldsThatAreInADifferentPostcode(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideTheAddressesOfTheFieldsThatAreInADifferentPostcodePage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideTheAddressesOfTheFieldsThatAreInADifferentPostcode(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

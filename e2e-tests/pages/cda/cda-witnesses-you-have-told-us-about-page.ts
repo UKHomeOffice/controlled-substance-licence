@@ -15,4 +15,8 @@ export class CdaWitnessesYouHaveToldUsAboutPage extends basePage {
             ? "Error: Witnesses you have told us about – Controlled drugs application"
             : "Witnesses you have told us about – Controlled drugs application";
     }
+    async completeWitnessesYouHaveToldUsAboutPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSaveAndContinue();
+    }
 }

@@ -5,4 +5,9 @@ export class CdaIsTheAlarmSystemServicedAnnuallyPage extends basePage {
             ? "Error: Is the alarm system serviced annually? – Controlled drugs application"
             : "Is the alarm system serviced annually? – Controlled drugs application";
     }
+    async completeIsTheAlarmSystemServicedAnnuallyPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

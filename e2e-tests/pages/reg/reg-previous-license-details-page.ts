@@ -22,4 +22,9 @@ export class RegPreviousLicenseDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.licenseHolderNameField, licenseHolderName);
         await this.enterDateOrDob(date);
     }
+    async completePreviousLicenseDetailsPage(previousLicenseNumber: string, licenseHolderName: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterRegPreviousLicenseDetailsPage(previousLicenseNumber, licenseHolderName, date);
+        await this.clickContinue();
+    }
 }

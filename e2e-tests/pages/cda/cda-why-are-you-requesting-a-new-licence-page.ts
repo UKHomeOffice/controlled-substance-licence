@@ -5,4 +5,9 @@ export class CdaWhyAreYouRequestingANewLicencePage extends basePage {
             ? "Error: Why are you requesting a new licence? – Controlled drugs application"
             : "Why are you requesting a new licence? – Controlled drugs application";
     }
+    async completeWhyAreYouRequestingANewLicensePage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

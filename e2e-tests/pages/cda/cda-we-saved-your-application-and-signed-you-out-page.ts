@@ -5,4 +5,8 @@ export class CdaWeSavedYourApplicationAndSignedYouOutPage extends basePage {
             ? "Error: We saved your application and signed you out – Controlled drugs application"
             : "We saved your application and signed you out – Controlled drugs application";
     }
+    async SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSignInAgain();
+    }
 }

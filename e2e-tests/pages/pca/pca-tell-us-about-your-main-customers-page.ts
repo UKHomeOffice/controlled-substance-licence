@@ -12,4 +12,9 @@ export class PcaTellUsAboutYourMainCustomersPage extends basePage {
   async enterTellUsAboutYourMainCustomers(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textField, text);
   }
+  async completeTellUsAboutYourMainCustomersPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterTellUsAboutYourMainCustomers(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

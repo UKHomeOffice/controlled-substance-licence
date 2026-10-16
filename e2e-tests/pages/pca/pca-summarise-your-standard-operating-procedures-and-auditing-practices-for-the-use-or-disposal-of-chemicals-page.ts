@@ -12,4 +12,9 @@ export class PcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForT
   async enterSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicals(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textField, text);
   }
+  async completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicals(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

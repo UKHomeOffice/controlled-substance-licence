@@ -23,4 +23,9 @@ export class CdaSiteOwnersContactDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.contactPhoneField, contactPhone);
         await this.clearAndEnterTextInElement(this.addressField, address);
     }
+    async completeSiteOwnersContactDetailsPage(fullName: string, email: string, contactPhone: string, address: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterSiteOwnersContactDetails(fullName, email, contactPhone, address);
+        await this.clickSaveAndContinue();
+    }
 }

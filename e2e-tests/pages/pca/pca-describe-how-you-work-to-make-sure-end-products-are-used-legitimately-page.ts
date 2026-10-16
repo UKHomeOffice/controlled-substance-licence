@@ -12,4 +12,9 @@ export class PcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage e
   async enterDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimately(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textField, text);
   }
+  async completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimately(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

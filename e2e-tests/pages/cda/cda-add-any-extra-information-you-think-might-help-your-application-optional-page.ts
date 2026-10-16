@@ -14,4 +14,9 @@ export class CdaAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPa
     async enterAddAnyExtraInformationYouThinkMightHelpYourApplicationOptional(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterAddAnyExtraInformationYouThinkMightHelpYourApplicationOptional(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

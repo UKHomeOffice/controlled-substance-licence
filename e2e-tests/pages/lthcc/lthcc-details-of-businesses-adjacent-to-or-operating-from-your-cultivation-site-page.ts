@@ -28,4 +28,9 @@ export class LthccDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSit
         await this.clearAndEnterTextInElement(this.describeBusinessField, describeBusiness);
         await this.clearAndEnterTextInElement(this.referenceField, reference);
     }
+    async completeDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSitePage(businessName: string, typeOfBusiness: string, whoOwnOfBusiness: string, describeBusiness: string, reference: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDetailsOfBusinessesAdjacentToOrOperatingFromYourCultivationSite(businessName, typeOfBusiness, whoOwnOfBusiness, describeBusiness, reference);
+        await this.clickSaveAndContinue();
+    }
 }

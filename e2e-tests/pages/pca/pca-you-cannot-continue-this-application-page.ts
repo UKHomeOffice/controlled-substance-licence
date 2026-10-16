@@ -7,4 +7,7 @@ export class PcaYouCannotContinueThisApplicationPage extends basePage {
             ? "Error: You cannot continue this application – Precursor chemicals application"
             : "You cannot continue this application – Precursor chemicals application";
   }
+  async completeYouCannotContinueThisApplicationPage(): Promise<void> {
+    await this.assertPageTitle();
+  }
 }

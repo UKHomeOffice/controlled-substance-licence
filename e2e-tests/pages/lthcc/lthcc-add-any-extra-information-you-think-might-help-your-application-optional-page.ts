@@ -16,4 +16,9 @@ export class LthccAddAnyExtraInformationYouThinkMightHelpYourApplicationOptional
     async enterAddAnyExtraInformationYouThinkMightHelpYourApplicationOptional(textAreaValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textAreaValue);
     }
+    async completeAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterAddAnyExtraInformationYouThinkMightHelpYourApplicationOptional(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

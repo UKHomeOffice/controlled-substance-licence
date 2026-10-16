@@ -18,4 +18,9 @@ export class CdaMedicinesAndHealthcareProductsRegulatoryAgencyMhraLicenceDetails
         await this.clearAndEnterTextInElement(this.licenceTypeField, licenceType);
         await this.enterDateOrDob(date);
     }
+    async completeMedicinesAndHealthcareProductsRegulatoryAgencyMhraLicenceDetailsPage(licenceNumber: string, licenceType: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterLicenceDetailsMhrc(licenceNumber, licenceType, date);
+        await this.clickSaveAndContinue();
+    }
 }

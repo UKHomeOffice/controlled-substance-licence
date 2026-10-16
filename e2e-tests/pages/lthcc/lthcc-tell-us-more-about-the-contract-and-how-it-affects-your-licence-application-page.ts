@@ -16,4 +16,9 @@ export class LthccTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicatio
     async enterTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplication(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(textAreaText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplication(textAreaText);
+        await this.clickSaveAndContinue();
+    }
 }

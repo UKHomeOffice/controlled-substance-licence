@@ -12,4 +12,9 @@ export class PcaWhichEmailAddressShouldTheLicenceBeSentToPage extends basePage {
   async enterWhichEmailAddressShouldTheLicenceBeSentTo(email: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.emailField, email);
   }
+  async completeWhichEmailAddressShouldTheLicenceBeSentToPage(emailValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhichEmailAddressShouldTheLicenceBeSentTo(emailValue);
+    await this.clickSaveAndContinue();
+  }
 }

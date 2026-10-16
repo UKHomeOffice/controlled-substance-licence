@@ -28,4 +28,9 @@ export class LthccInvoicingContactDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.purchaseOrderNumberField, purchaseOrderNo);
         await this.clearAndEnterTextInElement(this.textAreaField, refundAccount);
     }
+    async completeInvoicingContactDetailsPage(contactName: string, email: string, contactNo: string, purchaseOrderNo: string, refundAccount: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterInvoicingContactDetails(contactName, email, contactNo, purchaseOrderNo, refundAccount);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -11,4 +11,15 @@ export class PcaWhichCategoryIsTheNewSubstancePage extends basePage {
   async enterWhichCategoryIsTheNewSubstance(optText: string): Promise<void> {
     await this.selectRadioOptionWithText(optText);
   }
+  async completeWhichCategoryIsTheSubstancePage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhichCategoryIsTheNewSubstance(optText);
+    await this.clickSaveAndContinue();
+  }
+
+  async completeAndSelectSaveAndExitWhichCategoryIsTheSubstancePage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhichCategoryIsTheNewSubstance(optText);
+    await this.clickSaveAndAndExit();
+  }
 }

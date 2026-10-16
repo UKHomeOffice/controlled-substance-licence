@@ -12,4 +12,9 @@ export class LthccHasTheAuthorisedWitnessSubscribedToDbsPage extends basePage {
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Has the authorised witness subscribed to DBS updates? – Industrial hemp application');
     }
+    async completeHasTheAuthorisedWitnessSubscribedToDbsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

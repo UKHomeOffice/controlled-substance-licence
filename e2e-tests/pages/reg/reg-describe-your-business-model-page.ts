@@ -18,4 +18,9 @@ export class RegDescribeYourBusinessModelPage extends basePage {
     async enterDescribeYourBusinessModel(textAreaValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textAreaValue);
     }
+    async completeDescribeYourBusinessModelPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDescribeYourBusinessModel(textAreaValue);
+        await this.clickContinue();
+    }
 }

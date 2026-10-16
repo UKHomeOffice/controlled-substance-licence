@@ -15,4 +15,9 @@ export class CdaRegistrationDetailsForTheCareQualityCommissionCqcOrScottishAndWe
         await this.clearAndEnterTextInElement(this.registrationNumberField, registrationNumber);
         await this.enterDateOrDob(date);
     }
+    async completeRegistrationDetailsForTheCareQualityCommissionCqcOrScottishAndWelshEquivalentsPage(registrationNumber: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterRegistrationDetails(registrationNumber, date);
+        await this.clickSaveAndContinue();
+    }
 }

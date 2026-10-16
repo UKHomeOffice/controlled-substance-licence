@@ -12,4 +12,9 @@ export class PcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationP
   async enterTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplication(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textAreaField, text);
   }
+  async completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(textValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplication(textValue);
+    await this.clickSaveAndContinue();
+  }
 }

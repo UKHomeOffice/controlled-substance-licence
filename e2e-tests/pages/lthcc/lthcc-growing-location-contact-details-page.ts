@@ -19,4 +19,9 @@ export class LthccGrowingLocationContactDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.emailField, email);
         await this.clearAndEnterTextInElement(this.ukTelPhoneNoField, ukTelPhoneNo);
     }
+    async completeGrowingLocationContactDetailsPagePage(email: string, ukTelPhoneNo: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterGrowingLocationContactDetails(email, ukTelPhoneNo);
+        await this.clickSaveAndContinue();
+    }
 }

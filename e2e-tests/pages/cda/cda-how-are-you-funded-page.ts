@@ -5,4 +5,9 @@ export class CdaHowAreYouFundedPage extends basePage {
             ? "Error: How are you funded? – Controlled drugs application"
             : "How are you funded? – Controlled drugs application";
     }
+    async completeHowAreYouFundedPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

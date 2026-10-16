@@ -5,4 +5,9 @@ export class CdaAreTheyOrAnyoneNamedOnThisApplicationMemberOfProfessionalBodyPag
             ? "Error: Are they, or anyone named on this application, a member of a professional body? – Controlled drugs application"
             : "Are they, or anyone named on this application, a member of a professional body? – Controlled drugs application";
     }
+    async completeAreTheyOrAnyoneNamedOnThisApplicationMemberOfProfessionalBodyPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

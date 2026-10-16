@@ -22,4 +22,14 @@ export class CdaManagingDirectorOrPersonInChargePage extends basePage {
         await this.clearAndEnterTextInElement(this.fullNameField, fullName);
         await this.clearAndEnterTextInElement(this.emailField, email);
     }
+    async enterManagingDirectorOrPersonInChargeFullNameAndEmailDetails(fullName: string, email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterFullNameAndEmailDetails(fullName, email);
+    }
+
+    async completeManagingDirectorOrPersonInChargePage(fullName: string, email: string, optText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterManagingDirectorOrPersonInCharge(fullName, email, optText);
+        await this.clickSaveAndContinue();
+    }
 }

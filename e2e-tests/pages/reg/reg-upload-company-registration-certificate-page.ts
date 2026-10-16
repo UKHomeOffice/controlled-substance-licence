@@ -12,4 +12,9 @@ export class RegUploadCompanyRegistrationCertificatePage extends basePage {
             ? "Error: Upload company registration certificate – Register for controlled substance licensing"
             : "Upload company registration certificate – Register for controlled substance licensing";
     }
+    async completeUploadCompanyRegistrationCertificatePage(fileName: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.uploadFileFromUserUploadFolder(fileName);
+        await this.selectContinueUploadBtn();
+    }
 }

@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfTheProfessionalBodiesAndRelevantReferenceNumbers
     async enterProvideDetailsOfTheProfessionalBodiesAndRelevantReferenceNumbers(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textArea, text);
     }
+    async completeProvideDetailsOfTheProfessionalBodiesAndRelevantReferenceNumbersPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfTheProfessionalBodiesAndRelevantReferenceNumbers(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

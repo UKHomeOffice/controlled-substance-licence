@@ -14,4 +14,9 @@ export class CdaWhichEmailAddressShouldWeSendTheLicenceToPage extends basePage {
     async enterWhichEmailAddressShouldWeSendTheLicenceToPage(email: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.emailField, email);
     }
+    async completeWhichEmailAddressShouldWeSendTheLicenceToPage(email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhichEmailAddressShouldWeSendTheLicenceToPage(email);
+        await this.clickSaveAndContinue();
+    }
 }

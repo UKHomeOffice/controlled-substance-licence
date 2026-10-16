@@ -7,4 +7,9 @@ export class PcaUploadYourCompaniesHouseDetailsPage extends basePage {
             ? "Error: Upload your Companies House details – Precursor chemicals application"
             : "Upload your Companies House details – Precursor chemicals application";
   }
+  async completePcaUploadYourCompaniesHouseDetailsPage(uploadFileName: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadFileFromUserUploadFolder(uploadFileName);
+    await this.selectContinueUploadBtn();
+  }
 }

@@ -5,4 +5,9 @@ export class CdaHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceed
             ? "Error: Has anyone in your organisation ever been subject to legal business proceedings? – Controlled drugs application"
             : "Has anyone in your organisation ever been subject to legal business proceedings? – Controlled drugs application";
     }
+    async completeHasAnyoneInYourOrganisationEverBeenSubjectToLegalBusinessProceedingsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

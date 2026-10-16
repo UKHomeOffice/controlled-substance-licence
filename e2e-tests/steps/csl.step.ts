@@ -11,15 +11,23 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 const { Given, When, Then } = createBdd(test);
 
 Given('I visit the Controlled substance licence application page', async ({ pages }) => {
-  await new CommonCslStepLib(pages).openCls();
+  await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.openCls();
 });
 
 When('I fill out the answers to {string} form pertaining to {string} happy path test', async ({ pages }, application: string, scenario: string) => {
   switch (application.toLowerCase()) {
-    case 'registration': await new RegStepLib(pages).answersRegistrationFormFor(scenario); break;
-    case 'precursor chemicals': await new PcaStepLib(pages).answersPrecursorChemicalsFormFor(scenario); break;
-    case 'controlled drugs': await new CdaStepLib(pages).answersControlledDrugsFormFor(scenario); break;
-    case 'low thc cannabis': await new LthccStepLib(pages).answersLowThcCannabisFormFor(scenario); break;
+    case 'registration':
+      await new RegStepLib(pages).answersRegistrationFormFor(scenario);
+      break;
+    case 'precursor chemicals':
+      await new PcaStepLib(pages).answersPrecursorChemicalsFormFor(scenario);
+      break;
+    case 'controlled drugs':
+      await new CdaStepLib(pages).answersControlledDrugsFormFor(scenario);
+      break;
+    case 'low thc cannabis':
+      await new LthccStepLib(pages).answersLowThcCannabisFormFor(scenario);
+      break;
     default: throw new Error(`Wrong application name: ${application}`);
   }
 });
@@ -35,28 +43,40 @@ When('I fill out the answers to {string} form pertaining to {string} happy path 
 
 When('I partially completing {string} form, then save and exit on {string} page', async ({ pages }, application: string, scenario: string) => {
   switch (application.toLowerCase()) {
-    case 'precursor chemicals': await new PcaStepLib(pages).answersPrecursorChemicalsFormForContinuingAnApplication(scenario); break;
-    case 'controlled drugs': await new CdaStepLib(pages).answersControlledDrugsFormForContinuingAnApplication(scenario); break;
-    case 'low thc cannabis': await new LthccStepLib(pages).answersLowThcCannabisFormForContinuingAnApplication(scenario); break;
+    case 'precursor chemicals':
+      await new PcaStepLib(pages).answersPrecursorChemicalsFormForContinuingAnApplication(scenario);
+      break;
+    case 'controlled drugs':
+      await new CdaStepLib(pages).answersControlledDrugsFormForContinuingAnApplication(scenario);
+      break;
+    case 'low thc cannabis':
+      await new LthccStepLib(pages).answersLowThcCannabisFormForContinuingAnApplication(scenario);
+      break;
     default: throw new Error(`Wrong application name: ${application}`);
   }
 });
 
 When('I fill out the answers to {string} existing licensee renewing or changing a currently licensed site form pertaining to cannot continue with application form', async ({ pages }, application: string) => {
   switch (application.toLowerCase()) {
-    case 'precursor chemicals': await new PcaStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue(); break;
-    case 'controlled drugs': await new CdaStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue(); break;
-    case 'low thc cannabis': await new LthccStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue(); break;
+    case 'precursor chemicals':
+      await new PcaStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue();
+      break;
+    case 'controlled drugs':
+      await new CdaStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue();
+      break;
+    case 'low thc cannabis':
+      await new LthccStepLib(pages).answerToExistingLicenseeRenewingOrChangingCannonContinue();
+      break;
     default: throw new Error(`Wrong application name: ${application}`);
   }
 });
 
 When('I select save and continue for CDA', async ({ pages }) => {
-  await new CommonCslStepLib(pages).selectSaveAndContinueButton();
+  await pages.basePage.clickSaveAndContinue();
 });
 
 When('I choose to navigate to {string} page', async ({ pages }, _pageName: string) => {
-  await new CommonCslStepLib(pages).completeApplyForADomesticLicenceForControlledSubstancesPage();
+  await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
 });
 
 Then(/^I (?:should (?:see|be returned to)(?= "[^"]*" page for )|am navigated to) "([^"]*)" page(?: for (?:LTHCC|CDA|PCA|Registration))?$/, async ({ page }, heading: string) => {
@@ -68,34 +88,40 @@ Then('{string} text is displayed as page header', async ({ page }, heading: stri
 });
 
 When('I select {string} link on page', async ({ pages }, text: string) => {
-  await new CommonCslStepLib(pages).clickOnLinkWithText(text);
+  await pages.basePage.clickLinkWithText(text);
 });
 
 When('I select the sign in again button on {string} form', async ({ pages }, application: string) => {
   switch (application.toLowerCase()) {
-    case 'precursor chemicals': await new PcaStepLib(pages).SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(); break;
-    case 'controlled drugs': await new CdaStepLib(pages).SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(); break;
-    case 'low thc cannabis': await new LthccStepLib(pages).SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(); break;
+    case 'precursor chemicals':
+      await pages.pcaWeSavedYourApplicationAndSignedYouOutPage.SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut();
+      break;
+    case 'controlled drugs':
+      await pages.cdaWeSavedYourApplicationAndSignedYouOutPage.SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut();
+      break;
+    case 'low thc cannabis':
+      await pages.lthccWeSavedYourApplicationAndSignedYouOutPage.SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut();
+      break;
     default: throw new Error(`Wrong application form name: ${application}`);
   }
 });
 
 When('I choose to sign in, then select {string} form and then select {string} option', async ({ pages }, application: string, option: string) => {
   const common = new CommonCslStepLib(pages);
-  await common.completeApplyForADomesticLicenceForControlledSubstancesPage();
-  await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+  await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+  await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
   switch (application.toLowerCase()) {
     case 'precursor chemicals':
-      await common.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
-      await new PcaStepLib(pages).completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(option);
+      await pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
+      await pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(option);
       break;
     case 'controlled drugs':
-      await common.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
-      await new CdaStepLib(pages).completeHowAreYouApplyingForYourControlledDrugsLicencePage(option);
+      await pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
+      await pages.cdaHowAreYouApplyingForYourControlledDrugsLicencePage.completeHowAreYouApplyingForYourControlledDrugsLicencePage(option);
       break;
     case 'low thc cannabis':
-      await common.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
-      await new LthccStepLib(pages).completeHowAreYouApplyingForYourLowThcCannabisLicencePage(option);
+      await pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(application);
+      await pages.lthccHowAreYouApplyingForYourLowThcCannabisLicencePage.completeHowAreYouApplyingForYourLowThcCannabisLicencePage(option);
       break;
     default: throw new Error(`Wrong application name: ${application}`);
   }
@@ -104,14 +130,18 @@ When('I choose to sign in, then select {string} form and then select {string} op
 When('I choose to sign in as {string} user', async ({ pages }, userType: string) => {
   const common = new CommonCslStepLib(pages);
   switch (userType.toLowerCase()) {
-    case 'valid': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD); break;
-    case 'pending': await common.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME_PENDING, c.PASSWORD_PENDING); break;
+    case 'valid':
+      await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+      break;
+    case 'pending':
+      await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME_PENDING, c.PASSWORD_PENDING);
+      break;
     default: throw new Error(`Wrong user type: ${userType}`);
   }
 });
 
 When(/^I (?:choose to select the|select) "([^"]*)" (?:link|button)$/, async ({ pages }, text: string) => {
-  await new CommonCslStepLib(pages).clickOnLinkOrButtonWithText(text);
+  await pages.basePage.clickLinkOrButtonWithText(text);
 });
 
 Then('I am navigated to a new tab with {string} page displayed', async ({ pages }, heading: string) => {
@@ -156,7 +186,7 @@ Then('I should see {string} count message displayed on the text area field', asy
   const countPattern = escaped.replace(
     /\d[\d,]*/g,
     count =>
-    count.replaceAll(',', '').replace(/\B(?=(\d{3})+(?!\d))/g, ',?')
+      count.replaceAll(',', '').replace(/\B(?=(\d{3})+(?!\d))/g, ',?')
   );
   await expect(pages.basePage.remainingCharacters).toHaveText(new RegExp(`^${countPattern}$`));
 });

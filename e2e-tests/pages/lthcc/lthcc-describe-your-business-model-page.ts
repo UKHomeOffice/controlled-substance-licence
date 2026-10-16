@@ -16,4 +16,9 @@ export class LthccDescribeYourBusinessModelPage extends basePage {
     async enterDescribeYourBusinessModel(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeDescribeYourBusinessModelPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDescribeYourBusinessModel(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

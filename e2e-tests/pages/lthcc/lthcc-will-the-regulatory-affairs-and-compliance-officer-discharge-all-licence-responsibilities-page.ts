@@ -21,4 +21,9 @@ export class LthccWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenc
             await this.selectYesOrNoRadioOption(option);
         }
     }
+    async completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(option: string, textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilities(option, textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

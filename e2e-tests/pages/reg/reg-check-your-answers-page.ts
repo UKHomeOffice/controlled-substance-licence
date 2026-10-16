@@ -12,4 +12,8 @@ export class RegCheckYourAnswersPage extends basePage {
             ? "Error: Check your answers before submitting your registration – Register for controlled substance licensing"
             : "Check your answers before submitting your registration – Register for controlled substance licensing";
     }
+    async completeCheckYourAnswersPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickContinue();
+    }
 }

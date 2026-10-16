@@ -22,4 +22,14 @@ export class CdaPersonResponsibleForTheSecurityOfThePremisesPage extends basePag
         await this.clearAndEnterTextInElement(this.fullNameField, fullName);
         await this.clearAndEnterTextInElement(this.emailField, email);
     }
+    async enterPersonResponsibleForTheSecurityOfThePremisesFullNameAndEmailDetails(fullName: string, email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterFullNameAndEmailDetails(fullName, email);
+    }
+
+    async completePersonResponsibleForTheSecurityOfThePremisesPage(fullName: string, email: string, optText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterPersonResponsibleForTheSecurityOfThePremises(fullName, email, optText);
+        await this.clickSaveAndContinue();
+    }
 }

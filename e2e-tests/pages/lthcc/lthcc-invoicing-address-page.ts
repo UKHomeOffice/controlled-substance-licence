@@ -25,4 +25,9 @@ export class LthccInvoicingAddressPage extends basePage {
         await this.clearAndEnterTextInElement(this.townOrCityTextField, townOrCity);
         await this.clearAndEnterTextInElement(this.postCodeField, postCode);
     }
+    async completeInvoicingAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterInvoicingAddress(addressLine1, addressLine2, townOrCity, postCode);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -16,4 +16,9 @@ export class LthccWhatIsTheTotalAcreageOfTheFieldsPage extends basePage {
     async enterWhatIsTheTotalAcreageOfTheFields(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textField, value);
     }
+    async completeWhatIsTheTotalAcreageOfTheFieldsPage(textValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhatIsTheTotalAcreageOfTheFields(textValue);
+        await this.clickSaveAndContinue();
+    }
 }

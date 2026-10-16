@@ -33,4 +33,9 @@ export class RegLicenceHolderDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.contactEmailField, email);
         await this.clearAndEnterTextInElement(this.webSiteUrlField, webSiteUrl);
     }
+    async completeLicenseHolderDetailsPage(licenseHolderName: string, nameOfResponsiblePerson: string, companyNumber: string, contactPhoneNumber: string, email: string, webSiteUrl: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterLicenceHolderDetails(licenseHolderName, nameOfResponsiblePerson, companyNumber, contactPhoneNumber, email, webSiteUrl);
+        await this.clickContinue();
+    }
 }

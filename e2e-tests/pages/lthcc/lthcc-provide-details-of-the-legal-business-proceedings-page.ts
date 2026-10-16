@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfTheLegalBusinessProceedingsPage extends basePa
     async enterProvideDetailsOfTheLegalBusinessProceedings(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfTheLegalBusinessProceedingsPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfTheLegalBusinessProceedings(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

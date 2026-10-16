@@ -12,4 +12,7 @@ export class RegRegistrationSubmittedPage extends basePage {
             ? "Error: Registration submitted – Register for controlled substance licensing"
             : "Registration submitted – Register for controlled substance licensing";
     }
+    async completeRegistrationSubmittedPage(): Promise<void> {
+        await this.assertPageTitle();
+    }
 }

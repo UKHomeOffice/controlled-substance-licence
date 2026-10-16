@@ -8,4 +8,10 @@ export class CslWhatTypeOfLicenceAreYouApplyingForPage extends basePage {
   async selectWhatTypeOfLicenceAreYouApplyingFor(optText: string) {
     await this.selectRadioOptionWithText(optText);
   }
+
+  async completeIsWhatTypeOfLicenceAreYouApplyingForPage(option: string) {
+    await this.assertPageTitle();
+    await this.selectWhatTypeOfLicenceAreYouApplyingFor(option);
+    await this.clickContinue();
+  }
 }

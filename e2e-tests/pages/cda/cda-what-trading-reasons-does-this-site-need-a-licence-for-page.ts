@@ -14,4 +14,9 @@ export class CdaWhatTradingReasonsDoesThisSiteNeedALicenceForPage extends basePa
     async selectTradingReasonsValueFromDropDownField(textValue: string): Promise<void> {
         await this.selectValueFromDropDownField(this.tradeReasonDropDownField, textValue);
     }
+    async completeWhatTradingReasonsDoesThisSiteNeedALicenceForPage(dropTextValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectTradingReasonsValueFromDropDownField(dropTextValue);
+        await this.clickSaveAndContinue();
+    }
 }

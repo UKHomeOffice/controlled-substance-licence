@@ -5,4 +5,9 @@ export class CdaHasTheManagingDirectorOrPersonInChargeSubscribedToDbsUpdatesPage
             ? "Error: Has the managing director or person in charge subscribed to DBS updates? – Controlled drugs application"
             : "Has the managing director or person in charge subscribed to DBS updates? – Controlled drugs application";
     }
+    async completeHasTheManagingDirectorOrPersonInChargeSubscribedToDbsUpdatesPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

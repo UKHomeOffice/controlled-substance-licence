@@ -7,4 +7,9 @@ export class PcaUploadCertificateOfGoodConductPage extends basePage {
             ? "Error: Upload a certificate of good conduct – Precursor chemicals application"
             : "Upload a certificate of good conduct – Precursor chemicals application";
   }
+  async completeUploadCertificateOfGoodConductPage(uploadFile: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadFileFromUserUploadFolder(uploadFile);
+    await this.selectContinueUploadBtn();
+  }
 }

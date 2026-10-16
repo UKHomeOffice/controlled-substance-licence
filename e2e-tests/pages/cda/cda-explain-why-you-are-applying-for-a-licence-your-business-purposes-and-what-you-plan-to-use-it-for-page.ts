@@ -14,4 +14,9 @@ export class CdaExplainWhyYouAreApplyingForALicenceYourBusinessPurposesAndWhatYo
     async enterExplainWhyYouAreApplyingForALicenceYourBusinessPurposesAndWhatYouPlanToUseItFor(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeExplainWhyYouAreApplyingForALicenceYourBusinessPurposesAndWhatYouPlanToUseItForPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterExplainWhyYouAreApplyingForALicenceYourBusinessPurposesAndWhatYouPlanToUseItFor(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

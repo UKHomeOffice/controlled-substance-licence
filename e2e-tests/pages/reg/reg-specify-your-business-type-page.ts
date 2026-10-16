@@ -18,4 +18,9 @@ export class RegSpecifyYourBusinessTypePage extends basePage {
     async enterSpecifyYourBusinessType(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.specifyBusinessTypeField, textValue);
     }
+    async completeSpecifyYourBusinessTypePage(textValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterSpecifyYourBusinessType(textValue);
+        await this.clickContinue();
+    }
 }

@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfAnyOtherRegulatoryBodiesThatYouAreRegisteredWith
     async enterProvideDetailsOfAnyOtherRegulatoryBodiesThatYouAreRegisteredWithOptional(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeProvideDetailsOfAnyOtherRegulatoryBodiesThatYouAreRegisteredWithOptionalPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfAnyOtherRegulatoryBodiesThatYouAreRegisteredWithOptional(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

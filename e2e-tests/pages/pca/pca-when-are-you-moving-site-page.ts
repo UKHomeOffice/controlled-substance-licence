@@ -11,4 +11,9 @@ export class PcaWhenAreYouMovingSitePage extends basePage {
   async enterWhenAreYouMovingSite(date: string): Promise<void> {
     await this.enterDateOrDob(date);
   }
+  async completeWhenAreYouMovingSitePage(date: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhenAreYouMovingSite(date);
+    await this.clickSaveAndContinue();
+  }
 }

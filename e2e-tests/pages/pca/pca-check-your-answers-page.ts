@@ -7,4 +7,8 @@ export class PcaCheckYourAnswersPage extends basePage {
             ? "Error: Summary – Precursor chemicals application"
             : "Summary – Precursor chemicals application";
   }
+  async completeCheckYourAnswerPage(): Promise<void> {
+    await this.assertPageTitle();
+    await this.clickSaveAndContinue();
+  }
 }

@@ -16,4 +16,9 @@ export class LthccWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage extends 
     async enterWhatIsAdjacentToEachOfTheFieldsYouIntendCultivate(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeWhatIsAdjacentToEachOfTheFieldsYouIntendCultivatePage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhatIsAdjacentToEachOfTheFieldsYouIntendCultivate(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -5,4 +5,9 @@ export class LthccAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivation
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Are there any other businesses operating from your intended cultivation site? – Industrial hemp application');
     }
+    async completeAreThereAnyOtherBusinessesOperatingFromYourIntendedCultivationSitePage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

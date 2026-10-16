@@ -5,4 +5,9 @@ export class CdaWhatIsTheStatusOfTheSiteToBeLicensedPage extends basePage {
             ? "Error:What is the status of the site to be licensed? – Controlled drugs application"
             : "What is the status of the site to be licensed? – Controlled drugs application";
     }
+    async completeWhatIsTheStatusOfTheSiteToBeLicensedPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

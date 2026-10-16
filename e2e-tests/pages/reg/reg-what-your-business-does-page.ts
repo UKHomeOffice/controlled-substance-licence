@@ -12,4 +12,8 @@ export class RegWhatYourBusinessDoesPage extends basePage {
             ? "Error: What your business does – Register for controlled substance licensing"
             : "What your business does – Register for controlled substance licensing";
     }
+    async completeWhatYourBusinessDoesPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickContinue();
+    }
 }

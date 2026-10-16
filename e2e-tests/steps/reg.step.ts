@@ -6,215 +6,83 @@ import { CommonCslStepLib } from './csl-common.step';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class RegStepLib extends CommonCslStepLib {
-    async navigateToRegistrationPage(linkText: string): Promise<void> {
-        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.assertPageTitle();
-        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.selectRegisterForThisServiceLink(linkText);
-    }
-
-    async selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem(): Promise<void> {
-        await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.assertPageTitle();
-        await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowToRegisterForControlledSubstanceLicensing();
-    }
-    async completeLicenseHolderDetailsPage(licenseHolderName: string, nameOfResponsiblePerson: string, companyNumber: string, contactPhoneNumber: string, email: string, webSiteUrl: string): Promise<void> {
-        await this.pages.regLicenceHolderDetailsPage.assertPageTitle();
-        await this.pages.regLicenceHolderDetailsPage.enterLicenceHolderDetails(licenseHolderName, nameOfResponsiblePerson, companyNumber, contactPhoneNumber, email, webSiteUrl);
-        await this.pages.regLicenceHolderDetailsPage.clickContinue();
-    }
-    async completeLicenceHolderAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
-        await this.pages.regLicenceHolderAddressPage.assertPageTitle();
-        await this.pages.regLicenceHolderAddressPage.enterLicenceHolderAddress(addressLine1, addressLine2, townOrCity, postCode);
-        await this.pages.regLicenceHolderAddressPage.clickContinue();
-    }
-
-    async completeIsTheBusinessARegisteredCharityPage(option: string): Promise<void> {
-        await this.pages.regIsTheBusinessARegisteredCharityPage.assertPageTitle();
-        await this.pages.regIsTheBusinessARegisteredCharityPage.selectYesOrNoRadioOption(option);
-        await this.pages.regIsTheBusinessARegisteredCharityPage.clickContinue();
-    }
-
-    async completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(option: string): Promise<void> {
-        await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.assertPageTitle();
-        await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.selectYesOrNoRadioOption(option);
-        await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.clickContinue();
-    }
-
-    async completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(option: string): Promise<void> {
-        await this.pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.assertPageTitle();
-        await this.pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.selectYesOrNoRadioOption(option);
-        await this.pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.clickContinue();
-    }
-
-    async completePreviousLicenseDetailsPage(previousLicenseNumber: string, licenseHolderName: string, date: string): Promise<void> {
-        await this.pages.regPreviousLicenseDetailsPage.assertPageTitle();
-        await this.pages.regPreviousLicenseDetailsPage.enterRegPreviousLicenseDetailsPage(previousLicenseNumber, licenseHolderName, date);
-        await this.pages.regPreviousLicenseDetailsPage.clickContinue();
-    }
-
-    async completeBusinessTypePage(businessTypeValue: string): Promise<void> {
-        await this.pages.regBusinessTypePage.assertPageTitle();
-        await this.pages.regBusinessTypePage.selectBusinessTypeFromDropDownField(businessTypeValue);
-        await this.pages.regBusinessTypePage.clickContinue();
-    }
-
-
-    async completeSpecifyYourBusinessTypePage(textValue: string): Promise<void> {
-        await this.pages.regSpecifyYourBusinessTypePage.assertPageTitle();
-        await this.pages.regSpecifyYourBusinessTypePage.enterSpecifyYourBusinessType(textValue);
-        await this.pages.regSpecifyYourBusinessTypePage.clickContinue();
-    }
-
-    async completeWhatYourBusinessDoesPage(): Promise<void> {
-        await this.pages.regWhatYourBusinessDoesPage.assertPageTitle();
-        await this.pages.regWhatYourBusinessDoesPage.clickContinue();
-    }
-
-    async completeWhatTypeOfCompanyIsYourOrganisationPage(optValue: string): Promise<void> {
-        await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.assertPageTitle();
-        await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.selectRadioOptionWithText(optValue);
-        await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.clickContinue();
-    }
-
-    async completeDescribeYourBusinessModelPage(textAreaValue: string): Promise<void> {
-        await this.pages.regDescribeYourBusinessModelPage.assertPageTitle();
-        await this.pages.regDescribeYourBusinessModelPage.enterDescribeYourBusinessModel(textAreaValue);
-        await this.pages.regDescribeYourBusinessModelPage.clickContinue();
-    }
-
-    async completeUploadCompanyRegistrationCertificatePage(fileName: string): Promise<void> {
-        await this.pages.regUploadCompanyRegistrationCertificatePage.assertPageTitle();
-        await this.pages.regUploadCompanyRegistrationCertificatePage.uploadFileFromUserUploadFolder(fileName);
-        await this.pages.regUploadCompanyRegistrationCertificatePage.selectContinueUploadBtn();
-    }
-
-    async completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(optValue: string): Promise<void> {
-        await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.assertPageTitle();
-        await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.selectRadioOptionWithText(optValue);
-        await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.clickContinue();
-    }
-
-    async completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage(licenceNumber: string, licenceType: string, date: string): Promise<void> {
-        await this.pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.assertPageTitle();
-        await this.pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.enterMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetails(licenceNumber, licenceType, date);
-        await this.pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.clickContinue();
-    }
-
-    async completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(optValue: string): Promise<void> {
-        await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.assertPageTitle();
-        await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.selectRadioOptionWithText(optValue);
-        await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.clickContinue();
-    }
-
-
-    async completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(registrationNumber: string, date: string): Promise<void> {
-        await this.pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.assertPageTitle();
-        await this.pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.enterRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalents(registrationNumber, date);
-        await this.pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.clickContinue();
-    }
-
-    async completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(textAreaValue: string): Promise<void> {
-        await this.pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.assertPageTitle();
-        await this.pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.enterProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWith(textAreaValue);
-        await this.pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.clickContinue();
-    }
-    async completeInvoicingContactDetailsPage(contactName: string, email: string, contactNo: string, purchaseOrderNo: string): Promise<void> {
-        await this.pages.regInvoicingContactDetailsPage.assertPageTitle();
-        await this.pages.regInvoicingContactDetailsPage.enterLicenceDetails(contactName, email, contactNo, purchaseOrderNo);
-        await this.pages.regInvoicingContactDetailsPage.clickContinue();
-    }
-    async completeInvoicingAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
-        await this.pages.regInvoicingAddressPage.assertPageTitle();
-        await this.pages.regInvoicingAddressPage.enterInvoicingAddress(addressLine1, addressLine2, townOrCity, postCode);
-        await this.pages.regInvoicingAddressPage.clickContinue();
-    }
-    async completeCheckYourAnswersPage(): Promise<void> {
-        await this.pages.regCheckYourAnswersPage.assertPageTitle();
-        await this.pages.regCheckYourAnswersPage.clickContinue();
-    }
-    async completeDeclarationPage(optText: string): Promise<void> {
-        await this.pages.regDeclarationPage.assertPageTitle();
-        await this.pages.regDeclarationPage.selectRadioOptionWithText(optText);
-        await this.pages.regDeclarationPage.clickSubmitRegistration();
-    }
-    async completeRegistrationSubmittedPage(): Promise<void> {
-        await this.pages.regRegistrationSubmittedPage.assertPageTitle();
-    }
     async answersRegistrationFormFor(scenario: string): Promise<void> {
         switch (scenario.toLowerCase()) {
             case "t1: yes identity changes in the last 3yrs - other business type - other type of company - yes to mhra - yes to cqcsw":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-                await this.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-                await this.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-                await this.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
-                await this.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(c.RESPONSE_YES);
-                await this.completePreviousLicenseDetailsPage(c.REF_NUMBER, c.NAME, c.DATE_IS_WITHIN_3_YEARS);
-                await this.completeBusinessTypePage("Other");
-                await this.completeSpecifyYourBusinessTypePage(c.TEXT_AREA_FIELD_DATA);
-                await this.completeWhatYourBusinessDoesPage();
-                await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-                await this.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
-                await this.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_YES);
-                await this.completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage("Lic123456", "licenceType", c.DATE_IS_WITHIN_3_YEARS);
-                await this.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_YES);
-                await this.completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage("12345677", c.DATE_IS_WITHIN_3_YEARS);
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+                await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
+                await this.pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(c.RESPONSE_YES);
+                await this.pages.regPreviousLicenseDetailsPage.completePreviousLicenseDetailsPage(c.REF_NUMBER, c.NAME, c.DATE_IS_WITHIN_3_YEARS);
+                await this.pages.regBusinessTypePage.completeBusinessTypePage("Other");
+                await this.pages.regSpecifyYourBusinessTypePage.completeSpecifyYourBusinessTypePage(c.TEXT_AREA_FIELD_DATA);
+                await this.pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+                await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
+                await this.pages.regDescribeYourBusinessModelPage.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+                await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_YES);
+                await this.pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage("Lic123456", "licenceType", c.DATE_IS_WITHIN_3_YEARS);
+                await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_YES);
+                await this.pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage("12345677", c.DATE_IS_WITHIN_3_YEARS);
                 break;
 
             case "t2: no identity changes in the last 3yrs - not other business type - public type of company - no to mhra - no to cqcsw":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-                await this.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-                await this.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-                await this.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
-                await this.completeBusinessTypePage("Importer");
-                await this.completeWhatYourBusinessDoesPage();
-                await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
-                await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
-                await this.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+                await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
+                await this.pages.regBusinessTypePage.completeBusinessTypePage("Importer");
+                await this.pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+                await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
+                await this.pages.regUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
+                await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
+                await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
                 break;
 
             default:
                 throw new Error("Failed: Wrong radio value scenario name: " + scenario);
         }
-        await this.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, "112345DSD");
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeCheckYourAnswersPage();
-        await this.completeDeclarationPage("I have read and agree to this declaration");
-        await this.completeRegistrationSubmittedPage();
+        await this.pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, "112345DSD");
+        await this.pages.regInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.regCheckYourAnswersPage.completeCheckYourAnswersPage();
+        await this.pages.regDeclarationPage.completeDeclarationPage("I have read and agree to this declaration");
+        await this.pages.regRegistrationSubmittedPage.completeRegistrationSubmittedPage();
     }
 
 
     async answerToPage(answer: string, pageName: string): Promise<void> {
         switch (pageName.toLowerCase()) {
             case "is the business a registered charity?":
-                await this.completeIsTheBusinessARegisteredCharityPage(answer);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(answer);
                 break;
 
             case "under your previous legally registered identity, did you hold a controlled drugs licence?":
-                await this.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(answer);
+                await this.pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(answer);
                 break;
 
             case "business type":
-                await this.completeBusinessTypePage(answer);
+                await this.pages.regBusinessTypePage.completeBusinessTypePage(answer);
                 break;
 
             case "specify your business type":
-                await this.completeSpecifyYourBusinessTypePage(answer);
+                await this.pages.regSpecifyYourBusinessTypePage.completeSpecifyYourBusinessTypePage(answer);
                 break;
 
             case "what type of company is your organisation":
-                await this.completeWhatTypeOfCompanyIsYourOrganisationPage(answer);
+                await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage(answer);
                 break;
 
             case "does your business possess any licences issued by the medicines and healthcare products regulatory agency (mhra)?":
-                await this.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(answer);
+                await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(answer);
                 break;
 
             case "is your business registered with the care quality commission or scottish and welsh equivalents?":
-                await this.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(answer);
+                await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(answer);
                 break;
 
             default:
@@ -224,49 +92,49 @@ export class RegStepLib extends CommonCslStepLib {
     async navigateToPage(pageName: string): Promise<void> {
         switch (pageName.toLowerCase()) {
             case "register for the controlled substance licensing system":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
                 break;
 
             case "licence holder details":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
                 break;
 
             case "under your previous legally registered identity, did you hold a controlled drugs licence?":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-                await this.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-                await this.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-                await this.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+                await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
                 break;
 
             case "upload company registration certificate":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-                await this.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-                await this.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-                await this.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
-                await this.completeBusinessTypePage("Broker");
-                await this.completeWhatYourBusinessDoesPage();
-                await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+                await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
+                await this.pages.regBusinessTypePage.completeBusinessTypePage("Broker");
+                await this.pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+                await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
                 break;
 
             case "invoicing contact details":
-                await this.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-                await this.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-                await this.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-                await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-                await this.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-                await this.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
-                await this.completeBusinessTypePage("Importer");
-                await this.completeWhatYourBusinessDoesPage();
-                await this.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
-                await this.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-                await this.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
-                await this.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
-                await this.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
+                await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+                await this.pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+                await this.pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+                await this.pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+                await this.pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+                await this.pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
+                await this.pages.regBusinessTypePage.completeBusinessTypePage("Importer");
+                await this.pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+                await this.pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
+                await this.pages.regUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
+                await this.pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
+                await this.pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
+                await this.pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
                 break;
 
             default:
@@ -289,7 +157,6 @@ export class RegStepLib extends CommonCslStepLib {
                 throw new Error("Failed: Wrong page name: " + pageName);
         }
     }
-
 }
 
 
@@ -305,12 +172,12 @@ When('I choose to navigate to {string} page for REG', async ({ pages }, pageName
 
 When('I complete the fields below with Licence holder details for REG:', async ({ pages }, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
-    await new RegStepLib(pages).completeLicenseHolderDetailsPage(data['Company name'], data['Name of responsible person'], data['Company number'], data['UK telephone number'], data['Email address'], data['Website URL'],);
+    await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(data['Company name'], data['Name of responsible person'], data['Company number'], data['UK telephone number'], data['Email address'], data['Website URL'],);
 });
 
 When('I complete the fields below with Previous licence details for REG:', async ({ pages }, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
-    await new RegStepLib(pages).completePreviousLicenseDetailsPage(data['Previous licence number'], data['Licence holder name'], data['Day month year'],);
+    await pages.regPreviousLicenseDetailsPage.completePreviousLicenseDetailsPage(data['Previous licence number'], data['Licence holder name'], data['Day month year'],);
 });
 
 When('I complete the fields below with {string} (holder )address details for REG:', async ({ pages }, pageName: string, dataTable: DataTable) => {
@@ -323,10 +190,10 @@ When('I complete the fields below with {string} (holder )address details for REG
 
     switch (pageName.toLowerCase()) {
         case 'licence':
-            await regStepLib.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
+            await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
             break;
         case 'invoicing':
-            await regStepLib.completeInvoicingAddressPage(addressLine1, addressLine2, townOrCity, postcode);
+            await pages.regInvoicingAddressPage.completeInvoicingAddressPage(addressLine1, addressLine2, townOrCity, postcode);
             break;
         default:
             throw new Error('Failed: Wrong page name: ' + pageName);
@@ -335,7 +202,7 @@ When('I complete the fields below with {string} (holder )address details for REG
 
 When('I complete the fields below with Licence details for REG:', async ({ pages }, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
-    await new RegStepLib(pages).completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage(data['Licence number'], data['Licence type'], data['Day month year'],);
+    await pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage(data['Licence number'], data['Licence type'], data['Day month year'],);
 });
 
 When('I choose to select {string} on {string} page and choose to continue for REG', async ({ pages }, answer: string, pageName: string) => {
@@ -348,14 +215,14 @@ When('I enter {string} characters in the text area box field on {string} page fo
 
 When('I complete the fields below with Registration details for REG:', async ({ pages }, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
-    await new RegStepLib(pages).completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(data['Registration number'], data['Day month year'],);
+    await pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(data['Registration number'], data['Day month year'],);
 });
 
 When('I complete the fields below with Invoicing contact details for REG:', async ({ pages }, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
-    await new RegStepLib(pages).completeInvoicingContactDetailsPage(data['Contact name'], data['Contact phone number'], data['Invoice email address'], data['Purchase order number'],);
+    await pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(data['Contact name'], data['Contact phone number'], data['Invoice email address'], data['Purchase order number'],);
 });
 
 Then('{string} link is displayed on Registration page', async ({ pages }, linkText: string) => {
-    expect(await new RegStepLib(pages).isLinkTextIsDisplayedOnPage(linkText)).toBe(true);
+    expect(await pages.basePage.isLinkTextDisplayed(linkText)).toBe(true);
 });

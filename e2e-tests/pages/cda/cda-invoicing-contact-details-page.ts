@@ -23,4 +23,9 @@ export class CdaInvoicingContactDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.contactNoField, contactNo);
         await this.clearAndEnterTextInElement(this.purchaseOrderNumberField, purchaseOrderNo);
     }
+    async completeInvoicingContactDetailsPage(contactName: string, email: string, contactNo: string, purchaseOrderNo: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterInvoicingContactDetails(contactName, email, contactNo, purchaseOrderNo);
+        await this.clickSaveAndContinue();
+    }
 }

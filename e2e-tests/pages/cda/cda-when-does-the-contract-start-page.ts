@@ -8,4 +8,9 @@ export class CdaWhenDoesTheContractStartPage extends basePage {
     async enterWhenDoesTheContractStart(date: string): Promise<void> {
         await this.enterDateOrDob(date);
     }
+    async completeWhenDoesTheContractStartPage(date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhenDoesTheContractStart(date);
+        await this.clickSaveAndContinue();
+    }
 }

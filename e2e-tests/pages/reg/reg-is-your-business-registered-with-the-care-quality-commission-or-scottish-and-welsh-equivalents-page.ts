@@ -12,4 +12,9 @@ export class RegIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAn
             ? "Error: Care Quality Commission registration – Register for controlled substance licensing"
             : "Care Quality Commission registration – Register for controlled substance licensing";
     }
+    async completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(optValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optValue);
+        await this.clickContinue();
+    }
 }

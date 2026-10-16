@@ -12,4 +12,9 @@ export class LthccDeclarationPage extends basePage {
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Declaration – Industrial hemp application');
     }
+    async completeDeclarationPage(optionText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optionText);
+        await this.clickConfirmAndSubmit();
+    }
 }

@@ -26,4 +26,9 @@ export class CdaLicenceHolderDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.emailField, email);
         await this.clearAndEnterTextInElement(this.webSiteUrlField, webSiteUrl);
     }
+    async completeLicenceHolderDetailsPage(companyName: string, companyNumber: string, ukTelPhoneNo: string, email: string, webSiteUrl: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterLicenceHolderDetails(companyName, companyNumber, ukTelPhoneNo, email, webSiteUrl);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -12,4 +12,9 @@ export class PcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage e
   async enterDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurely(text: string): Promise<void> {
     await this.clearAndEnterTextInElement(this.textField, text);
   }
+  async completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurely(textAreaValue);
+    await this.clickSaveAndContinue();
+  }
 }

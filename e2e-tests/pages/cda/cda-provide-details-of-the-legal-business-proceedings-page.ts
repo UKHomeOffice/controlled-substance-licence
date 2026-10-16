@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfTheLegalBusinessProceedingsPage extends basePage
     async enterProvideDetailsOfTheLegalBusinessProceedings(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textArea, text);
     }
+    async completeProvideDetailsOfTheLegalBusinessProceedingsPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfTheLegalBusinessProceedings(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

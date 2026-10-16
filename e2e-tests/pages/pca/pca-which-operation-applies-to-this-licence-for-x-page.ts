@@ -14,4 +14,9 @@ export class PcaWhichOperationAppliesToThisLicenceForXPage extends basePage {
   async selectWhichOperationAppliesToThisLicenceForX(optText: string): Promise<void> {
     await this.selectRadioOptionWithText(optText);
   }
+  async completeWhichOperationAppliesToThisLicenceForXPage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectWhichOperationAppliesToThisLicenceForX(optText);
+    await this.clickSaveAndContinue();
+  }
 }

@@ -15,4 +15,9 @@ export class PcaDbsInformationPage extends basePage {
     await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
     await this.enterDateOrDob(date);
   }
+  async completeDbsInformationForTheResponsibleOfficePage(fullName: string, dbsReference: string, date: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterDbsInformationPage(fullName, dbsReference, date);
+    await this.clickSaveAndContinue();
+  }
 }

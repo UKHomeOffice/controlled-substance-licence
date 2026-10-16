@@ -22,4 +22,8 @@ export class RegRegisterForTheControlledSubstanceLicensingSystemPage extends bas
     async selectStartNowToRegisterForControlledSubstanceLicensing(): Promise<void> {
         await this.getStartNow().click();
     }
+    async selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem(): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectStartNowToRegisterForControlledSubstanceLicensing();
+    }
 }

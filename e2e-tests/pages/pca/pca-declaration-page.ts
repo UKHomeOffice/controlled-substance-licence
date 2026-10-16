@@ -7,4 +7,9 @@ export class PcaDeclarationPage extends basePage {
             ? "Error: Declaration – Precursor chemicals application"
             : "Declaration – Precursor chemicals application";
   }
+  async completeDeclarationPage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectRadioOptionWithText(optText);
+    await this.clickConfirmAndSubmit();
+  }
 }

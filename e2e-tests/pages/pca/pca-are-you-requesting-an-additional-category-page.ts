@@ -7,4 +7,9 @@ export class PcaAreYouRequestingAnAdditionalCategoryPage extends basePage {
             ? "Error: Are you requesting an additional category? – Precursor chemicals application"
             : "Are you requesting an additional category? – Precursor chemicals application";
   }
+  async completeAreYouRequestingAnAdditionalCategoryPage(option: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectYesOrNoRadioOption(option);
+    await this.clickSaveAndContinue();
+  }
 }

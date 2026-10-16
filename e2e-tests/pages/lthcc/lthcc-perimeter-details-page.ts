@@ -16,4 +16,9 @@ export class LthccPerimeterDetailsPage extends basePage {
     async enterPerimeterDetails(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completePerimeterDetailsPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterPerimeterDetails(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

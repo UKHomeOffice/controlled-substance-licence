@@ -25,4 +25,9 @@ export class LthccAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultiva
         await this.clearAndEnterTextInElement(this.townOrCityTextField, townOrCity);
         await this.clearAndEnterTextInElement(this.postCodeField, postCode);
     }
+    async completeAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivatedPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterAddressOfTheGrowingLocationWhereTheLowThcCannabisWillBeCultivated(addressLine1, addressLine2, townOrCity, postCode);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -5,4 +5,8 @@ export class CdaSummaryOfTradingReasonsPage extends basePage {
             ? "Error: Summary of trading reasons – Controlled drugs application"
             : "Summary of trading reasons – Controlled drugs application";
     }
+    async completeSummaryOfTradingReasonsPage(): Promise<void> {
+        await this.assertPageTitle();
+        await this.clickSaveAndContinue();
+    }
 }

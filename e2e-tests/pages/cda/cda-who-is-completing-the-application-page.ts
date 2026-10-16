@@ -20,4 +20,9 @@ export class CdaWhoIsCompletingTheApplicationPage extends basePage {
         await this.clearAndEnterTextInElement(this.emailField, email);
         await this.clearAndEnterTextInElement(this.contactNoField, contactNo);
     }
+    async completeWhoIsCompletingTheApplicationPage(fullName: string, email: string, contactNo: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhoIsCompletingTheApplication(fullName, email, contactNo);
+        await this.clickSaveAndContinue();
+    }
 }

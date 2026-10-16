@@ -12,4 +12,9 @@ export class LthccWhereWillYouBeCultivatingTheLowThcCannabisPage extends basePag
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Where will you be cultivating the low THC cannabis? – Industrial hemp application');
     }
+    async completeWhereWillYouBeCultivatingTheLowThcCannabisPage(optionText: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(optionText);
+        await this.clickSaveAndContinue();
+    }
 }

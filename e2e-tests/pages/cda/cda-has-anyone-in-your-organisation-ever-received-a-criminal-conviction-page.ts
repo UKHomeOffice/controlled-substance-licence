@@ -5,4 +5,9 @@ export class CdaHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage e
             ? "Error: Has anyone in your organisation ever received a criminal conviction? – Controlled drugs application"
             : "Has anyone in your organisation ever received a criminal conviction? – Controlled drugs application";
     }
+    async completeHasAnyoneInYourOrganisationEverReceivedACriminalConvictionPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

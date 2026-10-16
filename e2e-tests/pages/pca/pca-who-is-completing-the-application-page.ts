@@ -16,4 +16,9 @@ export class PcaWhoIsCompletingTheApplicationPage extends basePage {
     await this.clearAndEnterTextInElement(this.ukTelPhoneNoField, ukTelPhoneNo);
     await this.clearAndEnterTextInElement(this.emailField, email);
   }
+  async completeWhoIsCompletingTheApplicationPage(fullName: string, ukTelPhoneNo: string, email: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhoIsCompletingTheApplication(fullName, ukTelPhoneNo, email);
+    await this.clickSaveAndContinue();
+  }
 }

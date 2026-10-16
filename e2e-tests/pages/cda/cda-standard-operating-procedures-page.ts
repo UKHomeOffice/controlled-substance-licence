@@ -5,4 +5,9 @@ export class CdaStandardOperatingProceduresPage extends basePage {
             ? "Error: Standard operating procedures – Controlled drugs application"
             : "Standard operating procedures – Controlled drugs application";
     }
+    async completeStandardOperatingProceduresPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

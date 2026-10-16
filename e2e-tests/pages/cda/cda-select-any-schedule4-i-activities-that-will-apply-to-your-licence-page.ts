@@ -15,4 +15,14 @@ export class CdaSelectAnySchedule4IActivitiesThatWillApplyToYourLicencePage exte
         await this.saveAndContinueToSchedule4IIBtn.waitFor({ state: 'visible' });
         await this.saveAndContinueToSchedule4IIBtn.click();
     }
+    async completeSelectAnySchedule4IActivitiesThatWillApplyToYourLicencePage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        if (option.toLowerCase() === "".toLowerCase()) {
+            await this.clickSaveAndContinueToSchedule4IIBtn();
+        }
+        else {
+            await this.selectRadioOptionWithText(option);
+            await this.clickSaveAndContinueToSchedule4IIBtn();
+        }
+    }
 }

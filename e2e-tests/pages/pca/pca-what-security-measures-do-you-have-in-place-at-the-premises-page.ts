@@ -11,4 +11,9 @@ export class PcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage extends ba
   async selectWhatSecurityMeasuresDoYouHaveInPlaceAtThePremises(optText: string): Promise<void> {
     await this.selectRadioOptionWithText(optText);
   }
+  async completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage(optText: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectWhatSecurityMeasuresDoYouHaveInPlaceAtThePremises(optText);
+    await this.clickSaveAndContinue();
+  }
 }

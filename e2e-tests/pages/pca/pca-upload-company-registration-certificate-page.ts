@@ -7,4 +7,9 @@ export class PcaUploadCompanyRegistrationCertificatePage extends basePage {
             ? "Error: Upload company registration certificate – Precursor chemicals application"
             : "Upload company registration certificate – Precursor chemicals application";
   }
+  async completeUploadCompanyRegistrationCertificatePage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadFileFromUserUploadFolder(textAreaValue);
+    await this.selectContinueUploadBtn();
+  }
 }

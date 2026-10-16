@@ -22,4 +22,14 @@ export class CdaPersonResponsibleForWitnessingTheDestructionOfControlledDrugsPag
         await this.clearAndEnterTextInElement(this.fullNameField, fullName);
         await this.clearAndEnterTextInElement(this.emailField, email);
     }
+    async enterFullNameAndEmailDetailsWithoutConfirmingDbs(fullName: string, email: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterFullNameAndEmailDetails(fullName, email);
+    }
+
+    async completeAuthorisedWitnessInformationPage(fullName: string, dbsReference: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterPersonResponsibleForWitnessingTheDestructionOfControlledDrugs(fullName, dbsReference, date);
+        await this.clickSaveAndContinue();
+    }
 }

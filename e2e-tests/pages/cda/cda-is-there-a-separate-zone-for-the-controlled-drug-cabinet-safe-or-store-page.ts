@@ -5,4 +5,9 @@ export class CdaIsThereASeparateZoneForTheControlledDrugCabinetSafeOrStorePage e
             ? "Error: Is there a separate zone for the controlled drug cabinet, safe or store? – Controlled drugs application"
             : "Is there a separate zone for the controlled drug cabinet, safe or store? – Controlled drugs application";
     }
+    async completeIsThereASeparateZoneForTheControlledDrugCabinetSafeOrStorePage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

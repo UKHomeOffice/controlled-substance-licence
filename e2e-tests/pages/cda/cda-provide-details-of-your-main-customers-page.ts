@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfYourMainCustomersPage extends basePage {
     async enterProvideDetailsOfYourMainCustomers(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeProvideDetailsOfYourMainCustomersPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfYourMainCustomers(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

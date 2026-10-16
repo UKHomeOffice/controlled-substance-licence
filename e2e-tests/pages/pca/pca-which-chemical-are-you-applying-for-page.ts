@@ -57,4 +57,29 @@ export class PcaWhichChemicalAreYouApplyingForPage extends basePage {
 
     throw new Error('Unable to find own chemical name text field on Which chemical are you applying for? page');
   }
+  async completeWhichChemicalAreYouApplyingForPage(value: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterWhichChemicalAreYouApplyingFor(value);
+    await this.clickSaveAndContinue();
+  }
+
+  async selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectOwnChemicalCheckbox(checkboxLabel);
+  }
+
+  async completeWhichChemicalAreYouApplyingForPageUsingOwnChemicalName(checkboxLabel: string, ownChemicalName: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectCheckboxAndEnterOwnChemicalName(checkboxLabel, ownChemicalName);
+    await this.clickSaveAndContinue();
+  }
+
+  async completeSelectedChemicalStep(checkboxLabel: string | null, ownChemicalName: string | null, defaultChemical: string): Promise<void> {
+    if (checkboxLabel != null && !(checkboxLabel.trim().length === 0) && ownChemicalName != null && !(ownChemicalName.trim().length === 0)) {
+      await this.completeWhichChemicalAreYouApplyingForPageUsingOwnChemicalName(checkboxLabel, ownChemicalName);
+      return;
+    }
+
+    await this.completeWhichChemicalAreYouApplyingForPage(defaultChemical);
+  }
 }

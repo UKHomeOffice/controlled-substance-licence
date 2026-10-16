@@ -5,4 +5,9 @@ export class CdaDoesTheAlarmSystemHaveEitherALevel1OrImmediatePoliceResponsePage
             ? "Error: Does the alarm system have either a Level 1 or ‘immediate’ police response? – Controlled drugs application"
             : "Does the alarm system have either a Level 1 or ‘immediate’ police response? – Controlled drugs application";
     }
+    async completeDoesTheAlarmSystemHaveEitherALevel1OrImmediatePoliceResponsePage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

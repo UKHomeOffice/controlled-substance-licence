@@ -3,7 +3,6 @@
 @PCA
 Feature: CSL - Precursor chemicals application form
 
-  @smoke
   @CslRegressionCI
   @CslRegression
   Scenario Outline: PCA E2E test for a new application and amending pending application
@@ -13,12 +12,12 @@ Feature: CSL - Precursor chemicals application form
     Examples:
       | PCA Test                                                                                                                                                                                      | Own Chemical Checkbox               | Own Chemical Name |
       | T1: A new application - A first time licensee - Premises address is the same as the licence holder address                                                                                    |                                     |                   |
-      # | T2: A new application - Existing licensee renewing or changing a currently licensed site - Premises address is the same as the licence holder address                                         |                                     |                   |
-      # | T3: A new application - Existing licensee renewing or changing a currently licensed site - Premises address is not same as the licence holder address, operation applies is other licence     |                                     |                   |
-      # | T4: A new application - Existing licensee applying for a new site - Enter moving site date and premises address is not same as the licence holder address, operation applies is other licence |                                     |                   |
-      # | T5: A new application - Existing licensee applying for a new site - Is not part of the contractual agreement and premises address is the same as the licence holder address                   | I want to enter my own chemical name | MAK Drug          |
-      # | T6: A new application - Existing licensee applying for a new site - Is part of the contractual agreement and premises address is the same as the licence holder address                       | I want to enter my own chemical name | MAK Drug          |
-      # | T7: Amend a pending application - Is part of the contractual agreement and premises address is the same as the licence holder address                                                         | I want to enter my own chemical name | MAK Drug          |
+      | T2: A new application - Existing licensee renewing or changing a currently licensed site - Premises address is the same as the licence holder address                                         |                                     |                   |
+      | T3: A new application - Existing licensee renewing or changing a currently licensed site - Premises address is not same as the licence holder address, operation applies is other licence     |                                     |                   |
+      | T4: A new application - Existing licensee applying for a new site - Enter moving site date and premises address is not same as the licence holder address, operation applies is other licence |                                     |                   |
+      | T5: A new application - Existing licensee applying for a new site - Is not part of the contractual agreement and premises address is the same as the licence holder address                   | I want to enter my own chemical name | MAK Drug          |
+      | T6: A new application - Existing licensee applying for a new site - Is part of the contractual agreement and premises address is the same as the licence holder address                       | I want to enter my own chemical name | MAK Drug          |
+      | T7: Amend a pending application - Is part of the contractual agreement and premises address is the same as the licence holder address                                                         | I want to enter my own chemical name | MAK Drug          |
 
 
   Scenario: PCA E2E test for existing licensee renewing or changing a currently licensed site

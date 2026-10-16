@@ -20,4 +20,9 @@ export class LthccLicenceDetailsPage extends basePage {
         await this.clearAndEnterTextInElement(this.licenceNumberField, licenceNumber);
         await this.enterDateOrDob(date);
     }
+    async completeLicenceDetailsPage(licenceType: string, licenceNumber: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterLicenceDetails(licenceType, licenceNumber, date);
+        await this.clickSaveAndContinue();
+    }
 }

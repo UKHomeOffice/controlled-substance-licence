@@ -16,4 +16,9 @@ export class LthccDetailsOfWhyYouWereRefusedALicencePage extends basePage {
     async enterDetailsOfWhyYouWereRefusedALicence(textArea: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textArea);
     }
+    async completeDetailsOfWhyYouWereRefusedALicencePage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDetailsOfWhyYouWereRefusedALicence(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

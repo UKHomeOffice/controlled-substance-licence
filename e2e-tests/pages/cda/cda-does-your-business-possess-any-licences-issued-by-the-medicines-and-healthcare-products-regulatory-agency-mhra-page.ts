@@ -5,4 +5,9 @@ export class CdaDoesYourBusinessPossessAnyLicencesIssuedByTheMedicinesAndHealthc
             ? "Error: Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)? – Controlled drugs application"
             : "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)? – Controlled drugs application";
     }
+    async completeDoesYourBusinessPossessAnyLicencesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

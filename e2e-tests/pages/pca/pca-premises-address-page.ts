@@ -18,4 +18,9 @@ export class PcaPremisesAddressPage extends basePage {
     await this.clearAndEnterTextInElement(this.townOrCityTextField, townOrCity);
     await this.clearAndEnterTextInElement(this.postCodeField, postCode);
   }
+  async completePremisesAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterPremisesAddress(addressLine1, addressLine2, townOrCity, postCode);
+    await this.clickSaveAndContinue();
+  }
 }

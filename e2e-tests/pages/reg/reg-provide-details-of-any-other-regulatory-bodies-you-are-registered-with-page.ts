@@ -18,4 +18,9 @@ export class RegProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage
     async enterProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWith(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textValue);
     }
+    async completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWith(textAreaValue);
+        await this.clickContinue();
+    }
 }

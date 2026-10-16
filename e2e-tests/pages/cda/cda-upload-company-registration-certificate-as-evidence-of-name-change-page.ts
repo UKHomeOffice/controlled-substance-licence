@@ -5,4 +5,9 @@ export class CdaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage e
             ? "Error: Upload company registration certificate as evidence of name change – Controlled drugs application"
             : "Upload company registration certificate as evidence of name change – Controlled drugs application";
     }
+    async completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage(uploadFile: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.uploadFileFromUserUploadFolder(uploadFile);
+        await this.selectContinueUploadBtn();
+    }
 }

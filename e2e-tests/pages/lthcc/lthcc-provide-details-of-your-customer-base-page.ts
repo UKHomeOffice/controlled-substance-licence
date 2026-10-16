@@ -16,4 +16,9 @@ export class LthccProvideDetailsOfYourCustomerBasePage extends basePage {
     async enterProvideDetailsOfYourCustomerBase(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideDetailsOfYourCustomerBasePage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfYourCustomerBase(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

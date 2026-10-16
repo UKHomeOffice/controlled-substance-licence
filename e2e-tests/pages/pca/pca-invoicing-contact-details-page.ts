@@ -18,4 +18,9 @@ export class PcaInvoicingContactDetailsPage extends basePage {
     await this.clearAndEnterTextInElement(this.ukTelPhoneNoField, ukTelPhoneNo);
     await this.clearAndEnterTextInElement(this.purchaseOrderNumberField, purchaseOrderNo);
   }
+  async completeInvoicingContactDetailsPage(fullName: string, email: string, ukTelPhoneNo: string, purchaseOrderNo: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.enterInvoicingContactDetails(fullName, email, ukTelPhoneNo, purchaseOrderNo);
+    await this.clickSaveAndContinue();
+  }
 }

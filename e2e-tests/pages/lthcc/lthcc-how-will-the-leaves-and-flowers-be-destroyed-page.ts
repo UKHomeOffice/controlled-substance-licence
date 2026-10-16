@@ -16,4 +16,9 @@ export class LthccHowWillTheLeavesAndFlowersBeDestroyedPage extends basePage {
     async enterHowWillTheLeavesAndFlowersBeDestroyed(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeHowWillTheLeavesAndFlowersBeDestroyedPage(value: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterHowWillTheLeavesAndFlowersBeDestroyed(value);
+        await this.clickSaveAndContinue();
+    }
 }

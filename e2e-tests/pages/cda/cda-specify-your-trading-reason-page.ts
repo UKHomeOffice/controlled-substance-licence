@@ -14,4 +14,9 @@ export class CdaSpecifyYourTradingReasonPage extends basePage {
     async enterSpecifyYourTradingReason(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textValue);
     }
+    async completeSpecifyYourTradingReasonPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterSpecifyYourTradingReason(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

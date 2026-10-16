@@ -16,4 +16,9 @@ export class LthccHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage ex
     async enterHowManyFieldsAreYouProposingToCultivateLowThcCannabisIn(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textField, value);
     }
+    async completeHowManyFieldsAreYouProposingToCultivateLowThcCannabisInPage(textValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterHowManyFieldsAreYouProposingToCultivateLowThcCannabisIn(textValue);
+        await this.clickSaveAndContinue();
+    }
 }

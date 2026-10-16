@@ -5,4 +5,9 @@ export class CdaAreControlledDrugsKeptInAPrefabricatedStrongRoomPage extends bas
             ? "Error: Are controlled drugs kept in a prefabricated strong room? – Controlled drugs application"
             : "Are controlled drugs kept in a prefabricated strong room? – Controlled drugs application";
     }
+    async completeAreControlledDrugsKeptInAPrefabricatedStrongRoomPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

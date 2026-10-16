@@ -22,4 +22,9 @@ export class LthccWhoIsCompletingTheApplicationPage extends basePage {
         await this.clearAndEnterTextInElement(this.emailField, email);
         await this.clearAndEnterTextInElement(this.contactPhoneField, contactPhone);
     }
+    async completeWhoIsCompletingTheApplicationPage(fullName: string, email: string, contactPhone: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterWhoIsCompletingTheApplication(fullName, email, contactPhone);
+        await this.clickSaveAndContinue();
+    }
 }

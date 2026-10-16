@@ -5,4 +5,15 @@ export class CdaIsTheNewSitePartOfAContractualAgreementPage extends basePage {
             ? "Error: Is the new site part of a contractual agreement? – Controlled drugs application"
             : "Is the new site part of a contractual agreement? – Controlled drugs application";
     }
+    async completeIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
+
+    async completeAndSelectSaveAndExitIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndAndExit();
+    }
 }

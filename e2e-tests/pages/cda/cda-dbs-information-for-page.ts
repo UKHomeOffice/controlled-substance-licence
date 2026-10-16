@@ -21,4 +21,9 @@ export class CdaDbsInformationForPage extends basePage {
             await this.selectYesOrNoRadioOption(option);
         }
     }
+    async completeDbsInformationForPage(fullName: string, dbsReference: string, date: string, option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformationFor(fullName, dbsReference, date, option);
+        await this.clickSaveAndContinue();
+    }
 }

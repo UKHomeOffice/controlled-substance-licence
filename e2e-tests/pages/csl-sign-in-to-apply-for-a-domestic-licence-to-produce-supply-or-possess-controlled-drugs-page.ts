@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class CslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage extends basePage {
@@ -26,5 +26,13 @@ export class CslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControll
     await this.clearAndEnterTextInElement(this.usernameField, username);
     await this.clearAndEnterTextInElement(this.passwordField, password);
     await this.signInBtn.click();
+  }
+
+  async completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(username: string, password: string) {
+    await this.assertPageTitle();
+    await expect(this.getLink('dflu.dom@homeoffice.gov.uk')).toBeVisible();
+    await this.notRegisteredYet.click();
+    await expect(this.getLink('Register for your licence.')).toBeVisible();
+    await this.enterSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugs(username, password);
   }
 }

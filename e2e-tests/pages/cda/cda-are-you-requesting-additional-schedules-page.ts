@@ -5,4 +5,9 @@ export class CdaAreYouRequestingAdditionalSchedulesPage extends basePage {
             ? "Error: Are you requesting additional schedules? – Controlled drugs application"
             : "Are you requesting additional schedules? – Controlled drugs application";
     }
+    async completeAreYouRequestingAdditionalSchedulesPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
 }

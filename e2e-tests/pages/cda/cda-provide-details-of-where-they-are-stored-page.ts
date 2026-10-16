@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfWhereTheyAreStoredPage extends basePage {
     async enterProvideDetailsOfWhereTheyAreStored(textValue: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, textValue);
     }
+    async completeProvideDetailsOfWhereTheyAreStoredPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfWhereTheyAreStored(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

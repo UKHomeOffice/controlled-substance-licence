@@ -12,4 +12,9 @@ export class LthccUploadAerialPhotosAndSiteMapsPage extends basePage {
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('Upload aerial photos and site maps – Industrial hemp application');
     }
+    async completeUploadAerialPhotosAndSiteMapsPage(fileName: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.uploadFileFromUserUploadFolder(fileName);
+        await this.selectContinueUploadBtn();
+    }
 }

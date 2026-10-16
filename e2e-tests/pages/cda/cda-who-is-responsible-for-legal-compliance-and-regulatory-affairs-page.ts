@@ -5,4 +5,9 @@ export class CdaWhoIsResponsibleForLegalComplianceAndRegulatoryAffairsPage exten
             ? "Error: Who is responsible for legal compliance and regulatory affairs? – Controlled drugs application"
             : "Who is responsible for legal compliance and regulatory affairs? – Controlled drugs application";
     }
+    async completeWhoIsResponsibleForLegalComplianceAndRegulatoryAffairsPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectRadioOptionWithText(option);
+        await this.clickSaveAndContinue();
+    }
 }

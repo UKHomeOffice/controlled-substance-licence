@@ -12,4 +12,7 @@ export class LthccYouNeedToApplyForAControlledDrugsLicenceNoToHempPage extends b
     async expectedPageTitle(): Promise<string> {
         return this.withErrorPrefix('You need to apply for a controlled drugs licence – Industrial hemp application');
     }
+    async completeYouNeedToApplyForAControlledDrugsLicenceNoToHempPag(): Promise<void> {
+        await this.assertPageTitle();
+    }
 }

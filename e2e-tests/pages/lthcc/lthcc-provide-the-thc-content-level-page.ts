@@ -16,4 +16,9 @@ export class LthccProvideTheThcContentLevelPage extends basePage {
     async enterProvideTheThcContentLevel(value: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, value);
     }
+    async completeProvideTheThcContentLevelPage(textAreaValue: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideTheThcContentLevel(textAreaValue);
+        await this.clickSaveAndContinue();
+    }
 }

@@ -1,12 +1,7 @@
-@CSL
-@E2eCSL
-@LTHCC
-@LTHCC-E2E
+@CSL @E2eCSL @LTHCC @LTHCC-E2E
 Feature: CSL - Low THC Cannabis Application form
 
-  @smoke
-  @CslRegressionCI
-  @CslRegression
+  @CslRegressionCI @CslRegression
   Scenario Outline: Low THC Cannabis application journey form for E2E test
     Given I visit the Controlled substance licence application page
     When I fill out the answers to "Low THC Cannabis" form pertaining to "<LTHCC Test>" happy path test
@@ -16,12 +11,12 @@ Feature: CSL - Low THC Cannabis Application form
     Examples:
       | LTHCC Test                                                                                                                                                                                  |
       | T1: A new application - A first time licensee - Yes authorised destruction - No company own fields - Yes businesses adjacent to site                                                        |
-      # | T2: A new application - Existing licensee renewing or changing a currently licensed site - Yes upload - No authorised destruction - Yes company own fields - No businesses adjacent to site |
-      # | T3: A new application - Existing licensee renewing or changing a currently licensed site - No upload - No authorised destruction - Yes company own fields - No businesses adjacent to site  |
-      # | T4: A new application - Existing licensee applying for a new site - We are moving site - No authorised destruction - Yes company own fields - No businesses adjacent to site                |
-      # | T5: A new application - Existing licensee applying for a new site - For another site - Agreement no - No authorised destruction - Yes company own fields - No businesses adjacent to site   |
-      # | T6: A new application - Existing licensee applying for a new site - For another site - Agreement yes - No authorised destruction - Yes company own fields - No businesses adjacent to site  |
-      # | T7: Amend a pending application - Yes authorised destruction - No company own fields - Yes businesses adjacent to site                                                                      |
+      | T2: A new application - Existing licensee renewing or changing a currently licensed site - Yes upload - No authorised destruction - Yes company own fields - No businesses adjacent to site |
+      | T3: A new application - Existing licensee renewing or changing a currently licensed site - No upload - No authorised destruction - Yes company own fields - No businesses adjacent to site  |
+      | T4: A new application - Existing licensee applying for a new site - We are moving site - No authorised destruction - Yes company own fields - No businesses adjacent to site                |
+      | T5: A new application - Existing licensee applying for a new site - For another site - Agreement no - No authorised destruction - Yes company own fields - No businesses adjacent to site   |
+      | T6: A new application - Existing licensee applying for a new site - For another site - Agreement yes - No authorised destruction - Yes company own fields - No businesses adjacent to site  |
+      | T7: Amend a pending application - Yes authorised destruction - No company own fields - Yes businesses adjacent to site                                                                      |
 
 
   Scenario Outline: Low THC Cannabis application journey form for needing to apply for controlled drugs licence

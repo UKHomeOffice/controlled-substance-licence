@@ -18,4 +18,9 @@ export class CdaDbsInformationForPersonResponsibleForComplianceAndRegulatoryAffa
         await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
         await this.enterDateOrDob(date);
     }
+    async completeDbsInformationForPersonResponsibleForComplianceAndRegulatoryAffairsPage(fullName: string, dbsReference: string, date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDbsInformationForThePersonResponsibleForComplianceAndRegulatoryAffairs(fullName, dbsReference, date);
+        await this.clickSaveAndContinue();
+    }
 }

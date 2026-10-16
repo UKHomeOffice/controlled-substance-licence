@@ -14,4 +14,9 @@ export class CdaProvideDetailsOfWhereYouSourceTheDrugsFromPage extends basePage 
     async enterProvideDetailsOfWhereYouSourceTheDrugsFromPage(text: string): Promise<void> {
         await this.clearAndEnterTextInElement(this.textAreaField, text);
     }
+    async completeProvideDetailsOfWhereYouSourceTheDrugsFromPage(textArea: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterProvideDetailsOfWhereYouSourceTheDrugsFromPage(textArea);
+        await this.clickSaveAndContinue();
+    }
 }

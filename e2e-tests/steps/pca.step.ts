@@ -6,662 +6,314 @@ import { CommonCslStepLib } from './csl-common.step';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class PcaStepLib extends CommonCslStepLib {
-  async enterResponsibleOfficerFullNameAndEmailDetails(fullName: string, email: string): Promise<void> {
-    await this.pages.pcaResponsibleOfficerDetailsPage.assertPageTitle();
-    await this.pages.pcaResponsibleOfficerDetailsPage.enterFullNameAndEmailDetails(fullName, email);
-  }
-
-  async enterGuarantorDetailsFullNameAndEmailDetails(fullName: string, email: string): Promise<void> {
-    await this.pages.pcaGuarantorDetailsPage.assertPageTitle();
-    await this.pages.pcaGuarantorDetailsPage.enterFullNameAndEmailDetails(fullName, email);
-    await this.pages.pcaGuarantorDetailsPage.clickSaveAndContinue();
-  }
-
-  async selectCheckboxContainText(optText: string): Promise<void> {
-    await this.pages.basePage.selectRadioOptionWithText(optText);
-  }
-
-  async completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(optText: string): Promise<void> {
-    await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.assertPageTitle();
-    await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.selectRadioOptionWithText(optText);
-    await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.clickContinue();
-  }
-
-  async completeEnterYourApplicationReferenceNumberPage(applicationRefNo: string): Promise<void> {
-    await this.pages.pcaEnterYourApplicationReferenceNumberPage.assertPageTitle();
-    await this.pages.pcaEnterYourApplicationReferenceNumberPage.enterApplicationReferenceNo(applicationRefNo);
-    await this.pages.pcaEnterYourApplicationReferenceNumberPage.clickSaveAndContinue();
-  }
-
-  async completeWhatTypeOfLicenseeAreYouPage(optText: string): Promise<void> {
-    await this.pages.pcaWhatTypeOfLicenseeAreYouPage.assertPageTitle();
-    await this.pages.pcaWhatTypeOfLicenseeAreYouPage.selectWhatTypeOfLicenseeAreYou(optText);
-    await this.pages.pcaWhatTypeOfLicenseeAreYouPage.clickContinue();
-  }
 
   async completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(option1: string, option2: string): Promise<void> {
-    await this.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(option1);
-    await this.completeWhatTypeOfLicenseeAreYouPage(option2);
+    await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(option1);
+    await this.pages.pcaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(option2);
   }
 
-  async completeLicenceHolderDetailsPage(companyName: string, companyNumber: string, ukTelPhoneNo: string, email: string, webSiteUrl: string): Promise<void> {
-    await this.pages.pcaLicenceHolderDetailsPage.assertPageTitle();
-    await this.pages.pcaLicenceHolderDetailsPage.enterLicenceHolderDetails(companyName, companyNumber, ukTelPhoneNo, email, webSiteUrl);
-    await this.pages.pcaLicenceHolderDetailsPage.clickSaveAndContinue();
-  }
+  async completeSelectedChemicalStep(checkboxLabel: string | null, ownChemicalName: string | null, defaultChemical: string): Promise<void> {
+    if (checkboxLabel != null && !(checkboxLabel.trim().length === 0) && ownChemicalName != null && !(ownChemicalName.trim().length === 0)) {
+      await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPageUsingOwnChemicalName(checkboxLabel, ownChemicalName);
+      return;
+    }
 
-  async completeLicenceHolderAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
-    await this.pages.pcaLicenceHolderAddressPage.assertPageTitle();
-    await this.pages.pcaLicenceHolderAddressPage.enterLicenceHolderAddress(addressLine1, addressLine2, townOrCity, postCode);
-    await this.pages.pcaLicenceHolderAddressPage.clickSaveAndContinue();
-  }
-
-  async completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(option: string): Promise<void> {
-    await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.assertPageTitle();
-    await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.clickSaveAndContinue();
-  }
-
-  async completePremisesContactDetailsPage(ukTelPhoneNo: string, email: string): Promise<void> {
-    await this.pages.pcaPremisesContactDetailsPage.assertPageTitle();
-    await this.pages.pcaPremisesContactDetailsPage.enterPremisesContactDetails(ukTelPhoneNo, email);
-    await this.pages.pcaPremisesContactDetailsPage.clickSaveAndContinue();
-  }
-
-  async completePremisesAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
-    await this.pages.pcaPremisesAddressPage.assertPageTitle();
-    await this.pages.pcaPremisesAddressPage.enterPremisesAddress(addressLine1, addressLine2, townOrCity, postCode);
-    await this.pages.pcaPremisesAddressPage.clickSaveAndContinue();
-  }
-
-  async completeResponsibleOfficerDetailsPage(fullName: string, email: string, optText: string): Promise<void> {
-    await this.pages.pcaResponsibleOfficerDetailsPage.assertPageTitle();
-    await this.pages.pcaResponsibleOfficerDetailsPage.enterResponsibleOfficerDetails(fullName, email, optText);
-    await this.pages.pcaResponsibleOfficerDetailsPage.clickSaveAndContinue();
-  }
-
-  async completeDbsInformationForTheResponsibleOfficePage(fullName: string, dbsReference: string, date: string): Promise<void> {
-    await this.pages.pcaDbsInformationPage.assertPageTitle();
-    await this.pages.pcaDbsInformationPage.enterDbsInformationPage(fullName, dbsReference, date);
-    await this.pages.pcaDbsInformationPage.clickSaveAndContinue();
-  }
-
-  async completeGuarantorDetailsPage(fullName: string, email: string, optText: string): Promise<void> {
-    await this.pages.pcaGuarantorDetailsPage.assertPageTitle();
-    await this.pages.pcaGuarantorDetailsPage.enterGuarantorDetails(fullName, email, optText);
-    await this.pages.pcaGuarantorDetailsPage.clickSaveAndContinue();
-  }
-
-  async completeGuarantorDbsInformationPage(fullName: string, dbsReference: string, date: string): Promise<void> {
-    await this.pages.pcaGuarantorDbsInformationPage.assertPageTitle();
-    await this.pages.pcaGuarantorDbsInformationPage.enterGuarantorDbsInformationPage(fullName, dbsReference, date);
-    await this.pages.pcaGuarantorDbsInformationPage.clickSaveAndContinue();
-  }
-
-  async completeHasTheGuarantorSubscribedToDbsUpdatesPage(option: string): Promise<void> {
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.assertPageTitle();
-    const actualWarningText = await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.getWarningText();
-    expect(actualWarningText).toBe(c.PCA_WARNING_TEXT_FOR_DBS);
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.clickSaveAndContinue();
-  }
-
-  async completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(option: string): Promise<void> {
-    await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.assertPageTitle();
-    const actualWarningText = await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.getWarningText();
-    expect(actualWarningText).toBe(c.PCA_WARNING_TEXT_FOR_DBS);
-    await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.clickSaveAndContinue();
-  }
-
-  async completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option: string): Promise<void> {
-    await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.assertPageTitle();
-    const actualWarningText = await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.getWarningText();
-    expect(actualWarningText).toBe(c.PCA_WARNING_TEXT_FOR_CONVICTION);
-    await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.clickSaveAndContinue();
-  }
-
-  async completeInvoicingAddressPage(addressLine1: string, addressLine2: string, townOrCity: string, postCode: string): Promise<void> {
-    await this.pages.pcaInvoicingAddressPage.assertPageTitle();
-    await this.pages.pcaInvoicingAddressPage.enterInvoicingAddress(addressLine1, addressLine2, townOrCity, postCode);
-    await this.pages.pcaInvoicingAddressPage.clickSaveAndContinue();
-  }
-
-  async completeInvoicingContactDetailsPage(fullName: string, email: string, ukTelPhoneNo: string, purchaseOrderNo: string): Promise<void> {
-    await this.pages.pcaInvoicingContactDetailsPage.assertPageTitle();
-    await this.pages.pcaInvoicingContactDetailsPage.enterInvoicingContactDetails(fullName, email, ukTelPhoneNo, purchaseOrderNo);
-    await this.pages.pcaInvoicingContactDetailsPage.clickSaveAndContinue();
-  }
-
-  async completeWhichCategoryIsTheSubstancePage(optText: string): Promise<void> {
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.assertPageTitle();
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.enterWhichCategoryIsTheNewSubstance(optText);
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.clickSaveAndContinue();
-  }
-
-  async completeWhichChemicalAreYouApplyingForPage(value: string): Promise<void> {
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.assertPageTitle();
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.enterWhichChemicalAreYouApplyingFor(value);
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.clickSaveAndContinue();
-  }
-
-  async selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel: string): Promise<void> {
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.assertPageTitle();
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.selectOwnChemicalCheckbox(checkboxLabel);
-  }
-
-  async completeWhichChemicalAreYouApplyingForPageUsingOwnChemicalName(checkboxLabel: string, ownChemicalName: string): Promise<void> {
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.assertPageTitle();
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.selectCheckboxAndEnterOwnChemicalName(checkboxLabel, ownChemicalName);
-    await this.pages.pcaWhichChemicalAreYouApplyingForPage.clickSaveAndContinue();
-  }
-
-  async completeWhichOperationAppliesToThisLicenceForXPage(optText: string): Promise<void> {
-    await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.assertPageTitle();
-    await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.selectWhichOperationAppliesToThisLicenceForX(optText);
-    await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.clickSaveAndContinue();
-  }
-
-  async completeWhatOtherOperationsAppliesToTheLicencePage(value: string): Promise<void> {
-    await this.pages.pcaWhatOtherOperationsAppliesToTheLicencePage.assertPageTitle();
-    await this.pages.pcaWhatOtherOperationsAppliesToTheLicencePage.enterWhatOtherOperationsAppliesToTheLicence(value);
-    await this.pages.pcaWhatOtherOperationsAppliesToTheLicencePage.clickSaveAndContinue();
-  }
-
-  async completeSubstancesInYourLicencePage(): Promise<void> {
-    await this.pages.pcaSubstancesInYourLicencePage.assertPageTitle();
-    await this.pages.pcaSubstancesInYourLicencePage.clickSaveAndContinue();
-  }
-
-  async completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.assertPageTitle();
-    await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.enterTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedFor(textAreaValue);
-    await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.clickSaveAndContinue();
-  }
-
-  async completeUploadCompanyRegistrationCertificatePage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaUploadCompanyRegistrationCertificatePage.assertPageTitle();
-    await this.pages.pcaUploadCompanyRegistrationCertificatePage.uploadFileFromUserUploadFolder(textAreaValue);
-    await this.pages.pcaUploadCompanyRegistrationCertificatePage.selectContinueUploadBtn();
-  }
-
-  async completeUploadCertificateOfGoodConductPage(uploadFile: string): Promise<void> {
-    await this.pages.pcaUploadCertificateOfGoodConductPage.assertPageTitle();
-    await this.pages.pcaUploadCertificateOfGoodConductPage.uploadFileFromUserUploadFolder(uploadFile);
-    await this.pages.pcaUploadCertificateOfGoodConductPage.selectContinueUploadBtn();
-  }
-
-  async completeTellUsAboutYourMainCustomersPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaTellUsAboutYourMainCustomersPage.assertPageTitle();
-    await this.pages.pcaTellUsAboutYourMainCustomersPage.enterTellUsAboutYourMainCustomers(textAreaValue);
-    await this.pages.pcaTellUsAboutYourMainCustomersPage.clickSaveAndContinue();
-  }
-
-  async completeTellUsAboutYourMainSuppliersPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaTellUsAboutYourMainSuppliersPage.assertPageTitle();
-    await this.pages.pcaTellUsAboutYourMainSuppliersPage.enterTellUsAboutYourMainSuppliers(textAreaValue);
-    await this.pages.pcaTellUsAboutYourMainSuppliersPage.clickSaveAndContinue();
-  }
-
-  async completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage(optText: string): Promise<void> {
-    await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.assertPageTitle();
-    await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.selectWhatSecurityMeasuresDoYouHaveInPlaceAtThePremises(optText);
-    await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.clickSaveAndContinue();
-  }
-
-  async completeDescribeHowYouSecureYourPremisesPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaDescribeHowYouSecureYourPremisesPage.assertPageTitle();
-    await this.pages.pcaDescribeHowYouSecureYourPremisesPage.enterDescribeHowYouSecureYourPremises(textAreaValue);
-    await this.pages.pcaDescribeHowYouSecureYourPremisesPage.clickSaveAndContinue();
-  }
-
-  async completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.assertPageTitle();
-    await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.enterDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurely(textAreaValue);
-    await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.clickSaveAndContinue();
-  }
-
-  async completeDescribeHowYouManageChemicalStockControlPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.assertPageTitle();
-    await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.enterDescribeHowYouManageChemicalStockControl(textAreaValue);
-    await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.clickSaveAndContinue();
-  }
-
-  async completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.assertPageTitle();
-    await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.enterDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimately(textAreaValue);
-    await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.clickSaveAndContinue();
-  }
-
-  async completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.assertPageTitle();
-    await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.enterSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicals(textAreaValue);
-    await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.clickSaveAndContinue();
-  }
-
-  async completeWhichEmailAddressShouldTheLicenceBeSentToPage(emailValue: string): Promise<void> {
-    await this.pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.assertPageTitle();
-    await this.pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.enterWhichEmailAddressShouldTheLicenceBeSentTo(emailValue);
-    await this.pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.clickSaveAndContinue();
-  }
-
-  async completeWhoIsCompletingTheApplicationPage(fullName: string, ukTelPhoneNo: string, email: string): Promise<void> {
-    await this.pages.pcaWhoIsCompletingTheApplicationPage.assertPageTitle();
-    await this.pages.pcaWhoIsCompletingTheApplicationPage.enterWhoIsCompletingTheApplication(fullName, ukTelPhoneNo, email);
-    await this.pages.pcaWhoIsCompletingTheApplicationPage.clickSaveAndContinue();
-  }
-
-  async completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(option: string, textAreaValue: string): Promise<void> {
-    await this.pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.assertPageTitle();
-    await this.pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.enterWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilities(option, textAreaValue);
-    await this.pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.clickSaveAndContinue();
-  }
-
-  async completeAddAnyExtraInformationYouThinkMightHelpYourApplicationPage(textAreaValue: string): Promise<void> {
-    await this.pages.pcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage.assertPageTitle();
-    await this.pages.pcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage.enterAddAnyExtraInformationYouThinkMightHelpYourApplication(textAreaValue);
-    await this.pages.pcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage.clickSaveAndContinue();
-  }
-
-  async completeCheckYourAnswerPage(): Promise<void> {
-    await this.pages.pcaCheckYourAnswersPage.assertPageTitle();
-    await this.pages.pcaCheckYourAnswersPage.clickSaveAndContinue();
-  }
-
-  async completeDeclarationPage(optText: string): Promise<void> {
-    await this.pages.pcaDeclarationPage.assertPageTitle();
-    await this.pages.pcaDeclarationPage.selectRadioOptionWithText(optText);
-    await this.pages.pcaDeclarationPage.clickConfirmAndSubmit();
-  }
-
-  async completeApplicationSubmittedPage(): Promise<void> {
-    await this.pages.pcaApplicationSubmittedPage.assertPageTitle();
-  }
-
-  async completeWhyAreYouRequestingANewLicensePage(option: string): Promise<void> {
-    await this.pages.pcaWhyAreYouRequestingANewLicensePage.assertPageTitle();
-    await this.pages.pcaWhyAreYouRequestingANewLicensePage.selectRadioOptionWithText(option);
-    await this.pages.pcaWhyAreYouRequestingANewLicensePage.clickSaveAndContinue();
-  }
-
-  async completeWhenAreYouMovingSitePage(date: string): Promise<void> {
-    await this.pages.pcaWhenAreYouMovingSitePage.assertPageTitle();
-    await this.pages.pcaWhenAreYouMovingSitePage.enterWhenAreYouMovingSite(date);
-    await this.pages.pcaWhenAreYouMovingSitePage.clickSaveAndContinue();
-  }
-
-  async completeIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
-    await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.assertPageTitle();
-    await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.clickSaveAndContinue();
-  }
-
-  async completeWhenDoesTheContractStartPage(date: string): Promise<void> {
-    await this.pages.pcaWhenDoesTheContractStartPage.assertPageTitle();
-    await this.pages.pcaWhenDoesTheContractStartPage.enterWhenDoesTheContractStart(date);
-    await this.pages.pcaWhenDoesTheContractStartPage.clickSaveAndContinue();
-  }
-
-  async completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(textValue: string): Promise<void> {
-    await this.pages.pcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.assertPageTitle();
-    await this.pages.pcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.enterTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplication(textValue);
-    await this.pages.pcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.clickSaveAndContinue();
-  }
-
-  async completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(option: string): Promise<void> {
-    await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.assertPageTitle();
-    await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.clickSaveAndContinue();
-  }
-
-  async completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(option: string): Promise<void> {
-    await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.assertPageTitle();
-    await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.clickSaveAndContinue();
-  }
-
-  async completeYouCannotContinueThisApplicationPage(): Promise<void> {
-    await this.pages.pcaYouCannotContinueThisApplicationPage.assertPageTitle();
-  }
-
-  async completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage(uploadFileName: string): Promise<void> {
-    await this.pages.pcaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage.assertPageTitle();
-    await this.pages.pcaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage.uploadFileFromUserUploadFolder(uploadFileName);
-    await this.pages.pcaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage.selectContinueUploadBtn();
-  }
-
-  async completePcaUploadYourCompaniesHouseDetailsPage(uploadFileName: string): Promise<void> {
-    await this.pages.pcaUploadYourCompaniesHouseDetailsPage.assertPageTitle();
-    await this.pages.pcaUploadYourCompaniesHouseDetailsPage.uploadFileFromUserUploadFolder(uploadFileName);
-    await this.pages.pcaUploadYourCompaniesHouseDetailsPage.selectContinueUploadBtn();
-  }
-
-  async completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(option: string): Promise<void> {
-    await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.assertPageTitle();
-    await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.clickSaveAndContinue();
-  }
-
-  async completeAreYouRequestingAnAdditionalCategoryPage(option: string): Promise<void> {
-    await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.assertPageTitle();
-    await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.clickSaveAndContinue();
-  }
-
-  async completeAreYouRequestingAChangeOfSubstanceOrOperationPage(option: string): Promise<void> {
-    await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.assertPageTitle();
-    await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.clickSaveAndContinue();
-  }
-
-  async SelectSignInAgainButtonOnWeSavedYourApplicationAndSignedYouOut(): Promise<void> {
-    await this.pages.pcaWeSavedYourApplicationAndSignedYouOutPage.assertPageTitle();
-    await this.pages.pcaWeSavedYourApplicationAndSignedYouOutPage.clickSignInAgain();
+    await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage(defaultChemical);
   }
 
   async answersPrecursorChemicalsFormFor(scenario: string): Promise<void> {
-    await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-    await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-    await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+    await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+    await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+    await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
 
     await this.completePrecursorChemicalsHappyPathJourney(scenario, null, null);
   }
 
   async answersPrecursorChemicalsFormForUsingOwnChemicalName(scenario: string, checkboxLabel: string, ownChemicalName: string): Promise<void> {
-    await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-    await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-    await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+    await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+    await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+    await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
 
     await this.completePrecursorChemicalsHappyPathJourney(scenario, checkboxLabel, ownChemicalName);
-  }
-
-  private async completeSelectedChemicalStep(checkboxLabel: string | null, ownChemicalName: string | null, defaultChemical: string): Promise<void> {
-    if (checkboxLabel != null && !(checkboxLabel.trim().length === 0) && ownChemicalName != null && !(ownChemicalName.trim().length === 0)) {
-      await this.completeWhichChemicalAreYouApplyingForPageUsingOwnChemicalName(checkboxLabel, ownChemicalName);
-      return;
-    }
-
-    await this.completeWhichChemicalAreYouApplyingForPage(defaultChemical);
   }
 
   private async completePrecursorChemicalsHappyPathJourney(scenario: string, checkboxLabel: string | null, ownChemicalName: string | null): Promise<void> {
     switch (scenario.toLowerCase()) {
       case "t1: a new application - a first time licensee - premises address is the same as the licence holder address":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
       case "t2: a new application - existing licensee renewing or changing a currently licensed site - premises address is the same as the licence holder address":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-        await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
-        await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
-        await this.completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage("yourself.png");
-        await this.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(c.RESPONSE_YES);
-        await this.completeAreYouRequestingAnAdditionalCategoryPage(c.RESPONSE_NO);
-        await this.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(c.RESPONSE_YES);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+        await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
+        await this.pages.pcaUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage.completeUploadCompanyRegistrationCertificateAsEvidenceOfNameChangePage("yourself.png");
+        await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(c.RESPONSE_YES);
+        await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.completeAreYouRequestingAnAdditionalCategoryPage(c.RESPONSE_NO);
+        await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(c.RESPONSE_YES);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
       case "t3: a new application - existing licensee renewing or changing a currently licensed site - premises address is not same as the licence holder address, operation applies is other licence":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-        await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
-        await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
-        await this.completePcaUploadYourCompaniesHouseDetailsPage("yourself.png");
-        await this.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(c.RESPONSE_NO);
-        await this.completeAreYouRequestingAnAdditionalCategoryPage(c.RESPONSE_YES);
-        await this.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(c.RESPONSE_NO);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_NO);
-        await this.completePremisesAddressPage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("I do not know");
+        await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+        await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(c.RESPONSE_NO);
+        await this.pages.pcaUploadYourCompaniesHouseDetailsPage.completePcaUploadYourCompaniesHouseDetailsPage("yourself.png");
+        await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(c.RESPONSE_NO);
+        await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.completeAreYouRequestingAnAdditionalCategoryPage(c.RESPONSE_YES);
+        await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(c.RESPONSE_NO);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_NO);
+        await this.pages.pcaPremisesAddressPage.completePremisesAddressPage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("I do not know");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Other");
-        await this.completeWhatOtherOperationsAppliesToTheLicencePage("Licence name");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Other");
+        await this.pages.pcaWhatOtherOperationsAppliesToTheLicencePage.completeWhatOtherOperationsAppliesToTheLicencePage("Licence name");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
       case "t4: a new application - existing licensee applying for a new site - enter moving site date and premises address is not same as the licence holder address, operation applies is other licence":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
-        await this.completeWhyAreYouRequestingANewLicensePage("We are moving site");
-        await this.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_NO);
-        await this.completePremisesAddressPage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("I do not know");
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("We are moving site");
+        await this.pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_NO);
+        await this.pages.pcaPremisesAddressPage.completePremisesAddressPage(c.B_ADDRESS_LINE_1, c.B_ADDRESS_LINE_2, c.B_TOWN_OR_CITY, c.B_POSTCODE);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("I do not know");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Other");
-        await this.completeWhatOtherOperationsAppliesToTheLicencePage("Licence name");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Other");
+        await this.pages.pcaWhatOtherOperationsAppliesToTheLicencePage.completeWhatOtherOperationsAppliesToTheLicencePage("Licence name");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
       case "t5: a new application - existing licensee applying for a new site - is not part of the contractual agreement and premises address is the same as the licence holder address":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
-        await this.completeWhyAreYouRequestingANewLicensePage("For another site");
-        await this.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_NO);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
+        await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_NO);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
       case "t6: a new application - existing licensee applying for a new site - is part of the contractual agreement and premises address is the same as the licence holder address":
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
-        await this.completeWhyAreYouRequestingANewLicensePage("For another site");
-        await this.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-        await this.completeWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
-        await this.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
+        await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
+        await this.pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
+        await this.pages.pcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
 
       case "t7: amend a pending application - is part of the contractual agreement and premises address is the same as the licence holder address":
-        await this.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(c.AMEND_PENDING_APPLICATION);
-        await this.completeEnterYourApplicationReferenceNumberPage("12345678");
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(c.AMEND_PENDING_APPLICATION);
+        await this.pages.pcaEnterYourApplicationReferenceNumberPage.completeEnterYourApplicationReferenceNumberPage("12345678");
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
         await this.completeSelectedChemicalStep(checkboxLabel, ownChemicalName, "Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
 
       default:
         throw new Error("Failed: Wrong radio value scenario name: " + scenario);
     }
-    await this.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
-    await this.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
-    await this.completeWhichEmailAddressShouldTheLicenceBeSentToPage(c.SAS_HOF_EMAIL);
-    await this.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL);
-    await this.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(c.RESPONSE_NO, "Text Area Value");
-    await this.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationPage("Text Area Value");
-    await this.completeCheckYourAnswerPage();
-    await this.completeDeclarationPage("I understand and accept this declaration");
-    await this.completeApplicationSubmittedPage();
+    await this.pages.pcaTellUsAboutYourMainCustomersPage.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaTellUsAboutYourMainSuppliersPage.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
+    await this.pages.pcaDescribeHowYouSecureYourPremisesPage.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
+    await this.pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.completeWhichEmailAddressShouldTheLicenceBeSentToPage(c.SAS_HOF_EMAIL);
+    await this.pages.pcaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL);
+    await this.pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(c.RESPONSE_NO, "Text Area Value");
+    await this.pages.pcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationPage("Text Area Value");
+    await this.pages.pcaCheckYourAnswersPage.completeCheckYourAnswerPage();
+    await this.pages.pcaDeclarationPage.completeDeclarationPage("I understand and accept this declaration");
+    await this.pages.pcaApplicationSubmittedPage.completeApplicationSubmittedPage();
   }
 
   async answerToExistingLicenseeRenewingOrChangingCannonContinue(): Promise<void> {
-    await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-    await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-    await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+    await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+    await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+    await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
     await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
-    await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
-    await this.completeYouCannotContinueThisApplicationPage();
+    await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(c.RESPONSE_YES);
+    await this.pages.pcaYouCannotContinueThisApplicationPage.completeYouCannotContinueThisApplicationPage();
   }
 
   async answerToPage(answer: string, pageName: string): Promise<void> {
     switch (pageName.toLowerCase()) {
 
       case "what type of licence are you applying for?":
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(answer);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(answer);
         break;
 
       case "how are you applying for your precursor chemicals licence?":
-        await this.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(answer);
+        await this.pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(answer);
         break;
 
       case "is the premises address the same as the licence holder address?":
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(answer);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(answer);
         break;
 
       case "has the responsible officer subscribed to dbs updates?":
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(answer);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(answer);
         break;
 
       case "which category is the substance?":
-        await this.completeWhichCategoryIsTheSubstancePage(answer);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage(answer);
         break;
 
       case "what security measures do you have in place at the premises?":
-        await this.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage(answer);
+        await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage(answer);
         break;
 
       case "which operation applies to this licence for x":
-        await this.completeWhichOperationAppliesToThisLicenceForXPage(answer);
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage(answer);
         break;
 
       case "has your companies house reference number changed since your last application?":
-        await this.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(answer);
+        await this.pages.pcaHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage.completeHasYourCompaniesHouseReferredNumberChangedSinceYourLastApplicationPage(answer);
         break;
 
       case "has your registered name at companies house changed since your last application?":
-        await this.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(answer);
+        await this.pages.pcaHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage.completeHasYourRegisteredNameAtCompaniesHouseChangedSinceYourLastApplicationPage(answer);
         break;
 
       case "why are you requesting a new license?":
-        await this.completeWhyAreYouRequestingANewLicensePage(answer);
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage(answer);
         break;
 
       case "is the new site part of a contractual agreement?":
-        await this.completeIsTheNewSitePartOfAContractualAgreementPage(answer);
+        await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(answer);
         break;
 
       case "are you requesting to change the responsible person or guarantor for this site only?":
-        await this.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(answer);
+        await this.pages.pcaAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage.completeAreYouRequestingToChangeTheResponsiblePersonOrGuarantorForThisSiteOnlyPage(answer);
         break;
 
       case "are you requesting an additional category?":
-        await this.completeAreYouRequestingAnAdditionalCategoryPage(answer);
+        await this.pages.pcaAreYouRequestingAnAdditionalCategoryPage.completeAreYouRequestingAnAdditionalCategoryPage(answer);
         break;
 
       case "are you requesting a change of substance or operation?":
-        await this.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(answer);
+        await this.pages.pcaAreYouRequestingAChangeOfSubstanceOrOperationPage.completeAreYouRequestingAChangeOfSubstanceOrOperationPage(answer);
         break;
 
       case "has the guarantor subscribed to dbs updates?":
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(answer);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(answer);
         break;
 
       default:
@@ -672,263 +324,263 @@ export class PcaStepLib extends CommonCslStepLib {
   async navigateToPage(pageName: string): Promise<void> {
     switch (pageName.toLowerCase()) {
       case "how would you like to apply?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
         break;
 
       case "licence holder details":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
         break;
 
       case "is the premises address the same as the licence holder address?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, c.WEBSITE_URL);
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, c.WEBSITE_URL);
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
         break;
 
       case "responsible officer details":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
         break;
 
       case "guarantor details":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
         break;
 
       case "has anyone employed by your company ever received criminal convictions":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
         break;
 
       case "which category is the substance":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
         break;
 
       case "upload company registration certificate":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, c.WEBSITE_URL);
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
-        await this.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, c.WEBSITE_URL);
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
         break;
 
       case "tell us about your main customers":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
-        await this.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
         break;
 
       case "describe how you make sure chemicals are stored and handled securely":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
-        await this.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
-        await this.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
-        await this.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaTellUsAboutYourMainCustomersPage.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaTellUsAboutYourMainSuppliersPage.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
+        await this.pages.pcaDescribeHowYouSecureYourPremisesPage.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
         break;
 
       case "which email address should the licence be sent to":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
-        await this.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
-        await this.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
-        await this.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaTellUsAboutYourMainCustomersPage.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaTellUsAboutYourMainSuppliersPage.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
+        await this.pages.pcaDescribeHowYouSecureYourPremisesPage.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
         break;
 
       case "will the regulatory affairs and compliance officer discharge all licence responsibilities":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeWhichCategoryIsTheSubstancePage("Category 1");
-        await this.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
-        await this.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
-        await this.completeSubstancesInYourLicencePage();
-        await this.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeUploadCompanyRegistrationCertificatePage("yourself.png");
-        await this.completeUploadCertificateOfGoodConductPage("yourself.png");
-        await this.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
-        await this.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
-        await this.completeWhichEmailAddressShouldTheLicenceBeSentToPage(c.SAS_HOF_EMAIL);
-        await this.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+        await this.pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+        await this.pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+        await this.pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+        await this.pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
+        await this.pages.pcaTellUsAboutYourMainCustomersPage.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaTellUsAboutYourMainSuppliersPage.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
+        await this.pages.pcaDescribeHowYouSecureYourPremisesPage.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouManageChemicalStockControlPage.completeDescribeHowYouManageChemicalStockControlPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage.completeDescribeHowYouWorkToMakeSureEndProductsAreUsedLegitimatelyPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage.completeSummariseYourStandardOperatingProceduresAndAuditingPracticesForTheUseOrDisposalOfChemicalsPage(c.TEXT_AREA_FIELD_DATA);
+        await this.pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.completeWhichEmailAddressShouldTheLicenceBeSentToPage(c.SAS_HOF_EMAIL);
+        await this.pages.pcaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL);
         break;
 
       case "has your companies house reference number changed since your last application?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE);
         break;
 
       case "why are you requesting a new license?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
         break;
 
       case "is the new site part of a contractual agreement?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
-        await this.completeWhyAreYouRequestingANewLicensePage("For another site");
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
         break;
 
       default:
@@ -985,74 +637,57 @@ export class PcaStepLib extends CommonCslStepLib {
     }
   }
 
-  async completeAndSelectSaveAndExitHasTheGuarantorSubscribedToDbsUpdatesPage(option: string): Promise<void> {
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.assertPageTitle();
-    const actualWarningText = await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.getWarningText();
-    expect(actualWarningText).toBe(c.PCA_WARNING_TEXT_FOR_DBS);
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.selectYesOrNoRadioOption(option);
-    await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.clickSaveAndAndExit();
-  }
 
-  async completeAndSelectSaveAndExitWhichCategoryIsTheSubstancePage(optText: string): Promise<void> {
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.assertPageTitle();
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.enterWhichCategoryIsTheNewSubstance(optText);
-    await this.pages.pcaWhichCategoryIsTheNewSubstancePage.clickSaveAndAndExit();
-  }
 
-  async completeAndSelectSaveAndExitWhenDoesTheContractStartPage(date: string): Promise<void> {
-    await this.pages.pcaWhenDoesTheContractStartPage.assertPageTitle();
-    await this.pages.pcaWhenDoesTheContractStartPage.enterWhenDoesTheContractStart(date);
-    await this.pages.pcaWhenDoesTheContractStartPage.clickSaveAndAndExit();
-  }
 
   async answersPrecursorChemicalsFormForContinuingAnApplication(scenario: string): Promise<void> {
     switch (scenario.toLowerCase()) {
       case "t1: a first time licensee - page: which category is the substance?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
-        await this.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
-        await this.completeAndSelectSaveAndExitWhichCategoryIsTheSubstancePage("Category 1");
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+        await this.pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+        await this.pages.pcaWhichCategoryIsTheNewSubstancePage.completeAndSelectSaveAndExitWhichCategoryIsTheSubstancePage("Category 1");
         break;
 
       case "t2: existing licensee renewing or changing a currently licensed site - page: has the guarantor subscribed to dbs updates?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.FIRST_TIME_LICENSEE);
-        await this.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
-        await this.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-        await this.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
-        await this.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
-        await this.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-        await this.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-        await this.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
-        await this.completeAndSelectSaveAndExitHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
+        await this.pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+        await this.pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+        await this.pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+        await this.pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+        await this.pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+        await this.pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+        await this.pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeAndSelectSaveAndExitHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
         break;
 
       case "t3: existing licensee applying for a new site - page: when does the contract start?":
-        await this.completeApplyForADomesticLicenceForControlledSubstancesPage();
-        await this.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
-        await this.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+        await this.pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+        await this.pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.USER_NAME, c.PASSWORD);
+        await this.pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
         await this.completeLicenceYouAreApplyingForAndWhatTypeOfLicenseeAreYouPages(c.START_NEW_APPLICATION, c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
-        await this.completeWhyAreYouRequestingANewLicensePage("For another site");
-        await this.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-        await this.completeAndSelectSaveAndExitWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
+        await this.pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
+        await this.pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
+        await this.pages.pcaWhenDoesTheContractStartPage.completeAndSelectSaveAndExitWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
         break;
 
       default:
@@ -1092,7 +727,7 @@ When("I choose to select {string} on {string} page and choose to continue for PC
 
 export async function iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages: Pages, applicationRefNo: string, page: string): Promise<void> {
   const pcaStepLib = new PcaStepLib(pages);
-  await pcaStepLib.completeEnterYourApplicationReferenceNumberPage(applicationRefNo);
+  await pages.pcaEnterYourApplicationReferenceNumberPage.completeEnterYourApplicationReferenceNumberPage(applicationRefNo);
 }
 
 When("I choose to enter {string} as application reference number on {string} page and choose to continue for PCA", async ({ pages }, applicationRefNo: string, page: string) => {
@@ -1109,7 +744,7 @@ export async function i_complete_the_fields_below_with_licence_holder_details(pa
   const emailAddress = data["Email address"];
   const websiteUrl = data["Website URL"];
 
-  await pcaStepLib.completeLicenceHolderDetailsPage(companyName, companyNumber, ukTelephoneNo, emailAddress, websiteUrl);
+  await pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(companyName, companyNumber, ukTelephoneNo, emailAddress, websiteUrl);
 }
 
 When("I complete the fields below with Licence holder details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -1127,15 +762,15 @@ export async function i_complete_the_fields_below_with_licence_holder_address_de
 
   switch (pageName.toLowerCase()) {
     case "licence":
-      await pcaStepLib.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
+      await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
       break;
 
     case "premises":
-      await pcaStepLib.completePremisesAddressPage(addressLine1, addressLine2, townOrCity, postcode);
+      await pages.pcaPremisesAddressPage.completePremisesAddressPage(addressLine1, addressLine2, townOrCity, postcode);
       break;
 
     case "invoicing":
-      await pcaStepLib.completeInvoicingAddressPage(addressLine1, addressLine2, townOrCity, postcode);
+      await pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(addressLine1, addressLine2, townOrCity, postcode);
       break;
 
     default:
@@ -1160,7 +795,7 @@ export async function i_complete_the_fields_below_with_invoicing_contact_details
   const ukTelephoneNo = data["UK telephone number"];
   const purchaseOrderNo = data["Purchase order number"];
 
-  await pcaStepLib.completeInvoicingContactDetailsPage(fullName, emailAddress, ukTelephoneNo, purchaseOrderNo);
+  await pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(fullName, emailAddress, ukTelephoneNo, purchaseOrderNo);
 }
 
 When("I complete the fields below with Invoicing contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -1174,7 +809,7 @@ export async function i_complete_the_fields_below_with_premises_contact_details_
   const ukTelephoneNo = data["UK telephone number"];
   const emailAddress = data["Email address"];
 
-  await pcaStepLib.completePremisesContactDetailsPage(ukTelephoneNo, emailAddress);
+  await pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(ukTelephoneNo, emailAddress);
 }
 
 When("I complete the fields below with Premises contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -1191,11 +826,11 @@ export async function i_complete_the_fields_below_with_for_pca(pages: Pages, pag
 
   switch (pageName.toLowerCase()) {
     case "responsible officer details":
-      await pcaStepLib.enterResponsibleOfficerFullNameAndEmailDetails(fullName, emailAddress);
+      await pages.pcaResponsibleOfficerDetailsPage.enterResponsibleOfficerFullNameAndEmailDetails(fullName, emailAddress);
       break;
 
     case "guarantor details":
-      await pcaStepLib.enterGuarantorDetailsFullNameAndEmailDetails(fullName, emailAddress);
+      await pages.pcaGuarantorDetailsPage.enterGuarantorDetailsFullNameAndEmailDetails(fullName, emailAddress);
       break;
 
     default:
@@ -1203,10 +838,10 @@ export async function i_complete_the_fields_below_with_for_pca(pages: Pages, pag
   }
 
   if (checkBox.toLowerCase() === "ticked".toLowerCase()) {
-    await pcaStepLib.selectCheckboxContainText("I confirm this person has applied");
+    await pages.basePage.selectRadioOptionWithText("I confirm this person has applied");
   }
 
-  await pcaStepLib.selectSaveAndContinueButton();
+  await pages.basePage.clickSaveAndContinue();
 }
 
 When("I complete the fields below with {string} for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
@@ -1222,11 +857,11 @@ export async function i_complete_the_fields_below_with_dbs_information_for_the_r
 
   switch (pageName.toLowerCase()) {
     case "dbs information":
-      await pcaStepLib.completeDbsInformationForTheResponsibleOfficePage(fullName, dbsReference, dayMonthYear);
+      await pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(fullName, dbsReference, dayMonthYear);
       break;
 
     case "guarantor dbs":
-      await pcaStepLib.completeGuarantorDbsInformationPage(fullName, dbsReference, dayMonthYear);
+      await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(fullName, dbsReference, dayMonthYear);
       break;
 
     default:
@@ -1253,7 +888,7 @@ When("I enter {string} characters in the text area box field on {string} page fo
 
 export async function i_choose_to_select_option_on_the_page_for_pca(pages: Pages, option: string, pageName: string): Promise<void> {
   const pcaStepLib = new PcaStepLib(pages);
-  await pcaStepLib.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
+  await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
 }
 
 When("I choose to select {string} option on the {string} page for PCA", async ({ pages }, option: string, pageName: string) => {
@@ -1264,19 +899,19 @@ export async function i_enter_into_the_email_field_on_page_for_pca(pages: Pages,
   const pcaStepLib = new PcaStepLib(pages);
   switch (pageName.toLowerCase()) {
     case "which email address should the licence be sent to?":
-      await pcaStepLib.completeWhichEmailAddressShouldTheLicenceBeSentToPage(value);
+      await pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.completeWhichEmailAddressShouldTheLicenceBeSentToPage(value);
       break;
 
     case "which chemical are you applying for?":
-      await pcaStepLib.completeWhichChemicalAreYouApplyingForPage(value);
+      await pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage(value);
       break;
 
     case "when are you moving site?":
-      await pcaStepLib.completeWhenAreYouMovingSitePage(value);
+      await pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(value);
       break;
 
     case "when does the contract start?":
-      await pcaStepLib.completeWhenDoesTheContractStartPage(value);
+      await pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(value);
       break;
 
     default:
@@ -1296,7 +931,7 @@ export async function iSelectCheckboxOnPageForPCA(pages: Pages, checkboxLabel: s
   const pcaStepLib = new PcaStepLib(pages);
   switch (pageName.toLowerCase()) {
     case "which chemical are you applying for?":
-      await pcaStepLib.selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel);
+      await pages.pcaWhichChemicalAreYouApplyingForPage.selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel);
       break;
 
     default:
@@ -1316,7 +951,7 @@ export async function i_complete_the_fields_below_with_who_is_completing_the_app
   const ukTelephoneNo = data["UK telephone number"];
   const emailAddress = data["Email address"];
 
-  await pcaStepLib.completeWhoIsCompletingTheApplicationPage(fullName, ukTelephoneNo, emailAddress);
+  await pages.pcaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(fullName, ukTelephoneNo, emailAddress);
 }
 
 When("I complete the fields below with Who is completing the application details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -1330,7 +965,7 @@ export async function i_complete_the_fields_below_with_will_the_regulatory_affai
   const radioOption = data["Radio Option"];
   const textArea = data["Text Area"];
 
-  await pcaStepLib.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(radioOption, textArea);
+  await pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(radioOption, textArea);
 }
 
 When("I complete the fields below with Will the regulatory affairs and compliance officer discharge all licence responsibilities details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -1339,7 +974,7 @@ When("I complete the fields below with Will the regulatory affairs and complianc
 
 export async function linkIsDisplayedOnThePageForPCA(pages: Pages, linkText: string): Promise<void> {
   const pcaStepLib = new PcaStepLib(pages);
-  expect(await pcaStepLib.isLinkTextIsDisplayedOnPage(linkText)).toBe(true);
+  expect(await pages.basePage.isLinkTextDisplayed(linkText)).toBe(true);
 }
 
 Then("{string} link is displayed on the page for PCA", async ({ pages }, linkText: string) => {

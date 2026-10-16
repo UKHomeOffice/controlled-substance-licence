@@ -7,4 +7,9 @@ export class PcaWhyAreYouRequestingANewLicensePage extends basePage {
             ? "Error: Why are you requesting a new license? – Precursor chemicals application"
             : "Why are you requesting a new license? – Precursor chemicals application";
   }
+  async completeWhyAreYouRequestingANewLicensePage(option: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.selectRadioOptionWithText(option);
+    await this.clickSaveAndContinue();
+  }
 }
