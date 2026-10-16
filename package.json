@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/UKHomeOffice/controlled-substance-licence#readme",
   "dependencies": {
-    "accessible-autocomplete": "^3.0.1",
+    "accessible-autocomplete": "^3.0.2",
     "bl": "^6.1.6",
     "busboy": "^1.6.0",
     "crypto-random-string": "^6.0.0",
