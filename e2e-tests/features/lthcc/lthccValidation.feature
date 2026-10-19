@@ -1180,12 +1180,12 @@ Feature: CSL - Low THC Cannabis Application form
     Then I should see "There is a problem" error message displayed
     And I should see "Enter the contract start date" error summary
 #Enter 1 year in the past date error
-    When I enter "more than one year in the past" into "When does the contract start?" field and page for LTHCC
+    When I enter "more than 1 year in the past" into "When does the contract start?" field and page for LTHCC
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Contract start date must be within the past year" error summary
 #Enter 1 year in the past in the future date error
-    When I enter "more than one year in the future" into "When does the contract start?" field and page for LTHCC
+    When I enter "more than 1 year in the future" into "When does the contract start?" field and page for LTHCC
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Contract start date must be within the next year. Come back and re-apply later if you are applying for a new site more than 1 year in the future" error summary

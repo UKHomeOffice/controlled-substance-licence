@@ -4,7 +4,7 @@ Feature: CSL - Low THC Cannabis Application form
   @CslRegressionCI @CslRegression
   Scenario Outline: Low THC Cannabis application journey form for E2E test
     Given I visit the Controlled substance licence application page
-    When I fill out the answers to "Low THC Cannabis" form pertaining to "<LTHCC Test>" happy path test
+    When I fill out the answers to Low THC Cannabis form pertaining to "<LTHCC Test>" happy path test
     Then I should see "Application submitted" page for LTHCC
     When I select "Finish and exit" button
     Then I am navigated to "Apply for a domestic licence for controlled substances" page

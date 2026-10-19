@@ -15,7 +15,7 @@
     "test:unit": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "bddgen": "bddgen",
     "test:e2e": "bddgen && playwright test",
-    "test:e2e:smoke": "bddgen && playwright test --grep @CslRegression --workers=2",
+    "test:e2e:smoke": "bddgen && playwright test --grep @CslRegression",
     "test:e2e:typecheck": "tsc --noEmit",
     "test:e2e:headed": "bddgen && playwright test --headed",
     "test:e2e:report": "playwright show-report"
@@ -35,6 +35,7 @@
     "bl": "^6.1.6",
     "busboy": "^1.6.0",
     "crypto-random-string": "^6.0.0",
+    "date-fns": "^4.4.0",
     "form-data": "^4.0.6",
     "hof": "~24.5.0",
     "notifications-node-client": "^8.4.0"

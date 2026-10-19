@@ -1,7 +1,9 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { addDays, addYears } from 'date-fns';
 import path from 'node:path';
 
 export class basePage {
+  private activePage: Page;
   readonly headerText: Locator;
   readonly continueButton: Locator;
   readonly continueBtn: Locator;
@@ -26,6 +28,7 @@ export class basePage {
   readonly postcode: Locator;
 
   constructor(readonly page: Page) {
+    this.activePage = page;
     this.headerText = page.locator('h1');
     this.continueButton = page.getByRole('button', { name: 'Continue', exact: true });
     this.continueBtn = this.continueButton;
@@ -127,7 +130,14 @@ export class basePage {
   async isLinkTextDisplayed(text: string) { return this.getLink(text).isVisible(); }
   async getLinkUrl(text: string) { return this.getLink(text).getAttribute('href'); }
   async assertLinkUrl(text: string, url: string) { await expect(this.getLink(text)).toHaveAttribute('href', url); }
-  async getPageHeaderText() { return this.headerText.innerText(); }
+  async getPageHeaderText() { return this.activePage.locator('h1').innerText(); }
+  async switchToTab(index: number) {
+    await expect.poll(() => this.page.context().pages().length).toBeGreaterThan(index);
+    this.activePage = this.page.context().pages()[index];
+    await this.activePage.waitForLoadState('domcontentloaded');
+  }
+  getOpenTabCount() { return this.page.context().pages().length; }
+  getCurrentUrl() { return this.activePage.url(); }
   async getCurrentPageTitle() { return this.page.title(); }
   async getPageLinkText(text: string) { return this.getPageLinkByText(text).innerText(); }
   async getErrorSummaryTitle() { return this.errorSummaryTitle.innerText(); }
@@ -148,11 +158,6 @@ export class basePage {
     if (!text.trim()) throw new Error('Radio option text value cannot be blank.');
     await this.page.getByRole('radio', { name: text.trim(), exact: false })
       .or(this.page.getByRole('checkbox', { name: text.trim(), exact: false })).check();
-  }
-
-  async selectCheckboxOptionWithText(text: string) {
-    if (!text.trim()) throw new Error('Checkbox option text value cannot be blank.');
-    await this.page.getByRole('checkbox', { name: text.trim(), exact: false }).check();
   }
 
   async clearAndEnterTextInElement(locator: Locator, text: string | null) {
@@ -177,10 +182,6 @@ export class basePage {
     await locator.press('Tab');
   }
 
-  async autoSelectFromDropDownMenu(locator: Locator, option: string) {
-    await this.clearAndEnterAutocompleteTextInElement(locator, option);
-  }
-
   async selectValueFromDropDownField(locator: Locator, value: string) {
     await locator.selectOption({ label: value });
   }
@@ -201,27 +202,31 @@ export class basePage {
   }
 
   convertTextToDate(value: string): string {
-    const date = new Date();
     const normalized = value.trim().toLowerCase();
-    switch (normalized) {
-      case "yesterday's date": date.setDate(date.getDate() - 1); break;
-      case "today's date": break;
-      case "tomorrow's date": date.setDate(date.getDate() + 1); break;
-      case 'more than one year in the future': date.setFullYear(date.getFullYear() + 1); date.setDate(date.getDate() + 1); break;
-      case 'more than 100 years in the future': date.setFullYear(date.getFullYear() + 100); date.setDate(date.getDate() + 1); break;
-      case 'more than one year in the past': date.setFullYear(date.getFullYear() - 1); date.setDate(date.getDate() - 1); break;
-      case 'within the last 3 years': date.setFullYear(date.getFullYear() - 3); date.setDate(date.getDate() + 1); break;
-      case 'more than 3 years ago': date.setFullYear(date.getFullYear() - 3); break;
-      case 'less than 16 years ago': date.setFullYear(date.getFullYear() - 16); date.setDate(date.getDate() + 1); break;
-      case 'less than 18 years ago': date.setFullYear(date.getFullYear() - 18); date.setDate(date.getDate() + 1); break;
-      case '19 years ago': date.setFullYear(date.getFullYear() - 20); break;
-      default: {
-        const match = /^more than (50|100|120|127) years ago$/.exec(normalized);
-        if (!match) return value;
-        date.setFullYear(date.getFullYear() - Number(match[1]));
-        date.setDate(date.getDate() - 1);
-      }
-    }
+    const now = new Date();
+    const dateMappings: Record<string, () => Date> = {
+      "yesterday's date": () => addDays(now, -1),
+      "today's date": () => now,
+      "tomorrow's date": () => addDays(now, 1),
+      'less than 3 years ago': () => addDays(addYears(now, -3), 1),
+      'less than 16 years ago': () => addDays(addYears(now, -16), 1),
+      'less than 18 years ago': () => addDays(addYears(now, -18), 1),
+      '19 years ago': () => addYears(now, -19),
+      'within the last 3 years': () => addDays(addYears(now, -3), 1),
+      'more than 1 year in the future': () => addDays(addYears(now, 1), 1),
+      'more than 100 years in the future': () => addDays(addYears(now, 100), 1),
+      'more than 1 year ago': () => addDays(addYears(now, -1), -1),
+      'more than 1 year in the past': () => addDays(addYears(now, -1), -1),
+      'more than 3 years ago': () => addDays(addYears(now, -3), -1),
+      'more than 50 years ago': () => addDays(addYears(now, -50), -1),
+      'more than 100 years ago': () => addDays(addYears(now, -100), -1),
+      'more than 120 years ago': () => addDays(addYears(now, -120), -1),
+      'more than 126 years ago': () => addDays(addYears(now, -126), -1),
+      'more than 127 years ago': () => addDays(addYears(now, -127), -1),
+    };
+    const dateMapping = dateMappings[normalized];
+    if (!dateMapping) return value;
+    const date = dateMapping();
     return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
   }
 
@@ -234,31 +239,18 @@ export class basePage {
     await this.clearAndEnterTextInElement(this.dateYear, parts[2]);
   }
 
-  getRelativeDate(years: number, months: number, days: number, format: string): string {
-    const date = new Date();
-    date.setFullYear(date.getFullYear() + years);
-    date.setMonth(date.getMonth() + months);
-    date.setDate(date.getDate() + days);
-    return format.replace('yyyy', String(date.getFullYear()))
-      .replace('MM', String(date.getMonth() + 1).padStart(2, '0'))
-      .replace('dd', String(date.getDate()).padStart(2, '0'));
-  }
-
   generateRandomAlphabetString(length: number): string {
     if (!Number.isSafeInteger(length) || length < 0) throw new Error(`Invalid random string length: ${length}`);
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
   }
 
-  generatePcaAlphabetString(charSize: string): string {
-    if (!/^[+-]?\d+$/.test(charSize)) {
-      throw new Error(`Invalid character count: ${charSize}`);
-    }
-    const length = Number(charSize);
-    if (!Number.isSafeInteger(length) || length < 0 || length > 2_147_483_647) {
-      throw new Error(`Invalid character count: ${charSize}`);
-    }
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-    return Array.from({ length }, () => alphabet[Math.floor(Math.random() * alphabet.length)]).join('');
+  generateRandomStringOfLength(length: string) {
+    if (!/^\d+$/.test(length)) throw new Error(`Invalid random string length: ${length}`);
+    return this.generateRandomAlphabetString(Number(length));
+  }
+
+  generateRandomAlphabetCharacters(charSize: string): string {
+    return this.generateRandomAlphabetString(Number.parseInt(charSize, 10));
   }
 }

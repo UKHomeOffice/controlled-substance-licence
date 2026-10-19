@@ -4,7 +4,7 @@ Feature: CSL - Controlled Drugs Application form
   @CslRegressionCI @CslRegression
   Scenario Outline: Controlled drugs application journey form for E2E test
     Given I visit the Controlled substance licence application page
-    When I fill out the answers to "Controlled Drugs" form pertaining to "<CDA Test>" happy path test
+    When I fill out the answers to Controlled Drugs form pertaining to "<CDA Test>" happy path test
     Then I should see "Application submitted" page for CDA
     Examples:
       | CDA Test                                                                                                                                   |

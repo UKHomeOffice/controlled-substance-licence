@@ -1,6 +1,10 @@
 export class ConstantsLib {
-  static readonly USER_NAME = requiredEnv('USER_NAME');
-  static readonly PASSWORD = requiredEnv('PASSWORD');
+  static readonly CDA_USER_NAME = requiredEnv('USER_NAME_CDA');
+  static readonly CDA_PASSWORD = requiredEnv('PASSWORD_CDA');
+  static readonly LTHCC_USER_NAME = requiredEnv('USER_NAME_LTHCC');
+  static readonly LTHCC_PASSWORD = requiredEnv('PASSWORD_LTHCC');
+  static readonly PCA_USER_NAME = requiredEnv('USER_NAME_PCA');
+  static readonly PCA_PASSWORD = requiredEnv('PASSWORD_PCA');
   static readonly USER_NAME_PENDING = requiredEnv('USER_NAME_PENDING');
   static readonly PASSWORD_PENDING = requiredEnv('PASSWORD_PENDING');
   static readonly SAS_HOF_EMAIL = requiredEnv('SAS_HOF_EMAIL');
@@ -42,7 +46,6 @@ export class ConstantsLib {
   static readonly TODAY_S_DATE = "today's date";
   static readonly TOMORROW_S_DATE = "tomorrow's date";
   static readonly YESTERDAY_S_DATE = "yesterday's date";
-  static readonly THREE_YEARS_AGO = 'more than 3 years ago';
   static readonly WEBSITE_URL = 'https://www.hof.com';
   static readonly COMPANY_NO = '12345678';
   static readonly purchaseOrderNo = '1111222333';
@@ -54,7 +57,7 @@ export class ConstantsLib {
   static readonly CONTINUE_DRAFT_APPLICATION = 'Continue a draft application';
   static readonly AMEND_PENDING_APPLICATION = 'Amend a pending application';
   static readonly FIRST_TIME_LICENSEE = 'A first time licensee';
-  static readonly EXISTING_LICENSEE_RENEWING_OR_CHANGING_CURRENTLY_LICENSED_SITE = 'Existing licensee renewing or changing a currently licensed site';
+  static readonly EXISTING_LICENSEE_RENEWAL_OR_CHANGE_LICENSEE = 'Existing licensee renewing or changing a currently licensed site';
   static readonly EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE = 'Existing licensee applying for a new site';
 }
 
