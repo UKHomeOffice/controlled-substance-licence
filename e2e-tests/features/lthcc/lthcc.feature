@@ -1,7 +1,10 @@
-@CSL @E2eCSL @LTHCC @LTHCC-E2E
+@CSL 
+@LTHCC 
+
 Feature: CSL - Low THC Cannabis Application form
 
-  @CslRegressionCI @CslRegression
+  @CslRegressionCI 
+  @CslRegression
   Scenario Outline: Low THC Cannabis application journey form for E2E test
     Given I visit the Controlled substance licence application page
     When I fill out the answers to Low THC Cannabis form pertaining to "<LTHCC Test>" happy path test

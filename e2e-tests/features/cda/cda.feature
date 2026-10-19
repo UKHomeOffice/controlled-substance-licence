@@ -1,7 +1,10 @@
-@CSL @E2eCSL @CdaRegression @CDA-E2E
+@CSL
+@CDA
+
 Feature: CSL - Controlled Drugs Application form
 
-  @CslRegressionCI @CslRegression
+  @CslRegressionCI 
+  @CslRegression
   Scenario Outline: Controlled drugs application journey form for E2E test
     Given I visit the Controlled substance licence application page
     When I fill out the answers to Controlled Drugs form pertaining to "<CDA Test>" happy path test
@@ -35,7 +38,7 @@ Feature: CSL - Controlled Drugs Application form
     And "Register for the licensing platform again." link is displayed on the page for CDA
 
 
-  @CslRegression @RegressionTestCI @regression1
+  @CslRegression
   Scenario Outline: Controlled drugs application form test for continue an application
     Given I visit the Controlled substance licence application page
     When I partially completing "Controlled drugs" form, then save and exit on "<Scenario - Save and Exit Page>" page

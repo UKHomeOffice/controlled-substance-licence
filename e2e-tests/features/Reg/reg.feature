@@ -1,11 +1,7 @@
 @CSL
-@E2eCSL
 @REG
-@REG-E2E
-@regression
-@CslRegression
-Feature: CSL - Registration Form
 
+Feature: CSL - Registration Form
 
   @CslRegressionCI
   @CslRegression

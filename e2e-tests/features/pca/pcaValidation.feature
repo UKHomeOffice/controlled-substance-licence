@@ -1,4 +1,3 @@
-@TestTLF
 @CSL
 @PCA
 @PCA-V
@@ -40,7 +39,7 @@ Feature: CSL - Precursor chemicals application form
 
 
 
-  @CslRegression @regression1
+  @CslRegression
 #  Licence holder details page
 #  Licence holder address page
   Scenario: PCA Test-2 Validate the above pages
@@ -109,7 +108,7 @@ Feature: CSL - Precursor chemicals application form
 
 
 
-  @CslRegression @regression1
+  @CslRegression 
 # Is the premises address the same as the licence holder address page
 # Premises address page
 # Premises contact details page
@@ -307,7 +306,7 @@ Feature: CSL - Precursor chemicals application form
 
 
 
-  @CslRegression @regression1
+  @CslRegression 
 #  Has anyone employed by your company ever received criminal convictions page
 #  Invoicing address page
 #  Invoicing contact details page
@@ -377,7 +376,7 @@ Feature: CSL - Precursor chemicals application form
 
 
 
-  @CslRegression @regression1
+  @CslRegression 
 #Section: About the licence
 #  Which category is the substance?
 #  Which chemical are you applying for? page
@@ -410,7 +409,7 @@ Feature: CSL - Precursor chemicals application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Enter an operation" error summary
-  @CslRegression @regression1
+  @CslRegression 
   Scenario: PCA Test-7a Validate the above pages for own chemical name
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Which category is the substance" page for PCA
@@ -538,7 +537,7 @@ Feature: CSL - Precursor chemicals application form
 
 
 
-  @CslRegression @regression1
+  @CslRegression 
 #  Describe how you secure your premises page
 #  Describe how you manage chemical stock control page
 #  Describe how you work to make sure end products are used legitimately page
@@ -719,7 +718,7 @@ Feature: CSL - Precursor chemicals application form
 
 #------------------------------- Start of Existing licensee renewing or changing a currently -------------------------------#
 
-  @CslRegression @regression1
+  @CslRegression 
 #   Has your Companies House reference number changed since your last application page
 #   Has your registered name at Companies House changed since your last application page
 #   Upload company registration certificate as evidence of name change page
@@ -814,7 +813,7 @@ Feature: CSL - Precursor chemicals application form
 
 #------------------------------- Start of Existing licensee applying for a new site -------------------------------#
 
-  @CslRegression @regression1
+  @CslRegression 
 #  Why are you requesting a new license
 #  when are you moving site page
   Scenario: PCA Test-15 Validate the above pages

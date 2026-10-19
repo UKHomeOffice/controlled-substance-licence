@@ -1,5 +1,5 @@
 @CSL
-@CdaRegression
+@CDA
 @CDA-V
 
 Feature: CSL - Controlled Drugs Application form

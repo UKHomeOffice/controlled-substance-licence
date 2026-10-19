@@ -1,7 +1,10 @@
-@CSL @E2eCSL @PCA
+@CSL 
+@PCA
+
 Feature: CSL - Precursor chemicals application form
 
-  @CslRegressionCI @CslRegression
+  @CslRegressionCI 
+  @CslRegression
   Scenario Outline: PCA E2E test for a new application and amending pending application
     Given I visit the Controlled substance licence application page
     When I fill out the answers to Precursor Chemicals form pertaining to "<PCA Test>" happy path test by selecting "<Own Chemical Checkbox>" checkbox and entering own chemical name "<Own Chemical Name>"
@@ -37,7 +40,8 @@ Feature: CSL - Precursor chemicals application form
       | T2: Existing licensee renewing or changing a currently licensed site - Page: Has the guarantor subscribed to DBS updates? | Has anyone employed by your company ever received criminal convictions?     |
       | T3: Existing licensee applying for a new site - Page: When does the contract start?                                       | Tell us more about the contract and how it affects your licence application |
 
-  @CslRegression @regression1 @RegressionTestCI
+  @CslRegression
+  @RegressionTestCI
   Scenario: Feedback link on Precursor chemicals application form
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "How are you applying for your controlled drugs licence?" page for CDA

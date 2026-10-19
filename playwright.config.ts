@@ -1,4 +1,4 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 import { defineBddConfig } from 'playwright-bdd';
 import dotenv from 'dotenv';
 
@@ -25,7 +25,7 @@ export default defineConfig({
     timeout: 6000,
   },
   fullyParallel: true,
-  workers: process.env.CI ? 2 : 1,
+  workers: 4,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
   reporter: [['html', { open: 'never' }], ['list']],
@@ -33,9 +33,13 @@ export default defineConfig({
     baseURL,
     viewport: null,
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    video: 'on-first-retry',
     trace: 'on-first-retry',
     headless: !!process.env.CI,
+    browserName: 'chromium',
+    launchOptions: {
+      args: ['--start-maximized'],
+    },
   },
 
     webServer: process.env.PLAYWRIGHT_BASE_URL
@@ -47,18 +51,26 @@ export default defineConfig({
       timeout: 120_000
     },
     
-  /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: {
-        browserName: 'chromium',
-        launchOptions: {
-          args: ['--start-maximized'],
-        },
-        video: 'on-first-retry', //Options => 'on', 'off', 'retain-on-failure' or 'on-first-retry'
-        screenshot: 'only-on-failure', //Options => 'on', 'off', 'only-on-failure' or 'on-first-retry'
-      },
+      name: 'cda',
+      grep: /@CDA/,
+      workers: 1,
+    },
+    {
+      name: 'lthcc',
+      grep: /@LTHCC/,
+      workers: 1,
+    },
+    {
+      name: 'pca',
+      grep: /@PCA/,
+      workers: 1,
+    },
+    {
+      name: 'reg',
+      grep: /@REG/,
+      workers: 1,
     },
   ],
 });
