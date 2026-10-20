@@ -8,49 +8,49 @@ const { When, Then } = createBdd(test);
 
 //Scenario: Registration tests
 When('I fill out the answers to Registration form pertaining to {string} happy path test', async ({ pages }, scenario: string) => {
-  switch (scenario.toLowerCase()) {
-    case "t1: yes identity changes in the last 3yrs - other business type - other type of company - yes to mhra - yes to cqcsw":
-      await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-      await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-      await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-      await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-      await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
-      await pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(c.RESPONSE_YES);
-      await pages.regPreviousLicenseDetailsPage.completePreviousLicenseDetailsPage(c.REF_NUMBER, c.NAME, c.DATE_IS_WITHIN_3_YEARS);
-      await pages.regBusinessTypePage.completeBusinessTypePage("Other");
-      await pages.regSpecifyYourBusinessTypePage.completeSpecifyYourBusinessTypePage(c.TEXT_AREA_FIELD_DATA);
-      await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
-      await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
-      await pages.regDescribeYourBusinessModelPage.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
-      await pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_YES);
-      await pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage("Lic123456", "licenceType", c.DATE_IS_WITHIN_3_YEARS);
-      await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_YES);
-      await pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage("12345677", c.DATE_IS_WITHIN_3_YEARS);
-      break;
-    case "t2: no identity changes in the last 3yrs - not other business type - public type of company - no to mhra - no to cqcsw":
-      await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-      await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-      await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-      await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-      await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-      await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
-      await pages.regBusinessTypePage.completeBusinessTypePage("Importer");
-      await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
-      await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
-      await pages.regUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-      await pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
-      await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
-      break;
-    default:
-      throw new Error("Failed: Wrong radio value scenario name: " + scenario);
-  }
-  await pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
-  await pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, "112345DSD");
-  await pages.regInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-  await pages.regCheckYourAnswersPage.completeCheckYourAnswersPage();
-  await pages.regDeclarationPage.completeDeclarationPage("I have read and agree to this declaration");
-  await pages.regRegistrationSubmittedPage.completeRegistrationSubmittedPage();
+    switch (scenario.toLowerCase()) {
+        case "t1: yes identity changes in the last 3yrs - other business type - other type of company - yes to mhra - yes to cqcsw":
+            await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+            await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+            await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+            await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+            await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+            await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
+            await pages.regUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage.completeUnderYourPreviousLegallyRegisteredIdentityDidYouHoldAControlledDrugsLicensePage(c.RESPONSE_YES);
+            await pages.regPreviousLicenseDetailsPage.completePreviousLicenseDetailsPage(c.REF_NUMBER, c.NAME, c.DATE_IS_WITHIN_3_YEARS);
+            await pages.regBusinessTypePage.completeBusinessTypePage("Other");
+            await pages.regSpecifyYourBusinessTypePage.completeSpecifyYourBusinessTypePage(c.TEXT_AREA_FIELD_DATA);
+            await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+            await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Other");
+            await pages.regDescribeYourBusinessModelPage.completeDescribeYourBusinessModelPage(c.TEXT_AREA_FIELD_DATA);
+            await pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_YES);
+            await pages.regMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage.completesMedicinesAndHealthcareProductsRegulatoryAgencyLicenseDetailsPage("Lic123456", "licenceType", c.DATE_IS_WITHIN_3_YEARS);
+            await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_YES);
+            await pages.regRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesRegistrationDetailsForTheCareQualityCommissionOrScottishAndWelshEquivalentsPage("12345677", c.DATE_IS_WITHIN_3_YEARS);
+            break;
+        case "t2: no identity changes in the last 3yrs - not other business type - public type of company - no to mhra - no to cqcsw":
+            await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
+            await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
+            await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
+            await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+            await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
+            await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
+            await pages.regBusinessTypePage.completeBusinessTypePage("Importer");
+            await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
+            await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Public limited company");
+            await pages.regUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
+            await pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
+            await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
+            break;
+        default:
+            throw new Error("Failed: Wrong radio value scenario name: " + scenario);
+    }
+    await pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
+    await pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, "112345DSD");
+    await pages.regInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+    await pages.regCheckYourAnswersPage.completeCheckYourAnswersPage();
+    await pages.regDeclarationPage.completeDeclarationPage("I have read and agree to this declaration");
+    await pages.regRegistrationSubmittedPage.completeRegistrationSubmittedPage();
 });
 
 
@@ -63,14 +63,6 @@ When('I choose to navigate to {string} page for REG', async ({ pages }, pageName
             await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
             await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
             break;
-        case "under your previous legally registered identity, did you hold a controlled drugs licence?":
-            await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-            await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-            await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-            await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-            await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-            await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_YES);
-            break;
         case "upload company registration certificate":
             await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
             await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
@@ -81,21 +73,6 @@ When('I choose to navigate to {string} page for REG', async ({ pages }, pageName
             await pages.regBusinessTypePage.completeBusinessTypePage("Broker");
             await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
             await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
-            break;
-        case "invoicing contact details":
-            await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.navigateToRegistrationPage(c.REGISTER_FOR_THIS_SERVICE);
-            await pages.regRegisterForTheControlledSubstanceLicensingSystemPage.selectStartNowButtonToRegisterForTheControlledSubstanceLicensingSystem();
-            await pages.regLicenceHolderDetailsPage.completeLicenseHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
-            await pages.regLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
-            await pages.regIsTheBusinessARegisteredCharityPage.completeIsTheBusinessARegisteredCharityPage(c.RESPONSE_YES);
-            await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(c.RESPONSE_NO);
-            await pages.regBusinessTypePage.completeBusinessTypePage("Importer");
-            await pages.regWhatYourBusinessDoesPage.completeWhatYourBusinessDoesPage();
-            await pages.regWhatTypeOfCompanyIsYourOrganisationPage.completeWhatTypeOfCompanyIsYourOrganisationPage("Private company");
-            await pages.regUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("cslCdat.pdf");
-            await pages.regDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage.completeDoesYourBusinessPossessAnyLicensesIssuedByTheMedicinesAndHealthcareProductsRegulatoryAgencyMhraPage(c.RESPONSE_NO);
-            await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(c.RESPONSE_NO);
-            await pages.regProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage.completesProvideDetailsOfAnyOtherRegulatoryBodiesYouAreRegisteredWithPage(c.TEXT_AREA_FIELD_DATA);
             break;
         default:
             throw new Error("Failed: Wrong page name: " + pageName);
@@ -158,6 +135,9 @@ When('I choose to select {string} on {string} page and choose to continue for RE
             break;
         case "is your business registered with the care quality commission or scottish and welsh equivalents?":
             await pages.regIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage.completesIsYourBusinessRegisteredWithTheCareQualityCommissionOrScottishAndWelshEquivalentsPage(answer);
+            break;
+        case "has your legal identity changed at companies house in the last 3 years?":
+            await pages.regHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage.completeHasYourLegalIdentityChangedAtCompaniesHouseInTheLastThreeYearsPage(answer);
             break;
         default:
             throw new Error("Failed: Wrong page name: " + pageName);

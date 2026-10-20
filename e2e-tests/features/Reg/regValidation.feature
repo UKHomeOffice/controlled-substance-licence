@@ -1,15 +1,20 @@
-@CSL
-@REG
-@REG-V
-
+@CSL @REG @REG-V
 Feature: CSL - Registration Form
-
-
-  @CslRegression
+#
+#
+# ****************************************************** Test-1 *************************************************************#
 # Licence holder details page
 # Licence holder address page
 # Is the business a registered charity? page:
 # Has your legal identity changed at Companies House in the last 3 years? page
+# Under your previous legally registered identity, did you hold a controlled drugs licence? page
+# Previous licence details page
+# Business Type page
+# Specify your business Type page
+# What type of company is your organisation page
+# Describe your business model page
+
+  @CslRegression
   Scenario: Registration Test-1 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Licence holder details" page for REG
@@ -31,8 +36,8 @@ Feature: CSL - Registration Form
     When I complete the fields below with Licence holder details for REG:
       | Company name               | HO              |
       | Name of responsible person | HOFF            |
-      | Company number             | 123456          |
-      | UK telephone number        | 0161329600      |
+      | Company number             |          123456 |
+      | UK telephone number        |      0161329600 |
       | Email address              | T@t.c           |
       | Website URL                | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -42,7 +47,7 @@ Feature: CSL - Registration Form
       | Company name               | HO              |
       | Name of responsible person | HOF TEST        |
       | Company number             | AB123456        |
-      | UK telephone number        | 01613296000     |
+      | UK telephone number        |     01613296000 |
       | Email address              | TesterTlf.com   |
       | Website URL                | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -50,8 +55,8 @@ Feature: CSL - Registration Form
     When I complete the fields below with Licence holder details for REG:
       | Company name               | HO              |
       | Name of responsible person | HOF TEST        |
-      | Company number             | 12345678        |
-      | UK telephone number        | 01613296000     |
+      | Company number             |        12345678 |
+      | UK telephone number        |     01613296000 |
       | Email address              | Tester@hTlf.com |
       | Website URL                | www.cikicyr.com |
 #Licence holder address page:
@@ -61,22 +66,22 @@ Feature: CSL - Registration Form
     And I should see "Enter a licence holder address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Licence" holder address details for REG:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Licence" holder address details for REG:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Licence" holder address details for REG:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |
@@ -91,18 +96,7 @@ Feature: CSL - Registration Form
     And I select continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if your legal identity has changed in the last 3 years" error summary
-
-
-
-# Under your previous legally registered identity, did you hold a controlled drugs licence? page
-# Previous licence details page
-# Business Type page
-# Specify your business Type page
-# What type of company is your organisation page
-# Describe your business model page
-  Scenario: Registration Test-2 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Under your previous legally registered identity, did you hold a controlled drugs licence?" page for REG
+    When I choose to select "Yes" on "Has your legal identity changed at Companies House in the last 3 years?" page and choose to continue for REG
 # Under your previous legally registered identity, did you hold a controlled drugs licence? page
 # No data entered in any of the fields
     And I select continue
@@ -176,18 +170,21 @@ Feature: CSL - Registration Form
 #Data entered in the text area field characters are countered correctly
     When I enter "250" characters in the text area box field on "Describe your business model" page for REG
     Then I should see "You have 1750 characters remaining" count message displayed on the text area field
-
-
-
-
-  @CslRegression
+#
+#
+# ****************************************************** Test-2 *************************************************************#
 # Upload company registration certificate page
 # Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)? page
 # Medicines and Healthcare Products Regulatory Agency (MHRA) licence details page
 # Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents? page
 # Registration details for the Care Quality Commission (CQC) or Scottish and Welsh equivalents page
 # Provide details of any other regulatory bodies you are registered with (optional) page
-  Scenario: Registration Test-3 Validate the above pages
+# Invoicing contact details page
+# Invoicing address page
+# Declaration page
+
+  @CslRegression
+  Scenario: Registration Test-2 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Upload company registration certificate" page for REG
 #Upload company registration certificate page
@@ -286,15 +283,7 @@ Feature: CSL - Registration Form
 #Data entered in the text area field characters are countered correctly
     When I enter "250" characters in the text area box field on "Provide details of any other regulatory bodies you are registered with (optional)" page for REG
     Then I should see "You have 1,750 characters remaining" count message displayed on the text area field
-
-
-
-#  Invoicing address page
-#  Invoicing contact details page
-#  Declaration page
-  Scenario: Registration Test-4 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Invoicing contact details" page for REG
+    And I select continue
 #Invoicing contact details page
 #No data entered in any of the fields
     And I select continue
@@ -311,16 +300,16 @@ Feature: CSL - Registration Form
 #Enter invalid UK telephone number and Enter a real email address email does not have @ symbol
     When I complete the fields below with Invoicing contact details for REG:
       | Contact name          | HOf           |
-      | Contact phone number  | 0161329600    |
+      | Contact phone number  |    0161329600 |
       | Invoice email address | TesterHof.com |
-      | Purchase order number | 1234562       |
+      | Purchase order number |       1234562 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real telephone number¬Enter a real email address" error summary
     When I complete the fields below with Invoicing contact details for REG:
       | Contact name          | HOf            |
-      | Contact phone number  | 01613296000    |
+      | Contact phone number  |    01613296000 |
       | Invoice email address | Tester@Hof.com |
-      | Purchase order number | 1234562        |
+      | Purchase order number |        1234562 |
 # Invoicing address page:
 # No data entered in any of the fields
     And I select continue
@@ -328,22 +317,22 @@ Feature: CSL - Registration Form
     And I should see "Enter address line 1, typically the building and street¬Enter town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Invoicing" address details for REG:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Invoicing" address details for REG:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Invoicing" address details for REG:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |

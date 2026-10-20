@@ -1,12 +1,22 @@
-@CSL
-@CDA
-@CDA-V
-
+@CSL @CDA @CDA-V
 Feature: CSL - Controlled Drugs Application form
 
+#******************************************************************* Test-1 *****************************************************************************************#
 # What type of licence are you applying for page
 # How would you like to apply page
 # Enter your application reference number page
+# Licence holder details page
+# Licence holder address page
+# Is the premises address the same as the licence holder address page
+# Premises address page  
+# Premises contact details page
+# How are you funded page
+# Managing director or person in charge page
+# DBS information for the person in charge page
+# Has the managing director or person in charge subscribed to DBS updates pages
+# Are they, or anyone named on this application, a member of a professional body pages
+# Has anyone in your organisation ever been subject to legal business proceedings pages
+
   Scenario: CDA Test-1 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "How would you like to apply?" page for CDA
@@ -35,14 +45,8 @@ Feature: CSL - Controlled Drugs Application form
     When I choose to enter "112A" as application reference number on "How are you applying for your controlled drugs licence?" page and choose to continue for CDA
     Then I should see "There is a problem" error message displayed
     And I should see "Application reference number must not include letters a to z or special characters" error summary
-
-
-  @CslRegression
-# Licence holder details page
-# Licence holder address page
-  Scenario: CDA Test-2 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Licence holder details" page for CDA
+    When I choose to enter "11223344" as application reference number on "How are you applying for your controlled drugs licence?" page and choose to continue for CDA
+#Licence holder details page    
 #No data entered in any of the fields
     And I select save and continue
     Then I should see "There is a problem" error message displayed
@@ -60,7 +64,7 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Licence holder details for CDA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 0161329600      |
+      | UK telephone number |      0161329600 |
       | Email address       | T@t.c           |
       | Website URL         | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -69,7 +73,7 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Licence holder details for CDA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 01613296000     |
+      | UK telephone number |     01613296000 |
       | Email address       | TesterTlf.com   |
       | Website URL         | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -77,7 +81,7 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Licence holder details for CDA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 01613296000     |
+      | UK telephone number |     01613296000 |
       | Email address       | Tester@hTlf.com |
       | Website URL         | www.cikicyr.com |
 #Licence holder address page:
@@ -87,32 +91,27 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Enter a licence holder address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Licence" holder address details for CDA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Licence" holder address details for CDA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
-
-
-
-
-
-
-# Is the premises address the same as the licence holder address page
-# Premises address page  
-# Premises contact details page
-  Scenario: CDA Test-3 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Is the premises address the same as the licence holder address?" page for CDA
+    When I complete the fields below with "Licence" holder address details for CDA:
+      | Address line 1 |      12 |
+      | Address line 2 | Kings   |
+      | Town or City   | Leeds   |
+      | Postcode       | L11 1PP |
+#Is the premises address the same as the licence holder address page    
+#No data entered in any of the fields    
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if your contact details are the same for your licence and business address" error summary
@@ -124,22 +123,22 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Enter a premises address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Premises" address details for CDA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Premises" address details for CDA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Premises" address details for CDA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |
@@ -150,7 +149,7 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Enter a UK telephone number¬Enter an email address" error summary
 #Enter Invalid uk telephone number and email address @ symbol at the end
     When I complete the fields below with Premises contact details for CDA:
-      | UK telephone number | -48081570192   |
+      | UK telephone number |   -48081570192 |
       | Email address       | TesterTlf.com@ |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
@@ -162,25 +161,15 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
 #Enter invalid UK telephone number and email does not have @ symbol
     When I complete the fields below with Premises contact details for CDA:
-      | UK telephone number | 01614808158F  |
+      | UK telephone number |  01614808158F |
       | Email address       | TesterTlf.com |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
     When I complete the fields below with Premises contact details for CDA:
-      | UK telephone number | 01614808158    |
+      | UK telephone number |    01614808158 |
       | Email address       | Tester@Tlf.com |
-
-
-
-
-
-
-#  How are you funded page
-#  Managing director or person in charge page
-#  DBS information for the person in charge page
-  Scenario: CDA Test-4 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "How are you funded?" page for CDA
+#How are you funded page
+#No data entered in any of the fields
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select how you are funded" error summary
@@ -242,17 +231,12 @@ Feature: CSL - Controlled Drugs Application form
       | Day month year | !1/01/2009 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real DBS certificate number or application reference number¬Enter a real date of issue or application" error summary
-
-
-
-
-  @CslRegression
-#  Has the managing director or person in charge subscribed to DBS updates pages
-#  Are they, or anyone named on this application, a member of a professional body pages
-#  Has anyone in your organisation ever been subject to legal business proceedings pages
-  Scenario: CDA Test-5 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Has the managing director or person in charge subscribed to DBS updates?" page for CDA
+    When I complete the fields below with "DBS information for the person in charge" information for CDA:
+      | Full name      | Hof              |
+      | DBS reference  | A12355           |
+      | Day month year | Yesterday's date |
+#Has the managing director or person in charge subscribed to DBS updates pages
+#No data entered in any of the fields
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the person in charge has subscribed to DBS updates" error summary
@@ -285,13 +269,24 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Select if anyone has ever been subject to legal business proceedings" error summary
 
 
+#******************************************************************* Test-2 *****************************************************************************************#
+#  Provide details of the legal business proceedings page
+#  Has anyone in your organisation ever received a criminal conviction page
+#  Who is responsible for the security of the premises page
+#  Person responsible for the security of the premises page
+#  Person responsible for the security of the premises
+#  DBS information for person responsible for security of premises
+#  Has the person responsible for the security of the premises subscribed to DBS updates pages
+#  Who is responsible for legal compliance and regulatory affairs page
+#  Person responsible for legal compliance and regulatory affairs page
+#  DBS information for person responsible for compliance and regulatory affairs page
+#  Has the person responsible for compliance and regulatory affairs subscribed to DBS updates page
+#  Is the person responsible for legal compliance and regulatory affairs an employee or consultant page
+#  Does your company have any authorised witnesses for the destruction of controlled drugs? page
+#  Authorised witness information page
+#  DBS information for page
 
-
-#   Provide details of the legal business proceedings page
-#   Has anyone in your organisation ever received a criminal conviction page
-#   Who is responsible for the security of the premises page
-#   Person responsible for the security of the premises page
-  Scenario: CDA Test-6  Validate the above pages
+  Scenario: CDA Test-2  Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Provide details of the legal business proceedings" page for CDA
 #Provide details of the legal business proceedings page
@@ -320,16 +315,7 @@ Feature: CSL - Controlled Drugs Application form
     When I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select who is responsible for the security of the premises" error summary
-
-
-
-
-#    Person responsible for the security of the premises
-#    DBS information for person responsible for security of premises
-#    Has the person responsible for the security of the premises subscribed to DBS updates pages
-  Scenario: CDA Test-7 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Person responsible for the security of the premises" page for CDA
+    When I choose to select "Someone else" on "Who is responsible for the security of the premises?" page and choose to continue for CDA
     And I select save and continue
 #Person responsible for the security of the premises page
 #No data entered in any of the fields
@@ -396,18 +382,8 @@ Feature: CSL - Controlled Drugs Application form
     When I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the person responsible for premises security has subscribed to DBS updates" error summary
-
-
-
-
-  @test1234566
-#  Who is responsible for legal compliance and regulatory affairs page
-#  Person responsible for legal compliance and regulatory affairs page
-#  DBS information for person responsible for compliance and regulatory affairs page
-  Scenario: CDA Test-8 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Who is responsible for legal compliance and regulatory affairs?" page for CDA
-    And I select save and continue
+When I choose to select "Yes" on "Has the person responsible for the security of the premises subscribed to DBS updates?" page and choose to continue for CDA
+And I select save and continue
 #Who is responsible for legal compliance and regulatory affairs? page
 #No data entered in any of the fields
     Then I should see "There is a problem" error message displayed
@@ -470,18 +446,10 @@ Feature: CSL - Controlled Drugs Application form
       | Day month year | !1/01/2009 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real DBS certificate number or application reference number¬Enter a real date of issue or application" error summary
-
-
-
-
-
-
-#  Has the person responsible for compliance and regulatory affairs subscribed to DBS updates page
-#  Is the person responsible for legal compliance and regulatory affairs an employee or consultant page
-#  Do you have any authorised witnesses for the destruction of controlled drugs? page
-  Scenario: CDA Test-9 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Has the person responsible for compliance and regulatory affairs subscribed to DBS updates?" page for CDA
+ When I complete the fields below with "DBS information for person responsible for compliance and regulatory affairs" information for CDA:
+      | Full name      | Hof              |
+      | DBS reference  | A121236          |
+      | Day month year | Yesterday's date |
 #Has the person responsible for compliance and regulatory affairs subscribed to DBS updates? page
 #No data entered in any of the fields
     And I select save and continue
@@ -494,19 +462,12 @@ Feature: CSL - Controlled Drugs Application form
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the person responsible for compliance and regulatory affairs is an employee or a consultant" error summary
     When I choose to select "Employee" on "Is the person responsible for legal compliance and regulatory affairs an employee or consultant?" page and choose to continue for CDA
-#Do you have any authorised witnesses for the destruction of controlled drugs? page
+#Does your company have any authorised witnesses for the destruction of controlled drugs? page
 #No data entered in any of the fields
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if you need someone to be authorised to witness the destruction of controlled drugs" error summary
-
-
-
-#    Authorised witness information page
-#    DBS information for page
-  Scenario: CDA Test-10 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Authorised witness information" page for CDA
+    When I choose to select "Yes" on "Does your company have any authorised witnesses for the destruction of controlled drugs?" page and choose to continue for CDA
 #Authorised witness information page
 #No data entered in any of the fields
     And I select save and continue
@@ -571,14 +532,23 @@ Feature: CSL - Controlled Drugs Application form
 
 
 
-  @CslRegression
+#******************************************************************* Test-3 *****************************************************************************************#
 #  Upload company registration certificate page
 #  What trading reasons does this site need a licence for page
 #  Specify your trading reason page
 #  Explain why you are applying for a licence, your business purposes and what you plan to use it for page
 #  Provide details of your main customers page
 #  Provide details of where you source the drugs from page
-  Scenario: CDA Test-11 Validate the above pages
+#  Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA) page
+#  Licence details page
+#  Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents? page
+#  Provide details of any other regulatory bodies that you are registered with (optional) page
+#  Are you providing a service under a contract? page
+#  Provide details of the service page
+#  What date does the service expire on? page
+#  What is the status of the site to be licensed? page
+
+  Scenario: CDA Test-3 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Upload company registration certificate" page for CDA
 #Upload company registration certificate page
@@ -666,19 +636,6 @@ Feature: CSL - Controlled Drugs Application form
     When I enter "250" characters in the text area box field on "Provide details of where you source the drugs from" page for CDA
     Then I should see "You have 1,750 characters remaining" count message displayed on the text area field
     When I select save and continue
-
-
-
-
-
-
-#  Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA) page
-#  Licence details page
-#  Is your business registered with the Care Quality Commission or Scottish and Welsh equivalents? page
-#  Provide details of any other regulatory bodies that you are registered with (optional) page
-  Scenario: CDA Test-12 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)?" page for CDA
 #Does your business possess any licences issued by the Medicines and Healthcare products Regulatory Agency (MHRA)? page
 #No data entered in any of the fields
     And I select save and continue
@@ -757,18 +714,7 @@ Feature: CSL - Controlled Drugs Application form
 #Data entered in the text area field characters are countered correctly
     When I enter "250" characters in the text area box field on "Provide details of any other regulatory bodies that you are registered with (optional)" page for CDA
     Then I should see "You have 1,750 characters remaining" count message displayed on the text area field
-
-
-
-
-
-#  Are you providing a service under a contract? page
-#  Provide details of the service page
-#  What date does the service expire on? page
-#  What is the status of the site to be licensed? page
-  Scenario: CDA Test-13 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Are you providing a service under a contract?" page for CDA
+    And I select save and continue
 #Are you providing a service under a contract? page
 #No data entered in any of the fields
     And I select save and continue
@@ -820,13 +766,36 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Select if you are providing a service under a contract" error summary
 
 
-  @CslRegression
+
+#******************************************************************* Test-4 *****************************************************************************************#
 #  Site owner’s contact details page
 #  Upload controlled drug user activity template page
 #  Which of the following security features does the site have? page
 #  Are controlled drugs kept in a separate room or zone? page
 #  Are controlled drugs kept in a safe or cabinet? page
-  Scenario: CDA Test-14 Validate the above pages
+#  Are the controlled drugs kept in a prefabricated strong room? page
+#  Give details of specifications, and any serial numbers that apply page
+#  Are controlled drugs kept at this site? page
+#  Provide details of where they are stored page
+#  Does the site have an electronic alarm system page
+#  Electronic alarm system details page
+#  Is there a separate zone for the controlled drug cabinet, safe or store? page
+#  Is the alarm system monitored by an offsite alarm receiving centre? page
+#  Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator? page
+#  Is the alarm system serviced annually? page
+#  Does the alarm system have a police unique reference number (URN)? page
+#  Does the alarm system have either a Level 1 or ‘immediate’ police response? page
+#  Standard operating procedures page
+#  Provide details of your record keeping system and procedures page
+#  Invoicing address page
+#  Invoicing contact details page
+#  Which email address should we send the licence to? page
+#  Who is completing the application? page
+#  Add any extra information you think might help your application (optional) page
+#  Declaration page
+
+  @CslRegression
+  Scenario: CDA Test-4 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Site owner’s contact details" page for CDA
 #Site owner’s contact details page
@@ -838,7 +807,7 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Site owner’s contact details for CDA:
       | Full name                | Ho                    |
       | Email address            | TesterTlf.com@        |
-      | Contact telephone number | -48081570192          |
+      | Contact telephone number |          -48081570192 |
       | Address                  | Enter 2001 characters |
     Then I should see "There is a problem" error message displayed
     And I should see "Site owner's full name must be between 3 and 200 characters¬Enter a real email address¬Enter a real telephone number, like 07700 900000 or +39 1 33 45 70 90¬Site owner's address must be 2,000 characters or less" error summary
@@ -846,7 +815,7 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Site owner’s contact details for CDA:
       | Full name                | Hof test            |
       | Email address            | T@t.c               |
-      | Contact telephone number | 016148081588        |
+      | Contact telephone number |        016148081588 |
       | Address                  | 1 Abc Leeds L12 8AS |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a real telephone number, like 07700 900000 or +39 1 33 45 70 90" error summary
@@ -854,14 +823,14 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Site owner’s contact details for CDA:
       | Full name                | Hof test            |
       | Email address            | TesterTlf.com       |
-      | Contact telephone number | 01614808158         |
+      | Contact telephone number |         01614808158 |
       | Address                  | 1 Abc Leeds L12 8AS |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address" error summary
     When I complete the fields below with Site owner’s contact details for CDA:
       | Full name                | Hoft                |
       | Email address            | Tester@Tlf.com      |
-      | Contact telephone number | 01614808158         |
+      | Contact telephone number |         01614808158 |
       | Address                  | 1 Abc Leeds L12 8AS |
     And I select save and continue on the Licence details page for CDA
     And I choose to complete the first activities page with "Possess" value and leave the rest of the activities uncompleted
@@ -900,22 +869,9 @@ Feature: CSL - Controlled Drugs Application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the controlled drugs are kept in a safe or cabinet" error summary
-
-
-
-
-
-
-#  Are the controlled drugs kept in a prefabricated strong room? page
-#  Give details of specifications, and any serial numbers that apply page
-#  Are controlled drugs kept at this site? page
-#  Provide details of where they are stored page
-#  Does the site have an electronic alarm system page
-  Scenario: CDA Test-15 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Are the controlled drugs kept in a prefabricated strong room?" page for CDA
-##Are the controlled drugs kept in a prefabricated strong room? page
-##No data entered in any of the fields
+    When I choose to select "No" on "Are controlled drugs kept in a safe or cabinet?" page and choose to continue for CDA
+#Are the controlled drugs kept in a prefabricated strong room? page
+#No data entered in any of the fields
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the controlled drugs are kept in a prefabricated strong room" error summary
@@ -961,22 +917,7 @@ Feature: CSL - Controlled Drugs Application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the site has an electronic alarm system" error summary
-
-
-
-
-
-
-#  Electronic alarm system details page
-#  Is there a separate zone for the controlled drug cabinet, safe or store? page
-#  Is the alarm system monitored by an offsite alarm receiving centre? page
-#  Is the alarm system connected to the alarm receiving centre either by Redcare or by a dual-path communicator? page
-#  Is the alarm system serviced annually? page
-#  Does the alarm system have a police unique reference number (URN)? page
-#  Does the alarm system have either a Level 1 or ‘immediate’ police response? page
-  Scenario: CDA Test-16 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Electronic alarm system details" page for CDA
+    When I choose to select "Yes" on "Does the site have an electronic alarm system?" page and choose to continue for CDA
 #Electronic alarm system details page
 #No data entered in any of the fields
     And I select save and continue
@@ -991,7 +932,7 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Installing company name must be between 3 and 200 characters¬Installing company address must be 500 characters or less" error summary
     When I complete the fields below with Electronic alarm system details for CDA:
       | Installing company name                       | Hof test                       |
-      | Installing company address                    | 1 Abc Leeds L12 8AS            |
+      | Installing company address                    |            1 Abc Leeds L12 8AS |
       | Who is the installing company registered with | National Security Inspectorate |
 #Is there a separate zone for the controlled drug cabinet, safe or store? page
 #No data entered in any of the fields
@@ -1028,18 +969,7 @@ Feature: CSL - Controlled Drugs Application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the alarm system has a Level 1 or 'immediate' police response" error summary
-
-
-
-
-
-#  Standard operating procedures page
-#  Provide details of your record keeping system and procedures page
-#  Invoicing address page
-#  Invoicing contact details page
-  Scenario: CDA Test-17 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Standard operating procedures" page for CDA
+    When I choose to select "Yes" on "Does the alarm system have either a Level 1 or ‘immediate’ police response?" page and choose to continue for CDA
 #Standard operating procedures page
 #No data entered in any of the fields
     And I select save and continue
@@ -1068,22 +998,22 @@ Feature: CSL - Controlled Drugs Application form
     And I should see "Enter address line 1, typically the building and street¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Invoicing" address details for CDA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Invoicing" address details for CDA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Invoicing" address details for CDA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |
@@ -1104,31 +1034,23 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Invoicing contact details for CDA:
       | Full name             | HOf           |
       | Email address         | TesterHof.com |
-      | UK telephone number   | 0161329600    |
-      | Purchase order number | 1234562       |
+      | UK telephone number   |    0161329600 |
+      | Purchase order number |       1234562 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a real telephone number, like 07700 900000" error summary
 #Enter invalid UK telephone number and Email address @ symbol at the end and confirmation box not ticked
     When I complete the fields below with Invoicing contact details for CDA:
       | Full name             | HOf test       |
       | Email address         | Testerhof.com@ |
-      | UK telephone number   | -48081570192   |
-      | Purchase order number | 1234562        |
+      | UK telephone number   |   -48081570192 |
+      | Purchase order number |        1234562 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a real telephone number, like 07700 900000" error summary
-
-
-
-
-
-
-#  Which email address should we send the licence to? page
-#  Who is completing the application? page
-#  Add any extra information you think might help your application (optional) page
-#  Declaration page
-  Scenario: CDA Test-18 Validate the above pages
-    Given I visit the Controlled substance licence application page
-    When I choose to navigate to "Which email address should we send the licence to?" page for CDA
+    When I complete the fields below with Invoicing contact details for CDA:
+      | Full name             | HOf test       |
+      | Email address         | Tester@hof.com |
+      | UK telephone number   |    01613296000 |
+      | Purchase order number |        1234562 |
 #Which email address should we send the licence to? page
 #No data entered in any of the fields
     And I select save and continue
@@ -1163,21 +1085,21 @@ Feature: CSL - Controlled Drugs Application form
     When I complete the fields below with Who is completing the application for CDA:
       | Full name         | HOf           |
       | Email address     | TesterHof.com |
-      | UK contact number | 0161329600    |
+      | UK contact number |    0161329600 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a real UK telephone number, like 01632 960 001 or 07700 900 982" error summary
 #Enter invalid UK telephone number and Email address @ symbol at the end and confirmation box not ticked
     When I complete the fields below with Who is completing the application for CDA:
       | Full name         | HOf test       |
       | Email address     | Testerhof.com@ |
-      | UK contact number | -48081570192   |
+      | UK contact number |   -48081570192 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a real UK telephone number, like 01632 960 001 or 07700 900 982" error summary
     When I complete the fields below with Who is completing the application for CDA:
       | Full name         | HOf test       |
       | Email address     | Tester@hof.com |
-      | UK contact number | 01616958563    |
-#Add any extra information you think might help your application (optional) page
+      | UK contact number |    01616958563 |
+##Add any extra information you think might help your application (optional) page
 #Data entered in the text area field characters is over 2000 which is the max value
     When I enter "2001" characters in the text area box field on "Add any extra information you think might help your application (optional)" page for CDA
     And I select save and continue
@@ -1200,14 +1122,15 @@ Feature: CSL - Controlled Drugs Application form
 
 
 #   *************************** Existing licensee renewing or changing a currently licensed site ***************************
-  @CslRegression
 #  Has your Companies House reference number changed since your last application? page
 #  Has your registered name at Companies House changed since your last application? page
 #  Upload company registration certificate as evidence of name change page
 #  Are you requesting a change in authorised witness for this site only? page
 #  Are you requesting additional schedules? page
 #  Are you requesting a change of activity? page
-  Scenario: CDA Test-19 Validate the above pages
+
+  @CslRegression
+  Scenario: CDA Test-5 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Has your Companies House reference number changed since your last application?" page for CDA
 #Has your Companies House reference number changed since your last application? page
@@ -1262,11 +1185,12 @@ Feature: CSL - Controlled Drugs Application form
 
 
 
-#   ************************************ Existing licensee applying for a new site ************************************
-
+#******************************************************************* Test-6 *****************************************************************************************#
+#************************************ Existing licensee applying for a new site ************************************
 #  Why are you requesting a new licence? page
 #  When are you moving site? page
-  Scenario: CDA Test-20 Validate the above pages
+
+  Scenario: CDA Test-6 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Why are you requesting a new licence?" page for CDA
 #Why are you requesting a new licence? page
@@ -1299,10 +1223,12 @@ Feature: CSL - Controlled Drugs Application form
 
 
 
+#******************************************************************* Test-7 *****************************************************************************************#
 #  Is the new site part of a contractual agreement? page
 #  When does the contract start? page
 #  Tell us more about the contract and how it affects your licence application page
-  Scenario: CDA Test-21 Validate the above pages
+
+  Scenario: CDA Test-7 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Is the new site part of a contractual agreement?" page for CDA
 #Is the new site part of a contractual agreement page
