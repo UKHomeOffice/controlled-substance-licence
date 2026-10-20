@@ -15,6 +15,7 @@ export class PcaGuarantorDbsInformationPage extends basePage {
     await this.clearAndEnterTextInElement(this.dbsReferenceField, dbsReference);
     await this.enterDateOrDob(date);
   }
+  
   async completeGuarantorDbsInformationPage(fullName: string, dbsReference: string, date: string): Promise<void> {
     await this.assertPageTitle();
     await this.enterGuarantorDbsInformationPage(fullName, dbsReference, date);

@@ -1,11 +1,11 @@
 export class ConstantsLib {
-  static readonly CDA_USER_NAME = requiredEnv('USER_NAME_CDA');
+  static readonly CDA_USER_NAME = 'HOFLTM11790';
   static readonly CDA_PASSWORD = requiredEnv('PASSWORD_CDA');
-  static readonly LTHCC_USER_NAME = requiredEnv('USER_NAME_LTHCC');
+  static readonly LTHCC_USER_NAME = 'test-approved';
   static readonly LTHCC_PASSWORD = requiredEnv('PASSWORD_LTHCC');
-  static readonly PCA_USER_NAME = requiredEnv('USER_NAME_PCA');
+  static readonly PCA_USER_NAME = 'test2-approved';
   static readonly PCA_PASSWORD = requiredEnv('PASSWORD_PCA');
-  static readonly USER_NAME_PENDING = requiredEnv('USER_NAME_PENDING');
+  static readonly USER_NAME_PENDING = 'test-external-user';
   static readonly PASSWORD_PENDING = requiredEnv('PASSWORD_PENDING');
   static readonly SAS_HOF_EMAIL = requiredEnv('SAS_HOF_EMAIL');
   static readonly FULL_NAME = 'HOF TEST';

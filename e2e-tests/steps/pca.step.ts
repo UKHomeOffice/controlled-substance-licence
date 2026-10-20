@@ -83,7 +83,7 @@ When('I fill out the answers to Precursor Chemicals form pertaining to {string} 
       await pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
       await pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
       await pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
-      await pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE); 
+      await pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
       await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
       await pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
       await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
@@ -288,6 +288,38 @@ When("I choose to navigate to {string} page for PCA", async ({ pages }, pageName
       await pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
       await pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
       break;
+    case "describe how you manage chemical stock control":
+      await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
+      await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.PCA_USER_NAME, c.PCA_PASSWORD);
+      await pages.cslWhatTypeOfLicenceAreYouApplyingForPage.completeIsWhatTypeOfLicenceAreYouApplyingForPage(c.PRECURSOR_CHEMICALS);
+      await pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(c.START_NEW_APPLICATION);
+      await pages.pcaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.FIRST_TIME_LICENSEE);
+      await pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, c.WEBSITE_URL);
+      await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      await pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
+      await pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(c.TELEPHONE, c.SAS_HOF_EMAIL);
+      await pages.pcaResponsibleOfficerDetailsPage.completeResponsibleOfficerDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+      await pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+      await pages.pcaHasTheResponsibleOfficerSubscribedToDbsUpdatesPage.completeHasTheResponsibleOfficerSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+      await pages.pcaGuarantorDetailsPage.completeGuarantorDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
+      await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS);
+      await pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(c.RESPONSE_YES);
+      await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(c.RESPONSE_YES);
+      await pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
+      await pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE, c.DBS_REFERENCE);
+      await pages.pcaWhichCategoryIsTheNewSubstancePage.completeWhichCategoryIsTheSubstancePage("Category 1");
+      await pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage("Safrole (2932 9400)");
+      await pages.pcaWhichOperationAppliesToThisLicenceForXPage.completeWhichOperationAppliesToThisLicenceForXPage("Storage");
+      await pages.pcaSubstancesInYourLicencePage.completeSubstancesInYourLicencePage();
+      await pages.pcaTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage.completeTellUsWhyYouNeedTheseChemicalsAndWhatTheyWillBeUsedForPage(c.TEXT_AREA_FIELD_DATA);
+      await pages.pcaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
+      await pages.pcaUploadCertificateOfGoodConductPage.completeUploadCertificateOfGoodConductPage("yourself.png");
+      await pages.pcaTellUsAboutYourMainCustomersPage.completeTellUsAboutYourMainCustomersPage(c.TEXT_AREA_FIELD_DATA);
+      await pages.pcaTellUsAboutYourMainSuppliersPage.completeTellUsAboutYourMainSuppliersPage(c.TEXT_AREA_FIELD_DATA);
+      await pages.pcaWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage.completeWhatSecurityMeasuresDoYouHaveInPlaceAtThePremisesPage("Perimeter fencing");
+      await pages.pcaDescribeHowYouSecureYourPremisesPage.completeDescribeHowYouSecureYourPremisesPage(c.TEXT_AREA_FIELD_DATA);
+      await pages.pcaDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage.completeDescribeHowYouMakeSureChemicalsAreStoredAndHandledSecurelyPage(c.TEXT_AREA_FIELD_DATA);
+      break;
     case "has your companies house reference number changed since your last application?":
       await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
       await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.PCA_USER_NAME, c.PCA_PASSWORD);
@@ -376,7 +408,7 @@ When("I choose to enter {string} as application reference number on {string} pag
   await iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages, applicationRefNo, page);
 });
 
-export async function i_complete_the_fields_below_with_licence_holder_details(pages: Pages, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with Licence holder details for PCA:", async ({ pages }, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
   const companyName = data["Company name"];
   const companyNumber = data["Company number"];
@@ -385,13 +417,10 @@ export async function i_complete_the_fields_below_with_licence_holder_details(pa
   const websiteUrl = data["Website URL"];
 
   await pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(companyName, companyNumber, ukTelephoneNo, emailAddress, websiteUrl);
-}
-
-When("I complete the fields below with Licence holder details for PCA:", async ({ pages }, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_licence_holder_details(pages, dataTable);
 });
 
-export async function i_complete_the_fields_below_with_licence_holder_address_details(pages: Pages, pageName: string, dataTable: DataTable): Promise<void> {
+
+When("I complete the fields below with {string} address details for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const addressLine1 = data["Address line 1"];
@@ -400,32 +429,29 @@ export async function i_complete_the_fields_below_with_licence_holder_address_de
   const postcode = data["Postcode"];
 
   switch (pageName.toLowerCase()) {
-    case "licence":
-      await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
-      break;
-
     case "premises":
       await pages.pcaPremisesAddressPage.completePremisesAddressPage(addressLine1, addressLine2, townOrCity, postcode);
       break;
-
     case "invoicing":
       await pages.pcaInvoicingAddressPage.completeInvoicingAddressPage(addressLine1, addressLine2, townOrCity, postcode);
       break;
-
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
-}
-
-When("I complete the fields below with {string} address details for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_licence_holder_address_details(pages, pageName, dataTable);
 });
 
 When("I complete the fields below with {string} holder address details for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_licence_holder_address_details(pages, pageName, dataTable);
+  const data = dataTable.rowsHash();
+
+  const addressLine1 = data["Address line 1"];
+  const addressLine2 = data["Address line 2"];
+  const townOrCity = data["Town or City"];
+  const postcode = data["Postcode"];
+
+  await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(addressLine1, addressLine2, townOrCity, postcode);
 });
 
-export async function i_complete_the_fields_below_with_invoicing_contact_details(pages: Pages, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with Invoicing contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const fullName = data["Full name"];
@@ -434,26 +460,18 @@ export async function i_complete_the_fields_below_with_invoicing_contact_details
   const purchaseOrderNo = data["Purchase order number"];
 
   await pages.pcaInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(fullName, emailAddress, ukTelephoneNo, purchaseOrderNo);
-}
-
-When("I complete the fields below with Invoicing contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_invoicing_contact_details(pages, dataTable);
 });
 
-export async function i_complete_the_fields_below_with_premises_contact_details_for_pca(pages: Pages, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with Premises contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const ukTelephoneNo = data["UK telephone number"];
   const emailAddress = data["Email address"];
 
   await pages.pcaPremisesContactDetailsPage.completePremisesContactDetailsPage(ukTelephoneNo, emailAddress);
-}
-
-When("I complete the fields below with Premises contact details for PCA:", async ({ pages }, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_premises_contact_details_for_pca(pages, dataTable);
 });
 
-export async function i_complete_the_fields_below_with_for_pca(pages: Pages, pageName: string, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with {string} for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const fullName = data["Full name"];
@@ -478,39 +496,27 @@ export async function i_complete_the_fields_below_with_for_pca(pages: Pages, pag
   }
 
   await pages.basePage.clickSaveAndContinue();
-}
-
-When("I complete the fields below with {string} for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_for_pca(pages, pageName, dataTable);
 });
 
-export async function i_complete_the_fields_below_with_dbs_information_for_the_responsible_officer_for_pac(pages: Pages, pageName: string, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with {string} information for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
   const fullName = data["Full name"];
   const dbsReference = data["DBS reference"];
   const dayMonthYear = data["Day month year"];
 
-  switch (pageName.toLowerCase()) {
-    case "dbs information":
-      await pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(fullName, dbsReference, dayMonthYear);
-      break;
-    case "guarantor dbs":
-      await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(fullName, dbsReference, dayMonthYear);
-      break;
-    default:
-      throw new Error("Failed: Wrong page name: " + pageName);
-  }
-}
-
-When("I complete the fields below with {string} information for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_dbs_information_for_the_responsible_officer_for_pac(pages, pageName, dataTable);
+  await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(fullName, dbsReference, dayMonthYear);
 });
 
 When("I complete the fields below with {string} for the responsible officer for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_dbs_information_for_the_responsible_officer_for_pac(pages, pageName, dataTable);
+  const data = dataTable.rowsHash();
+  const fullName = data["Full name"];
+  const dbsReference = data["DBS reference"];
+  const dayMonthYear = data["Day month year"];
+
+  await pages.pcaDbsInformationPage.completeDbsInformationForTheResponsibleOfficePage(fullName, dbsReference, dayMonthYear);
 });
 
-export async function i_enter_characters_in_the_text_area_box_field_on_page_for_pca(pages: Pages, charSize: string, pageName: string): Promise<void> {
+When("I enter {string} characters in the text area box field on {string} page for PCA", async ({ pages }, charSize: string, pageName: string) => {
   const textValue = pages.basePage.generateRandomAlphabetString(Number.parseInt(charSize, 10));
 
   switch (pageName.toLowerCase()) {
@@ -547,52 +553,39 @@ export async function i_enter_characters_in_the_text_area_box_field_on_page_for_
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
-}
-
-When("I enter {string} characters in the text area box field on {string} page for PCA", async ({ pages }, charSize: string, pageName: string) => {
-  await i_enter_characters_in_the_text_area_box_field_on_page_for_pca(pages, charSize, pageName);
 });
-
-export async function i_choose_to_select_option_on_the_page_for_pca(pages: Pages, option: string, pageName: string): Promise<void> {
-  await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
-}
 
 When("I choose to select {string} option on the {string} page for PCA", async ({ pages }, option: string, pageName: string) => {
-  await i_choose_to_select_option_on_the_page_for_pca(pages, option, pageName);
+  await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
 });
 
-export async function i_enter_into_the_email_field_on_page_for_pca(pages: Pages, value: string, pageName: string): Promise<void> {
+When("I enter {string} into {string} field and page for PCA", async ({ pages }, value: string, pageName: string) => {
+  switch (pageName.toLowerCase()) {
+    case "which chemical are you applying for?":
+      await pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage(value);
+      break;
+    case "when are you moving site?":
+      await pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(value);
+      break;
+    case "when does the contract start?":
+      await pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(value);
+      break;
+    default:
+      throw new Error("Failed: Wrong page name: " + pageName);
+  }
+});
+
+When("I enter {string} into the email field on {string} page for PCA", async ({ pages }, value: string, pageName: string) => {
   switch (pageName.toLowerCase()) {
     case "which email address should the licence be sent to?":
       await pages.pcaWhichEmailAddressShouldTheLicenceBeSentToPage.completeWhichEmailAddressShouldTheLicenceBeSentToPage(value);
       break;
-
-    case "which chemical are you applying for?":
-      await pages.pcaWhichChemicalAreYouApplyingForPage.completeWhichChemicalAreYouApplyingForPage(value);
-      break;
-
-    case "when are you moving site?":
-      await pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(value);
-      break;
-
-    case "when does the contract start?":
-      await pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(value);
-      break;
-
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
-}
-
-When("I enter {string} into {string} field and page for PCA", async ({ pages }, value: string, pageName: string) => {
-  await i_enter_into_the_email_field_on_page_for_pca(pages, value, pageName);
 });
 
-When("I enter {string} into the email field on {string} page for PCA", async ({ pages }, value: string, pageName: string) => {
-  await i_enter_into_the_email_field_on_page_for_pca(pages, value, pageName);
-});
-
-export async function iSelectCheckboxOnPageForPCA(pages: Pages, checkboxLabel: string, pageName: string): Promise<void> {
+When("I select {string} checkbox on {string} page for PCA", async ({ pages }, checkboxLabel: string, pageName: string) => {
   switch (pageName.toLowerCase()) {
     case "which chemical are you applying for?":
       await pages.pcaWhichChemicalAreYouApplyingForPage.selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel);
@@ -601,13 +594,9 @@ export async function iSelectCheckboxOnPageForPCA(pages: Pages, checkboxLabel: s
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
-}
-
-When("I select {string} checkbox on {string} page for PCA", async ({ pages }, checkboxLabel: string, pageName: string) => {
-  await iSelectCheckboxOnPageForPCA(pages, checkboxLabel, pageName);
 });
 
-export async function i_complete_the_fields_below_with_who_is_completing_the_application_details_for_pca(pages: Pages, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with Who is completing the application details for PCA:", async ({ pages }, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const fullName = data["Full name"];
@@ -615,23 +604,15 @@ export async function i_complete_the_fields_below_with_who_is_completing_the_app
   const emailAddress = data["Email address"];
 
   await pages.pcaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(fullName, ukTelephoneNo, emailAddress);
-}
-
-When("I complete the fields below with Who is completing the application details for PCA:", async ({ pages }, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_who_is_completing_the_application_details_for_pca(pages, dataTable);
 });
 
-export async function i_complete_the_fields_below_with_will_the_regulatory_affairs_and_compliance_officer_discharge_all_licence_responsibilities_details_details_for_pca(pages: Pages, dataTable: DataTable): Promise<void> {
+When("I complete the fields below with Will the regulatory affairs and compliance officer discharge all licence responsibilities details for PCA:", async ({ pages }, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const radioOption = data["Radio Option"];
   const textArea = data["Text Area"];
 
   await pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(radioOption, textArea);
-}
-
-When("I complete the fields below with Will the regulatory affairs and compliance officer discharge all licence responsibilities details for PCA:", async ({ pages }, dataTable: DataTable) => {
-  await i_complete_the_fields_below_with_will_the_regulatory_affairs_and_compliance_officer_discharge_all_licence_responsibilities_details_details_for_pca(pages, dataTable);
 });
 
 export async function linkIsDisplayedOnThePageForPCA(pages: Pages, linkText: string): Promise<void> {

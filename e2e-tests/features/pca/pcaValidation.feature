@@ -1,13 +1,8 @@
-@CSL
-@PCA
-@PCA-V
-
+@CSL @PCA @PCA-V
 Feature: CSL - Precursor chemicals application form
-  @CslRegression
-  
-
+#
+#
 #************************************************************ Test-1 *************************************************************************
-
 # What type of licence are you applying for? page
 # How are you applying for your precursor chemicals licence? page
 # Enter your application reference number page
@@ -20,6 +15,7 @@ Feature: CSL - Precursor chemicals application form
 # DBS information for the responsible officer page
 # Has the responsible officer subscribed to DBS updates page
 
+  @CslRegression
   Scenario: PCA Test-1 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "How would you like to apply?" page for PCA
@@ -67,7 +63,7 @@ Feature: CSL - Precursor chemicals application form
     When I complete the fields below with Licence holder details for PCA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 0161329600      |
+      | UK telephone number |      0161329600 |
       | Email address       | T@t.c           |
       | Website URL         | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -76,7 +72,7 @@ Feature: CSL - Precursor chemicals application form
     When I complete the fields below with Licence holder details for PCA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 01613296000     |
+      | UK telephone number |     01613296000 |
       | Email address       | TesterTlf.com   |
       | Website URL         | www.cikicyr.com |
     Then I should see "There is a problem" error message displayed
@@ -84,7 +80,7 @@ Feature: CSL - Precursor chemicals application form
     When I complete the fields below with Licence holder details for PCA:
       | Company name        | HO              |
       | Company number      |                 |
-      | UK telephone number | 01613296000     |
+      | UK telephone number |     01613296000 |
       | Email address       | Tester@hTlf.com |
       | Website URL         | www.cikicyr.com |
 #Licence holder address page:
@@ -94,22 +90,22 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a licence holder address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Licence" holder address details for PCA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Licence" holder address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Licence" holder address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L11 1PP |
@@ -126,22 +122,22 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a premises address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Premises" address details for PCA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Premises" address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Premises" address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |
@@ -152,7 +148,7 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a UK telephone number¬Enter an email address" error summary
 #Enter Invalid uk telephone number and email address @ symbol at the end
     When I complete the fields below with Premises contact details for PCA:
-      | UK telephone number | -48081570192   |
+      | UK telephone number |   -48081570192 |
       | Email address       | TesterTlf.com@ |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
@@ -164,12 +160,12 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
 #Enter invalid UK telephone number and email does not have @ symbol
     When I complete the fields below with Premises contact details for PCA:
-      | UK telephone number | 01614808158F  |
+      | UK telephone number |  01614808158F |
       | Email address       | TesterTlf.com |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
     When I complete the fields below with Premises contact details for PCA:
-      | UK telephone number | 01614808158    |
+      | UK telephone number |    01614808158 |
       | Email address       | Tester@Tlf.com |
     And I select save and continue
 # Responsible officer details page    
@@ -209,7 +205,7 @@ Feature: CSL - Precursor chemicals application form
 #Full name and DBS reference are less than 3 characters, More 3 years entered in the Day month year field
     When I complete the fields below with "DBS information" for the responsible officer for PCA:
       | Full name      | Ho                    |
-      | DBS reference  | 12                    |
+      | DBS reference  |                    12 |
       | Day month year | More than 3 years ago |
     Then I should see "There is a problem" error message displayed
     And I should see "Full name must be between 3 and 200 characters¬DBS reference must be between 3 and 25 characters¬Date of issue or application must be within the last 3 years" error summary
@@ -222,32 +218,28 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a real DBS certificate number or application reference number¬Enter a date of issue or application in the correct format" error summary
     When I complete the fields below with "DBS information" for the responsible officer for PCA:
       | Full name      | Hof Test                |
-      | DBS reference  | 11234556                |
+      | DBS reference  |                11234556 |
       | Day month year | Within the last 3 years |
     And I select save and continue
 #Has the responsible officer subscribed to DBS updates? page
 #No data entered in any of the fields
     Then I should see "There is a problem" error message displayed
     And I should see "Select if the responsible officer has subscribed to DBS updates" error summary
-
-
-
-
-
-
+#
+#
 #************************************************************ Test-2 *************************************************************************
-
 # Guarantor details page
 # Guarantor DBS information page
 # Has the guarantor subscribed to DBS updates page
 # Has anyone employed by your company ever received criminal convictions page
 # Invoicing address page
 # Invoicing contact details page
-#Section: About the licence
+# Section: About the licence
 # Which category is the substance?
 # Which chemical are you applying for? page
 # Which operation applies to this licence for X?
 # What Other Operations Applies To The Licence page
+
   Scenario: PCA Test-2 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Guarantor details" page for PCA
@@ -288,12 +280,12 @@ Feature: CSL - Precursor chemicals application form
 #Full name entered is less than 3 characters, DBS is less than 3 chars and More 3 years entered in the Day month year field
     When I complete the fields below with "Guarantor DBS" information for PCA:
       | Full name      | Ho                    |
-      | DBS reference  | 98                    |
+      | DBS reference  |                    98 |
       | Day month year | More than 3 years ago |
     Then I should see "There is a problem" error message displayed
     And I should see "Full name must be between 3 and 200 characters¬DBS reference must be between 3 and 25 characters¬Date of issue or application must be within the last 3 years" error summary
 #Enter special character in DBS reference and date fields
-    When I complete the fields below with "Guarantor DBS" for the responsible officer for PCA:
+    When I complete the fields below with "Guarantor DBS" information for PCA:
       | Full name      | Hof        |
       | DBS reference  | "A12       |
       | Day month year | *1/01/2009 |
@@ -301,7 +293,7 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter a real DBS certificate number or application reference number¬Enter a date of issue or application in the correct format" error summary
     When I complete the fields below with "Guarantor DBS" information for PCA:
       | Full name      | Hof                     |
-      | DBS reference  | 123                     |
+      | DBS reference  |                     123 |
       | Day month year | Within the last 3 years |
     And I select save and continue
 #Has the guarantor subscribed to DBS updates? page
@@ -322,22 +314,22 @@ Feature: CSL - Precursor chemicals application form
     And I should see "Enter an invoicing address¬Enter a town or city¬Enter a postcode" error summary
 #Postcode entered in an invalid UK format
     When I complete the fields below with "Invoicing" address details for PCA:
-      | Address line 1 | 12        |
+      | Address line 1 |        12 |
       | Address line 2 | less than |
       | Town or City   | Leeds     |
-      | Postcode       | 2L 1PP    |
+      | Postcode       |    2L 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
 #Postcode entered contains special characters (not including whitespace)
     When I complete the fields below with "Invoicing" address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L1! 1PP |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real UK postcode" error summary
     When I complete the fields below with "Invoicing" address details for PCA:
-      | Address line 1 | 12      |
+      | Address line 1 |      12 |
       | Address line 2 | Kings   |
       | Town or City   | Leeds   |
       | Postcode       | L12 1PP |
@@ -358,23 +350,23 @@ Feature: CSL - Precursor chemicals application form
     When I complete the fields below with Invoicing contact details for PCA:
       | Full name             | HO            |
       | Email address         | TesterHof.com |
-      | UK telephone number   | 0161329600    |
-      | Purchase order number | 1234562       |
+      | UK telephone number   |    0161329600 |
+      | Purchase order number |       1234562 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192" error summary
 #Enter invalid UK telephone number and Email address @ symbol at the end and confirmation box not ticked
     When I complete the fields below with Invoicing contact details for PCA:
       | Full name             | HO             |
       | Email address         | Testerhof.com@ |
-      | UK telephone number   | -48081570192   |
-      | Purchase order number | 1234562        |
+      | UK telephone number   |   -48081570192 |
+      | Purchase order number |        1234562 |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a real email address¬Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192" error summary
     When I complete the fields below with Invoicing contact details for PCA:
       | Full name             | HO             |
       | Email address         | Tester@hof.com |
-      | UK telephone number   | 01612544586    |
-      | Purchase order number | 1234562        |
+      | UK telephone number   |    01612544586 |
+      | Purchase order number |        1234562 |
     And I select save and continue
 #  What Other Operations Applies To The Licence page    
 #No data entered in any of the fields
@@ -400,17 +392,13 @@ Feature: CSL - Precursor chemicals application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Enter an operation" error summary
-
-
-
-
-
-
-
+#
+#
 #************************************************************ Test-3 *************************************************************************
 #Which chemical are you applying for? page - own chemical path
-  @CslRegression 
-  Scenario: PCA Test-3 Validate the above pages for own chemical name
+
+  @CslRegression
+  Scenario: PCA Test-3 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Which category is the substance" page for PCA
     And I choose to select "Category 1" on "Which category is the substance?" page and choose to continue for PCA
@@ -427,27 +415,16 @@ Feature: CSL - Precursor chemicals application form
     Then I should see "There is a problem" error message displayed
     And I should see "Enter the chemical name" error summary
 
-
-
-
+#
+#
 #************************************************************ Test-4 *************************************************************************
-  @CslRegression
-# Upload company registration certificate page
 # Upload company registration certificate page
 # Tell us about your main customers page
 # Tell us about your main suppliers page
 # What security measures do you have in place at the premises page
 # Describe how you make sure chemicals are stored and handled securely page
-# Describe how you manage chemical stock control page
-# Describe how you work to make sure end products are used legitimately page
-# Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals page
-#Section: Finalize application
-# Which email address should the licence be sent to page
-# Who is completing the application page
-# Will the regulatory affairs and compliance officer discharge all licence responsibilities page
-# Add any extra information you think might help your application (optional) page
-# Declaration page
 
+  @CslRegression
   Scenario: PCA Test-4 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Upload company registration certificate" page for PCA
@@ -552,7 +529,23 @@ Feature: CSL - Precursor chemicals application form
 #Data entered in the text area field characters are countered correctly
     When I enter "2" characters in the text area box field on "Describe how you make sure chemicals are stored and handled securely" page for PCA
     Then I should see "You have 1,998 characters remaining" count message displayed on the text area field
-    When I select save and continue
+
+#
+#
+#************************************************************ Test-5 *************************************************************************
+# Describe how you manage chemical stock control page
+# Describe how you work to make sure end products are used legitimately page
+# Summarise your standard operating procedures and auditing practices for the use or disposal of chemicals page
+#Section: Finalize application
+# Which email address should the licence be sent to page
+# Who is completing the application page
+# Will the regulatory affairs and compliance officer discharge all licence responsibilities page
+# Add any extra information you think might help your application (optional) page
+# Declaration page
+
+  Scenario: PCA Test-5 Validate the above pages
+    Given I visit the Controlled substance licence application page
+    When I choose to navigate to "Describe how you manage chemical stock control" page for PCA
 #Describe how you manage chemical stock control page
 #No data entered in any of the fields
     And I select save and continue
@@ -626,7 +619,7 @@ Feature: CSL - Precursor chemicals application form
 #Full name entered is less than 3 characters and Enter invalid UK telephone number and email address @ symbol at the end
     When I complete the fields below with Who is completing the application details for PCA:
       | Full name           | HO             |
-      | UK telephone number | -48081570192   |
+      | UK telephone number |   -48081570192 |
       | Email address       | Testerhof.com@ |
     Then I should see "There is a problem" error message displayed
     And I should see "Full name must be between 3 and 200 characters¬Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
@@ -640,13 +633,13 @@ Feature: CSL - Precursor chemicals application form
 #Enter invalid UK telephone number more than 11 numbers and email address does not have @ symbol
     When I complete the fields below with Who is completing the application details for PCA:
       | Full name           | Hof Test      |
-      | UK telephone number | 016162662622  |
+      | UK telephone number |  016162662622 |
       | Email address       | Testerhof.com |
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a UK telephone number in the correct format, like 01632 960001 or +44 808 157 0192¬Enter a real email address" error summary
     When I complete the fields below with Who is completing the application details for PCA:
       | Full name           | Hof Test       |
-      | UK telephone number | 01616266262    |
+      | UK telephone number |    01616266262 |
       | Email address       | Tester@hof.com |
 #Will the regulatory affairs and compliance officer discharge all licence responsibilities? page
 #No data entered in any of the fields
@@ -690,17 +683,15 @@ Feature: CSL - Precursor chemicals application form
     When I select confirm and submit button
     Then I should see "There is a problem" error message displayed
     And I should see "Confirm that you understand and accept this declaration" error summary
-
-
-
-
-#************************************************************ Test-5 *************************************************************************
+#
+#    
+#************************************************************ Test-6 *************************************************************************
 #------------------------------- Start of Existing licensee renewing or changing a currently held licence -------------------------------#
-
 #   Has your Companies House reference number changed since your last application page
 #   Has your registered name at Companies House changed since your last application page
 #   Upload company registration certificate as evidence of name change page
-  Scenario: PCA Test-5 Validate the above pages
+
+  Scenario: PCA Test-6 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Has your Companies House reference number changed since your last application?" page for PCA
 #Has your Companies House reference number changed since your last application? page:
@@ -731,18 +722,16 @@ Feature: CSL - Precursor chemicals application form
 #Upload a photo of yourself page: Incorrect file type, your photo must be a JPG, PNG, GIF,  JPEG or PDF file
     When I choose to upload "text.txt" file
     Then I should see "The selected file must be a PNG, PDF, JPEG or Microsoft Word or Excel file" error for type of uploaded file
-
-
-
-
-#************************************************************ Test-6 *************************************************************************
+#
+#
+#************************************************************ Test-7 *************************************************************************
 #------------------------------- Start of Existing licensee renewing or changing a currently -------------------------------#
-
 #  Upload your Companies House details
 #  Are you requesting to change the responsible person or guarantor for this site only
 #  Are you requesting an additional category
 #  Are you requesting a change of substance or operation pages
-  Scenario: PCA Test-6 Validate the above pages
+
+  Scenario: PCA Test-7 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Has your Companies House reference number changed since your last application?" page for PCA
     And I choose to select "No" on "Has your Companies House reference number changed since your last application?" page and choose to continue for PCA
@@ -783,18 +772,15 @@ Feature: CSL - Precursor chemicals application form
     Then I should see "There is a problem" error message displayed
     And I should see "Select if you are requesting a change of substance or operation" error summary
     When I choose to select "Yes" on "Are you requesting a change of substance or operation?" page and choose to continue for PCA
-
-
-
-
-
-#************************************************************ Test-7 *************************************************************************
+#
+#
+#************************************************************ Test-8 *************************************************************************
 #------------------------------- Start of Existing licensee applying for a new site -------------------------------#
-
-  @CslRegression 
 #  Why are you requesting a new license
 #  when are you moving site page
-  Scenario: PCA Test-7 Validate the above pages
+
+  @CslRegression
+  Scenario: PCA Test-8 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Why are you requesting a new license?" page for PCA
 #Why are you requesting a new license page:
@@ -823,14 +809,14 @@ Feature: CSL - Precursor chemicals application form
     And I select save and continue
     Then I should see "There is a problem" error message displayed
     And I should see "Enter a moving date in the correct format" error summary
-
-
-
-#************************************************************ Test-8 *************************************************************************
+#
+#
+#************************************************************ Test-9 *************************************************************************
 #  Is the new site part of a contractual agreement page
 #  When does the contract start page
 #  Tell us more about the contract and how it affects your licence application page
-  Scenario: PCA Test-8 Validate the above pages
+
+  Scenario: PCA Test-9 Validate the above pages
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Is the new site part of a contractual agreement?" page for PCA
 #Is the new site part of a contractual agreement page
