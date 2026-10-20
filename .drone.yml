@@ -279,6 +279,14 @@ steps:
     environment:
       SAS_HOF_EMAIL:
         from_secret: SAS_HOF_EMAIL
+      PASSWORD_CDA:
+        from_secret: PASSWORD_CDA
+      PASSWORD_LTHCC:
+        from_secret: PASSWORD_LTHCC
+      PASSWORD_PCA:
+        from_secret: PASSWORD_PCA
+      PASSWORD_PENDING:
+        from_secret: PASSWORD_PENDING
     volumes:
       - name: dockersock
         path: /root/.dockersock
