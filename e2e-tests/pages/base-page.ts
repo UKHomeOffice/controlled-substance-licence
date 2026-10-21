@@ -66,88 +66,53 @@ export class basePage {
     await expect(this.page).toHaveTitle(title.endsWith(' – GOV.UK') ? title : `${title} – GOV.UK`);
   }
 
-  async click(locator: Locator) { await locator.click(); }
-  async clickOnElement(locator: Locator) { await locator.click(); }
-  async type(locator: Locator, text: string) { await this.clearAndEnterTextInElement(locator, text); }
   async clickContinue() { await this.continueButton.click(); }
-  async clickContinueButton() { await this.clickContinue(); }
-  async waitClickableAndClickContinueBtn() { await this.clickContinue(); }
-  async clickContinueBtnToMoveToNextPage() { await this.clickContinue(); }
-  async clickSaveAndContinue() { await this.saveAndContinueBtn.click(); }
-  async clickSaveAndAndExit() { await this.saveAndExitButton.click(); }
-  async clickSignInAgain() { await this.getSignInAgainButton().click(); }
-  async clickConfirmAndSubmit() { await this.page.getByRole('button', { name: 'Confirm and submit', exact: true }).click(); }
-  async clickSubmitRegistration() { await this.page.getByRole('button', { name: 'Submit registration', exact: true }).click(); }
-  async clickConfirmSubmission() { await this.page.getByRole('button', { name: 'Confirm submission', exact: true }).click(); }
-  async clickAddAnother() { await this.page.locator('a.govuk-button--secondary').click(); }
-  async clickUploadFileButton() { await this.uploadFileBtn.click(); }
-  async selectContinueUploadBtn() { await this.page.locator('[name="continueWithoutUpload"]').click(); }
-  async refreshPage() { await this.page.reload(); }
-  async openUrl(url: string) { await this.page.goto(url); }
-  async waitForVisibilityOfElement(locator: Locator) { await expect(locator).toBeVisible(); }
-  async isElementDisplayed(locator: Locator) { return locator.isVisible(); }
-  async isVisible(locator: Locator) { return locator.isVisible(); }
 
-  getContinueButton() { return this.continueButton; }
-  getSaveAndContinueBtn() { return this.saveAndContinueBtn; }
-  getSaveAndContinueButton() { return this.saveAndContinueBtn; }
-  getSaveAndExitButton() { return this.saveAndExitButton; }
+  async clickSaveAndContinue() { await this.saveAndContinueBtn.click(); }
+
+  async clickSaveAndAndExit() { await this.saveAndExitButton.click(); }
+
+  async clickSignInAgain() { await this.getSignInAgainButton().click(); }
+
+  async clickConfirmAndSubmit() { await this.page.getByRole('button', { name: 'Confirm and submit', exact: true }).click(); }
+
+  async clickSubmitRegistration() { await this.page.getByRole('button', { name: 'Submit registration', exact: true }).click(); }
+
+  async clickConfirmSubmission() { await this.page.getByRole('button', { name: 'Confirm submission', exact: true }).click(); }
+
+  async clickAddAnother() { await this.page.locator('a.govuk-button--secondary').click(); }
+
+  async selectContinueUploadBtn() { await this.page.locator('[name="continueWithoutUpload"]').click(); }
+
   getSignInAgainButton() { return this.page.getByRole('button', { name: 'Sign in again', exact: true }); }
-  getDateDay() { return this.dateDay; }
-  getDateMonth() { return this.dateMonth; }
-  getDateYear() { return this.dateYear; }
-  getAddressLine1() { return this.addressLine1; }
-  getAddressLine2() { return this.addressLine2; }
-  getTownOrCity() { return this.townOrCity; }
-  getCounty() { return this.county; }
-  getPostcode() { return this.postcode; }
-  getFileUpload() { return this.fileUpload; }
-  getYesButton() { return this.page.getByRole('radio', { name: 'Yes', exact: true }); }
-  getNoButton() { return this.page.getByRole('radio', { name: 'No', exact: true }); }
-  getButton(label: string) { return this.page.getByRole('button', { name: label }); }
-  getButtonLink(label: string) { return this.page.getByRole('link', { name: label }); }
-  getHeaderText(text: string) { return this.page.getByRole('heading', { name: text }); }
-  getInputBox(label: string) { return this.page.getByLabel(label); }
-  getTextArea(label: string) { return this.page.getByLabel(label); }
-  getTextArea2(label: string) { return this.page.getByLabel(label); }
-  getRadioOrCheckBox(label: string) { return this.page.getByLabel(label, { exact: false }); }
-  getRadioOrCheckBox2(label: string) { return this.getRadioOrCheckBox(label); }
-  getJavascriptCheckBox(label: string) { return this.getRadioOrCheckBox(label); }
-  getInputTextForSelectedRadioBox(label: string) { return this.page.getByLabel(label); }
-  getElementByPosition(before: string, position: number, after: string) { return this.page.locator(`xpath=${before}${position}${after}`); }
 
   getLink(text: string): Locator {
     if (!text.trim()) throw new Error('Link text value cannot be blank.');
     return this.page.getByRole('link', { name: text.trim(), exact: false }).first();
   }
-  getPageLinkByText(text: string) { return this.page.getByRole('link', { name: text, exact: true }); }
-  getPartialLink(text: string) { return this.getLink(text); }
+
   async clickLinkWithText(text: string) { await this.getLink(text).click(); }
+
   async clickLinkOrButtonWithText(text: string) {
     await this.page.getByRole('button', { name: text, exact: true })
       .or(this.page.getByRole('link', { name: text, exact: true })).click();
   }
+
   async isLinkTextDisplayed(text: string) { return this.getLink(text).isVisible(); }
-  async getLinkUrl(text: string) { return this.getLink(text).getAttribute('href'); }
-  async assertLinkUrl(text: string, url: string) { await expect(this.getLink(text)).toHaveAttribute('href', url); }
-  async getPageHeaderText() { return this.activePage.locator('h1').innerText(); }
+
   async switchToTab(index: number) {
     await expect.poll(() => this.page.context().pages().length).toBeGreaterThan(index);
     this.activePage = this.page.context().pages()[index];
     await this.activePage.waitForLoadState('domcontentloaded');
   }
+
   getOpenTabCount() { return this.page.context().pages().length; }
+
   getCurrentUrl() { return this.activePage.url(); }
-  async getCurrentPageTitle() { return this.page.title(); }
-  async getPageLinkText(text: string) { return this.getPageLinkByText(text).innerText(); }
-  async getErrorSummaryTitle() { return this.errorSummaryTitle.innerText(); }
-  async getErrorMessageDetail() { return this.errorSummaryList.innerText(); }
-  async getRemainingCharactersMsg() { return this.remainingCharacters.innerText(); }
-  async getRemainingCharactersErrorMsg() { return this.remainingCharactersError.innerText(); }
+
   async getFileUploadErrorMaxFileSizeMgs() { return this.page.locator('#file-upload-error-maxFileSize').innerText(); }
+
   async getFileUploadErrorMaxFileTypeMgs() { return this.page.locator('#file-upload-error-fileType').innerText(); }
-  async isTextOnPage(text: string) { return this.page.getByText(text, { exact: false }).first().isVisible(); }
-  async verifyTextToAppear(text: string) { await expect(this.page.getByText(text, { exact: false }).first()).toBeVisible(); }
 
   async selectYesOrNoRadioOption(option: string) {
     if (!['yes', 'no'].includes(option.toLowerCase())) throw new Error(`Invalid yes/no radio option: ${option}`);
@@ -163,22 +128,6 @@ export class basePage {
   async clearAndEnterTextInElement(locator: Locator, text: string | null) {
     await locator.fill('');
     if (text) await locator.pressSequentially(text);
-    await locator.press('Tab');
-  }
-
-  async clearAndEnterAutocompleteTextInElement(locator: Locator, text: string | null) {
-    await locator.fill('');
-    if (text?.trim()) {
-      await locator.pressSequentially(text);
-      const option = this.page.getByRole('option', { name: text, exact: true });
-      // Source permits an unlisted custom value as well as a matching suggestion.
-      const id = await locator.getAttribute('id');
-      if (id) {
-        const suggestions = this.page.locator(`[id="${id}__listbox"]`);
-        await expect(suggestions).toBeAttached();
-        if (await option.count()) await option.click();
-      }
-    }
     await locator.press('Tab');
   }
 

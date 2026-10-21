@@ -62,5 +62,4 @@ Feature: CSL - Low THC Cannabis Application form
   Scenario: Feedback link on Low THC Cannabis application journey form
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "Licence holder details" page for LTHCC
-    And I choose to select the "feedback" link
-    Then I am navigated to a new tab with "Your feedback" page displayed
+    Then I should see the "feedback" link

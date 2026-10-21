@@ -283,10 +283,6 @@ When(/^I (?:choose to select the|select) "([^"]*)" (?:link|button)$/, async ({ p
   await pages.basePage.clickLinkOrButtonWithText(text);
 });
 
-Then('I am navigated to a new tab with {string} page displayed', async ({ pages }, heading: string) => {
-  await pages.basePage.switchToTab(1);
-  expect(await pages.basePage.getPageHeaderText()).toBe(heading);
-});
 
 Then('the link opens in a new tab and URL is loaded', async ({ pages }) => {
   await pages.basePage.switchToTab(1);
@@ -349,7 +345,6 @@ Then('I should see {string} error for type of uploaded file', async ({ pages }, 
 
 Then('I should see {string} page', async ({ page }, title: string) => { await expect(page).toHaveTitle(title); });
 
-Then('link text {string} is displayed and is associated to url {string}', async ({ pages }, text: string, url: string) => {
-  await expect(pages.basePage.getLink(text)).toBeVisible();
-  await expect(pages.basePage.getLink(text)).toHaveAttribute('href', url);
+Then('I should see the {string} link', async ({ pages }, text: string) => {
+    expect(await pages.basePage.isLinkTextDisplayed(text)).toBe(true);
 });

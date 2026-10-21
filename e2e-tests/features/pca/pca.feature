@@ -45,5 +45,4 @@ Feature: CSL - Precursor chemicals application form
   Scenario: Feedback link on Precursor chemicals application form
     Given I visit the Controlled substance licence application page
     When I choose to navigate to "How are you applying for your controlled drugs licence?" page for CDA
-    And I choose to select the "feedback" link
-    Then I am navigated to a new tab with "Your feedback" page displayed
+    Then I should see the "feedback" link

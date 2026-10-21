@@ -1014,6 +1014,6 @@ When("I enter {string} into {string} field and page for CDA", async ({ pages }, 
     }
 });
 
-When("{string} link is displayed on the page for CDA", async ({ pages }, linkText: string) => {
+Then("{string} link is displayed on the page for CDA", async ({ pages }, linkText: string) => {
     expect(await pages.basePage.isLinkTextDisplayed(linkText)).toBe(true);
 });
