@@ -25,8 +25,8 @@ export default defineConfig({
     timeout: 6000,
   },
   fullyParallel: true,
-  // workers: 4,
-  workers:process.env.CI ? 1 : 1,
+  workers: 4,
+  // workers:process.env.CI ? 1 : 1,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
   reporter: [['html', { open: 'never' }], ['list']],
@@ -52,26 +52,26 @@ export default defineConfig({
       timeout: 120_000
     },
     
-  // projects: [
-  //   {
-  //     name: 'cda',
-  //     grep: /@CDA/,
-  //     workers: 1,
-  //   },
-  //   {
-  //     name: 'lthcc',
-  //     grep: /@LTHCC/,
-  //     workers: 1,
-  //   },
-  //   {
-  //     name: 'pca',
-  //     grep: /@PCA/,
-  //     workers: 1,
-  //   },
-  //   {
-  //     name: 'reg',
-  //     grep: /@REG/,
-  //     workers: 1,
-  //   },
-  // ],
+  projects: [
+    {
+      name: 'cda',
+      grep: /@CDA/,
+      workers: 1,
+    },
+    {
+      name: 'lthcc',
+      grep: /@LTHCC/,
+      workers: 1,
+    },
+    {
+      name: 'pca',
+      grep: /@PCA/,
+      workers: 1,
+    },
+    {
+      name: 'reg',
+      grep: /@REG/,
+      workers: 1,
+    },
+  ],
 });
