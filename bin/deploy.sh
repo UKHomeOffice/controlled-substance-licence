@@ -80,5 +80,5 @@ if [[ ${KUBE_NAMESPACE} == ${BRANCH_ENV} ]]; then
     [[ "$branch_host" == *internal* ]] || { echo "Branch host is not an internal host: $branch_host" >&2; exit 1; }
     printf '%s\n' "$branch_host" > /root/.dockersock/branch_url.txt
   fi
-  echo "File Vault Branch - fv-$DRONE_SOURCE_BRANCH.branch.sas-notprod.homeoffice.gov.uk"
+  echo "File Vault Branch - fv-$APP_NAME-$DRONE_SOURCE_BRANCH.branch.sas-notprod.homeoffice.gov.uk"
 fi
