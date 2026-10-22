@@ -8,7 +8,6 @@ Feature: CSL - Registration Form
     Then I am navigated to "Registration submitted" page
     And "sas-hof-test@digital.homeoffice.gov.uk" link is displayed on Registration page
     And "dflu.dom@homeoffice.gov.uk" link is displayed on Registration page
-
     Examples:
       | REG Test                                                                                                               |
       | T1: Yes Identity changes in the last 3yrs - Other business type - Other type of company - Yes to MHRA - Yes to CQCSW   |

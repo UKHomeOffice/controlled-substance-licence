@@ -21,3 +21,5 @@ test/_accessibility/tmp/*
 .features-gen
 playwright-report
 test-results
+allure-results
+allure-report

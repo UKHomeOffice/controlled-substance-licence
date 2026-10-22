@@ -20,15 +20,25 @@ const testDir = defineBddConfig({
 
 export default defineConfig({
   testDir,
-  timeout: 260_000,
+  timeout: 160_000,
   expect: {
     timeout: 6000,
   },
   fullyParallel: true,
-  workers:4,
+  // workers: process.env.CI ? 2 : 1,
+  workers: 4,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 1,
-  reporter: [['html', { open: 'never' }], ['list']],
+  // reporter: [['html', { open: 'never' }], ['list']],
+  reporter: [
+    ['html', { open: 'never' }],
+    ['list'],
+    ['allure-playwright', {
+      resultsDir: 'allure-results',
+      detail: true,
+      suiteTitle: true,
+    }],
+  ],
   use: {
     baseURL,
     viewport: null,
@@ -42,7 +52,7 @@ export default defineConfig({
     },
   },
 
-    webServer: process.env.PLAYWRIGHT_BASE_URL
+  webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
       command: 'yarn start:dev',
@@ -50,7 +60,7 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
       timeout: 120_000
     },
-    
+
   projects: [
     {
       name: 'cda',
