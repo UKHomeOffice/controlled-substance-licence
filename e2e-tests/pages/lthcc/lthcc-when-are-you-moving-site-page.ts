@@ -1,4 +1,3 @@
-import { Locator, Page } from '@playwright/test';
 import { basePage } from '../base-page';
 
 export class LthccWhenAreYouMovingSitePage extends basePage {

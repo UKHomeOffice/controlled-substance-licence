@@ -78,8 +78,6 @@ export class basePage {
 
   async clickSubmitRegistration() { await this.page.getByRole('button', { name: 'Submit registration', exact: true }).click(); }
 
-  async clickConfirmSubmission() { await this.page.getByRole('button', { name: 'Confirm submission', exact: true }).click(); }
-
   async clickAddAnother() { await this.page.locator('a.govuk-button--secondary').click(); }
 
   async selectContinueUploadBtn() { await this.page.locator('[name="continueWithoutUpload"]').click(); }

@@ -818,6 +818,3 @@ When("I enter {string} into the email field on {string} page for LTHCC", async (
 When("I select Confirm Submission on Check Your Answers page for LTHCC", async ({ pages }) => {
     await pages.lthccCheckYourAnswersPage.completeCheckYourAnswersPage();
 });
-
-// Source step body is empty; kept as a no-op for parity.
-When("I select confirm and submit on Declaration page for LTHCC", async () => { });

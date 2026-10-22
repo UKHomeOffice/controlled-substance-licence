@@ -1,10 +1,10 @@
 import { expect } from '@playwright/test';
 import { createBdd } from 'playwright-bdd';
 import { DataTable } from '@cucumber/cucumber';
-import { test, type Pages } from '../fixture/fixtures';
+import { test } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-const { Given, When, Then } = createBdd(test);
+const { When, Then } = createBdd(test);
 
 // Scenario: Controlled Drugs tests
 When('I fill out the answers to Controlled Drugs form pertaining to {string} happy path test', async ({ pages }, scenario: string) => {
@@ -843,26 +843,6 @@ When("I complete the fields below with {string} for CDA:", async ({ pages }, pag
 });
 
 When("I complete the fields below with {string} information for CDA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
-    const data = dataTable.rowsHash();
-    const fullName = data["Full name"];
-    const dbsReference = data["DBS reference"];
-    const dayMonthYear = data["Day month year"];
-    switch (pageName.toLowerCase()) {
-        case "dbs information for the person in charge":
-            await pages.cdaDbsInformationForThePersonInChargePage.completeDbsInformationForThePersonInChargePagePage(fullName, dbsReference, dayMonthYear);
-            break;
-        case "dbs information for person responsible for security of premises":
-            await pages.cdaDbsInformationForPersonResponsibleForSecurityOfPremisesPage.completeDbsInformationForPersonResponsibleForSecurityOfPremisesPage(fullName, dbsReference, dayMonthYear);
-            break;
-        case "dbs information for person responsible for compliance and regulatory affairs":
-            await pages.cdaDbsInformationForPersonResponsibleForComplianceAndRegulatoryAffairsPage.completeDbsInformationForPersonResponsibleForComplianceAndRegulatoryAffairsPage(fullName, dbsReference, dayMonthYear);
-            break;
-        default:
-            throw new Error("Failed: Wrong page name: " + pageName);
-    }
-});
-
-When("I complete the fields below with {string} for the responsible officer for CDA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
     const data = dataTable.rowsHash();
     const fullName = data["Full name"];
     const dbsReference = data["DBS reference"];

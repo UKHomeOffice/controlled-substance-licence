@@ -1,4 +1,3 @@
-import { Locator, Page } from '@playwright/test';
 import { basePage } from '../base-page';
 
 export class LthccDoYouRequireSomebodyWithinYourCompanyToBeAuthorisedToWitnessTheDestructionOfThePlantsPage extends basePage {

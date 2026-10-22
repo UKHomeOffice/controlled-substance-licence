@@ -4,7 +4,7 @@ import { DataTable } from '@cucumber/cucumber';
 import { test, type Pages } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
-const { Given, When, Then } = createBdd(test);
+const { When, Then } = createBdd(test);
 
 // Scenario: Precursor Chemicals Drugs tests
 When('I fill out the answers to Precursor Chemicals form pertaining to {string} happy path test by selecting {string} checkbox and entering own chemical name {string}', async ({ pages }, scenario: string, checkboxLabel: string, ownChemicalName: string) => {
@@ -400,12 +400,12 @@ When(/^I (?:answer|choose to select) "([^"]*)" on "([^"]*)" page (?:for PCA and 
   }
 });
 
-export async function iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages: Pages, applicationRefNo: string, page: string): Promise<void> {
+export async function iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages: Pages, applicationRefNo: string): Promise<void> {
   await pages.pcaEnterYourApplicationReferenceNumberPage.completeEnterYourApplicationReferenceNumberPage(applicationRefNo);
 }
 
-When("I choose to enter {string} as application reference number on {string} page and choose to continue for PCA", async ({ pages }, applicationRefNo: string, page: string) => {
-  await iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages, applicationRefNo, page);
+When("I choose to enter {string} as application reference number on {string} page and choose to continue for PCA", async ({ pages }, applicationRefNo: string, _page: string) => {
+  await iChooseToSelectAndEnterAsApplicationReferenceNumberOnPageAndChooseToContinueForPCA(pages, applicationRefNo);
 });
 
 When("I complete the fields below with Licence holder details for PCA:", async ({ pages }, dataTable: DataTable) => {
@@ -440,7 +440,7 @@ When("I complete the fields below with {string} address details for PCA:", async
   }
 });
 
-When("I complete the fields below with {string} holder address details for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
+When("I complete the fields below with {string} holder address details for PCA:", async ({ pages }, _pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
 
   const addressLine1 = data["Address line 1"];
@@ -498,7 +498,7 @@ When("I complete the fields below with {string} for PCA:", async ({ pages }, pag
   await pages.basePage.clickSaveAndContinue();
 });
 
-When("I complete the fields below with {string} information for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
+When("I complete the fields below with {string} information for PCA:", async ({ pages }, _pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
   const fullName = data["Full name"];
   const dbsReference = data["DBS reference"];
@@ -507,7 +507,7 @@ When("I complete the fields below with {string} information for PCA:", async ({ 
   await pages.pcaGuarantorDbsInformationPage.completeGuarantorDbsInformationPage(fullName, dbsReference, dayMonthYear);
 });
 
-When("I complete the fields below with {string} for the responsible officer for PCA:", async ({ pages }, pageName: string, dataTable: DataTable) => {
+When("I complete the fields below with {string} for the responsible officer for PCA:", async ({ pages }, _pageName: string, dataTable: DataTable) => {
   const data = dataTable.rowsHash();
   const fullName = data["Full name"];
   const dbsReference = data["DBS reference"];
@@ -555,7 +555,7 @@ When("I enter {string} characters in the text area box field on {string} page fo
   }
 });
 
-When("I choose to select {string} option on the {string} page for PCA", async ({ pages }, option: string, pageName: string) => {
+When("I choose to select {string} option on the {string} page for PCA", async ({ pages }, option: string, _pageName: string) => {
   await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
 });
 

@@ -210,19 +210,11 @@ When('I fill out the answers to {string} existing licensee renewing or changing 
   }
 });
 
-When('I select save and continue for CDA', async ({ pages }) => {
-  await pages.basePage.clickSaveAndContinue();
-});
-
 When('I choose to navigate to {string} page', async ({ pages }, _pageName: string) => {
   await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
 });
 
 Then(/^I (?:should (?:see|be returned to)(?= "[^"]*" page for )|am navigated to) "([^"]*)" page(?: for (?:LTHCC|CDA|PCA|Registration))?$/, async ({ page }, heading: string) => {
-  await expect(page.locator('h1')).toHaveText(heading);
-});
-
-Then('{string} text is displayed as page header', async ({ page }, heading: string) => {
   await expect(page.locator('h1')).toHaveText(heading);
 });
 
@@ -303,8 +295,6 @@ When('I select confirm and submit button', async ({ pages }) => { await pages.ba
 
 When('I select submit registration button', async ({ pages }) => { await pages.basePage.clickSubmitRegistration(); });
 
-When('I select the back button', async ({ pages }) => { await pages.basePage.navigateBackLink.click(); });
-
 Then('I should see {string} error message displayed', async ({ pages }, text: string) => {
   await expect(pages.basePage.errorSummaryTitle).toHaveText(text);
 });
@@ -342,8 +332,6 @@ Then('I should see {string} error for max upload file', async ({ pages }, text: 
 Then('I should see {string} error for type of uploaded file', async ({ pages }, text: string) => {
   expect((await pages.basePage.getFileUploadErrorMaxFileTypeMgs()).replace('Error:\n', '')).toBe(text);
 });
-
-Then('I should see {string} page', async ({ page }, title: string) => { await expect(page).toHaveTitle(title); });
 
 Then('I should see the {string} link', async ({ pages }, text: string) => {
     expect(await pages.basePage.isLinkTextDisplayed(text)).toBe(true);
