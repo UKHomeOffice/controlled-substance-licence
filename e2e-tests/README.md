@@ -1,89 +1,103 @@
-# Controlled substance licence end-to-end tests
+# Controlled Substance Licence E2E Tests
 
-These Playwright BDD tests migrate the CSL Selenium/Cucumber tests from
-`hof-e2e-auto-tests/Function/src/main`. Source feature text, tags, scenario names,
-Examples, page objects, and StepLib branches are retained. Page objects and
-fixtures follow the LMR end-to-end test conventions.
+This directory contains the Playwright BDD end-to-end tests for the Controlled
+Substance Licence (CSL) service. The tests use the UAT service by default when
+configured as below; they do not build or start the application locally.
 
-## Setup
+## Run Locally Against UAT
 
-Use the Node version declared by the application and install the project:
+### Prerequisites
+
+- Node.js `24.21.x` (the version range in the root `package.json` is `>=24.21.0 <25.0.0`).
+- Yarn and access to the CSL UAT service.
+- Approved UAT test accounts and a test mailbox authorized for these scenarios.
+
+From the repository root, install dependencies and the Chromium browser:
 
 ```powershell
 yarn install
 yarn playwright install chromium
 ```
 
-Configure the target URL and test accounts in the existing, ignored `.env` file:
+Create or update the **root** `.env` file (next to `package.json`), not a file
+inside `e2e-tests`. Set the UAT URL and the required test secrets:
 
 ```dotenv
-PLAYWRIGHT_BASE_URL=https://your-csl-test-environment.example/
-USER_NAME=your-approved-test-user
-PASSWORD=your-approved-test-password
-USER_NAME_PENDING=your-pending-test-user
+PLAYWRIGHT_BASE_URL=https://csl.uat.sas-notprod.homeoffice.gov.uk/
+PASSWORD_CDA=your-cda-test-password
+PASSWORD_LTHCC=your-lthcc-test-password
+PASSWORD_PCA=your-pca-test-password
 PASSWORD_PENDING=your-pending-test-password
-SAS_HOF_EMAIL=your-test-mailbox@example.com
+SAS_HOF_EMAIL=your-approved-test-mailbox@example.com
 ```
 
-Do not commit credentials. Approved and pending users must have the same roles
-and application state required by the original CSL tests. Authentication, file
-vault, saved-application storage, and submission/email services must be available.
-The tests perform real registrations, uploads, saved drafts, and submissions:
-use a dedicated test environment and test accounts.
+Use the passwords and mailbox issued for your team's UAT test accounts. Test
+usernames are currently defined in `utility-helper/constants-lib.ts`; they are
+not read from `.env`. Keep `.env` local and never commit credentials.
 
-Without `PLAYWRIGHT_BASE_URL`, the configuration starts the application at
-`http://localhost:8080` (or `PLAYWRIGHT_PORT`). Its assets and dependent services
-must already be built/configured; the harness does not provision infrastructure.
+`playwright.config.ts` loads `.env` and uses `PLAYWRIGHT_BASE_URL` as the
+browser base URL. When this variable is set, Playwright skips starting the local
+web server and navigates to UAT. If it is missing, the config instead targets
+`http://localhost:8080` and starts `yarn start:dev`.
 
-## Validation order
+### Generate and Run Tests
 
-Generate and type-check before browser validation:
+Run these steps from the repository root:
 
-```powershell
-yarn test:e2e:typecheck
-yarn bddgen
-yarn playwright test --list
-```
+1. Generate Playwright tests from the Gherkin feature files. The generated
+  tests are written to `.features-gen`:
 
-Run **one generated scenario or Examples row at a time**, using the generated
-file and line printed by `--list`:
+  ```powershell
+  yarn bddgen
+  ```
 
-```powershell
-yarn playwright test '<generated-spec-path>:<line>' --workers=1 --retries=0
-```
+2. List the generated tests without running them. Use the output to find a
+  test's generated file path and line number:
 
-Check that each command selects exactly one test. Diagnose and fix migration
-failures, rerun the affected scenario individually, and validate every remaining
-scenario individually. Only after every isolated scenario passes, run:
+  ```powershell
+  yarn playwright test --list
+  ```
 
-```powershell
-yarn test:e2e --workers=1 --retries=0
-```
+3. Run one scenario or Examples row by replacing the path and line placeholders
+  with values from the list. `--workers=1` runs tests serially, and
+  `--retries=0` prevents automatic reruns after a failure:
 
-The configuration uses two workers with parallel scenarios as requested.
-Saved drafts and submissions share external test accounts, so concurrent runs
-can interfere; use `--workers=1` when diagnosing state-dependent failures.
-Retries are disabled so a failed submission is not silently repeated.
-Screenshots and video are always recorded; traces are kept
-for failures. Generated tests, reports, and results are ignored by Git.
+  ```powershell
+  yarn playwright test '<generated-spec-path>:<line>' --workers=1 --retries=0
+  ```
 
-## Layout
+4. Optionally run one journey project. This example runs only `cda`; the other
+  projects are `lthcc`, `pca`, and `reg`:
 
-- `features`: unchanged CSL feature files, including smoke and validation tests.
-- `pages`: one typed page object per source CSL page, with source locators,
-  expected titles, and methods; shared interactions are in `base-page.ts`.
-- `fixture/fixture.ts`: explicit imports, types, and instances for every page.
-- `steps`: source step bindings and StepLib methods/switches by journey, plus
-  shared CSL navigation and assertions.
-- `utility-helper/constants-lib.ts`: shared test values; credentials come only
-  from the environment.
-- `test-data/user-upload-files`: source upload fixtures used by the scenarios.
+  ```powershell
+  yarn playwright test --project=cda --workers=1 --retries=0
+  ```
 
-No source CSV data is needed by the CSL journeys; scenario variants remain in
-the StepLib switch statements. Selenium-specific waits are replaced with
-Playwright locator actions and retrying assertions, rather than fixed sleeps.
+5. After checking individual scenarios, run the full suite serially without
+  retries. This script runs `bddgen` before Playwright:
 
-Character-count assertions explicitly permit an optional thousands separator
-(for example `1750` or `1,750`), as approved during migration validation.
-The numeric value and surrounding message must still match exactly; source
-feature files are unchanged.
+  ```powershell
+  yarn test:e2e --workers=1 --retries=0
+  ```
+
+These tests create or update real UAT registrations, uploads, saved drafts, and
+submissions. Use only the authorized test accounts, and run serially because
+scenarios may share account state. The `--retries=0` option avoids automatically
+repeating a failed state-changing test.
+
+
+## Test Structure
+
+- `features/`: Gherkin scenarios, organized by journey (`cda`, `lthcc`, `pca`,
+  and `Reg`), plus `smokeTest.feature`.
+- `steps/`: journey-specific step definitions and shared CSL navigation/actions.
+- `pages/`: typed page objects and locators; `base-page.ts` contains shared
+  page interactions. Journey-specific page objects are grouped in subfolders.
+- `fixture/fixtures.ts`: Playwright BDD fixture setup and page-object instances.
+- `utility-helper/constants-lib.ts`: shared scenario data and required
+  environment-variable reads.
+- `test-data/user-upload-files/`: upload files used by the scenarios.
+
+BDD-generated tests are written to `.features-gen`. Playwright reports and test
+artifacts are written to the configured report/result directories in the
+repository root.
