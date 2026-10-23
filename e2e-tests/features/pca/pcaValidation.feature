@@ -306,7 +306,7 @@ Feature: CSL - Precursor chemicals application form
 #No data entered in any of the fields
     Then I should see "There is a problem" error message displayed
     And I should see "Select if anyone in your company has received criminal convictions" error summary
-    When I choose to select "Yes" option on the "Has anyone employed by your company ever received criminal convictions?" page for PCA
+    When I choose to select "Yes" on "Has anyone employed by your company ever received criminal convictions?" page and choose to continue for PCA
 #Invoicing address page
 #No data entered in any of the fields
     And I select save and continue

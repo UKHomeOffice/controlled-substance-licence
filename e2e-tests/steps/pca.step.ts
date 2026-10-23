@@ -347,7 +347,6 @@ When("I choose to navigate to {string} page for PCA", async ({ pages }, pageName
   }
 });
 
-
 When(/^I (?:answer|choose to select) "([^"]*)" on "([^"]*)" page (?:for PCA and choose to continue|and choose to continue for PCA)$/, async ({ pages }, answer: string, pageName: string) => {
   switch (pageName.toLowerCase()) {
     case "what type of licence are you applying for?":
@@ -394,6 +393,9 @@ When(/^I (?:answer|choose to select) "([^"]*)" on "([^"]*)" page (?:for PCA and 
       break;
     case "has the guarantor subscribed to dbs updates?":
       await pages.pcaHasTheGuarantorSubscribedToDbsUpdatesPage.completeHasTheGuarantorSubscribedToDbsUpdatesPage(answer);
+      break;
+    case "has anyone employed by your company ever received criminal convictions?":
+      await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(answer);
       break;
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
@@ -553,10 +555,6 @@ When("I enter {string} characters in the text area box field on {string} page fo
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
-});
-
-When("I choose to select {string} option on the {string} page for PCA", async ({ pages }, option: string, _pageName: string) => {
-  await pages.pcaHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage.completeHasAnyoneEmployedByYourCompanyEverReceivedCriminalConvictionsPage(option);
 });
 
 When("I enter {string} into {string} field and page for PCA", async ({ pages }, value: string, pageName: string) => {
