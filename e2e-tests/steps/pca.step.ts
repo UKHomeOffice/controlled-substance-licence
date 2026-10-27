@@ -6,7 +6,6 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 const { When, Then } = createBdd(test);
 
-// Scenario: Precursor Chemicals Drugs tests
 When('I fill out the answers to Precursor Chemicals form pertaining to {string} happy path test by selecting {string} checkbox and entering own chemical name {string}', async ({ pages }, scenario: string, checkboxLabel: string, ownChemicalName: string) => {
   await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
   await pages.cslSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage.completeSignInToApplyForADomesticLicenceToProduceSupplyOrPossessControlledDrugsPage(c.PCA_USER_NAME, c.PCA_PASSWORD);
