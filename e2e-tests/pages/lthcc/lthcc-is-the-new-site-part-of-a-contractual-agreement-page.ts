@@ -1,0 +1,18 @@
+import { basePage } from '../base-page';
+
+export class LthccIsTheNewSitePartOfAContractualAgreementPage extends basePage {
+    async expectedPageTitle(): Promise<string> {
+        return this.withErrorPrefix('Is the new site part of a contractual agreement? – Industrial hemp application');
+    }
+    async completeIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndContinue();
+    }
+
+    async completeAndSelectSaveAndExitIsTheNewSitePartOfAContractualAgreementPage(option: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.selectYesOrNoRadioOption(option);
+        await this.clickSaveAndAndExit();
+    }
+}
