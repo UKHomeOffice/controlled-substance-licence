@@ -588,7 +588,6 @@ When("I select {string} checkbox on {string} page for PCA", async ({ pages }, ch
     case "which chemical are you applying for?":
       await pages.pcaWhichChemicalAreYouApplyingForPage.selectOwnChemicalCheckboxOnWhichChemicalAreYouApplyingForPage(checkboxLabel);
       break;
-
     default:
       throw new Error("Failed: Wrong page name: " + pageName);
   }
