@@ -165,7 +165,7 @@ When('I partially completing {string} form, then save and exit on {string} page'
           await pages.pcaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
           await pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
           await pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-          await pages.pcaWhenDoesTheContractStartPage.completeAndSelectSaveAndExitWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
+          await pages.pcaWhenDoesTheContractStartPage.completeAndSelectSaveAndExitWhenDoesTheContractStartPage(c.TOMORROWS_DATE);
           break;
 
         default:

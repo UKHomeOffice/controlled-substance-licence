@@ -101,7 +101,7 @@ When('I fill out the answers to Precursor Chemicals form pertaining to {string} 
       await pages.pcaHowAreYouApplyingForYourPrecursorChemicalsLicencePage.completeHowAreYouApplyingForYourPrecursorChemicalsLicencePage(c.START_NEW_APPLICATION);
       await pages.pcaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
       await pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("We are moving site");
-      await pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
+      await pages.pcaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROWS_DATE);
       await pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "");
       await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
       await pages.pcaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_NO);
@@ -156,7 +156,7 @@ When('I fill out the answers to Precursor Chemicals form pertaining to {string} 
       await pages.pcaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
       await pages.pcaWhyAreYouRequestingANewLicensePage.completeWhyAreYouRequestingANewLicensePage("For another site");
       await pages.pcaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-      await pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
+      await pages.pcaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.TOMORROWS_DATE);
       await pages.pcaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
       await pages.pcaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
       await pages.pcaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);

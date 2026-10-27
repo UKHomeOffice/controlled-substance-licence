@@ -8,7 +8,7 @@ configured as below; they do not build or start the application locally.
 
 ### Prerequisites
 
-- Node.js `24.21.x` (the version range in the root `package.json` is `>=24.21.0 <25.0.0`).
+- Node.js (the version range in the root `package.json`).
 - Yarn and access to the CSL UAT service.
 - Approved UAT test accounts and a test mailbox authorized for these scenarios.
 

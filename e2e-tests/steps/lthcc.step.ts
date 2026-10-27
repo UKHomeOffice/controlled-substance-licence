@@ -129,7 +129,7 @@ When('I fill out the answers to Low THC Cannabis form pertaining to {string} hap
             await pages.lthccHowAreYouApplyingForYourLowThcCannabisLicencePage.completeHowAreYouApplyingForYourLowThcCannabisLicencePage(c.START_NEW_APPLICATION);
             await pages.lthccWhatTypeOfLowThcCannabisLicenceAreYouPage.completeWhatTypeOfLowThcCannabisLicenceAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
             await pages.lthccWhyAreYouRequestingANewLicencePage.completeWhyAreYouRequestingANewLicencePage("We are moving site");
-            await pages.lthccWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
+            await pages.lthccWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROWS_DATE);
             //Existing licensee applying for a new site
             await pages.lthccLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");
             await pages.lthccLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
@@ -194,7 +194,7 @@ When('I fill out the answers to Low THC Cannabis form pertaining to {string} hap
             await pages.lthccWhatTypeOfLowThcCannabisLicenceAreYouPage.completeWhatTypeOfLowThcCannabisLicenceAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
             await pages.lthccWhyAreYouRequestingANewLicencePage.completeWhyAreYouRequestingANewLicencePage("For another site");
             await pages.lthccIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-            await pages.lthccWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.YESTERDAY_S_DATE);
+            await pages.lthccWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.YESTERDAYS_DATE);
             await pages.lthccTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
             //Existing licensee applying for a new site
             await pages.lthccLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, "", c.TELEPHONE, c.SAS_HOF_EMAIL, "");

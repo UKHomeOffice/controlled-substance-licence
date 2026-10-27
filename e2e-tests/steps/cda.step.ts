@@ -46,10 +46,10 @@ When('I fill out the answers to Controlled Drugs form pertaining to {string} hap
             await pages.cdaDbsInformationForPage.completeDbsInformationForPage(c.FULL_NAME, c.DBS_REFERENCE, c.DATE_IS_WITHIN_3_YEARS, c.RESPONSE_YES);
             await pages.cdaWitnessesYouHaveToldUsAboutPage.clickAddAnother();
             await pages.cdaAuthorisedWitnessInformationPage.completeAuthorisedWitnessInformationPage("1FULL HOF1", c.AGENT_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-            await pages.cdaDbsInformationForPage.completeDbsInformationForPage("1FULL DBS HOF1", c.DBS_REFERENCE, c.YESTERDAY_S_DATE, c.RESPONSE_YES);
+            await pages.cdaDbsInformationForPage.completeDbsInformationForPage("1FULL DBS HOF1", c.DBS_REFERENCE, c.YESTERDAYS_DATE, c.RESPONSE_YES);
             await pages.cdaWitnessesYouHaveToldUsAboutPage.clickAddAnother();
             await pages.cdaAuthorisedWitnessInformationPage.completeAuthorisedWitnessInformationPage("2FULL HOF2", c.SAS_HOF_EMAIL, c.CONFIRM_DBS_CERTIFICATE);
-            await pages.cdaDbsInformationForPage.completeDbsInformationForPage("2FULL DBS HOF2", c.DBS_REFERENCE, c.YESTERDAY_S_DATE, c.RESPONSE_NO);
+            await pages.cdaDbsInformationForPage.completeDbsInformationForPage("2FULL DBS HOF2", c.DBS_REFERENCE, c.YESTERDAYS_DATE, c.RESPONSE_NO);
             await pages.cdaWitnessesYouHaveToldUsAboutPage.completeWitnessesYouHaveToldUsAboutPage();
             await pages.cdaUsingTheDbsUpdateServicePage.completeUsingTheDbsUpdateServicePage();
             await pages.cdaUploadCompanyRegistrationCertificatePage.completeUploadCompanyRegistrationCertificatePage("yourself.png");
@@ -227,7 +227,7 @@ When('I fill out the answers to Controlled Drugs form pertaining to {string} hap
             await pages.cdaHowAreYouApplyingForYourControlledDrugsLicencePage.completeHowAreYouApplyingForYourControlledDrugsLicencePage(c.START_NEW_APPLICATION);
             await pages.cdaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
             await pages.cdaWhyAreYouRequestingANewLicencePage.completeWhyAreYouRequestingANewLicensePage("We are moving site");
-            await pages.cdaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROW_S_DATE);
+            await pages.cdaWhenAreYouMovingSitePage.completeWhenAreYouMovingSitePage(c.TOMORROWS_DATE);
             await pages.cdaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
             await pages.cdaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
             await pages.cdaIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage.completeIsThePremisesAddressTheSameAsTheLicenceHolderAddressPage(c.RESPONSE_YES);
@@ -320,7 +320,7 @@ When('I fill out the answers to Controlled Drugs form pertaining to {string} hap
             await pages.cdaWhatTypeOfLicenseeAreYouPage.completeWhatTypeOfLicenseeAreYouPage(c.EXISTING_LICENSEE_APPLYING_FOR_NEW_SITE);
             await pages.cdaWhyAreYouRequestingANewLicencePage.completeWhyAreYouRequestingANewLicensePage("For another site");
             await pages.cdaIsTheNewSitePartOfAContractualAgreementPage.completeIsTheNewSitePartOfAContractualAgreementPage(c.RESPONSE_YES);
-            await pages.cdaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.TOMORROW_S_DATE);
+            await pages.cdaWhenDoesTheContractStartPage.completeWhenDoesTheContractStartPage(c.TOMORROWS_DATE);
             await pages.cdaTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage.completeTellUsMoreAboutTheContractAndHowItAffectsYourLicenceApplicationPage(c.TEXT_AREA_FIELD_DATA);
             await pages.cdaLicenceHolderDetailsPage.completeLicenceHolderDetailsPage(c.BUSINESS_OR_COMPANY_NAME, c.COMPANY_NO, c.TELEPHONE, c.SAS_HOF_EMAIL, "https://www.hof.com");
             await pages.cdaLicenceHolderAddressPage.completeLicenceHolderAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
