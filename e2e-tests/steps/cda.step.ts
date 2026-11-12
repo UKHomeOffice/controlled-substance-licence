@@ -424,9 +424,15 @@ When('I fill out the answers to Controlled Drugs form pertaining to {string} hap
     await pages.cdaWhichEmailAddressShouldWeSendTheLicenceToPage.completeWhichEmailAddressShouldWeSendTheLicenceToPage(c.SAS_HOF_EMAIL);
     await pages.cdaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.SAS_HOF_EMAIL, c.TELEPHONE);
     await pages.cdaAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationOptionalPage(c.TEXT_AREA_FIELD_DATA);
+
+    // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+    if (pages.basePage.page.url().includes('branch')) {
+        return;
+    }
     await pages.cdaCheckYourAnswersPage.completeCheckYourAnswersPage();
     await pages.cdaDeclarationPage.completeDeclarationPage("I understand and agree with these statements");
     await pages.cdaApplicationSubmittedPage.completeApplicationSubmittedPage();
+
 });
 
 When("I fill out the answers to Controlled drugs for a first time licensee form and no activity is selected", async ({ pages }) => {

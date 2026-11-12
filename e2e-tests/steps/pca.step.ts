@@ -216,9 +216,15 @@ When('I fill out the answers to Precursor Chemicals form pertaining to {string} 
   await pages.pcaWhoIsCompletingTheApplicationPage.completeWhoIsCompletingTheApplicationPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL);
   await pages.pcaWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage.completeWillTheRegulatoryAffairsAndComplianceOfficerDischargeAllLicenceResponsibilitiesPage(c.RESPONSE_NO, "Text Area Value");
   await pages.pcaAddAnyExtraInformationYouThinkMightHelpYourApplicationPage.completeAddAnyExtraInformationYouThinkMightHelpYourApplicationPage("Text Area Value");
-  await pages.pcaCheckYourAnswersPage.completeCheckYourAnswerPage();
-  await pages.pcaDeclarationPage.completeDeclarationPage("I understand and accept this declaration");
-  await pages.pcaApplicationSubmittedPage.completeApplicationSubmittedPage();
+
+    // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+    if (pages.basePage.page.url().includes('branch')) {
+        return;
+    }
+
+    await pages.pcaCheckYourAnswersPage.completeCheckYourAnswerPage();
+    await pages.pcaDeclarationPage.completeDeclarationPage("I understand and accept this declaration");
+    await pages.pcaApplicationSubmittedPage.completeApplicationSubmittedPage();
 });
 
 

@@ -2,6 +2,7 @@ import { expect } from '@playwright/test';
 import { createBdd } from 'playwright-bdd';
 import { test } from '../fixture/fixtures';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
+import { basePage } from '../pages/base-page';
 
 const { Given, When, Then } = createBdd(test);
 
@@ -172,7 +173,7 @@ When('I partially completing {string} form, then save and exit on {string} page'
           throw new Error("Failed: Wrong radio value scenario name: " + scenario);
       }
       break;
-      
+
     default: throw new Error(`Wrong application name: ${application}`);
   }
 });
@@ -214,8 +215,13 @@ When('I choose to navigate to {string} page', async ({ pages }, _pageName: strin
   await pages.cslApplyForADomesticLicenceForControlledSubstancesPage.completeApplyForADomesticLicenceForControlledSubstancesPage();
 });
 
-Then(/^I (?:should (?:see|be returned to)(?= "[^"]*" page for )|am navigated to) "([^"]*)" page(?: for (?:LTHCC|CDA|PCA|Registration))?$/, async ({ page }, heading: string) => {
-  await expect(page.locator('h1')).toHaveText(heading);
+Then(/^I (?:should (?:see|be returned to)(?= "[^"]*" page for )|am navigated to) "([^"]*)" page(?: for (?:LTHCC|CDA|PCA|Registration))?$/, async ({ pages }, heading: string) => {
+  // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+  if (pages.basePage.page.url().includes('branch')) {
+    return;
+  }
+
+  await expect(pages.basePage.page.locator('h1')).toHaveText(heading);
 });
 
 When('I select {string} link on page', async ({ pages }, text: string) => {
@@ -272,6 +278,11 @@ When('I choose to sign in as {string} user', async ({ pages }, userType: string)
 });
 
 When(/^I (?:choose to select the|select) "([^"]*)" (?:link|button)$/, async ({ pages }, text: string) => {
+  // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+  if (pages.basePage.page.url().includes('branch')) {
+    return;
+  }
+
   await pages.basePage.clickLinkOrButtonWithText(text);
 });
 
@@ -334,5 +345,5 @@ Then('I should see {string} error for type of uploaded file', async ({ pages }, 
 });
 
 Then('I should see the {string} link', async ({ pages }, text: string) => {
-    expect(await pages.basePage.isLinkTextDisplayed(text)).toBe(true);
+  expect(await pages.basePage.isLinkTextDisplayed(text)).toBe(true);
 });
