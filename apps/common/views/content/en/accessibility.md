@@ -60,8 +60,8 @@ If you find an issue that we have yet to identify, please contact us using one o
 
 ## Preparation of this accessibility statement
 
-This statement was prepared on 19 June 2025. It was last reviewed on 19 June 2025.
+This statement was prepared on 19 June 2025. It was last reviewed on 28 October 2026.
 
-This website was last tested on 18 June 2025. The test was carried out internally by the Home Office.
+This website was last tested on 26 October 2026. The test was carried out internally by the Home Office.
 
 We tested the service based on a user’s ability to complete key journeys. All parts of the chosen journeys were tested, including documents. Journeys were chosen on a number of factors including usage statistics, risk assessments and subject matter.
