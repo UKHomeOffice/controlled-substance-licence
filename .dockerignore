@@ -20,3 +20,5 @@ coverage
 sonar-project.properties
 pull-request-template.md
 hof-services-config
+.github
+e2e-tests

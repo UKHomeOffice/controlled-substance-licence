@@ -18,3 +18,8 @@ test/_accessibility/tmp/*
 .nyc_output
 .devcontainer/*.env
 .cache
+.features-gen
+playwright-report
+test-results
+allure-results
+allure-report
