@@ -583,7 +583,7 @@ steps:
         path: /root/.dockersock
     commands:
       - npm install -g n
-      - n 24.21.0
+      - n 24.22.2
       - hash -r
       - node --version
       - yarn install --frozen-lockfile
