@@ -26,13 +26,13 @@
   "homepage": "https://github.com/UKHomeOffice/controlled-substance-licence#readme",
   "dependencies": {
     "accessible-autocomplete": "^3.0.2",
-    "bl": "^7.0.14",
+    "bl": "^7.0.15",
     "busboy": "^1.6.0",
     "crypto-random-string": "^6.0.0",
     "form-data": "^4.0.6",
     "hof": "~24.7.2",
     "notifications-node-client": "^8.5.0",
-    "minimatch": "^11.0.5"
+    "minimatch": "^11.0.8"
   },
   "devDependencies": {
     "eslint": "^8.57.1",

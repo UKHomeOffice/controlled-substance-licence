@@ -2020,10 +2020,10 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
   integrity sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==
 
-bl@^7.0.14:
-  version "7.0.14"
-  resolved "https://registry.yarnpkg.com/bl/-/bl-7.0.14.tgz#7a2ba148e08c3d90a3c646c7254deec871efd65c"
-  integrity sha512-QCC6whHxF2MIGcUjGqFWgC9gMaSlXS3dD7FxXplYNA6ZmY+udv//mU15FnOBjZ5E54/g0vf/xLfTknqH3kqZ+A==
+bl@^7.0.15:
+  version "7.0.15"
+  resolved "https://registry.yarnpkg.com/bl/-/bl-7.0.15.tgz#1dc3482ff8f5bec128325ac0f6bacc9ef4639f9b"
+  integrity sha512-/qO0G8bLoUX/PEexHV83AMPO8Zo/aCr51vAAhMXXfoPRNYJzwKI+g1DVZcmx//kXVtOX9V+D5vStPY8/FhJN0w==
 
 bluebird@^3.7.2:
   version "3.7.2"
@@ -5005,10 +5005,10 @@ minimatch@^10.2.2:
   dependencies:
     brace-expansion "^5.0.8"
 
-minimatch@^11.0.3, minimatch@^11.0.5:
-  version "11.0.5"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-11.0.5.tgz#29589e94fc4d84193b2a31b082b0ec67b5ea1d42"
-  integrity sha512-snPlVppFcYWfLLFQGhDxUyBcHNtMlWmn3jtj7pEaO+DP8pqL0IvAzXhMYmn1z9ASNtgmwLBdFxSf4tMUB0OTKA==
+minimatch@^11.0.3, minimatch@^11.0.8:
+  version "11.0.8"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-11.0.8.tgz#715fc3509cd7f76ed9af2f702a98411b1b0288c8"
+  integrity sha512-nFQuYSTVrGvysVBps5Ih+0BdnYFN/Cj3C816r6+p7yK+FHrVLGE4O4N9AFwykrlNlvM2HYt+Rad1Uiro6h88Ig==
   dependencies:
     "@isaacs/nonrecursive-glob-match" "^1.1.0"
     brace-expansion "^5.0.12"
