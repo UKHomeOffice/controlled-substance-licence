@@ -1,0 +1,12 @@
+import { basePage } from '../base-page';
+
+export class LthccWhenAreYouMovingSitePage extends basePage {
+    async expectedPageTitle(): Promise<string> {
+        return this.withErrorPrefix('When are you moving site? – Industrial hemp application');
+    }
+    async completeWhenAreYouMovingSitePage(date: string): Promise<void> {
+        await this.assertPageTitle();
+        await this.enterDateOrDob(date);
+        await this.clickSaveAndContinue();
+    }
+}

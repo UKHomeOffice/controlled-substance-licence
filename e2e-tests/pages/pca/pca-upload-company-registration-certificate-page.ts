@@ -1,0 +1,15 @@
+import { basePage } from '../base-page';
+
+export class PcaUploadCompanyRegistrationCertificatePage extends basePage {
+
+  override async expectedPageTitle(): Promise<string> {
+    return (await this.page.title()).startsWith("Error")
+            ? "Error: Upload company registration certificate – Precursor chemicals application"
+            : "Upload company registration certificate – Precursor chemicals application";
+  }
+  async completeUploadCompanyRegistrationCertificatePage(textAreaValue: string): Promise<void> {
+    await this.assertPageTitle();
+    await this.uploadFileFromUserUploadFolder(textAreaValue);
+    await this.selectContinueUploadBtn();
+  }
+}
