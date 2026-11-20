@@ -292,7 +292,7 @@ steps:
         path: /root/.dockersock
     commands:
       - npm install -g n
-      - n 24.22.2
+      - n 24.22.3
       - hash -r
       - node --version
       - yarn install --frozen-lockfile
@@ -583,7 +583,7 @@ steps:
         path: /root/.dockersock
     commands:
       - npm install -g n
-      - n 24.22.2
+      - n 24.22.3
       - hash -r
       - node --version
       - yarn install --frozen-lockfile
