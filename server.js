@@ -3,7 +3,7 @@
 const hof = require('hof');
 const config = require('./config.js');
 const busboy = require('busboy');
-const bl = require('bl');
+const bufferList = require('bl').default;
 const logger = require('hof/lib/logger')({ env: config.env });
 const { sanitiseFilename } = require('./utils');
 
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
       return;
     }
 
-    file.pipe(bl((err, data) => {
+    file.pipe(new bufferList((err, data) => {
       if (err) {
         const errorMessage = `Failed to process file during streaming operation: ${err}`;
         logger.error(errorMessage);
