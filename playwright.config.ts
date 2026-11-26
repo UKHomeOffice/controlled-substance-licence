@@ -39,8 +39,8 @@ export default defineConfig({
   use: {
     baseURL,
     viewport: null,
-    screenshot: 'only-on-failure',
-    video: 'on-first-retry',
+    video: 'on', // Options: 'on', 'off', 'retain-on-failure' or 'on-first-retry'
+    screenshot: 'on', // Options: 'on', 'off', 'only-on-failure' or 'on-first-retry'
     trace: 'on-first-retry',
     headless: !!process.env.CI,
     browserName: 'chromium',
