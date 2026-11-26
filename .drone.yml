@@ -292,15 +292,29 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     commands:
+      - rm -rf allure-results allure-report
       - npm install -g n
       - n 24.22.3
       - hash -r
       - node --version
       - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
+      - apt-get update && apt-get install -y --no-install-recommends default-jre-headless
       - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
       - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
-      - CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
+      - |
+        set +e
+        CI=true PLAYWRIGHT_BASE_URL="https://$(cat /root/.dockersock/branch_url.txt)" yarn test:e2e
+        test_exit_code=$?
+        report_exit_code=1
+        if [ -d allure-results ] && find allure-results -name '*-result.json' -print -quit | grep -q .; then
+          yarn allure:generate
+          report_exit_code=$?
+        else
+          echo "No Allure test results were produced; report cannot be generated." >&2
+        fi
+        if [ "$test_exit_code" -ne 0 ]; then exit "$test_exit_code"; fi
+        exit "$report_exit_code"
     when:
       branch:
         <<: *include_default_and_feature_branches
@@ -334,7 +348,7 @@ steps:
         set -euo pipefail
         token_file=/root/.dockersock/github_app_token_for_e2e_report.txt
         trap 'rm -f "$token_file"' EXIT
-        apk add --no-cache bash curl jq zip
+        apk add --no-cache bash curl jq
         test -n "$DRONE_PULL_REQUEST" || (echo "Missing DRONE_PULL_REQUEST. This step only supports pull_request builds." && exit 1)
         export DRONE_REPO="$${DRONE_REPO:-$GIT_REPO}"
         test -n "$DRONE_REPO" || (echo "Missing repository slug (DRONE_REPO/GIT_REPO)." && exit 1)

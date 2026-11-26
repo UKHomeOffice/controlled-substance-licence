@@ -85,6 +85,16 @@ submissions. Use only the authorized test accounts, and run serially because
 scenarios may share account state. The `--retries=0` option avoids automatically
 repeating a failed state-changing test.
 
+## Pull Request Playwright Reports in Drone
+
+The PR pipeline runs Playwright against the deployed branch environment. When
+test results are available, it generates a single-file Allure HTML report even
+if tests fail, publishes it as a GitHub release asset, and posts a link on the
+PR. Download the HTML file and open it in a browser. The GitHub App configured
+by `hof_ukho_gh_app_id`, `hof_ukho_gh_app_pk`, and
+`hof_ukho_gh_app_install_id` needs Contents read/write for releases and Issues
+read/write for PR comments.
+
 ## Nightly Playwright Reporting in Drone
 
 The `nightly_e2e_playwright` Drone cron runs the suite against the configured
