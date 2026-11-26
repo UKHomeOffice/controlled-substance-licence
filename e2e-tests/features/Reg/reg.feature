@@ -6,7 +6,7 @@ Feature: CSL - Registration Form
     Given I visit the Controlled substance licence application page
     When I fill out the answers to Registration form pertaining to "<REG Test>" happy path test
     Then I am navigated to "Registration submitted" page
-    And "sas-hof-test@digital.homeoffice.gov.uk" link is displayed on Registration page
+    And "SAS HOF EMAIL" link is displayed on Registration page
     And "dflu.dom@homeoffice.gov.uk" link is displayed on Registration page
     Examples:
       | REG Test                                                                                                               |

@@ -49,6 +49,10 @@ When('I fill out the answers to Registration form pertaining to {string} happy p
     await pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(c.FULL_NAME, c.TELEPHONE, c.SAS_HOF_EMAIL, "112345DSD");
     await pages.regInvoicingAddressPage.completeInvoicingAddressPage(c.ADDRESS_LINE_1, c.ADDRESS_LINE_2, c.TOWN_OR_CITY, c.POSTCODE);
     await pages.regCheckYourAnswersPage.completeCheckYourAnswersPage();
+    // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+    if (pages.basePage.page.url().includes('branch')) {
+        return;
+    }
     await pages.regDeclarationPage.completeDeclarationPage("I have read and agree to this declaration");
     await pages.regRegistrationSubmittedPage.completeRegistrationSubmittedPage();
 });
@@ -169,6 +173,12 @@ When('I complete the fields below with Invoicing contact details for REG:', asyn
     await pages.regInvoicingContactDetailsPage.completeInvoicingContactDetailsPage(data['Contact name'], data['Contact phone number'], data['Invoice email address'], data['Purchase order number'],);
 });
 
-Then('{string} link is displayed on Registration page', async ({ pages }, linkText: string) => {
-    expect(await pages.basePage.isLinkTextDisplayed(linkText)).toBe(true);
+Then('{string} link is displayed on Registration page', async ({ pages }, emailLinkText: string) => {
+    // Submission flow is only available in UAT and high environments because iCasework is not configured in branch environments.
+    if (pages.basePage.page.url().includes('branch')) {
+        return;
+    }
+
+    const expectedLinkText = emailLinkText === 'SAS HOF EMAIL' ? c.SAS_HOF_EMAIL : emailLinkText;
+    expect(await pages.basePage.isLinkTextDisplayed(expectedLinkText)).toBe(true);
 });
