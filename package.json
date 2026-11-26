@@ -19,7 +19,9 @@
     "test:e2e:typecheck": "tsc --noEmit",
     "test:e2e:headed": "bddgen && playwright test --headed",
     "test:e2e:report": "playwright show-report",
-    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "test:e2eAndOpenAllureReport": "yarn allure:clear && bddgen && playwright test && yarn allure:generate && yarn allure:open",
+    "allure:clear": "node -e \"require('node:fs').rmSync('allure-results', { recursive: true, force: true })\"",
+    "allure:generate": "allure generate allure-results --clean --single-file -o allure-report",
     "allure:open": "allure open allure-report"
   },
   "repository": {
@@ -40,8 +42,8 @@
     "date-fns": "^4.4.0",
     "form-data": "^4.0.6",
     "hof": "~24.7.2",
-    "notifications-node-client": "^8.5.0",
-    "minimatch": "^11.0.9"
+    "minimatch": "^11.0.9",
+    "notifications-node-client": "^8.5.0"
   },
   "devDependencies": {
     "@cucumber/cucumber": "^13.3.0",

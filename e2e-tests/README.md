@@ -85,6 +85,40 @@ submissions. Use only the authorized test accounts, and run serially because
 scenarios may share account state. The `--retries=0` option avoids automatically
 repeating a failed state-changing test.
 
+## Nightly Playwright Reporting in Drone
+
+The `nightly_e2e_playwright` Drone cron runs the suite against the configured
+CSL UAT URL (`https://csl.internal.uat.sas-notprod.homeoffice.gov.uk/`). Set
+`NIGHTLY_E2E_BASE_URL` in Drone to this URL, and configure the test credentials
+as Drone secrets named `SAS_HOF_EMAIL`, `PASSWORD_CDA`, `PASSWORD_LTHCC`,
+`PASSWORD_PCA`, and `PASSWORD_PENDING`. Do not put these credentials in the
+pipeline or commit them.
+
+The nightly run writes Playwright's JSON report and a compact JSON outcome
+summary, then generates and publishes a single-file Allure HTML report when
+Allure results exist, including after failed tests. The report is published as
+a GitHub release asset using the existing CSL GitHub App secrets
+`hof_ukho_gh_app_id`, `hof_ukho_gh_app_pk`, and
+`hof_ukho_gh_app_install_id`. Configure the `nightly_e2e_playwright` cron in
+Drone and provide the `slack_sas_hof_e2e_tests_webhook` secret for its
+notification step.
+
+The Slack preview contains only the report heading, “Nightly Playwright Tests,”
+and Playwright's `Status: Passed|Failed`. Its colored attachment contains the
+actual Drone build status separately from Playwright test status, the branch,
+environment URL, build link, and outcome percentages and counts. It contains no
+individual test details and uses Slack's native “Show more” / “Show less”
+behavior. A green attachment means this build's Playwright run and result data
+are valid and its saved exit code is zero; otherwise it is red. The exit code is
+tagged with the current Drone build number, so stale or missing status data is
+reported as failed. Missing or invalid JSON results are explicitly marked
+`Results: INVALID`, not as a successful zero-test run.
+
+The report link downloads the single-file Allure HTML report, which must be
+opened in a browser. If Allure results were not generated or publication failed,
+the Slack attachment says that the report is unavailable. The nightly release
+replaces its previous Allure report asset.
+
 
 ## Test Structure
 
