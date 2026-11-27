@@ -59,7 +59,7 @@ sonar_scanner: &sonar_scanner
   pull: always
   image: quay.io/ukhomeofficedigital/sonar-scanner:latest
   commands:
-    - sonar-scanner -Dproject.settings=./sonar-project.properties
+    - sonar-scanner -Dproject.settings=./sonar-project.properties -Dsonar.qualitygate.wait=true -Dsonar.qualitygate.timeout=300
 
 github_app_token_step: &github_app_token_step
   pull: if-not-exists
@@ -138,7 +138,7 @@ steps:
     environment:
       IMAGE_NAME: *node_image_name
       SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
-      SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree
+      SEVERITY: MEDIUM,HIGH,CRITICAL --dependency-tree
       FAIL_ON_DETECTION: true
       IGNORE_UNFIXED: false
       ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
@@ -161,6 +161,8 @@ steps:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+    depends_on:
+      - scan_base_image_os
 
   - name: linting
     <<: *linting
@@ -182,10 +184,14 @@ steps:
 
   - name: sonar_scanner
     <<: *sonar_scanner
+    failure: ignore
     when:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+    depends_on:
+      - linting
+      - unit_tests
 
   - name: build_image_for_trivy
     pull: if-not-exists
@@ -202,30 +208,8 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
-      - linting
-      - unit_tests
-
-  - name: build_image_and_push_to_ecr
-    pull: if-not-exists
-    image: plugins/ecr
-    settings:
-      access_key:
-        from_secret: aws_access_key_id
-      secret_key:
-        from_secret: aws_secret_access_key
-      region: eu-west-2
-      repo: sas/csl
-      registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
-      tags:
-        - ${DRONE_COMMIT_SHA}
-    when:
-      branch:
-        <<: *include_default_and_feature_branches
-      event: [push, pull_request]
-    depends_on:
-      - linting
-      - unit_tests
-      - build_image_for_trivy
+      - sonar_scanner
+      - scan_base_image_os
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -247,7 +231,28 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
+      - clone_repos
       - build_image_for_trivy
+
+  - name: build_image_and_push_to_ecr
+    pull: if-not-exists
+    image: plugins/ecr
+    settings:
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      region: eu-west-2
+      repo: sas/csl
+      registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
+      tags:
+        - ${DRONE_COMMIT_SHA}
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - scan_node_packages
 
   # Deploy to pull request UAT environment
   - name: deploy_to_branch
