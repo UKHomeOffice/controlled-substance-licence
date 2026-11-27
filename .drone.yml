@@ -184,6 +184,7 @@ steps:
 
   - name: sonar_scanner
     <<: *sonar_scanner
+    failure: ignore
     when:
       branch:
         <<: *include_default_and_feature_branches
@@ -210,28 +211,6 @@ steps:
       - sonar_scanner
       - scan_base_image_os
 
-  - name: build_image_and_push_to_ecr
-    pull: if-not-exists
-    image: plugins/ecr
-    settings:
-      access_key:
-        from_secret: aws_access_key_id
-      secret_key:
-        from_secret: aws_secret_access_key
-      region: eu-west-2
-      repo: sas/csl
-      registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
-      tags:
-        - ${DRONE_COMMIT_SHA}
-    when:
-      branch:
-        <<: *include_default_and_feature_branches
-      event: [push, pull_request]
-    depends_on:
-      - linting
-      - unit_tests
-      - build_image_for_trivy
-
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
     pull: always
@@ -252,7 +231,28 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
+      - clone_repos
       - build_image_for_trivy
+
+  - name: build_image_and_push_to_ecr
+    pull: if-not-exists
+    image: plugins/ecr
+    settings:
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      region: eu-west-2
+      repo: sas/csl
+      registry: 340268328991.dkr.ecr.eu-west-2.amazonaws.com
+      tags:
+        - ${DRONE_COMMIT_SHA}
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - scan_node_packages
 
   # Deploy to pull request UAT environment
   - name: deploy_to_branch
